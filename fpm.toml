@@ -1,0 +1,17 @@
+name = "NAFPack"
+version = "0.1.0"
+license = "license"
+author = "Jules Minard"
+maintainer = "minard.jules@yahoo.com"
+copyright = "Copyright 2023, Jules Minard"
+description = "Numerical Analysis in Fortran Package"
+keywords = ["NAFPack"]
+homepage = "https://github.com/Minard-Jules/NAFPack"
+
+[build]
+auto-executables = false
+auto-tests = true
+auto-examples = false
+
+[install]
+library = false
