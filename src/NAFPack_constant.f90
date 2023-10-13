@@ -1,11 +1,11 @@
 MODULE NAFPack_constant
 
-    USE, INTRINSIC :: iso_fortran_env, ONLY: sp=>real32, dp=>real64
+    USE, INTRINSIC :: iso_fortran_env, ONLY: sp=>real32, dp=>real64, isp=>int32, idp=>int64
     
     IMPLICIT NONE
 
     PRIVATE
-    PUBLIC :: pi, im, epsi, kmax, sp, dp, epsi_test
+    PUBLIC :: pi, im, epsi, kmax, sp, dp, epsi_test, idp, isp
     PUBLIC :: status_len
     PUBLIC :: red_color, green_color, yellow_color, blue_color, white_color, cyan_color, purple_color, reset_color
 

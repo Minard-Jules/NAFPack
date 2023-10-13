@@ -12,6 +12,13 @@ homepage = "https://github.com/Minard-Jules/NAFPack"
 auto-executables = false
 auto-tests = true
 auto-examples = false
+link = "fftw3"
 
 [install]
 library = false
+
+
+[fortran]
+implicit-typing = true
+implicit-external = true
+source-form = "default"

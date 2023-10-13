@@ -49,7 +49,7 @@ MODULE test_NAFPack_fft
         fs_exact_DFT = (0.d0, 0.d0)
         fs_exact_DFT(Mx) = (10.d0, 0.d0)
 
-        fs_DFT = DFT(S)
+        fs_DFT = FFT_1D(S, "NAFPack_DFT")
 
         diff_DFT = fs_exact_DFT - fs_DFT
         IF(MAXVAL(ABS(diff_DFT)) < epsi) THEN
@@ -70,7 +70,7 @@ MODULE test_NAFPack_fft
         fs_exact_FFT(7) = (0.d0, 15.d0)
         fs_exact_FFT(9) = (2.5d0, 0.d0)
 
-        fs_FFT = FFT(S)
+        fs_FFT = FFT_1D(S, "NAFPack_FFT_1D")
 
         diff_FFT = fs_exact_FFT - fs_FFT
         IF(MAXVAL(ABS(diff_FFT)) < epsi) THEN
@@ -100,7 +100,7 @@ MODULE test_NAFPack_fft
                     (1.65d0, 0.d0), &
                     (3.29d0, 0.d0)]
 
-        s_IFFT = IFFT(fS)
+        s_IFFT = IFFT_1D(fS,"NAFPack_IFFT_1D")
 
         diff_IFFT = s_exact_IFFT - s_IFFT
         IF(MAXVAL(ABS(diff_FFT)) < epsi) THEN
@@ -121,7 +121,7 @@ MODULE test_NAFPack_fft
         fs_exact_FFT2(2, 1) = (0d0, -100.d0)
         fs_exact_FFT2(My, 1) = (0.d0, 100.d0)
 
-        fs_FFT2 = FFT2(S2D)
+        fs_FFT2 = FFT_2D(S2D, "NAFPack_FFT_2D")
 
         diff_FFT2 = fs_exact_FFT2 - fs_FFT2
         IF(MAXVAL(ABS(diff_FFT2)) < epsi) THEN
@@ -138,7 +138,7 @@ MODULE test_NAFPack_fft
 
         s_exact_IFFT2 = (0.16666667d0, 0.d0)
 
-        s_IFFT2 = IFFT2(fS2S)
+        s_IFFT2 = IFFT_2D(fS2S,"NAFPack_IFFT_2D")
 
         diff_IFFT2 = s_exact_IFFT2 - s_IFFT2
         IF(MAXVAL(ABS(diff_FFT2)) < epsi) THEN
