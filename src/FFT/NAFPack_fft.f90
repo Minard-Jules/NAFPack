@@ -129,6 +129,7 @@ MODULE NAFPack_fft
 
         plan = fftw_plan_dft_1d(SIZE(signal), signal, result, FFTW_BACKWARD, FFTW_ESTIMATE) 
         CALL fftw_execute_dft(plan, signal, result) 
+        result = result / SIZE(signal)
         CALL fftw_destroy_plan(plan)
 
     END FUNCTION FFTW_IFFT_1D
@@ -155,6 +156,7 @@ MODULE NAFPack_fft
 
         plan = fftw_plan_dft_2d(SIZE(signal, 2), SIZE(signal, 1), signal, result, FFTW_BACKWARD, FFTW_ESTIMATE) 
         CALL fftw_execute_dft(plan, signal, result) 
+        result = result / SQRT(REAL(SIZE(signal, 1)**2 + SIZE(signal, 2)**2))
         CALL fftw_destroy_plan(plan)
 
     END FUNCTION FFTW_IFFT_2D
@@ -181,6 +183,7 @@ MODULE NAFPack_fft
 
         plan = fftw_plan_dft_3d(SIZE(signal, 3), SIZE(signal, 2), SIZE(signal, 1), signal, result, FFTW_BACKWARD, FFTW_ESTIMATE) 
         CALL fftw_execute_dft(plan, signal, result) 
+        result = result / SQRT(REAL(SIZE(signal, 1)**2 + SIZE(signal, 2)**2 + SIZE(signal, 3)**2))
         CALL fftw_destroy_plan(plan)
 
     END FUNCTION FFTW_IFFT_3D
