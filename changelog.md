@@ -1,13 +1,20 @@
 # Changelog
 
-## [second commit v0.1.1] - 14-10-2023
+## [second commit v0.0.2] - 14-10-2023
+
+### modification
+
+* Fourier transform
+  * modification of FFTW functions
+
+## [second commit v0.0.1] - 14-10-2023
 
 ### add
 
 * Fourier transform
   * adding the FFTW library
 
-## [first commit v0.1.0] - 06-10-2023
+## [first commit v0.0.0] - 06-10-2023
 
 ### add
 

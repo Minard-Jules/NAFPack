@@ -6,15 +6,15 @@ MODULE NAFPack_fft
     IMPLICIT NONE
 
     PRIVATE
-    PUBLIC :: FFT_1D, FFT_2D
-    PUBLIC :: IFFT_1D, IFFT_2D
+    PUBLIC :: FFT_1D, FFT_2D, FFT_3D
+    PUBLIC :: IFFT_1D, IFFT_2D, IFFT_3D
 
 
     CONTAINS
 
     FUNCTION FFT_1D(signal, method) RESULT(result)
 
-        COMPLEX(dp), DIMENSION(:), INTENT(IN) :: signal
+        COMPLEX(dp), DIMENSION(:), INTENT(INOUT) :: signal
         CHARACTER(*), INTENT(IN) :: method
         COMPLEX(dp), DIMENSION(SIZE(signal)) :: result
 
@@ -32,7 +32,7 @@ MODULE NAFPack_fft
 
     FUNCTION IFFT_1D(signal, method) RESULT(result)
 
-        COMPLEX(dp), DIMENSION(:), INTENT(IN) :: signal
+        COMPLEX(dp), DIMENSION(:), INTENT(INOUT) :: signal
         CHARACTER(*), INTENT(IN) :: method
         COMPLEX(dp), DIMENSION(SIZE(signal)) :: result
 
@@ -48,7 +48,7 @@ MODULE NAFPack_fft
 
     FUNCTION FFT_2D(signal, method) RESULT(result)
 
-        COMPLEX(dp), DIMENSION(:, :), INTENT(IN) :: signal
+        COMPLEX(dp), DIMENSION(:, :), INTENT(INOUT) :: signal
         CHARACTER(*), INTENT(IN) :: method
         COMPLEX(dp), DIMENSION(SIZE(signal, 1) ,SIZE(signal, 2)) :: result
 
@@ -64,7 +64,7 @@ MODULE NAFPack_fft
 
     FUNCTION IFFT_2D(signal, method) RESULT(result)
 
-        COMPLEX(dp), DIMENSION(:, :), INTENT(IN) :: signal
+        COMPLEX(dp), DIMENSION(:, :), INTENT(INOUT) :: signal
         CHARACTER(*), INTENT(IN) :: method
         COMPLEX(dp), DIMENSION(SIZE(signal, 1), SIZE(signal, 2)) :: result
 
@@ -78,55 +78,112 @@ MODULE NAFPack_fft
 
     END FUNCTION IFFT_2D
 
+    FUNCTION FFT_3D(signal, method) RESULT(result)
+
+        COMPLEX(dp), DIMENSION(:, :, :), INTENT(INOUT) :: signal
+        CHARACTER(*), INTENT(IN) :: method
+        COMPLEX(dp), DIMENSION(SIZE(signal, 1) ,SIZE(signal, 2), SIZE(signal, 3)) :: result
+
+        IF(method == "FFTW_FFT_3D")THEN
+            result = FFTW_FFT_3D(signal)
+        ELSE
+            STOP "ERROR : Wrong method for FFT_2D"
+        END IF
+
+    END FUNCTION FFT_3D
+
+    FUNCTION IFFT_3D(signal, method) RESULT(result)
+
+        COMPLEX(dp), DIMENSION(:, :, :), INTENT(INOUT) :: signal
+        CHARACTER(*), INTENT(IN) :: method
+        COMPLEX(dp), DIMENSION(SIZE(signal, 1), SIZE(signal, 2), SIZE(signal, 3)) :: result
+
+        IF(method == "FFTW_IFFT_3D")THEN
+            result = FFTW_IFFT_3D(signal)
+        ELSE
+            STOP "ERROR : Wrong method for FFT_1D"
+        END IF
+
+    END FUNCTION IFFT_3D
+
 !################### FFTW ##########################################
+
 
     FUNCTION FFTW_FFT_1D(signal) RESULT(result)
 
-        COMPLEX(dp), DIMENSION(:), INTENT(IN) :: signal
-        COMPLEX(dp), DIMENSION(SIZE(signal)) :: result
-        INTEGER(idp) :: plan
+        COMPLEX(c_double_complex), DIMENSION(:), INTENT(INOUT) :: signal
+        COMPLEX(c_double_complex), DIMENSION(SIZE(signal)) :: result
+        TYPE(c_ptr) :: plan
 
-        CALL dfftw_plan_dft_1d(plan, SIZE(signal), signal, result, FFTW_FORWARD, FFTW_ESTIMATE) 
-        CALL dfftw_execute_dft(plan, signal, result) 
-        CALL dfftw_destroy_plan(plan)
+        plan = fftw_plan_dft_1d(SIZE(signal), signal, result, FFTW_FORWARD, FFTW_ESTIMATE) 
+        CALL fftw_execute_dft(plan, signal, result) 
+        CALL fftw_destroy_plan(plan)
 
     END FUNCTION FFTW_FFT_1D
 
     FUNCTION FFTW_IFFT_1D(signal) RESULT(result)
 
-        COMPLEX(dp), DIMENSION(:), INTENT(IN) :: signal
-        COMPLEX(dp), DIMENSION(SIZE(signal)) :: result
-        INTEGER(idp) :: plan
+        COMPLEX(c_double_complex), DIMENSION(:), INTENT(INOUT) :: signal
+        COMPLEX(c_double_complex), DIMENSION(SIZE(signal)) :: result
+        TYPE(c_ptr) :: plan
 
-        CALL dfftw_plan_dft_1d(plan, SIZE(signal), signal, result, FFTW_BACKWARD, FFTW_ESTIMATE) 
-        CALL dfftw_execute_dft(plan, signal, result) 
-        CALL dfftw_destroy_plan(plan)
+        plan = fftw_plan_dft_1d(SIZE(signal), signal, result, FFTW_BACKWARD, FFTW_ESTIMATE) 
+        CALL fftw_execute_dft(plan, signal, result) 
+        CALL fftw_destroy_plan(plan)
 
     END FUNCTION FFTW_IFFT_1D
 
+
+
     FUNCTION FFTW_FFT_2D(signal) RESULT(result)
 
-        COMPLEX(dp), DIMENSION(:,:), INTENT(IN) :: signal
-        COMPLEX(dp), DIMENSION(SIZE(signal, 1), SIZE(signal, 2)) :: result
-        INTEGER(idp) :: plan
+        COMPLEX(c_double_complex), DIMENSION(:, :), INTENT(INOUT) :: signal
+        COMPLEX(c_double_complex), DIMENSION(SIZE(signal, 1), SIZE(signal, 2)) :: result
+        TYPE(c_ptr) :: plan
 
-        CALL dfftw_plan_dft_2d(plan, SIZE(signal, 1), SIZE(signal, 2), signal, result, FFTW_FORWARD, FFTW_ESTIMATE) 
-        CALL dfftw_execute_dft(plan, signal, result) 
-        CALL dfftw_destroy_plan(plan)
+        plan = fftw_plan_dft_2d(SIZE(signal, 2), SIZE(signal, 1), signal, result, FFTW_FORWARD, FFTW_ESTIMATE) 
+        CALL fftw_execute_dft(plan, signal, result) 
+        CALL fftw_destroy_plan(plan)
 
     END FUNCTION FFTW_FFT_2D
 
     FUNCTION FFTW_IFFT_2D(signal) RESULT(result)
 
-        COMPLEX(dp), DIMENSION(:,:), INTENT(IN) :: signal
-        COMPLEX(dp), DIMENSION(SIZE(signal, 1), SIZE(signal, 2)) :: result
-        INTEGER(idp) :: plan
+        COMPLEX(c_double_complex), DIMENSION(:, :), INTENT(INOUT) :: signal
+        COMPLEX(c_double_complex), DIMENSION(SIZE(signal, 1), SIZE(signal, 2)) :: result
+        TYPE(c_ptr) :: plan
 
-        CALL dfftw_plan_dft_2d(plan, SIZE(signal, 1), SIZE(signal, 2), signal, result, FFTW_BACKWARD, FFTW_ESTIMATE) 
-        CALL dfftw_execute_dft(plan, signal, result) 
-        CALL dfftw_destroy_plan(plan)
+        plan = fftw_plan_dft_2d(SIZE(signal, 2), SIZE(signal, 1), signal, result, FFTW_BACKWARD, FFTW_ESTIMATE) 
+        CALL fftw_execute_dft(plan, signal, result) 
+        CALL fftw_destroy_plan(plan)
 
     END FUNCTION FFTW_IFFT_2D
+
+
+
+    FUNCTION FFTW_FFT_3D(signal) RESULT(result)
+
+        COMPLEX(c_double_complex), DIMENSION(:, :, :), INTENT(INOUT) :: signal
+        COMPLEX(c_double_complex), DIMENSION(SIZE(signal, 1), SIZE(signal, 2), SIZE(signal, 3)) :: result
+        TYPE(c_ptr) :: plan
+
+        plan = fftw_plan_dft_3d(SIZE(signal, 3), SIZE(signal, 2), SIZE(signal, 1), signal, result, FFTW_FORWARD, FFTW_ESTIMATE) 
+        CALL fftw_execute_dft(plan, signal, result) 
+        CALL fftw_destroy_plan(plan)
+
+    END FUNCTION FFTW_FFT_3D
+
+    FUNCTION FFTW_IFFT_3D(signal) RESULT(result)
+
+        COMPLEX(c_double_complex), DIMENSION(:, :, :), INTENT(INOUT) :: signal
+        COMPLEX(c_double_complex), DIMENSION(SIZE(signal, 1), SIZE(signal, 2), SIZE(signal, 3)) :: result
+        TYPE(c_ptr) :: plan
+
+        plan = fftw_plan_dft_3d(SIZE(signal, 3), SIZE(signal, 2), SIZE(signal, 1), signal, result, FFTW_BACKWARD, FFTW_ESTIMATE) 
+        CALL fftw_execute_dft(plan, signal, result) 
+        CALL fftw_destroy_plan(plan)
+
+    END FUNCTION FFTW_IFFT_3D
 
 
 
