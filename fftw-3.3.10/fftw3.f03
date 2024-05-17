@@ -528,6 +528,10 @@
       integer(C_INT), value :: nthreads
     end subroutine fftw_plan_with_nthreads
     
+    integer(C_INT) function fftw_planner_nthreads() bind(C, name='fftw_planner_nthreads')
+      import
+    end function fftw_planner_nthreads
+    
     integer(C_INT) function fftw_init_threads() bind(C, name='fftw_init_threads')
       import
     end function fftw_init_threads
@@ -536,6 +540,7 @@
       import
     end subroutine fftw_cleanup_threads
     
+! Unable to generate Fortran interface for fftw_threads_set_callback
     subroutine fftw_make_planner_thread_safe() bind(C, name='fftw_make_planner_thread_safe')
       import
     end subroutine fftw_make_planner_thread_safe
@@ -1135,6 +1140,10 @@
       integer(C_INT), value :: nthreads
     end subroutine fftwf_plan_with_nthreads
     
+    integer(C_INT) function fftwf_planner_nthreads() bind(C, name='fftwf_planner_nthreads')
+      import
+    end function fftwf_planner_nthreads
+    
     integer(C_INT) function fftwf_init_threads() bind(C, name='fftwf_init_threads')
       import
     end function fftwf_init_threads
@@ -1143,6 +1152,7 @@
       import
     end subroutine fftwf_cleanup_threads
     
+! Unable to generate Fortran interface for fftwf_threads_set_callback
     subroutine fftwf_make_planner_thread_safe() bind(C, name='fftwf_make_planner_thread_safe')
       import
     end subroutine fftwf_make_planner_thread_safe

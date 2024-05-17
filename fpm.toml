@@ -8,17 +8,23 @@ description = "Numerical Analysis in Fortran Package"
 keywords = ["NAFPack"]
 homepage = "https://github.com/Minard-Jules/NAFPack"
 
+
 [build]
 auto-executables = false
 auto-tests = true
 auto-examples = false
-link = "fftw3"
+link = ["fftw3", "fftw3_omp"]
 
 [install]
 library = false
 
-
 [fortran]
-implicit-typing = true
-implicit-external = true
+implicit-typing = false
+implicit-external = false
 source-form = "default"
+
+[dependencies]
+openmp = "*"
+
+
+

@@ -12,102 +12,141 @@ MODULE NAFPack_fft
 
     CONTAINS
 
-    FUNCTION FFT_1D(signal, method) RESULT(result)
+    FUNCTION FFT_1D(signal, method, threads) RESULT(result)
 
         COMPLEX(dp), DIMENSION(:), INTENT(INOUT) :: signal
         CHARACTER(*), INTENT(IN) :: method
+        INTEGER, OPTIONAL, INTENT(IN) :: threads
         COMPLEX(dp), DIMENSION(SIZE(signal)) :: result
 
         IF(method == "NAFPack_DFT")THEN
             result = NAFPack_DFT_1D(signal)
         ELSE IF(method == "NAFPack_FFT_1D")THEN
             result = NAFPack_FFT_1D(signal)
-        ELSE IF(method == "FFTW_FFT_1D")THEN
+        ELSE IF(method == "FFTW_FFT_1D" .AND. .NOT. PRESENT(threads))THEN
             result = FFTW_FFT_1D(signal)
+        ELSE IF (method == "FFTW_FFT_1D" .AND. PRESENT(threads))THEN
+            result = FFTW_FFT_1D_threads(signal, threads)
         ELSE
             STOP "ERROR : Wrong method for FFT_1D"
         END IF
 
     END FUNCTION FFT_1D
 
-    FUNCTION IFFT_1D(signal, method) RESULT(result)
+    FUNCTION IFFT_1D(signal, method, threads) RESULT(result)
 
         COMPLEX(dp), DIMENSION(:), INTENT(INOUT) :: signal
         CHARACTER(*), INTENT(IN) :: method
+        INTEGER, OPTIONAL, INTENT(IN) :: threads
         COMPLEX(dp), DIMENSION(SIZE(signal)) :: result
 
         IF(method == "NAFPack_IFFT_1D")THEN
             result = NAFPack_IFFT_1D(signal)
-        ELSE IF(method == "FFTW_IFFT_1D")THEN
+        ELSE IF(method == "FFTW_IFFT_1D" .AND. .NOT. PRESENT(threads))THEN
             result = FFTW_IFFT_1D(signal)
+        ELSE IF (method == "FFTW_IFFT_1D" .AND. PRESENT(threads))THEN
+            result = FFTW_IFFT_1D_threads(signal, threads)
         ELSE
-            STOP "ERROR : Wrong method for FFT_1D"
+            STOP "ERROR : Wrong method for IFFT_1D"
         END IF
 
     END FUNCTION IFFT_1D
 
-    FUNCTION FFT_2D(signal, method) RESULT(result)
+    FUNCTION FFT_2D(signal, method, threads) RESULT(result)
 
         COMPLEX(dp), DIMENSION(:, :), INTENT(INOUT) :: signal
         CHARACTER(*), INTENT(IN) :: method
+        INTEGER, OPTIONAL, INTENT(IN) :: threads
         COMPLEX(dp), DIMENSION(SIZE(signal, 1) ,SIZE(signal, 2)) :: result
 
         IF(method == "NAFPack_FFT_2D")THEN
             result = NAFPack_FFT_2D(signal)
-        ELSE IF(method == "FFTW_FFT_2D")THEN
+        ELSE IF(method == "FFTW_FFT_2D" .AND. .NOT. PRESENT(threads))THEN
             result = FFTW_FFT_2D(signal)
+        ELSE IF (method == "FFTW_FFT_2D" .AND. PRESENT(threads))THEN
+            result = FFTW_FFT_2D_threads(signal, threads)
         ELSE
             STOP "ERROR : Wrong method for FFT_2D"
         END IF
 
     END FUNCTION FFT_2D
 
-    FUNCTION IFFT_2D(signal, method) RESULT(result)
+    FUNCTION IFFT_2D(signal, method, threads) RESULT(result)
 
         COMPLEX(dp), DIMENSION(:, :), INTENT(INOUT) :: signal
         CHARACTER(*), INTENT(IN) :: method
+        INTEGER, OPTIONAL, INTENT(IN) :: threads
         COMPLEX(dp), DIMENSION(SIZE(signal, 1), SIZE(signal, 2)) :: result
 
         IF(method == "NAFPack_IFFT_2D")THEN
             result = NAFPack_IFFT_2D(signal)
-        ELSE IF(method == "FFTW_IFFT_2D")THEN
+        ELSE IF(method == "FFTW_IFFT_2D" .AND. .NOT. PRESENT(threads))THEN
             result = FFTW_IFFT_2D(signal)
+        ELSE IF (method == "FFTW_IFFT_2D" .AND. PRESENT(threads))THEN
+            result = FFTW_IFFT_2D_threads(signal, threads)
         ELSE
-            STOP "ERROR : Wrong method for FFT_1D"
+            STOP "ERROR : Wrong method for IFFT_1D"
         END IF
 
     END FUNCTION IFFT_2D
 
-    FUNCTION FFT_3D(signal, method) RESULT(result)
+    FUNCTION FFT_3D(signal, method, threads) RESULT(result)
 
         COMPLEX(dp), DIMENSION(:, :, :), INTENT(INOUT) :: signal
         CHARACTER(*), INTENT(IN) :: method
+        INTEGER, OPTIONAL, INTENT(IN) :: threads
         COMPLEX(dp), DIMENSION(SIZE(signal, 1) ,SIZE(signal, 2), SIZE(signal, 3)) :: result
 
-        IF(method == "FFTW_FFT_3D")THEN
+        IF(method == "FFTW_FFT_3D" .AND. .NOT. PRESENT(threads))THEN
             result = FFTW_FFT_3D(signal)
+        ELSE IF (method == "FFTW_FFT_3D" .AND. PRESENT(threads))THEN
+            result = FFTW_FFT_3D_threads(signal, threads)
         ELSE
             STOP "ERROR : Wrong method for FFT_2D"
         END IF
 
     END FUNCTION FFT_3D
 
-    FUNCTION IFFT_3D(signal, method) RESULT(result)
+    FUNCTION IFFT_3D(signal, method, threads) RESULT(result)
 
         COMPLEX(dp), DIMENSION(:, :, :), INTENT(INOUT) :: signal
         CHARACTER(*), INTENT(IN) :: method
+        INTEGER, OPTIONAL, INTENT(IN) :: threads
         COMPLEX(dp), DIMENSION(SIZE(signal, 1), SIZE(signal, 2), SIZE(signal, 3)) :: result
 
-        IF(method == "FFTW_IFFT_3D")THEN
+        IF(method == "FFTW_IFFT_3D" .AND. .NOT. PRESENT(threads))THEN
             result = FFTW_IFFT_3D(signal)
+        ELSE IF (method == "IFFTW_IFFT_3D" .AND. PRESENT(threads))THEN
+            result = FFTW_IFFT_3D_threads(signal, threads)
         ELSE
-            STOP "ERROR : Wrong method for FFT_1D"
+            STOP "ERROR : Wrong method for IFFT_1D"
         END IF
 
     END FUNCTION IFFT_3D
 
 !################### FFTW ##########################################
 
+
+    FUNCTION FFTW_FFT_1D_threads(signal, threads) RESULT(result)
+
+        COMPLEX(c_double_complex), DIMENSION(:), INTENT(INOUT) :: signal
+        INTEGER, INTENT(IN) :: threads
+        COMPLEX(c_double_complex), DIMENSION(SIZE(signal)) :: result
+        INTEGER :: error_init_thread
+        TYPE(c_ptr) :: plan
+
+        error_init_thread = fftw_init_threads()
+        IF (error_init_thread==0) STOP "ERROR : Thread FFTW initialization problem"
+        
+        CALL fftw_plan_with_nthreads(threads)
+
+        plan = fftw_plan_dft_1d(SIZE(signal), signal, result, FFTW_FORWARD, FFTW_ESTIMATE) 
+        CALL fftw_execute_dft(plan, signal, result) 
+        CALL fftw_destroy_plan(plan)
+
+        CALL fftw_cleanup_threads()
+
+    END FUNCTION FFTW_FFT_1D_threads
 
     FUNCTION FFTW_FFT_1D(signal) RESULT(result)
 
@@ -134,6 +173,28 @@ MODULE NAFPack_fft
 
     END FUNCTION FFTW_IFFT_1D
 
+    FUNCTION FFTW_IFFT_1D_threads(signal, threads) RESULT(result)
+
+        COMPLEX(c_double_complex), DIMENSION(:), INTENT(INOUT) :: signal
+        INTEGER, INTENT(IN) :: threads
+        COMPLEX(c_double_complex), DIMENSION(SIZE(signal)) :: result
+        INTEGER :: error_init_thread
+        TYPE(c_ptr) :: plan
+
+        error_init_thread = fftw_init_threads()
+        IF (error_init_thread==0) STOP "ERROR : Thread FFTW initialization problem"
+        
+        CALL fftw_plan_with_nthreads(threads)
+
+        plan = fftw_plan_dft_1d(SIZE(signal), signal, result, FFTW_BACKWARD, FFTW_ESTIMATE) 
+        CALL fftw_execute_dft(plan, signal, result) 
+        result = result / SIZE(signal)
+        CALL fftw_destroy_plan(plan)
+
+        CALL fftw_cleanup_threads()
+
+    END FUNCTION FFTW_IFFT_1D_threads
+
 
 
     FUNCTION FFTW_FFT_2D(signal) RESULT(result)
@@ -148,6 +209,27 @@ MODULE NAFPack_fft
 
     END FUNCTION FFTW_FFT_2D
 
+    FUNCTION FFTW_FFT_2D_threads(signal, threads) RESULT(result)
+
+        COMPLEX(c_double_complex), DIMENSION(:, :), INTENT(INOUT) :: signal
+        INTEGER, INTENT(IN) :: threads
+        COMPLEX(c_double_complex), DIMENSION(SIZE(signal, 1), SIZE(signal, 2)) :: result
+        INTEGER :: error_init_thread
+        TYPE(c_ptr) :: plan
+
+        error_init_thread = fftw_init_threads()
+        IF (error_init_thread==0) STOP "ERROR : Thread FFTW initialization problem"
+        
+        CALL fftw_plan_with_nthreads(threads)
+
+        plan = fftw_plan_dft_2d(SIZE(signal, 2), SIZE(signal, 1), signal, result, FFTW_FORWARD, FFTW_ESTIMATE) 
+        CALL fftw_execute_dft(plan, signal, result) 
+        CALL fftw_destroy_plan(plan)
+
+        CALL fftw_cleanup_threads()
+
+    END FUNCTION FFTW_FFT_2D_threads
+
     FUNCTION FFTW_IFFT_2D(signal) RESULT(result)
 
         COMPLEX(c_double_complex), DIMENSION(:, :), INTENT(INOUT) :: signal
@@ -160,6 +242,28 @@ MODULE NAFPack_fft
         CALL fftw_destroy_plan(plan)
 
     END FUNCTION FFTW_IFFT_2D
+
+    FUNCTION FFTW_IFFT_2D_threads(signal, threads) RESULT(result)
+
+        COMPLEX(c_double_complex), DIMENSION(:, :), INTENT(INOUT) :: signal
+        INTEGER, INTENT(IN) :: threads
+        COMPLEX(c_double_complex), DIMENSION(SIZE(signal, 1), SIZE(signal, 2)) :: result
+        INTEGER :: error_init_thread
+        TYPE(c_ptr) :: plan
+
+        error_init_thread = fftw_init_threads()
+        IF (error_init_thread==0) STOP "ERROR : Thread FFTW initialization problem"
+        
+        CALL fftw_plan_with_nthreads(threads)
+
+        plan = fftw_plan_dft_2d(SIZE(signal, 2), SIZE(signal, 1), signal, result, FFTW_BACKWARD, FFTW_ESTIMATE) 
+        CALL fftw_execute_dft(plan, signal, result) 
+        result = result / (SIZE(signal, 1) * SIZE(signal, 2))
+        CALL fftw_destroy_plan(plan)
+
+        CALL fftw_cleanup_threads()
+
+    END FUNCTION FFTW_IFFT_2D_threads
 
 
 
@@ -175,6 +279,27 @@ MODULE NAFPack_fft
 
     END FUNCTION FFTW_FFT_3D
 
+    FUNCTION FFTW_FFT_3D_threads(signal, threads) RESULT(result)
+
+        COMPLEX(c_double_complex), DIMENSION(:, :, :), INTENT(INOUT) :: signal
+        INTEGER, INTENT(IN) :: threads
+        COMPLEX(c_double_complex), DIMENSION(SIZE(signal, 1), SIZE(signal, 2), SIZE(signal, 3)) :: result
+        INTEGER :: error_init_thread
+        TYPE(c_ptr) :: plan
+
+        error_init_thread = fftw_init_threads()
+        IF (error_init_thread==0) STOP "ERROR : Thread FFTW initialization problem"
+        
+        CALL fftw_plan_with_nthreads(threads)
+
+        plan = fftw_plan_dft_3d(SIZE(signal, 3), SIZE(signal, 2), SIZE(signal, 1), signal, result, FFTW_FORWARD, FFTW_ESTIMATE) 
+        CALL fftw_execute_dft(plan, signal, result) 
+        CALL fftw_destroy_plan(plan)
+
+        CALL fftw_cleanup_threads()
+
+    END FUNCTION FFTW_FFT_3D_threads
+
     FUNCTION FFTW_IFFT_3D(signal) RESULT(result)
 
         COMPLEX(c_double_complex), DIMENSION(:, :, :), INTENT(INOUT) :: signal
@@ -187,6 +312,28 @@ MODULE NAFPack_fft
         CALL fftw_destroy_plan(plan)
 
     END FUNCTION FFTW_IFFT_3D
+
+    FUNCTION FFTW_IFFT_3D_threads(signal, threads) RESULT(result)
+
+        COMPLEX(c_double_complex), DIMENSION(:, :, :), INTENT(INOUT) :: signal
+        INTEGER, INTENT(IN) :: threads
+        COMPLEX(c_double_complex), DIMENSION(SIZE(signal, 1), SIZE(signal, 2), SIZE(signal, 3)) :: result
+        INTEGER :: error_init_thread
+        TYPE(c_ptr) :: plan
+
+        error_init_thread = fftw_init_threads()
+        IF (error_init_thread==0) STOP "ERROR : Thread FFTW initialization problem"
+        
+        CALL fftw_plan_with_nthreads(threads)
+
+        plan = fftw_plan_dft_3d(SIZE(signal, 3), SIZE(signal, 2), SIZE(signal, 1), signal, result, FFTW_BACKWARD, FFTW_ESTIMATE) 
+        CALL fftw_execute_dft(plan, signal, result) 
+        result = result / (SIZE(signal, 1) * SIZE(signal, 2) * SIZE(signal, 3))
+        CALL fftw_destroy_plan(plan)
+
+        CALL fftw_cleanup_threads()
+
+    END FUNCTION FFTW_IFFT_3D_threads
 
 
 
