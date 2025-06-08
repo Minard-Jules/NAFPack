@@ -1,9 +1,9 @@
 name = "NAFPack"
-version = "0.1.0"
-license = "license"
+version = "0.0.12"
+license = "MIT"
 author = "Jules Minard"
 maintainer = "minard.jules@yahoo.com"
-copyright = "Copyright 2023, Jules Minard"
+copyright = "Copyright 2023-2025, Jules Minard"
 description = "Numerical Analysis in Fortran Package"
 keywords = ["NAFPack"]
 homepage = "https://github.com/Minard-Jules/NAFPack"
@@ -25,6 +25,3 @@ source-form = "default"
 
 [dependencies]
 openmp = "*"
-
-
-

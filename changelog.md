@@ -1,6 +1,12 @@
 # Changelog
 
-## v0.0.2 - 14-10-2023
+## v0.0.12 - 09-06-2025
+
+### modification
+
+* add the Makefile
+
+## v0.0.11 - 14-10-2023
 
 ### modification
 
