@@ -21,44 +21,89 @@ NAFPack incorporates the following numerical analysis algorithms:
 
 ## Compilation
 
-Make sure you have a Fortran compiler (e.g., `gfortran`) installed on your system.
+Ensure you have [CMake](https://cmake.org/download/), [**FFTW**](https://www.fftw.org/), [fpm](https://fpm.fortran-lang.org/en/latest/installation/)  and [**Fortran Compiler**](https://fortran-lang.org/compilers/) (e.g. gfortran) installed.
 
-You can compile NAFPack using either `make` or the Fortran Package Manager (`fpm`):
+1. Linux (Debian/Ubuntu)
 
-### Using Make
-
-1. Add your compiler to the [**Makefile**](Makefile)
-    ```Makefile
-    FC = your compiler (e.g., `gfortran`)
-    ...
+    ```sh
+    $ sudo apt-get update
+    $ sudo apt-get install gfortran cmake pkg-config libfftw3-dev
     ```
 
-2. Clone the repository:
     ```sh
-    git clone https://github.com/Minard-Jules/NAFPack.git
-    cd NAFPack
+    # Install fpm
+    $ curl -Lo fpm https://github.com/fortran-lang/fpm/releases/download/fpm-linux-x86_64
+    $ chmod +x fpm
+    $ sudo mv fpm /usr/local/bin
     ```
 
-3. Build the project:
+2. Windows (MSYS2)
+
+    Download and execute the MSYS2 installer, then update MSYS2 as explained on the site [MSYS2](https://www.msys2.org/)
+
+    **Note:** All commands must be run from the MSYS2 MinGW terminal
+
+    - Build tools (gfortran, python, make, pkgconf, ...): 
     ```sh
-    make 
+    $ pacman -S mingw-w64-ucrt-x86_64-toolchain base-devel
+    ```
+    - CMake:
+    ```sh
+    $ pacman -S mingw-w64-ucrt-x86_64-cmake
+    ```
+    - FFTW:
+    ```sh
+    $ pacman -S mingw-w64-ucrt-x86_64-fftw
+    ```
+    - fpm:
+     ```sh
+    $ pacman -S mingw-w64-ucrt-x86_64-fpm
+    ```
+
+    
+
+#### Using CMake
+
+
+1. Create a `build` directory:
+    ```sh
+    mkdir build && cd build
+    ```
+
+2. Run CMake to generate build files:
+    - Linux
+    ```sh
+    cmake ..
+    ```
+    - Windows
+    ```sh
+    cmake -G "MSYS Makefiles" ..
+    ```
+
+3.  Compile the project with make :
+    ```sh
+    make
     ```
 
 4. Run the tests:
+    - Linux
     ```sh
-    make run_test
+    ./bin/main_test
+    ```
+    - Windows
+    ```sh
+    .\bin\main_test.exe
     ```
 
-### Using Fortran Package Manager (fpm)
+#### Using Fortran Package Manager (fpm)
 
-1. Ensure you have [fpm](https://fpm.fortran-lang.org/en/latest/installation/) installed.
 
-2. Build the project:
+1. Build the project:
     ```sh
     fpm build
     ```
 
-3. Run the tests:
+2. Run the tests:
     ```sh
     fpm test
     ```

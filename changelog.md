@@ -4,7 +4,7 @@
 
 ### modification
 
-* add the Makefile
+* Added CMake build system support
 
 ## v0.0.11 - 14-10-2023
 
