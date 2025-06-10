@@ -67,32 +67,32 @@ Ensure you have [CMake](https://cmake.org/download/), [**FFTW**](https://www.fft
 
 1. Create a `build` directory:
     ```sh
-    mkdir build && cd build
+    $ mkdir build && cd build
     ```
 
 2. Run CMake to generate build files:
     - Linux
     ```sh
-    cmake ..
+    $ cmake ..
     ```
     - Windows
     ```sh
-    cmake -G "MSYS Makefiles" ..
+    $ cmake -G "MSYS Makefiles" ..
     ```
 
 3.  Compile the project with make :
     ```sh
-    make
+    $ make
     ```
 
 4. Run the tests:
     - Linux
     ```sh
-    ./bin/main_test
+    $ ./bin/main_test
     ```
     - Windows
     ```sh
-    .\bin\main_test.exe
+    $ .\bin\main_test.exe
     ```
 
 #### Using Fortran Package Manager (fpm)
@@ -100,12 +100,12 @@ Ensure you have [CMake](https://cmake.org/download/), [**FFTW**](https://www.fft
 
 1. Build the project:
     ```sh
-    fpm build
+    $ fpm build
     ```
 
 2. Run the tests:
     ```sh
-    fpm test
+    $ fpm test
     ```
 
 ## Getting Started
