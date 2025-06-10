@@ -35,18 +35,18 @@ set(TEST_SOURCES
 )
 
 # Main library
-add_library(nafpacksrc STATIC ${NAFPACK_SOURCES})
-target_include_directories(nafpacksrc PRIVATE ${CMAKE_Fortran_MODULE_DIRECTORY})
-target_link_libraries(nafpacksrc PRIVATE PkgConfig::FFTW3 fftw3_threads)
+add_library(NafPack STATIC ${NAFPACK_SOURCES})
+target_include_directories(NafPack PRIVATE ${CMAKE_Fortran_MODULE_DIRECTORY})
+target_link_libraries(NafPack PRIVATE PkgConfig::FFTW3 fftw3_threads)
 
 
 # Test executable
 add_executable(main_test ${TEST_SOURCES})
-target_link_libraries(main_test PRIVATE nafpacksrc PkgConfig::FFTW3 fftw3_threads)
+target_link_libraries(main_test PRIVATE NafPack PkgConfig::FFTW3 fftw3_threads)
 target_include_directories(main_test PRIVATE ${CMAKE_Fortran_MODULE_DIRECTORY})
 
 # Installation (optional)
-install(TARGETS nafpacksrc main_test
+install(TARGETS NafPack main_test
     RUNTIME DESTINATION bin
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib
