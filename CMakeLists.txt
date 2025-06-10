@@ -13,8 +13,8 @@ find_package(PkgConfig REQUIRED)
 pkg_check_modules(FFTW3 REQUIRED IMPORTED_TARGET fftw3)
 
 # source directories
-set(SRC_DIR ${CMAKE_SOURCE_DIR}/src)
-set(TEST_DIR ${CMAKE_SOURCE_DIR}/test)
+set(SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
+set(TEST_DIR ${CMAKE_CURRENT_SOURCE_DIR}/test)
 
 # main source files
 set(NAFPACK_SOURCES
