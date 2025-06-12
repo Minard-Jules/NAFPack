@@ -111,7 +111,9 @@ MODULE NAFPack_linear_algebra
                 method == "QR_Givens" .OR. &
                 method == "QR_Gram_Schmidt_Classical".OR. &
                 method == "QR_Gram_Schmidt_Modified")THEN
-            x = A_QR(A, b, method = "QR_Householder")
+            x = A_QR(A, b, method = method)
+        ELSE IF(method == "TDMA")THEN
+            x = TDMA(A, b)
         ELSE
             STOP "ERROR : Wrong method for linear system (direct_methode)"
         END IF
@@ -237,8 +239,7 @@ MODULE NAFPack_linear_algebra
 
         CALL Eigen(A, lambda, method = "Power_iteration")
         IF(MINVAL(lambda) < 0) STOP "ERROR :: A is not a definite matrix (Cholesky)"
-        IF(MAXVAL(A - transpose(A)) /= 0 .OR. MINVAL(A - transpose(A)) /= 0) STOP "ERROR :: A is not a definite matrix (Cholesky)"
-
+        IF(MAXVAL(ABS(A - TRANSPOSE(A))) > epsi) STOP "ERROR :: A is not symmetric (Cholesky)"
         CALL Cholesky_decomposition(A, L)
           
         y = descent(L, b)
@@ -260,6 +261,36 @@ MODULE NAFPack_linear_algebra
         x = ascent(R, MATMUL(TRANSPOSE(Q), b))
 
     END FUNCTION A_QR
+
+    FUNCTION TDMA(A, b) RESULT(x)
+        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
+        REAL(dp), DIMENSION(:), INTENT(IN) :: b
+        REAL(dp), DIMENSION(SIZE(A,1)) :: x
+        REAL(dp), DIMENSION(SIZE(A,1)) :: alpha, beta
+        REAL(dp) :: denom
+        INTEGER :: n, i
+
+        n = SIZE(A,1)
+        IF (SIZE(A,2) /= n) STOP "ERROR :: Matrix A not square"
+        IF (SIZE(b,1) /= n) STOP "ERROR :: Dimension mismatch in TDMA"
+
+        alpha(1) = A(1,2) / A(1,1)
+        beta(1) = b(1) / A(1,1)
+        DO i = 2, n
+            denom = A(i,i) - A(i,i-1)*alpha(i-1)
+            alpha(i) = 0.0_dp
+            IF (i < n) alpha(i) = A(i,i+1) / denom
+            beta(i) = (b(i) - A(i,i-1)*beta(i-1)) / denom
+        END DO
+
+        ! Back substitution
+        x(n) = beta(n)
+        DO i = n-1, 1, -1
+            x(i) = beta(i) - alpha(i)*x(i+1)
+        END DO
+
+    END FUNCTION TDMA
+
 
 !################## Iterative methods ###################################################
 

@@ -56,15 +56,28 @@ MODULE test_NAFPack_linear_algebra
 
         LOGICAL, INTENT(INOUT) :: stat
         
-        INTEGER, PARAMETER :: N = 3
+        INTEGER, PARAMETER :: N = 3, N_TDMA = 4
 
         REAL(dp), DIMENSION(N, N) :: A
         REAL(dp), DIMENSION(N) :: b
         REAL(dp), DIMENSION(N) :: x
 
-        A = RESHAPE([1, -1, 2, -1, 5, -4, 2, -4, 6], [N, N])
+        REAL(dp), DIMENSION(N_TDMA, N_TDMA) :: A_TDMA
+        REAL(dp), DIMENSION(N_TDMA) :: b_TDMA
+        REAL(dp), DIMENSION(N_TDMA) :: x_TDMA
+
+        A = RESHAPE([1, -1, 2, &
+                    -1, 5, -4, &
+                     2, -4, 6], [N, N])
         b = [1, 1, 2]
         x = [0, 1, 1]
+
+        A_TDMA = RESHAPE([5, -1,  0,  0, &
+                         -1,  5, -1,  0, &
+                          0, -1,  5, -1, &
+                          0,  0, -1,  5], [N_TDMA, N_TDMA])
+        b_TDMA = [5.5, 5., 11.5, 16.5]
+        x_TDMA = [1.5, 2., 3.5, 4.]
 
         WRITE(*,'(A, A)') cyan_color//"Direct methode"// reset_color
         PRINT*, " "
@@ -105,6 +118,11 @@ MODULE test_NAFPack_linear_algebra
         !QR_Gram_Schmidt_Modified decomposition method
         CALL test_methode_direct(A, b, x, "QR_Gram_Schmidt_Modified", stat)
 
+        !==================================================================
+        !TDMA method
+
+        CALL test_methode_direct(A_TDMA, b_TDMA, x_TDMA, "TDMA", stat)
+
 
         !================Iterative_methods=============================
         
@@ -113,7 +131,9 @@ MODULE test_NAFPack_linear_algebra
         WRITE(*,'(A, A)') cyan_color//"Iterative_methods"// reset_color
         PRINT*, " "
 
-        A = RESHAPE([5, 3, 1, -1, 8, 1, 2, -2, 4], [N, N])
+        A = RESHAPE([5, 3, 1, &
+                    -1, 8, 1, &
+                     2, -2, 4], [N, N])
         b = [12, -25, 6]
         x = [1, -3, 2]
 
