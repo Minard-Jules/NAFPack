@@ -13,7 +13,7 @@ homepage = "https://github.com/Minard-Jules/NAFPack"
 auto-executables = false
 auto-tests = true
 auto-examples = false
-link = ["fftw3", "fftw3_omp"]
+link = ["fftw3", "fftw3_omp", "blas", "lapack"]
 
 [install]
 library = false

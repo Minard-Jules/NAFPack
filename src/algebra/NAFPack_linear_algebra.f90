@@ -86,16 +86,26 @@ MODULE NAFPack_linear_algebra
 
 !################## direct methode ######################################################
 
-    FUNCTION Direct_methode(A, b, method) RESULT(x)
+    FUNCTION Direct_methode(A, b, method, check) RESULT(x)
 
         CHARACTER(LEN = *), OPTIONAL, INTENT(IN) :: method
         REAL(dp),DIMENSION(: ,:), INTENT(IN) :: A
         REAL(dp),DIMENSION(:), INTENT(IN) :: b
+        LOGICAL, OPTIONAL, INTENT(IN) :: check
         REAL(dp),DIMENSION(SIZE(A,1)) :: x
         INTEGER :: N
+        LOGICAL :: do_check = .TRUE.
+
+        IF(PRESENT(check)) do_check = check
 
         N = SIZE(A, 1)
         IF(SIZE(A, 2) /= N) STOP "ERROR :: Matrix A not square"
+        IF(SIZE(b, 1) /= N) STOP "ERROR :: Dimension mismatch in linear system"
+
+        IF (.NOT. PRESENT(method)) THEN
+            PRINT*, "WARNING :: No method specified for linear system, using LU decomposition"
+            x = A_LU(A, b)
+        END IF
 
         IF(method == "Gauss")THEN
             x = Gauss(A, b)
@@ -106,14 +116,14 @@ MODULE NAFPack_linear_algebra
         ELSE IF(method == "A_LDU")THEN
             x = A_LDU(A, b)
         ELSE IF(method == "Cholesky")THEN
-            x = Cholesky(A, b)
+            x = Cholesky(A, b, check = do_check)
         ELSE IF(method == "QR_Householder" .OR. &
                 method == "QR_Givens" .OR. &
                 method == "QR_Gram_Schmidt_Classical".OR. &
                 method == "QR_Gram_Schmidt_Modified")THEN
             x = A_QR(A, b, method = method)
         ELSE IF(method == "TDMA")THEN
-            x = TDMA(A, b)
+            x = TDMA(A, b, check = do_check)
         ELSE
             STOP "ERROR : Wrong method for linear system (direct_methode)"
         END IF
@@ -138,7 +148,7 @@ MODULE NAFPack_linear_algebra
         DO k = 1, N-1 
             DO i = k+1, N
                 pivot = A_tmp(k, k)
-                if (pivot == 0.) stop "ERROR :: A is a singular matrix"
+                IF(pivot == 0.) STOP "ERROR :: A is a singular matrix"
 
                 q = A_tmp(i, k) / pivot
                 A_tmp(i, k) = 0 
@@ -176,7 +186,7 @@ MODULE NAFPack_linear_algebra
                 vlmax = MAXLOC(ABS(A_tmp(k:n, k)))
                 lmax = vlmax(1) + k - 1
                 pivot = A_tmp(lmax, k)
-                if (pivot == 0.) stop "ERROR :: A is a singular matrix"
+                IF (pivot == 0.) STOP "ERROR :: A is a singular matrix"
 
                 CALL exchange_vector(A_tmp(k, :), A_tmp(lmax, :))
                 CALL scalar_exchange(b_tmp(k), b_tmp(lmax))
@@ -229,17 +239,25 @@ MODULE NAFPack_linear_algebra
     
     END FUNCTION A_LDU
 
-    FUNCTION Cholesky(A, b) RESULT(x)
+    FUNCTION Cholesky(A, b, check) RESULT(x)
 
         REAL(dp),DIMENSION(: ,:), INTENT(IN) :: A
         REAL(dp),DIMENSION(:), INTENT(IN) :: b
+        LOGICAL, OPTIONAL, INTENT(IN) :: check
         REAL(dp),DIMENSION(SIZE(A,1)) :: x
         REAL(dp),DIMENSION(SIZE(A, 1), SIZE(A, 1)) :: L
         REAL(dp),DIMENSION(SIZE(A, 1)) :: y, lambda
+        LOGICAL :: do_check = .TRUE.
 
-        CALL Eigen(A, lambda, method = "Power_iteration")
-        IF(MINVAL(lambda) < 0) STOP "ERROR :: A is not a definite matrix (Cholesky)"
-        IF(MAXVAL(ABS(A - TRANSPOSE(A))) > epsi) STOP "ERROR :: A is not symmetric (Cholesky)"
+        IF(PRESENT(check)) do_check = check
+
+        IF(do_check) THEN
+            PRINT*, "Checking if the matrix A is positive definite and symmetric"
+            CALL Eigen(A, lambda, method = "Power_iteration")
+            IF(MINVAL(lambda) < 0) STOP "ERROR :: A is not a definite matrix (Cholesky)"
+            IF(MAXVAL(ABS(A - TRANSPOSE(A))) > epsi) STOP "ERROR :: A is not symmetric (Cholesky)"
+        END IF
+        
         CALL Cholesky_decomposition(A, L)
           
         y = descent(L, b)
@@ -262,28 +280,42 @@ MODULE NAFPack_linear_algebra
 
     END FUNCTION A_QR
 
-    FUNCTION TDMA(A, b) RESULT(x)
+    FUNCTION TDMA(A, b, check) RESULT(x)
         REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
         REAL(dp), DIMENSION(:), INTENT(IN) :: b
+        LOGICAL, OPTIONAL, INTENT(IN) :: check
         REAL(dp), DIMENSION(SIZE(A,1)) :: x
         REAL(dp), DIMENSION(SIZE(A,1)) :: alpha, beta
         REAL(dp) :: denom
-        INTEGER :: n, i
+        INTEGER :: n, i, j
+        LOGICAL :: do_check = .TRUE.
 
-        n = SIZE(A,1)
-        IF (SIZE(A,2) /= n) STOP "ERROR :: Matrix A not square"
-        IF (SIZE(b,1) /= n) STOP "ERROR :: Dimension mismatch in TDMA"
+        N = SIZE(A,1)
+
+        IF(PRESENT(check)) do_check = check 
+
+        IF (do_check) THEN
+            PRINT*, "Checking if the matrix A is tridiagonal"
+            DO i = 1, N
+                DO j = 1, N
+                    IF (ABS(i-j) > 1) THEN
+                        IF (ABS(A(i,j)) > 1e-12_dp) STOP "ERROR :: Matrix is not tridiagonal"
+                    END IF
+                END DO
+            END DO
+        END IF
+
+        alpha = 0.0_dp
+        beta = 0.0_dp
 
         alpha(1) = A(1,2) / A(1,1)
         beta(1) = b(1) / A(1,1)
-        DO i = 2, n
+        DO i = 2, N
             denom = A(i,i) - A(i,i-1)*alpha(i-1)
-            alpha(i) = 0.0_dp
-            IF (i < n) alpha(i) = A(i,i+1) / denom
+            IF (i < N) alpha(i) = A(i,i+1) / denom
             beta(i) = (b(i) - A(i,i-1)*beta(i-1)) / denom
         END DO
 
-        ! Back substitution
         x(n) = beta(n)
         DO i = n-1, 1, -1
             x(i) = beta(i) - alpha(i)*x(i+1)

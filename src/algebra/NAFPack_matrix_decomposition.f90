@@ -120,9 +120,6 @@ MODULE NAFPack_matrix_decomposition
         REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
         CHARACTER(LEN = *), OPTIONAL, INTENT(IN) :: method
         REAL(dp), DIMENSION(SIZE(A, 1) ,SIZE(A, 2)), INTENT(OUT) :: Q, R
-        INTEGER :: N
-
-        N=SIZE(A, 1)
 
         IF(method == "QR_Householder")THEN
             CALL QR_Householder(A, Q, R)
