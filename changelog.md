@@ -1,10 +1,28 @@
 # Changelog
 
-## v0.0.12 - 09-06-2025
+## v0.0.13 - xx-xx-2025
+
+### add
+
+* eigenvalue algorithm implementation
+  * Shifted QR Algorithm
 
 ### modification
 
+* linear system solving implementation
+  * modification backward forward
+
+* eigenvalue algorithm implementation
+  * add k_max optional
+
+## v0.0.12 - 09-06-2025
+
+### add
+
 * Added CMake build system support
+
+* linear system solving implementation
+  * add TDMA algorithm
 
 ## v0.0.11 - 14-10-2023
 

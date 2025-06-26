@@ -16,50 +16,40 @@ MODULE NAFPack_linear_algebra
 
 !================== Linear System =======================================================
 
-    !descent algorithm
-    FUNCTION descent(L, b) RESULT(y_descent)
+    !forward algorithm
+    FUNCTION forward(L, b) RESULT(y)
         REAL(dp), DIMENSION(:, :), INTENT(IN) :: L
         REAL(dp), DIMENSION(:), INTENT(IN) :: b
-        REAL(dp), DIMENSION(SIZE(L, 1)) :: y_descent
-        REAL(dp) :: S
-        INTEGER :: i, j, N
+        REAL(dp), DIMENSION(SIZE(L, 1)) :: y
+        INTEGER :: i, N
     
         N = SIZE(L, 1)
     
-        y_descent(1) = b(1) / L(1, 1)
+        y(1) = b(1) / L(1, 1)
     
-        DO i = 2, N
-            S = 0
-            DO j = 1, i-1
-                S = S + L(i, j) * y_descent(j)
-            END DO
-            y_descent(i) = (b(i) - S) / L(i, i)
+        DO i = 2,N
+            y(i) = (b(i) - DOT_PRODUCT(L(i,1:i-1), y(1:i-1))) / L(i,i)
         END DO
     
-    END FUNCTION descent
+    END FUNCTION forward
 
-    !ascent algorithm
-    FUNCTION ascent(U, y) RESULT(result)
-
+    !backward algorithm
+    FUNCTION backward(U, y) RESULT(x)
         REAL(dp), DIMENSION(:, :), INTENT(IN) :: U
         REAL(dp), DIMENSION(:), INTENT(IN) :: y
-        REAL(dp), DIMENSION(SIZE(U, 1)) :: result
-        REAL(dp) :: S
-        INTEGER :: i, j, N
+        REAL(dp), DIMENSION(SIZE(U, 1)) :: x
+        INTEGER :: i, N
 
         N = SIZE(U, 1)
 
-        result(N) = y(N) / U(N, N)
+        x(N) = y(N) / U(N, N)
 
         DO i = N-1, 1, -1
-            S = 0
-            DO j = i+1, N
-                S = S + U(i, j) * result(j)
-            END DO
-            result(i) = (y(i) - S) / U(i, i)
+            x(i) = (y(i) - DOT_PRODUCT(U(i, i+1:N), x(i+1:N))) / U(i, i)
         END DO
 
-    END FUNCTION ascent
+    END FUNCTION backward
+
 
     SUBROUTINE exchange_vector(Line1, Line2)
 
@@ -117,10 +107,7 @@ MODULE NAFPack_linear_algebra
             x = A_LDU(A, b)
         ELSE IF(method == "Cholesky")THEN
             x = Cholesky(A, b, check = do_check)
-        ELSE IF(method == "QR_Householder" .OR. &
-                method == "QR_Givens" .OR. &
-                method == "QR_Gram_Schmidt_Classical".OR. &
-                method == "QR_Gram_Schmidt_Modified")THEN
+        ELSE IF (INDEX(method, "QR") == 1) THEN
             x = A_QR(A, b, method = method)
         ELSE IF(method == "TDMA")THEN
             x = TDMA(A, b, check = do_check)
@@ -148,7 +135,7 @@ MODULE NAFPack_linear_algebra
         DO k = 1, N-1 
             DO i = k+1, N
                 pivot = A_tmp(k, k)
-                IF(pivot == 0.) STOP "ERROR :: A is a singular matrix"
+                IF (ABS(pivot) < epsi) STOP "ERROR :: Near-zero pivot – matrix may be singular"
 
                 q = A_tmp(i, k) / pivot
                 A_tmp(i, k) = 0 
@@ -160,16 +147,15 @@ MODULE NAFPack_linear_algebra
             END DO
         END DO
 
-        x = ascent(A_tmp, b_tmp)
+        x = backward(A_tmp, b_tmp)
 
     END FUNCTION Gauss
 
     FUNCTION Gauss_pivot(A, b) RESULT(x)
-
         REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
         REAL(dp), DIMENSION(:), INTENT(IN) :: b
         REAL(dp), DIMENSION(SIZE(A,1)) :: x
-        REAL(dp), DIMENSION(SIZE(A, 1), SIZE(A, 2)) :: A_tmp
+        REAL(dp), DIMENSION(SIZE(A,1), SIZE(A,2)) :: A_tmp
         REAL(dp), DIMENSION(SIZE(b)) :: b_tmp
         INTEGER, DIMENSION(1) :: vlmax
         REAL(dp) :: q, pivot
@@ -177,33 +163,34 @@ MODULE NAFPack_linear_algebra
 
         A_tmp = A
         b_tmp = b
-
         N = SIZE(A, 1)
-        
-        DO k = 1, N-1 
-            DO i = k+1, N
 
-                vlmax = MAXLOC(ABS(A_tmp(k:n, k)))
-                lmax = vlmax(1) + k - 1
-                pivot = A_tmp(lmax, k)
-                IF (pivot == 0.) STOP "ERROR :: A is a singular matrix"
+        DO k = 1, N-1
+            vlmax = MAXLOC(ABS(A_tmp(k:N, k)))
+            lmax = vlmax(1) + k - 1
+            pivot = A_tmp(lmax, k)
 
+            IF (ABS(pivot) < epsi) STOP "ERROR :: Near-zero pivot – matrix may be singular"
+
+            IF (lmax /= k) THEN
                 CALL exchange_vector(A_tmp(k, :), A_tmp(lmax, :))
                 CALL scalar_exchange(b_tmp(k), b_tmp(lmax))
+            END IF
 
-                q = A_tmp(i, k) / pivot
+            DO i = k+1, N
+                q = A_tmp(i, k) / A_tmp(k, k)
                 A_tmp(i, k) = 0
                 DO j = k+1, N
                     A_tmp(i, j) = A_tmp(i, j) - q * A_tmp(k, j)
                 END DO
-
                 b_tmp(i) = b_tmp(i) - q * b_tmp(k)
             END DO
         END DO
 
-        x = ascent(A_tmp, b_tmp)
+        x = backward(A_tmp, b_tmp)
 
     END FUNCTION Gauss_pivot
+
 
     FUNCTION A_LU(A, b) RESULT(x)
 
@@ -215,9 +202,9 @@ MODULE NAFPack_linear_algebra
 
         CALL LU_decomposition(A, L, U)
     
-        y = descent(L, b)
+        y = forward(L, b)
         
-        x = ascent(U, y)
+        x = backward(U, y)
 
     END FUNCTION A_LU
 
@@ -231,11 +218,11 @@ MODULE NAFPack_linear_algebra
 
         CALL LDU_decomposition(A, L, D, U)
     
-        z = descent(L, b)
+        z = forward(L, b)
 
-        y = descent(D, z)
+        y = forward(D, z)
         
-        x = ascent(U, y)
+        x = backward(U, y)
     
     END FUNCTION A_LDU
 
@@ -254,15 +241,15 @@ MODULE NAFPack_linear_algebra
         IF(do_check) THEN
             PRINT*, "Checking if the matrix A is positive definite and symmetric"
             CALL Eigen(A, lambda, method = "Power_iteration")
-            IF(MINVAL(lambda) < 0) STOP "ERROR :: A is not a definite matrix (Cholesky)"
+            IF(MINVAL(lambda) < epsi) STOP "ERROR :: A is not a definite matrix (Cholesky)"
             IF(MAXVAL(ABS(A - TRANSPOSE(A))) > epsi) STOP "ERROR :: A is not symmetric (Cholesky)"
         END IF
         
         CALL Cholesky_decomposition(A, L)
           
-        y = descent(L, b)
+        y = forward(L, b)
     
-        x = ascent(TRANSPOSE(L), y)
+        x = backward(TRANSPOSE(L), y)
 
     END FUNCTION Cholesky
 
@@ -276,7 +263,7 @@ MODULE NAFPack_linear_algebra
 
         CALL QR_decomposition(A, method, Q, R)
 
-        x = ascent(R, MATMUL(TRANSPOSE(Q), b))
+        x = backward(R, MATMUL(TRANSPOSE(Q), b))
 
     END FUNCTION A_QR
 
@@ -299,7 +286,7 @@ MODULE NAFPack_linear_algebra
             DO i = 1, N
                 DO j = 1, N
                     IF (ABS(i-j) > 1) THEN
-                        IF (ABS(A(i,j)) > 1e-12_dp) STOP "ERROR :: Matrix is not tridiagonal"
+                        IF (ABS(A(i,j)) > epsi) STOP "ERROR :: Matrix is not tridiagonal"
                     END IF
                 END DO
             END DO
@@ -336,7 +323,7 @@ FUNCTION Iterative_methods(A, b, method, x_init, max_iter, omega) RESULT(x)
     REAL(dp), OPTIONAL, INTENT(IN) :: omega
     REAL(dp), DIMENSION(SIZE(A, 1)) :: x
     REAL(dp), DIMENSION(SIZE(A, 1)) :: x0, x_new, residu
-    INTEGER :: k, max_iter_choice, i, N
+    INTEGER :: k, max_iter_choice, N
 
     N = SIZE(A, 1)
     IF(SIZE(A, 2) /= N) STOP "ERROR :: Matrix A not square"
@@ -374,9 +361,7 @@ FUNCTION Iterative_methods(A, b, method, x_init, max_iter, omega) RESULT(x)
             STOP "ERROR : Wrong method for linear system (Iterative_methods)"
         END IF
 
-        DO i = 1, N
-            residu(i) = b(i) - DOT_PRODUCT(A(i, :), x_new)
-        END DO
+        residu = b - MATMUL(A, x_new)
 
         IF (NORM2(residu) < epsi) EXIT
 
@@ -438,14 +423,23 @@ END SUBROUTINE SOR
 
 !================== Eigen ===============================================================
 
-    SUBROUTINE Eigen(A, lambda, vp, method)
+    SUBROUTINE Eigen(A, lambda, vp, method, k)
         REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
         CHARACTER(LEN = *), OPTIONAL, INTENT(IN) :: method
+        INTEGER, OPTIONAL, INTENT(IN) :: k
         REAL(dp), DIMENSION(:, :), OPTIONAL, INTENT(OUT) :: vp
         REAL(dp), DIMENSION(:), INTENT(OUT) :: lambda
         REAL(dp), DIMENSION(SIZE(A, 1),SIZE(A, 1)) :: A_tmp
         REAL(dp), DIMENSION(SIZE(A, 1),SIZE(A, 1)) :: vp_tmp
-        INTEGER :: N, i
+        CHARACTER(LEN = 50) :: base_method
+        INTEGER :: N, i, k_max, pos
+
+        IF(PRESENT(k)) THEN
+            IF (k <= 0) STOP "ERROR :: k must be a positive integer"
+            k_max = k
+        ELSE
+            k_max = kmax
+        END IF
         
         N = SIZE(A, 1)
         IF(SIZE(A, 2) /= N) STOP "ERROR :: Matrix A not square"
@@ -457,41 +451,45 @@ END SUBROUTINE SOR
 
             A_tmp = A
             DO i=1, N
-                CALL Power_iteration(A_tmp, lambda(i), vp_tmp(i, :))
-                A_tmp = deflation(A_tmp, lambda(i), vp_tmp(i, :))
+                CALL Power_iteration(A_tmp, lambda(i), vp_tmp(i, :), k_max)
+                A_tmp = deflation(A_tmp, lambda(i), vp_tmp(i, :), k_max)
             END DO
 
             IF(PRESENT(vp)) vp = vp_tmp
 
-        ELSE IF(method == "QR_Householder" .OR. &
-            method == "QR_Givens" .OR. &
-            method == "QR_Gram_Schmidt_Classical" .OR. &
-            method == "QR_Gram_Schmidt_Modified")THEN
+        ELSE IF (INDEX(method, "QR") == 1) THEN
 
             IF(PRESENT(vp)) vp = 0
             IF(PRESENT(vp)) PRINT*, "WARNING :: No solution for eigenvectors with the QR method"
 
-            CALL Eigen_QR(A, lambda, method, N)
+            pos = INDEX(TRIM(method), "_Shifted")
+
+            IF (pos > 0 .AND. pos + 7 == LEN_TRIM(method)) THEN
+                base_method = method(:pos - 1)
+                CALL Eigen_QR_Shifted(A, lambda, base_method, N, k_max)
+            ELSE
+                CALL Eigen_QR(A, lambda, method, N, k_max)
+            END IF
+
         ELSE
             STOP "ERROR :: Wrong method for Eigen"
         END IF
 
     END SUBROUTINE Eigen
 
-    SUBROUTINE Eigen_QR(A,lambda,method, N)
+    SUBROUTINE Eigen_QR(A,lambda,method, N, k)
         REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
         CHARACTER(LEN = *), INTENT(IN) :: method
-        INTEGER, INTENT(IN) :: N
+        INTEGER, INTENT(IN) :: N, k
         REAL(dp), DIMENSION(:), INTENT(OUT) :: lambda
         REAL(dp), DIMENSION(SIZE(A, 1)) :: lambda_old
-        REAL(dp), DIMENSION(SIZE(A, 1) ,SIZE(A, 2)) :: Q, R
-        REAL(dp), DIMENSION(SIZE(A, 1),SIZE(A, 1)) :: A_tmp
+        REAL(dp), DIMENSION(SIZE(A, 1),SIZE(A, 1)) :: A_tmp, Q, R
         REAL(dp) :: diff
         INTEGER :: i, j
 
         A_tmp = A
 
-        DO i = 1, kmax
+        DO i = 1, k
 
             lambda_old = lambda
 
@@ -499,25 +497,79 @@ END SUBROUTINE SOR
 
             A_tmp = MATMUL(R, Q)
 
-            diff = 1
-            DO j = 1, N
-                lambda(j) = A_tmp(j, j)
+            diff = ABS(A_tmp(2, 1))
+            DO j = 3, N
+                IF (MAXVAL(ABS(A_tmp(j, 1:j-1))) > diff) THEN
+                    diff = MAXVAL(ABS(A_tmp(j, 1:j-1)))
+                END IF
             END DO
 
-            IF(i == kmax)THEN
-                PRINT*, "WARNING :: non-convergence of the QR method for eigenvalues "//method
+
+            IF(i == k)THEN
+                PRINT*, " WARNING :: non-convergence of the QR method for eigenvalues "//method
+                PRINT*, "convergence = ", diff
                 EXIT
             END IF
-
-            diff = ABS(A_tmp(N, N-1))
 
             IF(diff <= epsi) EXIT
         END DO
 
+        ! Extract eigenvalues
+        lambda = [(A_tmp(i,i), i=1,N)]
+
     END SUBROUTINE Eigen_QR
 
-    SUBROUTINE Power_iteration(A, lambda, vp)
+    SUBROUTINE Eigen_QR_Shifted(A, lambda, method, N, k)
+        INTEGER, INTENT(IN) :: N, k
+        CHARACTER(LEN = *), INTENT(IN) :: method
+        REAL(dp), DIMENSION(N, N), INTENT(IN) :: A
+        REAL(dp), DIMENSION(N), INTENT(OUT) :: lambda
+        INTEGER :: i, j
+        REAL(dp), DIMENSION(SIZE(A, 1),SIZE(A, 1)) :: A_tmp, Q, R, Id
+        REAL(dp) :: shift, diff
+
+        A_tmp = A
+        Id = Identity_n(N)
+
+        DO i = 1, k
+            !choice of shift: last diagonal element
+            shift = A_tmp(N,N)
+
+            ! Gap : A - µI
+            A_tmp = A_tmp - shift * Id
+
+            ! QR Decomposition : A - µI = Q * R
+            CALL QR_decomposition(A_tmp, method, Q, R)
+
+            ! A = RQ + µI
+            A_tmp = MATMUL(R, Q) + shift * Id
+
+            diff = ABS(A_tmp(2, 1))
+            DO j = 3, N
+                IF (MAXVAL(ABS(A_tmp(j, 1:j-1))) > diff) THEN
+                    diff = MAXVAL(ABS(A_tmp(j, 1:j-1)))
+                END IF
+            END DO
+            
+            IF(i == k)THEN
+                PRINT*, " WARNING :: non-convergence of the QR method for eigenvalues "//method
+                PRINT*, "convergence = ", diff
+                EXIT
+            END IF
+
+            IF(diff <= epsi) EXIT
+            
+        END DO
+
+        ! Extract eigenvalues
+        lambda = [(A_tmp(i,i), i=1,N)]
+
+    END SUBROUTINE Eigen_QR_Shifted
+
+
+    SUBROUTINE Power_iteration(A, lambda, vp, k)
         REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
+        INTEGER, INTENT(IN) :: k
         REAL(dp), DIMENSION(:), INTENT(OUT) :: vp
         REAL(dp), INTENT(OUT) :: lambda
         REAL(dp), DIMENSION(SIZE(A, 1)) :: u, vp_tmp, r
@@ -531,13 +583,13 @@ END SUBROUTINE SOR
         lambda = DOT_PRODUCT(vp_tmp, u)
         r = vp_tmp - lambda * u
 
-        DO i = 1, kmax
+        DO i = 1, k
             u = normalise(vp_tmp)
             vp_tmp = MATMUL(A, u)
             lambda = DOT_PRODUCT(vp_tmp, u)
             IF (NORM2(r) <= epsi)EXIT
             r = vp_tmp - lambda * u
-            IF(i == kmax)THEN
+            IF(i == k)THEN
                 PRINT*, "WARNING :: non-convergence of the power iteration method"
             END IF
         END DO
@@ -546,11 +598,12 @@ END SUBROUTINE SOR
 
     END SUBROUTINE Power_iteration
   
-    FUNCTION deflation(A, lambda, vp) RESULT(result)
+    FUNCTION deflation(A, lambda, vp, k) RESULT(result)
 
         REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
         REAL(dp), DIMENSION(:), INTENT(IN) :: vp
         REAL(dp), INTENT(IN) :: lambda
+        INTEGER, INTENT(IN) :: k
         REAL(dp), DIMENSION(SIZE(A, 1),SIZE(A, 1)) :: result
         REAL(dp), DIMENSION(SIZE(A, 1)) :: wp
         INTEGER :: i, j, N
@@ -559,7 +612,7 @@ END SUBROUTINE SOR
         N = SIZE(A, 1)
         result = A
         
-        CALL Power_iteration(transpose(A), lambda1, wp)
+        CALL Power_iteration(transpose(A), lambda1, wp, k)
         DO i = 1, N 
             DO j = 1, N
                 result(i, j) = result(i, j) - (lambda * vp(i) * wp(j)) / DOT_PRODUCT(vp, wp)

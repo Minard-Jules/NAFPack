@@ -11,8 +11,8 @@ MODULE NAFPack_constant
 
     REAL(dp), PARAMETER :: pi = ACOS(-1.d0)
     COMPLEX(dp), PARAMETER :: im = (0.d0, 1.d0)
-    REAL(dp), PARAMETER :: epsi = 1.d-10, epsi_test = 1.d-6
-    INTEGER, PARAMETER :: kmax = 1000
+    REAL(dp), PARAMETER :: epsi = 1.d-12, epsi_test = 1.d-6
+    INTEGER, PARAMETER :: kmax = 10000
     CHARACTER(LEN = *), PARAMETER :: status_len = REPEAT(" ", 15)
 
     CHARACTER(len=10) :: red_color    = CHAR(27)//"[31m"

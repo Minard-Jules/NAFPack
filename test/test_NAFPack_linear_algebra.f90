@@ -24,9 +24,9 @@ MODULE test_NAFPack_linear_algebra
     
         diff_x = x - x_tmp
         IF (MAXVAL(ABS(diff_x)) < epsi_test) THEN
-            WRITE(*,'(A,T40,A,A)') green_color//method, " :: OK"// reset_color
+            WRITE(*,'(A,T50,A,A)') green_color//method, " :: OK"// reset_color
         ELSE
-            WRITE(*,'(A,T40,A)') red_color//method, " :: ECHEC"// reset_color
+            WRITE(*,'(A,T50,A)') red_color//method, " :: ECHEC"// reset_color
             stat = .TRUE.
         END IF
     
@@ -43,9 +43,9 @@ MODULE test_NAFPack_linear_algebra
         
         diff_x = x - x_tmp
         IF (MAXVAL(ABS(diff_x)) < epsi_test) THEN
-            WRITE(*,'(A,T40,A,A)') green_color//method, " :: OK"// reset_color
+            WRITE(*,'(A,T50,A,A)') green_color//method, " :: OK"// reset_color
         ELSE
-            WRITE(*,'(A,T40,A)') red_color//method, " :: ECHEC"// reset_color
+            WRITE(*,'(A,T50,A)') red_color//method, " :: ECHEC"// reset_color
             stat = .TRUE.
         END IF
     
@@ -174,9 +174,9 @@ MODULE test_NAFPack_linear_algebra
         END DO
 
         IF(verif_Eigen)THEN
-            WRITE(*,'(A,T40,A,A)') green_color//method, " :: OK"// reset_color
+            WRITE(*,'(A,T50,A,A)') green_color//method, " :: OK"// reset_color
         ELSE
-            WRITE(*,'(A,T40,A)') red_color//method, " :: ECHEC"// reset_color
+            WRITE(*,'(A,T50,A)') red_color//method, " :: ECHEC"// reset_color
             stat = .TRUE.
         END IF
 
@@ -205,9 +205,9 @@ MODULE test_NAFPack_linear_algebra
         END IF
 
         IF(verif_Eigen)THEN
-            WRITE(*,'(A,T40,A,A)') green_color//method, " :: OK"// reset_color
+            WRITE(*,'(A,T50,A,A)') green_color//method, " :: OK"// reset_color
         ELSE
-            WRITE(*,'(A,T40,A)') red_color//method, " :: ECHEC"// reset_color
+            WRITE(*,'(A,T50,A)') red_color//method, " :: ECHEC"// reset_color
             stat = .TRUE.
         END IF
 
@@ -226,8 +226,12 @@ MODULE test_NAFPack_linear_algebra
         CALL test_Eigen_vecteur_propre(A, "Power_iteration", stat_tmp)
         CALL test_Eigen_without_vecteur_propre(A, "QR_Householder", stat_tmp)
         CALL test_Eigen_without_vecteur_propre(A, "QR_Givens", stat_tmp)
-        !CALL test_Eigen_without_vecteur_propre(A, "QR_Gram_Schmidt_Classical", stat_tmp)
-        !CALL test_Eigen_without_vecteur_propre(A, "QR_Gram_Schmidt_Modified", stat_tmp)
+        CALL test_Eigen_without_vecteur_propre(A, "QR_Gram_Schmidt_Classical", stat_tmp)
+        CALL test_Eigen_without_vecteur_propre(A, "QR_Gram_Schmidt_Modified", stat_tmp)
+        CALL test_Eigen_without_vecteur_propre(A, "QR_Householder_Shifted", stat_tmp)
+        CALL test_Eigen_without_vecteur_propre(A, "QR_Givens_Shifted", stat_tmp)
+        CALL test_Eigen_without_vecteur_propre(A, "QR_Gram_Schmidt_Classical_Shifted", stat_tmp)
+        CALL test_Eigen_without_vecteur_propre(A, "QR_Gram_Schmidt_Modified_Shifted", stat_tmp)
         IF(stat_tmp) stat = stat_tmp
 
     END SUBROUTINE test_linear_algebra

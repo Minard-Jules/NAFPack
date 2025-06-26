@@ -53,9 +53,9 @@ MODULE test_NAFPack_fft
 
         diff_DFT = fs_exact_DFT - fs_DFT
         IF(MAXVAL(ABS(diff_DFT)) < epsi) THEN
-            WRITE(*,'(A,T40,A,A)') green_color//"DFT", " :: OK"// reset_color
+            WRITE(*,'(A,T50,A,A)') green_color//"DFT", " :: OK"// reset_color
         ELSE
-            WRITE(*,'(A,T40,A)') red_color//"DFT", " :: ECHEC"// reset_color
+            WRITE(*,'(A,T50,A)') red_color//"DFT", " :: ECHEC"// reset_color
             stat = .TRUE.
         END IF
 
@@ -74,9 +74,9 @@ MODULE test_NAFPack_fft
 
         diff_FFT = fs_exact_FFT - fs_FFT
         IF(MAXVAL(ABS(diff_FFT)) < epsi) THEN
-            WRITE(*,'(A,T40,A,A)') green_color//"FFT", " :: OK"// reset_color
+            WRITE(*,'(A,T50,A,A)') green_color//"FFT", " :: OK"// reset_color
         ELSE
-            WRITE(*,'(A,T40,A)') red_color//"FFT", " :: ECHEC"// reset_color
+            WRITE(*,'(A,T50,A)') red_color//"FFT", " :: ECHEC"// reset_color
             stat = .TRUE.
         END IF
 
@@ -95,9 +95,9 @@ MODULE test_NAFPack_fft
 
         diff_FFT = fs_exact_FFT - fs_FFT
         IF(MAXVAL(ABS(diff_FFT)) < epsi) THEN
-            WRITE(*,'(A,T40,A,A)') green_color//"FFTW", " :: OK"// reset_color
+            WRITE(*,'(A,T50,A,A)') green_color//"FFTW", " :: OK"// reset_color
         ELSE
-            WRITE(*,'(A,T40,A)') red_color//"FFTW", " :: ECHEC"// reset_color
+            WRITE(*,'(A,T50,A)') red_color//"FFTW", " :: ECHEC"// reset_color
             stat = .TRUE.
         END IF
 
@@ -116,9 +116,9 @@ MODULE test_NAFPack_fft
 
         diff_FFT = fs_exact_FFT - fs_FFT
         IF(MAXVAL(ABS(diff_FFT)) < epsi) THEN
-            WRITE(*,'(A,T40,A,A)') green_color//"FFTW threads", " :: OK"// reset_color
+            WRITE(*,'(A,T50,A,A)') green_color//"FFTW threads", " :: OK"// reset_color
         ELSE
-            WRITE(*,'(A,T40,A)') red_color//"FFTW threads", " :: ECHEC"// reset_color
+            WRITE(*,'(A,T50,A)') red_color//"FFTW threads", " :: ECHEC"// reset_color
             stat = .TRUE.
         END IF
 
@@ -146,9 +146,9 @@ MODULE test_NAFPack_fft
 
         diff_IFFT = s_exact_IFFT - s_IFFT
         IF(MAXVAL(ABS(diff_FFT)) < epsi) THEN
-            WRITE(*,'(A,T40,A,A)') green_color//"IFFT", " :: OK"// reset_color
+            WRITE(*,'(A,T50,A,A)') green_color//"IFFT", " :: OK"// reset_color
         ELSE
-            WRITE(*,'(A,T40,A)') red_color//"IFFT", " :: ECHEC"// reset_color
+            WRITE(*,'(A,T50,A)') red_color//"IFFT", " :: ECHEC"// reset_color
             stat = .TRUE.
         END IF
 
@@ -176,9 +176,9 @@ MODULE test_NAFPack_fft
 
         diff_IFFT = s_exact_IFFT - s_IFFT
         IF(MAXVAL(ABS(diff_FFT)) < epsi) THEN
-            WRITE(*,'(A,T40,A,A)') green_color//"IFFTW", " :: OK"// reset_color
+            WRITE(*,'(A,T50,A,A)') green_color//"IFFTW", " :: OK"// reset_color
         ELSE
-            WRITE(*,'(A,T40,A)') red_color//"IFFTW", " :: ECHEC"// reset_color
+            WRITE(*,'(A,T50,A)') red_color//"IFFTW", " :: ECHEC"// reset_color
             stat = .TRUE.
         END IF
 
@@ -206,9 +206,9 @@ MODULE test_NAFPack_fft
 
         diff_IFFT = s_exact_IFFT - s_IFFT
         IF(MAXVAL(ABS(diff_FFT)) < epsi) THEN
-            WRITE(*,'(A,T40,A,A)') green_color//"IFFTW threads", " :: OK"// reset_color
+            WRITE(*,'(A,T50,A,A)') green_color//"IFFTW threads", " :: OK"// reset_color
         ELSE
-            WRITE(*,'(A,T40,A)') red_color//"IFFTW threads", " :: ECHEC"// reset_color
+            WRITE(*,'(A,T50,A)') red_color//"IFFTW threads", " :: ECHEC"// reset_color
             stat = .TRUE.
         END IF
 
@@ -227,9 +227,9 @@ MODULE test_NAFPack_fft
 
         diff_FFT2 = fs_exact_FFT2 - fs_FFT2
         IF(MAXVAL(ABS(diff_FFT2)) < epsi) THEN
-            WRITE(*,'(A,T40,A,A)') green_color//"FFT2", " :: OK"// reset_color
+            WRITE(*,'(A,T50,A,A)') green_color//"FFT2", " :: OK"// reset_color
         ELSE
-            WRITE(*,'(A,T40,A)') red_color//"FFT2", " :: ECHEC"// reset_color
+            WRITE(*,'(A,T50,A)') red_color//"FFT2", " :: ECHEC"// reset_color
             stat = .TRUE.
         END IF
 
@@ -248,9 +248,9 @@ MODULE test_NAFPack_fft
 
         diff_FFT2 = fs_exact_FFT2 - fs_FFT2
         IF(MAXVAL(ABS(diff_FFT2)) < epsi) THEN
-            WRITE(*,'(A,T40,A,A)') green_color//"FFTW2", " :: OK"// reset_color
+            WRITE(*,'(A,T50,A,A)') green_color//"FFTW2", " :: OK"// reset_color
         ELSE
-            WRITE(*,'(A,T40,A)') red_color//"FFTW2", " :: ECHEC"// reset_color
+            WRITE(*,'(A,T50,A)') red_color//"FFTW2", " :: ECHEC"// reset_color
             stat = .TRUE.
         END IF
 
@@ -269,9 +269,9 @@ MODULE test_NAFPack_fft
 
         diff_FFT2 = fs_exact_FFT2 - fs_FFT2
         IF(MAXVAL(ABS(diff_FFT2)) < epsi) THEN
-            WRITE(*,'(A,T40,A,A)') green_color//"FFTW2 threads", " :: OK"// reset_color
+            WRITE(*,'(A,T50,A,A)') green_color//"FFTW2 threads", " :: OK"// reset_color
         ELSE
-            WRITE(*,'(A,T40,A)') red_color//"FFTW2 threads", " :: ECHEC"// reset_color
+            WRITE(*,'(A,T50,A)') red_color//"FFTW2 threads", " :: ECHEC"// reset_color
             stat = .TRUE.
         END IF
 
@@ -286,9 +286,9 @@ MODULE test_NAFPack_fft
 
         diff_IFFT2 = s_exact_IFFT2 - s_IFFT2
         IF(MAXVAL(ABS(diff_FFT2)) < epsi) THEN
-            WRITE(*,'(A,T40,A,A)') green_color//"IFFT2", " :: OK"// reset_color
+            WRITE(*,'(A,T50,A,A)') green_color//"IFFT2", " :: OK"// reset_color
         ELSE
-            WRITE(*,'(A,T40,A)') red_color//"IFFT2", " :: ECHEC"// reset_color
+            WRITE(*,'(A,T50,A)') red_color//"IFFT2", " :: ECHEC"// reset_color
             stat = .TRUE.
         END IF
 
@@ -303,9 +303,9 @@ MODULE test_NAFPack_fft
 
         diff_IFFT2 = s_exact_IFFT2 - s_IFFT2
         IF(MAXVAL(ABS(diff_FFT2)) < epsi) THEN
-            WRITE(*,'(A,T40,A,A)') green_color//"IFFTW2", " :: OK"// reset_color
+            WRITE(*,'(A,T50,A,A)') green_color//"IFFTW2", " :: OK"// reset_color
         ELSE
-            WRITE(*,'(A,T40,A)') red_color//"IFFTW2", " :: ECHEC"// reset_color
+            WRITE(*,'(A,T50,A)') red_color//"IFFTW2", " :: ECHEC"// reset_color
             stat = .TRUE.
         END IF
 
@@ -320,9 +320,9 @@ MODULE test_NAFPack_fft
 
         diff_IFFT2 = s_exact_IFFT2 - s_IFFT2
         IF(MAXVAL(ABS(diff_FFT2)) < epsi) THEN
-            WRITE(*,'(A,T40,A,A)') green_color//"IFFTW2 threads", " :: OK"// reset_color
+            WRITE(*,'(A,T50,A,A)') green_color//"IFFTW2 threads", " :: OK"// reset_color
         ELSE
-            WRITE(*,'(A,T40,A)') red_color//"IFFTW2 threads", " :: ECHEC"// reset_color
+            WRITE(*,'(A,T50,A)') red_color//"IFFTW2 threads", " :: ECHEC"// reset_color
             stat = .TRUE.
         END IF
 

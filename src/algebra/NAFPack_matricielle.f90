@@ -96,17 +96,26 @@ MODULE NAFPack_matricielle
     END FUNCTION Diagonally_Dominant_Matrix
 
     !function that returns the identity matrix
-    FUNCTION Identity_n(N) RESULT(Identity)
+    FUNCTION Identity_n(N, use_concurrent) RESULT(Identity)
         INTEGER, INTENT(IN) :: N
+        LOGICAL, INTENT(IN), OPTIONAL :: use_concurrent
         REAL(dp), DIMENSION(N, N) :: Identity
         INTEGER :: i
+        LOGICAL :: concurrent_mode
+
+        concurrent_mode = .FALSE.
+        IF (PRESENT(use_concurrent)) concurrent_mode = use_concurrent
 
         Identity = 0.d0
 
-        DO i = 1, N
-            Identity(i, i) = 1.d0
-        END DO
-
+        IF (concurrent_mode) THEN
+            DO CONCURRENT (i = 1:N)
+                Identity(i, i) = 1.0_dp
+            END DO
+        ELSE
+            FORALL(i = 1:N) Identity(i, i) = 1.0_dp
+        END IF
+        
     END FUNCTION Identity_n
 
 END MODULE NAFPack_matricielle

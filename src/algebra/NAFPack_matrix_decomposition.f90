@@ -15,8 +15,7 @@ MODULE NAFPack_matrix_decomposition
 
         REAL(dp),DIMENSION(:, :), INTENT(IN) :: A
         REAL(dp),DIMENSION(SIZE(A, 1),SIZE(A, 1)), INTENT(OUT) :: L, U
-        INTEGER :: i, j, k, N
-        REAL(dp) :: S
+        INTEGER :: i, j, N
 
         N = SIZE(A, 1)
 
@@ -25,21 +24,13 @@ MODULE NAFPack_matrix_decomposition
 
         DO j = 1, N
             L(j, j) = 1.d0
-          
+
             DO i = 1, j
-                S = 0.d0
-                DO k = 1, i-1
-                    S = S + L(i, k) * U(k, j)
-                END DO
-                U(i, j) = A(i, j) - S
+                U(i, j) = A(i, j) - DOT_PRODUCT(L(i, 1:i-1), U(1:i-1, j))
             END DO
     
             DO i = j+1, N
-                S = 0.d0
-                DO k = 1, j-1
-                    S = S + L(i, k) * U(k, j)
-                END DO
-                L(i, j) = (A(i, j) - S) / U(j, j)
+                L(i, j) = (A(i, j) - DOT_PRODUCT(L(i, 1:j-1), U(1:j-1, j))) / U(j, j)
             END DO
         END DO
 
@@ -50,7 +41,6 @@ MODULE NAFPack_matrix_decomposition
         REAL(dp),DIMENSION(:, :), INTENT(IN) :: A
         REAL(dp),DIMENSION(SIZE(A, 1),SIZE(A, 1)), INTENT(OUT) :: L, U, D
         INTEGER :: i, j, k, N
-        REAL(dp) :: S
 
         N = SIZE(A, 1)
 
@@ -63,26 +53,14 @@ MODULE NAFPack_matrix_decomposition
             U(j, j) = 1.d0
             
             DO i = 1, j-1
-                S = 0.d0
-                DO k = 1, i-1
-                    S = S + L(i, k) * D(k, k) * U(k, j)
-                END DO
-                U(i, j) = (A(i, j) - S) / D(i, i)
+                U(i, j) = (A(i, j) - DOT_PRODUCT(L(i, 1:i-1), U(1:i-1, j) * [ (D(k,k), k = 1, i-1) ])) / D(i, i)
             END DO
 
             i = j
-            S = 0
-            DO k = 1, j-1
-                S = S + L(j, k) * D(k, k) * U(k, j)
-            END DO
-            D(j, j) = A(j, j) - S
-    
+            D(j, j) = A(j, j) - DOT_PRODUCT(L(j, 1:j-1), U(1:j-1, j) * [ (D(k,k), k = 1, j-1) ])
+
             DO i = j+1, N
-                S = 0.d0
-                DO k = 1, j-1
-                    S = S + L(i, k) * D(k, k) * U(k, j)
-                END DO
-                L(i, j) = (A(i, j) - S) / D(j, j)
+                L(i, j) = (A(i, j) - DOT_PRODUCT(L(i, 1:j-1), U(1:j-1, j) * [ (D(k,k), k = 1, j-1) ])) / D(j, j)
             END DO
         END DO
 
@@ -92,24 +70,15 @@ MODULE NAFPack_matrix_decomposition
 
         REAL(dp),DIMENSION(: ,:), INTENT(IN) :: A
         REAL(dp),DIMENSION(SIZE(A, 1), SIZE(A, 1)), INTENT(OUT) :: L
-        INTEGER :: i, j, k, N
-        REAL(dp) :: S
+        INTEGER :: i, j, N
 
         N = SIZE(A, 1)
 
         DO j = 1, N
-            S = 0.d0
-            DO k = 1, j-1
-                S = S + L(j, k) * L(j, k)
-            END DO
-            L(j, j) = SQRT(A(j, j) - S)
-        
+            L(j, j) = SQRT(A(j, j) - DOT_PRODUCT(L(j, 1:j-1), L(j, 1:j-1)))
+
             DO i = j+1, N
-                S = 0.d0
-                DO k = 1, j-1
-                    S = S + L(i, k) * L(j, k)
-                END DO
-                L(i, j) = (A(i, j) - S) / L(j, j)
+                L(i, j) = (A(i, j) - DOT_PRODUCT(L(i, 1:j-1), L(j, 1:j-1))) / L(j, j)
             END DO
         END DO
 
@@ -139,7 +108,7 @@ MODULE NAFPack_matrix_decomposition
         REAL(dp), DIMENSION(SIZE(A, 1) ,SIZE(A, 2))::Id, H, v_mat_tmp
         REAL(dp), DIMENSION(SIZE(A, 1)) :: v, u, x
         INTEGER :: N, i, j, k
-        REAL(dp) :: alpha, w, signe
+        REAL(dp) :: alpha, w, signe, norm_u
 
         N= SIZE(A, 1)
 
@@ -161,7 +130,9 @@ MODULE NAFPack_matrix_decomposition
             signe = - SIGN(alpha,x(k))
             u(k:N) =  x(k:N) - signe * Id(k:N, k)
 
-            v(k:N) = u(k:N) / NORM2(u)
+            norm_u = NORM2(u)
+            IF (norm_u < epsi) CYCLE
+            v(k:N) = u(k:N) / norm_u
 
             w = 1.d0
             DO i = k, N
@@ -186,15 +157,12 @@ MODULE NAFPack_matrix_decomposition
         INTEGER, DIMENSION(2), INTENT(IN) :: rotation
         REAL(dp), DIMENSION(SIZE(A, 1),SIZE(A, 2)) :: G
         REAL(dp) :: frac, val_1, val_2
-        INTEGER :: k, i, j
+        INTEGER :: i, j
 
         i = rotation(1)
         j = rotation(2)
 
-        G= 0.d0
-        DO k = 1, SIZE(A, 1)
-            G(k, k) = 1.d0
-        END DO
+        G = Identity_n(SIZE(A, 1))
 
         val_1 = A(j, j)
         val_2 = A(i, j)
@@ -262,12 +230,10 @@ MODULE NAFPack_matrix_decomposition
         REAL(dp), DIMENSION(SIZE(A, 1),SIZE(A, 2)) :: u
         INTEGER :: N, i, j
 
-        N = SIZE(A, 1)
-
-        Q = Identity_n(N)
-        DO i = 1, N
-            u(:, i) = A(:,i)
-        END DO
+        N = SIZE(A,1)
+        u = A
+        Q = 0.d0
+        R = 0.d0
 
         DO i = 1, N
             R(i, i) = SQRT(SUM(u(:, i)**2))
