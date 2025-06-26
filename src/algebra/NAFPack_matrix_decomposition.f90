@@ -218,7 +218,7 @@ MODULE NAFPack_matrix_decomposition
                 R(i, j) = DOT_PRODUCT(Q(:, i),A(:, j))
                 u = u - (R(i, j) * Q(:, i))
             END DO
-            R(j, j) = SQRT(SUM(u**2))
+            R(j, j) = NORM2(u)
             Q(:, j) = u / R(j, j)
         END DO
 
@@ -236,7 +236,7 @@ MODULE NAFPack_matrix_decomposition
         R = 0.d0
 
         DO i = 1, N
-            R(i, i) = SQRT(SUM(u(:, i)**2))
+            R(i, i) = NORM2(u(:, i))
             Q(:, i) = u(:, i)/R(i, i)
             DO j = i+1, N
                 R(i, j) = DOT_PRODUCT(Q(:, i),u(:, j))

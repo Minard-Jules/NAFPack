@@ -5,7 +5,7 @@ PROGRAM test
     USE test_NAFPack_fft
 
     IMPLICIT NONE
-    
+
     LOGICAL :: stat = .FALSE.
 
     WRITE(*,'(A)') purple_color,"Test linear systeme :", reset_color

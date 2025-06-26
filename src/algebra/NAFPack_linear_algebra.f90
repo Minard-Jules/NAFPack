@@ -76,9 +76,10 @@ MODULE NAFPack_linear_algebra
 
 !################## direct methode ######################################################
 
-    FUNCTION Direct_methode(A, b, method, check) RESULT(x)
+    FUNCTION Direct_methode(A, b, method, pivot_method, check) RESULT(x)
 
         CHARACTER(LEN = *), OPTIONAL, INTENT(IN) :: method
+        CHARACTER(LEN = *), OPTIONAL, INTENT(IN) :: pivot_method
         REAL(dp),DIMENSION(: ,:), INTENT(IN) :: A
         REAL(dp),DIMENSION(:), INTENT(IN) :: b
         LOGICAL, OPTIONAL, INTENT(IN) :: check
@@ -98,9 +99,7 @@ MODULE NAFPack_linear_algebra
         END IF
 
         IF(method == "Gauss")THEN
-            x = Gauss(A, b)
-        ELSE IF(method == "Gauss_pivot")THEN
-            x = Gauss_pivot(A, b)
+            x = Gauss(A, b, pivot_method=pivot_method)
         ELSE IF(method == "A_LU")THEN
             x = A_LU(A, b)
         ELSE IF(method == "A_LDU")THEN
@@ -117,80 +116,98 @@ MODULE NAFPack_linear_algebra
 
     END FUNCTION Direct_methode
 
-    FUNCTION Gauss(A, b) RESULT(x)
+    FUNCTION Gauss(A, b, pivot_method) RESULT(x)
         
         REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
         REAL(dp), DIMENSION(:), INTENT(IN) :: b
+        CHARACTER(LEN = *), OPTIONAL, INTENT(IN) :: pivot_method
         REAL(dp), DIMENSION(SIZE(A,1)) :: x
-        REAL(dp), DIMENSION(SIZE(A, 1), SIZE(A, 2)) :: A_tmp
+        REAL(dp), DIMENSION(SIZE(A, 1), SIZE(A, 2)) :: A_tmp, P, Q, Q_final
         REAL(dp), DIMENSION(SIZE(b)) :: b_tmp
-        REAL(dp) :: q, pivot
-        INTEGER :: k, i, j, N
+        INTEGER, DIMENSION(1) :: vlmax_partial
+        INTEGER, DIMENSION(2) :: vlmax_total
+        REAL(dp) :: m , pivot
+        INTEGER :: k, i, N, lmax, cmax
 
         A_tmp = A
         b_tmp = b
 
         N=SIZE(A_tmp, 1)
+
+        Q_final = Identity_n(N)
         
-        DO k = 1, N-1 
-            DO i = k+1, N
-                pivot = A_tmp(k, k)
-                IF (ABS(pivot) < epsi) STOP "ERROR :: Near-zero pivot – matrix may be singular"
-
-                q = A_tmp(i, k) / pivot
-                A_tmp(i, k) = 0 
-                DO j = k+1, N
-                    A_tmp(i, j) = A_tmp(i, j) - q * A_tmp(k, j)
-                END DO
-
-                b_tmp(i) = b_tmp(i) - q * b_tmp(k)
-            END DO
-        END DO
-
-        x = backward(A_tmp, b_tmp)
-
-    END FUNCTION Gauss
-
-    FUNCTION Gauss_pivot(A, b) RESULT(x)
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(:), INTENT(IN) :: b
-        REAL(dp), DIMENSION(SIZE(A,1)) :: x
-        REAL(dp), DIMENSION(SIZE(A,1), SIZE(A,2)) :: A_tmp
-        REAL(dp), DIMENSION(SIZE(b)) :: b_tmp
-        INTEGER, DIMENSION(1) :: vlmax
-        REAL(dp) :: q, pivot
-        INTEGER :: k, i, j, N, lmax
-
-        A_tmp = A
-        b_tmp = b
-        N = SIZE(A, 1)
-
         DO k = 1, N-1
-            vlmax = MAXLOC(ABS(A_tmp(k:N, k)))
-            lmax = vlmax(1) + k - 1
-            pivot = A_tmp(lmax, k)
-
-            IF (ABS(pivot) < epsi) STOP "ERROR :: Near-zero pivot – matrix may be singular"
-
-            IF (lmax /= k) THEN
-                CALL exchange_vector(A_tmp(k, :), A_tmp(lmax, :))
-                CALL scalar_exchange(b_tmp(k), b_tmp(lmax))
+            IF (.NOT. PRESENT(pivot_method)) THEN 
+                PRINT*, "WARNING :: No pivot method specified, using normal pivot"
             END IF
 
+            IF(pivot_method == "partial") THEN
+                ! Find the maximum absolute value in the column from row k to N
+                vlmax_partial = MAXLOC(ABS(A_tmp(k:N, k)))
+                lmax = vlmax_partial(1) + k - 1
+                
+                !calculate permutation matrix P
+                P = Identity_n(N)
+                IF (k /= lmax) THEN
+                    P(k, k) = 0.0_dp
+                    P(lmax, lmax) = 0.0_dp
+                    P(k, lmax) = 1.0_dp
+                    P(lmax, k) = 1.0_dp
+                END IF
+
+                A_tmp = MATMUL(P, A_tmp)
+                b_tmp = MATMUL(P, b_tmp)
+            ELSE IF(pivot_method == "total") THEN
+                ! Find max abs element in submatrix
+                vlmax_total = MAXLOC(ABS(A_tmp(k:N,k:N)))
+                lmax = vlmax_total(1) + k - 1
+                cmax = vlmax_total(2) + k - 1
+
+                P = Identity_n(N)
+                Q = Identity_n(N)
+
+                ! permute line if necessary
+                IF (lmax /= k) THEN
+                    P(k, k) = 0.0_dp
+                    P(lmax, lmax) = 0.0_dp
+                    P(k, lmax) = 1.0_dp
+                    P(lmax, k) = 1.0_dp
+                END IF
+
+                ! permute column if necessary
+                IF (cmax /= k) THEN
+                    Q(k, k) = 0.0_dp
+                    Q(cmax, cmax) = 0.0_dp
+                    Q(k, cmax) = 1.0_dp
+                    Q(cmax, k) = 1.0_dp
+                END IF
+
+                Q_final = MATMUL(Q, Q_final)
+
+                ! Apply permutations
+                A_tmp = MATMUL(P, A_tmp)
+                A_tmp = MATMUL(A_tmp, Q)
+
+                b_tmp = MATMUL(P, b_tmp)
+            END IF
+
+            pivot = A_tmp(k, k)
+            IF (ABS(pivot) < epsi) STOP "ERROR :: Near-zero pivot – matrix may be singular"
+
             DO i = k+1, N
-                q = A_tmp(i, k) / A_tmp(k, k)
-                A_tmp(i, k) = 0
-                DO j = k+1, N
-                    A_tmp(i, j) = A_tmp(i, j) - q * A_tmp(k, j)
-                END DO
-                b_tmp(i) = b_tmp(i) - q * b_tmp(k)
+                m = A_tmp(i, k) / pivot
+                A_tmp(i, k) = 0 
+
+                ! Vectorized operation
+                A_tmp(i, k+1:N) = A_tmp(i, k+1:N) - m * A_tmp(k, k+1:N)
+                b_tmp(i) = b_tmp(i) - m * b_tmp(k)
             END DO
         END DO
 
         x = backward(A_tmp, b_tmp)
+        IF (pivot_method == "total") x = MATMUL(Q_final, x)
 
-    END FUNCTION Gauss_pivot
-
+    END FUNCTION Gauss
 
     FUNCTION A_LU(A, b) RESULT(x)
 
@@ -506,7 +523,7 @@ END SUBROUTINE SOR
 
 
             IF(i == k)THEN
-                PRINT*, " WARNING :: non-convergence of the QR method for eigenvalues "//method
+                PRINT*, " WARNING :: non-convergence of the QR Algorithm for eigenvalues "//method
                 PRINT*, "convergence = ", diff
                 EXIT
             END IF
@@ -552,7 +569,7 @@ END SUBROUTINE SOR
             END DO
             
             IF(i == k)THEN
-                PRINT*, " WARNING :: non-convergence of the QR method for eigenvalues "//method
+                PRINT*, " WARNING :: non-convergence of the Shifted QR Algorithm for eigenvalues "//method
                 PRINT*, "convergence = ", diff
                 EXIT
             END IF

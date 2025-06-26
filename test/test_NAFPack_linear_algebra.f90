@@ -13,20 +13,21 @@ MODULE test_NAFPack_linear_algebra
 
 !================ Linear System =========================================================== 
 
-    SUBROUTINE test_methode_direct(A, b, x, method, stat)
+    SUBROUTINE test_methode_direct(A, b, x, method, stat, pivot_method)
         REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
         REAL(dp), DIMENSION(:), INTENT(IN) :: b, x
         CHARACTER(LEN = *), INTENT(IN) :: method
+        CHARACTER(LEN = *), OPTIONAL, INTENT(IN) :: pivot_method
         LOGICAL, INTENT(INOUT) :: stat
         REAL(dp), DIMENSION(SIZE(x)) :: diff_x, x_tmp
-    
-        x_tmp = direct_methode(A, b, method = method)
-    
+
+        x_tmp = direct_methode(A, b, method = method, pivot_method = pivot_method)
+
         diff_x = x - x_tmp
         IF (MAXVAL(ABS(diff_x)) < epsi_test) THEN
-            WRITE(*,'(A,T50,A,A)') green_color//method, " :: OK"// reset_color
+            WRITE(*,'(A,T50,A,A)') green_color//method//" "//pivot_method, " :: OK"// reset_color
         ELSE
-            WRITE(*,'(A,T50,A)') red_color//method, " :: ECHEC"// reset_color
+            WRITE(*,'(A,T50,A)') red_color//method//" "//pivot_method, " :: ECHEC"// reset_color
             stat = .TRUE.
         END IF
     
@@ -84,11 +85,15 @@ MODULE test_NAFPack_linear_algebra
 
         !==================================================================
         !Gauss method
-        CALL test_methode_direct(A, b, x, "Gauss", stat)
+        CALL test_methode_direct(A, b, x, "Gauss", stat, pivot_method = "normal")
 
         !==================================================================
-        !Gauss pivot method
-        CALL test_methode_direct(A, b, x, "Gauss_pivot", stat)
+        !Gauss pivot partial method
+        CALL test_methode_direct(A, b, x, "Gauss", stat, pivot_method = "partial")
+
+        !==================================================================
+        !Gauss pivot total method
+        CALL test_methode_direct(A, b, x, "Gauss", stat, pivot_method = "total")
 
         !==================================================================
         !LU decomposition method
