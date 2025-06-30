@@ -7,7 +7,7 @@ src_dir: ./src
 exclude_dir: test
              fftw-3.3.10
 exclude: src/FFT/FFTW3.f90
-output_dir: fpm-doc
+output_dir: docs
 source: true
 proc_internals: true
 md_extensions: markdown.extensions.toc
