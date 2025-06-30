@@ -1,4 +1,4 @@
-# NAFPack - Fortran Numerical Analysis Package
+# NAFPack - Numerical Analysis in Fortran Package
 
 NAFPack is a Fortran-based numerical analysis package, offering a comprehensive set of algorithms for diverse numerical computations. These computations include Fast Fourier Transform, linear system solving, and eigenvalue/eigenvector calculations.
 
