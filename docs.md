@@ -4,14 +4,15 @@ project_github: https://github.com/Minard-Jules/NAFPack
 author: Minard Jules
 github: https://github.com/Minard-Jules
 email: minard.jules@yahoo.com
+output_dir: docs
 src_dir: ./src
+media_dir: ./doc/media
 exclude_dir: test
              fftw-3.3.10
 exclude: src/FFT/FFTW3.f90
 summary:  <p align="center" style="background-color:#ffffff; padding:20px; border-radius:12px;">
-            <img src="../doc/media/logo.svg" alt="Logo NAFPack" width="800"/>
+            <img src="./media/logo.svg" alt="Logo NAFPack" width="800"/>
           </p>
-output_dir: docs
 source: true
 proc_internals: true
 md_extensions: markdown.extensions.toc
