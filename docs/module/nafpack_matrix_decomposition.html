@@ -6,8 +6,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="description" content="Numerical Analysis in Fortran Package">
-    <meta name="author" content="https://github.com/Minard-Jules" >
+      <meta name="description" content="">
+    <meta name="author" content="Minard Jules" >
     <link rel="icon" href="../favicon.png">
 
     <title>NAFPack_matrix_decomposition &ndash; NAFPack</title>
@@ -85,7 +85,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title="15.2% of total for modules and submodules.">158 statements</a>
+                 title="15.1% of total for modules and submodules.">158 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -167,8 +167,8 @@
         <ul class="list-group list-group-flush">
             <li class="list-group-item">
               <ul class="list-inline">
-                  <li class="list-inline-item"><a href='nafpack_matricielle.html'>NAFPack_matricielle</a></li>
                   <li class="list-inline-item"><a href='nafpack_constant.html'>NAFPack_constant</a></li>
+                  <li class="list-inline-item"><a href='nafpack_matricielle.html'>NAFPack_matricielle</a></li>
               </ul>
             </li>
             <li class="list-group-item">
@@ -451,7 +451,9 @@ large graphs.</div>
 </h3></div>
     <div class="card-body">
           
-  <p>LU decomposition of a matrix A</p><a href="../proc/lu_decomposition.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+  <p>LU decomposition of a matrix A
+<script type="math/tex; mode=display"> A = LU </script>
+This subroutine performs LU decomposition of a given matrix <strong>A</strong>, where <strong>L</strong> is a lower triangular matrix and <strong>U</strong> is an upper triangular matrix.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -466,7 +468,7 @@ large graphs.</div>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-a~19"></span>
+              <span class="anchor" id="variable-a"></span>
               real(kind=dp),
             </td>
 <td>intent(in),</td>
@@ -481,7 +483,7 @@ large graphs.</div>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-l~5"></span>
+              <span class="anchor" id="variable-l"></span>
               real(kind=dp),
             </td>
 <td>intent(out),</td>
@@ -496,7 +498,7 @@ large graphs.</div>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-u~4"></span>
+              <span class="anchor" id="variable-u"></span>
               real(kind=dp),
             </td>
 <td>intent(out),</td>
@@ -521,7 +523,9 @@ large graphs.</div>
 </h3></div>
     <div class="card-body">
           
-  <p>LDU decomposition of a matrix A</p><a href="../proc/ldu_decomposition.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+  <p>LDU decomposition of a matrix A
+<script type="math/tex; mode=display"> A = LDU </script>
+This subroutine performs LDU decomposition of a given matrix <strong>A</strong>, where <strong>L</strong> is a lower triangular matrix, <strong>D</strong> is a diagonal matrix, and <strong>U</strong> is an upper triangular matrix.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -536,7 +540,7 @@ large graphs.</div>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-a~20"></span>
+              <span class="anchor" id="variable-a~2"></span>
               real(kind=dp),
             </td>
 <td>intent(in),</td>
@@ -551,7 +555,7 @@ large graphs.</div>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-l~6"></span>
+              <span class="anchor" id="variable-l~2"></span>
               real(kind=dp),
             </td>
 <td>intent(out),</td>
@@ -566,7 +570,7 @@ large graphs.</div>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-d~2"></span>
+              <span class="anchor" id="variable-d"></span>
               real(kind=dp),
             </td>
 <td>intent(out),</td>
@@ -581,7 +585,7 @@ large graphs.</div>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-u~5"></span>
+              <span class="anchor" id="variable-u~2"></span>
               real(kind=dp),
             </td>
 <td>intent(out),</td>
@@ -606,7 +610,9 @@ large graphs.</div>
 </h3></div>
     <div class="card-body">
           
-  <p>Cholesky decomposition of a matrix A</p><a href="../proc/cholesky_decomposition.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+  <p>Cholesky decomposition of a matrix A
+<script type="math/tex; mode=display"> A = LL^T </script>
+This subroutine performs Cholesky decomposition of a given symmetric positive definite matrix <strong>A</strong>, where <strong>L</strong> is a lower triangular matrix.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -621,7 +627,7 @@ large graphs.</div>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-a~21"></span>
+              <span class="anchor" id="variable-a~3"></span>
               real(kind=dp),
             </td>
 <td>intent(in),</td>
@@ -636,7 +642,7 @@ large graphs.</div>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-l~7"></span>
+              <span class="anchor" id="variable-l~3"></span>
               real(kind=dp),
             </td>
 <td>intent(out),</td>
@@ -661,7 +667,10 @@ large graphs.</div>
 </h3></div>
     <div class="card-body">
           
-  <p>QR decomposition of a matrix A using various methods</p><a href="../proc/qr_decomposition.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+  <p>QR decomposition of a matrix <strong>A</strong> using various methods
+<script type="math/tex; mode=display"> A = QR </script>
+This subroutine performs QR decomposition of a given matrix <strong>A</strong> using the specified method (Householder, Givens, Classical Gram-Schmidt, or Modified Gram-Schmidt).
+The output matrices <strong>Q</strong> is an orthogonal matrix and <strong>R</strong> is an upper triangular matrix.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -676,7 +685,7 @@ large graphs.</div>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-a~22"></span>
+              <span class="anchor" id="variable-a~4"></span>
               real(kind=dp),
             </td>
 <td>intent(in),</td>
@@ -691,7 +700,7 @@ large graphs.</div>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-method~13"></span>
+              <span class="anchor" id="variable-method"></span>
               character(len=*),
             </td>
 <td>intent(in),</td>
@@ -706,7 +715,7 @@ large graphs.</div>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-q~5"></span>
+              <span class="anchor" id="variable-q"></span>
               real(kind=dp),
             </td>
 <td>intent(out),</td>
@@ -721,7 +730,7 @@ large graphs.</div>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-r~4"></span>
+              <span class="anchor" id="variable-r"></span>
               real(kind=dp),
             </td>
 <td>intent(out),</td>
@@ -757,7 +766,7 @@ large graphs.</div>
           <div class="col">
             <p>
               NAFPack
- was developed by https://github.com/Minard-Jules<br>              &copy; 2025 
+ was developed by Minard Jules<br>              &copy; 2025 
 </p>
           </div>
           <div class="col">

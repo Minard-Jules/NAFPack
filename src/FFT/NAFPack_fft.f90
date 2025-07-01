@@ -1,5 +1,5 @@
 !> Module for Fourier Transform
-!>
+!> \[ F(\omega) = \int_{-\infty}^{\infty} f(t) e^{-i \omega t} dt \]
 !> This module provides an interface for performing Fourier Transforms (FFT or DFT, IFFT) on 1D, 2D, and 3D signals.
 !> It supports both forward and inverse transforms.
 !> It allows users to choose between different methods for the Fourier Transform, such as NAFPack and FFTW.
@@ -21,6 +21,7 @@ MODULE NAFPack_fft
     !>
     !> This function takes a signal and performs a Fourier Transform using the specified method.
     !> The available methods are:
+    !>
     !> - "NAFPack_DFT": Direct Discrete Fourier Transform
     !> - "NAFPack_FFT_1D": Fast Fourier Transform using NAFPack
     !> - "FFTW_FFT_1D": Fast Fourier Transform using FFTW
@@ -46,13 +47,14 @@ MODULE NAFPack_fft
 
     END FUNCTION FFT_1D
 
-        !> Perform a 1D inverse Fast Fourier Transform on a signal
-        !>
-        !> This function takes a signal and performs a  inverse fast Fourier Transform using the specified method.
-        !> The available methods are:
-        !> - "NAFPack_IFFT_1D": Fast Fourier Transform using NAFPack
-        !> - "FFTW_IFFT_1D": Fast Fourier Transform using FFTW
-        !> - "FFTW_IFFT_1D" + threads: Fast Fourier Transform using FFTW with multithreading
+    !> Perform a 1D inverse Fast Fourier Transform on a signal
+    !>
+    !> This function takes a signal and performs a  inverse fast Fourier Transform using the specified method.
+    !> The available methods are:
+    !>
+    !> - "NAFPack_IFFT_1D": Fast Fourier Transform using NAFPack
+    !> - "FFTW_IFFT_1D": Fast Fourier Transform using FFTW
+    !> - "FFTW_IFFT_1D" + threads: Fast Fourier Transform using FFTW with multithreading
     FUNCTION IFFT_1D(signal, method, threads) RESULT(result)
 
         COMPLEX(dp), DIMENSION(:), INTENT(INOUT) :: signal
@@ -76,6 +78,7 @@ MODULE NAFPack_fft
     !>
     !> This function takes a signal and performs a Fourier Transform using the specified method.
     !> The available methods are:
+    !>
     !> - "NAFPack_FFT_2D": Fast Fourier Transform using NAFPack
     !> - "FFTW_FFT_2D": Fast Fourier Transform using FFTW
     !> - "FFTW_FFT_2D" + threads: Fast Fourier Transform using FFTW with multithreading
@@ -102,6 +105,7 @@ MODULE NAFPack_fft
     !>
     !> This function takes a signal and performs a  inverse fast Fourier Transform using the specified method.
     !> The available methods are:
+    !>
     !> - "NAFPack_IFFT_2D": Fast Fourier Transform using NAFPack
     !> - "FFTW_IFFT_2D": Fast Fourier Transform using FFTW
     !> - "FFTW_IFFT_2D" + threads: Fast Fourier Transform using FFTW with multithreading
@@ -128,6 +132,7 @@ MODULE NAFPack_fft
     !>
     !> This function takes a signal and performs a Fourier Transform using the specified method.
     !> The available methods are:
+    !>
     !> - "FFTW_FFT_3D": Fast Fourier Transform using FFTW
     !> - "FFTW_FFT_3D" + threads: Fast Fourier Transform using FFTW with multithreading
     FUNCTION FFT_3D(signal, method, threads) RESULT(result)
@@ -151,6 +156,7 @@ MODULE NAFPack_fft
     !>
     !> This function takes a signal and performs a  inverse fast Fourier Transform using the specified method.
     !> The available methods are:
+    !>
     !> - "FFTW_IFFT_3D": Fast Fourier Transform using FFTW
     !> - "FFTW_IFFT_3D" + threads: Fast Fourier Transform using FFTW with multithreading
     FUNCTION IFFT_3D(signal, method, threads) RESULT(result)

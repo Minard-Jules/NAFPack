@@ -6,8 +6,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="description" content="Numerical Analysis in Fortran Package">
-    <meta name="author" content="https://github.com/Minard-Jules" >
+      <meta name="description" content="">
+    <meta name="author" content="Minard Jules" >
     <link rel="icon" href="../favicon.png">
 
     <title>norm_2 &ndash; NAFPack</title>
@@ -85,7 +85,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title=" 1.4% of total for procedures.">5 statements</a>
+                 title=" 1.3% of total for procedures.">5 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -156,7 +156,10 @@
 </h2>
     
 
-    <p>function that calculates the Euclidean norm (L2 norm) of a real vector a</p>
+    <p>function that calculates the Euclidean norm (L2 norm) of a vector <script type="math/tex"> \vec{a} </script>,
+where <script type="math/tex"> \vec{a} \in \mathbb{R}^n </script>
+<script type="math/tex; mode=display"> ||\vec{a}||_2 = \sqrt{\sum_{i=1}^{n} a_i^2} \quad \text{ with } \quad \sum_{i=1}^{n} a_i^2 = \vec{a} \cdot \vec{a} </script>
+where <script type="math/tex"> n </script> is the dimension of the real vector <script type="math/tex"> \vec{a} </script>.</p>
 
 
     <h3>Arguments</h3>
@@ -365,7 +368,7 @@ large graphs.</div>
 <span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">DIMENSION</span><span class="p">(:)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span>
 <span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">result</span>
 
-<span class="k">        result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">SQRT</span><span class="p">(</span><span class="nb">SUM</span><span class="p">(</span><span class="n">a</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+<span class="k">        result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">SQRT</span><span class="p">(</span><span class="nb">DOT_PRODUCT</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">))</span>
 <span class="w">    </span>
 <span class="w">    </span><span class="k">END FUNCTION </span><span class="n">norm_2</span>
 </pre></div>
@@ -384,7 +387,7 @@ large graphs.</div>
           <div class="col">
             <p>
               NAFPack
- was developed by https://github.com/Minard-Jules<br>              &copy; 2025 
+ was developed by Minard Jules<br>              &copy; 2025 
 </p>
           </div>
           <div class="col">

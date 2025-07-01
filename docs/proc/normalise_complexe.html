@@ -6,8 +6,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="description" content="Numerical Analysis in Fortran Package">
-    <meta name="author" content="https://github.com/Minard-Jules" >
+      <meta name="description" content="">
+    <meta name="author" content="Minard Jules" >
     <link rel="icon" href="../favicon.png">
 
     <title>normalise_complexe &ndash; NAFPack</title>
@@ -85,7 +85,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title=" 1.4% of total for procedures.">5 statements</a>
+                 title=" 1.3% of total for procedures.">5 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -156,7 +156,10 @@
 </h2>
     
 
-    <p>function that normalises a complex vector a to make it a unit vector</p>
+    <p>function that normalises a complex vector a to make it a unit vector,
+where <script type="math/tex"> \vec{a} \in \mathbb{C}^n </script>
+<script type="math/tex; mode=display"> \hat{a} = \frac{\vec{a}}{||\vec{a}||_2} </script>
+</p>
 
 
     <h3>Arguments</h3>
@@ -335,7 +338,7 @@ large graphs.</div>
 <span class="w">        </span><span class="kt">COMPLEX</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">DIMENSION</span><span class="p">(</span><span class="n">SIZE</span><span class="p">(</span><span class="n">a</span><span class="p">))</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">result</span>
 
 <span class="k">        result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">norm_2_complex</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="w">    </span>
+
 <span class="w">    </span><span class="k">END FUNCTION </span><span class="n">normalise_complexe</span>
 </pre></div>
 
@@ -353,7 +356,7 @@ large graphs.</div>
           <div class="col">
             <p>
               NAFPack
- was developed by https://github.com/Minard-Jules<br>              &copy; 2025 
+ was developed by Minard Jules<br>              &copy; 2025 
 </p>
           </div>
           <div class="col">

@@ -15,8 +15,8 @@ MODULE NAFPack_matrix_decomposition
     CONTAINS
 
     !> LU decomposition of a matrix A
-    !>
-    !> This subroutine performs LU decomposition of a given matrix A, where L is a lower triangular matrix and U is an upper triangular matrix.
+    !> \[ A = LU \]
+    !> This subroutine performs LU decomposition of a given matrix **A**, where **L** is a lower triangular matrix and **U** is an upper triangular matrix.
     SUBROUTINE LU_decomposition(A, L, U)
 
         REAL(dp),DIMENSION(:, :), INTENT(IN) :: A
@@ -43,8 +43,8 @@ MODULE NAFPack_matrix_decomposition
     END SUBROUTINE LU_decomposition
 
     !> LDU decomposition of a matrix A
-    !>
-    !> This subroutine performs LDU decomposition of a given matrix A, where L is a lower triangular matrix, D is a diagonal matrix, and U is an upper triangular matrix.
+    !> \[ A = LDU \]
+    !> This subroutine performs LDU decomposition of a given matrix **A**, where **L** is a lower triangular matrix, **D** is a diagonal matrix, and **U** is an upper triangular matrix.
     SUBROUTINE LDU_decomposition(A, L, D, U)
 
         REAL(dp),DIMENSION(:, :), INTENT(IN) :: A
@@ -76,8 +76,8 @@ MODULE NAFPack_matrix_decomposition
     END SUBROUTINE LDU_decomposition
 
     !> Cholesky decomposition of a matrix A
-    !>
-    !> This subroutine performs Cholesky decomposition of a given symmetric positive definite matrix A, where L is a lower triangular matrix such that A = L * L^T.
+    !> \[ A = LL^T \]
+    !> This subroutine performs Cholesky decomposition of a given symmetric positive definite matrix **A**, where **L** is a lower triangular matrix.
     SUBROUTINE Cholesky_decomposition(A, L)
 
         REAL(dp),DIMENSION(: ,:), INTENT(IN) :: A
@@ -96,10 +96,10 @@ MODULE NAFPack_matrix_decomposition
 
     END SUBROUTINE Cholesky_decomposition
 
-    !> QR decomposition of a matrix A using various methods
-    !>
-    !> This subroutine performs QR decomposition of a given matrix A using the specified method (Householder, Givens, Classical Gram-Schmidt, or Modified Gram-Schmidt).
-    !> The output matrices Q and R are such that A = Q * R, where Q is an orthogonal matrix and R is an upper triangular matrix.
+    !> QR decomposition of a matrix **A** using various methods
+    !> \[ A = QR \]
+    !> This subroutine performs QR decomposition of a given matrix **A** using the specified method (Householder, Givens, Classical Gram-Schmidt, or Modified Gram-Schmidt).
+    !> The output matrices **Q** is an orthogonal matrix and **R** is an upper triangular matrix.
     SUBROUTINE QR_decomposition(A, method, Q, R)
 
         REAL(dp), DIMENSION(:, :), INTENT(IN) :: A

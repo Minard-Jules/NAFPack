@@ -6,8 +6,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="description" content="Numerical Analysis in Fortran Package">
-    <meta name="author" content="https://github.com/Minard-Jules" >
+      <meta name="description" content="">
+    <meta name="author" content="Minard Jules" >
     <link rel="icon" href="../favicon.png">
 
     <title>NAFPack_meshgrid.f90 &ndash; NAFPack</title>
@@ -267,21 +267,21 @@ large graphs.</div>
 <a id="ln-12" name="ln-12" href="#ln-12"></a><span class="w">  </span>
 <a id="ln-13" name="ln-13" href="#ln-13"></a><span class="w">    </span><span class="k">CONTAINS</span>
 <a id="ln-14" name="ln-14" href="#ln-14"></a>
-<a id="ln-15" name="ln-15" href="#ln-15"></a><span class="w">    </span><span class="c">!&gt; returns a meshgrid from two vectors</span>
-<a id="ln-16" name="ln-16" href="#ln-16"></a><span class="w">    </span><span class="k">SUBROUTINE </span><span class="n">meshgrid</span><span class="p">(</span><span class="n">varx</span><span class="p">,</span><span class="w"> </span><span class="n">vary</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
-<a id="ln-17" name="ln-17" href="#ln-17"></a><span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">DIMENSION</span><span class="p">(:),</span><span class="w"> </span><span class="k">INTENT</span><span class="p">(</span><span class="n">IN</span><span class="p">)</span><span class="w">   </span><span class="kd">::</span><span class="w"> </span><span class="n">varx</span><span class="p">,</span><span class="w"> </span><span class="n">vary</span>
-<a id="ln-18" name="ln-18" href="#ln-18"></a><span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">DIMENSION</span><span class="p">(</span><span class="n">SIZE</span><span class="p">(</span><span class="n">vary</span><span class="p">),</span><span class="w"> </span><span class="n">SIZE</span><span class="p">(</span><span class="n">varx</span><span class="p">)),</span><span class="w"> </span><span class="k">INTENT</span><span class="p">(</span><span class="n">OUT</span><span class="p">)</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span>
+<a id="ln-15" name="ln-15" href="#ln-15"></a><span class="w">    </span><span class="c">!&gt; Make N-dimensional meshgrid from two vectors **x_vector** and **y_vector**</span>
+<a id="ln-16" name="ln-16" href="#ln-16"></a><span class="w">    </span><span class="k">SUBROUTINE </span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x_vector</span><span class="p">,</span><span class="w"> </span><span class="n">y_vector</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
+<a id="ln-17" name="ln-17" href="#ln-17"></a><span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">DIMENSION</span><span class="p">(:),</span><span class="w"> </span><span class="k">INTENT</span><span class="p">(</span><span class="n">IN</span><span class="p">)</span><span class="w">   </span><span class="kd">::</span><span class="w"> </span><span class="n">x_vector</span><span class="p">,</span><span class="w"> </span><span class="n">y_vector</span>
+<a id="ln-18" name="ln-18" href="#ln-18"></a><span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">DIMENSION</span><span class="p">(</span><span class="n">SIZE</span><span class="p">(</span><span class="n">y_vector</span><span class="p">),</span><span class="w"> </span><span class="n">SIZE</span><span class="p">(</span><span class="n">x_vector</span><span class="p">)),</span><span class="w"> </span><span class="k">INTENT</span><span class="p">(</span><span class="n">OUT</span><span class="p">)</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span>
 <a id="ln-19" name="ln-19" href="#ln-19"></a><span class="w">        </span><span class="kt">INTEGER</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">sX</span><span class="p">,</span><span class="w"> </span><span class="n">sY</span><span class="p">,</span><span class="w"> </span><span class="n">i</span>
-<a id="ln-20" name="ln-20" href="#ln-20"></a><span class="w">    </span>
-<a id="ln-21" name="ln-21" href="#ln-21"></a><span class="w">        </span><span class="n">sX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">varx</span><span class="p">)</span><span class="w"> </span>
-<a id="ln-22" name="ln-22" href="#ln-22"></a><span class="w">        </span><span class="n">sY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">vary</span><span class="p">)</span>
-<a id="ln-23" name="ln-23" href="#ln-23"></a><span class="w">    </span>
+<a id="ln-20" name="ln-20" href="#ln-20"></a>
+<a id="ln-21" name="ln-21" href="#ln-21"></a><span class="w">        </span><span class="n">sX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">x_vector</span><span class="p">)</span>
+<a id="ln-22" name="ln-22" href="#ln-22"></a><span class="w">        </span><span class="n">sY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">y_vector</span><span class="p">)</span>
+<a id="ln-23" name="ln-23" href="#ln-23"></a>
 <a id="ln-24" name="ln-24" href="#ln-24"></a><span class="w">        </span><span class="k">DO </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">sY</span>
-<a id="ln-25" name="ln-25" href="#ln-25"></a><span class="w">            </span><span class="n">X</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="p">:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">varx</span>
+<a id="ln-25" name="ln-25" href="#ln-25"></a><span class="w">            </span><span class="n">X</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="p">:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x_vector</span>
 <a id="ln-26" name="ln-26" href="#ln-26"></a><span class="w">        </span><span class="k">END DO</span>
 <a id="ln-27" name="ln-27" href="#ln-27"></a>
 <a id="ln-28" name="ln-28" href="#ln-28"></a><span class="k">        DO </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">sX</span>
-<a id="ln-29" name="ln-29" href="#ln-29"></a><span class="w">            </span><span class="n">Y</span><span class="p">(:,</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vary</span>
+<a id="ln-29" name="ln-29" href="#ln-29"></a><span class="w">            </span><span class="n">Y</span><span class="p">(:,</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y_vector</span>
 <a id="ln-30" name="ln-30" href="#ln-30"></a><span class="w">        </span><span class="k">END DO</span>
 <a id="ln-31" name="ln-31" href="#ln-31"></a>
 <a id="ln-32" name="ln-32" href="#ln-32"></a><span class="k">    END SUBROUTINE </span><span class="n">meshgrid</span>
@@ -301,7 +301,7 @@ large graphs.</div>
           <div class="col">
             <p>
               NAFPack
- was developed by https://github.com/Minard-Jules<br>              &copy; 2025 
+ was developed by Minard Jules<br>              &copy; 2025 
 </p>
           </div>
           <div class="col">

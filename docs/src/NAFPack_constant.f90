@@ -17,7 +17,7 @@ MODULE NAFPack_constant
     REAL(dp), PARAMETER :: pi = ACOS(-1.d0)
     !> Imaginary unit \( i = \sqrt{-1} \)
     COMPLEX(dp), PARAMETER :: im = (0.d0, 1.d0)
-    !> Small /( \epsilon /) value 
+    !> Small \( \epsilon \) value
     REAL(dp), PARAMETER :: epsi = 1.d-12, epsi_test = 1.d-6
     !> Maximum number of iterations for iterative methods
     INTEGER, PARAMETER :: kmax = 10000

@@ -6,8 +6,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="description" content="Numerical Analysis in Fortran Package">
-    <meta name="author" content="https://github.com/Minard-Jules" >
+      <meta name="description" content="">
+    <meta name="author" content="Minard Jules" >
     <link rel="icon" href="../favicon.png">
 
     <title>Identity_n &ndash; NAFPack</title>
@@ -85,7 +85,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title=" 4.6% of total for procedures.">17 statements</a>
+                 title=" 4.3% of total for procedures.">17 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -156,7 +156,9 @@
 </h2>
     
 
-    <p>function that returns the identity matrix for a given size N</p>
+    <p>function that returns the identity matrix for a given size N
+<script type="math/tex; mode=display"> I_N = \begin{pmatrix} 1 & 0 & \cdots & 0 \\ 0 & 1 & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & 1 \end{pmatrix} </script>
+</p>
 
 
     <h3>Arguments</h3>
@@ -172,7 +174,7 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-n~6"></span>
+              <span class="anchor" id="variable-n~13"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -420,7 +422,7 @@ large graphs.</div>
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="hl codehilite"><pre><span></span><span class="w">    </span><span class="k">FUNCTION </span><span class="n">Identity_n</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">use_concurrent</span><span class="p">)</span><span class="w"> </span><span class="k">RESULT</span><span class="p">(</span><span class="n">Identity</span><span class="p">)</span>
+    <div class="hl codehilite"><pre><span></span><span class="w">     </span><span class="k">FUNCTION </span><span class="n">Identity_n</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">use_concurrent</span><span class="p">)</span><span class="w"> </span><span class="k">RESULT</span><span class="p">(</span><span class="n">Identity</span><span class="p">)</span>
 <span class="w">        </span><span class="kt">INTEGER</span><span class="p">,</span><span class="w"> </span><span class="k">INTENT</span><span class="p">(</span><span class="n">IN</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">N</span>
 <span class="w">        </span><span class="kt">LOGICAL</span><span class="p">,</span><span class="w"> </span><span class="k">INTENT</span><span class="p">(</span><span class="n">IN</span><span class="p">),</span><span class="w"> </span><span class="k">OPTIONAL</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">use_concurrent</span>
 <span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">DIMENSION</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">Identity</span>
@@ -457,7 +459,7 @@ large graphs.</div>
           <div class="col">
             <p>
               NAFPack
- was developed by https://github.com/Minard-Jules<br>              &copy; 2025 
+ was developed by Minard Jules<br>              &copy; 2025 
 </p>
           </div>
           <div class="col">

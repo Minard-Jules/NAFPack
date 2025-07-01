@@ -12,6 +12,7 @@ MODULE NAFPack_linear_algebra
 
     PRIVATE
 
+    PUBLIC :: forward, backward
     PUBLIC :: Direct_methode, Iterative_methods
     PUBLIC :: Eigen
 
@@ -20,9 +21,10 @@ MODULE NAFPack_linear_algebra
 
 !================== Linear System =======================================================
 
-    !> forward algorithm
-    !> solves the system L * y = b
-    !> where L is a lower triangular matrix and b is a vector
+    !> forward algorithm, 
+    !> solves the system 
+    !> \[ L * y = b \]
+    !> where **L** is a lower triangular matrix and **b** is a vector
     FUNCTION forward(L, b) RESULT(y)
         REAL(dp), DIMENSION(:, :), INTENT(IN) :: L
         REAL(dp), DIMENSION(:), INTENT(IN) :: b
@@ -39,9 +41,10 @@ MODULE NAFPack_linear_algebra
     
     END FUNCTION forward
 
-    !> backward algorithm
-    !> solves the system U * x = y
-    !> where U is an upper triangular matrix and y is a vector
+    !> backward algorithm, 
+    !> solves the system 
+    !> \[ U * x = y \]
+    !> where **U** is an upper triangular matrix and **y** is a vector
     FUNCTION backward(U, y) RESULT(x)
         REAL(dp), DIMENSION(:, :), INTENT(IN) :: U
         REAL(dp), DIMENSION(:), INTENT(IN) :: y
@@ -62,8 +65,16 @@ MODULE NAFPack_linear_algebra
 !################## direct methode ######################################################
 
     !> Direct method for solving linear systems
-    !>
-    !> This function allows you to choose the direct method for solving the linear system Ax = b.
+    !> \[ A * x = b \]
+    !> This function allows you to choose the direct method for solving the linear system.
+    !> It supports various methods:
+    !> 
+    !> - Gaussian elimination
+    !> - LU decomposition
+    !> - LDU decomposition
+    !> - Cholesky decomposition
+    !> - QR decomposition (Householder, Givens, Classical Gram-Schmidt, Modified Gram-Schmidt)
+    !> - TDMA (Thomas algorithm)
     FUNCTION Direct_methode(A, b, method, pivot_method, check) RESULT(x)
 
         CHARACTER(LEN = *), OPTIONAL, INTENT(IN) :: method
@@ -329,8 +340,13 @@ MODULE NAFPack_linear_algebra
 !################## Iterative methods ###################################################
 
     !> Iterative method for solving linear systems
-    !>
-    !> This function allows you to choose the iterative method for solving the linear system Ax = b.
+    !> \[ A * x = b \]
+    !> This function allows you to choose the iterative method for solving the linear system.
+    !> It supports various methods:
+    !> 
+    !> - Jacobi 
+    !> - Gauss-Seidel
+    !> - Successive Over-Relaxation (SOR)
     FUNCTION Iterative_methods(A, b, method, x_init, max_iter, omega) RESULT(x)
 
         REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
@@ -451,8 +467,12 @@ MODULE NAFPack_linear_algebra
 !================== Eigen ===============================================================
 
     !> Computes the eigenvalues and eigenvectors of a matrix A
+    !> \[ A * \vec{v} = \lambda * \vec{v} \]
+    !> with **A** a square matrix, **λ** the eigenvalue, and **v** the eigenvector.
+    !> This subroutine allows you to choose the method for computing eigenvalues and eigenvectors:
     !>
-    !> This subroutine allows you to choose the method for computing eigenvalues and eigenvectors.
+    !> - Power iteration
+    !> - QR algorithm (with or without shift)
     !> The default method is Power iteration.
     SUBROUTINE Eigen(A, lambda, vp, method, k)
         REAL(dp), DIMENSION(:, :), INTENT(IN) :: A

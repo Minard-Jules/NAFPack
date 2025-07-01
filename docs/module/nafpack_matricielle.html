@@ -6,8 +6,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="description" content="Numerical Analysis in Fortran Package">
-    <meta name="author" content="https://github.com/Minard-Jules" >
+      <meta name="description" content="">
+    <meta name="author" content="Minard Jules" >
     <link rel="icon" href="../favicon.png">
 
     <title>NAFPack_matricielle &ndash; NAFPack</title>
@@ -85,7 +85,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title=" 9.0% of total for modules and submodules.">93 statements</a>
+                 title=" 9.4% of total for modules and submodules.">98 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -453,7 +453,9 @@ large graphs.</div>
 </h3></div>
     <div class="card-body">
           
-  <p>function that calculates the dot product of two real 3-dimensional vectors a and b</p>
+  <p>function that calculates the dot product of two real 3-dimensional vectors <script type="math/tex"> \vec{a} </script> and <script type="math/tex"> \vec{b} </script>
+<script type="math/tex; mode=display"> \vec{a} \cdot \vec{b} </script>
+</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -471,9 +473,9 @@ large graphs.</div>
               <span class="anchor" id="variable-a"></span>
               real(kind=dp),
             </td>
-<td></td>
+<td>intent(in),</td>
               <td></td>            <td>
-              DIMENSION(3)
+              DIMENSION(:)
             </td>
             <td>::</td>
             <td><strong>a</strong></td>
@@ -486,9 +488,9 @@ large graphs.</div>
               <span class="anchor" id="variable-b"></span>
               real(kind=dp),
             </td>
-<td></td>
+<td>intent(in),</td>
               <td></td>            <td>
-              DIMENSION(3)
+              DIMENSION(:)
             </td>
             <td>::</td>
             <td><strong>b</strong></td>
@@ -513,7 +515,9 @@ large graphs.</div>
 </h3></div>
     <div class="card-body">
           
-  <p>function that calculates the cross product between two real 3-dimensional vectors a and b</p>
+  <p>function that calculates the cross product between two real 3-dimensional vectors <script type="math/tex"> \vec{a} </script> and <script type="math/tex"> \vec{b} </script>
+<script type="math/tex; mode=display"> \vec{a} \times \vec{b} </script>
+<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p><a href="../proc/cross.html" class="pull-right"><emph>Read more&hellip;</emph></a>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -573,7 +577,10 @@ large graphs.</div>
 </h3></div>
     <div class="card-body">
           
-  <p>function that calculates the Euclidean norm (L2 norm) of a real vector a</p>
+  <p>function that calculates the Euclidean norm (L2 norm) of a vector <script type="math/tex"> \vec{a} </script>,
+where <script type="math/tex"> \vec{a} \in \mathbb{R}^n </script>
+<script type="math/tex; mode=display"> ||\vec{a}||_2 = \sqrt{\sum_{i=1}^{n} a_i^2} \quad \text{ with } \quad \sum_{i=1}^{n} a_i^2 = \vec{a} \cdot \vec{a} </script>
+where <script type="math/tex"> n </script> is the dimension of the real vector <script type="math/tex"> \vec{a} </script>.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -618,7 +625,10 @@ large graphs.</div>
 </h3></div>
     <div class="card-body">
           
-  <p>function that calculates the Euclidean norm (L2 norm) of a complex vector a</p>
+  <p>function that calculates the Euclidean norm (L2 norm or modulus) of a vector <script type="math/tex"> \vec{a} </script>,
+where <script type="math/tex"> \vec{a} \in \mathbb{C}^n </script>
+<script type="math/tex; mode=display"> ||\vec{a}||_2 = \sqrt{\sum_{i=1}^{n} |a_i|^2} \quad \text{ with } \quad \sum_{i=1}^{n} |a_i|^2 = \vec{a} \cdot \overline{\vec{a}} </script>
+where <script type="math/tex"> n </script> is the dimension of the complex vector <script type="math/tex"> \vec{a} </script>.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -651,7 +661,7 @@ large graphs.</div>
 
     <h4>
     Return Value
-    <small>complex(kind=dp)</small>
+    <small>real(kind=dp)</small>
     </h4>
     
 
@@ -663,7 +673,10 @@ large graphs.</div>
 </h3></div>
     <div class="card-body">
           
-  <p>function that normalises a real vector a to make it a unit vector</p>
+  <p>function that normalises a real vector a to make it a unit vector, 
+where <script type="math/tex"> \vec{a} \in \mathbb{R}^n </script>
+<script type="math/tex; mode=display"> \hat{a} = \frac{\vec{a}}{||\vec{a}||_2} </script>
+</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -708,7 +721,10 @@ large graphs.</div>
 </h3></div>
     <div class="card-body">
           
-  <p>function that normalises a complex vector a to make it a unit vector</p>
+  <p>function that normalises a complex vector a to make it a unit vector,
+where <script type="math/tex"> \vec{a} \in \mathbb{C}^n </script>
+<script type="math/tex; mode=display"> \hat{a} = \frac{\vec{a}}{||\vec{a}||_2} </script>
+</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -753,7 +769,9 @@ large graphs.</div>
 </h3></div>
     <div class="card-body">
           
-  <p>function which checks if A is diagonally dominant</p>
+  <p>function which checks if <strong>A</strong> is diagonally dominant
+<script type="math/tex; mode=display"> \forall i, |A(i,i)| \geq \sum_{j \neq i} |A(i,j)| </script>
+</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -768,7 +786,7 @@ large graphs.</div>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-a"></span>
+              <span class="anchor" id="variable-a~9"></span>
               real(kind=dp),
             </td>
 <td>intent(in),</td>
@@ -798,7 +816,9 @@ large graphs.</div>
 </h3></div>
     <div class="card-body">
           
-  <p>function that returns the identity matrix for a given size N</p>
+  <p>function that returns the identity matrix for a given size N
+<script type="math/tex; mode=display"> I_N = \begin{pmatrix} 1 & 0 & \cdots & 0 \\ 0 & 1 & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & 1 \end{pmatrix} </script>
+</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -813,7 +833,7 @@ large graphs.</div>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-n~6"></span>
+              <span class="anchor" id="variable-n~13"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -873,7 +893,7 @@ large graphs.</div>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-a~2"></span>
+              <span class="anchor" id="variable-a~10"></span>
               real(kind=dp),
             </td>
 <td>intent(in),</td>
@@ -930,7 +950,7 @@ large graphs.</div>
           <div class="col">
             <p>
               NAFPack
- was developed by https://github.com/Minard-Jules<br>              &copy; 2025 
+ was developed by Minard Jules<br>              &copy; 2025 
 </p>
           </div>
           <div class="col">

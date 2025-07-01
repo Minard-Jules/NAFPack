@@ -12,21 +12,21 @@ MODULE NAFPack_meshgrid
   
     CONTAINS
 
-    !> returns a meshgrid from two vectors
-    SUBROUTINE meshgrid(varx, vary, X, Y)
-        REAL(dp), DIMENSION(:), INTENT(IN)   :: varx, vary
-        REAL(dp), DIMENSION(SIZE(vary), SIZE(varx)), INTENT(OUT)  :: X, Y
+    !> Make N-dimensional meshgrid from two vectors **x_vector** and **y_vector**
+    SUBROUTINE meshgrid(x_vector, y_vector, X, Y)
+        REAL(dp), DIMENSION(:), INTENT(IN)   :: x_vector, y_vector
+        REAL(dp), DIMENSION(SIZE(y_vector), SIZE(x_vector)), INTENT(OUT)  :: X, Y
         INTEGER :: sX, sY, i
-    
-        sX = size(varx) 
-        sY = size(vary)
-    
+
+        sX = size(x_vector)
+        sY = size(y_vector)
+
         DO i = 1, sY
-            X(i, :) = varx
+            X(i, :) = x_vector
         END DO
 
         DO i = 1, sX
-            Y(:, i) = vary
+            Y(:, i) = y_vector
         END DO
 
     END SUBROUTINE meshgrid
