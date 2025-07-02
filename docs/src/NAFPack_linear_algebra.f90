@@ -34,7 +34,7 @@ MODULE NAFPack_linear_algebra
         N = SIZE(L, 1)
     
         y(1) = b(1) / L(1, 1)
-    
+
         DO i = 2,N
             y(i) = (b(i) - DOT_PRODUCT(L(i,1:i-1), y(1:i-1))) / L(i,i)
         END DO
@@ -73,6 +73,7 @@ MODULE NAFPack_linear_algebra
     !> - LU decomposition
     !> - LDU decomposition
     !> - Cholesky decomposition
+    !> - Alternative Cholesky decomposition
     !> - QR decomposition (Householder, Givens, Classical Gram-Schmidt, Modified Gram-Schmidt)
     !> - TDMA (Thomas algorithm)
     FUNCTION Direct_methode(A, b, method, pivot_method, check) RESULT(x)
@@ -105,6 +106,8 @@ MODULE NAFPack_linear_algebra
             x = A_LDU(A, b)
         ELSE IF(method == "Cholesky")THEN
             x = Cholesky(A, b, check = do_check)
+        ELSE IF(method == "A_LDL_Cholesky")THEN
+            x = A_LDL_Cholesky(A, b, check = do_check)
         ELSE IF (INDEX(method, "QR") == 1) THEN
             x = A_QR(A, b, method = method)
         ELSE IF(method == "TDMA")THEN
@@ -260,7 +263,7 @@ MODULE NAFPack_linear_algebra
         IF(do_check) THEN
             PRINT*, "Checking if the matrix A is positive definite and symmetric"
             CALL Eigen(A, lambda, method = "Power_iteration")
-            IF(MINVAL(lambda) < epsi) STOP "ERROR :: A is not a definite matrix (Cholesky)"
+            IF(MINVAL(lambda) < 0) STOP "ERROR :: A is not a definite matrix (Cholesky)"
             IF(MAXVAL(ABS(A - TRANSPOSE(A))) > epsi) STOP "ERROR :: A is not symmetric (Cholesky)"
         END IF
         
@@ -271,6 +274,38 @@ MODULE NAFPack_linear_algebra
         x = backward(TRANSPOSE(L), y)
 
     END FUNCTION Cholesky
+
+    !> Alternative Cholesky method 
+    !>
+    !> This function implements the alternative Cholesky decomposition (LDL^T) method for solving linear systems.
+    FUNCTION A_LDL_Cholesky(A, b, check) RESULT(x)
+
+        REAL(dp),DIMENSION(:, :), INTENT(IN) :: A
+        REAL(dp),DIMENSION(:), INTENT(IN) :: b
+        LOGICAL, OPTIONAL, INTENT(IN) :: check
+        REAL(dp),DIMENSION(SIZE(A,1)) :: x
+        REAL(dp),DIMENSION(SIZE(A, 1),SIZE(A, 1)) :: L, D
+        REAL(dp),DIMENSION(SIZE(A, 1)) :: y, z, lambda
+        LOGICAL :: do_check = .TRUE.
+
+        IF(PRESENT(check)) do_check = check
+
+        IF (do_check) THEN
+            PRINT*, "Checking if the matrix A is positive definite and symmetric"
+            CALL Eigen(A, lambda, method = "Power_iteration")
+            IF(MINVAL(lambda) < 0) STOP "ERROR :: A is not a definite matrix (Cholesky)"
+            IF(MAXVAL(ABS(A - TRANSPOSE(A))) > epsi) STOP "ERROR :: A is not symmetric (Cholesky)"
+        END IF
+
+        CALL LDL_Cholesky_decomposition(A, L, D)
+
+        z = forward(L, b)
+
+        y = forward(D, z)
+
+        x = backward(TRANSPOSE(L), y)
+    
+    END FUNCTION A_LDL_Cholesky
 
     !> QR decomposition method
     !>
@@ -347,7 +382,8 @@ MODULE NAFPack_linear_algebra
     !> - Jacobi 
     !> - Gauss-Seidel
     !> - Successive Over-Relaxation (SOR)
-    !> - strongly implicit procedure (SIP)
+    !> - strongly implicit procedure (SIP_ILU, SIP_ICF)
+    !> - Symmetric Successive Over-Relaxation (SSOR)
     FUNCTION Iterative_methods(A, b, method, x_init, max_iter, omega) RESULT(x)
 
         REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
@@ -377,9 +413,12 @@ MODULE NAFPack_linear_algebra
             x0 = 0.d0
         END IF
 
-        IF (method == "SIP")THEN
+        IF (method == "SIP_ILU")THEN
             residu = x0
             CALL ILU_decomposition(A, L, U)
+        ELSE IF (method == "SIP_ICF")THEN
+            residu = x0
+            CALL Incomplete_Cholesky_decomposition(A, L)
         END IF
 
         DO k = 1, max_iter_choice
@@ -404,16 +443,38 @@ MODULE NAFPack_linear_algebra
                 ELSE
                     CALL SOR(A, b, x0, x_new, 1.d0)
                 END IF
-            ELSE IF(method == "SIP") THEN
+            ELSE IF(method == "SIP_ILU") THEN
                 IF (PRESENT(omega))THEN
                     IF(omega <= 0.d0 .OR. omega >= 2.d0) THEN
                         PRINT*, "WARNING :: omega must be in (0, 2), using default value of 1"
-                        CALL SIP(L, U, x0, x_new, residu, 1.d0)
+                        CALL SIP_ILU(L, U, x0, x_new, residu, 1.d0)
                     ELSE 
-                        CALL SIP(L, U, x0, x_new, residu, omega)
+                        CALL SIP_ILU(L, U, x0, x_new, residu, omega)
                     END IF
                 ELSE
-                    CALL SIP(L, U, x0, x_new, residu, 1.d0)
+                    CALL SIP_ILU(L, U, x0, x_new, residu, 1.d0)
+                END IF
+            ELSE IF(method == "SIP_ICF") THEN
+                IF (PRESENT(omega))THEN
+                    IF(omega <= 0.d0 .OR. omega >= 2.d0) THEN
+                        PRINT*, "WARNING :: omega must be in (0, 2), using default value of 1"
+                        CALL SIP_ICF(L, x0, x_new, residu, 1.d0)
+                    ELSE 
+                        CALL SIP_ICF(L, x0, x_new, residu, omega)
+                    END IF
+                ELSE
+                    CALL SIP_ICF(L, x0, x_new, residu, 1.d0)
+                END IF
+            ELSE IF(method == "SSOR")THEN
+                IF (PRESENT(omega))THEN
+                    IF(omega <= 0.d0 .OR. omega >= 2.d0) THEN
+                        PRINT*, "WARNING :: omega must be in (0, 2), using default value of 1"
+                        CALL SSOR(A, b, x0, x_new, 1.d0)
+                    ELSE 
+                        CALL SSOR(A, b, x0, x_new, omega)
+                    END IF
+                ELSE
+                    CALL SSOR(A, b, x0, x_new, 1.d0)
                 END IF
             ELSE
                 STOP "ERROR : Wrong method for linear system (Iterative_methods)"
@@ -442,6 +503,7 @@ MODULE NAFPack_linear_algebra
 
         N = SIZE(A, 1)
 
+        ! forward
         DO i = 1, N
             x(i) = b(i) - DOT_PRODUCT(A(i, 1:i-1), x0(1:i-1)) - DOT_PRODUCT(A(i, i+1:N), x0(i+1:N))
             x(i) = x(i) / A(i, i)
@@ -460,6 +522,7 @@ MODULE NAFPack_linear_algebra
 
         N = SIZE(A, 1)
 
+        ! forward
         DO i = 1, N
             x(i) = b(i) - DOT_PRODUCT(A(i, 1:i-1), x(1:i-1)) - DOT_PRODUCT(A(i, i+1:N), x0(i+1:N))
             x(i) = x(i) / A(i, i)
@@ -479,6 +542,7 @@ MODULE NAFPack_linear_algebra
 
         N = SIZE(A, 1)
 
+        ! forward
         DO i = 1, N
             x(i) = b(i) - DOT_PRODUCT(A(i, 1:i-1), x(1:i-1)) - DOT_PRODUCT(A(i, i+1:N), x0(i+1:N))
             x(i) = omega*(x(i) / A(i, i) - x0(i)) + x0(i)
@@ -489,7 +553,8 @@ MODULE NAFPack_linear_algebra
     !> strongly implicit procedure (SIP) method (or stone's method)
     !>
     !> This subroutine implements the SIP method for solving linear systems.
-    SUBROUTINE SIP(L, U, x0, x, r, omega)
+    !> It uses the incomplete LU decomposition of the matrix A.
+    SUBROUTINE SIP_ILU(L, U, x0, x, r, omega)
         REAL(dp), DIMENSION(:, :), INTENT(IN) :: L, U
         REAL(dp), DIMENSION(:), INTENT(IN) :: r, x0
         REAL(dp), DIMENSION(:), INTENT(OUT) :: x
@@ -502,7 +567,53 @@ MODULE NAFPack_linear_algebra
         
         x = x0 + omega * z
 
-    END SUBROUTINE SIP
+    END SUBROUTINE SIP_ILU
+
+    !> strongly implicit procedure (SIP) method (or stone's method)
+    !>
+    !> This subroutine implements the SIP method for solving linear systems.
+    !> It uses the incomplete Cholesky decomposition of the matrix A.
+    SUBROUTINE SIP_ICF(L, x0, x, r, omega)
+        REAL(dp), DIMENSION(:, :), INTENT(IN) :: L
+        REAL(dp), DIMENSION(:), INTENT(IN) :: r, x0
+        REAL(dp), DIMENSION(:), INTENT(OUT) :: x
+        REAL(dp), INTENT(IN) :: omega
+        REAL(dp), DIMENSION(SIZE(L, 1)) :: y, z
+
+        y = forward(L, r)
+    
+        z = backward(TRANSPOSE(L), y)
+        
+        x = x0 + omega * z
+
+    END SUBROUTINE SIP_ICF
+
+    !> Symmetric successive Over-Relaxation (SSOR) iterative method
+    !>
+    !> This subroutine implements the SSOR method for solving linear systems.
+    SUBROUTINE SSOR(A, b, x0, x, omega)
+        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
+        REAL(dp), DIMENSION(:), INTENT(IN) :: b, x0
+        REAL(dp), INTENT(IN) :: omega
+        REAL(dp), DIMENSION(SIZE(A, 1)), INTENT(OUT) :: x
+        REAL(dp), DIMENSION(SIZE(A, 1)) :: x_tmp
+        INTEGER :: i, N
+
+        N = SIZE(A, 1)
+
+        ! forward
+        DO i = 1, N
+            x_tmp(i) = b(i) - DOT_PRODUCT(A(i, 1:i-1), x_tmp(1:i-1)) - DOT_PRODUCT(A(i, i+1:N), x0(i+1:N))
+            x_tmp(i) = omega*(x_tmp(i) / A(i, i) - x0(i)) + x0(i)
+        END DO
+
+        ! backward
+        DO i = N, 1, -1
+            x(i) = b(i) - DOT_PRODUCT(A(i, 1:i-1), x_tmp(1:i-1)) - DOT_PRODUCT(A(i, i+1:N), x(i+1:N))
+            x(i) = omega*(x(i) / A(i, i) - x_tmp(i)) + x_tmp(i)
+        END DO
+
+    END SUBROUTINE SSOR
 
     !================== Eigen ===============================================================
 

@@ -73,6 +73,7 @@ MODULE NAFPack_linear_algebra
     !> - LU decomposition
     !> - LDU decomposition
     !> - Cholesky decomposition
+    !> - Alternative Cholesky decomposition
     !> - QR decomposition (Householder, Givens, Classical Gram-Schmidt, Modified Gram-Schmidt)
     !> - TDMA (Thomas algorithm)
     FUNCTION Direct_methode(A, b, method, pivot_method, check) RESULT(x)
@@ -381,7 +382,8 @@ MODULE NAFPack_linear_algebra
     !> - Jacobi 
     !> - Gauss-Seidel
     !> - Successive Over-Relaxation (SOR)
-    !> - strongly implicit procedure (SIP)
+    !> - strongly implicit procedure (SIP_ILU, SIP_ICF)
+    !> - Symmetric Successive Over-Relaxation (SSOR)
     FUNCTION Iterative_methods(A, b, method, x_init, max_iter, omega) RESULT(x)
 
         REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
