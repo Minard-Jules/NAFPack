@@ -154,6 +154,10 @@ MODULE test_NAFPack_linear_algebra
         !SOR method
         CALL test_iterative_methods(A, b, x, "SOR", stat)
 
+        !==================================================================
+        !SOR method
+        CALL test_iterative_methods(A, b, x, "SIP", stat)
+
     END SUBROUTINE test_linear_system
 
 !================ Eigen ===================================================================    

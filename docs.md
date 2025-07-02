@@ -11,7 +11,7 @@ exclude_dir: test
              fftw-3.3.10
 exclude: src/FFT/FFTW3.f90
 summary:  <p align="center" style="background-color:#ffffff; padding:20px; border-radius:12px;">
-            <img src="./media/logo.svg" alt="Logo NAFPack" width="800"/>
+            <img src="./media/logo.svg" alt="Logo NAFPack" style="width:70%; max-width:100%; height:auto;"/>
           </p>
 source: true
 proc_internals: true

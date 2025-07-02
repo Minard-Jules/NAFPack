@@ -347,6 +347,7 @@ MODULE NAFPack_linear_algebra
     !> - Jacobi 
     !> - Gauss-Seidel
     !> - Successive Over-Relaxation (SOR)
+    !> - strongly implicit procedure (SIP)
     FUNCTION Iterative_methods(A, b, method, x_init, max_iter, omega) RESULT(x)
 
         REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
@@ -355,6 +356,7 @@ MODULE NAFPack_linear_algebra
         CHARACTER(LEN = *), OPTIONAL, INTENT(IN) :: method
         INTEGER, OPTIONAL, INTENT(IN) :: max_iter
         REAL(dp), OPTIONAL, INTENT(IN) :: omega
+        REAL(dp), DIMENSION(SIZE(A, 1), SIZE(A, 2)) :: L, U
         REAL(dp), DIMENSION(SIZE(A, 1)) :: x
         REAL(dp), DIMENSION(SIZE(A, 1)) :: x0, x_new, residu
         INTEGER :: k, max_iter_choice, N
@@ -375,21 +377,43 @@ MODULE NAFPack_linear_algebra
             x0 = 0.d0
         END IF
 
+        IF (method == "SIP")THEN
+            residu = x0
+            CALL ILU_decomposition(A, L, U)
+        END IF
+
         DO k = 1, max_iter_choice
 
             IF(k == kmax) THEN
                 PRINT*, "WARNING :: non-convergence of the iterative method "//method
+                EXIT
             END IF
-            
+
             IF(method == "Jacobi")THEN
                 CALL Jacobi(A, b , x0, x_new)
             ELSE IF(method == "Gauss_Seidel")THEN
                 CALL Gauss_Seidel(A, b, x0, x_new)
             ELSE IF(method == "SOR")THEN
                 IF (PRESENT(omega))THEN
-                    CALL SOR(A, b, x0, x_new, omega)
+                    IF(omega <= 0.d0 .OR. omega >= 2.d0) THEN
+                        PRINT*, "WARNING :: omega must be in (0, 2), using default value of 1"
+                        CALL SOR(A, b, x0, x_new, 1.d0)
+                    ELSE 
+                        CALL SOR(A, b, x0, x_new, omega)
+                    END IF
                 ELSE
                     CALL SOR(A, b, x0, x_new, 1.d0)
+                END IF
+            ELSE IF(method == "SIP") THEN
+                IF (PRESENT(omega))THEN
+                    IF(omega <= 0.d0 .OR. omega >= 2.d0) THEN
+                        PRINT*, "WARNING :: omega must be in (0, 2), using default value of 1"
+                        CALL SIP(L, U, x0, x_new, residu, 1.d0)
+                    ELSE 
+                        CALL SIP(L, U, x0, x_new, residu, omega)
+                    END IF
+                ELSE
+                    CALL SIP(L, U, x0, x_new, residu, 1.d0)
                 END IF
             ELSE
                 STOP "ERROR : Wrong method for linear system (Iterative_methods)"
@@ -457,14 +481,30 @@ MODULE NAFPack_linear_algebra
 
         DO i = 1, N
             x(i) = b(i) - DOT_PRODUCT(A(i, 1:i-1), x(1:i-1)) - DOT_PRODUCT(A(i, i+1:N), x0(i+1:N))
-            x(i) = omega*(x(i) / A(i, i) - x0(i))
-            x(i) = x(i) + x0(i)
+            x(i) = omega*(x(i) / A(i, i) - x0(i)) + x0(i)
         END DO
 
     END SUBROUTINE SOR
 
+    !> strongly implicit procedure (SIP) method (or stone's method)
+    !>
+    !> This subroutine implements the SIP method for solving linear systems.
+    SUBROUTINE SIP(L, U, x0, x, r, omega)
+        REAL(dp), DIMENSION(:, :), INTENT(IN) :: L, U
+        REAL(dp), DIMENSION(:), INTENT(IN) :: r, x0
+        REAL(dp), DIMENSION(:), INTENT(OUT) :: x
+        REAL(dp), INTENT(IN) :: omega
+        REAL(dp), DIMENSION(SIZE(L, 1)) :: y, z
 
-!================== Eigen ===============================================================
+        y = forward(L, r)
+        
+        z = backward(U, y)
+        
+        x = x0 + omega * z
+
+    END SUBROUTINE SIP
+
+    !================== Eigen ===============================================================
 
     !> Computes the eigenvalues and eigenvectors of a matrix A
     !> \[ A * \vec{v} = \lambda * \vec{v} \]

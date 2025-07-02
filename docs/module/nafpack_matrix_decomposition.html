@@ -85,7 +85,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title="15.1% of total for modules and submodules.">158 statements</a>
+                 title="16.1% of total for modules and submodules.">176 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -138,6 +138,7 @@
       <div id="subs-0" class="collapse">
         <div class="list-group list-group-flush">
             <a class="list-group-item" href="../module/nafpack_matrix_decomposition.html#proc-lu_decomposition">LU_decomposition</a>
+            <a class="list-group-item" href="../module/nafpack_matrix_decomposition.html#proc-ilu_decomposition">ILU_decomposition</a>
             <a class="list-group-item" href="../module/nafpack_matrix_decomposition.html#proc-ldu_decomposition">LDU_decomposition</a>
             <a class="list-group-item" href="../module/nafpack_matrix_decomposition.html#proc-cholesky_decomposition">Cholesky_decomposition</a>
             <a class="list-group-item" href="../module/nafpack_matrix_decomposition.html#proc-qr_decomposition">QR_decomposition</a>
@@ -519,13 +520,13 @@ This subroutine performs LU decomposition of a given matrix <strong>A</strong>, 
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-ldu_decomposition"></span> <h3>public  subroutine <a href='..\proc\ldu_decomposition.html'>LDU_decomposition</a>(A, L, D, U)  
+    <div class="card-header codesum"><span class="anchor" id="proc-ilu_decomposition"></span> <h3>public  subroutine <a href='..\proc\ilu_decomposition.html'>ILU_decomposition</a>(A, L, U)  
 </h3></div>
     <div class="card-body">
           
-  <p>LDU decomposition of a matrix A
-<script type="math/tex; mode=display"> A = LDU </script>
-This subroutine performs LDU decomposition of a given matrix <strong>A</strong>, where <strong>L</strong> is a lower triangular matrix, <strong>D</strong> is a diagonal matrix, and <strong>U</strong> is an upper triangular matrix.</p>
+  <p>Incomplete LU decomposition of a matrix A
+<script type="math/tex; mode=display"> A \approx LU </script>
+This subroutine performs incomplete LU decomposition of a given matrix <strong>A</strong>, where <strong>L</strong> is a lower triangular matrix and <strong>U</strong> is an upper triangular matrix.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -560,6 +561,78 @@ This subroutine performs LDU decomposition of a given matrix <strong>A</strong>,
             </td>
 <td>intent(out),</td>
               <td></td>            <td>
+              DIMENSION(SIZE(A, 1), SIZE(A, 1))
+            </td>
+            <td>::</td>
+            <td><strong>L</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-u~2"></span>
+              real(kind=dp),
+            </td>
+<td>intent(out),</td>
+              <td></td>            <td>
+              DIMENSION(SIZE(A, 1), SIZE(A, 1))
+            </td>
+            <td>::</td>
+            <td><strong>U</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-ldu_decomposition"></span> <h3>public  subroutine <a href='..\proc\ldu_decomposition.html'>LDU_decomposition</a>(A, L, D, U)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>LDU decomposition of a matrix A
+<script type="math/tex; mode=display"> A = LDU </script>
+This subroutine performs LDU decomposition of a given matrix <strong>A</strong>, where <strong>L</strong> is a lower triangular matrix, <strong>D</strong> is a diagonal matrix, and <strong>U</strong> is an upper triangular matrix.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-a~3"></span>
+              real(kind=dp),
+            </td>
+<td>intent(in),</td>
+              <td></td>            <td>
+              DIMENSION(:, :)
+            </td>
+            <td>::</td>
+            <td><strong>A</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-l~3"></span>
+              real(kind=dp),
+            </td>
+<td>intent(out),</td>
+              <td></td>            <td>
               DIMENSION(SIZE(A, 1),SIZE(A, 1))
             </td>
             <td>::</td>
@@ -585,7 +658,7 @@ This subroutine performs LDU decomposition of a given matrix <strong>A</strong>,
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-u~2"></span>
+              <span class="anchor" id="variable-u~3"></span>
               real(kind=dp),
             </td>
 <td>intent(out),</td>
@@ -627,7 +700,7 @@ This subroutine performs Cholesky decomposition of a given symmetric positive de
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-a~3"></span>
+              <span class="anchor" id="variable-a~4"></span>
               real(kind=dp),
             </td>
 <td>intent(in),</td>
@@ -642,7 +715,7 @@ This subroutine performs Cholesky decomposition of a given symmetric positive de
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-l~3"></span>
+              <span class="anchor" id="variable-l~4"></span>
               real(kind=dp),
             </td>
 <td>intent(out),</td>
@@ -685,7 +758,7 @@ The output matrices <strong>Q</strong> is an orthogonal matrix and <strong>R</st
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-a~4"></span>
+              <span class="anchor" id="variable-a~5"></span>
               real(kind=dp),
             </td>
 <td>intent(in),</td>
@@ -700,7 +773,7 @@ The output matrices <strong>Q</strong> is an orthogonal matrix and <strong>R</st
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-method~7"></span>
+              <span class="anchor" id="variable-method"></span>
               character(len=*),
             </td>
 <td>intent(in),</td>

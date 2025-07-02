@@ -10,7 +10,7 @@ MODULE NAFPack_matrix_decomposition
 
     PRIVATE
 
-    PUBLIC :: LU_decomposition, LDU_decomposition, Cholesky_decomposition, QR_decomposition
+    PUBLIC :: LU_decomposition, LDU_decomposition, Cholesky_decomposition, QR_decomposition, ILU_decomposition
 
     CONTAINS
 
@@ -41,6 +41,35 @@ MODULE NAFPack_matrix_decomposition
         END DO
 
     END SUBROUTINE LU_decomposition
+
+    !> Incomplete LU decomposition of a matrix A
+    !> \[ A \approx LU \]
+    !> This subroutine performs incomplete LU decomposition of a given matrix **A**, where **L** is a lower triangular matrix and **U** is an upper triangular matrix.
+    SUBROUTINE ILU_decomposition(A, L, U)
+
+        REAL(dp), DIMENSION(:, :), INTENT(IN)  :: A
+        REAL(dp), DIMENSION(SIZE(A, 1), SIZE(A, 1)), INTENT(OUT) :: L, U
+        LOGICAL, DIMENSION(SIZE(A, 1), SIZE(A, 1)) :: S
+        INTEGER :: i, j, N
+
+        N = SIZE(A, 1)
+
+        L = Identity_n(N)
+        U = 0.d0
+
+        S = A /= 0
+
+        DO i = 1, N
+            DO j = 1, i-1
+                IF (S(i,j)) L(i,j) = (A(i,j) - DOT_PRODUCT(L(i, 1:j-1), U(1:j-1, j))) / U(j,j)
+            END DO
+            DO j = i, N
+                IF (S(i,j)) U(i,j) = A(i,j) - DOT_PRODUCT(L(i, 1:i-1), U(1:i-1, j))
+            END DO
+        END DO
+
+    END SUBROUTINE ILU_decomposition
+
 
     !> LDU decomposition of a matrix A
     !> \[ A = LDU \]

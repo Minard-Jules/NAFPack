@@ -10,7 +10,7 @@
     <meta name="author" content="Minard Jules" >
     <link rel="icon" href="../favicon.png">
 
-    <title>normalise &ndash; NAFPack</title>
+    <title>ILU_decomposition &ndash; NAFPack</title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -74,8 +74,8 @@
 
     <div class="container">
   <div class="row">
-    <h1>normalise
-      <small>Function</small>
+    <h1>ILU_decomposition
+      <small>Subroutine</small>
       
     </h1>
       <div class="container p-2 mb-4 bg-light border rounded-3">
@@ -85,21 +85,21 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title=" 1.2% of total for procedures.">5 statements</a>
+                 title=" 4.2% of total for procedures.">18 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
               <i class="fa fa-code"></i>
-              <a href="../src/NAFPack_matricielle.f90"> Source File</a>
+              <a href="../src/NAFPack_matrix_decomposition.f90"> Source File</a>
             </li>
         </ul>
       </div>
       <div class="col">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb justify-content-end mb-0">
-                <li class="breadcrumb-item"><a href='..\sourcefile\nafpack_matricielle.f90.html'>NAFPack_matricielle.f90</a></li>
-                <li class="breadcrumb-item"><a href='..\module\nafpack_matricielle.html'>NAFPack_matricielle</a></li>
-            <li class="breadcrumb-item active" aria-current="page">normalise</li>
+                <li class="breadcrumb-item"><a href='..\sourcefile\nafpack_matrix_decomposition.f90.html'>NAFPack_matrix_decomposition.f90</a></li>
+                <li class="breadcrumb-item"><a href='..\module\nafpack_matrix_decomposition.html'>NAFPack_matrix_decomposition</a></li>
+            <li class="breadcrumb-item active" aria-current="page">ILU_decomposition</li>
           </ol>
         </nav>
       </div>
@@ -142,7 +142,7 @@
     <div class="card card-primary">
       <div class="card-header text-left"><h3 class="card-title">Source Code</h3></div>
       <div class="list-group">
-        <a class="list-group-item" href="../proc/normalise.html#src">normalise</a>
+        <a class="list-group-item" href="../proc/ilu_decomposition.html#src">ILU_decomposition</a>
       </div>
     </div>
 
@@ -152,14 +152,13 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>public  function normalise(a) result(result)  
+    <h2>public  subroutine ILU_decomposition(A, L, U)  
 </h2>
     
 
-    <p>function that normalises a real vector a to make it a unit vector, 
-where <script type="math/tex"> \vec{a} \in \mathbb{R}^n </script>
-<script type="math/tex; mode=display"> \hat{a} = \frac{\vec{a}}{||\vec{a}||_2} </script>
-</p>
+    <p>Incomplete LU decomposition of a matrix A
+<script type="math/tex; mode=display"> A \approx LU </script>
+This subroutine performs incomplete LU decomposition of a given matrix <strong>A</strong>, where <strong>L</strong> is a lower triangular matrix and <strong>U</strong> is an upper triangular matrix.</p>
 
 
     <h3>Arguments</h3>
@@ -175,15 +174,45 @@ where <script type="math/tex"> \vec{a} \in \mathbb{R}^n </script>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-a~5"></span>
+              <span class="anchor" id="variable-a~2"></span>
               real(kind=dp),
             </td>
-<td></td>
+<td>intent(in),</td>
               <td></td>            <td>
-              DIMENSION(:)
+              DIMENSION(:, :)
             </td>
             <td>::</td>
-            <td><strong>a</strong></td>
+            <td><strong>A</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-l~2"></span>
+              real(kind=dp),
+            </td>
+<td>intent(out),</td>
+              <td></td>            <td>
+              DIMENSION(SIZE(A, 1), SIZE(A, 1))
+            </td>
+            <td>::</td>
+            <td><strong>L</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-u~2"></span>
+              real(kind=dp),
+            </td>
+<td>intent(out),</td>
+              <td></td>            <td>
+              DIMENSION(SIZE(A, 1), SIZE(A, 1))
+            </td>
+            <td>::</td>
+            <td><strong>U</strong></td>
             <td>
                 
             </td>
@@ -191,13 +220,6 @@ where <script type="math/tex"> \vec{a} \in \mathbb{R}^n </script>
     </tbody>
   </table>
 
-      <h3>Return Value
-        <small>
-          <span class="anchor" id="variable-result~5"></span>
-          real(kind=dp), DIMENSION(SIZE(a))
-        </small>
-      </h3>
-      
     <br>
     <div class="card">
       <div class="card-header">
@@ -209,32 +231,32 @@ where <script type="math/tex"> \vec{a} \in \mathbb{R}^n </script>
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 13.0.1 (20250615.1724)
  -->
-<!-- Title: proc~~normalise~~CallsGraph Pages: 1 -->
-<svg id="procnormaliseCallsGraph" width="156pt" height="32pt"
- viewBox="0.00 0.00 156.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~normalise~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 27.52)">
-<title>proc~~normalise~~CallsGraph</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 152.02,-27.52 152.02,4 -4,4"/>
-<!-- proc~normalise -->
-<g id="proc~~normalise~~CallsGraph_node1" class="node">
-<title>proc~normalise</title>
-<polygon fill="none" stroke="black" points="58.02,-23.52 0,-23.52 0,0 58.02,0 58.02,-23.52"/>
-<text xml:space="preserve" text-anchor="middle" x="29.01" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">normalise</text>
+<!-- Title: proc~~ilu_decomposition~~CallsGraph Pages: 1 -->
+<svg id="procilu_decompositionCallsGraph" width="205pt" height="32pt"
+ viewBox="0.00 0.00 205.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~ilu_decomposition~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 27.52)">
+<title>proc~~ilu_decomposition~~CallsGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 201.04,-27.52 201.04,4 -4,4"/>
+<!-- proc~ilu_decomposition -->
+<g id="proc~~ilu_decomposition~~CallsGraph_node1" class="node">
+<title>proc~ilu_decomposition</title>
+<polygon fill="none" stroke="black" points="103.02,-23.52 0,-23.52 0,0 103.02,0 103.02,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="51.51" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">ILU_decomposition</text>
 </g>
-<!-- proc~norm_2 -->
-<g id="proc~~normalise~~CallsGraph_node2" class="node">
-<title>proc~norm_2</title>
-<g id="a_proc~~normalise~~CallsGraph_node2"><a xlink:href="../proc/norm_2.html" xlink:title="norm_2">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="148.02,-23.52 94.02,-23.52 94.02,0 148.02,0 148.02,-23.52"/>
-<text xml:space="preserve" text-anchor="middle" x="121.02" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">norm_2</text>
+<!-- proc~identity_n -->
+<g id="proc~~ilu_decomposition~~CallsGraph_node2" class="node">
+<title>proc~identity_n</title>
+<g id="a_proc~~ilu_decomposition~~CallsGraph_node2"><a xlink:href="../proc/identity_n.html" xlink:title="Identity_n">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="197.04,-23.52 139.02,-23.52 139.02,0 197.04,0 197.04,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="168.03" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Identity_n</text>
 </a>
 </g>
 </g>
-<!-- proc~normalise&#45;&gt;proc~norm_2 -->
-<g id="proc~~normalise~~CallsGraph_edge1" class="edge">
-<title>proc~normalise&#45;&gt;proc~norm_2</title>
-<path fill="none" stroke="#ff0000" d="M58.49,-11.76C66.03,-11.76 74.3,-11.76 82.25,-11.76"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="82.05,-15.26 92.05,-11.76 82.05,-8.26 82.05,-15.26"/>
+<!-- proc~ilu_decomposition&#45;&gt;proc~identity_n -->
+<g id="proc~~ilu_decomposition~~CallsGraph_edge1" class="edge">
+<title>proc~ilu_decomposition&#45;&gt;proc~identity_n</title>
+<path fill="none" stroke="#ff0000" d="M103.41,-11.76C111.42,-11.76 119.6,-11.76 127.31,-11.76"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="127.06,-15.26 137.06,-11.76 127.06,-8.26 127.06,-15.26"/>
 </g>
 </g>
 </svg>
@@ -329,47 +351,32 @@ large graphs.</div>
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 13.0.1 (20250615.1724)
  -->
-<!-- Title: proc~~normalise~~CalledByGraph Pages: 1 -->
-<svg id="procnormaliseCalledByGraph" width="279pt" height="32pt"
- viewBox="0.00 0.00 279.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~normalise~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 27.52)">
-<title>proc~~normalise~~CalledByGraph</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 275.29,-27.52 275.29,4 -4,4"/>
-<!-- proc~normalise -->
-<g id="proc~~normalise~~CalledByGraph_node1" class="node">
-<title>proc~normalise</title>
-<polygon fill="none" stroke="black" points="271.29,-23.52 213.27,-23.52 213.27,0 271.29,0 271.29,-23.52"/>
-<text xml:space="preserve" text-anchor="middle" x="242.28" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">normalise</text>
+<!-- Title: proc~~ilu_decomposition~~CalledByGraph Pages: 1 -->
+<svg id="procilu_decompositionCalledByGraph" width="244pt" height="32pt"
+ viewBox="0.00 0.00 244.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~ilu_decomposition~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 27.52)">
+<title>proc~~ilu_decomposition~~CalledByGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 240.04,-27.52 240.04,4 -4,4"/>
+<!-- proc~ilu_decomposition -->
+<g id="proc~~ilu_decomposition~~CalledByGraph_node1" class="node">
+<title>proc~ilu_decomposition</title>
+<polygon fill="none" stroke="black" points="236.04,-23.52 133.02,-23.52 133.02,0 236.04,0 236.04,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="184.53" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">ILU_decomposition</text>
 </g>
-<!-- proc~eigen -->
-<g id="proc~~normalise~~CalledByGraph_node2" class="node">
-<title>proc~eigen</title>
-<g id="a_proc~~normalise~~CalledByGraph_node2"><a xlink:href="../proc/eigen.html" xlink:title="Eigen">
-<polygon fill="#d9534f" stroke="#d9534f" points="177.27,-23.52 123.27,-23.52 123.27,0 177.27,0 177.27,-23.52"/>
-<text xml:space="preserve" text-anchor="middle" x="150.27" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Eigen</text>
+<!-- proc~iterative_methods -->
+<g id="proc~~ilu_decomposition~~CalledByGraph_node2" class="node">
+<title>proc~iterative_methods</title>
+<g id="a_proc~~ilu_decomposition~~CalledByGraph_node2"><a xlink:href="../proc/iterative_methods.html" xlink:title="Iterative_methods">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="97.02,-23.52 0,-23.52 0,0 97.02,0 97.02,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="48.51" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Iterative_methods</text>
 </a>
 </g>
 </g>
-<!-- proc~eigen&#45;&gt;proc~normalise -->
-<g id="proc~~normalise~~CalledByGraph_edge1" class="edge">
-<title>proc~eigen&#45;&gt;proc~normalise</title>
-<path fill="none" stroke="#ff0000" d="M177.3,-11.76C184.86,-11.76 193.28,-11.76 201.47,-11.76"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="201.27,-15.26 211.27,-11.76 201.27,-8.26 201.27,-15.26"/>
-</g>
-<!-- proc~direct_methode -->
-<g id="proc~~normalise~~CalledByGraph_node3" class="node">
-<title>proc~direct_methode</title>
-<g id="a_proc~~normalise~~CalledByGraph_node3"><a xlink:href="../proc/direct_methode.html" xlink:title="Direct_methode">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="87.27,-23.52 0,-23.52 0,0 87.27,0 87.27,-23.52"/>
-<text xml:space="preserve" text-anchor="middle" x="43.63" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Direct_methode</text>
-</a>
-</g>
-</g>
-<!-- proc~direct_methode&#45;&gt;proc~eigen -->
-<g id="proc~~normalise~~CalledByGraph_edge2" class="edge">
-<title>proc~direct_methode&#45;&gt;proc~eigen</title>
-<path fill="none" stroke="#ff0000" d="M87.5,-11.76C95.44,-11.76 103.69,-11.76 111.47,-11.76"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="111.31,-15.26 121.31,-11.76 111.31,-8.26 111.31,-15.26"/>
+<!-- proc~iterative_methods&#45;&gt;proc~ilu_decomposition -->
+<g id="proc~~ilu_decomposition~~CalledByGraph_edge1" class="edge">
+<title>proc~iterative_methods&#45;&gt;proc~ilu_decomposition</title>
+<path fill="none" stroke="#ff0000" d="M97.52,-11.76C105.28,-11.76 113.41,-11.76 121.44,-11.76"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="121.18,-15.26 131.18,-11.76 121.18,-8.26 121.18,-15.26"/>
 </g>
 </g>
 </svg>
@@ -468,14 +475,30 @@ large graphs.</div>
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="hl codehilite"><pre><span></span><span class="w">    </span><span class="k">FUNCTION </span><span class="n">normalise</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="k">RESULT</span><span class="p">(</span><span class="k">result</span><span class="p">)</span>
+    <div class="hl codehilite"><pre><span></span><span class="w">    </span><span class="k">SUBROUTINE </span><span class="n">ILU_decomposition</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">L</span><span class="p">,</span><span class="w"> </span><span class="n">U</span><span class="p">)</span>
 
-<span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">DIMENSION</span><span class="p">(:)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span>
-<span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">DIMENSION</span><span class="p">(</span><span class="n">SIZE</span><span class="p">(</span><span class="n">a</span><span class="p">))</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">result</span>
+<span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">DIMENSION</span><span class="p">(:,</span><span class="w"> </span><span class="p">:),</span><span class="w"> </span><span class="k">INTENT</span><span class="p">(</span><span class="n">IN</span><span class="p">)</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">A</span>
+<span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">DIMENSION</span><span class="p">(</span><span class="n">SIZE</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">SIZE</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)),</span><span class="w"> </span><span class="k">INTENT</span><span class="p">(</span><span class="n">OUT</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">L</span><span class="p">,</span><span class="w"> </span><span class="n">U</span>
+<span class="w">        </span><span class="kt">LOGICAL</span><span class="p">,</span><span class="w"> </span><span class="k">DIMENSION</span><span class="p">(</span><span class="n">SIZE</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">SIZE</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">S</span>
+<span class="w">        </span><span class="kt">INTEGER</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">N</span>
 
-<span class="k">        result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">norm_2</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="w">        </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SIZE</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
 
-<span class="w">    </span><span class="k">END FUNCTION </span><span class="n">normalise</span>
+<span class="w">        </span><span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Identity_n</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="w">        </span><span class="n">U</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.d0</span>
+
+<span class="w">        </span><span class="n">S</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">0</span>
+
+<span class="w">        </span><span class="k">DO </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">N</span>
+<span class="w">            </span><span class="k">DO </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="o">-</span><span class="mi">1</span>
+<span class="w">                </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">S</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">))</span><span class="w"> </span><span class="n">L</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">DOT_PRODUCT</span><span class="p">(</span><span class="n">L</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">U</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">)))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">U</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+<span class="w">            </span><span class="k">END DO</span>
+<span class="k">            DO </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">N</span>
+<span class="w">                </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">S</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">))</span><span class="w"> </span><span class="n">U</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">DOT_PRODUCT</span><span class="p">(</span><span class="n">L</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">U</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">))</span>
+<span class="w">            </span><span class="k">END DO</span>
+<span class="k">        END DO</span>
+
+<span class="k">    END SUBROUTINE </span><span class="n">ILU_decomposition</span>
 </pre></div>
 
     </section>
