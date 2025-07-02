@@ -10,7 +10,9 @@ MODULE NAFPack_matrix_decomposition
 
     PRIVATE
 
-    PUBLIC :: LU_decomposition, LDU_decomposition, Cholesky_decomposition, QR_decomposition, ILU_decomposition
+    PUBLIC :: LU_decomposition, LDU_decomposition, ILU_decomposition
+    PUBLIC :: Cholesky_decomposition, LDL_Cholesky_decomposition, Incomplete_Cholesky_decomposition
+    PUBLIC :: QR_decomposition
 
     CONTAINS
 
@@ -41,35 +43,6 @@ MODULE NAFPack_matrix_decomposition
         END DO
 
     END SUBROUTINE LU_decomposition
-
-    !> Incomplete LU decomposition of a matrix A
-    !> \[ A \approx LU \]
-    !> This subroutine performs incomplete LU decomposition of a given matrix **A**, where **L** is a lower triangular matrix and **U** is an upper triangular matrix.
-    SUBROUTINE ILU_decomposition(A, L, U)
-
-        REAL(dp), DIMENSION(:, :), INTENT(IN)  :: A
-        REAL(dp), DIMENSION(SIZE(A, 1), SIZE(A, 1)), INTENT(OUT) :: L, U
-        LOGICAL, DIMENSION(SIZE(A, 1), SIZE(A, 1)) :: S
-        INTEGER :: i, j, N
-
-        N = SIZE(A, 1)
-
-        L = Identity_n(N)
-        U = 0.d0
-
-        S = A /= 0
-
-        DO i = 1, N
-            DO j = 1, i-1
-                IF (S(i,j)) L(i,j) = (A(i,j) - DOT_PRODUCT(L(i, 1:j-1), U(1:j-1, j))) / U(j,j)
-            END DO
-            DO j = i, N
-                IF (S(i,j)) U(i,j) = A(i,j) - DOT_PRODUCT(L(i, 1:i-1), U(1:i-1, j))
-            END DO
-        END DO
-
-    END SUBROUTINE ILU_decomposition
-
 
     !> LDU decomposition of a matrix A
     !> \[ A = LDU \]
@@ -104,6 +77,34 @@ MODULE NAFPack_matrix_decomposition
 
     END SUBROUTINE LDU_decomposition
 
+    !> Incomplete LU decomposition of a matrix A
+    !> \[ A \approx LU \]
+    !> This subroutine performs incomplete LU decomposition of a given matrix **A**, where **L** is a lower triangular matrix and **U** is an upper triangular matrix.
+    SUBROUTINE ILU_decomposition(A, L, U)
+
+        REAL(dp), DIMENSION(:, :), INTENT(IN)  :: A
+        REAL(dp), DIMENSION(SIZE(A, 1), SIZE(A, 1)), INTENT(OUT) :: L, U
+        LOGICAL, DIMENSION(SIZE(A, 1), SIZE(A, 1)) :: S
+        INTEGER :: i, j, N
+
+        N = SIZE(A, 1)
+
+        L = Identity_n(N)
+        U = 0.d0
+
+        S = A /= 0
+
+        DO i = 1, N
+            DO j = 1, i-1
+                IF (S(i,j)) L(i,j) = (A(i,j) - DOT_PRODUCT(L(i, 1:j-1), U(1:j-1, j))) / U(j,j)
+            END DO
+            DO j = i, N
+                IF (S(i,j)) U(i,j) = A(i,j) - DOT_PRODUCT(L(i, 1:i-1), U(1:i-1, j))
+            END DO
+        END DO
+
+    END SUBROUTINE ILU_decomposition
+
     !> Cholesky decomposition of a matrix A
     !> \[ A = LL^T \]
     !> This subroutine performs Cholesky decomposition of a given symmetric positive definite matrix **A**, where **L** is a lower triangular matrix.
@@ -124,6 +125,58 @@ MODULE NAFPack_matrix_decomposition
         END DO
 
     END SUBROUTINE Cholesky_decomposition
+
+    !> Alternative Cholesky decomposition of a matrix A
+    !> \[ A = LDL^T \]
+    !> This subroutine performs alternative Cholesky decomposition of a given symmetric positive definite matrix **A**, where **L** is a lower triangular matrix and **D** is a diagonal matrix.
+    SUBROUTINE LDL_Cholesky_decomposition(A, L, D)
+
+        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
+        REAL(dp), DIMENSION(SIZE(A, 1), SIZE(A, 1)), INTENT(OUT) :: L, D
+        INTEGER :: i, j, N, k
+
+        N = SIZE(A, 1)
+
+        L = Identity_n(N)
+        D = 0.d0
+
+        DO j = 1, N
+            ! D(j, j) = A(j, j) - DOT_PRODUCT(L(j, 1:j-1), D(1:j-1, 1:j-1) * L(j, 1:j-1))
+            D(j, j) = A(j, j) - DOT_PRODUCT(L(j, 1:j-1), L(j, 1:j-1) * [ (D(k,k), k = 1, j-1) ])
+
+
+            DO i = j+1, N
+                ! L(i, j) = (A(i, j) - DOT_PRODUCT(L(i, 1:j-1), D(1:j-1, 1:j-1) * L(j, 1:j-1))) / D(j, j)
+                L(i, j) = (A(i, j) - DOT_PRODUCT(L(i, 1:j-1), L(j, 1:j-1) * [ (D(k,k), k = 1, j-1) ])) / D(j, j)
+            END DO
+        END DO
+
+    END SUBROUTINE LDL_Cholesky_decomposition
+    
+    !> Incomplete Cholesky decomposition of a matrix A
+    !> \[ A \approx LL^T \]
+    !> This subroutine performs incomplete Cholesky decomposition of a given matrix **A**, where **L** is a lower triangular matrix and **U** is an upper triangular matrix.
+    SUBROUTINE Incomplete_Cholesky_decomposition(A, L)
+
+        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
+        REAL(dp), DIMENSION(SIZE(A, 1), SIZE(A, 1)), INTENT(OUT) :: L
+        LOGICAL, DIMENSION(SIZE(A, 1), SIZE(A, 1)) :: S
+        INTEGER :: i, j, N
+
+        N = SIZE(A, 1)
+
+        L = Identity_n(N)
+        
+        S = A /= 0
+
+        DO i = 1, N
+            DO j = 1, i-1
+                IF (S(i,j)) L(i,j) = (A(i,j) - DOT_PRODUCT(L(i, 1:j-1), L(j, 1:j-1))) / L(j,j)
+            END DO
+            IF (S(i,i)) L(i,i) = SQRT(A(i,i) - DOT_PRODUCT(L(i, 1:i-1), L(i, 1:i-1)))
+        END DO
+
+    END SUBROUTINE Incomplete_Cholesky_decomposition
 
     !> QR decomposition of a matrix **A** using various methods
     !> \[ A = QR \]

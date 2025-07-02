@@ -108,6 +108,10 @@ MODULE test_NAFPack_linear_algebra
         CALL test_methode_direct(A, b, x, "Cholesky", stat)
 
         !==================================================================
+        !Alternative Cholesky decomposition method
+        CALL test_methode_direct(A, b, x, "A_LDL_Cholesky", stat)
+
+        !==================================================================
         !QR_Householder decomposition method
         CALL test_methode_direct(A, b, x, "QR_Householder", stat)
 
@@ -125,7 +129,6 @@ MODULE test_NAFPack_linear_algebra
 
         !==================================================================
         !TDMA method
-
         CALL test_methode_direct(A_TDMA, b_TDMA, x_TDMA, "TDMA", stat)
 
 
@@ -155,8 +158,16 @@ MODULE test_NAFPack_linear_algebra
         CALL test_iterative_methods(A, b, x, "SOR", stat)
 
         !==================================================================
-        !SOR method
-        CALL test_iterative_methods(A, b, x, "SIP", stat)
+        !SIP_ILU method
+        CALL test_iterative_methods(A, b, x, "SIP_ILU", stat)
+
+        !==================================================================
+        !SIP_ICF method
+        CALL test_iterative_methods(A, b, x, "SIP_ICF", stat)
+
+        !==================================================================
+        !SSOR method
+        CALL test_iterative_methods(A, b, x, "SSOR", stat)
 
     END SUBROUTINE test_linear_system
 

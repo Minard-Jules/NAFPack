@@ -45,6 +45,7 @@ Develop a modular and high-performance Fortran package for numerical analysis, i
 - [ ] Integrate OpenMP (shared-memory parallelism)
 - [ ] Integrate MPI (distributed-memory computation)
 - [ ] Modular error handling system (`error stop` or `naf_error_handling` module)
+- [ ] sparse matrix management for Iterative Methods in linear systems (COO et CSR)
 
 ---
 
@@ -142,7 +143,7 @@ Develop a modular and high-performance Fortran package for numerical analysis, i
 
 ### 🧪 Tests & Documentation
 - [ ] Integrate `pFUnit` for unit testing
-- [ ] Documentation generation (FORD or Doxygen)
+- [x] Documentation generation (FORD or Doxygen)
 - [ ] Add example use cases for each module
 
 ---
