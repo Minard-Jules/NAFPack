@@ -35,14 +35,15 @@ MODULE test_NAFPack_linear_algebra
     
     END SUBROUTINE test_methode_direct
 
-    SUBROUTINE test_iterative_methods(A, b, x, method, stat)
+    SUBROUTINE test_iterative_methods(A, b, x, method, stat, omega)
         REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
         REAL(dp), DIMENSION(:), INTENT(IN) :: b, x
         CHARACTER(LEN = *), INTENT(IN) :: method
+        REAL(dp), INTENT(IN), OPTIONAL :: omega
         LOGICAL, INTENT(INOUT) :: stat
         REAL(dp), DIMENSION(SIZE(x)) :: diff_x, x_tmp
     
-        x_tmp = Iterative_methods(A, b, method = method)
+        x_tmp = Iterative_methods(A, b, method = method, omega = omega)
         
         diff_x = x - x_tmp
         IF (MAXVAL(ABS(diff_x)) < epsi_test) THEN
@@ -161,19 +162,23 @@ MODULE test_NAFPack_linear_algebra
 
         !==================================================================
         !SOR method
-        CALL test_iterative_methods(A, b, x, "SOR", stat)
+        CALL test_iterative_methods(A, b, x, "SOR", stat, omega = 0.75d0)
+
+        !==================================================================
+        !JOR method
+        CALL test_iterative_methods(A, b, x, "JOR", stat, omega = 0.75d0)
 
         !==================================================================
         !SIP_ILU method
-        CALL test_iterative_methods(A, b, x, "SIP_ILU", stat)
+        CALL test_iterative_methods(A, b, x, "SIP_ILU", stat, omega = 0.75d0)
 
         !==================================================================
         !SIP_ICF method
-        CALL test_iterative_methods(A, b, x, "SIP_ICF", stat)
+        CALL test_iterative_methods(A, b, x, "SIP_ICF", stat, omega = 0.75d0)
 
         !==================================================================
         !SSOR method
-        CALL test_iterative_methods(A, b, x, "SSOR", stat)
+        CALL test_iterative_methods(A, b, x, "SSOR", stat, omega = 0.75d0)
 
     END SUBROUTINE test_linear_system
 

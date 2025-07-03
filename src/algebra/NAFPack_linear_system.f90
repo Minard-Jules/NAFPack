@@ -155,9 +155,20 @@ MODULE NAFPack_linear_system
                 ELSE
                     CALL SOR(A, b, x0, x_new, 1.d0)
                 END IF
+            ELSE IF(method == "JOR")THEN
+                IF (PRESENT(omega))THEN
+                    IF(omega == 0.d0) THEN
+                        PRINT*, "WARNING :: omega must be in (0, 2), using default value of 1"
+                        CALL JOR(A, b, x0, x_new, 1.d0)
+                    ELSE 
+                        CALL JOR(A, b, x0, x_new, omega)
+                    END IF
+                ELSE
+                    CALL JOR(A, b, x0, x_new, 1.d0)
+                END IF
             ELSE IF(method == "SIP_ILU") THEN
                 IF (PRESENT(omega))THEN
-                    IF(omega <= 0.d0 .OR. omega >= 2.d0) THEN
+                    IF(omega == 0.d0) THEN
                         PRINT*, "WARNING :: omega must be in (0, 2), using default value of 1"
                         CALL SIP_ILU(L, U, x0, x_new, residu, 1.d0)
                     ELSE 
@@ -168,7 +179,7 @@ MODULE NAFPack_linear_system
                 END IF
             ELSE IF(method == "SIP_ICF") THEN
                 IF (PRESENT(omega))THEN
-                    IF(omega <= 0.d0 .OR. omega >= 2.d0) THEN
+                    IF(omega == 0.d0) THEN
                         PRINT*, "WARNING :: omega must be in (0, 2), using default value of 1"
                         CALL SIP_ICF(L, x0, x_new, residu, 1.d0)
                     ELSE 
@@ -179,7 +190,7 @@ MODULE NAFPack_linear_system
                 END IF
             ELSE IF(method == "SSOR")THEN
                 IF (PRESENT(omega))THEN
-                    IF(omega <= 0.d0 .OR. omega >= 2.d0) THEN
+                    IF(omega == 0.d0) THEN
                         PRINT*, "WARNING :: omega must be in (0, 2), using default value of 1"
                         CALL SSOR(A, b, x0, x_new, 1.d0)
                     ELSE 

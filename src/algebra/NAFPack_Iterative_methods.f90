@@ -8,11 +8,11 @@ MODULE NAFPack_Iterative_methods
     
     PRIVATE
 
-    PUBLIC :: Jacobi, Gauss_Seidel, SOR, SIP_ILU, SIP_ICF, SSOR
+    PUBLIC :: Jacobi, Gauss_Seidel, SOR, JOR, SIP_ILU, SIP_ICF, SSOR
     
    CONTAINS
 
-   !> Jacobi iterative method
+    !> Jacobi iterative method
     !>
     !> This subroutine implements the Jacobi method for solving linear systems.
     SUBROUTINE Jacobi(A, b, x0, x)
@@ -69,6 +69,26 @@ MODULE NAFPack_Iterative_methods
         END DO
 
     END SUBROUTINE SOR
+
+    !> Jacobi over-relaxation (JOR) iterative method
+    !>
+    !> This subroutine implements the Jacobi over-relaxation method for solving linear systems.
+    SUBROUTINE JOR(A, b, x0, x, omega)
+        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
+        REAL(dp), DIMENSION(:), INTENT(IN) :: b, x0
+        REAL(dp), INTENT(IN) :: omega
+        REAL(dp), DIMENSION(SIZE(A, 1)), INTENT(OUT) :: x
+        INTEGER :: i, N
+
+        N = SIZE(A, 1)
+
+        ! forward
+        DO i = 1, N
+            x(i) = b(i) - DOT_PRODUCT(A(i, 1:i-1), x0(1:i-1)) - DOT_PRODUCT(A(i, i+1:N), x0(i+1:N))
+            x(i) = omega*(x(i) / A(i, i) - x0(i)) + x0(i)
+        END DO
+
+    END SUBROUTINE JOR
 
     !> strongly implicit procedure (SIP) method (or stone's method)
     !>
