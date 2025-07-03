@@ -1,0 +1,633 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+    <meta name="author" content="Minard Jules" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>Gauss &ndash; NAFPack</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="../css/local.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">NAFPack </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>Gauss
+      <small>Function</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 7.3% of total for procedures.">57 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/NAFPack_Direct_methode.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='..\sourcefile\nafpack_direct_methode.f90.html'>NAFPack_Direct_methode.f90</a></li>
+                <li class="breadcrumb-item"><a href='..\module\nafpack_direct_methode.html'>NAFPack_Direct_methode</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Gauss</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
+  </script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+      <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    <div class="card card-primary">
+      <div class="card-header text-left"><h3 class="card-title">Source Code</h3></div>
+      <div class="list-group">
+        <a class="list-group-item" href="../proc/gauss.html#src">Gauss</a>
+      </div>
+    </div>
+
+
+  </div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    <h2>public  function Gauss(A, b, pivot_method) result(x)  
+</h2>
+    
+
+    <p>Gaussian elimination method</p>
+<p>This function implements the Gaussian elimination method for solving linear systems.
+It performs partial or total pivoting based on the user's choice.</p>
+
+
+    <h3>Arguments</h3>
+        <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-a~26"></span>
+              real(kind=dp),
+            </td>
+<td>intent(in),</td>
+              <td></td>            <td>
+              DIMENSION(:, :)
+            </td>
+            <td>::</td>
+            <td><strong>A</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-b~10"></span>
+              real(kind=dp),
+            </td>
+<td>intent(in),</td>
+              <td></td>            <td>
+              DIMENSION(:)
+            </td>
+            <td>::</td>
+            <td><strong>b</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-pivot_method~2"></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>pivot_method</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+      <h3>Return Value
+        <small>
+          <span class="anchor" id="variable-x~11"></span>
+          real(kind=dp), DIMENSION(SIZE(A,1))
+        </small>
+      </h3>
+      
+    <br>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Calls</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.0.1 (20250615.1724)
+ -->
+<!-- Title: proc~~gauss~~CallsGraph Pages: 1 -->
+<svg id="procgaussCallsGraph" width="275pt" height="112pt"
+ viewBox="0.00 0.00 275.00 112.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~gauss~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 107.52)">
+<title>proc~~gauss~~CallsGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-107.52 270.79,-107.52 270.79,4 -4,4"/>
+<!-- proc~gauss -->
+<g id="proc~~gauss~~CallsGraph_node1" class="node">
+<title>proc~gauss</title>
+<polygon fill="none" stroke="black" points="54,-63.52 0,-63.52 0,-40 54,-40 54,-63.52"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-47.78" font-family="Helvetica,sans-Serif" font-size="10.50">Gauss</text>
+</g>
+<!-- proc~backward -->
+<g id="proc~~gauss~~CallsGraph_node2" class="node">
+<title>proc~backward</title>
+<g id="a_proc~~gauss~~CallsGraph_node2"><a xlink:href="../proc/backward.html" xlink:title="backward">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="160.02,-103.52 102.75,-103.52 102.75,-80 160.02,-80 160.02,-103.52"/>
+<text xml:space="preserve" text-anchor="middle" x="131.38" y="-87.79" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">backward</text>
+</a>
+</g>
+</g>
+<!-- proc~gauss&#45;&gt;proc~backward -->
+<g id="proc~~gauss~~CallsGraph_edge1" class="edge">
+<title>proc~gauss&#45;&gt;proc~backward</title>
+<path fill="none" stroke="#ff0000" d="M54.37,-62.06C65.73,-66.5 79.25,-71.78 91.71,-76.65"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="90.32,-79.86 100.9,-80.24 92.86,-73.34 90.32,-79.86"/>
+</g>
+<!-- proc~identity_n -->
+<g id="proc~~gauss~~CallsGraph_node3" class="node">
+<title>proc~identity_n</title>
+<g id="a_proc~~gauss~~CallsGraph_node3"><a xlink:href="../proc/identity_n.html" xlink:title="Identity_n">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="266.79,-43.52 208.77,-43.52 208.77,-20 266.79,-20 266.79,-43.52"/>
+<text xml:space="preserve" text-anchor="middle" x="237.78" y="-27.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Identity_n</text>
+</a>
+</g>
+</g>
+<!-- proc~gauss&#45;&gt;proc~identity_n -->
+<g id="proc~~gauss~~CallsGraph_edge2" class="edge">
+<title>proc~gauss&#45;&gt;proc~identity_n</title>
+<path fill="none" stroke="#ff0000" d="M54.44,-49.23C90.47,-45.78 155.28,-39.57 197.14,-35.56"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="197.43,-39.05 207.05,-34.61 196.76,-32.08 197.43,-39.05"/>
+</g>
+<!-- proc~rotation_matrix -->
+<g id="proc~~gauss~~CallsGraph_node4" class="node">
+<title>proc~rotation_matrix</title>
+<g id="a_proc~~gauss~~CallsGraph_node4"><a xlink:href="../proc/rotation_matrix.html" xlink:title="rotation_matrix">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="172.77,-23.52 90,-23.52 90,0 172.77,0 172.77,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="131.38" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">rotation_matrix</text>
+</a>
+</g>
+</g>
+<!-- proc~gauss&#45;&gt;proc~rotation_matrix -->
+<g id="proc~~gauss~~CallsGraph_edge3" class="edge">
+<title>proc~gauss&#45;&gt;proc~rotation_matrix</title>
+<path fill="none" stroke="#ff0000" d="M54.37,-41.46C64.8,-37.38 77.05,-32.6 88.63,-28.07"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="89.56,-31.47 97.6,-24.57 87.01,-24.95 89.56,-31.47"/>
+</g>
+<!-- proc~rotation_matrix&#45;&gt;proc~identity_n -->
+<g id="proc~~gauss~~CallsGraph_edge4" class="edge">
+<title>proc~rotation_matrix&#45;&gt;proc~identity_n</title>
+<path fill="none" stroke="#0000ff" d="M173.05,-19.55C180.97,-21.07 189.27,-22.66 197.16,-24.17"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="196.37,-27.58 206.85,-26.03 197.68,-20.71 196.37,-27.58"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CallsGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CallsGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.0.1 (20250615.1724)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="29pt"
+ viewBox="0.00 0.00 641.00 29.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.923937 0.923937) rotate(0) translate(4 27.52)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 689.77,-27.52 689.77,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="63.27,-23.52 0,-23.52 0,0 63.27,0 63.27,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="31.64" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="135.63,-23.52 81.64,-23.52 81.64,0 135.63,0 135.63,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="108.64" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="207.63,-23.52 153.63,-23.52 153.63,0 207.63,0 207.63,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="180.63" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="347.14,-23.52 226.12,-23.52 226.12,0 347.14,0 347.14,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="286.63" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="499.89,-23.52 365.38,-23.52 365.38,0 499.89,0 499.89,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="432.63" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="571.63,-23.52 517.63,-23.52 517.63,0 571.63,0 571.63,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="544.63" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="685.77,-23.52 589.5,-23.52 589.5,0 685.77,0 685.77,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="637.63" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Called by</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.0.1 (20250615.1724)
+ -->
+<!-- Title: proc~~gauss~~CalledByGraph Pages: 1 -->
+<svg id="procgaussCalledByGraph" width="185pt" height="32pt"
+ viewBox="0.00 0.00 185.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~gauss~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 27.52)">
+<title>proc~~gauss~~CalledByGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 181.27,-27.52 181.27,4 -4,4"/>
+<!-- proc~gauss -->
+<g id="proc~~gauss~~CalledByGraph_node1" class="node">
+<title>proc~gauss</title>
+<polygon fill="none" stroke="black" points="177.27,-23.52 123.27,-23.52 123.27,0 177.27,0 177.27,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="150.27" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">Gauss</text>
+</g>
+<!-- proc~direct_methode -->
+<g id="proc~~gauss~~CalledByGraph_node2" class="node">
+<title>proc~direct_methode</title>
+<g id="a_proc~~gauss~~CalledByGraph_node2"><a xlink:href="../proc/direct_methode.html" xlink:title="Direct_methode">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="87.27,-23.52 0,-23.52 0,0 87.27,0 87.27,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="43.63" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Direct_methode</text>
+</a>
+</g>
+</g>
+<!-- proc~direct_methode&#45;&gt;proc~gauss -->
+<g id="proc~~gauss~~CalledByGraph_edge1" class="edge">
+<title>proc~direct_methode&#45;&gt;proc~gauss</title>
+<path fill="none" stroke="#ff0000" d="M87.5,-11.76C95.44,-11.76 103.69,-11.76 111.47,-11.76"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="111.31,-15.26 121.31,-11.76 111.31,-8.26 111.31,-15.26"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CalledByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CalledByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.0.1 (20250615.1724)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="29pt"
+ viewBox="0.00 0.00 641.00 29.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.923937 0.923937) rotate(0) translate(4 27.52)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 689.77,-27.52 689.77,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="63.27,-23.52 0,-23.52 0,0 63.27,0 63.27,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="31.64" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="135.63,-23.52 81.64,-23.52 81.64,0 135.63,0 135.63,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="108.64" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="207.63,-23.52 153.63,-23.52 153.63,0 207.63,0 207.63,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="180.63" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="347.14,-23.52 226.12,-23.52 226.12,0 347.14,0 347.14,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="286.63" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="499.89,-23.52 365.38,-23.52 365.38,0 499.89,0 499.89,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="432.63" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="571.63,-23.52 517.63,-23.52 517.63,0 571.63,0 571.63,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="544.63" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="685.77,-23.52 589.5,-23.52 589.5,0 685.77,0 685.77,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="637.63" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+
+    
+    
+
+    
+    
+
+
+
+    
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="hl codehilite"><pre><span></span><span class="w">    </span><span class="k">FUNCTION </span><span class="n">Gauss</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">pivot_method</span><span class="p">)</span><span class="w"> </span><span class="k">RESULT</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">DIMENSION</span><span class="p">(:,</span><span class="w"> </span><span class="p">:),</span><span class="w"> </span><span class="k">INTENT</span><span class="p">(</span><span class="n">IN</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">A</span>
+<span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">DIMENSION</span><span class="p">(:),</span><span class="w"> </span><span class="k">INTENT</span><span class="p">(</span><span class="n">IN</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">b</span>
+<span class="w">        </span><span class="kt">CHARACTER</span><span class="p">(</span><span class="nb">LEN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="p">),</span><span class="w"> </span><span class="k">OPTIONAL</span><span class="p">,</span><span class="w"> </span><span class="k">INTENT</span><span class="p">(</span><span class="n">IN</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">pivot_method</span>
+<span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">DIMENSION</span><span class="p">(</span><span class="n">SIZE</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span>
+<span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">DIMENSION</span><span class="p">(</span><span class="n">SIZE</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">SIZE</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">A_tmp</span><span class="p">,</span><span class="w"> </span><span class="n">P</span><span class="p">,</span><span class="w"> </span><span class="n">Q</span><span class="p">,</span><span class="w"> </span><span class="n">Q_final</span>
+<span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">DIMENSION</span><span class="p">(</span><span class="n">SIZE</span><span class="p">(</span><span class="n">b</span><span class="p">))</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">b_tmp</span>
+<span class="w">        </span><span class="kt">INTEGER</span><span class="p">,</span><span class="w"> </span><span class="k">DIMENSION</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">vlmax_partial</span>
+<span class="w">        </span><span class="kt">INTEGER</span><span class="p">,</span><span class="w"> </span><span class="k">DIMENSION</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">vlmax_total</span>
+<span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">pivot</span>
+<span class="w">        </span><span class="kt">INTEGER</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">lmax</span><span class="p">,</span><span class="w"> </span><span class="n">cmax</span>
+
+<span class="w">        </span><span class="n">A_tmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span>
+<span class="w">        </span><span class="n">b_tmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span>
+
+<span class="w">        </span><span class="n">N</span><span class="o">=</span><span class="n">SIZE</span><span class="p">(</span><span class="n">A_tmp</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+
+<span class="w">        </span><span class="n">Q_final</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Identity_n</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="k">DO </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="o">-</span><span class="mi">1</span>
+<span class="w">            </span><span class="k">IF</span><span class="w"> </span><span class="p">(.</span><span class="nb">NOT</span><span class="p">.</span><span class="w"> </span><span class="nb">PRESENT</span><span class="p">(</span><span class="n">pivot_method</span><span class="p">))</span><span class="w"> </span><span class="k">THEN </span>
+<span class="k">                PRINT</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;WARNING :: No pivot method specified, using normal pivot&quot;</span>
+<span class="w">            </span><span class="k">END IF</span>
+
+<span class="k">            IF</span><span class="p">(</span><span class="n">pivot_method</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;partial&quot;</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
+<span class="w">                </span><span class="c">! Find the maximum absolute value in the column from row k to N</span>
+<span class="w">                </span><span class="n">vlmax_partial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">MAXLOC</span><span class="p">(</span><span class="nb">ABS</span><span class="p">(</span><span class="n">A_tmp</span><span class="p">(</span><span class="n">k</span><span class="p">:</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">)))</span>
+<span class="w">                </span><span class="n">lmax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vlmax_partial</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">                </span>
+<span class="w">                </span><span class="c">!calculate permutation matrix P</span>
+<span class="w">                </span><span class="n">P</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Identity_n</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="w">                </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">k</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="n">lmax</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
+<span class="k">                    </span><span class="n">P</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rotation_matrix</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">lmax</span><span class="p">])</span>
+<span class="w">                </span><span class="k">END IF</span>
+
+<span class="k">                </span><span class="n">A_tmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">MATMUL</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="w"> </span><span class="n">A_tmp</span><span class="p">)</span>
+<span class="w">                </span><span class="n">b_tmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">MATMUL</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="w"> </span><span class="n">b_tmp</span><span class="p">)</span>
+<span class="w">            </span><span class="k">ELSE IF</span><span class="p">(</span><span class="n">pivot_method</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;total&quot;</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
+<span class="w">                </span><span class="c">! Find max abs element in submatrix</span>
+<span class="w">                </span><span class="n">vlmax_total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">MAXLOC</span><span class="p">(</span><span class="nb">ABS</span><span class="p">(</span><span class="n">A_tmp</span><span class="p">(</span><span class="n">k</span><span class="p">:</span><span class="n">N</span><span class="p">,</span><span class="n">k</span><span class="p">:</span><span class="n">N</span><span class="p">)))</span>
+<span class="w">                </span><span class="n">lmax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vlmax_total</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">                </span><span class="n">cmax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vlmax_total</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span>
+
+<span class="w">                </span><span class="c">! permute line if necessary</span>
+<span class="w">                </span><span class="n">P</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Identity_n</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="w">                </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">lmax</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
+<span class="k">                    </span><span class="n">P</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rotation_matrix</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">lmax</span><span class="p">])</span>
+<span class="w">                </span><span class="k">END IF</span>
+
+<span class="w">                </span><span class="c">! permute column if necessary</span>
+<span class="w">                </span><span class="n">Q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Identity_n</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="w">                </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">cmax</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
+<span class="k">                    </span><span class="n">Q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rotation_matrix</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">cmax</span><span class="p">])</span>
+<span class="w">                </span><span class="k">END IF</span>
+
+<span class="k">                </span><span class="n">Q_final</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">MATMUL</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span><span class="w"> </span><span class="n">Q_final</span><span class="p">)</span>
+
+<span class="w">                </span><span class="c">! Apply permutations</span>
+<span class="w">                </span><span class="n">A_tmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">MATMUL</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="w"> </span><span class="n">A_tmp</span><span class="p">)</span>
+<span class="w">                </span><span class="n">A_tmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">MATMUL</span><span class="p">(</span><span class="n">A_tmp</span><span class="p">,</span><span class="w"> </span><span class="n">Q</span><span class="p">)</span>
+
+<span class="w">                </span><span class="n">b_tmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">MATMUL</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="w"> </span><span class="n">b_tmp</span><span class="p">)</span>
+<span class="w">            </span><span class="k">END IF</span>
+
+<span class="k">            </span><span class="n">pivot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A_tmp</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">)</span>
+<span class="w">            </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="nb">ABS</span><span class="p">(</span><span class="n">pivot</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">epsi</span><span class="p">)</span><span class="w"> </span><span class="k">STOP</span><span class="w"> </span><span class="s2">&quot;ERROR :: Near-zero pivot – matrix may be singular&quot;</span>
+
+<span class="w">            </span><span class="k">DO </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">N</span>
+<span class="w">                </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A_tmp</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">pivot</span>
+<span class="w">                </span><span class="n">A_tmp</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span>
+
+<span class="w">                </span><span class="c">! Vectorized operation</span>
+<span class="w">                </span><span class="n">A_tmp</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A_tmp</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">A_tmp</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">)</span>
+<span class="w">                </span><span class="n">b_tmp</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b_tmp</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b_tmp</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+<span class="w">            </span><span class="k">END DO</span>
+<span class="k">        END DO</span>
+
+<span class="k">        </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">backward</span><span class="p">(</span><span class="n">A_tmp</span><span class="p">,</span><span class="w"> </span><span class="n">b_tmp</span><span class="p">)</span>
+<span class="w">        </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">pivot_method</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;total&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">MATMUL</span><span class="p">(</span><span class="n">Q_final</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+
+<span class="w">    </span><span class="k">END FUNCTION </span><span class="n">Gauss</span>
+</pre></div>
+
+    </section>
+    <br>
+    
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              NAFPack
+ was developed by Minard Jules<br>              &copy; 2025 
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+            </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>

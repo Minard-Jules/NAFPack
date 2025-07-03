@@ -10,11 +10,53 @@ MODULE NAFPack_matrix_decomposition
 
     PRIVATE
 
+    PUBLIC :: forward, backward
     PUBLIC :: LU_decomposition, LDU_decomposition, ILU_decomposition
     PUBLIC :: Cholesky_decomposition, LDL_Cholesky_decomposition, Incomplete_Cholesky_decomposition
     PUBLIC :: QR_decomposition
 
     CONTAINS
+
+    
+    !> forward algorithm, 
+    !> solves the system 
+    !> \[ L * y = b \]
+    !> where **L** is a lower triangular matrix and **b** is a vector
+    FUNCTION forward(L, b) RESULT(y)
+        REAL(dp), DIMENSION(:, :), INTENT(IN) :: L
+        REAL(dp), DIMENSION(:), INTENT(IN) :: b
+        REAL(dp), DIMENSION(SIZE(L, 1)) :: y
+        INTEGER :: i, N
+    
+        N = SIZE(L, 1)
+    
+        y(1) = b(1) / L(1, 1)
+
+        DO i = 2,N
+            y(i) = (b(i) - DOT_PRODUCT(L(i,1:i-1), y(1:i-1))) / L(i,i)
+        END DO
+    
+    END FUNCTION forward
+
+    !> backward algorithm, 
+    !> solves the system 
+    !> \[ U * x = y \]
+    !> where **U** is an upper triangular matrix and **y** is a vector
+    FUNCTION backward(U, y) RESULT(x)
+        REAL(dp), DIMENSION(:, :), INTENT(IN) :: U
+        REAL(dp), DIMENSION(:), INTENT(IN) :: y
+        REAL(dp), DIMENSION(SIZE(U, 1)) :: x
+        INTEGER :: i, N
+
+        N = SIZE(U, 1)
+
+        x(N) = y(N) / U(N, N)
+
+        DO i = N-1, 1, -1
+            x(i) = (y(i) - DOT_PRODUCT(U(i, i+1:N), x(i+1:N))) / U(i, i)
+        END DO
+
+    END FUNCTION backward
 
     !> LU decomposition of a matrix A
     !> \[ A = LU \]
@@ -141,12 +183,10 @@ MODULE NAFPack_matrix_decomposition
         D = 0.d0
 
         DO j = 1, N
-            ! D(j, j) = A(j, j) - DOT_PRODUCT(L(j, 1:j-1), D(1:j-1, 1:j-1) * L(j, 1:j-1))
             D(j, j) = A(j, j) - DOT_PRODUCT(L(j, 1:j-1), L(j, 1:j-1) * [ (D(k,k), k = 1, j-1) ])
 
 
             DO i = j+1, N
-                ! L(i, j) = (A(i, j) - DOT_PRODUCT(L(i, 1:j-1), D(1:j-1, 1:j-1) * L(j, 1:j-1))) / D(j, j)
                 L(i, j) = (A(i, j) - DOT_PRODUCT(L(i, 1:j-1), L(j, 1:j-1) * [ (D(k,k), k = 1, j-1) ])) / D(j, j)
             END DO
         END DO

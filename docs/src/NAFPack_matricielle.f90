@@ -12,6 +12,7 @@ MODULE NAFPack_matricielle
     PUBLIC :: Diagonally_Dominant_Matrix
     PUBLIC :: Identity_n
     PUBLIC :: rotation_matrix
+    PUBLIC :: Trace
 
     CONTAINS
 
@@ -93,6 +94,20 @@ MODULE NAFPack_matricielle
         result = a / norm_2_complex(a)
 
     END FUNCTION normalise_complexe
+
+    !> function that calculates the trace of a square matrix \( A \)
+    !> \[ \text{Tr}(A) = \sum_{i=1}^{n} A(i,i) \]
+    FUNCTION Trace(A) RESULT(result)
+        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
+        REAL(dp) :: result
+        INTEGER :: i, N
+
+        N = SIZE(A, 1)
+        IF (SIZE(A, 2) /= N) STOP "Error: Matrix must be square."
+
+        result = SUM([(A(i, i), i=1,N)])
+
+    END FUNCTION Trace
 
     !> function which checks if **A** is diagonally dominant
     !> \[ \forall i, |A(i,i)| \geq \sum_{j \neq i} |A(i,j)| \]

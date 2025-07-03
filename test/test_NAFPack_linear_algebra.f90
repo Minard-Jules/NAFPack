@@ -1,7 +1,9 @@
 MODULE test_NAFPack_linear_algebra
 
-    USE NAFPack_linear_algebra
+    USE NAFPack_linear_system
     USE NAFPack_constant
+    USE NAFPack_Eigen
+    USE NAFPack_Direct_methode
 
     IMPLICIT NONE
 
@@ -130,6 +132,10 @@ MODULE test_NAFPack_linear_algebra
         !==================================================================
         !TDMA method
         CALL test_methode_direct(A_TDMA, b_TDMA, x_TDMA, "TDMA", stat)
+
+        !==================================================================
+        !Faddeev_Leverrier method
+        CALL test_methode_direct(A, b, x, "Faddeev_Leverrier", stat)
 
 
         !================Iterative_methods=============================
