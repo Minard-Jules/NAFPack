@@ -9,6 +9,7 @@ MODULE NAFPack_linear_system
     USE NAFPack_Direct_methode
     USE NAFPack_Iterative_methods
     USE NAFPack_Eigen
+    USE NAFPack_Logger_mod
 
     IMPLICIT NONE
 
@@ -33,10 +34,10 @@ MODULE NAFPack_linear_system
     !> - TDMA (Thomas algorithm)
     FUNCTION Direct_methode(A, b, method, pivot_method, check) RESULT(x)
 
-        CHARACTER(LEN = *), OPTIONAL, INTENT(IN) :: method
-        CHARACTER(LEN = *), OPTIONAL, INTENT(IN) :: pivot_method
         REAL(dp),DIMENSION(: ,:), INTENT(IN) :: A
         REAL(dp),DIMENSION(:), INTENT(IN) :: b
+        CHARACTER(LEN = *), OPTIONAL, INTENT(IN) :: method
+        CHARACTER(LEN = *), OPTIONAL, INTENT(IN) :: pivot_method
         LOGICAL, OPTIONAL, INTENT(IN) :: check
         REAL(dp),DIMENSION(SIZE(A,1)) :: x
         REAL(dp),DIMENSION(SIZE(A,1),SIZE(A,2)) :: Ainv
@@ -96,18 +97,21 @@ MODULE NAFPack_linear_system
     !> - Successive Over-Relaxation (SOR)
     !> - strongly implicit procedure (SIP_ILU, SIP_ICF)
     !> - Symmetric Successive Over-Relaxation (SSOR)
-    FUNCTION Iterative_methods(A, b, method, x_init, max_iter, omega) RESULT(x)
+    FUNCTION Iterative_methods(A, b, method, omega, x_init, max_iter, tol, verbose) RESULT(x)
 
         REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
         REAL(dp), DIMENSION(:), INTENT(IN) :: b
         REAL(dp), DIMENSION(:), OPTIONAL, INTENT(IN) :: x_init
         CHARACTER(LEN = *), OPTIONAL, INTENT(IN) :: method
         INTEGER, OPTIONAL, INTENT(IN) :: max_iter
-        REAL(dp), OPTIONAL, INTENT(IN) :: omega
+        REAL(dp), OPTIONAL, INTENT(IN) :: omega, tol
+        TYPE(Logger), OPTIONAL :: verbose
         REAL(dp), DIMENSION(SIZE(A, 1), SIZE(A, 2)) :: L, U
         REAL(dp), DIMENSION(SIZE(A, 1)) :: x
         REAL(dp), DIMENSION(SIZE(A, 1)) :: x0, x_new, residu
+        REAL(dp) :: epsi_tol
         INTEGER :: k, max_iter_choice, N
+        CHARACTER(LEN=64) :: msg
 
         N = SIZE(A, 1)
         IF(SIZE(A, 2) /= N) STOP "ERROR :: Matrix A not square"
@@ -117,26 +121,35 @@ MODULE NAFPack_linear_system
         ELSE
             max_iter_choice = kmax
         END IF
-
+        
         IF (PRESENT(x_init))THEN
             IF (SIZE(x_init, 1) /= SIZE(A, 1)) STOP "ERROR : Dimension of x_init different from A"
             x0 = x_init
         ELSE
             x0 = 0.d0
         END IF
+        
+        IF (PRESENT(tol)) THEN
+            epsi_tol = tol
+        ELSE
+            epsi_tol = epsi
+        END IF
 
         IF (method == "SIP_ILU")THEN
-            residu = x0
+            residu = b - MATMUL(A, x0)
             CALL ILU_decomposition(A, L, U)
         ELSE IF (method == "SIP_ICF")THEN
-            residu = x0
+            residu = b - MATMUL(A, x0)
             CALL Incomplete_Cholesky_decomposition(A, L)
+        ELSE IF (INDEX(method, "Richardson") == 1)THEN
+            residu = b - MATMUL(A, x0)
         END IF
 
         DO k = 1, max_iter_choice
 
-            IF(k == kmax) THEN
+            IF(k == max_iter_choice) THEN
                 PRINT*, "WARNING :: non-convergence of the iterative method "//method
+                PRINT*, "Residual norm: ", NORM2(residu)
                 EXIT
             END IF
 
@@ -145,67 +158,30 @@ MODULE NAFPack_linear_system
             ELSE IF(method == "Gauss_Seidel")THEN
                 CALL Gauss_Seidel(A, b, x0, x_new)
             ELSE IF(method == "SOR")THEN
-                IF (PRESENT(omega))THEN
-                    IF(omega <= 0.d0 .OR. omega >= 2.d0) THEN
-                        PRINT*, "WARNING :: omega must be in (0, 2), using default value of 1"
-                        CALL SOR(A, b, x0, x_new, 1.d0)
-                    ELSE 
-                        CALL SOR(A, b, x0, x_new, omega)
-                    END IF
-                ELSE
-                    CALL SOR(A, b, x0, x_new, 1.d0)
-                END IF
+                CALL SOR(A, b, x0, x_new, Get_Omega(method, omega))
             ELSE IF(method == "JOR")THEN
-                IF (PRESENT(omega))THEN
-                    IF(omega == 0.d0) THEN
-                        PRINT*, "WARNING :: omega must be in (0, 2), using default value of 1"
-                        CALL JOR(A, b, x0, x_new, 1.d0)
-                    ELSE 
-                        CALL JOR(A, b, x0, x_new, omega)
-                    END IF
-                ELSE
-                    CALL JOR(A, b, x0, x_new, 1.d0)
-                END IF
+                CALL JOR(A, b, x0, x_new, Get_Omega(method, omega))
             ELSE IF(method == "SIP_ILU") THEN
-                IF (PRESENT(omega))THEN
-                    IF(omega == 0.d0) THEN
-                        PRINT*, "WARNING :: omega must be in (0, 2), using default value of 1"
-                        CALL SIP_ILU(L, U, x0, x_new, residu, 1.d0)
-                    ELSE 
-                        CALL SIP_ILU(L, U, x0, x_new, residu, omega)
-                    END IF
-                ELSE
-                    CALL SIP_ILU(L, U, x0, x_new, residu, 1.d0)
-                END IF
+                CALL SIP_ILU(L, U, x0, x_new, residu, Get_Omega(method, omega))
             ELSE IF(method == "SIP_ICF") THEN
-                IF (PRESENT(omega))THEN
-                    IF(omega == 0.d0) THEN
-                        PRINT*, "WARNING :: omega must be in (0, 2), using default value of 1"
-                        CALL SIP_ICF(L, x0, x_new, residu, 1.d0)
-                    ELSE 
-                        CALL SIP_ICF(L, x0, x_new, residu, omega)
-                    END IF
-                ELSE
-                    CALL SIP_ICF(L, x0, x_new, residu, 1.d0)
-                END IF
+                CALL SIP_ICF(L, x0, x_new, residu, Get_Omega(method, omega))
             ELSE IF(method == "SSOR")THEN
-                IF (PRESENT(omega))THEN
-                    IF(omega == 0.d0) THEN
-                        PRINT*, "WARNING :: omega must be in (0, 2), using default value of 1"
-                        CALL SSOR(A, b, x0, x_new, 1.d0)
-                    ELSE 
-                        CALL SSOR(A, b, x0, x_new, omega)
-                    END IF
-                ELSE
-                    CALL SSOR(A, b, x0, x_new, 1.d0)
-                END IF
+                CALL SSOR(A, b, x0, x_new, Get_Omega(method, omega))
+            ELSE IF(INDEX(method, "Richardson") == 1)THEN
+                CALL Richardson(x0, x_new, residu, Get_Omega(method, omega), method)
             ELSE
                 STOP "ERROR : Wrong method for linear system (Iterative_methods)"
             END IF
 
             residu = b - MATMUL(A, x_new)
 
-            IF (NORM2(residu) < epsi) EXIT
+            IF (PRESENT(verbose)) THEN
+                verbose%step = k
+                WRITE(msg, '(A,I3,A,ES14.7)') "Iter ", k, " | Norm residu: ", NORM2(residu)
+                CALL verbose%log(msg)
+            END IF
+
+            IF (NORM2(residu) < epsi_tol) EXIT
 
             x0 = x_new
 
@@ -214,5 +190,34 @@ MODULE NAFPack_linear_system
         x = x_new
 
     END FUNCTION Iterative_methods
+
+    FUNCTION Get_Omega(method, omega) RESULT(w)
+        CHARACTER(LEN = *), INTENT(IN) :: method
+        REAL(dp), OPTIONAL, INTENT(IN) :: omega
+        REAL(dp) :: w
+        
+        IF (PRESENT(omega)) THEN
+            IF (INDEX(method, "SOR") > 0 .AND. omega > 0.d0 .AND. omega < 2.d0) THEN
+                w = omega
+            ELSE IF (method == "JOR" .AND. omega > 0.d0 .AND. omega <= 1.d0) THEN
+                w = omega
+            ELSE IF (INDEX(method, "SIP") == 1 .AND. omega > 0.d0)THEN
+                w = omega
+            ELSE IF (INDEX(method, "Richardson") == 1 .AND. omega > 0.d0) THEN
+                w = omega
+            ELSE
+                IF (INDEX(method, "SOR") > 0) THEN
+                    PRINT*, "WARNING :: In method "//method//", omega must be in (0, 2), using default value of 1"
+                ELSE IF (method == "JOR")THEN
+                    PRINT*, "WARNING :: In method "//method//", omega must be in (0, 1), using default value of 1"
+                ELSE
+                    PRINT*, "WARNING :: In method "//method//", omega must be > 0, using default value of 1"
+                END IF
+                w = 1.d0
+            END IF
+        ELSE
+            w = 1.d0
+        END IF
+    END FUNCTION
 
 END MODULE NAFPack_linear_system

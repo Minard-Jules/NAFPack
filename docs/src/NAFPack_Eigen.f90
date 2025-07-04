@@ -1,3 +1,4 @@
+!> Module for eigenvalue and eigenvector computations in NAFPack
 MODULE NAFPack_Eigen
 
     USE NAFPack_constant

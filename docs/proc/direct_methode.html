@@ -61,6 +61,9 @@
                 <li class="nav-item">
                   <a class="nav-link" href="../lists/procedures.html">Procedures</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
             </ul>
               <div class="d-flex align-items-end flex-grow-1">
                 <form action="../search.html" role="search" class="ms-auto">
@@ -85,7 +88,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title=" 5.7% of total for procedures.">45 statements</a>
+                 title=" 5.5% of total for procedures.">45 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -184,7 +187,7 @@ It supports various methods:</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-a"></span>
+              <span class="anchor" id="variable-a~18"></span>
               real(kind=dp),
             </td>
 <td>intent(in),</td>
@@ -199,7 +202,7 @@ It supports various methods:</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-b"></span>
+              <span class="anchor" id="variable-b~15"></span>
               real(kind=dp),
             </td>
 <td>intent(in),</td>
@@ -214,7 +217,7 @@ It supports various methods:</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-method"></span>
+              <span class="anchor" id="variable-method~3"></span>
               character(len=*),
             </td>
 <td>intent(in),</td>
@@ -229,7 +232,7 @@ It supports various methods:</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-pivot_method"></span>
+              <span class="anchor" id="variable-pivot_method~2"></span>
               character(len=*),
             </td>
 <td>intent(in),</td>
@@ -244,7 +247,7 @@ It supports various methods:</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-check"></span>
+              <span class="anchor" id="variable-check~5"></span>
               logical,
             </td>
 <td>intent(in),</td>
@@ -262,7 +265,7 @@ It supports various methods:</p>
 
       <h3>Return Value
         <small>
-          <span class="anchor" id="variable-x"></span>
+          <span class="anchor" id="variable-x~16"></span>
           real(kind=dp), DIMENSION(SIZE(A,1))
         </small>
       </h3>
@@ -804,10 +807,10 @@ large graphs.</div>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="hl codehilite"><pre><span></span><span class="w">    </span><span class="k">FUNCTION </span><span class="n">Direct_methode</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="p">,</span><span class="w"> </span><span class="n">pivot_method</span><span class="p">,</span><span class="w"> </span><span class="n">check</span><span class="p">)</span><span class="w"> </span><span class="k">RESULT</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-<span class="w">        </span><span class="kt">CHARACTER</span><span class="p">(</span><span class="nb">LEN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="p">),</span><span class="w"> </span><span class="k">OPTIONAL</span><span class="p">,</span><span class="w"> </span><span class="k">INTENT</span><span class="p">(</span><span class="n">IN</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">method</span>
-<span class="w">        </span><span class="kt">CHARACTER</span><span class="p">(</span><span class="nb">LEN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="p">),</span><span class="w"> </span><span class="k">OPTIONAL</span><span class="p">,</span><span class="w"> </span><span class="k">INTENT</span><span class="p">(</span><span class="n">IN</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">pivot_method</span>
 <span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="k">DIMENSION</span><span class="p">(:</span><span class="w"> </span><span class="p">,:),</span><span class="w"> </span><span class="k">INTENT</span><span class="p">(</span><span class="n">IN</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">A</span>
 <span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="k">DIMENSION</span><span class="p">(:),</span><span class="w"> </span><span class="k">INTENT</span><span class="p">(</span><span class="n">IN</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">b</span>
+<span class="w">        </span><span class="kt">CHARACTER</span><span class="p">(</span><span class="nb">LEN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="p">),</span><span class="w"> </span><span class="k">OPTIONAL</span><span class="p">,</span><span class="w"> </span><span class="k">INTENT</span><span class="p">(</span><span class="n">IN</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">method</span>
+<span class="w">        </span><span class="kt">CHARACTER</span><span class="p">(</span><span class="nb">LEN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="p">),</span><span class="w"> </span><span class="k">OPTIONAL</span><span class="p">,</span><span class="w"> </span><span class="k">INTENT</span><span class="p">(</span><span class="n">IN</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">pivot_method</span>
 <span class="w">        </span><span class="kt">LOGICAL</span><span class="p">,</span><span class="w"> </span><span class="k">OPTIONAL</span><span class="p">,</span><span class="w"> </span><span class="k">INTENT</span><span class="p">(</span><span class="n">IN</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">check</span>
 <span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="k">DIMENSION</span><span class="p">(</span><span class="n">SIZE</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span>
 <span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="k">DIMENSION</span><span class="p">(</span><span class="n">SIZE</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">SIZE</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">Ainv</span>

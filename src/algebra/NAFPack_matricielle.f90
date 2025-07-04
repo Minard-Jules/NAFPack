@@ -155,6 +155,20 @@ MODULE NAFPack_matricielle
         
     END FUNCTION Identity_n
 
+    !> function that extracts the diagonal of a matrix
+    !> \[ D = \begin{pmatrix} A(1,1) & 0 & \cdots & 0 \\ 0 & A(2,2) & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & A(n,n) \end{pmatrix} \]
+    !> where \( D \) is a vector containing the diagonal elements of the matrix \( A \).
+    FUNCTION Diag(A) RESULT(D)
+        REAL(dp), DIMENSION(:,:), INTENT(IN) :: A
+        REAL(dp), DIMENSION(SIZE(A,1)) :: D
+        INTEGER :: i, N
+
+        N = SIZE(A, 1)
+
+        FORALL(i=1:N) D(i) = A(i,i)
+
+    END FUNCTION Diag
+
     !> Function to create a rotation matrix 
     !> 
     !> This function generates a rotation matrix **G** based on the input matrix **A** and the specified rotation indices.

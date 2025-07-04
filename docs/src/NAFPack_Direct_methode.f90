@@ -1,3 +1,4 @@
+!> Module for direct methods in NAFPack
 MODULE NAFPack_Direct_methode
 
     USE NAFPack_constant

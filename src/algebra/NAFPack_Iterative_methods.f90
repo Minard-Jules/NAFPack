@@ -1,3 +1,4 @@
+!> Module for iterative methods in NAFPack
 MODULE NAFPack_Iterative_methods
 
     USE NAFPack_constant
@@ -8,8 +9,19 @@ MODULE NAFPack_Iterative_methods
     
     PRIVATE
 
-    PUBLIC :: Jacobi, Gauss_Seidel, SOR, JOR, SIP_ILU, SIP_ICF, SSOR
-    
+    PUBLIC :: Jacobi, Gauss_Seidel
+    PUBLIC :: SOR, JOR, SSOR
+    PUBLIC :: SIP_ILU, SIP_ICF
+    PUBLIC :: Richardson
+
+    INTERFACE
+        SUBROUTINE Apply_Preconditioner(r, z)
+            IMPORT dp
+            REAL(dp), DIMENSION(:), INTENT(IN) :: r
+            REAL(dp), DIMENSION(:), INTENT(OUT) :: z
+        END SUBROUTINE
+    END INTERFACE
+
    CONTAINS
 
     !> Jacobi iterative method
@@ -155,5 +167,35 @@ MODULE NAFPack_Iterative_methods
 
     END SUBROUTINE SSOR
 
+    !> Richardson iterative method
+    !>
+    !> This subroutine implements the Richardson method for solving linear systems.
+    !> It can be used in both stationary and preconditioned forms.
+    SUBROUTINE Richardson(x0, x, r, omega, method, C_inv, preconditioner)
+        REAL(dp), DIMENSION(:), INTENT(IN) :: x0, r
+        REAL(dp), DIMENSION(:), INTENT(OUT) :: x
+        REAL(dp), INTENT(IN) :: omega
+        CHARACTER(LEN=*), INTENT(IN) :: method
+        REAL(dp), DIMENSION(:,:), OPTIONAL, INTENT(IN) :: C_inv
+        PROCEDURE(Apply_Preconditioner), OPTIONAL :: preconditioner
+
+        SELECT CASE (TRIM(method))
+        CASE ("Richardson_Stationary")
+            x = x0 + omega * r
+
+        CASE ("Richardson_Preconditioned")
+            IF (PRESENT(C_inv)) THEN
+                x = x0 + omega * MATMUL(C_inv, r)
+            ELSE IF (PRESENT(preconditioner)) THEN
+                CALL preconditioner(r, x)
+                x = x0 + omega * x
+            ELSE
+                STOP "ERROR :: Preconditioned Richardson needs C_inv or preconditioner"
+            END IF
+
+        CASE DEFAULT
+            STOP "ERROR :: Richardson method not recognized"
+        END SELECT
+    END SUBROUTINE
 
 END MODULE NAFPack_Iterative_methods

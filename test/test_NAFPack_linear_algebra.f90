@@ -4,6 +4,7 @@ MODULE test_NAFPack_linear_algebra
     USE NAFPack_constant
     USE NAFPack_Eigen
     USE NAFPack_Direct_methode
+    USE NAFPack_Logger_mod
 
     IMPLICIT NONE
 
@@ -42,8 +43,17 @@ MODULE test_NAFPack_linear_algebra
         REAL(dp), INTENT(IN), OPTIONAL :: omega
         LOGICAL, INTENT(INOUT) :: stat
         REAL(dp), DIMENSION(SIZE(x)) :: diff_x, x_tmp
-    
+        TYPE(Logger) :: log
+
+        log%to_terminal = .TRUE.
+        log%frequency = 10
+
+        CALL log%init()
+
         x_tmp = Iterative_methods(A, b, method = method, omega = omega)
+
+        CALL log%close()
+
         
         diff_x = x - x_tmp
         IF (MAXVAL(ABS(diff_x)) < epsi_test) THEN
@@ -179,6 +189,10 @@ MODULE test_NAFPack_linear_algebra
         !==================================================================
         !SSOR method
         CALL test_iterative_methods(A, b, x, "SSOR", stat, omega = 0.75d0)
+
+        !==================================================================
+        !Richardson method
+        CALL test_iterative_methods(A, b, x, "Richardson_Stationary", stat, omega = 0.2d0)
 
     END SUBROUTINE test_linear_system
 
