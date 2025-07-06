@@ -16,7 +16,9 @@ MODULE NAFPack_Logger_mod
         CHARACTER(LEN=100) :: filename = "log.txt"
         INTEGER :: file_unit = 99
         INTEGER :: step = 0
-    CONTAINS
+
+        CONTAINS
+        
         PROCEDURE :: log => log_message
         PROCEDURE :: init => init_logger
         PROCEDURE :: close => close_logger

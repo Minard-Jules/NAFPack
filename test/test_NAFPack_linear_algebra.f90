@@ -50,7 +50,7 @@ MODULE test_NAFPack_linear_algebra
 
         CALL log%init()
 
-        x_tmp = Iterative_methods(A, b, method = method, omega = omega)
+        x_tmp = Iterative_methods(A, b, method = method, omega = omega, verbose=log)
 
         CALL log%close()
 
@@ -193,6 +193,10 @@ MODULE test_NAFPack_linear_algebra
         !==================================================================
         !Richardson method
         CALL test_iterative_methods(A, b, x, "Richardson_Stationary", stat, omega = 0.2d0)
+
+        !==================================================================
+        !Richardson method
+        CALL test_iterative_methods(A, b, x, "Richardson_ILU_Preconditioned", stat, omega = 1.d0)
 
     END SUBROUTINE test_linear_system
 

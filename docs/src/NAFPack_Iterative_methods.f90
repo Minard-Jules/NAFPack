@@ -15,10 +15,11 @@ MODULE NAFPack_Iterative_methods
     PUBLIC :: Richardson
 
     INTERFACE
-        SUBROUTINE Apply_Preconditioner(r, z)
+        SUBROUTINE Apply_Preconditioner(r, z, A)
             IMPORT dp
             REAL(dp), DIMENSION(:), INTENT(IN) :: r
             REAL(dp), DIMENSION(:), INTENT(OUT) :: z
+            REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
         END SUBROUTINE
     END INTERFACE
 
@@ -171,27 +172,23 @@ MODULE NAFPack_Iterative_methods
     !>
     !> This subroutine implements the Richardson method for solving linear systems.
     !> It can be used in both stationary and preconditioned forms.
-    SUBROUTINE Richardson(x0, x, r, omega, method, C_inv, preconditioner)
+    SUBROUTINE Richardson(x0, x, r, omega, method, C_inv, preconditioner_choice, A)
         REAL(dp), DIMENSION(:), INTENT(IN) :: x0, r
         REAL(dp), DIMENSION(:), INTENT(OUT) :: x
         REAL(dp), INTENT(IN) :: omega
         CHARACTER(LEN=*), INTENT(IN) :: method
         REAL(dp), DIMENSION(:,:), OPTIONAL, INTENT(IN) :: C_inv
-        PROCEDURE(Apply_Preconditioner), OPTIONAL :: preconditioner
+        PROCEDURE(Apply_Preconditioner), OPTIONAL :: preconditioner_choice
+        REAL(dp), DIMENSION(:, :), OPTIONAL, INTENT(IN) :: A
 
         SELECT CASE (TRIM(method))
         CASE ("Richardson_Stationary")
             x = x0 + omega * r
 
-        CASE ("Richardson_Preconditioned")
-            IF (PRESENT(C_inv)) THEN
-                x = x0 + omega * MATMUL(C_inv, r)
-            ELSE IF (PRESENT(preconditioner)) THEN
-                CALL preconditioner(r, x)
-                x = x0 + omega * x
-            ELSE
-                STOP "ERROR :: Preconditioned Richardson needs C_inv or preconditioner"
-            END IF
+        CASE ("Richardson_ILU_Preconditioned")
+            
+            CALL preconditioner_choice(r, x, A)
+            x = x0 + omega * x
 
         CASE DEFAULT
             STOP "ERROR :: Richardson method not recognized"

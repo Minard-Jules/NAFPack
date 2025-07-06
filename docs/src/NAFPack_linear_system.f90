@@ -10,6 +10,7 @@ MODULE NAFPack_linear_system
     USE NAFPack_Iterative_methods
     USE NAFPack_Eigen
     USE NAFPack_Logger_mod
+    USE NAFPack_Preconditioners
 
     IMPLICIT NONE
 
@@ -39,10 +40,11 @@ MODULE NAFPack_linear_system
         CHARACTER(LEN = *), OPTIONAL, INTENT(IN) :: method
         CHARACTER(LEN = *), OPTIONAL, INTENT(IN) :: pivot_method
         LOGICAL, OPTIONAL, INTENT(IN) :: check
-        REAL(dp),DIMENSION(SIZE(A,1)) :: x
-        REAL(dp),DIMENSION(SIZE(A,1),SIZE(A,2)) :: Ainv
-        REAL(dp),DIMENSION(SIZE(A,1)+1) :: c
-        INTEGER :: N
+
+        REAL(dp), DIMENSION(SIZE(A,1)) :: x
+        REAL(dp), DIMENSION(:,:), ALLOCATABLE :: Ainv
+        REAL(dp), DIMENSION(:), ALLOCATABLE :: c
+        INTEGER :: N, alloc_stat
         LOGICAL :: do_check = .TRUE., success
 
         IF(PRESENT(check)) do_check = check
@@ -71,6 +73,10 @@ MODULE NAFPack_linear_system
         ELSE IF(method == "TDMA")THEN
             x = TDMA(A, b, check = do_check)
         ELSE IF(method == "Faddeev_Leverrier") THEN
+
+            ALLOCATE(Ainv(SIZE(A,1),SIZE(A,2)), c(SIZE(A,1)+1), stat=alloc_stat)
+            IF (alloc_stat /= 0) STOP "ERROR :: Memory allocation failed for Ainv or c in Faddeev_Leverrier"
+
             CALL Faddeev_Leverrier(A, c, Ainv = Ainv, success = success, check = do_check)
             IF (.NOT. success) THEN
                 PRINT*, "WARNING :: Faddeev-Leverrier method failed, using LU decomposition instead"
@@ -78,6 +84,8 @@ MODULE NAFPack_linear_system
             ELSE
                 x = MATMUL(Ainv, b)
             END IF
+
+            DEALLOCATE(Ainv, c)
         ELSE
             STOP "ERROR : Wrong method for linear system (direct_methode)"
         END IF
@@ -106,11 +114,11 @@ MODULE NAFPack_linear_system
         INTEGER, OPTIONAL, INTENT(IN) :: max_iter
         REAL(dp), OPTIONAL, INTENT(IN) :: omega, tol
         TYPE(Logger), OPTIONAL :: verbose
-        REAL(dp), DIMENSION(SIZE(A, 1), SIZE(A, 2)) :: L, U
+        REAL(dp), DIMENSION(:, :), ALLOCATABLE :: L, U
         REAL(dp), DIMENSION(SIZE(A, 1)) :: x
         REAL(dp), DIMENSION(SIZE(A, 1)) :: x0, x_new, residu
         REAL(dp) :: epsi_tol
-        INTEGER :: k, max_iter_choice, N
+        INTEGER :: k, max_iter_choice, N, alloc_stat
         CHARACTER(LEN=64) :: msg
 
         N = SIZE(A, 1)
@@ -136,9 +144,13 @@ MODULE NAFPack_linear_system
         END IF
 
         IF (method == "SIP_ILU")THEN
+            ALLOCATE(L(SIZE(A,1),SIZE(A,2)), U(SIZE(A,1),SIZE(A,2)), stat=alloc_stat)
+            IF (alloc_stat /= 0) STOP "ERROR :: Memory allocation failed for L or U in SIP_ILU"
             residu = b - MATMUL(A, x0)
             CALL ILU_decomposition(A, L, U)
         ELSE IF (method == "SIP_ICF")THEN
+            ALLOCATE(L(SIZE(A,1),SIZE(A,2)), stat=alloc_stat)
+            IF (alloc_stat /= 0) STOP "ERROR :: Memory allocation failed for L or U in SIP_ICF"
             residu = b - MATMUL(A, x0)
             CALL Incomplete_Cholesky_decomposition(A, L)
         ELSE IF (INDEX(method, "Richardson") == 1)THEN
@@ -167,8 +179,10 @@ MODULE NAFPack_linear_system
                 CALL SIP_ICF(L, x0, x_new, residu, Get_Omega(method, omega))
             ELSE IF(method == "SSOR")THEN
                 CALL SSOR(A, b, x0, x_new, Get_Omega(method, omega))
-            ELSE IF(INDEX(method, "Richardson") == 1)THEN
+            ELSE IF(method == "Richardson_Stationary")THEN
                 CALL Richardson(x0, x_new, residu, Get_Omega(method, omega), method)
+            ELSE IF(method == "Richardson_ILU_Preconditioned")THEN
+                CALL Richardson(x0, x_new, residu, Get_Omega(method, omega), method, preconditioner_choice=ILU_preconditioner, A=A)
             ELSE
                 STOP "ERROR : Wrong method for linear system (Iterative_methods)"
             END IF
@@ -186,6 +200,15 @@ MODULE NAFPack_linear_system
             x0 = x_new
 
         END DO
+
+        IF (method == "SIP_ILU")THEN
+            DEALLOCATE(L, U)
+        ELSE IF (method == "SIP_ICF")THEN
+            DEALLOCATE(L)
+        ELSE IF (INDEX(method, "Richardson") == 1) THEN
+            preconditioner_use = preconditioner(.FALSE.)
+            IF (method == "Richardson_ILU_Preconditioned") CALL preconditioner_use%DEALLOCATE_ILU()
+        END IF
 
         x = x_new
 

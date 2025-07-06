@@ -88,7 +88,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title=" 2.8% of total for procedures.">23 statements</a>
+                 title=" 2.2% of total for procedures.">18 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -149,7 +149,7 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>public  subroutine Richardson(x0, x, r, omega, method, C_inv, preconditioner)  
+    <h2>public  subroutine Richardson(x0, x, r, omega, method, C_inv, preconditioner_choice, A)  
 </h2>
     
 
@@ -216,7 +216,7 @@ It can be used in both stationary and preconditioned forms.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-omega~6"></span>
+              <span class="anchor" id="variable-omega~7"></span>
               real(kind=dp),
             </td>
 <td>intent(in)</td>
@@ -231,7 +231,7 @@ It can be used in both stationary and preconditioned forms.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-method~2"></span>
+              <span class="anchor" id="variable-method~8"></span>
               character(len=*),
             </td>
 <td>intent(in)</td>
@@ -261,7 +261,7 @@ It can be used in both stationary and preconditioned forms.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-preconditioner"></span>
+              <span class="anchor" id="variable-preconditioner_choice"></span>
               procedure(Apply_Preconditioner),
             </td>
 <td></td>
@@ -269,7 +269,22 @@ It can be used in both stationary and preconditioned forms.</p>
               
             </td>
             <td>::</td>
-            <td><strong>preconditioner</strong></td>
+            <td><strong>preconditioner_choice</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-a~17"></span>
+              real(kind=dp),
+            </td>
+<td>intent(in),</td>
+              <td>optional,</td>            <td>
+              DIMENSION(:, :)
+            </td>
+            <td>::</td>
+            <td><strong>A</strong></td>
             <td>
                 
             </td>
