@@ -1,0 +1,573 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+    <meta name="author" content="Minard Jules" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>NAFPack_Iterative_Params.f90 &ndash; NAFPack</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="../css/local.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">NAFPack </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>NAFPack_Iterative_Params.f90
+      <small>Source File</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 2.7% of total for source files.">55 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/NAFPack_Iterative_Params.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+            <li class="breadcrumb-item active" aria-current="page">NAFPack_Iterative_Params.f90</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
+  </script>
+
+  </div>
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+        <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#mods-0"
+         aria-expanded="false" aria-controls="mods-0">
+         <h4 class="card-header bg-primary text-white">Modules</h4>
+      </a>
+      <div id="mods-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/nafpack_iterative_params.html">NAFPack_Iterative_Params</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    <div class="card card-primary">
+      <div class="card-header text-left"><h3 class="card-title">Source Code</h3></div>
+      <div class="list-group">
+        <a class="list-group-item" href="../sourcefile/nafpack_iterative_params.f90.html#src">NAFPack_Iterative_Params.f90</a>
+      </div>
+    </div>
+
+
+  </div>
+
+    </div>
+    <div class="col-md-9" id='text'>
+      
+      <br>
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">This file depends on</h3>
+          </div>
+          <div class="card-body">
+            <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.0.1 (20250615.1724)
+ -->
+<!-- Title: sourcefile~~nafpack_iterative_params.f90~~EfferentGraph Pages: 1 -->
+<svg id="sourcefilenafpack_iterative_paramsf90EfferentGraph" width="641pt" height="106pt"
+ viewBox="0.00 0.00 641.00 106.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="sourcefile~~nafpack_iterative_params.f90~~EfferentGraph" class="graph" transform="scale(0.713133 0.713133) rotate(0) translate(4 144.02)">
+<title>sourcefile~~nafpack_iterative_params.f90~~EfferentGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-144.02 894.85,-144.02 894.85,4 -4,4"/>
+<!-- sourcefile~nafpack_iterative_params.f90 -->
+<g id="sourcefile~~nafpack_iterative_params.f90~~EfferentGraph_node1" class="node">
+<title>sourcefile~nafpack_iterative_params.f90</title>
+<polygon fill="none" stroke="black" points="890.85,-63.52 730.08,-63.52 730.08,-40 890.85,-40 890.85,-63.52"/>
+<text xml:space="preserve" text-anchor="middle" x="810.46" y="-47.78" font-family="Helvetica,sans-Serif" font-size="10.50">NAFPack_Iterative_Params.f90</text>
+</g>
+<!-- sourcefile~nafpack_constant.f90 -->
+<g id="sourcefile~~nafpack_iterative_params.f90~~EfferentGraph_node2" class="node">
+<title>sourcefile~nafpack_constant.f90</title>
+<g id="a_sourcefile~~nafpack_iterative_params.f90~~EfferentGraph_node2"><a xlink:href="../sourcefile/nafpack_constant.f90.html" xlink:title="NAFPack_constant.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="120.27,-63.52 0,-63.52 0,-40 120.27,-40 120.27,-63.52"/>
+<text xml:space="preserve" text-anchor="middle" x="60.13" y="-47.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_constant.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_iterative_params.f90&#45;&gt;sourcefile~nafpack_constant.f90 -->
+<g id="sourcefile~~nafpack_iterative_params.f90~~EfferentGraph_edge1" class="edge">
+<title>sourcefile~nafpack_iterative_params.f90&#45;&gt;sourcefile~nafpack_constant.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M616.07,-131.76C485.66,-151.13 450.65,-130.72 320.04,-112.76 275.53,-106.64 265.75,-97.25 221.15,-91.76"/>
+</g>
+<!-- sourcefile~nafpack_iterative_types.f90 -->
+<g id="sourcefile~~nafpack_iterative_params.f90~~EfferentGraph_node3" class="node">
+<title>sourcefile~nafpack_iterative_types.f90</title>
+<g id="a_sourcefile~~nafpack_iterative_params.f90~~EfferentGraph_node3"><a xlink:href="../sourcefile/nafpack_iterative_types.f90.html" xlink:title="NAFPack_Iterative_types.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="486.81,-103.52 337.29,-103.52 337.29,-80 486.81,-80 486.81,-103.52"/>
+<text xml:space="preserve" text-anchor="middle" x="412.05" y="-87.79" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Iterative_types.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_iterative_params.f90&#45;&gt;sourcefile~nafpack_iterative_types.f90 -->
+<g id="sourcefile~~nafpack_iterative_params.f90~~EfferentGraph_edge2" class="edge">
+<title>sourcefile~nafpack_iterative_params.f90&#45;&gt;sourcefile~nafpack_iterative_types.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M616.07,-131.76C588.07,-135.92 517.62,-119.8 467.58,-106.79"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="468.63,-103.45 458.07,-104.29 466.85,-110.22 468.63,-103.45"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M789.77,-63.91C756.11,-83.74 684.69,-121.86 618.07,-131.76"/>
+</g>
+<!-- sourcefile~nafpack_matrix_decomposition.f90 -->
+<g id="sourcefile~~nafpack_iterative_params.f90~~EfferentGraph_node4" class="node">
+<title>sourcefile~nafpack_matrix_decomposition.f90</title>
+<g id="a_sourcefile~~nafpack_iterative_params.f90~~EfferentGraph_node4"><a xlink:href="../sourcefile/nafpack_matrix_decomposition.f90.html" xlink:title="NAFPack_matrix_decomposition.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="504.06,-23.52 320.04,-23.52 320.04,0 504.06,0 504.06,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="412.05" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_matrix_decomposition.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_iterative_params.f90&#45;&gt;sourcefile~nafpack_matrix_decomposition.f90 -->
+<g id="sourcefile~~nafpack_iterative_params.f90~~EfferentGraph_edge3" class="edge">
+<title>sourcefile~nafpack_iterative_params.f90&#45;&gt;sourcefile~nafpack_matrix_decomposition.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M749.48,-39.52C731.71,-36.25 712.16,-33.01 694.08,-30.76 635.18,-23.43 568.97,-18.78 515.61,-15.92"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="516.11,-12.44 505.94,-15.41 515.74,-19.43 516.11,-12.44"/>
+</g>
+<!-- sourcefile~nafpack_preconditioners.f90 -->
+<g id="sourcefile~~nafpack_iterative_params.f90~~EfferentGraph_node5" class="node">
+<title>sourcefile~nafpack_preconditioners.f90</title>
+<g id="a_sourcefile~~nafpack_iterative_params.f90~~EfferentGraph_node5"><a xlink:href="../sourcefile/nafpack_preconditioners.f90.html" xlink:title="NAFPack_Preconditioners.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="694.08,-63.52 540.06,-63.52 540.06,-40 694.08,-40 694.08,-63.52"/>
+<text xml:space="preserve" text-anchor="middle" x="617.07" y="-47.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Preconditioners.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_iterative_params.f90&#45;&gt;sourcefile~nafpack_preconditioners.f90 -->
+<g id="sourcefile~~nafpack_iterative_params.f90~~EfferentGraph_edge4" class="edge">
+<title>sourcefile~nafpack_iterative_params.f90&#45;&gt;sourcefile~nafpack_preconditioners.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M729.68,-51.76C721.73,-51.76 713.64,-51.76 705.61,-51.76"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="705.86,-48.26 695.86,-51.76 705.86,-55.26 705.86,-48.26"/>
+</g>
+<!-- sourcefile~nafpack_iterative_types.f90&#45;&gt;sourcefile~nafpack_constant.f90 -->
+<g id="sourcefile~~nafpack_iterative_params.f90~~EfferentGraph_edge5" class="edge">
+<title>sourcefile~nafpack_iterative_types.f90&#45;&gt;sourcefile~nafpack_constant.f90</title>
+<path fill="none" stroke="#7fff00" stroke-dasharray="5,2" d="M336.84,-95.95C301.66,-96.87 259.11,-96.43 221.15,-91.76"/>
+</g>
+<!-- sourcefile~nafpack_matrix_decomposition.f90&#45;&gt;sourcefile~nafpack_constant.f90 -->
+<g id="sourcefile~~nafpack_iterative_params.f90~~EfferentGraph_edge6" class="edge">
+<title>sourcefile~nafpack_matrix_decomposition.f90&#45;&gt;sourcefile~nafpack_constant.f90</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M319.61,-15.41C270.92,-18.15 210.14,-22.85 156.27,-30.76 144.86,-32.44 132.77,-34.71 121.18,-37.14"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="120.77,-33.65 111.74,-39.19 122.26,-40.49 120.77,-33.65"/>
+</g>
+<!-- sourcefile~nafpack_matricielle.f90 -->
+<g id="sourcefile~~nafpack_iterative_params.f90~~EfferentGraph_node6" class="node">
+<title>sourcefile~nafpack_matricielle.f90</title>
+<g id="a_sourcefile~~nafpack_iterative_params.f90~~EfferentGraph_node6"><a xlink:href="../sourcefile/nafpack_matricielle.f90.html" xlink:title="NAFPack_matricielle.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="284.04,-63.52 156.27,-63.52 156.27,-40 284.04,-40 284.04,-63.52"/>
+<text xml:space="preserve" text-anchor="middle" x="220.15" y="-47.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_matricielle.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_matrix_decomposition.f90&#45;&gt;sourcefile~nafpack_matricielle.f90 -->
+<g id="sourcefile~~nafpack_iterative_params.f90~~EfferentGraph_edge7" class="edge">
+<title>sourcefile~nafpack_matrix_decomposition.f90&#45;&gt;sourcefile~nafpack_matricielle.f90</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M353.04,-23.98C333.26,-28.15 310.94,-32.85 290.36,-37.18"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="289.68,-33.75 280.61,-39.24 291.12,-40.6 289.68,-33.75"/>
+</g>
+<!-- sourcefile~nafpack_preconditioners.f90&#45;&gt;sourcefile~nafpack_constant.f90 -->
+<g id="sourcefile~~nafpack_iterative_params.f90~~EfferentGraph_edge8" class="edge">
+<title>sourcefile~nafpack_preconditioners.f90&#45;&gt;sourcefile~nafpack_constant.f90</title>
+<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M219.15,-91.76C181.63,-87.14 140.24,-76.45 109.23,-67.28"/>
+<polygon fill="#7f00ff" stroke="#7f00ff" points="110.34,-63.96 99.76,-64.42 108.32,-70.66 110.34,-63.96"/>
+<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M411.05,-51.76C369.78,-53.9 360.47,-62.25 320.04,-70.76 276.08,-80.02 265.75,-97.25 221.15,-91.76"/>
+</g>
+<!-- sourcefile~nafpack_preconditioners.f90&#45;&gt;sourcefile~nafpack_iterative_types.f90 -->
+<g id="sourcefile~~nafpack_iterative_params.f90~~EfferentGraph_edge9" class="edge">
+<title>sourcefile~nafpack_preconditioners.f90&#45;&gt;sourcefile~nafpack_iterative_types.f90</title>
+<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M554.05,-63.98C532.61,-68.2 508.37,-72.98 486.12,-77.36"/>
+<polygon fill="#7f00ff" stroke="#7f00ff" points="485.66,-73.89 476.52,-79.25 487.01,-80.76 485.66,-73.89"/>
+</g>
+<!-- sourcefile~nafpack_preconditioners.f90&#45;&gt;sourcefile~nafpack_matrix_decomposition.f90 -->
+<g id="sourcefile~~nafpack_iterative_params.f90~~EfferentGraph_edge11" class="edge">
+<title>sourcefile~nafpack_preconditioners.f90&#45;&gt;sourcefile~nafpack_matrix_decomposition.f90</title>
+<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M554.05,-39.54C532.61,-35.32 508.37,-30.54 486.12,-26.16"/>
+<polygon fill="#7f00ff" stroke="#7f00ff" points="487.01,-22.76 476.52,-24.27 485.66,-29.63 487.01,-22.76"/>
+</g>
+<!-- sourcefile~nafpack_preconditioners.f90&#45;&gt;sourcefile~nafpack_matricielle.f90 -->
+<g id="sourcefile~~nafpack_iterative_params.f90~~EfferentGraph_edge10" class="edge">
+<title>sourcefile~nafpack_preconditioners.f90&#45;&gt;sourcefile~nafpack_matricielle.f90</title>
+<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M539.86,-49.89C501.75,-49.43 454.94,-49.58 413.05,-51.76"/>
+<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M411.05,-51.76C373.02,-53.74 330.66,-53.93 295.6,-53.55"/>
+<polygon fill="#7f00ff" stroke="#7f00ff" points="296.05,-50.05 286.01,-53.42 295.96,-57.05 296.05,-50.05"/>
+</g>
+<!-- sourcefile~nafpack_matricielle.f90&#45;&gt;sourcefile~nafpack_constant.f90 -->
+<g id="sourcefile~~nafpack_iterative_params.f90~~EfferentGraph_edge12" class="edge">
+<title>sourcefile~nafpack_matricielle.f90&#45;&gt;sourcefile~nafpack_constant.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M155.79,-51.76C148,-51.76 140.01,-51.76 132.11,-51.76"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="132.18,-48.26 122.18,-51.76 132.18,-55.26 132.18,-48.26"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var pansourcefilenafpack_iterative_paramsf90EfferentGraph = svgPanZoom('#sourcefilenafpack_iterative_paramsf90EfferentGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#EfferentGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="EfferentGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.0.1 (20250615.1724)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="188pt" height="32pt"
+ viewBox="0.00 0.00 188.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 27.52)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 183.89,-27.52 183.89,4 -4,4"/>
+<!-- Source File -->
+<g id="node1" class="node">
+<title>Source File</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="65.52,-23.52 0,-23.52 0,0 65.52,0 65.52,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="32.76" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Source File</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node2" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="179.89,-23.52 83.62,-23.52 83.62,0 179.89,0 179.89,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="131.76" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a file to a file which it depends on. A file
+is dependent upon another if the latter must be compiled before the former
+can be.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Files dependent on this one</h3>
+          </div>
+          <div class="card-body">
+            <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.0.1 (20250615.1724)
+ -->
+<!-- Title: sourcefile~~nafpack_iterative_params.f90~~AfferentGraph Pages: 1 -->
+<svg id="sourcefilenafpack_iterative_paramsf90AfferentGraph" width="511pt" height="32pt"
+ viewBox="0.00 0.00 511.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="sourcefile~~nafpack_iterative_params.f90~~AfferentGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 27.52)">
+<title>sourcefile~~nafpack_iterative_params.f90~~AfferentGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 506.56,-27.52 506.56,4 -4,4"/>
+<!-- sourcefile~nafpack_iterative_params.f90 -->
+<g id="sourcefile~~nafpack_iterative_params.f90~~AfferentGraph_node1" class="node">
+<title>sourcefile~nafpack_iterative_params.f90</title>
+<polygon fill="none" stroke="black" points="160.77,-23.52 0,-23.52 0,0 160.77,0 160.77,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="80.39" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">NAFPack_Iterative_Params.f90</text>
+</g>
+<!-- sourcefile~nafpack_iterative_methods.f90 -->
+<g id="sourcefile~~nafpack_iterative_params.f90~~AfferentGraph_node2" class="node">
+<title>sourcefile~nafpack_iterative_methods.f90</title>
+<g id="a_sourcefile~~nafpack_iterative_params.f90~~AfferentGraph_node2"><a xlink:href="../sourcefile/nafpack_iterative_methods.f90.html" xlink:title="NAFPack_Iterative_methods.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="362.04,-23.52 196.77,-23.52 196.77,0 362.04,0 362.04,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="279.41" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Iterative_methods.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_iterative_methods.f90&#45;&gt;sourcefile~nafpack_iterative_params.f90 -->
+<g id="sourcefile~~nafpack_iterative_params.f90~~AfferentGraph_edge1" class="edge">
+<title>sourcefile~nafpack_iterative_methods.f90&#45;&gt;sourcefile~nafpack_iterative_params.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M196.28,-11.76C188.47,-11.76 180.53,-11.76 172.65,-11.76"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="172.68,-8.26 162.68,-11.76 172.68,-15.26 172.68,-8.26"/>
+</g>
+<!-- sourcefile~nafpack_linalg.f90 -->
+<g id="sourcefile~~nafpack_iterative_params.f90~~AfferentGraph_node3" class="node">
+<title>sourcefile~nafpack_linalg.f90</title>
+<g id="a_sourcefile~~nafpack_iterative_params.f90~~AfferentGraph_node3"><a xlink:href="../sourcefile/nafpack_linalg.f90.html" xlink:title="NAFPack_linalg.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="502.56,-23.52 398.04,-23.52 398.04,0 502.56,0 502.56,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="450.3" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_linalg.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_linalg.f90&#45;&gt;sourcefile~nafpack_iterative_methods.f90 -->
+<g id="sourcefile~~nafpack_iterative_params.f90~~AfferentGraph_edge2" class="edge">
+<title>sourcefile~nafpack_linalg.f90&#45;&gt;sourcefile~nafpack_iterative_methods.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M397.71,-11.76C390.04,-11.76 381.94,-11.76 373.73,-11.76"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="374,-8.26 364,-11.76 374,-15.26 374,-8.26"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#AfferentGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="AfferentGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.0.1 (20250615.1724)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="188pt" height="32pt"
+ viewBox="0.00 0.00 188.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 27.52)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 183.89,-27.52 183.89,4 -4,4"/>
+<!-- Source File -->
+<g id="node1" class="node">
+<title>Source File</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="65.52,-23.52 0,-23.52 0,0 65.52,0 65.52,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="32.76" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Source File</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node2" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="179.89,-23.52 83.62,-23.52 83.62,0 179.89,0 179.89,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="131.76" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a file to a file which it depends on. A file
+is dependent upon another if the latter must be compiled before the former
+can be.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+          </div>
+        </div>
+<br>
+      <section>
+        <h2><span class="anchor" id="src"></span>Source Code</h2>
+        <div class="hl codehilite"><pre><span></span><a id="ln-1" name="ln-1" href="#ln-1"></a><span class="k">MODULE </span><span class="n">NAFPack_Iterative_Params</span>
+<a id="ln-2" name="ln-2" href="#ln-2"></a>
+<a id="ln-3" name="ln-3" href="#ln-3"></a><span class="w">    </span><span class="k">USE </span><span class="n">NAFPack_constant</span>
+<a id="ln-4" name="ln-4" href="#ln-4"></a><span class="w">    </span><span class="k">USE </span><span class="n">NAFPack_Iterative_types</span>
+<a id="ln-5" name="ln-5" href="#ln-5"></a><span class="w">    </span><span class="k">USE </span><span class="n">NAFPack_Preconditioners</span>
+<a id="ln-6" name="ln-6" href="#ln-6"></a><span class="w">    </span><span class="k">USE </span><span class="n">NAFPack_matrix_decomposition</span>
+<a id="ln-7" name="ln-7" href="#ln-7"></a>
+<a id="ln-8" name="ln-8" href="#ln-8"></a><span class="w">    </span><span class="k">IMPLICIT NONE</span>
+<a id="ln-9" name="ln-9" href="#ln-9"></a>
+<a id="ln-10" name="ln-10" href="#ln-10"></a><span class="k">    PRIVATE</span>
+<a id="ln-11" name="ln-11" href="#ln-11"></a>
+<a id="ln-12" name="ln-12" href="#ln-12"></a><span class="k">    PUBLIC</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">IterativeParams</span>
+<a id="ln-13" name="ln-13" href="#ln-13"></a><span class="w">    </span><span class="k">PUBLIC</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ApplyPreconditioner</span>
+<a id="ln-14" name="ln-14" href="#ln-14"></a>
+<a id="ln-15" name="ln-15" href="#ln-15"></a><span class="w">    </span><span class="k">TYPE</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">IterativeParams</span>
+<a id="ln-16" name="ln-16" href="#ln-16"></a><span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">DIMENSION</span><span class="p">(:),</span><span class="w"> </span><span class="k">ALLOCATABLE</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x_init</span>
+<a id="ln-17" name="ln-17" href="#ln-17"></a><span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">DIMENSION</span><span class="p">(:,:),</span><span class="w"> </span><span class="k">ALLOCATABLE</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">L</span><span class="p">,</span><span class="w"> </span><span class="n">U</span><span class="p">,</span><span class="w"> </span><span class="n">D</span>
+<a id="ln-18" name="ln-18" href="#ln-18"></a><span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">DIMENSION</span><span class="p">(:),</span><span class="w"> </span><span class="k">ALLOCATABLE</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">residual</span>
+<a id="ln-19" name="ln-19" href="#ln-19"></a><span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">omega</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.d0</span>
+<a id="ln-20" name="ln-20" href="#ln-20"></a><span class="w">        </span><span class="kt">INTEGER</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">max_iter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1000</span>
+<a id="ln-21" name="ln-21" href="#ln-21"></a><span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">tol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0d-12</span>
+<a id="ln-22" name="ln-22" href="#ln-22"></a><span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.d0</span>
+<a id="ln-23" name="ln-23" href="#ln-23"></a><span class="w">        </span><span class="k">PROCEDURE</span><span class="p">(</span><span class="n">ApplyPreconditioner</span><span class="p">),</span><span class="w"> </span><span class="k">PASS</span><span class="p">(</span><span class="n">params</span><span class="p">),</span><span class="w"> </span><span class="k">POINTER</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">precond</span>
+<a id="ln-24" name="ln-24" href="#ln-24"></a><span class="w">    </span><span class="k">END TYPE </span><span class="n">IterativeParams</span>
+<a id="ln-25" name="ln-25" href="#ln-25"></a>
+<a id="ln-26" name="ln-26" href="#ln-26"></a><span class="w">    </span><span class="k">CONTAINS</span>
+<a id="ln-27" name="ln-27" href="#ln-27"></a>
+<a id="ln-28" name="ln-28" href="#ln-28"></a><span class="k">    FUNCTION </span><span class="n">ApplyPreconditioner</span><span class="p">(</span><span class="n">params</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="p">)</span><span class="w"> </span><span class="k">RESULT</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<a id="ln-29" name="ln-29" href="#ln-29"></a><span class="w">        </span><span class="k">CLASS</span><span class="p">(</span><span class="n">IterativeParams</span><span class="p">),</span><span class="w"> </span><span class="k">INTENT</span><span class="p">(</span><span class="n">IN</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">params</span>
+<a id="ln-30" name="ln-30" href="#ln-30"></a><span class="w">        </span><span class="k">CLASS</span><span class="p">(</span><span class="n">MethodPreconditioner</span><span class="p">),</span><span class="w"> </span><span class="k">INTENT</span><span class="p">(</span><span class="n">IN</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">method</span>
+<a id="ln-31" name="ln-31" href="#ln-31"></a><span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">DIMENSION</span><span class="p">(</span><span class="n">SIZE</span><span class="p">(</span><span class="n">params</span><span class="p">%</span><span class="n">x_init</span><span class="p">))</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">y</span>
+<a id="ln-32" name="ln-32" href="#ln-32"></a>
+<a id="ln-33" name="ln-33" href="#ln-33"></a><span class="w">        </span><span class="k">SELECT CASE</span><span class="p">(</span><span class="n">method</span><span class="p">%</span><span class="k">value</span><span class="p">)</span>
+<a id="ln-34" name="ln-34" href="#ln-34"></a><span class="w">        </span><span class="k">CASE</span><span class="w"> </span><span class="p">(</span><span class="n">METHOD_PRECOND_JACOBI</span><span class="p">%</span><span class="k">value</span><span class="p">)</span>
+<a id="ln-35" name="ln-35" href="#ln-35"></a><span class="w">            </span><span class="k">IF</span><span class="p">(.</span><span class="nb">NOT</span><span class="p">.</span><span class="w"> </span><span class="nb">ALLOCATED</span><span class="p">(</span><span class="n">params</span><span class="p">%</span><span class="n">D</span><span class="p">))</span><span class="w"> </span><span class="k">STOP</span><span class="w"> </span><span class="s2">&quot;ERROR :: Jacobi preconditioner requires &amp;</span>
+<a id="ln-36" name="ln-36" href="#ln-36"></a><span class="s2">                                                &amp;preconditioner matrix D to be allocated&quot;</span>
+<a id="ln-37" name="ln-37" href="#ln-37"></a><span class="w">            </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">MATMUL</span><span class="p">(</span><span class="n">params</span><span class="p">%</span><span class="n">D</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p">%</span><span class="n">alpha</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">params</span><span class="p">%</span><span class="n">residual</span><span class="p">)</span>
+<a id="ln-38" name="ln-38" href="#ln-38"></a><span class="w">        </span><span class="k">CASE</span><span class="w"> </span><span class="p">(</span><span class="n">METHOD_PRECOND_GS</span><span class="p">%</span><span class="k">value</span><span class="p">)</span>
+<a id="ln-39" name="ln-39" href="#ln-39"></a><span class="w">            </span><span class="k">IF</span><span class="p">(.</span><span class="nb">NOT</span><span class="p">.</span><span class="w"> </span><span class="nb">ALLOCATED</span><span class="p">(</span><span class="n">params</span><span class="p">%</span><span class="n">L</span><span class="p">))</span><span class="w"> </span><span class="k">STOP</span><span class="w"> </span><span class="s2">&quot;ERROR :: Gauss-Seidel preconditioner requires &amp;</span>
+<a id="ln-40" name="ln-40" href="#ln-40"></a><span class="s2">                                                &amp;preconditioner matrix L to be allocated&quot;</span>
+<a id="ln-41" name="ln-41" href="#ln-41"></a><span class="w">            </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">forward</span><span class="p">(</span><span class="n">params</span><span class="p">%</span><span class="n">L</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p">%</span><span class="n">alpha</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">params</span><span class="p">%</span><span class="n">residual</span><span class="p">)</span>
+<a id="ln-42" name="ln-42" href="#ln-42"></a><span class="w">        </span><span class="k">CASE</span><span class="w"> </span><span class="p">(</span><span class="n">METHOD_PRECOND_SOR</span><span class="p">%</span><span class="k">value</span><span class="p">)</span>
+<a id="ln-43" name="ln-43" href="#ln-43"></a><span class="w">            </span><span class="k">IF</span><span class="p">(.</span><span class="nb">NOT</span><span class="p">.</span><span class="w"> </span><span class="nb">ALLOCATED</span><span class="p">(</span><span class="n">params</span><span class="p">%</span><span class="n">L</span><span class="p">))</span><span class="w"> </span><span class="k">STOP</span><span class="w"> </span><span class="s2">&quot;ERROR :: SOR preconditioner requires &amp;</span>
+<a id="ln-44" name="ln-44" href="#ln-44"></a><span class="s2">                                                &amp;preconditioner matrix L to be allocated&quot;</span>
+<a id="ln-45" name="ln-45" href="#ln-45"></a><span class="w">            </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">forward</span><span class="p">(</span><span class="n">params</span><span class="p">%</span><span class="n">L</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p">%</span><span class="n">alpha</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">params</span><span class="p">%</span><span class="n">residual</span><span class="p">)</span>
+<a id="ln-46" name="ln-46" href="#ln-46"></a><span class="w">        </span><span class="k">CASE</span><span class="w"> </span><span class="p">(</span><span class="n">METHOD_PRECOND_JOR</span><span class="p">%</span><span class="k">value</span><span class="p">)</span>
+<a id="ln-47" name="ln-47" href="#ln-47"></a><span class="w">            </span><span class="k">IF</span><span class="p">(.</span><span class="nb">NOT</span><span class="p">.</span><span class="w"> </span><span class="nb">ALLOCATED</span><span class="p">(</span><span class="n">params</span><span class="p">%</span><span class="n">D</span><span class="p">))</span><span class="w"> </span><span class="k">STOP</span><span class="w"> </span><span class="s2">&quot;ERROR :: JOR preconditioner requires &amp;</span>
+<a id="ln-48" name="ln-48" href="#ln-48"></a><span class="s2">                                                &amp;preconditioner matrix D to be allocated&quot;</span>
+<a id="ln-49" name="ln-49" href="#ln-49"></a><span class="w">            </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">MATMUL</span><span class="p">(</span><span class="n">params</span><span class="p">%</span><span class="n">D</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p">%</span><span class="n">residual</span><span class="p">)</span>
+<a id="ln-50" name="ln-50" href="#ln-50"></a><span class="w">        </span><span class="k">CASE</span><span class="w"> </span><span class="p">(</span><span class="n">METHOD_PRECOND_ILU</span><span class="p">%</span><span class="k">value</span><span class="p">)</span>
+<a id="ln-51" name="ln-51" href="#ln-51"></a><span class="w">            </span><span class="k">IF</span><span class="p">(.</span><span class="nb">NOT</span><span class="p">.</span><span class="w"> </span><span class="nb">ALLOCATED</span><span class="p">(</span><span class="n">params</span><span class="p">%</span><span class="n">L</span><span class="p">)</span><span class="w"> </span><span class="p">.</span><span class="nb">OR</span><span class="p">.</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-52" name="ln-52" href="#ln-52"></a><span class="w">               </span><span class="p">.</span><span class="nb">NOT</span><span class="p">.</span><span class="w"> </span><span class="nb">ALLOCATED</span><span class="p">(</span><span class="n">params</span><span class="p">%</span><span class="n">U</span><span class="p">))</span><span class="w"> </span><span class="k">STOP</span><span class="w"> </span><span class="s2">&quot;ERROR :: ILU preconditioner requires &amp;</span>
+<a id="ln-53" name="ln-53" href="#ln-53"></a><span class="s2">                                                &amp;preconditioner matrices L and U to be allocated&quot;</span>
+<a id="ln-54" name="ln-54" href="#ln-54"></a><span class="w">            </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">forward</span><span class="p">(</span><span class="n">params</span><span class="p">%</span><span class="n">L</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p">%</span><span class="n">alpha</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">params</span><span class="p">%</span><span class="n">residual</span><span class="p">)</span>
+<a id="ln-55" name="ln-55" href="#ln-55"></a><span class="w">            </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">backward</span><span class="p">(</span><span class="n">params</span><span class="p">%</span><span class="n">U</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+<a id="ln-56" name="ln-56" href="#ln-56"></a><span class="w">        </span><span class="k">CASE</span><span class="w"> </span><span class="p">(</span><span class="n">METHOD_PRECOND_ICF</span><span class="p">%</span><span class="k">value</span><span class="p">)</span>
+<a id="ln-57" name="ln-57" href="#ln-57"></a><span class="w">            </span><span class="k">IF</span><span class="p">(.</span><span class="nb">NOT</span><span class="p">.</span><span class="w"> </span><span class="nb">ALLOCATED</span><span class="p">(</span><span class="n">params</span><span class="p">%</span><span class="n">L</span><span class="p">))</span><span class="w"> </span><span class="k">STOP</span><span class="w"> </span><span class="s2">&quot;ERROR :: ICF preconditioner requires &amp;</span>
+<a id="ln-58" name="ln-58" href="#ln-58"></a><span class="s2">                                                &amp;preconditioner matrix L to be allocated&quot;</span>
+<a id="ln-59" name="ln-59" href="#ln-59"></a><span class="w">            </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">forward</span><span class="p">(</span><span class="n">params</span><span class="p">%</span><span class="n">L</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p">%</span><span class="n">alpha</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">params</span><span class="p">%</span><span class="n">residual</span><span class="p">)</span>
+<a id="ln-60" name="ln-60" href="#ln-60"></a><span class="w">            </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">backward</span><span class="p">(</span><span class="nb">TRANSPOSE</span><span class="p">(</span><span class="n">params</span><span class="p">%</span><span class="n">L</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+<a id="ln-61" name="ln-61" href="#ln-61"></a><span class="w">        </span><span class="k">CASE</span><span class="w"> </span><span class="p">(</span><span class="n">METHOD_PRECOND_SSOR</span><span class="p">%</span><span class="k">value</span><span class="p">)</span>
+<a id="ln-62" name="ln-62" href="#ln-62"></a><span class="w">            </span><span class="k">IF</span><span class="p">(.</span><span class="nb">NOT</span><span class="p">.</span><span class="w"> </span><span class="nb">ALLOCATED</span><span class="p">(</span><span class="n">params</span><span class="p">%</span><span class="n">L</span><span class="p">)</span><span class="w"> </span><span class="p">.</span><span class="nb">OR</span><span class="p">.</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-63" name="ln-63" href="#ln-63"></a><span class="w">               </span><span class="p">.</span><span class="nb">NOT</span><span class="p">.</span><span class="w"> </span><span class="nb">ALLOCATED</span><span class="p">(</span><span class="n">params</span><span class="p">%</span><span class="n">D</span><span class="p">)</span><span class="w"> </span><span class="p">.</span><span class="nb">OR</span><span class="p">.</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-64" name="ln-64" href="#ln-64"></a><span class="w">               </span><span class="p">.</span><span class="nb">NOT</span><span class="p">.</span><span class="w"> </span><span class="nb">ALLOCATED</span><span class="p">(</span><span class="n">params</span><span class="p">%</span><span class="n">U</span><span class="p">))</span><span class="w"> </span><span class="k">STOP</span><span class="w"> </span><span class="s2">&quot;ERROR :: SSOR preconditioner requires &amp;</span>
+<a id="ln-65" name="ln-65" href="#ln-65"></a><span class="s2">                                                &amp;preconditioner matrices L, D, and U to be allocated&quot;</span>
+<a id="ln-66" name="ln-66" href="#ln-66"></a><span class="w">            </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">forward</span><span class="p">(</span><span class="n">params</span><span class="p">%</span><span class="n">L</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p">%</span><span class="n">alpha</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">params</span><span class="p">%</span><span class="n">residual</span><span class="p">)</span>
+<a id="ln-67" name="ln-67" href="#ln-67"></a><span class="w">            </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">MATMUL</span><span class="p">(</span><span class="n">params</span><span class="p">%</span><span class="n">D</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+<a id="ln-68" name="ln-68" href="#ln-68"></a><span class="w">            </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">backward</span><span class="p">(</span><span class="nb">TRANSPOSE</span><span class="p">(</span><span class="n">params</span><span class="p">%</span><span class="n">U</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+<a id="ln-69" name="ln-69" href="#ln-69"></a><span class="w">        </span><span class="k">CASE </span><span class="n">DEFAULT</span>
+<a id="ln-70" name="ln-70" href="#ln-70"></a><span class="w">            </span><span class="k">STOP</span><span class="w"> </span><span class="s2">&quot;ERROR :: Unknown preconditioner method&quot;</span>
+<a id="ln-71" name="ln-71" href="#ln-71"></a><span class="w">        </span><span class="k">END SELECT</span>
+<a id="ln-72" name="ln-72" href="#ln-72"></a>
+<a id="ln-73" name="ln-73" href="#ln-73"></a><span class="k">    END FUNCTION </span><span class="n">ApplyPreconditioner</span>
+<a id="ln-74" name="ln-74" href="#ln-74"></a>
+<a id="ln-75" name="ln-75" href="#ln-75"></a><span class="k">END MODULE </span><span class="n">NAFPack_Iterative_Params</span>
+</pre></div>
+
+      </section>
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              NAFPack
+ was developed by Minard Jules<br>              &copy; 2025 
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+            </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>
