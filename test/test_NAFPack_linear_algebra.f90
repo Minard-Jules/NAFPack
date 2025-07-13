@@ -63,6 +63,13 @@ MODULE test_NAFPack_linear_algebra
 
         TYPE(linalg) :: solver
         TYPE(IterativeParams) :: params
+        TYPE(Logger) :: verbose
+
+        CALL verbose%init()
+        verbose%to_terminal = .TRUE.
+        verbose%show_final = .TRUE.
+        verbose%show_iteration = .FALSE.
+        ! verbose%frequency = 1
 
         A = RESHAPE([4, -1, 0, &
                     -1, 4, -1, &
@@ -98,12 +105,37 @@ MODULE test_NAFPack_linear_algebra
         CALL solver%direct%set_method(METHOD_LU)
         CALL solver%direct%test_matrix(A)
         CALL test_direct_method(x_true = x, x = solver%direct%solve(A, b), method = "LU", stat = stat)
+        
+
+        !=====================================================================================
+        ! LU decomposition method with pivot partial
+        CALL solver%direct%set_method(METHOD_LU, set_pivot_partial=.TRUE.)
+        CALL solver%direct%test_matrix(A)
+        CALL test_direct_method(x_true = x, x = solver%direct%solve(A, b), method = "LU with partial pivoting", stat = stat)
+
+        !=====================================================================================
+        ! LU decomposition method with pivot total
+        CALL solver%direct%set_method(METHOD_LU, set_pivot_total=.TRUE.)
+        CALL solver%direct%test_matrix(A)
+        CALL test_direct_method(x_true = x, x = solver%direct%solve(A, b), method = "LU with total pivoting", stat = stat)
 
         !=====================================================================================
         ! LDU decomposition method
         CALL solver%direct%set_method(METHOD_LDU)
         CALL solver%direct%test_matrix(A)
         CALL test_direct_method(x_true = x, x = solver%direct%solve(A, b), method = "LDU", stat = stat)
+
+        !=====================================================================================
+        ! LDU decomposition method with pivot partial
+        CALL solver%direct%set_method(METHOD_LDU, set_pivot_partial=.TRUE.)
+        CALL solver%direct%test_matrix(A)
+        CALL test_direct_method(x_true = x, x = solver%direct%solve(A, b), method = "LDU with partial pivoting", stat = stat)
+
+        !=====================================================================================
+        ! LDU decomposition method with pivot total
+        CALL solver%direct%set_method(METHOD_LDU, set_pivot_total=.TRUE.)
+        CALL solver%direct%test_matrix(A)
+        CALL test_direct_method(x_true = x, x = solver%direct%solve(A, b), method = "LDU with total pivoting", stat = stat)
 
         !=====================================================================================
         ! Cholesky decomposition method
@@ -170,114 +202,125 @@ MODULE test_NAFPack_linear_algebra
         !Jacobi method
         CALL solver%iterative%set_method(METHOD_Jacobi)
         params = solver%iterative%Init_IterativeParams(N)
-        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params), method = "Jacobi", stat = stat)
+        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params, verbose=verbose), &
+                                   method = "Jacobi", stat = stat)
         CALL solver%iterative%Dealocate_IterativeParams(params)
 
         !=====================================================================================
         !Gauss-Seidel method
         CALL solver%iterative%set_method(METHOD_Gauss_Seidel)
         params = solver%iterative%Init_IterativeParams(N)
-        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params), method = "Gauss-Seidel", stat = stat)
+        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params, verbose=verbose), &
+        method = "Gauss-Seidel", stat = stat)
         CALL solver%iterative%Dealocate_IterativeParams(params)
 
         !=====================================================================================
         !SOR method
         CALL solver%iterative%set_method(METHOD_SOR)
         params = solver%iterative%Init_IterativeParams(N, omega=1.1d0)
-        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params), method = "SOR", stat = stat)
+        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params, verbose=verbose), &
+                                   method = "SOR", stat = stat)
         CALL solver%iterative%Dealocate_IterativeParams(params)
 
         !=====================================================================================
         !JOR method
         CALL solver%iterative%set_method(METHOD_JOR)
         params = solver%iterative%Init_IterativeParams(N, omega=0.9d0)
-        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params), method = "JOR", stat = stat)
+        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params, verbose=verbose), &
+                                   method = "JOR", stat = stat)
         CALL solver%iterative%Dealocate_IterativeParams(params)
 
         !=====================================================================================
         !SIP_ILU method
         CALL solver%iterative%set_method(METHOD_SIP_ILU)
         params = solver%iterative%Init_IterativeParams(N, A=A, omega=1.d0)
-        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params), method = "SIP ILU", stat = stat)
+        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params, verbose=verbose), &
+                                   method = "SIP ILU", stat = stat)
         CALL solver%iterative%Dealocate_IterativeParams(params)
 
         !=====================================================================================
         !SIP_ICF method
         CALL solver%iterative%set_method(METHOD_SIP_ICF)
         params = solver%iterative%Init_IterativeParams(N, A=A, omega=1.d0)
-        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params), method = "SIP ICF", stat = stat)
+        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params, verbose=verbose), &
+                                   method = "SIP ICF", stat = stat)
         CALL solver%iterative%Dealocate_IterativeParams(params)
 
         !=====================================================================================
         !SSOR method
         CALL solver%iterative%set_method(METHOD_SSOR)
         params = solver%iterative%Init_IterativeParams(N, omega=0.9d0)
-        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params), method = "SSOR", stat = stat)
+        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params, verbose=verbose), &
+                                   method = "SSOR", stat = stat)
         CALL solver%iterative%Dealocate_IterativeParams(params)
 
         !=====================================================================================
         !Richardson method
         CALL solver%iterative%set_method(METHOD_RICHARDSON)
         params = solver%iterative%Init_IterativeParams(N, alpha=0.2d0)
-        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params), method = "Richardson", stat = stat)
+        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params, verbose=verbose), &
+                                   method = "Richardson", stat = stat)
         CALL solver%iterative%Dealocate_IterativeParams(params)
 
         !=====================================================================================
         !Richardson method with Jacobi preconditioner
         CALL solver%iterative%set_method(METHOD_RICHARDSON)
         params = solver%iterative%Init_IterativeParams(N, A=A, alpha=1.d0, method_preconditioner=METHOD_PRECOND_JACOBI)
-        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params), method = "Richardson", stat = stat, &
-                                   preconditioner="Jacobi preconditioner")
+        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params, verbose=verbose), &
+                                   method = "Richardson", stat = stat, preconditioner="Jacobi preconditioner")
         CALL solver%iterative%Dealocate_IterativeParams(params)
 
         !=====================================================================================
         !Richardson method with Gauss-Seidel preconditioner
         CALL solver%iterative%set_method(METHOD_RICHARDSON)
         params = solver%iterative%Init_IterativeParams(N, A=A, alpha=1.d0, method_preconditioner=METHOD_PRECOND_GS)
-        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params), method = "Richardson", stat = stat, &
-                                   preconditioner="Gauss-Seidel preconditioner")
+        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params, verbose=verbose), &
+                                   method = "Richardson", stat = stat, preconditioner="Gauss-Seidel preconditioner")
         CALL solver%iterative%Dealocate_IterativeParams(params)
 
         !=====================================================================================
         !Richardson method with SOR preconditioner
         CALL solver%iterative%set_method(METHOD_RICHARDSON)
         params = solver%iterative%Init_IterativeParams(N, A=A, omega=1.1d0, method_preconditioner=METHOD_PRECOND_SOR)
-        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params), method = "Richardson", stat = stat, &
-                                   preconditioner="SOR preconditioner")
+        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params, verbose=verbose), &
+                                   method = "Richardson", stat = stat, preconditioner="SOR preconditioner")
         CALL solver%iterative%Dealocate_IterativeParams(params)
 
         !=====================================================================================
         !Richardson method with JOR preconditioner
         CALL solver%iterative%set_method(METHOD_RICHARDSON)
         params = solver%iterative%Init_IterativeParams(N, A=A, omega=1.d0, method_preconditioner=METHOD_PRECOND_JOR)
-        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params), method = "Richardson", stat = stat, &
-                                   preconditioner="JOR preconditioner")
+        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params, verbose=verbose), &
+                                   method = "Richardson", stat = stat, preconditioner="JOR preconditioner")
         CALL solver%iterative%Dealocate_IterativeParams(params)
 
         !=====================================================================================
         !Richardson method with ILU preconditioner
         CALL solver%iterative%set_method(METHOD_RICHARDSON)
         params = solver%iterative%Init_IterativeParams(N, A=A, omega=1.d0, method_preconditioner=METHOD_PRECOND_ILU)
-        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params), method = "Richardson", stat = stat, &
-                                   preconditioner="ILU preconditioner")
+        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params, verbose=verbose), &
+                                   method = "Richardson", stat = stat, preconditioner="ILU preconditioner")
         CALL solver%iterative%Dealocate_IterativeParams(params)
 
         !=====================================================================================
         !Richardson method with ICF preconditioner
         CALL solver%iterative%set_method(METHOD_RICHARDSON)
         params = solver%iterative%Init_IterativeParams(N, A=A, omega=1.d0, method_preconditioner=METHOD_PRECOND_ICF)
-        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params), method = "Richardson", stat = stat, &
-                                   preconditioner="ICF preconditioner")
+        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params, verbose=verbose), &
+                                   method = "Richardson", stat = stat, preconditioner="ICF preconditioner")
         CALL solver%iterative%Dealocate_IterativeParams(params)
 
         !=====================================================================================
         !Richardson method with SSOR preconditioner
         CALL solver%iterative%set_method(METHOD_RICHARDSON)
         params = solver%iterative%Init_IterativeParams(N, A=A, omega=1.d0, method_preconditioner=METHOD_PRECOND_SSOR)
-        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params), method = "Richardson", stat = stat, &
-                                   preconditioner="SSOR preconditioner")
+        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params, verbose=verbose), &
+                                   method = "Richardson", stat = stat, preconditioner="SSOR preconditioner")
         CALL solver%iterative%Dealocate_IterativeParams(params)
 
+        !=====================================================================================
+
+        CALL verbose%close()
 
     END SUBROUTINE test_linear_system
 

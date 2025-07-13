@@ -233,9 +233,11 @@ MODULE NAFPack_Iterative_methods
             params%residual = residu
 
             IF (PRESENT(verbose)) THEN
-                verbose%step = k
-                WRITE(msg, '(A,I5,A,ES14.7)') "Iter ", k, " | Norm residu: ", NORM2(residu)
-                CALL verbose%log(msg)
+                IF (verbose%show_iteration) THEN
+                    verbose%step = k
+                    WRITE(msg, '(A,I5,A,ES14.7)') "Iter ", k, " | Norm residu: ", NORM2(residu)
+                    CALL verbose%log(msg)
+                END IF
             END IF
 
             IF (NORM2(residu) < params%tol) EXIT
@@ -243,6 +245,14 @@ MODULE NAFPack_Iterative_methods
             x0 = x_new
 
         END DO
+        
+        IF (PRESENT(verbose)) THEN
+            IF (verbose%show_final) THEN
+                verbose%step = k
+                WRITE(msg, '(A,I5,A,ES14.7)') "Iter ", k, " | Norm residu: ", NORM2(residu)
+                CALL verbose%log(msg)
+            END IF
+        END IF
 
         x = x_new
 

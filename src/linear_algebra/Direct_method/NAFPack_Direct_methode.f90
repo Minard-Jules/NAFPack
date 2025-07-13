@@ -55,6 +55,9 @@ MODULE NAFPack_Direct_method
         TYPE(MethodTypeDirect), INTENT(IN) :: method
         LOGICAL, OPTIONAL :: set_pivot_partial, set_pivot_total
 
+        this%use_total_pivot = .FALSE.
+        this%use_partial_pivot = .FALSE.
+
         SELECT CASE (method%value)
         CASE (METHOD_Gauss%value)
             this%solve_method => solve_Gauss
@@ -85,10 +88,8 @@ MODULE NAFPack_Direct_method
         END SELECT
 
         IF(PRESENT(set_pivot_partial))THEN
-            this%use_total_pivot = .FALSE.
             IF(set_pivot_partial) this%use_partial_pivot = .TRUE.
         ELSE IF(PRESENT(set_pivot_total))THEN
-            this%use_partial_pivot = .FALSE.
             IF(set_pivot_total) this%use_total_pivot = .TRUE.
         END IF
         
@@ -141,6 +142,7 @@ MODULE NAFPack_Direct_method
         END IF
 
         x = this%solve_method(A, b)
+        
     END FUNCTION DirectMethod_solve
 
     FUNCTION solve_Gauss(this, A, b) RESULT(x)
@@ -149,7 +151,7 @@ MODULE NAFPack_Direct_method
         REAL(dp), DIMENSION(:), INTENT(IN) :: b
         REAL(dp), DIMENSION(SIZE(A, 1)) :: x
         REAL(dp), DIMENSION(SIZE(A, 1), SIZE(A, 2)) :: A_tmp
-        REAL(dp), DIMENSION(:,:), ALLOCATABLE :: P, Q, Q_final
+        REAL(dp), DIMENSION(:,:), ALLOCATABLE :: Q_final
         REAL(dp), DIMENSION(SIZE(b)) :: b_tmp
         INTEGER :: i, k, n, allocate_status
         REAL(dp) :: pivot, m
@@ -159,27 +161,16 @@ MODULE NAFPack_Direct_method
 
         N=SIZE(A_tmp, 1)
 
-        IF(this%use_partial_pivot)THEN
-            ALLOCATE(P(N,N), STAT=allocate_status)
-            IF(allocate_status /= 0) STOP "ERROR :: Unable to allocate P"
-            P = Identity_n(N)
-        ELSE IF(this%use_total_pivot)THEN
-            ALLOCATE(P(N,N), STAT=allocate_status)
-            IF(allocate_status /= 0) STOP "ERROR :: Unable to allocate P"
-            P = Identity_n(N)
-            ALLOCATE(Q(N,N), STAT=allocate_status)
-            IF(allocate_status /= 0) STOP "ERROR :: Unable to allocate Q"
-            Q = P
+        IF(this%use_total_pivot)THEN
             ALLOCATE(Q_final(N,N), STAT=allocate_status)
             IF(allocate_status /= 0) STOP "ERROR :: Unable to allocate Q_final"
-            Q_final = Q
+            Q_final = Identity_n(N)
         END IF
 
+        IF(this%use_partial_pivot) CALL pivot_partial(A_tmp, b_tmp)
+        IF(this%use_total_pivot) CALL pivot_total(A_tmp, b_tmp, Q_final)
+
         DO k = 1, N-1
-
-            IF(this%use_partial_pivot) CALL pivot_partial(A_tmp, b_tmp, k)
-            IF(this%use_total_pivot) CALL pivot_total(A_tmp, b_tmp, Q_final, k)
-
             pivot = A_tmp(k, k)
             IF (ABS(pivot) < epsi) STOP "ERROR :: Near-zero pivot – matrix may be singular"
 
@@ -204,12 +195,31 @@ MODULE NAFPack_Direct_method
         REAL(dp), DIMENSION(:), INTENT(IN) :: b
         REAL(dp), DIMENSION(SIZE(A, 1)) :: x
         REAL(dp),DIMENSION(SIZE(A, 1),SIZE(A, 1)) :: L, U
+        REAL(dp), DIMENSION(SIZE(A, 1), SIZE(A, 2)) :: A_tmp
+        REAL(dp), DIMENSION(:,:), ALLOCATABLE :: Q_final
+        REAL(dp), DIMENSION(SIZE(b)) :: b_tmp
+        INTEGER :: N, allocate_status
 
-        CALL LU_decomposition(A, L, U)
+        A_tmp = A
+        b_tmp = b
 
-        x = forward(L, b)
+        N = SIZE(A, 1)
+
+        IF(this%use_total_pivot)THEN
+            ALLOCATE(Q_final(N,N), STAT=allocate_status)
+            IF(allocate_status /= 0) STOP "ERROR :: Unable to allocate Q_final"
+            Q_final = Identity_n(N)
+        END IF
+
+        IF(this%use_partial_pivot) CALL pivot_partial(A_tmp, b_tmp)
+        IF(this%use_total_pivot) CALL pivot_total(A_tmp, b_tmp, Q_final)
+
+        CALL LU_decomposition(A_tmp, L, U)
+
+        x = forward(L, b_tmp)
 
         x = backward(U, x)
+        IF(this%use_total_pivot) x = MATMUL(Q_final, x)
 
     END FUNCTION solve_LU
 
@@ -219,14 +229,33 @@ MODULE NAFPack_Direct_method
         REAL(dp), DIMENSION(:), INTENT(IN) :: b
         REAL(dp), DIMENSION(SIZE(A, 1)) :: x
         REAL(dp),DIMENSION(SIZE(A, 1),SIZE(A, 1)) :: L, D, U
+        REAL(dp), DIMENSION(SIZE(A, 1), SIZE(A, 2)) :: A_tmp
+        REAL(dp), DIMENSION(:,:), ALLOCATABLE :: Q_final
+        REAL(dp), DIMENSION(SIZE(b)) :: b_tmp
+        INTEGER :: N, allocate_status
 
-        CALL LDU_decomposition(A, L, D, U)
+        A_tmp = A
+        b_tmp = b
 
-        x = forward(L, b)
+        N = SIZE(A, 1)
+
+        IF(this%use_total_pivot)THEN
+            ALLOCATE(Q_final(N,N), STAT=allocate_status)
+            IF(allocate_status /= 0) STOP "ERROR :: Unable to allocate Q_final"
+            Q_final = Identity_n(N)
+        END IF
+
+        IF(this%use_partial_pivot) CALL pivot_partial(A_tmp, b_tmp)
+        IF(this%use_total_pivot) CALL pivot_total(A_tmp, b_tmp, Q_final)
+
+        CALL LDU_decomposition(A_tmp, L, D, U)
+
+        x = forward(L, b_tmp)
 
         x = forward(D, x)
 
         x = backward(U, x)
+        IF(this%use_total_pivot) x = MATMUL(Q_final, x)
 
     END FUNCTION solve_LDU
 
@@ -334,66 +363,70 @@ MODULE NAFPack_Direct_method
 
     END FUNCTION solve_Faddeev_Leverrier
 
-    SUBROUTINE pivot_partial(A, b, k)
+    SUBROUTINE pivot_partial(A, b)
         REAL(dp), DIMENSION(:, :), INTENT(INOUT) :: A
         REAL(dp), DIMENSION(:), INTENT(INOUT) :: b
-        INTEGER, INTENT(IN) :: k
         REAL(dp), DIMENSION(SIZE(A, 1), SIZE(A, 1)) :: P
         INTEGER, DIMENSION(1) :: vlmax
-        INTEGER :: N, lmax
+        INTEGER :: N, lmax, k
 
         N=SIZE(A, 1)
 
-        ! Find the maximum absolute value in the column from row k to N
-        vlmax = MAXLOC(ABS(A(k:N, k)))
-        lmax = vlmax(1) + k - 1
-        
-        !calculate permutation matrix P
-        P = Identity_n(N)
-        IF (k /= lmax) THEN
-            P = rotation_matrix(P, [k, lmax])
-        END IF
+        DO k = 1, N-1
 
-        A = MATMUL(P, A)
-        b = MATMUL(P, b)
+            ! Find the maximum absolute value in the column from row k to N
+            vlmax = MAXLOC(ABS(A(k:N, k)))
+            lmax = vlmax(1) + k - 1
+            
+            !calculate permutation matrix P
+            P = Identity_n(N)
+            IF (k /= lmax) THEN
+                P = rotation_matrix(P, [k, lmax])
+            END IF
+
+            A = MATMUL(P, A)
+            b = MATMUL(P, b)
+
+        END DO
 
     END SUBROUTINE pivot_partial
 
-    SUBROUTINE pivot_total(A, b, Q_final, k)
+    SUBROUTINE pivot_total(A, b, Q_final)
         REAL(dp), DIMENSION(:, :), INTENT(INOUT) :: A
         REAL(dp), DIMENSION(:), INTENT(INOUT) :: b
         REAL(dp), DIMENSION(:, :), INTENT(INOUT) :: Q_final
-        INTEGER, INTENT(IN) :: k
         REAL(dp), DIMENSION(SIZE(A, 1), SIZE(A, 1)) :: P, Q
         INTEGER, DIMENSION(2) :: vlmax
-        INTEGER :: N, lmax, cmax
+        INTEGER :: N, lmax, cmax, k
 
         N=SIZE(A, 1)
 
-        ! Find max abs element in submatrix
-        vlmax = MAXLOC(ABS(A(k:N,k:N)))
-        lmax = vlmax(1) + k - 1
-        cmax = vlmax(2) + k - 1
+        DO k = 1, N-1
+            ! Find max abs element in submatrix
+            vlmax = MAXLOC(ABS(A(k:N,k:N)))
+            lmax = vlmax(1) + k - 1
+            cmax = vlmax(2) + k - 1
 
-        ! permute line if necessary
-        P = Identity_n(N)
-        IF (lmax /= k) THEN
-            P = rotation_matrix(P, [k, lmax])
-        END IF
+            ! permute line if necessary
+            P = Identity_n(N)
+            IF (lmax /= k) THEN
+                P = rotation_matrix(P, [k, lmax])
+            END IF
 
-        ! permute column if necessary
-        Q = Identity_n(N)
-        IF (cmax /= k) THEN
-            Q = rotation_matrix(Q, [k, cmax])
-        END IF
+            ! permute column if necessary
+            Q = Identity_n(N)
+            IF (cmax /= k) THEN
+                Q = rotation_matrix(Q, [k, cmax])
+            END IF
 
-        Q_final = MATMUL(Q, Q_final)
+            Q_final = MATMUL(Q, Q_final)
 
-        ! Apply permutations
-        A = MATMUL(P, A)
-        A = MATMUL(A, Q)
+            ! Apply permutations
+            A = MATMUL(P, A)
+            A = MATMUL(A, Q)
 
-        b = MATMUL(P, b)
+            b = MATMUL(P, b)
+        END DO
         
     END SUBROUTINE pivot_total
 

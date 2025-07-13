@@ -16,6 +16,8 @@ MODULE NAFPack_Logger_mod
         CHARACTER(LEN=100) :: filename = "log.txt"
         INTEGER :: file_unit = 99
         INTEGER :: step = 0
+        LOGICAL :: show_iteration = .TRUE.
+        LOGICAL :: show_final = .TRUE.
 
         CONTAINS
         
@@ -37,7 +39,7 @@ MODULE NAFPack_Logger_mod
         CLASS(Logger), INTENT(INOUT) :: this
         CHARACTER(LEN=*), INTENT(IN) :: msg
 
-        IF (MOD(this%step, this%frequency) /= 0) RETURN
+        IF (MOD(this%step, this%frequency) /= 0 .AND. this%show_iteration) RETURN
 
         IF (this%to_terminal) PRINT *, msg
         IF (this%to_file) WRITE(this%file_unit, '(A)') TRIM(msg)
