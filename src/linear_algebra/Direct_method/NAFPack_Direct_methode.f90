@@ -109,22 +109,22 @@ MODULE NAFPack_Direct_method
 
         SELECT CASE (this%method_type%value)
         CASE (METHOD_Gauss%value)
-            IF(.NOT. is_square_matrix(A)) STOP "ERROR :: Gauss method requires a square matrix."
+            IF(.NOT. is_square_matrix(A)) PRINT*, "WARNING :: Gauss method requires a square matrix."
         CASE (METHOD_LU%value)
-            IF(.NOT. is_square_matrix(A)) STOP "ERROR :: LU method requires a square matrix."
+            IF(.NOT. is_square_matrix(A)) PRINT*, "WARNING :: LU method requires a square matrix."
         CASE (METHOD_LDU%value)
-            IF(.NOT. is_non_zero_diagonal(A)) STOP "ERROR :: LDU method requires a non-zero diagonal matrix."
+            IF(.NOT. is_non_zero_diagonal(A)) PRINT*, "WARNING :: LDU method requires a non-zero diagonal matrix."
         CASE (METHOD_CHOLESKY%value)
-            IF(.NOT. is_SPD(A)) STOP "ERROR :: Cholesky method requires a symmetric positive definite matrix."
+            IF(.NOT. is_SPD(A)) PRINT*, "WARNING :: Cholesky method requires a symmetric positive definite matrix."
         CASE (METHOD_LDL_Cholesky%value)
-            IF(.NOT. is_symmetric(A)) STOP "ERROR :: LDL_Cholesky method requires a symmetric matrix."
+            IF(.NOT. is_symmetric(A)) PRINT*, "WARNING :: LDL_Cholesky method requires a symmetric matrix."
         CASE (METHOD_QR%value)
-            IF(.NOT. is_square_matrix(A)) STOP "ERROR :: QR method requires a square matrix."
+            IF(.NOT. is_square_matrix(A)) PRINT*, "WARNING :: QR method requires a square matrix."
         CASE (METHOD_TDMA%value)
-            IF(.NOT. is_tridiagonal(A)) STOP "ERROR :: TDMA method requires a tridiagonal matrix."
-            IF(.NOT. is_non_zero_diagonal(A, .TRUE.)) STOP "ERROR :: TDMA method requires a non-zero diagonal matrix."
+            IF(.NOT. is_tridiagonal(A)) PRINT*, "WARNING :: TDMA method requires a tridiagonal matrix."
+            IF(.NOT. is_non_zero_diagonal(A, .TRUE.)) PRINT*, "WARNING :: TDMA method requires a non-zero diagonal matrix."
         CASE (METHOD_FADDEEV_LEVERRIER%value)
-            IF(.NOT. is_square_matrix(A)) STOP "ERROR :: Faddeev_Leverrier method requires a square matrix."
+            IF(.NOT. is_square_matrix(A)) PRINT*, "WARNING :: Faddeev_Leverrier method requires a square matrix."
         CASE DEFAULT
             STOP "ERROR :: Unknown method direct for testing matrix properties"
         END SELECT

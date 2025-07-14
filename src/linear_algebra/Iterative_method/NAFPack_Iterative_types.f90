@@ -12,6 +12,7 @@ MODULE NAFPack_Iterative_types
     PUBLIC :: METHOD_GAUSS_SEIDEL, METHOD_SOR, METHOD_SSOR
     PUBLIC :: METHOD_SIP_ILU, METHOD_SIP_ICF
     PUBLIC :: METHOD_RICHARDSON
+    PUBLIC :: METHOD_CONJUGATE_GRADIENT
 
     TYPE :: MethodTypeIterative
         INTEGER :: value
@@ -27,5 +28,6 @@ MODULE NAFPack_Iterative_types
     TYPE(MethodTypeIterative), PARAMETER :: METHOD_SIP_ICF = MethodTypeIterative(6, "Strongly Implicit Procedure with ICF")
     TYPE(MethodTypeIterative), PARAMETER :: METHOD_SSOR = MethodTypeIterative(7, "Symmetric Successive Over-Relaxation")
     TYPE(MethodTypeIterative), PARAMETER :: METHOD_RICHARDSON = MethodTypeIterative(8, "Richardson")
+    TYPE(MethodTypeIterative), PARAMETER :: METHOD_CONJUGATE_GRADIENT = MethodTypeIterative(9, "Conjugate Gradient")
 
 END MODULE NAFPack_Iterative_types

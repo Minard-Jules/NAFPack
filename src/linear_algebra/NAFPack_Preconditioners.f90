@@ -137,26 +137,22 @@ MODULE NAFPack_Preconditioners
 
     END FUNCTION Calculate_ICF_preconditioner
 
-    SUBROUTINE Calculate_SSOR_preconditioner(A, L, D, U, omega, alpha)
+    SUBROUTINE Calculate_SSOR_preconditioner(A, L, D, omega, alpha)
         REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
         REAL(dp), INTENT(IN) :: omega, alpha
-        REAL(dp), DIMENSION(SIZE(A, 1), SIZE(A, 2)), INTENT(OUT) :: L, D, U
+        REAL(dp), DIMENSION(SIZE(A, 1), SIZE(A, 2)), INTENT(OUT) :: L, D
         INTEGER :: N, i
 
         N = SIZE(A, 1)
 
         L = 0.d0
         D = 0.d0
-        U = 0.d0
 
         DO i = 1, SIZE(A,1)
             L(i,i) = 1.d0/omega * A(i,i)
             L(i,1:i-1) = A(i,1:i-1)
             
             D(i,i) = A(i,i)
-
-            U(i,i) = 1.d0/omega * A(i,i)
-            U(i,i+1:) = A(i,i+1:)
         END DO
 
         L = (alpha * omega)/(2-omega) * L
