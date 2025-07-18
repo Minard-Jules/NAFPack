@@ -88,7 +88,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title="<p>12.0% of total for derived types.</p>Including implementation: 10 statements,  2.9% of total for derived types.">10 statements</a>
+                 title="<p>15.0% of total for derived types.</p>Including implementation: 16 statements,  3.0% of total for derived types.">16 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -131,14 +131,20 @@
       <div id="vars-0" class="collapse">
         <div class="list-group list-group-flush">
             <a class="list-group-item" href="../type/iterativeparams.html#variable-x_init">x_init</a>
-            <a class="list-group-item" href="../type/iterativeparams.html#variable-l~10">L</a>
-            <a class="list-group-item" href="../type/iterativeparams.html#variable-u~5">U</a>
-            <a class="list-group-item" href="../type/iterativeparams.html#variable-d~7">D</a>
+            <a class="list-group-item" href="../type/iterativeparams.html#variable-l~6">L</a>
+            <a class="list-group-item" href="../type/iterativeparams.html#variable-u~2">U</a>
+            <a class="list-group-item" href="../type/iterativeparams.html#variable-d~4">D</a>
             <a class="list-group-item" href="../type/iterativeparams.html#variable-residual">residual</a>
-            <a class="list-group-item" href="../type/iterativeparams.html#variable-omega~7">omega</a>
+            <a class="list-group-item" href="../type/iterativeparams.html#variable-p">p</a>
+            <a class="list-group-item" href="../type/iterativeparams.html#variable-omega~8">omega</a>
+            <a class="list-group-item" href="../type/iterativeparams.html#variable-k~8">k</a>
             <a class="list-group-item" href="../type/iterativeparams.html#variable-max_iter">max_iter</a>
             <a class="list-group-item" href="../type/iterativeparams.html#variable-tol">tol</a>
-            <a class="list-group-item" href="../type/iterativeparams.html#variable-alpha~8">alpha</a>
+            <a class="list-group-item" href="../type/iterativeparams.html#variable-alpha~7">alpha</a>
+            <a class="list-group-item" href="../type/iterativeparams.html#variable-beta">beta</a>
+            <a class="list-group-item" href="../type/iterativeparams.html#variable-is_stationary~2">is_stationary</a>
+            <a class="list-group-item" href="../type/iterativeparams.html#variable-old_dot_product">old_dot_product</a>
+            <a class="list-group-item" href="../type/iterativeparams.html#variable-strict_mode">strict_mode</a>
             <a class="list-group-item" href="../type/iterativeparams.html#variable-precond">precond</a>
         </div>
       </div>
@@ -211,7 +217,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-l~10"></span>
+              <span class="anchor" id="variable-l~6"></span>
               real(kind=dp),
             </td>
               <td>public,</td>
@@ -228,7 +234,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-u~5"></span>
+              <span class="anchor" id="variable-u~2"></span>
               real(kind=dp),
             </td>
               <td>public,</td>
@@ -245,7 +251,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-d~7"></span>
+              <span class="anchor" id="variable-d~4"></span>
               real(kind=dp),
             </td>
               <td>public,</td>
@@ -279,7 +285,24 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-omega~7"></span>
+              <span class="anchor" id="variable-p"></span>
+              real(kind=dp),
+            </td>
+              <td>public,</td>
+            <td>
+              DIMENSION(:), ALLOCATABLE
+            </td>
+            <td>::</td>
+            <td><strong>p</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-omega~8"></span>
               real(kind=dp),
             </td>
               <td>public</td>
@@ -290,6 +313,23 @@
             <td><strong>omega</strong></td>
 <td> =</td>
                 <td>1.d0</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-k~8"></span>
+              integer,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>k</strong></td>
+<td> =</td>
+                <td>0</td>
             <td>
                 
             </td>
@@ -330,7 +370,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-alpha~8"></span>
+              <span class="anchor" id="variable-alpha~7"></span>
               real(kind=dp),
             </td>
               <td>public</td>
@@ -341,6 +381,74 @@
             <td><strong>alpha</strong></td>
 <td> =</td>
                 <td>1.d0</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-beta"></span>
+              real(kind=dp),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>beta</strong></td>
+<td> =</td>
+                <td>1.d0</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-is_stationary~2"></span>
+              logical,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>is_stationary</strong></td>
+<td> =</td>
+                <td>.TRUE.</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-old_dot_product"></span>
+              real(kind=dp),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>old_dot_product</strong></td>
+<td> =</td>
+                <td>0.d0</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-strict_mode"></span>
+              logical,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>strict_mode</strong></td>
+<td> =</td>
+                <td>.FALSE.</td>
             <td>
                 
             </td>
@@ -377,10 +485,16 @@
 <span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">DIMENSION</span><span class="p">(:),</span><span class="w"> </span><span class="k">ALLOCATABLE</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x_init</span>
 <span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">DIMENSION</span><span class="p">(:,:),</span><span class="w"> </span><span class="k">ALLOCATABLE</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">L</span><span class="p">,</span><span class="w"> </span><span class="n">U</span><span class="p">,</span><span class="w"> </span><span class="n">D</span>
 <span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">DIMENSION</span><span class="p">(:),</span><span class="w"> </span><span class="k">ALLOCATABLE</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">residual</span>
+<span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">DIMENSION</span><span class="p">(:),</span><span class="w"> </span><span class="k">ALLOCATABLE</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">p</span>
 <span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">omega</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.d0</span>
+<span class="w">        </span><span class="kt">INTEGER</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
 <span class="w">        </span><span class="kt">INTEGER</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">max_iter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1000</span>
 <span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">tol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0d-12</span>
 <span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.d0</span>
+<span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.d0</span>
+<span class="w">        </span><span class="kt">LOGICAL</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">is_stationary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">TRUE</span><span class="p">.</span>
+<span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">old_dot_product</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.d0</span>
+<span class="w">        </span><span class="kt">LOGICAL</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">strict_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">FALSE</span><span class="p">.</span>
 <span class="w">        </span><span class="k">PROCEDURE</span><span class="p">(</span><span class="n">ApplyPreconditioner</span><span class="p">),</span><span class="w"> </span><span class="k">PASS</span><span class="p">(</span><span class="n">params</span><span class="p">),</span><span class="w"> </span><span class="k">POINTER</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">precond</span>
 <span class="w">    </span><span class="k">END TYPE </span><span class="n">IterativeParams</span>
 </pre></div>

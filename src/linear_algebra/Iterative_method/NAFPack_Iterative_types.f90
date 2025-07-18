@@ -13,11 +13,21 @@ MODULE NAFPack_Iterative_types
     PUBLIC :: METHOD_SIP_ILU, METHOD_SIP_ICF
     PUBLIC :: METHOD_RICHARDSON
     PUBLIC :: METHOD_CONJUGATE_GRADIENT
+    PUBLIC :: METHOD_CONJUGATE_RESIDUAL
+
+    PUBLIC :: IterativeMethodRequirements
 
     TYPE :: MethodTypeIterative
         INTEGER :: value
         CHARACTER(LEN=64) :: name
     END TYPE MethodTypeIterative
+
+    TYPE :: IterativeMethodRequirements
+        LOGICAL :: needs_SPD = .FALSE.
+        LOGICAL :: needs_diag_dom = .FALSE.
+        LOGICAL :: needs_square = .FALSE.
+        LOGICAL :: needs_symetric = .FALSE.
+    END TYPE IterativeMethodRequirements
 
     TYPE(MethodTypeIterative), PARAMETER :: METHOD_ITERATIVE_NONE = MethodTypeIterative(0, "None")
     TYPE(MethodTypeIterative), PARAMETER :: METHOD_Jacobi = MethodTypeIterative(1, "Jacobi")
@@ -29,5 +39,6 @@ MODULE NAFPack_Iterative_types
     TYPE(MethodTypeIterative), PARAMETER :: METHOD_SSOR = MethodTypeIterative(7, "Symmetric Successive Over-Relaxation")
     TYPE(MethodTypeIterative), PARAMETER :: METHOD_RICHARDSON = MethodTypeIterative(8, "Richardson")
     TYPE(MethodTypeIterative), PARAMETER :: METHOD_CONJUGATE_GRADIENT = MethodTypeIterative(9, "Conjugate Gradient")
+    TYPE(MethodTypeIterative), PARAMETER :: METHOD_CONJUGATE_RESIDUAL = MethodTypeIterative(10, "Conjugate Residual")
 
 END MODULE NAFPack_Iterative_types

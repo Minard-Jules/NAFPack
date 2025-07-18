@@ -16,10 +16,16 @@ MODULE NAFPack_Iterative_Params
         REAL(dp), DIMENSION(:), ALLOCATABLE :: x_init
         REAL(dp), DIMENSION(:,:), ALLOCATABLE :: L, U, D
         REAL(dp), DIMENSION(:), ALLOCATABLE :: residual
+        REAL(dp), DIMENSION(:), ALLOCATABLE :: p
         REAL(dp) :: omega = 1.d0
+        INTEGER :: k = 0
         INTEGER :: max_iter = 1000
         REAL(dp) :: tol = 1.0d-12
         REAL(dp) :: alpha = 1.d0
+        REAL(dp) :: beta = 1.d0
+        LOGICAL :: is_stationary = .TRUE.
+        REAL(dp) :: old_dot_product = 0.d0
+        LOGICAL :: strict_mode = .FALSE.
         PROCEDURE(ApplyPreconditioner), PASS(params), POINTER :: precond
     END TYPE IterativeParams
 
@@ -34,15 +40,15 @@ MODULE NAFPack_Iterative_Params
         CASE (METHOD_PRECOND_JACOBI%value)
             IF(.NOT. ALLOCATED(params%D)) STOP "ERROR :: Jacobi preconditioner requires &
                                                 &preconditioner matrix D to be allocated"
-            y = MATMUL(params%D, params%alpha * params%residual)
+            y = MATMUL(params%D, params%residual)
         CASE (METHOD_PRECOND_GS%value)
             IF(.NOT. ALLOCATED(params%L)) STOP "ERROR :: Gauss-Seidel preconditioner requires &
                                                 &preconditioner matrix L to be allocated"
-            y = forward(params%L, params%alpha * params%residual)
+            y = forward(params%L, params%residual)
         CASE (METHOD_PRECOND_SOR%value)
             IF(.NOT. ALLOCATED(params%L)) STOP "ERROR :: SOR preconditioner requires &
                                                 &preconditioner matrix L to be allocated"
-            y = forward(params%L, params%alpha * params%residual)
+            y = forward(params%L, params%residual)
         CASE (METHOD_PRECOND_JOR%value)
             IF(.NOT. ALLOCATED(params%D)) STOP "ERROR :: JOR preconditioner requires &
                                                 &preconditioner matrix D to be allocated"
@@ -51,21 +57,20 @@ MODULE NAFPack_Iterative_Params
             IF(.NOT. ALLOCATED(params%L) .OR. &
                .NOT. ALLOCATED(params%U)) STOP "ERROR :: ILU preconditioner requires &
                                                 &preconditioner matrices L and U to be allocated"
-            y = forward(params%L, params%alpha * params%residual)
+            y = forward(params%L, params%residual)
             y = backward(params%U, y)
         CASE (METHOD_PRECOND_ICF%value)
             IF(.NOT. ALLOCATED(params%L)) STOP "ERROR :: ICF preconditioner requires &
                                                 &preconditioner matrix L to be allocated"
-            y = forward(params%L, params%alpha * params%residual)
+            y = forward(params%L, params%residual)
             y = backward(TRANSPOSE(params%L), y)
         CASE (METHOD_PRECOND_SSOR%value)
             IF(.NOT. ALLOCATED(params%L) .OR. &
-               .NOT. ALLOCATED(params%D) .OR. &
-               .NOT. ALLOCATED(params%U)) STOP "ERROR :: SSOR preconditioner requires &
-                                                &preconditioner matrices L, D, and U to be allocated"
-            y = forward(params%L, params%alpha * params%residual)
+               .NOT. ALLOCATED(params%D)) STOP "ERROR :: SSOR preconditioner requires &
+                                                &preconditioner matrices L and D to be allocated"
+            y = forward(params%L, params%residual)
             y = MATMUL(params%D, y)
-            y = backward(TRANSPOSE(params%U), y)
+            y = backward(TRANSPOSE(params%L), y)
         CASE DEFAULT
             STOP "ERROR :: Unknown preconditioner method"
         END SELECT

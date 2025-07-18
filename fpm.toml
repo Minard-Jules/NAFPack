@@ -25,12 +25,3 @@ source-form = "default"
 
 [dependencies]
 openmp = "*"
-
-# [profiles.release]
-# flags = ["-O3", "-march=native", "-funroll-loops", "-ftree-vectorize", "-fopenmp", "-ffast-math"]
-
-# [profiles.debug]
-# flags = ["-g", "-O0", "-Wall", "-Wextra", "-pedantic", "-fcheck=all"]
-
-# [profiles.profile]
-# flags = ["-O2", "-g", "-pg"]

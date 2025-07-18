@@ -101,6 +101,26 @@ MODULE test_NAFPack_linear_algebra
         CALL test_direct_method(x_true = x, x = solver%direct%solve(A, b), method = "Gauss with total pivoting", stat = stat)
 
         !=====================================================================================
+        ! Gauss-Jordan method
+        CALL solver%direct%set_method(METHOD_Gauss_JORDAN)
+        CALL solver%direct%test_matrix(A)
+        CALL test_direct_method(x_true = x, x = solver%direct%solve(A, b), method = "Gauss-Jordan", stat = stat)
+
+        !=====================================================================================
+        ! Gauss-Jordan method with pivot partial
+        CALL solver%direct%set_method(METHOD_Gauss_JORDAN, set_pivot_partial=.TRUE.)
+        CALL solver%direct%test_matrix(A)
+        CALL test_direct_method(x_true = x, x = solver%direct%solve(A, b), &
+                                method = "Gauss-Jordan with partial pivoting", stat = stat)
+
+        !=====================================================================================
+        ! Gauss-Jordan method with pivot total
+        CALL solver%direct%set_method(METHOD_Gauss_JORDAN, set_pivot_total=.TRUE.)
+        CALL solver%direct%test_matrix(A)
+        CALL test_direct_method(x_true = x, x = solver%direct%solve(A, b), &
+                                method = "Gauss-Jordan with total pivoting", stat = stat)
+
+        !=====================================================================================
         ! LU decomposition method
         CALL solver%direct%set_method(METHOD_LU)
         CALL solver%direct%test_matrix(A)
@@ -463,6 +483,60 @@ MODULE test_NAFPack_linear_algebra
         CALL solver%iterative%test_matrix(A, params)
         CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params, verbose=verbose), &
                                    method = "Conjugate Gradient", stat = stat, preconditioner="SSOR preconditioner")
+        CALL solver%iterative%Dealocate_IterativeParams(params)
+
+        !=====================================================================================
+        !Conjugate Residual method
+        CALL solver%iterative%set_method(METHOD_CONJUGATE_RESIDUAL)
+        params = solver%iterative%Init_IterativeParams(N)
+        CALL solver%iterative%test_matrix(A, params)
+        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params, verbose=verbose), &
+                                   method = "Conjugate Residual", stat = stat)
+        CALL solver%iterative%Dealocate_IterativeParams(params)
+
+        !=====================================================================================
+        !Conjugate Residual method with Jacobi preconditioner
+        CALL solver%iterative%set_method(METHOD_CONJUGATE_RESIDUAL)
+        params = solver%iterative%Init_IterativeParams(N, A=A, method_preconditioner=METHOD_PRECOND_JACOBI)
+        CALL solver%iterative%test_matrix(A, params)
+        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params, verbose=verbose), &
+                                   method = "Conjugate Residual", stat = stat, preconditioner="Jacobi preconditioner")
+        CALL solver%iterative%Dealocate_IterativeParams(params)
+
+        !=====================================================================================
+        !Conjugate Residual method with JOR preconditioner
+        CALL solver%iterative%set_method(METHOD_CONJUGATE_RESIDUAL)
+        params = solver%iterative%Init_IterativeParams(N, A=A, omega=1.d0, method_preconditioner=METHOD_PRECOND_JOR)
+        CALL solver%iterative%test_matrix(A, params)
+        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params, verbose=verbose), &
+                                   method = "Conjugate Residual", stat = stat, preconditioner="JOR preconditioner")
+        CALL solver%iterative%Dealocate_IterativeParams(params)
+
+        !=====================================================================================
+        !Conjugate Residual method with ILU preconditioner
+        CALL solver%iterative%set_method(METHOD_CONJUGATE_RESIDUAL)
+        params = solver%iterative%Init_IterativeParams(N, A=A, omega=1.d0, method_preconditioner=METHOD_PRECOND_ILU)
+        CALL solver%iterative%test_matrix(A, params)
+        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params, verbose=verbose), &
+                                   method = "Conjugate Residual", stat = stat, preconditioner="ILU preconditioner")
+        CALL solver%iterative%Dealocate_IterativeParams(params)
+
+        !=====================================================================================
+        !Conjugate Residual method with ICF preconditioner
+        CALL solver%iterative%set_method(METHOD_CONJUGATE_RESIDUAL)
+        params = solver%iterative%Init_IterativeParams(N, A=A, omega=1.d0, method_preconditioner=METHOD_PRECOND_ICF)
+        CALL solver%iterative%test_matrix(A, params)
+        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params, verbose=verbose), &
+                                   method = "Conjugate Residual", stat = stat, preconditioner="ICF preconditioner")
+        CALL solver%iterative%Dealocate_IterativeParams(params)
+
+        !=====================================================================================
+        !Conjugate Residual method with Gauss-Seidel preconditioner
+        CALL solver%iterative%set_method(METHOD_CONJUGATE_RESIDUAL)
+        params = solver%iterative%Init_IterativeParams(N, A=A, omega=1.0d0, method_preconditioner=METHOD_PRECOND_SSOR)
+        CALL solver%iterative%test_matrix(A, params)
+        CALL test_iterative_method(x_true = x, x = solver%iterative%solve(A, b, params, verbose=verbose), &
+                                   method = "Conjugate Residual", stat = stat, preconditioner="SSOR preconditioner")
         CALL solver%iterative%Dealocate_IterativeParams(params)
 
         !=====================================================================================

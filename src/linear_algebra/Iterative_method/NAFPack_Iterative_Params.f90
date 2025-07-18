@@ -25,6 +25,7 @@ MODULE NAFPack_Iterative_Params
         REAL(dp) :: beta = 1.d0
         LOGICAL :: is_stationary = .TRUE.
         REAL(dp) :: old_dot_product = 0.d0
+        LOGICAL :: strict_mode = .FALSE.
         PROCEDURE(ApplyPreconditioner), PASS(params), POINTER :: precond
     END TYPE IterativeParams
 

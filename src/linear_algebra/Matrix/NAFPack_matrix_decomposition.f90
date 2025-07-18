@@ -327,8 +327,8 @@ MODULE NAFPack_matrix_decomposition
         INTEGER :: N, i, j
 
         N= SIZE(A, 1)
-
-        Q = Identity_n(N)
+        Q = 0.d0
+        R = 0.d0
 
         DO j = 1, N
             u = A(:, j)

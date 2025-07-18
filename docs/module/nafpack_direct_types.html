@@ -88,7 +88,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title=" 1.6% of total for modules and submodules.">33 statements</a>
+                 title=" 1.8% of total for modules and submodules.">42 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -131,6 +131,7 @@
         <div class="list-group list-group-flush">
             <a class="list-group-item" href="../module/nafpack_direct_types.html#variable-method_direct_none">METHOD_DIRECT_NONE</a>
             <a class="list-group-item" href="../module/nafpack_direct_types.html#variable-method_gauss">METHOD_Gauss</a>
+            <a class="list-group-item" href="../module/nafpack_direct_types.html#variable-method_gauss_jordan">METHOD_Gauss_JORDAN</a>
             <a class="list-group-item" href="../module/nafpack_direct_types.html#variable-method_lu">METHOD_LU</a>
             <a class="list-group-item" href="../module/nafpack_direct_types.html#variable-method_ldu">METHOD_LDU</a>
             <a class="list-group-item" href="../module/nafpack_direct_types.html#variable-method_cholesky">METHOD_CHOLESKY</a>
@@ -163,6 +164,7 @@
         <div class="list-group list-group-flush">
             <a class="list-group-item" href="../module/nafpack_direct_types.html#type-methodtypedirect">MethodTypeDirect</a>
             <a class="list-group-item" href="../module/nafpack_direct_types.html#type-methodqr">MethodQR</a>
+            <a class="list-group-item" href="../module/nafpack_direct_types.html#type-directmethodrequirements">DirectMethodRequirements</a>
         </div>
       </div>
     </div>
@@ -373,6 +375,23 @@ parameter
         </tr>
         <tr>
             <td>
+              <span class="anchor" id="variable-method_gauss_jordan"></span>
+              type(<a href='..\type\methodtypedirect.html'>MethodTypeDirect</a>),
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>METHOD_Gauss_JORDAN</strong></td>
+<td> =</td>
+                <td>MethodTypeDirect(2, &#34;Gauss-Jordan&#34;)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
               <span class="anchor" id="variable-method_lu"></span>
               type(<a href='..\type\methodtypedirect.html'>MethodTypeDirect</a>),
             </td>
@@ -383,7 +402,7 @@ parameter
             <td>::</td>
             <td><strong>METHOD_LU</strong></td>
 <td> =</td>
-                <td>MethodTypeDirect(2, &#34;LU&#34;)</td>
+                <td>MethodTypeDirect(3, &#34;LU&#34;)</td>
             <td>
                 
             </td>
@@ -400,7 +419,7 @@ parameter
             <td>::</td>
             <td><strong>METHOD_LDU</strong></td>
 <td> =</td>
-                <td>MethodTypeDirect(3, &#34;LDU&#34;)</td>
+                <td>MethodTypeDirect(4, &#34;LDU&#34;)</td>
             <td>
                 
             </td>
@@ -417,7 +436,7 @@ parameter
             <td>::</td>
             <td><strong>METHOD_CHOLESKY</strong></td>
 <td> =</td>
-                <td>MethodTypeDirect(4, &#34;Cholesky&#34;)</td>
+                <td>MethodTypeDirect(5, &#34;Cholesky&#34;)</td>
             <td>
                 
             </td>
@@ -434,7 +453,7 @@ parameter
             <td>::</td>
             <td><strong>METHOD_LDL_Cholesky</strong></td>
 <td> =</td>
-                <td>MethodTypeDirect(5, &#34;LDL-Cholesky&#34;)</td>
+                <td>MethodTypeDirect(6, &#34;LDL-Cholesky&#34;)</td>
             <td>
                 
             </td>
@@ -451,7 +470,7 @@ parameter
             <td>::</td>
             <td><strong>METHOD_QR</strong></td>
 <td> =</td>
-                <td>MethodTypeDirect(6, &#34;QR&#34;)</td>
+                <td>MethodTypeDirect(7, &#34;QR&#34;)</td>
             <td>
                 
             </td>
@@ -468,7 +487,7 @@ parameter
             <td>::</td>
             <td><strong>METHOD_TDMA</strong></td>
 <td> =</td>
-                <td>MethodTypeDirect(7, &#34;TDMA&#34;)</td>
+                <td>MethodTypeDirect(8, &#34;TDMA&#34;)</td>
             <td>
                 
             </td>
@@ -485,7 +504,7 @@ parameter
             <td>::</td>
             <td><strong>METHOD_FADDEEV_LEVERRIER</strong></td>
 <td> =</td>
-                <td>MethodTypeDirect(8, &#34;Faddeev-Leverrier&#34;)</td>
+                <td>MethodTypeDirect(9, &#34;Faddeev-Leverrier&#34;)</td>
             <td>
                 
             </td>
@@ -688,6 +707,123 @@ parameter
             <td><strong>name</strong></td>
                 <td></td>
                 <td></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="type-directmethodrequirements"></span>
+      <h3>
+        type, public&nbsp;::&nbsp;
+        <a href='..\type\directmethodrequirements.html'>DirectMethodRequirements</a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      
+
+        <h4>Components</h4>
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Visibility</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-needs_spd"></span>
+              logical,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>needs_SPD</strong></td>
+<td> =</td>
+                <td>.FALSE.</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-needs_non_zero_diag"></span>
+              logical,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>needs_non_zero_diag</strong></td>
+<td> =</td>
+                <td>.FALSE.</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-needs_square"></span>
+              logical,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>needs_square</strong></td>
+<td> =</td>
+                <td>.FALSE.</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-needs_tridiagonal"></span>
+              logical,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>needs_tridiagonal</strong></td>
+<td> =</td>
+                <td>.FALSE.</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-needs_symmetric"></span>
+              logical,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>needs_symmetric</strong></td>
+<td> =</td>
+                <td>.FALSE.</td>
             <td>
 
             </td>
