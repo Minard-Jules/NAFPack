@@ -124,7 +124,21 @@ MODULE NAFPack_matrix_decomposition
     !> Incomplete LU decomposition of a matrix A
     !> \[ A \approx LU \]
     !> This subroutine performs incomplete LU decomposition of a given matrix **A**, where **L** is a lower triangular matrix and **U** is an upper triangular matrix.
-    SUBROUTINE ILU_decomposition(A, L, U)
+    SUBROUTINE ILU_decomposition(A, L, U, p)
+
+        REAL(dp), DIMENSION(:, :), INTENT(IN)  :: A
+        REAL(dp), DIMENSION(SIZE(A, 1), SIZE(A, 1)), INTENT(OUT) :: L, U
+        INTEGER, OPTIONAL, INTENT(IN) :: p
+
+        IF(.NOT. PRESENT(p))THEN
+            CALL basicILU(A, L, U)
+        ELSE
+            CALL ILUp(A, L, U, p)
+        END IF
+
+    END SUBROUTINE ILU_decomposition
+
+    SUBROUTINE basicILU(A, L, U)
 
         REAL(dp), DIMENSION(:, :), INTENT(IN)  :: A
         REAL(dp), DIMENSION(SIZE(A, 1), SIZE(A, 1)), INTENT(OUT) :: L, U
@@ -133,21 +147,80 @@ MODULE NAFPack_matrix_decomposition
 
         N = SIZE(A, 1)
 
-        L = Identity_n(N)
+        L = 0.d0
         U = 0.d0
 
         S = A /= 0
 
-        DO i = 1, N
-            DO j = 1, i-1
-                IF (S(i,j)) L(i,j) = (A(i,j) - DOT_PRODUCT(L(i, 1:j-1), U(1:j-1, j))) / U(j,j)
+        DO j = 1, N
+            L(j, j) = 1.d0
+
+            DO i = 1, j
+                IF (S(i,j)) U(i, j) = A(i, j) - DOT_PRODUCT(L(i, 1:i-1), U(1:i-1, j))
             END DO
-            DO j = i, N
-                IF (S(i,j)) U(i,j) = A(i,j) - DOT_PRODUCT(L(i, 1:i-1), U(1:i-1, j))
+    
+            DO i = j+1, N
+                IF (S(i,j)) L(i, j) = (A(i, j) - DOT_PRODUCT(L(i, 1:j-1), U(1:j-1, j))) / U(j, j)
             END DO
         END DO
 
-    END SUBROUTINE ILU_decomposition
+    END SUBROUTINE basicILU
+
+    SUBROUTINE ILUp(A, L, U, p)
+
+        REAL(dp), DIMENSION(:, :), INTENT(IN)  :: A
+        REAL(dp), DIMENSION(SIZE(A, 1), SIZE(A, 1)), INTENT(OUT) :: L, U
+        INTEGER, INTENT(IN) :: p
+        LOGICAL, DIMENSION(SIZE(A, 1), SIZE(A, 1)) :: S
+        INTEGER, DIMENSION(SIZE(A, 1), SIZE(A, 1)) :: level
+        INTEGER :: i, j, k, N
+
+        N = SIZE(A, 1)
+
+        L = 0.d0
+        U = 0.d0
+        level = int_inf
+
+        S = A /= 0
+        WHERE(S) level = 0
+
+        DO j = 1, N
+            L(j, j) = 1.d0
+
+            DO i = 1, j
+                IF(level(i, j) <= p) THEN
+                    L(i, j) = A(i, j)
+                    DO k = 1, j-1
+                        IF(level(i, k) + level(k, j) + 1 <= p)THEN
+                            L(i, j) = L(i, j) - L(i, k) * U(k, j)
+                            IF(.NOT. S(i, j))THEN
+                                level(i, j) = MIN(level(i, j), level(i, k) + level(k, j) + 1)
+                                S(i, j) = .TRUE.
+                            END IF
+                        END IF
+                    END DO
+                    L(i, j) = L(i, j) / U(j, j)
+                END IF
+            END DO
+
+            DO i = i, N
+                IF(level(i, j) <= p) THEN
+                    U(i, j) = A(i, j)
+                    DO k = 1, i-1
+                        IF(level(i, k) + level(k, j) + 1 <= p)THEN
+                            U(i, j) = U(i, j) - L(i, k) * U(k, j)
+                            IF(.NOT. S(i, j))THEN
+                                level(i, j) = MIN(level(i, j), level(i, k) + level(k, j) + 1)
+                                S(i, j) = .TRUE.
+                            END IF
+                        END IF
+                    END DO
+                    L(i, j) = L(i, j) / U(j, j)
+                END IF
+            END DO
+        END DO
+
+    END SUBROUTINE ILUp
 
     !> Cholesky decomposition of a matrix A
     !> \[ A = LL^T \]

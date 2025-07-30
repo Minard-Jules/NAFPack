@@ -266,7 +266,8 @@ MODULE NAFPack_Iterative_methods
             PRINT*, "Checking if the matrix is square..."
             IF (.NOT. is_square_matrix(A)) THEN
                 IF(params%strict_mode) THEN
-                    STOP "ERROR :: "//this%method_type%name//" method requires a square matrix."
+                    PRINT*, "ERROR :: "//this%method_type%name//" method requires a square matrix."
+                    STOP
                 ELSE
                     PRINT*, "WARNING :: "//this%method_type%name//" method requires a square matrix."
                 END IF
@@ -277,7 +278,8 @@ MODULE NAFPack_Iterative_methods
             PRINT*, "Checking if the matrix is symmetric positive definite (SPD)..."
             IF (.NOT. is_SPD(A)) THEN
                 IF(params%strict_mode) THEN
-                    STOP "ERROR :: "//this%method_type%name//" method requires a symmetric positive definite matrix."
+                    PRINT*, "ERROR :: "//this%method_type%name//" method requires a symmetric positive definite matrix."
+                    STOP
                 ELSE
                     PRINT*, "WARNING :: "//this%method_type%name//" method requires a symmetric positive definite matrix."
                 END IF
@@ -288,7 +290,8 @@ MODULE NAFPack_Iterative_methods
             PRINT*, "Checking if the matrix is diagonally dominant..."
             IF (.NOT. is_diagonally_dominant(A)) THEN
                 IF(params%strict_mode) THEN
-                    STOP "ERROR :: "//this%method_type%name//" method requires a diagonally dominant matrix."
+                    PRINT*, "ERROR :: "//this%method_type%name//" method requires a diagonally dominant matrix."
+                    STOP
                 ELSE
                     PRINT*, "WARNING :: "//this%method_type%name//" method requires a diagonally dominant matrix."
                 END IF
@@ -299,7 +302,8 @@ MODULE NAFPack_Iterative_methods
             PRINT*, "Checking if the matrix is symmetric..."
             IF (.NOT. is_symmetric(A)) THEN
                 IF(params%strict_mode) THEN
-                    STOP "ERROR :: "//this%method_type%name//" method requires a symmetric matrix."
+                    PRINT*, "ERROR :: "//this%method_type%name//" method requires a symmetric matrix."
+                    STOP
                 ELSE
                     PRINT*, "WARNING :: "//this%method_type%name//" method requires a symmetric matrix."
                 END IF

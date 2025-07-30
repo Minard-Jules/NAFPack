@@ -135,7 +135,8 @@ MODULE NAFPack_Direct_method
             PRINT*, "Checking if the matrix is square..."
             IF (.NOT. is_square_matrix(A)) THEN
                 IF(strict) THEN
-                    STOP "ERROR :: "//this%method_type%name//" method requires a square matrix."
+                    PRINT*, "ERROR :: "//this%method_type%name//" method requires a square matrix."
+                    STOP
                 ELSE
                     PRINT*, "WARNING :: "//this%method_type%name//" method requires a square matrix."
                 END IF
@@ -146,7 +147,8 @@ MODULE NAFPack_Direct_method
             PRINT*, "Checking if the matrix is symmetric positive definite (SPD)..."
             IF (.NOT. is_SPD(A)) THEN
                 IF(strict) THEN
-                    STOP "ERROR :: "//this%method_type%name//" method requires a symmetric positive definite matrix."
+                    PRINT*, "ERROR :: "//this%method_type%name//" method requires a symmetric positive definite matrix."
+                    STOP
                 ELSE
                     PRINT*, "WARNING :: "//this%method_type%name//" method requires a symmetric positive definite matrix."
                 END IF
@@ -157,7 +159,8 @@ MODULE NAFPack_Direct_method
             PRINT*, "Checking if the matrix has a non-zero diagonal..."
             IF (.NOT. is_non_zero_diagonal(A)) THEN
                 IF(strict) THEN
-                    STOP "ERROR :: "//this%method_type%name//" method requires a non-zero diagonal matrix."
+                    PRINT*, "ERROR :: "//this%method_type%name//" method requires a non-zero diagonal matrix."
+                    STOP
                 ELSE
                     PRINT*, "WARNING :: "//this%method_type%name//" method requires a non-zero diagonal matrix."
                 END IF
@@ -168,7 +171,8 @@ MODULE NAFPack_Direct_method
             PRINT*, "Checking if the matrix is tridiagonal..."
             IF (.NOT. is_tridiagonal(A)) THEN
                 IF(strict) THEN
-                    STOP "ERROR :: "//this%method_type%name//" method requires a tridiagonal matrix."
+                    PRINT*, "ERROR :: "//this%method_type%name//" method requires a tridiagonal matrix."
+                    STOP
                 ELSE
                     PRINT*, "WARNING :: "//this%method_type%name//" method requires a tridiagonal matrix."
                 END IF
@@ -179,7 +183,8 @@ MODULE NAFPack_Direct_method
             PRINT*, "Checking if the matrix is symmetric..."
             IF (.NOT. is_symmetric(A)) THEN
                 IF(strict) THEN
-                    STOP "ERROR :: "//this%method_type%name//" method requires a symmetric matrix."
+                    PRINT*, "ERROR :: "//this%method_type%name//" method requires a symmetric matrix."
+                    STOP
                 ELSE
                     PRINT*, "WARNING :: "//this%method_type%name//" method requires a symmetric matrix."
                 END IF

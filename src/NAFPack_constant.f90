@@ -4,12 +4,13 @@
 !> and other parameters that are used throughout the NAFPack library.
 MODULE NAFPack_constant
 
-    USE, INTRINSIC :: iso_fortran_env, ONLY: sp=>real32, dp=>real64, isp=>int32, idp=>int64
+    USE, INTRINSIC :: iso_fortran_env, ONLY: sp=>real32, dp=>real64, &
+                                            isp=>int32, idp=>int64
     
     IMPLICIT NONE
 
     PRIVATE
-    PUBLIC :: pi, im, epsi, kmax, sp, dp, epsi_test, idp, isp
+    PUBLIC :: pi, im, epsi, kmax, sp, dp, epsi_test, idp, isp, int_inf
     PUBLIC :: status_len
     PUBLIC :: red_color, green_color, yellow_color, blue_color, white_color, cyan_color, purple_color, reset_color
     PUBLIC :: NAF_SUCCESS, NAF_ERROR_DIMENSION, NAF_ERROR_SINGULAR, NAF_ERROR_CONVERGENCE, NAF_ERROR_MEMORY, &
@@ -22,6 +23,8 @@ MODULE NAFPack_constant
     COMPLEX(dp), PARAMETER :: im = (0.d0, 1.d0)
     !> Small \( \epsilon \) value
     REAL(dp), PARAMETER :: epsi = 1.d-12, epsi_test = 1.d-6
+    !> 
+    INTEGER, PARAMETER :: int_inf = 1000000
     !> Maximum number of iterations for iterative methods
     INTEGER, PARAMETER :: kmax = 10000
     !> len of status messages
