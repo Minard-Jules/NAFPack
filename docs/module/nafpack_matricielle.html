@@ -1,0 +1,1324 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+    <meta name="author" content="Minard Jules" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>NAFPack_matricielle &ndash; NAFPack</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="../css/local.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">NAFPack </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>NAFPack_matricielle
+      <small>Module</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 4.3% of total for modules and submodules.">139 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/NAFPack_matricielle.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='..\sourcefile\nafpack_matricielle.f90.html'>NAFPack_matricielle.f90</a></li>
+            <li class="breadcrumb-item active" aria-current="page">NAFPack_matricielle</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
+  </script>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+        <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#funcs-0"
+         aria-expanded="false" aria-controls="funcs-0">
+         <h4 class="card-header bg-primary text-white">Functions</h4>
+      </a>
+      <div id="funcs-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/nafpack_matricielle.html#proc-dot">dot</a>
+            <a class="list-group-item" href="../module/nafpack_matricielle.html#proc-cross">cross</a>
+            <a class="list-group-item" href="../module/nafpack_matricielle.html#proc-norm_2_real">norm_2_real</a>
+            <a class="list-group-item" href="../module/nafpack_matricielle.html#proc-norm_2_complex">norm_2_complex</a>
+            <a class="list-group-item" href="../module/nafpack_matricielle.html#proc-normalise">normalise</a>
+            <a class="list-group-item" href="../module/nafpack_matricielle.html#proc-normalise_complexe">normalise_complexe</a>
+            <a class="list-group-item" href="../module/nafpack_matricielle.html#proc-trace">Trace</a>
+            <a class="list-group-item" href="../module/nafpack_matricielle.html#proc-diagonally_dominant_matrix">Diagonally_Dominant_Matrix</a>
+            <a class="list-group-item" href="../module/nafpack_matricielle.html#proc-identity_n">Identity_n</a>
+            <a class="list-group-item" href="../module/nafpack_matricielle.html#proc-diag">Diag</a>
+            <a class="list-group-item" href="../module/nafpack_matricielle.html#proc-make_tridiagonal">Make_Tridiagonal</a>
+            <a class="list-group-item" href="../module/nafpack_matricielle.html#proc-rotation_matrix">rotation_matrix</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+
+    <div class="col-md-9" id='text'>
+      <p>Module for Tensor operations in NAFPack</p>
+<br>          <div class="card mb-4">
+      <h3 class="card-header card-title bg-light">Uses</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <ul class="list-inline">
+                  <li class="list-inline-item"><a href='nafpack_constant.html'>NAFPack_constant</a></li>
+              </ul>
+            </li>
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.0.1 (20250615.1724)
+ -->
+<!-- Title: module~~nafpack_matricielle~~UsesGraph Pages: 1 -->
+<svg id="modulenafpack_matricielleUsesGraph" width="378pt" height="32pt"
+ viewBox="0.00 0.00 378.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~nafpack_matricielle~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 27.52)">
+<title>module~~nafpack_matricielle~~UsesGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 373.81,-27.52 373.81,4 -4,4"/>
+<!-- module~nafpack_matricielle -->
+<g id="module~~nafpack_matricielle~~UsesGraph_node1" class="node">
+<title>module~nafpack_matricielle</title>
+<polygon fill="none" stroke="black" points="369.81,-23.52 260.04,-23.52 260.04,0 369.81,0 369.81,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="314.92" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">NAFPack_matricielle</text>
+</g>
+<!-- module~nafpack_constant -->
+<g id="module~~nafpack_matricielle~~UsesGraph_node2" class="node">
+<title>module~nafpack_constant</title>
+<g id="a_module~~nafpack_matricielle~~UsesGraph_node2"><a xlink:href="../module/nafpack_constant.html" xlink:title="NAFPack_constant">
+<polygon fill="#337ab7" stroke="#337ab7" points="224.04,-23.52 121.77,-23.52 121.77,0 224.04,0 224.04,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="172.9" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_constant</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_matricielle&#45;&gt;module~nafpack_constant -->
+<g id="module~~nafpack_matricielle~~UsesGraph_edge1" class="edge">
+<title>module~nafpack_matricielle&#45;&gt;module~nafpack_constant</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M259.79,-11.76C251.84,-11.76 243.6,-11.76 235.51,-11.76"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="235.74,-8.26 225.74,-11.76 235.74,-15.26 235.74,-8.26"/>
+</g>
+<!-- iso_fortran_env -->
+<g id="module~~nafpack_matricielle~~UsesGraph_node3" class="node">
+<title>iso_fortran_env</title>
+<g id="a_module~~nafpack_matricielle~~UsesGraph_node3"><a xlink:href="http://fortranwiki.org/fortran/show/iso_fortran_env" xlink:title="iso_fortran_env">
+<polygon fill="#337ab7" stroke="#337ab7" points="85.77,-23.52 0,-23.52 0,0 85.77,0 85.77,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="42.88" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_constant&#45;&gt;iso_fortran_env -->
+<g id="module~~nafpack_matricielle~~UsesGraph_edge2" class="edge">
+<title>module~nafpack_constant&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M121.31,-11.76C113.42,-11.76 105.25,-11.76 97.3,-11.76"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="97.38,-8.26 87.38,-11.76 97.38,-15.26 97.38,-8.26"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsesGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsesGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.0.1 (20250615.1724)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="485pt" height="32pt"
+ viewBox="0.00 0.00 485.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 27.52)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 481.13,-27.52 481.13,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-23.52 0,-23.52 0,0 54,0 54,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="137.76,-23.52 72.24,-23.52 72.24,0 137.76,0 137.76,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="105" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="218.63,-23.52 155.37,-23.52 155.37,0 218.63,0 218.63,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="187" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="291,-23.52 237,-23.52 237,0 291,0 291,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="264" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="363,-23.52 309,-23.52 309,0 363,0 363,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="336" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="477.13,-23.52 380.87,-23.52 380.87,0 477.13,0 477.13,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="429" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+          <div class="card">
+      <h3 class="card-header card-title bg-light">Used by</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.0.1 (20250615.1724)
+ -->
+<!-- Title: module~~nafpack_matricielle~~UsedByGraph Pages: 1 -->
+<svg id="modulenafpack_matricielleUsedByGraph" width="641pt" height="162pt"
+ viewBox="0.00 0.00 641.00 162.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~nafpack_matricielle~~UsedByGraph" class="graph" transform="scale(0.655004 0.655004) rotate(0) translate(4 243.78)">
+<title>module~~nafpack_matricielle~~UsedByGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-243.78 974.62,-243.78 974.62,4 -4,4"/>
+<!-- module~nafpack_matricielle -->
+<g id="module~~nafpack_matricielle~~UsedByGraph_node1" class="node">
+<title>module~nafpack_matricielle</title>
+<polygon fill="none" stroke="black" points="109.77,-160.52 0,-160.52 0,-137 109.77,-137 109.77,-160.52"/>
+<text xml:space="preserve" text-anchor="middle" x="54.88" y="-144.78" font-family="Helvetica,sans-Serif" font-size="10.50">NAFPack_matricielle</text>
+</g>
+<!-- module~nafpack_eigen -->
+<g id="module~~nafpack_matricielle~~UsedByGraph_node2" class="node">
+<title>module~nafpack_eigen</title>
+<g id="a_module~~nafpack_matricielle~~UsedByGraph_node2"><a xlink:href="../module/nafpack_eigen.html" xlink:title="NAFPack_Eigen">
+<polygon fill="#337ab7" stroke="#337ab7" points="460.18,-103.52 371.41,-103.52 371.41,-80 460.18,-80 460.18,-103.52"/>
+<text xml:space="preserve" text-anchor="middle" x="415.8" y="-87.79" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Eigen</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_eigen&#45;&gt;module~nafpack_matricielle -->
+<g id="module~~nafpack_matricielle~~UsedByGraph_edge1" class="edge">
+<title>module~nafpack_eigen&#45;&gt;module~nafpack_matricielle</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M371.27,-85.2C333.43,-80.82 277.37,-77.55 229.78,-87.76"/>
+</g>
+<!-- module~nafpack_matrix_decomposition -->
+<g id="module~~nafpack_matricielle~~UsedByGraph_node5" class="node">
+<title>module~nafpack_matrix_decomposition</title>
+<g id="a_module~~nafpack_matricielle~~UsedByGraph_node5"><a xlink:href="../module/nafpack_matrix_decomposition.html" xlink:title="NAFPack_matrix_decomposition">
+<polygon fill="#337ab7" stroke="#337ab7" points="311.79,-181.52 145.77,-181.52 145.77,-158 311.79,-158 311.79,-181.52"/>
+<text xml:space="preserve" text-anchor="middle" x="228.78" y="-165.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_matrix_decomposition</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_eigen&#45;&gt;module~nafpack_matrix_decomposition -->
+<g id="module~~nafpack_matricielle~~UsedByGraph_edge11" class="edge">
+<title>module~nafpack_eigen&#45;&gt;module~nafpack_matrix_decomposition</title>
+<path fill="none" stroke="#00ff91" stroke-dasharray="5,2" d="M396.15,-103.99C376.05,-116.72 342.75,-136.46 311.79,-148.76 306.84,-150.72 301.65,-152.55 296.39,-154.25"/>
+<polygon fill="#00ff91" stroke="#00ff91" points="295.54,-150.85 286.99,-157.09 297.57,-157.55 295.54,-150.85"/>
+</g>
+<!-- module~nafpack_iterative_methods -->
+<g id="module~~nafpack_matricielle~~UsedByGraph_node3" class="node">
+<title>module~nafpack_iterative_methods</title>
+<g id="a_module~~nafpack_matricielle~~UsedByGraph_node3"><a xlink:href="../module/nafpack_iterative_methods.html" xlink:title="NAFPack_Iterative_methods">
+<polygon fill="#337ab7" stroke="#337ab7" points="848.1,-181.52 700.83,-181.52 700.83,-158 848.1,-158 848.1,-181.52"/>
+<text xml:space="preserve" text-anchor="middle" x="774.46" y="-165.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Iterative_methods</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_iterative_methods&#45;&gt;module~nafpack_matricielle -->
+<g id="module~~nafpack_matricielle~~UsedByGraph_edge2" class="edge">
+<title>module~nafpack_iterative_methods&#45;&gt;module~nafpack_matricielle</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M591.32,-169.76C581.04,-169.21 239.87,-85.71 229.78,-87.76"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M700.66,-171.66C667.84,-172.03 628.6,-171.79 593.32,-169.76"/>
+</g>
+<!-- module~nafpack_iterative_methods&#45;&gt;module~nafpack_matrix_decomposition -->
+<g id="module~~nafpack_matricielle~~UsedByGraph_edge12" class="edge">
+<title>module~nafpack_iterative_methods&#45;&gt;module~nafpack_matrix_decomposition</title>
+<path fill="none" stroke="#00ff91" stroke-dasharray="5,2" d="M591.32,-169.76C513.87,-165.6 494.36,-169.91 416.8,-169.76"/>
+</g>
+<!-- module~nafpack_matrix_properties -->
+<g id="module~~nafpack_matricielle~~UsedByGraph_node6" class="node">
+<title>module~nafpack_matrix_properties</title>
+<g id="a_module~~nafpack_matricielle~~UsedByGraph_node6"><a xlink:href="../module/nafpack_matrix_properties.html" xlink:title="NAFPack_matrix_properties">
+<polygon fill="#337ab7" stroke="#337ab7" points="664.83,-103.52 519.81,-103.52 519.81,-80 664.83,-80 664.83,-103.52"/>
+<text xml:space="preserve" text-anchor="middle" x="592.32" y="-87.79" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_matrix_properties</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_iterative_methods&#45;&gt;module~nafpack_matrix_properties -->
+<g id="module~~nafpack_matricielle~~UsedByGraph_edge16" class="edge">
+<title>module~nafpack_iterative_methods&#45;&gt;module~nafpack_matrix_properties</title>
+<path fill="none" stroke="#0091ff" stroke-dasharray="5,2" d="M745.32,-157.57C714.87,-144.39 666.12,-123.28 632.07,-108.54"/>
+<polygon fill="#0091ff" stroke="#0091ff" points="633.52,-105.35 622.96,-104.59 630.74,-111.78 633.52,-105.35"/>
+</g>
+<!-- module~nafpack_preconditioners -->
+<g id="module~~nafpack_matricielle~~UsedByGraph_node8" class="node">
+<title>module~nafpack_preconditioners</title>
+<g id="a_module~~nafpack_matricielle~~UsedByGraph_node8"><a xlink:href="../module/nafpack_preconditioners.html" xlink:title="NAFPack_Preconditioners">
+<polygon fill="#337ab7" stroke="#337ab7" points="483.81,-221.52 347.79,-221.52 347.79,-198 483.81,-198 483.81,-221.52"/>
+<text xml:space="preserve" text-anchor="middle" x="415.8" y="-205.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Preconditioners</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_iterative_methods&#45;&gt;module~nafpack_preconditioners -->
+<g id="module~~nafpack_matricielle~~UsedByGraph_edge18" class="edge">
+<title>module~nafpack_iterative_methods&#45;&gt;module~nafpack_preconditioners</title>
+<path fill="none" stroke="#ff00da" stroke-dasharray="5,2" d="M758.03,-181.85C737.92,-196.76 701.03,-221.29 664.83,-230.76 599.53,-247.84 521.59,-236.26 470.73,-224.64"/>
+<polygon fill="#ff00da" stroke="#ff00da" points="471.69,-221.27 461.15,-222.36 470.07,-228.08 471.69,-221.27"/>
+</g>
+<!-- module~nafpack_iterative_params -->
+<g id="module~~nafpack_matricielle~~UsedByGraph_node10" class="node">
+<title>module~nafpack_iterative_params</title>
+<g id="a_module~~nafpack_matricielle~~UsedByGraph_node10"><a xlink:href="../module/nafpack_iterative_params.html" xlink:title="NAFPack_Iterative_Params">
+<polygon fill="#337ab7" stroke="#337ab7" points="663.7,-221.52 520.93,-221.52 520.93,-198 663.7,-198 663.7,-221.52"/>
+<text xml:space="preserve" text-anchor="middle" x="592.32" y="-205.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Iterative_Params</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_iterative_methods&#45;&gt;module~nafpack_iterative_params -->
+<g id="module~~nafpack_matricielle~~UsedByGraph_edge21" class="edge">
+<title>module~nafpack_iterative_methods&#45;&gt;module~nafpack_iterative_params</title>
+<path fill="none" stroke="#00ff00" stroke-dasharray="5,2" d="M718.44,-181.98C699.84,-186.11 678.88,-190.76 659.51,-195.06"/>
+<polygon fill="#00ff00" stroke="#00ff00" points="658.8,-191.63 649.8,-197.22 660.32,-198.47 658.8,-191.63"/>
+</g>
+<!-- module~nafpack_krylov_method -->
+<g id="module~~nafpack_matricielle~~UsedByGraph_node4" class="node">
+<title>module~nafpack_krylov_method</title>
+<g id="a_module~~nafpack_matricielle~~UsedByGraph_node4"><a xlink:href="../module/nafpack_krylov_method.html" xlink:title="NAFPack_Krylov_method">
+<polygon fill="#337ab7" stroke="#337ab7" points="295.29,-139.52 162.27,-139.52 162.27,-116 295.29,-116 295.29,-139.52"/>
+<text xml:space="preserve" text-anchor="middle" x="228.78" y="-123.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Krylov_method</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_krylov_method&#45;&gt;module~nafpack_matricielle -->
+<g id="module~~nafpack_matricielle~~UsedByGraph_edge3" class="edge">
+<title>module~nafpack_krylov_method&#45;&gt;module~nafpack_matricielle</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M161.81,-135.82C148.63,-137.43 134.79,-139.12 121.61,-140.73"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="121.25,-137.25 111.75,-141.94 122.1,-144.2 121.25,-137.25"/>
+</g>
+<!-- module~nafpack_matrix_decomposition&#45;&gt;module~nafpack_matricielle -->
+<g id="module~~nafpack_matricielle~~UsedByGraph_edge4" class="edge">
+<title>module~nafpack_matrix_decomposition&#45;&gt;module~nafpack_matricielle</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M145.36,-159.69C137.25,-158.7 129.11,-157.71 121.21,-156.74"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="121.7,-153.27 111.34,-155.54 120.85,-160.22 121.7,-153.27"/>
+</g>
+<!-- module~nafpack_matrix_properties&#45;&gt;module~nafpack_matricielle -->
+<g id="module~~nafpack_matricielle~~UsedByGraph_edge5" class="edge">
+<title>module~nafpack_matrix_properties&#45;&gt;module~nafpack_matricielle</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M539.4,-79.52C521.85,-75.95 502.08,-72.53 483.81,-70.76 371.18,-59.86 340.42,-64.02 229.78,-87.76"/>
+</g>
+<!-- module~nafpack_matrix_properties&#45;&gt;module~nafpack_eigen -->
+<g id="module~~nafpack_matricielle~~UsedByGraph_edge8" class="edge">
+<title>module~nafpack_matrix_properties&#45;&gt;module~nafpack_eigen</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M519.33,-91.76C503.47,-91.76 486.91,-91.76 471.84,-91.76"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="472.16,-88.26 462.16,-91.76 472.16,-95.26 472.16,-88.26"/>
+</g>
+<!-- module~nafpack_matrix_tools -->
+<g id="module~~nafpack_matricielle~~UsedByGraph_node7" class="node">
+<title>module~nafpack_matrix_tools</title>
+<g id="a_module~~nafpack_matricielle~~UsedByGraph_node7"><a xlink:href="../module/nafpack_matrix_tools.html" xlink:title="NAFPack_matrix_tools">
+<polygon fill="#337ab7" stroke="#337ab7" points="475.56,-23.52 356.04,-23.52 356.04,0 475.56,0 475.56,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="415.8" y="-7.79" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_matrix_tools</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_matrix_tools&#45;&gt;module~nafpack_matricielle -->
+<g id="module~~nafpack_matricielle~~UsedByGraph_edge6" class="edge">
+<title>module~nafpack_matrix_tools&#45;&gt;module~nafpack_matricielle</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M382.68,-23.99C371.6,-28.27 359.12,-33.16 347.79,-37.76 295.01,-59.18 285.47,-75.81 229.78,-87.76"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M227.78,-87.76C191.2,-95.61 181.14,-94.55 145.77,-106.76 126.22,-113.51 105.23,-123.17 88.46,-131.52"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="87.3,-128.19 79.96,-135.83 90.46,-134.43 87.3,-128.19"/>
+</g>
+<!-- module~nafpack_preconditioners&#45;&gt;module~nafpack_matricielle -->
+<g id="module~~nafpack_matricielle~~UsedByGraph_edge7" class="edge">
+<title>module~nafpack_preconditioners&#45;&gt;module~nafpack_matricielle</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M347.37,-211.76C292.28,-211.79 212.85,-208.16 145.77,-190.76 124.92,-185.35 102.99,-175.21 86.02,-166.24"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="87.92,-163.29 77.47,-161.59 84.58,-169.44 87.92,-163.29"/>
+</g>
+<!-- module~nafpack_preconditioners&#45;&gt;module~nafpack_matrix_decomposition -->
+<g id="module~~nafpack_matricielle~~UsedByGraph_edge14" class="edge">
+<title>module~nafpack_preconditioners&#45;&gt;module~nafpack_matrix_decomposition</title>
+<path fill="none" stroke="#00ff91" stroke-dasharray="5,2" d="M358.28,-197.54C339.09,-193.39 317.46,-188.72 297.49,-184.4"/>
+<polygon fill="#00ff91" stroke="#00ff91" points="298.26,-180.98 287.75,-182.29 296.78,-187.83 298.26,-180.98"/>
+</g>
+<!-- module~nafpack_direct_method -->
+<g id="module~~nafpack_matricielle~~UsedByGraph_node9" class="node">
+<title>module~nafpack_direct_method</title>
+<g id="a_module~~nafpack_matricielle~~UsedByGraph_node9"><a xlink:href="../module/nafpack_direct_method.html" xlink:title="NAFPack_Direct_method">
+<polygon fill="#337ab7" stroke="#337ab7" points="840.22,-121.52 708.7,-121.52 708.7,-98 840.22,-98 840.22,-121.52"/>
+<text xml:space="preserve" text-anchor="middle" x="774.46" y="-105.79" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Direct_method</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_direct_method&#45;&gt;module~nafpack_matrix_decomposition -->
+<g id="module~~nafpack_matricielle~~UsedByGraph_edge10" class="edge">
+<title>module~nafpack_direct_method&#45;&gt;module~nafpack_matrix_decomposition</title>
+<path fill="none" stroke="#00ff91" stroke-dasharray="5,2" d="M708.45,-121.92C613.59,-139.47 445.37,-169.81 416.8,-169.76"/>
+<path fill="none" stroke="#00ff91" stroke-dasharray="5,2" d="M414.8,-169.76C385.17,-169.39 352.87,-169.28 323.67,-169.3"/>
+<polygon fill="#00ff91" stroke="#00ff91" points="323.72,-165.8 313.73,-169.31 323.73,-172.8 323.72,-165.8"/>
+</g>
+<!-- module~nafpack_direct_method&#45;&gt;module~nafpack_matrix_properties -->
+<g id="module~~nafpack_matricielle~~UsedByGraph_edge15" class="edge">
+<title>module~nafpack_direct_method&#45;&gt;module~nafpack_matrix_properties</title>
+<path fill="none" stroke="#0091ff" stroke-dasharray="5,2" d="M708.43,-103.26C698.03,-102.22 687.15,-101.14 676.4,-100.06"/>
+<polygon fill="#0091ff" stroke="#0091ff" points="677.08,-96.61 666.78,-99.1 676.39,-103.58 677.08,-96.61"/>
+</g>
+<!-- module~nafpack_direct_method&#45;&gt;module~nafpack_matrix_tools -->
+<g id="module~~nafpack_matricielle~~UsedByGraph_edge17" class="edge">
+<title>module~nafpack_direct_method&#45;&gt;module~nafpack_matrix_tools</title>
+<path fill="none" stroke="#4800ff" stroke-dasharray="5,2" d="M742.39,-97.57C720.83,-89.36 691.34,-78.64 664.83,-70.76 605.47,-53.1 536.9,-37.12 486.93,-26.26"/>
+<polygon fill="#4800ff" stroke="#4800ff" points="487.91,-22.89 477.4,-24.2 486.44,-29.74 487.91,-22.89"/>
+</g>
+<!-- module~nafpack_iterative_params&#45;&gt;module~nafpack_matrix_decomposition -->
+<g id="module~~nafpack_matricielle~~UsedByGraph_edge13" class="edge">
+<title>module~nafpack_iterative_params&#45;&gt;module~nafpack_matrix_decomposition</title>
+<path fill="none" stroke="#00ff91" stroke-dasharray="5,2" d="M558.38,-197.58C523.67,-185.85 467.16,-169.86 416.8,-169.76"/>
+</g>
+<!-- module~nafpack_iterative_params&#45;&gt;module~nafpack_preconditioners -->
+<g id="module~~nafpack_matricielle~~UsedByGraph_edge19" class="edge">
+<title>module~nafpack_iterative_params&#45;&gt;module~nafpack_preconditioners</title>
+<path fill="none" stroke="#ff00da" stroke-dasharray="5,2" d="M520.59,-209.76C512.34,-209.76 503.88,-209.76 495.53,-209.76"/>
+<polygon fill="#ff00da" stroke="#ff00da" points="495.76,-206.26 485.76,-209.76 495.76,-213.26 495.76,-206.26"/>
+</g>
+<!-- module~nafpack_linalg -->
+<g id="module~~nafpack_matricielle~~UsedByGraph_node11" class="node">
+<title>module~nafpack_linalg</title>
+<g id="a_module~~nafpack_matricielle~~UsedByGraph_node11"><a xlink:href="../module/nafpack_linalg.html" xlink:title="NAFPack_linalg">
+<polygon fill="#337ab7" stroke="#337ab7" points="970.62,-142.52 884.1,-142.52 884.1,-119 970.62,-119 970.62,-142.52"/>
+<text xml:space="preserve" text-anchor="middle" x="927.36" y="-126.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_linalg</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_linalg&#45;&gt;module~nafpack_iterative_methods -->
+<g id="module~~nafpack_matricielle~~UsedByGraph_edge9" class="edge">
+<title>module~nafpack_linalg&#45;&gt;module~nafpack_iterative_methods</title>
+<path fill="none" stroke="#ffda00" stroke-dasharray="5,2" d="M883.93,-141.73C868.34,-145.76 850.41,-150.39 833.67,-154.72"/>
+<polygon fill="#ffda00" stroke="#ffda00" points="833.16,-151.23 824.35,-157.13 834.91,-158.01 833.16,-151.23"/>
+</g>
+<!-- module~nafpack_linalg&#45;&gt;module~nafpack_direct_method -->
+<g id="module~~nafpack_matricielle~~UsedByGraph_edge20" class="edge">
+<title>module~nafpack_linalg&#45;&gt;module~nafpack_direct_method</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M883.93,-124.85C873.96,-123.47 863.04,-121.95 852.09,-120.42"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="852.59,-116.96 842.2,-119.05 851.62,-123.89 852.59,-116.96"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var panmodulenafpack_matricielleUsedByGraph = svgPanZoom('#modulenafpack_matricielleUsedByGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsedByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsedByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.0.1 (20250615.1724)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="485pt" height="32pt"
+ viewBox="0.00 0.00 485.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 27.52)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 481.13,-27.52 481.13,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-23.52 0,-23.52 0,0 54,0 54,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="137.76,-23.52 72.24,-23.52 72.24,0 137.76,0 137.76,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="105" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="218.63,-23.52 155.37,-23.52 155.37,0 218.63,0 218.63,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="187" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="291,-23.52 237,-23.52 237,0 291,0 291,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="264" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="363,-23.52 309,-23.52 309,0 363,0 363,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="336" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="477.13,-23.52 380.87,-23.52 380.87,0 477.13,0 477.13,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="429" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+      <br>
+
+
+
+
+
+
+
+        <section>
+          <h2>Functions</h2>
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-dot"></span> <h3>public  function <a href='..\proc\dot.html'>dot</a>(a, b) result(RESULT)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>function that calculates the dot product of two real 3-dimensional vectors <script type="math/tex"> \vec{a} </script> and <script type="math/tex"> \vec{b} </script>
+<script type="math/tex; mode=display"> \vec{a} \cdot \vec{b} </script>
+</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-a"></span>
+              real(kind=dp),
+            </td>
+<td>intent(in),</td>
+              <td></td>            <td>
+              DIMENSION(:)
+            </td>
+            <td>::</td>
+            <td><strong>a</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-b~2"></span>
+              real(kind=dp),
+            </td>
+<td>intent(in),</td>
+              <td></td>            <td>
+              DIMENSION(:)
+            </td>
+            <td>::</td>
+            <td><strong>b</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>real(kind=dp)</small>
+    </h4>
+    
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-cross"></span> <h3>public  function <a href='..\proc\cross.html'>cross</a>(a, b) result(RESULT)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>function that calculates the cross product between two real 3-dimensional vectors <script type="math/tex"> \vec{a} </script> and <script type="math/tex"> \vec{b} </script>
+<script type="math/tex; mode=display"> \vec{a} \times \vec{b} </script>
+<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p><a href="../proc/cross.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-a~2"></span>
+              real(kind=dp),
+            </td>
+<td></td>
+              <td></td>            <td>
+              DIMENSION(3)
+            </td>
+            <td>::</td>
+            <td><strong>a</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-b~3"></span>
+              real(kind=dp),
+            </td>
+<td></td>
+              <td></td>            <td>
+              DIMENSION(3)
+            </td>
+            <td>::</td>
+            <td><strong>b</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>real(kind=dp), DIMENSION(3)</small>
+    </h4>
+    
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-norm_2_real"></span> <h3>public  function <a href='..\proc\norm_2_real.html'>norm_2_real</a>(a) result(RESULT)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>function that calculates the Euclidean norm (L2 norm) of a vector <script type="math/tex"> \vec{a} </script>,
+where <script type="math/tex"> \vec{a} \in \mathbb{R}^n </script>
+<script type="math/tex; mode=display"> ||\vec{a}||_2 = \sqrt{\sum_{i=1}^{n} a_i^2} \quad \text{ with } \quad \sum_{i=1}^{n} a_i^2 = \vec{a} \cdot \vec{a} </script>
+where <script type="math/tex"> n </script> is the dimension of the real vector <script type="math/tex"> \vec{a} </script>.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-a~3"></span>
+              real(kind=dp),
+            </td>
+<td></td>
+              <td></td>            <td>
+              DIMENSION(:)
+            </td>
+            <td>::</td>
+            <td><strong>a</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>real(kind=dp)</small>
+    </h4>
+    
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-norm_2_complex"></span> <h3>public  function <a href='..\proc\norm_2_complex.html'>norm_2_complex</a>(a) result(RESULT)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>function that calculates the Euclidean norm (L2 norm or modulus) of a vector <script type="math/tex"> \vec{a} </script>,
+where <script type="math/tex"> \vec{a} \in \mathbb{C}^n </script>
+<script type="math/tex; mode=display"> ||\vec{a}||_2 = \sqrt{\sum_{i=1}^{n} |a_i|^2} \quad \text{ with } \quad \sum_{i=1}^{n} |a_i|^2 = \vec{a} \cdot \overline{\vec{a}} </script>
+where <script type="math/tex"> n </script> is the dimension of the complex vector <script type="math/tex"> \vec{a} </script>.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-a~5"></span>
+              complex(kind=dp),
+            </td>
+<td></td>
+              <td></td>            <td>
+              DIMENSION(:)
+            </td>
+            <td>::</td>
+            <td><strong>a</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>real(kind=dp)</small>
+    </h4>
+    
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-normalise"></span> <h3>public  function <a href='..\proc\normalise.html'>normalise</a>(a) result(RESULT)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>function that normalises a real vector a to make it a unit vector,
+where <script type="math/tex"> \vec{a} \in \mathbb{R}^n </script>
+<script type="math/tex; mode=display"> \hat{a} = \frac{\vec{a}}{||\vec{a}||_2} </script>
+</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-a~6"></span>
+              real(kind=dp),
+            </td>
+<td></td>
+              <td></td>            <td>
+              DIMENSION(:)
+            </td>
+            <td>::</td>
+            <td><strong>a</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>real(kind=dp), DIMENSION(size(a))</small>
+    </h4>
+    
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-normalise_complexe"></span> <h3>public  function <a href='..\proc\normalise_complexe.html'>normalise_complexe</a>(a) result(RESULT)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>function that normalises a complex vector a to make it a unit vector,
+where <script type="math/tex"> \vec{a} \in \mathbb{C}^n </script>
+<script type="math/tex; mode=display"> \hat{a} = \frac{\vec{a}}{||\vec{a}||_2} </script>
+</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-a~7"></span>
+              complex(kind=dp),
+            </td>
+<td></td>
+              <td></td>            <td>
+              DIMENSION(:)
+            </td>
+            <td>::</td>
+            <td><strong>a</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>complex(kind=dp), DIMENSION(size(a))</small>
+    </h4>
+    
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-trace"></span> <h3>public  function <a href='..\proc\trace.html'>Trace</a>(A) result(RESULT)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>function that calculates the trace of a square matrix <script type="math/tex"> A </script>
+<script type="math/tex; mode=display"> \text{Tr}(A) = \sum_{i=1}^{n} A(i,i) </script>
+</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-a~39"></span>
+              real(kind=dp),
+            </td>
+<td>intent(in),</td>
+              <td></td>            <td>
+              DIMENSION(:, :)
+            </td>
+            <td>::</td>
+            <td><strong>A</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>real(kind=dp)</small>
+    </h4>
+    
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-diagonally_dominant_matrix"></span> <h3>public  function <a href='..\proc\diagonally_dominant_matrix.html'>Diagonally_Dominant_Matrix</a>(A) result(diagonally_dominant)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>function which checks if <strong>A</strong> is diagonally dominant
+<script type="math/tex; mode=display"> \forall i, |A(i,i)| \geq \sum_{j \neq i} |A(i,j)| </script>
+</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-a~40"></span>
+              real(kind=dp),
+            </td>
+<td>intent(in),</td>
+              <td></td>            <td>
+              DIMENSION(:, :)
+            </td>
+            <td>::</td>
+            <td><strong>A</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>logical</small>
+    </h4>
+    
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-identity_n"></span> <h3>public  function <a href='..\proc\identity_n.html'>Identity_n</a>(N, use_concurrent) result(Identity)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>function that returns the identity matrix for a given size N
+<script type="math/tex; mode=display"> I_N = \begin{pmatrix} 1 & 0 & \cdots & 0 \\ 0 & 1 & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & 1 \end{pmatrix} </script>
+</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-n~36"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>N</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-use_concurrent"></span>
+              logical,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>use_concurrent</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>real(kind=dp), DIMENSION(N, N)</small>
+    </h4>
+    
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-diag"></span> <h3>public  function <a href='..\proc\diag.html'>Diag</a>(A) result(D)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>function that extracts the diagonal of a matrix
+<script type="math/tex; mode=display"> D = \begin{pmatrix} A(1,1) & 0 & \cdots & 0 \\ 0 & A(2,2) & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & A(n,n) \end{pmatrix} </script>
+where <script type="math/tex"> D </script> is a vector containing the diagonal elements of the matrix <script type="math/tex"> A </script>.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-a~41"></span>
+              real(kind=dp),
+            </td>
+<td>intent(in),</td>
+              <td></td>            <td>
+              DIMENSION(:, :)
+            </td>
+            <td>::</td>
+            <td><strong>A</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>real(kind=dp), DIMENSION(size(A, 1))</small>
+    </h4>
+    
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-make_tridiagonal"></span> <h3>public  function <a href='..\proc\make_tridiagonal.html'>Make_Tridiagonal</a>(d_minus, d, d_plus) result(T)  
+</h3></div>
+    <div class="card-body">
+          
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-d_minus"></span>
+              real(kind=dp),
+            </td>
+<td>intent(in),</td>
+              <td></td>            <td>
+              DIMENSION(:)
+            </td>
+            <td>::</td>
+            <td><strong>d_minus</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-d"></span>
+              real(kind=dp),
+            </td>
+<td>intent(in),</td>
+              <td></td>            <td>
+              DIMENSION(:)
+            </td>
+            <td>::</td>
+            <td><strong>d</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-d_plus"></span>
+              real(kind=dp),
+            </td>
+<td>intent(in),</td>
+              <td></td>            <td>
+              DIMENSION(:)
+            </td>
+            <td>::</td>
+            <td><strong>d_plus</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>real(kind=dp), DIMENSION(size(d, 1), size(d, 1))</small>
+    </h4>
+    
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-rotation_matrix"></span> <h3>public  function <a href='..\proc\rotation_matrix.html'>rotation_matrix</a>(A, rotation) result(G)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Function to create a rotation matrix</p><a href="../proc/rotation_matrix.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-a~42"></span>
+              real(kind=dp),
+            </td>
+<td>intent(in),</td>
+              <td></td>            <td>
+              DIMENSION(:, :)
+            </td>
+            <td>::</td>
+            <td><strong>A</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-rotation"></span>
+              integer,
+            </td>
+<td>intent(in),</td>
+              <td></td>            <td>
+              DIMENSION(2)
+            </td>
+            <td>::</td>
+            <td><strong>rotation</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>real(kind=dp), DIMENSION(size(A, 1), size(A, 2))</small>
+    </h4>
+    
+
+    </div>
+  </div>
+
+        </section>
+        <br>
+
+
+
+
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              NAFPack
+ was developed by Minard Jules<br>              &copy; 2025 
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+            </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>

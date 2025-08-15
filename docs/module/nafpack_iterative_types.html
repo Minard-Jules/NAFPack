@@ -1,0 +1,1234 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+    <meta name="author" content="Minard Jules" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>NAFPack_Iterative_types &ndash; NAFPack</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="../css/local.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">NAFPack </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>NAFPack_Iterative_types
+      <small>Module</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 1.9% of total for modules and submodules.">63 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/NAFPack_Iterative_types.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='..\sourcefile\nafpack_iterative_types.f90.html'>NAFPack_Iterative_types.f90</a></li>
+            <li class="breadcrumb-item active" aria-current="page">NAFPack_Iterative_types</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
+  </script>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+        <div id="sidebar">
+      <h3>Contents</h3>
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#vars-0"
+         aria-expanded="false" aria-controls="vars-0">
+         <h4 class="card-header bg-primary text-white">Variables</h4>
+      </a>
+      <div id="vars-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/nafpack_iterative_types.html#variable-method_iterative_none">METHOD_ITERATIVE_NONE</a>
+            <a class="list-group-item" href="../module/nafpack_iterative_types.html#variable-method_jacobi">METHOD_Jacobi</a>
+            <a class="list-group-item" href="../module/nafpack_iterative_types.html#variable-method_gauss_seidel">METHOD_GAUSS_SEIDEL</a>
+            <a class="list-group-item" href="../module/nafpack_iterative_types.html#variable-method_sor">METHOD_SOR</a>
+            <a class="list-group-item" href="../module/nafpack_iterative_types.html#variable-method_jor">METHOD_JOR</a>
+            <a class="list-group-item" href="../module/nafpack_iterative_types.html#variable-method_sip_ilu">METHOD_SIP_ILU</a>
+            <a class="list-group-item" href="../module/nafpack_iterative_types.html#variable-method_sip_icf">METHOD_SIP_ICF</a>
+            <a class="list-group-item" href="../module/nafpack_iterative_types.html#variable-method_ssor">METHOD_SSOR</a>
+            <a class="list-group-item" href="../module/nafpack_iterative_types.html#variable-method_richardson">METHOD_RICHARDSON</a>
+            <a class="list-group-item" href="../module/nafpack_iterative_types.html#variable-method_conjugate_gradient">METHOD_CONJUGATE_GRADIENT</a>
+            <a class="list-group-item" href="../module/nafpack_iterative_types.html#variable-method_conjugate_residual">METHOD_CONJUGATE_RESIDUAL</a>
+            <a class="list-group-item" href="../module/nafpack_iterative_types.html#variable-method_cgne">METHOD_CGNE</a>
+            <a class="list-group-item" href="../module/nafpack_iterative_types.html#variable-method_cgnr">METHOD_CGNR</a>
+            <a class="list-group-item" href="../module/nafpack_iterative_types.html#variable-method_gmres">METHOD_GMRES</a>
+            <a class="list-group-item" href="../module/nafpack_iterative_types.html#variable-norm_2">NORM_2</a>
+            <a class="list-group-item" href="../module/nafpack_iterative_types.html#variable-norm_1">NORM_1</a>
+            <a class="list-group-item" href="../module/nafpack_iterative_types.html#variable-norm_inf">NORM_INF</a>
+            <a class="list-group-item" href="../module/nafpack_iterative_types.html#variable-relaxation_factor_none">RELAXATION_FACTOR_NONE</a>
+            <a class="list-group-item" href="../module/nafpack_iterative_types.html#variable-relaxation_factor_omega">RELAXATION_FACTOR_OMEGA</a>
+            <a class="list-group-item" href="../module/nafpack_iterative_types.html#variable-relaxation_factor_alpha">RELAXATION_FACTOR_ALPHA</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#types-0"
+         aria-expanded="false" aria-controls="types-0">
+         <h4 class="card-header bg-primary text-white">Derived Types</h4>
+      </a>
+      <div id="types-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/nafpack_iterative_types.html#type-methodtypeiterative">MethodTypeIterative</a>
+            <a class="list-group-item" href="../module/nafpack_iterative_types.html#type-iterativemethodrequirements">IterativeMethodRequirements</a>
+            <a class="list-group-item" href="../module/nafpack_iterative_types.html#type-norm_used">Norm_used</a>
+            <a class="list-group-item" href="../module/nafpack_iterative_types.html#type-relaxation_factor_used">relaxation_factor_used</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+
+    <div class="col-md-9" id='text'>
+      
+<br>          <div class="card mb-4">
+      <h3 class="card-header card-title bg-light">Uses</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <ul class="list-inline">
+                  <li class="list-inline-item"><a href='nafpack_constant.html'>NAFPack_constant</a></li>
+              </ul>
+            </li>
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.0.1 (20250615.1724)
+ -->
+<!-- Title: module~~nafpack_iterative_types~~UsesGraph Pages: 1 -->
+<svg id="modulenafpack_iterative_typesUsesGraph" width="400pt" height="32pt"
+ viewBox="0.00 0.00 400.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~nafpack_iterative_types~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 27.52)">
+<title>module~~nafpack_iterative_types~~UsesGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 395.56,-27.52 395.56,4 -4,4"/>
+<!-- module~nafpack_iterative_types -->
+<g id="module~~nafpack_iterative_types~~UsesGraph_node1" class="node">
+<title>module~nafpack_iterative_types</title>
+<polygon fill="none" stroke="black" points="391.56,-23.52 260.04,-23.52 260.04,0 391.56,0 391.56,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="325.8" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">NAFPack_Iterative_types</text>
+</g>
+<!-- module~nafpack_constant -->
+<g id="module~~nafpack_iterative_types~~UsesGraph_node2" class="node">
+<title>module~nafpack_constant</title>
+<g id="a_module~~nafpack_iterative_types~~UsesGraph_node2"><a xlink:href="../module/nafpack_constant.html" xlink:title="NAFPack_constant">
+<polygon fill="#337ab7" stroke="#337ab7" points="224.04,-23.52 121.77,-23.52 121.77,0 224.04,0 224.04,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="172.9" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_constant</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_iterative_types&#45;&gt;module~nafpack_constant -->
+<g id="module~~nafpack_iterative_types~~UsesGraph_edge1" class="edge">
+<title>module~nafpack_iterative_types&#45;&gt;module~nafpack_constant</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M259.93,-11.76C251.79,-11.76 243.48,-11.76 235.39,-11.76"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="235.65,-8.26 225.65,-11.76 235.65,-15.26 235.65,-8.26"/>
+</g>
+<!-- iso_fortran_env -->
+<g id="module~~nafpack_iterative_types~~UsesGraph_node3" class="node">
+<title>iso_fortran_env</title>
+<g id="a_module~~nafpack_iterative_types~~UsesGraph_node3"><a xlink:href="http://fortranwiki.org/fortran/show/iso_fortran_env" xlink:title="iso_fortran_env">
+<polygon fill="#337ab7" stroke="#337ab7" points="85.77,-23.52 0,-23.52 0,0 85.77,0 85.77,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="42.88" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_constant&#45;&gt;iso_fortran_env -->
+<g id="module~~nafpack_iterative_types~~UsesGraph_edge2" class="edge">
+<title>module~nafpack_constant&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M121.31,-11.76C113.42,-11.76 105.25,-11.76 97.3,-11.76"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="97.38,-8.26 87.38,-11.76 97.38,-15.26 97.38,-8.26"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsesGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsesGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.0.1 (20250615.1724)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="485pt" height="32pt"
+ viewBox="0.00 0.00 485.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 27.52)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 481.13,-27.52 481.13,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-23.52 0,-23.52 0,0 54,0 54,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="137.76,-23.52 72.24,-23.52 72.24,0 137.76,0 137.76,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="105" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="218.63,-23.52 155.37,-23.52 155.37,0 218.63,0 218.63,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="187" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="291,-23.52 237,-23.52 237,0 291,0 291,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="264" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="363,-23.52 309,-23.52 309,0 363,0 363,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="336" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="477.13,-23.52 380.87,-23.52 380.87,0 477.13,0 477.13,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="429" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+          <div class="card">
+      <h3 class="card-header card-title bg-light">Used by</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.0.1 (20250615.1724)
+ -->
+<!-- Title: module~~nafpack_iterative_types~~UsedByGraph Pages: 1 -->
+<svg id="modulenafpack_iterative_typesUsedByGraph" width="641pt" height="61pt"
+ viewBox="0.00 0.00 641.00 61.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~nafpack_iterative_types~~UsedByGraph" class="graph" transform="scale(0.805175 0.805175) rotate(0) translate(4 71.85)">
+<title>module~~nafpack_iterative_types~~UsedByGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-71.85 792.1,-71.85 792.1,4 -4,4"/>
+<!-- module~nafpack_iterative_types -->
+<g id="module~~nafpack_iterative_types~~UsedByGraph_node1" class="node">
+<title>module~nafpack_iterative_types</title>
+<polygon fill="none" stroke="black" points="131.52,-57.46 0,-57.46 0,-33.94 131.52,-33.94 131.52,-57.46"/>
+<text xml:space="preserve" text-anchor="middle" x="65.76" y="-41.72" font-family="Helvetica,sans-Serif" font-size="10.50">NAFPack_Iterative_types</text>
+</g>
+<!-- module~nafpack_iterative_methods -->
+<g id="module~~nafpack_iterative_types~~UsedByGraph_node2" class="node">
+<title>module~nafpack_iterative_methods</title>
+<g id="a_module~~nafpack_iterative_types~~UsedByGraph_node2"><a xlink:href="../module/nafpack_iterative_methods.html" xlink:title="NAFPack_Iterative_methods">
+<polygon fill="#337ab7" stroke="#337ab7" points="665.58,-37.46 518.31,-37.46 518.31,-13.94 665.58,-13.94 665.58,-37.46"/>
+<text xml:space="preserve" text-anchor="middle" x="591.95" y="-21.72" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Iterative_methods</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_iterative_methods&#45;&gt;module~nafpack_iterative_types -->
+<g id="module~~nafpack_iterative_types~~UsedByGraph_edge1" class="edge">
+<title>module~nafpack_iterative_methods&#45;&gt;module~nafpack_iterative_types</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M553.39,-37.89C517.51,-48.62 461.69,-62.96 411.93,-65.7"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M409.93,-65.7C332.98,-69.94 313.59,-65.84 236.53,-65.7"/>
+</g>
+<!-- module~nafpack_iterative_params -->
+<g id="module~~nafpack_iterative_types~~UsedByGraph_node3" class="node">
+<title>module~nafpack_iterative_params</title>
+<g id="a_module~~nafpack_iterative_types~~UsedByGraph_node3"><a xlink:href="../module/nafpack_iterative_params.html" xlink:title="NAFPack_Iterative_Params">
+<polygon fill="#337ab7" stroke="#337ab7" points="482.31,-37.46 339.54,-37.46 339.54,-13.94 482.31,-13.94 482.31,-37.46"/>
+<text xml:space="preserve" text-anchor="middle" x="410.93" y="-21.72" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Iterative_Params</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_iterative_methods&#45;&gt;module~nafpack_iterative_params -->
+<g id="module~~nafpack_iterative_types~~UsedByGraph_edge6" class="edge">
+<title>module~nafpack_iterative_methods&#45;&gt;module~nafpack_iterative_params</title>
+<path fill="none" stroke="#7fff00" stroke-dasharray="5,2" d="M517.87,-25.7C510.08,-25.7 502.11,-25.7 494.22,-25.7"/>
+<polygon fill="#7fff00" stroke="#7fff00" points="494.25,-22.2 484.25,-25.7 494.25,-29.2 494.25,-22.2"/>
+</g>
+<!-- module~nafpack_preconditioners -->
+<g id="module~~nafpack_iterative_types~~UsedByGraph_node5" class="node">
+<title>module~nafpack_preconditioners</title>
+<g id="a_module~~nafpack_iterative_types~~UsedByGraph_node5"><a xlink:href="../module/nafpack_preconditioners.html" xlink:title="NAFPack_Preconditioners">
+<polygon fill="#337ab7" stroke="#337ab7" points="303.54,-37.46 167.52,-37.46 167.52,-13.94 303.54,-13.94 303.54,-37.46"/>
+<text xml:space="preserve" text-anchor="middle" x="235.53" y="-21.72" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Preconditioners</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_iterative_methods&#45;&gt;module~nafpack_preconditioners -->
+<g id="module~~nafpack_iterative_types~~UsedByGraph_edge7" class="edge">
+<title>module~nafpack_iterative_methods&#45;&gt;module~nafpack_preconditioners</title>
+<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M538.47,-13.46C520.74,-9.88 500.76,-6.46 482.31,-4.7 419.15,1.35 402.67,1.67 339.54,-4.7 325.71,-6.09 311,-8.52 297.15,-11.23"/>
+<polygon fill="#7f00ff" stroke="#7f00ff" points="296.84,-7.72 287.74,-13.16 298.24,-14.58 296.84,-7.72"/>
+</g>
+<!-- module~nafpack_iterative_params&#45;&gt;module~nafpack_iterative_types -->
+<g id="module~~nafpack_iterative_types~~UsedByGraph_edge2" class="edge">
+<title>module~nafpack_iterative_params&#45;&gt;module~nafpack_iterative_types</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M234.53,-65.7C204.49,-65.64 171.64,-62.43 143.03,-58.6"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="143.76,-55.16 133.38,-57.25 142.8,-62.1 143.76,-55.16"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M377.2,-37.95C342.72,-49.75 286.58,-65.79 236.53,-65.7"/>
+</g>
+<!-- module~nafpack_iterative_params&#45;&gt;module~nafpack_preconditioners -->
+<g id="module~~nafpack_iterative_types~~UsedByGraph_edge8" class="edge">
+<title>module~nafpack_iterative_params&#45;&gt;module~nafpack_preconditioners</title>
+<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M339.15,-25.7C331.35,-25.7 323.37,-25.7 315.47,-25.7"/>
+<polygon fill="#7f00ff" stroke="#7f00ff" points="315.52,-22.2 305.52,-25.7 315.52,-29.2 315.52,-22.2"/>
+</g>
+<!-- module~nafpack_linalg -->
+<g id="module~~nafpack_iterative_types~~UsedByGraph_node4" class="node">
+<title>module~nafpack_linalg</title>
+<g id="a_module~~nafpack_iterative_types~~UsedByGraph_node4"><a xlink:href="../module/nafpack_linalg.html" xlink:title="NAFPack_linalg">
+<polygon fill="#337ab7" stroke="#337ab7" points="788.1,-57.46 701.58,-57.46 701.58,-33.94 788.1,-33.94 788.1,-57.46"/>
+<text xml:space="preserve" text-anchor="middle" x="744.84" y="-41.72" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_linalg</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_linalg&#45;&gt;module~nafpack_iterative_types -->
+<g id="module~~nafpack_iterative_types~~UsedByGraph_edge3" class="edge">
+<title>module~nafpack_linalg&#45;&gt;module~nafpack_iterative_types</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M701.15,-48.41C637.96,-52.4 515.82,-59.97 411.93,-65.7"/>
+</g>
+<!-- module~nafpack_linalg&#45;&gt;module~nafpack_iterative_methods -->
+<g id="module~~nafpack_iterative_types~~UsedByGraph_edge5" class="edge">
+<title>module~nafpack_linalg&#45;&gt;module~nafpack_iterative_methods</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M701.41,-40.07C693.79,-39.06 685.63,-37.98 677.31,-36.88"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="677.79,-33.41 667.42,-35.57 676.87,-40.35 677.79,-33.41"/>
+</g>
+<!-- module~nafpack_preconditioners&#45;&gt;module~nafpack_iterative_types -->
+<g id="module~~nafpack_iterative_types~~UsedByGraph_edge4" class="edge">
+<title>module~nafpack_preconditioners&#45;&gt;module~nafpack_iterative_types</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M167.26,-33.72C159.33,-34.66 151.19,-35.63 143.14,-36.59"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="142.88,-33.1 133.37,-37.76 143.71,-40.05 142.88,-33.1"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var panmodulenafpack_iterative_typesUsedByGraph = svgPanZoom('#modulenafpack_iterative_typesUsedByGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsedByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsedByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.0.1 (20250615.1724)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="485pt" height="32pt"
+ viewBox="0.00 0.00 485.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 27.52)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 481.13,-27.52 481.13,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-23.52 0,-23.52 0,0 54,0 54,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="137.76,-23.52 72.24,-23.52 72.24,0 137.76,0 137.76,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="105" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="218.63,-23.52 155.37,-23.52 155.37,0 218.63,0 218.63,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="187" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="291,-23.52 237,-23.52 237,0 291,0 291,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="264" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="363,-23.52 309,-23.52 309,0 363,0 363,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="336" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="477.13,-23.52 380.87,-23.52 380.87,0 477.13,0 477.13,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="429" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+      <br>
+
+
+        <section>
+          <h2>Variables</h2>
+            <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Visibility</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-method_iterative_none"></span>
+              type(<a href='..\type\methodtypeiterative.html'>MethodTypeIterative</a>),
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>METHOD_ITERATIVE_NONE</strong></td>
+<td> =</td>
+                <td>MethodTypeIterative(0, &#34;None&#34;)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-method_jacobi"></span>
+              type(<a href='..\type\methodtypeiterative.html'>MethodTypeIterative</a>),
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>METHOD_Jacobi</strong></td>
+<td> =</td>
+                <td>MethodTypeIterative(1, &#34;Jacobi&#34;)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-method_gauss_seidel"></span>
+              type(<a href='..\type\methodtypeiterative.html'>MethodTypeIterative</a>),
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>METHOD_GAUSS_SEIDEL</strong></td>
+<td> =</td>
+                <td>MethodTypeIterative(2, &#34;Gauss-Seidel&#34;)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-method_sor"></span>
+              type(<a href='..\type\methodtypeiterative.html'>MethodTypeIterative</a>),
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>METHOD_SOR</strong></td>
+<td> =</td>
+                <td>MethodTypeIterative(3, &#34;Successive Over-Relaxation&#34;)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-method_jor"></span>
+              type(<a href='..\type\methodtypeiterative.html'>MethodTypeIterative</a>),
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>METHOD_JOR</strong></td>
+<td> =</td>
+                <td>MethodTypeIterative(4, &#34;Jacobi Over-Relaxation&#34;)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-method_sip_ilu"></span>
+              type(<a href='..\type\methodtypeiterative.html'>MethodTypeIterative</a>),
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>METHOD_SIP_ILU</strong></td>
+<td> =</td>
+                <td>MethodTypeIterative(5, &#34;Strongly Implicit Procedure&#34;, &#34;ILU&#34;)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-method_sip_icf"></span>
+              type(<a href='..\type\methodtypeiterative.html'>MethodTypeIterative</a>),
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>METHOD_SIP_ICF</strong></td>
+<td> =</td>
+                <td>MethodTypeIterative(6, &#34;Strongly Implicit Procedure&#34;, &#34;ICF&#34;)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-method_ssor"></span>
+              type(<a href='..\type\methodtypeiterative.html'>MethodTypeIterative</a>),
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>METHOD_SSOR</strong></td>
+<td> =</td>
+                <td>MethodTypeIterative(7, &#34;Symmetric Successive Over-Relaxation&#34;)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-method_richardson"></span>
+              type(<a href='..\type\methodtypeiterative.html'>MethodTypeIterative</a>),
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>METHOD_RICHARDSON</strong></td>
+<td> =</td>
+                <td>MethodTypeIterative(8, &#34;Richardson&#34;)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-method_conjugate_gradient"></span>
+              type(<a href='..\type\methodtypeiterative.html'>MethodTypeIterative</a>),
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>METHOD_CONJUGATE_GRADIENT</strong></td>
+<td> =</td>
+                <td>MethodTypeIterative(9, &#34;Conjugate Gradient&#34;)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-method_conjugate_residual"></span>
+              type(<a href='..\type\methodtypeiterative.html'>MethodTypeIterative</a>),
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>METHOD_CONJUGATE_RESIDUAL</strong></td>
+<td> =</td>
+                <td>MethodTypeIterative(10, &#34;Conjugate Residual&#34;)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-method_cgne"></span>
+              type(<a href='..\type\methodtypeiterative.html'>MethodTypeIterative</a>),
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>METHOD_CGNE</strong></td>
+<td> =</td>
+                <td>MethodTypeIterative(11, &#34;Conjugate Gradient on Normal Equations&#34;)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-method_cgnr"></span>
+              type(<a href='..\type\methodtypeiterative.html'>MethodTypeIterative</a>),
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>METHOD_CGNR</strong></td>
+<td> =</td>
+                <td>MethodTypeIterative(12, &#34;Conjugate Gradient on Normal Residual&#34;)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-method_gmres"></span>
+              type(<a href='..\type\methodtypeiterative.html'>MethodTypeIterative</a>),
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>METHOD_GMRES</strong></td>
+<td> =</td>
+                <td>MethodTypeIterative(13, &#34;Generalized Minimal Residual&#34;)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-norm_2"></span>
+              type(<a href='..\type\norm_used.html'>Norm_used</a>),
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>NORM_2</strong></td>
+<td> =</td>
+                <td>Norm_used(1, &#34;Norm L2 or Euclidean&#34;)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-norm_1"></span>
+              type(<a href='..\type\norm_used.html'>Norm_used</a>),
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>NORM_1</strong></td>
+<td> =</td>
+                <td>Norm_used(2, &#34;Norm L1 or Manhattan&#34;)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-norm_inf"></span>
+              type(<a href='..\type\norm_used.html'>Norm_used</a>),
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>NORM_INF</strong></td>
+<td> =</td>
+                <td>Norm_used(3, &#34;Norm LInfini or Maximum&#34;)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-relaxation_factor_none"></span>
+              type(<a href='..\type\relaxation_factor_used.html'>relaxation_factor_used</a>),
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>RELAXATION_FACTOR_NONE</strong></td>
+<td> =</td>
+                <td>relaxation_factor_used(0, NONE)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-relaxation_factor_omega"></span>
+              type(<a href='..\type\relaxation_factor_used.html'>relaxation_factor_used</a>),
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>RELAXATION_FACTOR_OMEGA</strong></td>
+<td> =</td>
+                <td>relaxation_factor_used(1, omega)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-relaxation_factor_alpha"></span>
+              type(<a href='..\type\relaxation_factor_used.html'>relaxation_factor_used</a>),
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>RELAXATION_FACTOR_ALPHA</strong></td>
+<td> =</td>
+                <td>relaxation_factor_used(2, alpha)</td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+        </section>
+        <br>
+
+
+
+
+        <section>
+          <h2>Derived Types</h2>
+              <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="type-methodtypeiterative"></span>
+      <h3>
+        type, public&nbsp;::&nbsp;
+        <a href='..\type\methodtypeiterative.html'>MethodTypeIterative</a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      
+
+        <h4>Components</h4>
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Visibility</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-id"></span>
+              integer,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>id</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-name"></span>
+              character(len=64),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>name</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-name2"></span>
+              character(len=64),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>name2</strong></td>
+<td> =</td>
+                <td>&#34;&#34;</td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="type-iterativemethodrequirements"></span>
+      <h3>
+        type, public&nbsp;::&nbsp;
+        <a href='..\type\iterativemethodrequirements.html'>IterativeMethodRequirements</a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      
+
+        <h4>Components</h4>
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Visibility</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-needs_spd"></span>
+              logical,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>needs_SPD</strong></td>
+<td> =</td>
+                <td>.FALSE.</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-needs_diag_dom"></span>
+              logical,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>needs_diag_dom</strong></td>
+<td> =</td>
+                <td>.FALSE.</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-needs_square"></span>
+              logical,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>needs_square</strong></td>
+<td> =</td>
+                <td>.FALSE.</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-needs_symetric"></span>
+              logical,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>needs_symetric</strong></td>
+<td> =</td>
+                <td>.FALSE.</td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="type-norm_used"></span>
+      <h3>
+        type, public&nbsp;::&nbsp;
+        <a href='..\type\norm_used.html'>Norm_used</a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      
+
+        <h4>Components</h4>
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Visibility</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-id~2"></span>
+              integer,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>id</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-name~2"></span>
+              character(len=64),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>name</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="type-relaxation_factor_used"></span>
+      <h3>
+        type, public&nbsp;::&nbsp;
+        <a href='..\type\relaxation_factor_used.html'>relaxation_factor_used</a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      
+
+        <h4>Components</h4>
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Visibility</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-id~3"></span>
+              integer,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>id</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-name~3"></span>
+              character(kind=ucs4, len=64),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>name</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+
+    </div>
+  </div>
+
+        </section>
+        <br>
+
+
+
+
+
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              NAFPack
+ was developed by Minard Jules<br>              &copy; 2025 
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+            </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>
