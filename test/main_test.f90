@@ -4,15 +4,15 @@ PROGRAM test
     USE test_NAFPack_linear_algebra
     USE test_NAFPack_fft
 
-    IMPLICIT NONE
+    IMPLICIT NONE(TYPE, EXTERNAL)
 
     LOGICAL :: stat = .FALSE.
 
-    WRITE(*,'(A)') purple_color,"Test linear systeme :", reset_color
-    PRINT*, " "
-    PRINT*, " "
+    WRITE (*, '(A)') purple_color, "Test linear systeme :", reset_color
+    PRINT*," "
+    PRINT*," "
     CALL test_linear_system(stat)
-    PRINT*, " "
+    PRINT*," "
 
     WRITE(*,'(A)') purple_color,"Test linear algebre :", reset_color
     PRINT*, " "
@@ -26,10 +26,10 @@ PROGRAM test
     CALL test_FFT(stat)
     PRINT*, " "
 
-    IF(stat)THEN
-        WRITE(*,'(A)') red_color,"Test failed", reset_color
+    IF (stat) THEN
+        WRITE (*, '(A)') red_color, "Test failed", reset_color
     ELSE
-        WRITE(*,'(A)') green_color,"Test success", reset_color
+        WRITE (*, '(A)') green_color, "Test success", reset_color
     END IF
 
 END PROGRAM test

@@ -1,0 +1,50 @@
+              ╔==================================== NAFPack Logger initialized ====================================
+              ║
+[INFO]        ║ Verbosity level                        : 4
+[INFO]        ║ Output to terminal                     : F
+[INFO]        ║ Output to file                         : T
+[INFO]        ║ File unit                              : 99
+[INFO]        ║ File format                            : log
+[INFO]        ║ File name                              : Log/Log_Conjugate_Residual_ICF.log
+              ╚====================================================================================================
+
+              ╔===================== Testing matrix properties for method:Conjugate Residual ======================
+              ║
+[INFO]        ║ Checking if the matrix is square...
+[INFO]        ║ Checking if the matrix is symmetric positive definite (SPD)...
+[INFO]        ║ Checking if the matrix is symmetric...
+              ╚====================================================================================================
+
+
+              ╔====================================== Starting system solver ======================================
+              ║
+[INFO]        ║ Date and time                          : 2025-08-15 22:45:13
+[INFO]        ║ Method used                            : Conjugate Residual
+[INFO]        ║ Preconditioner used                    : ICF
+[INFO]        ║ Relaxation factor used                 : ω = 1.0000
+[INFO]        ║ Fill level used                        : basic ICF
+[INFO]        ║ System size                            : 3 x 3
+[INFO]        ║ Memory used                            : 7452 KB
+[INFO]        ║ Norme used                             : Norm L2 or Euclidean
+[INFO]        ║ Convergence criterion (Tolerance)      : ||r|| < 1.00E-12
+[INFO]        ║ Max iterations                         : 1000
+[DETAIL]      ║     Initial residual norm              : ||r0|| = 1.0954451E+1
+              ╚====================================================================================================
+
+              ╔============================================ Iterations ============================================
+              ║
+[INFO]        ║ Iter     Residual norm (||r||)     Relative residual norm (||r||/||r0||)     Time (s)
+              ║----------------------------------------------------------------------------------------------------
+[22:45:13]    ║  1            8.8817842E-16                    8.1079226E-17                  0.0000000
+              ╚====================================================================================================
+
+              ╔============================================= Results ==============================================
+              ║
+[INFO]        ║ Status                                 : CONVERGED
+[INFO]        ║ Final residual                         : ||r|| = 8.8817842E-16 < 1.0E-12 (convergence achieved)
+[DETAIL]      ║     Relative residual norm             : ||r||/||r0|| = 8.1079226E-17
+[INFO]        ║ Total iterations                       : 1
+[INFO]        ║ Solution                               : x = [ 1.0000000 2.0000000 3.0000000]
+[INFO]        ║ Solver completed in                    : 0.0000000 seconds
+[INFO]        ║ Memory used                            : 7452 KB
+              ╚====================================================================================================

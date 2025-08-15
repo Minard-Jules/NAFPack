@@ -4,19 +4,19 @@ MODULE NAFPack_matrix_properties
     USE NAFPack_matricielle
     USE NAFPack_Eigen
 
-    IMPLICIT NONE
+    IMPLICIT NONE(TYPE, EXTERNAL)
 
     PRIVATE
     PUBLIC :: is_square_matrix, is_symmetric, is_orthogonal, is_SPD, is_tridiagonal, &
               is_diagonally_dominant, is_non_zero_diagonal
 
-    CONTAINS
+CONTAINS
 
     FUNCTION is_square_matrix(A) RESULT(is_square)
         REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
         LOGICAL :: is_square
 
-        is_square = (SIZE(A, 1) == SIZE(A, 2))
+        is_square = (size(A, 1) == size(A, 2))
 
     END FUNCTION is_square_matrix
 
@@ -24,7 +24,7 @@ MODULE NAFPack_matrix_properties
         REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
         LOGICAL :: is_sym
 
-        is_sym = ALL(A == TRANSPOSE(A))
+        is_sym = all(A == transpose(A))
 
     END FUNCTION is_symmetric
 
@@ -32,17 +32,17 @@ MODULE NAFPack_matrix_properties
         REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
         LOGICAL :: is_orth
 
-        is_orth = ALL(ABS(MATMUL(A, TRANSPOSE(A)) - Identity_n(SIZE(A, 1))) < epsi_test)
+        is_orth = all(abs(matmul(A, transpose(A)) - Identity_n(size(A, 1))) < epsi_test)
 
     END FUNCTION is_orthogonal
 
     FUNCTION is_SPD(A, is_sym) RESULT(is_spd_matrix)
         REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
         LOGICAL, OPTIONAL, INTENT(IN) :: is_sym
-        REAL(dp), DIMENSION(SIZE(A, 1)) :: lambda
+        REAL(dp), DIMENSION(size(A, 1)) :: lambda
         LOGICAL :: is_spd_matrix
 
-        IF (PRESENT(is_sym)) THEN
+        IF (present(is_sym)) THEN
             IF (.NOT. is_sym) THEN
                 is_spd_matrix = .FALSE.
                 RETURN
@@ -52,12 +52,12 @@ MODULE NAFPack_matrix_properties
             RETURN
         END IF
 
-        CALL Eigen(A, lambda, method = "Power_iteration")
-        IF(MINVAL(lambda) < 0) THEN
+        CALL Eigen(A, lambda, method="Power_iteration")
+        IF (minval(lambda) < 0) THEN
             is_spd_matrix = .FALSE.
         ELSE
             is_spd_matrix = .TRUE.
-        END IF 
+        END IF
 
     END FUNCTION is_SPD
 
@@ -66,13 +66,13 @@ MODULE NAFPack_matrix_properties
         LOGICAL :: is_tridiag
         INTEGER :: i, j, N
 
-        N = SIZE(A, 1)
+        N = size(A, 1)
         is_tridiag = .TRUE.
 
         DO i = 1, N
             DO j = 1, N
-                IF (ABS(i-j) > 1) THEN
-                    IF (ABS(A(i,j)) > epsi) THEN
+                IF (abs(i - j) > 1) THEN
+                    IF (abs(A(i, j)) > epsi) THEN
                         is_tridiag = .FALSE.
                         RETURN
                     END IF
@@ -88,12 +88,12 @@ MODULE NAFPack_matrix_properties
         INTEGER :: i, N
         REAL(dp) :: row_sum
 
-        N = SIZE(A, 1)
+        N = size(A, 1)
         is_diag_dom = .TRUE.
 
         DO i = 1, N
-            row_sum = SUM(ABS(A(i, :))) - ABS(A(i, i))
-            IF (ABS(A(i, i)) < row_sum) THEN
+            row_sum = sum(abs(A(i, :))) - abs(A(i, i))
+            IF (abs(A(i, i)) < row_sum) THEN
                 is_diag_dom = .FALSE.
                 RETURN
             END IF
@@ -107,7 +107,7 @@ MODULE NAFPack_matrix_properties
 
         is_non_zero_diag = .TRUE.
 
-        IF (ANY(ABS(Diag(A)) < epsi)) is_non_zero_diag = .FALSE.
+        IF (any(abs(Diag(A)) < epsi)) is_non_zero_diag = .FALSE.
 
     END FUNCTION is_non_zero_diagonal
 

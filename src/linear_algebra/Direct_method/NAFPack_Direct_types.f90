@@ -1,8 +1,8 @@
 MODULE NAFPack_Direct_types
 
-    IMPLICIT NONE
+    IMPLICIT NONE(TYPE, EXTERNAL)
 
-    PRIVATE 
+    PRIVATE
 
     PUBLIC :: MethodTypeDirect, MethodQR
     PUBLIC :: METHOD_DIRECT_NONE
@@ -16,12 +16,12 @@ MODULE NAFPack_Direct_types
     PUBLIC :: DirectMethodRequirements
 
     TYPE :: MethodTypeDirect
-        INTEGER :: value
+        INTEGER :: id
         CHARACTER(LEN=64) :: name
     END TYPE MethodTypeDirect
 
     TYPE :: MethodQR
-        INTEGER :: value
+        INTEGER :: id
         CHARACTER(LEN=64) :: name
     END TYPE MethodQR
 
@@ -48,5 +48,5 @@ MODULE NAFPack_Direct_types
     TYPE(MethodQR), PARAMETER :: QR_GIVENS = MethodQR(2, "Givens")
     TYPE(MethodQR), PARAMETER :: QR_GRAM_SCHMIDT = MethodQR(3, "Gram-Schmidt")
     TYPE(MethodQR), PARAMETER :: QR_GRAM_SCHMIDT_Modified = MethodQR(4, "Gram_Schmidt_Modified")
-    
+
 END MODULE NAFPack_Direct_types

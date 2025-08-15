@@ -1,0 +1,28 @@
+name = "test_memory"
+version = "0.1.0"
+license = "license"
+author = "Jane Doe"
+maintainer = "jane.doe@example.com"
+copyright = "Copyright 2025, Jane Doe"
+
+[build]
+auto-executables = true
+auto-tests = true
+auto-examples = true
+module-naming = false
+link = ["fftw3", "fftw3_omp", "blas", "lapack"]
+
+[install]
+library = false
+
+[fortran]
+implicit-typing = false
+implicit-external = false
+source-form = "default"
+
+[preprocess]
+cpp.directories = ["src/memory_monitor.f90"]
+cpp.macros=["_UNIX"]
+
+[dependencies]
+openmp = "*"

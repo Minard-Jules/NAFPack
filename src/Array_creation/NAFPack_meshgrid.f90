@@ -5,17 +5,17 @@ MODULE NAFPack_meshgrid
 
     USE NAFPack_constant
 
-    IMPLICIT NONE
+    IMPLICIT NONE(TYPE, EXTERNAL)
 
     PRIVATE
     PUBLIC :: meshgrid
-  
-    CONTAINS
+
+CONTAINS
 
     !> Make N-dimensional meshgrid from two vectors **x_vector** and **y_vector**
     SUBROUTINE meshgrid(x_vector, y_vector, X, Y)
-        REAL(dp), DIMENSION(:), INTENT(IN)   :: x_vector, y_vector
-        REAL(dp), DIMENSION(SIZE(y_vector), SIZE(x_vector)), INTENT(OUT)  :: X, Y
+        REAL(dp), DIMENSION(:), INTENT(IN) :: x_vector, y_vector
+        REAL(dp), DIMENSION(size(y_vector), size(x_vector)), INTENT(OUT) :: X, Y
         INTEGER :: sX, sY, i
 
         sX = size(x_vector)
@@ -30,5 +30,5 @@ MODULE NAFPack_meshgrid
         END DO
 
     END SUBROUTINE meshgrid
-  
+
 END MODULE NAFPack_meshgrid

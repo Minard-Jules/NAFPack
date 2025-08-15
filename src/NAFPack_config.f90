@@ -2,8 +2,8 @@
 MODULE NAFPack_config
 
     USE NAFPack_constant
-    
-    IMPLICIT NONE
+
+    IMPLICIT NONE(TYPE, EXTERNAL)
 
     PRIVATE
     PUBLIC :: config_type, get_default_config, validate_config
@@ -14,29 +14,29 @@ MODULE NAFPack_config
         REAL(dp) :: pivot_tolerance = 1.0e-14_dp
         REAL(dp) :: convergence_tolerance = 1.0e-12_dp
         REAL(dp) :: residual_tolerance = 1.0e-10_dp
-        
+
         ! Performance settings
         INTEGER :: max_iterations = 10000
         INTEGER :: block_size = 64
         LOGICAL :: use_openmp = .TRUE.
         LOGICAL :: use_blas = .TRUE.
-        
+
         ! Memory management
         LOGICAL :: preallocate_workspace = .TRUE.
         INTEGER :: workspace_size = 1000
-        
+
         ! Debugging and logging
         LOGICAL :: enable_debug = .FALSE.
         LOGICAL :: enable_timing = .FALSE.
         CHARACTER(LEN=100) :: log_file = "nafpack.log"
-        
+
         ! Method selection
         CHARACTER(LEN=50) :: default_direct_method = "A_LU"
         CHARACTER(LEN=50) :: default_iterative_method = "Gauss_Seidel"
         CHARACTER(LEN=50) :: default_preconditioner = "ILU"
     END TYPE config_type
 
-    CONTAINS
+CONTAINS
 
     !> Get default configuration
     FUNCTION get_default_config() RESULT(config)
@@ -65,37 +65,37 @@ MODULE NAFPack_config
         TYPE(config_type), INTENT(IN) :: config
         LOGICAL, INTENT(OUT) :: is_valid
         CHARACTER(LEN=*), INTENT(OUT) :: error_msg
-        
+
         is_valid = .TRUE.
         error_msg = ""
-        
+
         ! Check tolerances
         IF (config%pivot_tolerance <= 0.0_dp) THEN
             is_valid = .FALSE.
             error_msg = "Pivot tolerance must be positive"
             RETURN
         END IF
-        
+
         IF (config%convergence_tolerance <= 0.0_dp) THEN
             is_valid = .FALSE.
             error_msg = "Convergence tolerance must be positive"
             RETURN
         END IF
-        
+
         ! Check iteration limits
         IF (config%max_iterations <= 0) THEN
             is_valid = .FALSE.
             error_msg = "Maximum iterations must be positive"
             RETURN
         END IF
-        
+
         ! Check block size
         IF (config%block_size <= 0) THEN
             is_valid = .FALSE.
             error_msg = "Block size must be positive"
             RETURN
         END IF
-        
+
     END SUBROUTINE validate_config
 
 END MODULE NAFPack_config
