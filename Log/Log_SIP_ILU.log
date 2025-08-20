@@ -16,12 +16,12 @@
 
               ╔====================================== Starting system solver ======================================
               ║
-[INFO]        ║ Date and time                          : 2025-08-15 22:45:13
+[INFO]        ║ Date and time                          : 2025-08-20 21:09:35
 [INFO]        ║ Method used                            : Strongly Implicit Procedure ILU
-[INFO]        ║ Relaxation factor used                 : ω = 1.0000
+[INFO]        ║ Relaxation factor used                 : ω = 1.0000E+0
 [INFO]        ║ Fill level used                        : basic ILU
 [INFO]        ║ System size                            : 3 x 3
-[INFO]        ║ Memory used                            : 7172 KB
+[INFO]        ║ Memory used                            : 7216 KB
 [INFO]        ║ Norme used                             : Norm L2 or Euclidean
 [INFO]        ║ Convergence criterion (Tolerance)      : ||r|| < 1.00E-12
 [INFO]        ║ Max iterations                         : 1000
@@ -32,7 +32,7 @@
               ║
 [INFO]        ║ Iter     Residual norm (||r||)     Relative residual norm (||r||/||r0||)     Time (s)
               ║----------------------------------------------------------------------------------------------------
-[22:45:13]    ║  1            1.7763568E-15                    1.6215845E-16                  0.0000000
+[21:09:35]    ║  1            1.7763568E-15                    1.6215845E-16                  0.0000000E+0
               ╚====================================================================================================
 
               ╔============================================= Results ==============================================
@@ -41,7 +41,7 @@
 [INFO]        ║ Final residual                         : ||r|| = 1.7763568E-15 < 1.0E-12 (convergence achieved)
 [DETAIL]      ║     Relative residual norm             : ||r||/||r0|| = 1.6215845E-16
 [INFO]        ║ Total iterations                       : 1
-[INFO]        ║ Solution                               : x = [ 1.0000000 2.0000000 3.0000000]
-[INFO]        ║ Solver completed in                    : 0.0000000 seconds
-[INFO]        ║ Memory used                            : 7184 KB
+[INFO]        ║ Solution                               : x = [ 1.0000000E+0 2.0000000E+0 3.0000000E+0]
+[INFO]        ║ Solver completed in                    : 0.0000000E+0 seconds
+[INFO]        ║ Memory used                            : 7228 KB
               ╚====================================================================================================

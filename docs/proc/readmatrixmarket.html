@@ -130,13 +130,13 @@
       </a>
       <div id="vars-0" class="collapse">
         <div class="list-group list-group-flush">
-            <a class="list-group-item" href="../proc/readmatrixmarket.html#variable-i~27">i</a>
-            <a class="list-group-item" href="../proc/readmatrixmarket.html#variable-j~20">j</a>
+            <a class="list-group-item" href="../proc/readmatrixmarket.html#variable-i~49">i</a>
+            <a class="list-group-item" href="../proc/readmatrixmarket.html#variable-j~22">j</a>
             <a class="list-group-item" href="../proc/readmatrixmarket.html#variable-nrows">nrows</a>
             <a class="list-group-item" href="../proc/readmatrixmarket.html#variable-ncols">ncols</a>
             <a class="list-group-item" href="../proc/readmatrixmarket.html#variable-nnz">nnz</a>
             <a class="list-group-item" href="../proc/readmatrixmarket.html#variable-ios">ios</a>
-            <a class="list-group-item" href="../proc/readmatrixmarket.html#variable-k~16">k</a>
+            <a class="list-group-item" href="../proc/readmatrixmarket.html#variable-k~24">k</a>
             <a class="list-group-item" href="../proc/readmatrixmarket.html#variable-row_idx">row_idx</a>
             <a class="list-group-item" href="../proc/readmatrixmarket.html#variable-col_idx">col_idx</a>
             <a class="list-group-item" href="../proc/readmatrixmarket.html#variable-line">line</a>
@@ -201,7 +201,7 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-filename"></span>
+              <span class="anchor" id="variable-filename~2"></span>
               character(len=*),
             </td>
 <td>intent(in)</td>
@@ -216,12 +216,12 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-a~38"></span>
+              <span class="anchor" id="variable-a~72"></span>
               real(kind=dp),
             </td>
 <td>intent(out),</td>
               <td></td>            <td>
-              DIMENSION(:, :), ALLOCATABLE
+              dimension(:, :), allocatable
             </td>
             <td>::</td>
             <td><strong>A</strong></td>
@@ -249,7 +249,7 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-i~27"></span>
+              <span class="anchor" id="variable-i~49"></span>
               integer,
             </td>
               <td>public</td>
@@ -266,7 +266,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-j~20"></span>
+              <span class="anchor" id="variable-j~22"></span>
               integer,
             </td>
               <td>public</td>
@@ -351,7 +351,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-k~16"></span>
+              <span class="anchor" id="variable-k~24"></span>
               integer,
             </td>
               <td>public</td>
@@ -552,112 +552,112 @@
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="hl codehilite"><pre><span></span><span class="w">    </span><span class="k">SUBROUTINE </span><span class="n">readMatrixMarket</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="w"> </span><span class="n">A</span><span class="p">)</span>
-<span class="w">        </span><span class="kt">CHARACTER</span><span class="p">(</span><span class="nb">LEN</span><span class="o">=*</span><span class="p">),</span><span class="w"> </span><span class="k">INTENT</span><span class="p">(</span><span class="n">IN</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">filename</span>
-<span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">DIMENSION</span><span class="p">(:,</span><span class="w"> </span><span class="p">:),</span><span class="w"> </span><span class="k">ALLOCATABLE</span><span class="p">,</span><span class="w"> </span><span class="k">INTENT</span><span class="p">(</span><span class="n">OUT</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">A</span>
+    <div class="hl codehilite"><pre><span></span><span class="w">    </span><span class="k">subroutine </span><span class="n">readMatrixMarket</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="w"> </span><span class="n">A</span><span class="p">)</span>
+<span class="w">        </span><span class="kt">character</span><span class="p">(</span><span class="nb">LEN</span><span class="o">=*</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">IN</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">filename</span>
+<span class="w">        </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(:,</span><span class="w"> </span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">OUT</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">A</span>
 
-<span class="w">        </span><span class="kt">INTEGER</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">nrows</span><span class="p">,</span><span class="w"> </span><span class="n">ncols</span><span class="p">,</span><span class="w"> </span><span class="n">nnz</span><span class="p">,</span><span class="w"> </span><span class="n">ios</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">row_idx</span><span class="p">,</span><span class="w"> </span><span class="n">col_idx</span>
-<span class="w">        </span><span class="kt">CHARACTER</span><span class="p">(</span><span class="nb">LEN</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="n">header</span>
-<span class="w">        </span><span class="kt">CHARACTER</span><span class="p">(</span><span class="nb">LEN</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">object</span><span class="p">,</span><span class="w"> </span><span class="n">format_type</span><span class="p">,</span><span class="w"> </span><span class="n">field</span><span class="p">,</span><span class="w"> </span><span class="n">symmetry</span>
-<span class="w">        </span><span class="kt">INTEGER</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">unit</span>
-<span class="w">        </span><span class="kt">REAL</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">val</span>
+<span class="w">        </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">nrows</span><span class="p">,</span><span class="w"> </span><span class="n">ncols</span><span class="p">,</span><span class="w"> </span><span class="n">nnz</span><span class="p">,</span><span class="w"> </span><span class="n">ios</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">row_idx</span><span class="p">,</span><span class="w"> </span><span class="n">col_idx</span>
+<span class="w">        </span><span class="kt">character</span><span class="p">(</span><span class="nb">LEN</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="n">header</span>
+<span class="w">        </span><span class="kt">character</span><span class="p">(</span><span class="nb">LEN</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">object</span><span class="p">,</span><span class="w"> </span><span class="n">format_type</span><span class="p">,</span><span class="w"> </span><span class="n">field</span><span class="p">,</span><span class="w"> </span><span class="n">symmetry</span>
+<span class="w">        </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">unit</span>
+<span class="w">        </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">val</span>
 
 <span class="w">        </span><span class="n">unit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span>
 
 <span class="w">        </span><span class="c">! Open the file</span>
-<span class="w">        </span><span class="k">OPEN</span><span class="w"> </span><span class="p">(</span><span class="n">NEWUNIT</span><span class="o">=</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="k">FILE</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span><span class="w"> </span><span class="n">STATUS</span><span class="o">=</span><span class="s1">&#39;old&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">ACTION</span><span class="o">=</span><span class="s1">&#39;read&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">IOSTAT</span><span class="o">=</span><span class="n">ios</span><span class="p">)</span>
-<span class="w">        </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">ios</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
-<span class="k">            PRINT</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;Error: opening file: &#39;</span><span class="p">,</span><span class="w"> </span><span class="n">filename</span>
-<span class="w">            </span><span class="k">STOP</span>
-<span class="k">        END IF</span>
+<span class="w">        </span><span class="k">open</span><span class="w"> </span><span class="p">(</span><span class="n">NEWUNIT</span><span class="o">=</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="k">FILE</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span><span class="w"> </span><span class="n">STATUS</span><span class="o">=</span><span class="s1">&#39;old&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">ACTION</span><span class="o">=</span><span class="s1">&#39;read&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">IOSTAT</span><span class="o">=</span><span class="n">ios</span><span class="p">)</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ios</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">            print</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;Error: opening file: &#39;</span><span class="p">,</span><span class="w"> </span><span class="n">filename</span>
+<span class="w">            </span><span class="k">stop</span>
+<span class="k">        end if</span>
 
 <span class="w">        </span><span class="c">! read the header</span>
-<span class="w">        </span><span class="k">READ</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;(A)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">IOSTAT</span><span class="o">=</span><span class="n">ios</span><span class="p">)</span><span class="w"> </span><span class="n">header</span>
-<span class="w">        </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">ios</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
-<span class="k">            PRINT</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;Error: reading header Matrix Market&#39;</span>
-<span class="w">            </span><span class="k">CLOSE</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
-<span class="w">            </span><span class="k">STOP</span>
-<span class="k">        END IF</span>
+<span class="w">        </span><span class="k">read</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;(A)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">IOSTAT</span><span class="o">=</span><span class="n">ios</span><span class="p">)</span><span class="w"> </span><span class="n">header</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ios</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">            print</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;Error: reading header Matrix Market&#39;</span>
+<span class="w">            </span><span class="k">close</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
+<span class="w">            </span><span class="k">stop</span>
+<span class="k">        end if</span>
 
 <span class="w">        </span><span class="c">! Check Matrix Market format</span>
-<span class="w">        </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="nb">index</span><span class="p">(</span><span class="n">header</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;%%MatrixMarket&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
-<span class="k">            PRINT</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;Error: file is not in Matrix Market format&#39;</span>
-<span class="w">            </span><span class="k">CLOSE</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
-<span class="w">            </span><span class="k">RETURN</span>
-<span class="k">        END IF</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">index</span><span class="p">(</span><span class="n">header</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;%%MatrixMarket&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">            print</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;Error: file is not in Matrix Market format&#39;</span>
+<span class="w">            </span><span class="k">close</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
+<span class="w">            </span><span class="k">return</span>
+<span class="k">        end if</span>
 
 <span class="w">        </span><span class="c">! Parse the header to extract information</span>
-<span class="w">        </span><span class="k">READ</span><span class="w"> </span><span class="p">(</span><span class="n">header</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">)</span><span class="w"> </span><span class="n">object</span><span class="p">,</span><span class="w"> </span><span class="n">object</span><span class="p">,</span><span class="w"> </span><span class="n">format_type</span><span class="p">,</span><span class="w"> </span><span class="n">field</span><span class="p">,</span><span class="w"> </span><span class="n">symmetry</span>
-<span class="w">        </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">ios</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
-<span class="k">            PRINT</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;Error reading Matrix Market header&#39;</span>
-<span class="w">            </span><span class="k">CLOSE</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
-<span class="w">            </span><span class="k">STOP</span>
-<span class="k">        END IF</span>
+<span class="w">        </span><span class="k">read</span><span class="w"> </span><span class="p">(</span><span class="n">header</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">)</span><span class="w"> </span><span class="n">object</span><span class="p">,</span><span class="w"> </span><span class="n">object</span><span class="p">,</span><span class="w"> </span><span class="n">format_type</span><span class="p">,</span><span class="w"> </span><span class="n">field</span><span class="p">,</span><span class="w"> </span><span class="n">symmetry</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ios</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">            print</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;Error reading Matrix Market header&#39;</span>
+<span class="w">            </span><span class="k">close</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
+<span class="w">            </span><span class="k">stop</span>
+<span class="k">        end if</span>
 
 <span class="w">        </span><span class="c">! Skip comment lines and find the size line</span>
-<span class="w">        </span><span class="k">DO</span>
-<span class="k">            READ</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;(A)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">IOSTAT</span><span class="o">=</span><span class="n">ios</span><span class="p">)</span><span class="w"> </span><span class="n">line</span>
-<span class="w">            </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">ios</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
-<span class="k">                PRINT</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;Error: malformed file&#39;</span>
-<span class="w">                </span><span class="k">CLOSE</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
-<span class="w">                </span><span class="k">STOP</span>
-<span class="k">            END IF</span>
-<span class="k">            IF</span><span class="w"> </span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="s1">&#39;%&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
-<span class="k">                EXIT</span>
-<span class="k">            END IF</span>
-<span class="k">        END DO</span>
+<span class="w">        </span><span class="k">do</span>
+<span class="k">            read</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;(A)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">IOSTAT</span><span class="o">=</span><span class="n">ios</span><span class="p">)</span><span class="w"> </span><span class="n">line</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ios</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">                print</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;Error: malformed file&#39;</span>
+<span class="w">                </span><span class="k">close</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
+<span class="w">                </span><span class="k">stop</span>
+<span class="k">            end if</span>
+<span class="k">            if</span><span class="w"> </span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="s1">&#39;%&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">                exit</span>
+<span class="k">            end if</span>
+<span class="k">        end do</span>
 
 <span class="w">        </span><span class="c">! Read matrix dimensions</span>
-<span class="w">        </span><span class="k">READ</span><span class="w"> </span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">)</span><span class="w"> </span><span class="n">nrows</span><span class="p">,</span><span class="w"> </span><span class="n">ncols</span><span class="p">,</span><span class="w"> </span><span class="n">nnz</span>
-<span class="w">        </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">ios</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
-<span class="k">            PRINT</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;Error: unable to read dimensions&#39;</span>
-<span class="w">            </span><span class="k">CLOSE</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
-<span class="w">            </span><span class="k">RETURN</span>
-<span class="k">        END IF</span>
+<span class="w">        </span><span class="k">read</span><span class="w"> </span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">)</span><span class="w"> </span><span class="n">nrows</span><span class="p">,</span><span class="w"> </span><span class="n">ncols</span><span class="p">,</span><span class="w"> </span><span class="n">nnz</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ios</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">            print</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;Error: unable to read dimensions&#39;</span>
+<span class="w">            </span><span class="k">close</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
+<span class="w">            </span><span class="k">return</span>
+<span class="k">        end if</span>
 
-<span class="k">        ALLOCATE</span><span class="w"> </span><span class="p">(</span><span class="n">A</span><span class="p">(</span><span class="n">nrows</span><span class="p">,</span><span class="w"> </span><span class="n">ncols</span><span class="p">))</span>
+<span class="k">        allocate</span><span class="w"> </span><span class="p">(</span><span class="n">A</span><span class="p">(</span><span class="n">nrows</span><span class="p">,</span><span class="w"> </span><span class="n">ncols</span><span class="p">))</span>
 <span class="w">        </span><span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0_dp</span>
 
 <span class="w">        </span><span class="c">! Read matrix entries</span>
-<span class="w">        </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="n">format_type</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;coordinate&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="n">format_type</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;coordinate&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
 <span class="w">            </span><span class="c">! Coordinate format (sparse)</span>
-<span class="w">            </span><span class="k">DO </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">nnz</span>
-<span class="w">                </span><span class="k">READ</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">)</span><span class="w"> </span><span class="n">row_idx</span><span class="p">,</span><span class="w"> </span><span class="n">col_idx</span><span class="p">,</span><span class="w"> </span><span class="n">val</span>
-<span class="w">                </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">ios</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
-<span class="k">                    PRINT</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;Error: reading entry&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">k</span>
-<span class="w">                    </span><span class="k">EXIT</span>
-<span class="k">                END IF</span>
+<span class="w">            </span><span class="k">do </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">nnz</span>
+<span class="w">                </span><span class="k">read</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">)</span><span class="w"> </span><span class="n">row_idx</span><span class="p">,</span><span class="w"> </span><span class="n">col_idx</span><span class="p">,</span><span class="w"> </span><span class="n">val</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ios</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">                    print</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;Error: reading entry&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">k</span>
+<span class="w">                    </span><span class="k">exit</span>
+<span class="k">                end if</span>
 
 <span class="k">                </span><span class="n">A</span><span class="p">(</span><span class="n">row_idx</span><span class="p">,</span><span class="w"> </span><span class="n">col_idx</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val</span>
 
 <span class="w">                </span><span class="c">! If the matrix is symmetric, also fill A(j,i)</span>
-<span class="w">                </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="n">symmetry</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;symmetric&#39;</span><span class="w"> </span><span class="p">.</span><span class="nb">AND</span><span class="p">.</span><span class="w"> </span><span class="n">row_idx</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="n">col_idx</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="n">symmetry</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;symmetric&#39;</span><span class="w"> </span><span class="p">.</span><span class="nb">and</span><span class="p">.</span><span class="w"> </span><span class="n">row_idx</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="n">col_idx</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
 <span class="k">                    </span><span class="n">A</span><span class="p">(</span><span class="n">col_idx</span><span class="p">,</span><span class="w"> </span><span class="n">row_idx</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val</span>
-<span class="w">                </span><span class="k">END IF</span>
-<span class="k">            END DO</span>
+<span class="w">                </span><span class="k">end if</span>
+<span class="k">            end do</span>
 
-<span class="k">        ELSE IF</span><span class="w"> </span><span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="n">format_type</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;array&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
+<span class="k">        else if</span><span class="w"> </span><span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="n">format_type</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;array&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
 <span class="w">            </span><span class="c">! Dense format (array)</span>
-<span class="w">            </span><span class="k">DO </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">ncols</span>
-<span class="w">                </span><span class="k">DO </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">nrows</span>
-<span class="w">                    </span><span class="k">READ</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">)</span><span class="w"> </span><span class="n">val</span>
-<span class="w">                    </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">ios</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
-<span class="k">                        PRINT</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;Error: reading element (&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;)&#39;</span>
-<span class="w">                        </span><span class="k">CLOSE</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
-<span class="w">                        </span><span class="k">RETURN</span>
-<span class="k">                    END IF</span>
+<span class="w">            </span><span class="k">do </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">ncols</span>
+<span class="w">                </span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">nrows</span>
+<span class="w">                    </span><span class="k">read</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">)</span><span class="w"> </span><span class="n">val</span>
+<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ios</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">                        print</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;Error: reading element (&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;)&#39;</span>
+<span class="w">                        </span><span class="k">close</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
+<span class="w">                        </span><span class="k">return</span>
+<span class="k">                    end if</span>
 <span class="k">                    </span><span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val</span>
-<span class="w">                </span><span class="k">END DO</span>
-<span class="k">            END DO</span>
+<span class="w">                </span><span class="k">end do</span>
+<span class="k">            end do</span>
 
-<span class="k">        ELSE</span>
-<span class="k">            PRINT</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;Error: unsupported format: &#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">trim</span><span class="p">(</span><span class="n">format_type</span><span class="p">)</span>
-<span class="w">            </span><span class="k">CLOSE</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
-<span class="w">            </span><span class="k">RETURN</span>
-<span class="k">        END IF</span>
+<span class="k">        else</span>
+<span class="k">            print</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;Error: unsupported format: &#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">trim</span><span class="p">(</span><span class="n">format_type</span><span class="p">)</span>
+<span class="w">            </span><span class="k">close</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
+<span class="w">            </span><span class="k">return</span>
+<span class="k">        end if</span>
 
-<span class="k">        CLOSE</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
-<span class="w">    </span><span class="k">END SUBROUTINE </span><span class="n">readMatrixMarket</span>
+<span class="k">        close</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
+<span class="w">    </span><span class="k">end subroutine </span><span class="n">readMatrixMarket</span>
 </pre></div>
 
     </section>

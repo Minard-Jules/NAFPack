@@ -1,17 +1,17 @@
 !> Module for eigenvalue and eigenvector computations in NAFPack
-MODULE NAFPack_Eigen
+module NAFPack_Eigen
 
-    USE NAFPack_constant
-    USE NAFPack_matrix_decomposition
-    USE NAFPack_matricielle
+    use NAFPack_constant
+    use NAFPack_matrix_decomposition
+    use NAFPack_matricielle
 
-    IMPLICIT NONE(TYPE, EXTERNAL)
+    implicit none(type, external)
 
-    PRIVATE
+    private
 
-    PUBLIC :: Eigen
+    public :: Eigen
 
-CONTAINS
+contains
 
     !================== Eigen ===============================================================
 
@@ -23,121 +23,121 @@ CONTAINS
     !> - Power iteration
     !> - QR algorithm (with or without shift)
     !> The default method is Power iteration.
-    SUBROUTINE Eigen(A, lambda, vp, method, k)
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        CHARACTER(LEN=*), OPTIONAL, INTENT(IN) :: method
-        INTEGER, OPTIONAL, INTENT(IN) :: k
-        REAL(dp), DIMENSION(:, :), OPTIONAL, INTENT(OUT) :: vp
-        REAL(dp), DIMENSION(:), INTENT(OUT) :: lambda
-        REAL(dp), DIMENSION(size(A, 1), size(A, 1)) :: A_tmp
-        REAL(dp), DIMENSION(size(A, 1), size(A, 1)) :: vp_tmp
-        CHARACTER(LEN=50) :: base_method
-        INTEGER :: N, i, k_max, pos
+    subroutine Eigen(A, lambda, vp, method, k)
+        real(dp), dimension(:, :), intent(IN) :: A
+        character(LEN=*), optional, intent(IN) :: method
+        integer, optional, intent(IN) :: k
+        real(dp), dimension(:, :), optional, intent(OUT) :: vp
+        real(dp), dimension(:), intent(OUT) :: lambda
+        real(dp), dimension(size(A, 1), size(A, 1)) :: A_tmp
+        real(dp), dimension(size(A, 1), size(A, 1)) :: vp_tmp
+        character(LEN=50) :: base_method
+        integer :: N, i, k_max, pos
 
-        IF (present(k)) THEN
-            IF (k <= 0) STOP "ERROR :: k must be a positive integer"
+        if (present(k)) then
+            if (k <= 0) stop "ERROR :: k must be a positive integer"
             k_max = k
-        ELSE
+        else
             k_max = kmax
-        END IF
+        end if
 
         N = size(A, 1)
-        IF (size(A, 2) /= N) STOP "ERROR :: Matrix A not square"
+        if (size(A, 2) /= N) stop "ERROR :: Matrix A not square"
 
-        IF (size(lambda, 1) /= N) STOP "ERROR :: dimension lambda"
-        IF (present(vp) .AND. (size(vp, 1) /= N .OR. size(vp, 2) /= N)) STOP "ERROR :: dimension vp"
+        if (size(lambda, 1) /= N) stop "ERROR :: dimension lambda"
+        if (present(vp) .and. (size(vp, 1) /= N .or. size(vp, 2) /= N)) stop "ERROR :: dimension vp"
 
-        IF (method == "Power_iteration") THEN
+        if (method == "Power_iteration") then
 
             A_tmp = A
-            DO i = 1, N
-                CALL Power_iteration(A_tmp, lambda(i), vp_tmp(i, :), k_max)
+            do i = 1, N
+                call Power_iteration(A_tmp, lambda(i), vp_tmp(i, :), k_max)
                 A_tmp = deflation(A_tmp, lambda(i), vp_tmp(i, :), k_max)
-            END DO
+            end do
 
-            IF (present(vp)) vp = vp_tmp
+            if (present(vp)) vp = vp_tmp
 
-        ELSE IF (index(method, "QR") == 1) THEN
+        else if (index(method, "QR") == 1) then
 
-            IF (present(vp)) vp = 0
-            IF (present(vp)) PRINT*,"WARNING :: No solution for eigenvectors with the QR method"
+            if (present(vp)) vp = 0
+            if (present(vp)) print*,"WARNING :: No solution for eigenvectors with the QR method"
 
             pos = index(trim(method), "_Shifted")
 
-            IF (pos > 0 .AND. pos + 7 == len_trim(method)) THEN
+            if (pos > 0 .and. pos + 7 == len_trim(method)) then
                 base_method = method(:pos - 1)
-                CALL Eigen_QR_Shifted(A, lambda, base_method, N, k_max)
-            ELSE
-                CALL Eigen_QR(A, lambda, method, N, k_max)
-            END IF
+                call Eigen_QR_Shifted(A, lambda, base_method, N, k_max)
+            else
+                call Eigen_QR(A, lambda, method, N, k_max)
+            end if
 
-        ELSE
-            STOP "ERROR :: Wrong method for Eigen"
-        END IF
+        else
+            stop "ERROR :: Wrong method for Eigen"
+        end if
 
-    END SUBROUTINE Eigen
+    end subroutine Eigen
 
     !> QR algorithm for computing eigenvalues
     !>
     !> This subroutine implements the QR algorithm for computing the eigenvalues of a matrix.
-    SUBROUTINE Eigen_QR(A, lambda, method, N, k)
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        CHARACTER(LEN=*), INTENT(IN) :: method
-        INTEGER, INTENT(IN) :: N, k
-        REAL(dp), DIMENSION(:), INTENT(OUT) :: lambda
-        REAL(dp), DIMENSION(size(A, 1)) :: lambda_old
-        REAL(dp), DIMENSION(size(A, 1), size(A, 1)) :: A_tmp, Q, R
-        REAL(dp) :: diff
-        INTEGER :: i, j
+    subroutine Eigen_QR(A, lambda, method, N, k)
+        real(dp), dimension(:, :), intent(IN) :: A
+        character(LEN=*), intent(IN) :: method
+        integer, intent(IN) :: N, k
+        real(dp), dimension(:), intent(OUT) :: lambda
+        real(dp), dimension(size(A, 1)) :: lambda_old
+        real(dp), dimension(size(A, 1), size(A, 1)) :: A_tmp, Q, R
+        real(dp) :: diff
+        integer :: i, j
 
         A_tmp = A
 
-        DO i = 1, k
+        do i = 1, k
 
             lambda_old = lambda
 
-            CALL QR_decomposition(A_tmp, method, Q, R)
+            call QR_decomposition(A_tmp, method, Q, R)
 
             A_tmp = matmul(R, Q)
 
             diff = abs(A_tmp(2, 1))
-            DO j = 3, N
-                IF (maxval(abs(A_tmp(j, 1:j - 1))) > diff) THEN
+            do j = 3, N
+                if (maxval(abs(A_tmp(j, 1:j - 1))) > diff) then
                     diff = maxval(abs(A_tmp(j, 1:j - 1)))
-                END IF
-            END DO
+                end if
+            end do
 
-            IF (i == k) THEN
-                PRINT*," WARNING :: non-convergence of the QR Algorithm for eigenvalues "//method
-                PRINT*,"convergence = ", diff
-                EXIT
-            END IF
+            if (i == k) then
+                print*," WARNING :: non-convergence of the QR Algorithm for eigenvalues "//method
+                print*,"convergence = ", diff
+                exit
+            end if
 
-            IF (diff <= epsi) EXIT
-        END DO
+            if (diff <= epsi) exit
+        end do
 
         ! Extract eigenvalues
         lambda = [(A_tmp(i, i), i=1, N)]
 
-    END SUBROUTINE Eigen_QR
+    end subroutine Eigen_QR
 
     !> Shifted QR algorithm for computing eigenvalues
     !>
     !> This subroutine implements the shifted QR algorithm for computing the eigenvalues of a matrix.
     !> The shift is chosen as the last diagonal element of the matrix.
-    SUBROUTINE Eigen_QR_Shifted(A, lambda, method, N, k)
-        INTEGER, INTENT(IN) :: N, k
-        CHARACTER(LEN=*), INTENT(IN) :: method
-        REAL(dp), DIMENSION(N, N), INTENT(IN) :: A
-        REAL(dp), DIMENSION(N), INTENT(OUT) :: lambda
-        INTEGER :: i, j
-        REAL(dp), DIMENSION(size(A, 1), size(A, 1)) :: A_tmp, Q, R, Id
-        REAL(dp) :: shift, diff
+    subroutine Eigen_QR_Shifted(A, lambda, method, N, k)
+        integer, intent(IN) :: N, k
+        character(LEN=*), intent(IN) :: method
+        real(dp), dimension(N, N), intent(IN) :: A
+        real(dp), dimension(N), intent(OUT) :: lambda
+        integer :: i, j
+        real(dp), dimension(size(A, 1), size(A, 1)) :: A_tmp, Q, R, Id
+        real(dp) :: shift, diff
 
         A_tmp = A
         Id = Identity_n(N)
 
-        DO i = 1, k
+        do i = 1, k
             !choice of shift: last diagonal element
             shift = A_tmp(N, N)
 
@@ -145,92 +145,92 @@ CONTAINS
             A_tmp = A_tmp - shift * Id
 
             ! QR Decomposition : A - µI = Q * R
-            CALL QR_decomposition(A_tmp, method, Q, R)
+            call QR_decomposition(A_tmp, method, Q, R)
 
             ! A = RQ + µI
             A_tmp = matmul(R, Q) + shift * Id
 
             diff = abs(A_tmp(2, 1))
-            DO j = 3, N
-                IF (maxval(abs(A_tmp(j, 1:j - 1))) > diff) THEN
+            do j = 3, N
+                if (maxval(abs(A_tmp(j, 1:j - 1))) > diff) then
                     diff = maxval(abs(A_tmp(j, 1:j - 1)))
-                END IF
-            END DO
+                end if
+            end do
 
-            IF (i == k) THEN
-                PRINT*," WARNING :: non-convergence of the Shifted QR Algorithm for eigenvalues "//method
-                PRINT*,"convergence = ", diff
-                EXIT
-            END IF
+            if (i == k) then
+                print*," WARNING :: non-convergence of the Shifted QR Algorithm for eigenvalues "//method
+                print*,"convergence = ", diff
+                exit
+            end if
 
-            IF (diff <= epsi) EXIT
+            if (diff <= epsi) exit
 
-        END DO
+        end do
 
         ! Extract eigenvalues
         lambda = [(A_tmp(i, i), i=1, N)]
 
-    END SUBROUTINE Eigen_QR_Shifted
+    end subroutine Eigen_QR_Shifted
 
     !> Power iteration method for computing the dominant eigenvalue and eigenvector
     !>
     !> This subroutine implements the power iteration method for finding the dominant eigenvalue and eigenvector of a matrix.
     !> It iteratively computes the eigenvector and eigenvalue until convergence
-    SUBROUTINE Power_iteration(A, lambda, vp, k)
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        INTEGER, INTENT(IN) :: k
-        REAL(dp), DIMENSION(:), INTENT(OUT) :: vp
-        REAL(dp), INTENT(OUT) :: lambda
-        REAL(dp), DIMENSION(size(A, 1)) :: u, vp_tmp, r
-        INTEGER :: i, N
+    subroutine Power_iteration(A, lambda, vp, k)
+        real(dp), dimension(:, :), intent(IN) :: A
+        integer, intent(IN) :: k
+        real(dp), dimension(:), intent(OUT) :: vp
+        real(dp), intent(OUT) :: lambda
+        real(dp), dimension(size(A, 1)) :: u, vp_tmp, r
+        integer :: i, N
 
         N = size(A, 1)
-        CALL random_number(u)
+        call random_number(u)
 
         u = normalise(u)
         vp_tmp = matmul(A, u)
         lambda = dot_product(vp_tmp, u)
         r = vp_tmp - lambda * u
 
-        DO i = 1, k
+        do i = 1, k
             u = normalise(vp_tmp)
             vp_tmp = matmul(A, u)
             lambda = dot_product(vp_tmp, u)
-            IF (norm2(r) <= epsi) EXIT
+            if (norm2(r) <= epsi) exit
             r = vp_tmp - lambda * u
-            IF (i == k) THEN
-                PRINT*,"WARNING :: non-convergence of the power iteration method"
-            END IF
-        END DO
+            if (i == k) then
+                print*,"WARNING :: non-convergence of the power iteration method"
+            end if
+        end do
 
         vp = u
 
-    END SUBROUTINE Power_iteration
+    end subroutine Power_iteration
 
     !> Deflation method for removing the influence of an eigenvalue and eigenvector
     !>
     !> This function performs deflation on a matrix A by removing the influence of an eigenvalue and its corresponding eigenvector.
-    FUNCTION deflation(A, lambda, vp, k) RESULT(RESULT)
+    function deflation(A, lambda, vp, k) result(result)
 
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(:), INTENT(IN) :: vp
-        REAL(dp), INTENT(IN) :: lambda
-        INTEGER, INTENT(IN) :: k
-        REAL(dp), DIMENSION(size(A, 1), size(A, 1)) :: RESULT
-        REAL(dp), DIMENSION(size(A, 1)) :: wp
-        INTEGER :: i, j, N
-        REAL(dp) :: lambda1
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:), intent(IN) :: vp
+        real(dp), intent(IN) :: lambda
+        integer, intent(IN) :: k
+        real(dp), dimension(size(A, 1), size(A, 1)) :: result
+        real(dp), dimension(size(A, 1)) :: wp
+        integer :: i, j, N
+        real(dp) :: lambda1
 
         N = size(A, 1)
-        RESULT = A
+        result = A
 
-        CALL Power_iteration(transpose(A), lambda1, wp, k)
-        DO i = 1, N
-            DO j = 1, N
-                RESULT(i, j) = RESULT(i, j) - (lambda * vp(i) * wp(j)) / dot_product(vp, wp)
-            END DO
-        END DO
+        call Power_iteration(transpose(A), lambda1, wp, k)
+        do i = 1, N
+            do j = 1, N
+                result(i, j) = result(i, j) - (lambda * vp(i) * wp(j)) / dot_product(vp, wp)
+            end do
+        end do
 
-    END FUNCTION deflation
+    end function deflation
 
-END MODULE NAFPack_Eigen
+end module NAFPack_Eigen

@@ -1,79 +1,79 @@
-MODULE NAFPack_Iterative_types
+module NAFPack_Iterative_types
 
-    USE NAFPack_constant
+    use NAFPack_constant
 
-    IMPLICIT NONE(TYPE, EXTERNAL)
+    implicit none(type, external)
 
-    PRIVATE
+    private
 
-    PUBLIC :: MethodTypeIterative
-    PUBLIC :: METHOD_ITERATIVE_NONE
-    PUBLIC :: METHOD_Jacobi, METHOD_JOR
-    PUBLIC :: METHOD_GAUSS_SEIDEL, METHOD_SOR, METHOD_SSOR
-    PUBLIC :: METHOD_SIP_ILU, METHOD_SIP_ICF
-    PUBLIC :: METHOD_RICHARDSON
-    PUBLIC :: METHOD_CONJUGATE_GRADIENT
-    PUBLIC :: METHOD_CONJUGATE_RESIDUAL
-    PUBLIC :: METHOD_CGNE, METHOD_CGNR
-    PUBLIC :: METHOD_GMRES
+    public :: MethodTypeIterative
+    public :: METHOD_ITERATIVE_NONE
+    public :: METHOD_Jacobi, METHOD_JOR
+    public :: METHOD_GAUSS_SEIDEL, METHOD_SOR, METHOD_SSOR
+    public :: METHOD_SIP_ILU, METHOD_SIP_ICF
+    public :: METHOD_RICHARDSON
+    public :: METHOD_CONJUGATE_GRADIENT
+    public :: METHOD_CONJUGATE_RESIDUAL
+    public :: METHOD_CGNE, METHOD_CGNR
+    public :: METHOD_GMRES
 
-    PUBLIC :: IterativeMethodRequirements
+    public :: IterativeMethodRequirements
 
-    PUBLIC :: Norm_used
-    PUBLIC :: NORM_2, NORM_1, NORM_INF
+    public :: Norm_used
+    public :: NORM_2, NORM_1, NORM_INF
 
-    PUBLIC :: relaxation_factor_used
-    PUBLIC :: RELAXATION_FACTOR_NONE, RELAXATION_FACTOR_OMEGA, RELAXATION_FACTOR_ALPHA
+    public :: relaxation_factor_used
+    public :: RELAXATION_FACTOR_NONE, RELAXATION_FACTOR_OMEGA, RELAXATION_FACTOR_ALPHA
 
-    INTEGER, PARAMETER :: CK = selected_char_kind('ISO_10646')
-    CHARACTER(KIND=ucs4, LEN=4), PARAMETER :: NONE = "None"
-    CHARACTER(KIND=ucs4, LEN=1), PARAMETER :: omega = char(int(z'03C9'), ucs4)
-    CHARACTER(KIND=ucs4, LEN=1), PARAMETER :: alpha = char(int(z'03B1'), ucs4)
+    integer, parameter :: CK = selected_char_kind('ISO_10646')
+    character(KIND=ucs4, LEN=4), parameter :: none = "None"
+    character(KIND=ucs4, LEN=1), parameter :: omega = char(int(z'03C9'), ucs4)
+    character(KIND=ucs4, LEN=1), parameter :: alpha = char(int(z'03B1'), ucs4)
 
-    TYPE :: MethodTypeIterative
-        INTEGER :: id
-        CHARACTER(LEN=64) :: name
-        CHARACTER(LEN=64) :: name2 = ""
-    END TYPE MethodTypeIterative
+    type :: MethodTypeIterative
+        integer :: id
+        character(LEN=64) :: name
+        character(LEN=64) :: name2 = ""
+    end type MethodTypeIterative
 
-    TYPE :: IterativeMethodRequirements
-        LOGICAL :: needs_SPD = .FALSE.
-        LOGICAL :: needs_diag_dom = .FALSE.
-        LOGICAL :: needs_square = .FALSE.
-        LOGICAL :: needs_symetric = .FALSE.
-    END TYPE IterativeMethodRequirements
+    type :: IterativeMethodRequirements
+        logical :: needs_SPD = .false.
+        logical :: needs_diag_dom = .false.
+        logical :: needs_square = .false.
+        logical :: needs_symetric = .false.
+    end type IterativeMethodRequirements
 
-    TYPE :: Norm_used
-        INTEGER :: id
-        CHARACTER(LEN=64) :: name
-    END TYPE Norm_used
+    type :: Norm_used
+        integer :: id
+        character(LEN=64) :: name
+    end type Norm_used
 
-    TYPE :: relaxation_factor_used
-        INTEGER :: id
-        CHARACTER(KIND=ucs4, LEN=64) :: name
-    END TYPE relaxation_factor_used
+    type :: relaxation_factor_used
+        integer :: id
+        character(KIND=ucs4, LEN=64) :: name
+    end type relaxation_factor_used
 
-    TYPE(MethodTypeIterative), PARAMETER :: METHOD_ITERATIVE_NONE = MethodTypeIterative(0, "None")
-    TYPE(MethodTypeIterative), PARAMETER :: METHOD_Jacobi = MethodTypeIterative(1, "Jacobi")
-    TYPE(MethodTypeIterative), PARAMETER :: METHOD_GAUSS_SEIDEL = MethodTypeIterative(2, "Gauss-Seidel")
-    TYPE(MethodTypeIterative), PARAMETER :: METHOD_SOR = MethodTypeIterative(3, "Successive Over-Relaxation")
-    TYPE(MethodTypeIterative), PARAMETER :: METHOD_JOR = MethodTypeIterative(4, "Jacobi Over-Relaxation")
-    TYPE(MethodTypeIterative), PARAMETER :: METHOD_SIP_ILU = MethodTypeIterative(5, "Strongly Implicit Procedure", "ILU")
-    TYPE(MethodTypeIterative), PARAMETER :: METHOD_SIP_ICF = MethodTypeIterative(6, "Strongly Implicit Procedure", "ICF")
-    TYPE(MethodTypeIterative), PARAMETER :: METHOD_SSOR = MethodTypeIterative(7, "Symmetric Successive Over-Relaxation")
-    TYPE(MethodTypeIterative), PARAMETER :: METHOD_RICHARDSON = MethodTypeIterative(8, "Richardson")
-    TYPE(MethodTypeIterative), PARAMETER :: METHOD_CONJUGATE_GRADIENT = MethodTypeIterative(9, "Conjugate Gradient")
-    TYPE(MethodTypeIterative), PARAMETER :: METHOD_CONJUGATE_RESIDUAL = MethodTypeIterative(10, "Conjugate Residual")
-    TYPE(MethodTypeIterative), PARAMETER :: METHOD_CGNE = MethodTypeIterative(11, "Conjugate Gradient on Normal Equations")
-    TYPE(MethodTypeIterative), PARAMETER :: METHOD_CGNR = MethodTypeIterative(12, "Conjugate Gradient on Normal Residual")
-    TYPE(MethodTypeIterative), PARAMETER :: METHOD_GMRES = MethodTypeIterative(13, "Generalized Minimal Residual")
+    type(MethodTypeIterative), parameter :: METHOD_ITERATIVE_NONE = MethodTypeIterative(0, "None")
+    type(MethodTypeIterative), parameter :: METHOD_Jacobi = MethodTypeIterative(1, "Jacobi")
+    type(MethodTypeIterative), parameter :: METHOD_GAUSS_SEIDEL = MethodTypeIterative(2, "Gauss-Seidel")
+    type(MethodTypeIterative), parameter :: METHOD_SOR = MethodTypeIterative(3, "Successive Over-Relaxation")
+    type(MethodTypeIterative), parameter :: METHOD_JOR = MethodTypeIterative(4, "Jacobi Over-Relaxation")
+    type(MethodTypeIterative), parameter :: METHOD_SIP_ILU = MethodTypeIterative(5, "Strongly Implicit Procedure", "ILU")
+    type(MethodTypeIterative), parameter :: METHOD_SIP_ICF = MethodTypeIterative(6, "Strongly Implicit Procedure", "ICF")
+    type(MethodTypeIterative), parameter :: METHOD_SSOR = MethodTypeIterative(7, "Symmetric Successive Over-Relaxation")
+    type(MethodTypeIterative), parameter :: METHOD_RICHARDSON = MethodTypeIterative(8, "Richardson")
+    type(MethodTypeIterative), parameter :: METHOD_CONJUGATE_GRADIENT = MethodTypeIterative(9, "Conjugate Gradient")
+    type(MethodTypeIterative), parameter :: METHOD_CONJUGATE_RESIDUAL = MethodTypeIterative(10, "Conjugate Residual")
+    type(MethodTypeIterative), parameter :: METHOD_CGNE = MethodTypeIterative(11, "Conjugate Gradient on Normal Equations")
+    type(MethodTypeIterative), parameter :: METHOD_CGNR = MethodTypeIterative(12, "Conjugate Gradient on Normal Residual")
+    type(MethodTypeIterative), parameter :: METHOD_GMRES = MethodTypeIterative(13, "Generalized Minimal Residual")
 
-    TYPE(Norm_used), PARAMETER :: NORM_2 = Norm_used(1, "Norm L2 or Euclidean")
-    TYPE(Norm_used), PARAMETER :: NORM_1 = Norm_used(2, "Norm L1 or Manhattan")
-    TYPE(Norm_used), PARAMETER :: NORM_INF = Norm_used(3, "Norm LInfini or Maximum")
+    type(Norm_used), parameter :: NORM_2 = Norm_used(1, "Norm L2 or Euclidean")
+    type(Norm_used), parameter :: NORM_1 = Norm_used(2, "Norm L1 or Manhattan")
+    type(Norm_used), parameter :: NORM_INF = Norm_used(3, "Norm LInfini or Maximum")
 
-    TYPE(relaxation_factor_used), PARAMETER :: RELAXATION_FACTOR_NONE = relaxation_factor_used(0, NONE)
-    TYPE(relaxation_factor_used), PARAMETER :: RELAXATION_FACTOR_OMEGA = relaxation_factor_used(1, omega)
-    TYPE(relaxation_factor_used), PARAMETER :: RELAXATION_FACTOR_ALPHA = relaxation_factor_used(2, alpha)
+    type(relaxation_factor_used), parameter :: RELAXATION_FACTOR_NONE = relaxation_factor_used(0, none)
+    type(relaxation_factor_used), parameter :: RELAXATION_FACTOR_OMEGA = relaxation_factor_used(1, omega)
+    type(relaxation_factor_used), parameter :: RELAXATION_FACTOR_ALPHA = relaxation_factor_used(2, alpha)
 
-END MODULE NAFPack_Iterative_types
+end module NAFPack_Iterative_types

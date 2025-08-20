@@ -1,117 +1,117 @@
-MODULE NAFPack_Iterative_Params
+module NAFPack_Iterative_Params
 
-    USE NAFPack_constant
-    USE NAFPack_Iterative_types
-    USE NAFPack_Preconditioners
-    USE NAFPack_matrix_decomposition
+    use NAFPack_constant
+    use NAFPack_Iterative_types
+    use NAFPack_Preconditioners
+    use NAFPack_matrix_decomposition
 
-    IMPLICIT NONE(TYPE, EXTERNAL)
+    implicit none(type, external)
 
-    PRIVATE
+    private
 
-    PUBLIC :: IterativeParams
-    PUBLIC :: ApplyPreconditioner
+    public :: IterativeParams
+    public :: ApplyPreconditioner
 
-    TYPE :: IterativeParams
+    type :: IterativeParams
         ! Solution and initial guess
-        REAL(dp), DIMENSION(:), ALLOCATABLE :: x_init
+        real(dp), dimension(:), allocatable :: x_init
         ! Preconditioner matrices
-        REAL(dp), DIMENSION(:, :), ALLOCATABLE :: L, U, D
+        real(dp), dimension(:, :), allocatable :: L, U, D
         ! Algorithm vectors
-        REAL(dp), DIMENSION(:), ALLOCATABLE :: p
-        REAL(dp), DIMENSION(:), ALLOCATABLE :: residual
+        real(dp), dimension(:), allocatable :: p
+        real(dp), dimension(:), allocatable :: residual
         ! Norms and tolerances
-        REAL(dp) :: norm_residual
-        REAL(dp) :: norm_initial_residual = 1.d0
-        REAL(dp) :: tol = 1.0d-12
+        real(dp) :: norm_residual
+        real(dp) :: norm_initial_residual = 1.d0
+        real(dp) :: tol = 1.0d-12
         ! Iteration control
-        INTEGER :: k = 0
-        INTEGER :: max_iter = 1000
+        integer :: k = 0
+        integer :: max_iter = 1000
         ! Method parameters
-        REAL(dp) :: omega = 1.d0
-        REAL(dp) :: alpha = 1.d0
-        REAL(dp) :: beta = 1.d0
+        real(dp) :: omega = 1.d0
+        real(dp) :: alpha = 1.d0
+        real(dp) :: beta = 1.d0
         ! ILU/IC fill level
-        TYPE(FILL_LEVEL_USED) :: fill_level = FILL_LEVEL_NONE
+        type(FILL_LEVEL_USED) :: fill_level = FILL_LEVEL_NONE
         ! Flags
-        LOGICAL :: is_stationary = .TRUE.
-        LOGICAL :: strict_mode = .FALSE.
+        logical :: is_stationary = .true.
+        logical :: strict_mode = .false.
         ! Miscellaneous
-        REAL(dp) :: old_dot_product = 0.d0
-        TYPE(Norm_used) :: norm = NORM_2
+        real(dp) :: old_dot_product = 0.d0
+        type(Norm_used) :: norm = NORM_2
         ! Preconditioner procedure pointer
-        PROCEDURE(ApplyPreconditioner), PASS(params), POINTER :: precond
+        procedure(ApplyPreconditioner), pass(params), pointer :: precond
 
-    CONTAINS
+    contains
 
-        PROCEDURE :: norm_function
-    END TYPE IterativeParams
+        procedure :: norm_function
+    end type IterativeParams
 
-CONTAINS
+contains
 
-    FUNCTION ApplyPreconditioner(params, method, x) RESULT(y)
-        CLASS(IterativeParams), INTENT(IN) :: params
-        CLASS(MethodPreconditioner), INTENT(IN) :: method
-        REAL(dp), DIMENSION(:), INTENT(IN) :: x
-        REAL(dp), DIMENSION(size(params%x_init)) :: y
+    function ApplyPreconditioner(params, method, x) result(y)
+        class(IterativeParams), intent(IN) :: params
+        class(MethodPreconditioner), intent(IN) :: method
+        real(dp), dimension(:), intent(IN) :: x
+        real(dp), dimension(size(params%x_init)) :: y
 
-        SELECT CASE (method%id)
-        CASE (METHOD_PRECOND_JACOBI%id)
-            IF (.NOT. allocated(params%D)) STOP "ERROR :: Jacobi preconditioner requires &
+        select case (method%id)
+        case (METHOD_PRECOND_JACOBI%id)
+            if (.not. allocated(params%D)) stop "ERROR :: Jacobi preconditioner requires &
                                                 &preconditioner matrix D to be allocated"
             y = matmul(params%D, x)
-        CASE (METHOD_PRECOND_GS%id)
-            IF (.NOT. allocated(params%L)) STOP "ERROR :: Gauss-Seidel preconditioner requires &
+        case (METHOD_PRECOND_GS%id)
+            if (.not. allocated(params%L)) stop "ERROR :: Gauss-Seidel preconditioner requires &
                                                 &preconditioner matrix L to be allocated"
             y = forward(params%L, x)
-        CASE (METHOD_PRECOND_SOR%id)
-            IF (.NOT. allocated(params%L)) STOP "ERROR :: SOR preconditioner requires &
+        case (METHOD_PRECOND_SOR%id)
+            if (.not. allocated(params%L)) stop "ERROR :: SOR preconditioner requires &
                                                 &preconditioner matrix L to be allocated"
             y = forward(params%L, x)
-        CASE (METHOD_PRECOND_JOR%id)
-            IF (.NOT. allocated(params%D)) STOP "ERROR :: JOR preconditioner requires &
+        case (METHOD_PRECOND_JOR%id)
+            if (.not. allocated(params%D)) stop "ERROR :: JOR preconditioner requires &
                                                 &preconditioner matrix D to be allocated"
             y = matmul(params%D, x)
-        CASE (METHOD_PRECOND_ILU%id)
-            IF (.NOT. allocated(params%L) .OR. &
-               .NOT. allocated(params%U)) STOP "ERROR :: ILU preconditioner requires &
+        case (METHOD_PRECOND_ILU%id)
+            if (.not. allocated(params%L) .or. &
+               .not. allocated(params%U)) stop "ERROR :: ILU preconditioner requires &
                                                 &preconditioner matrices L and U to be allocated"
             y = forward(params%L, x)
             y = backward(params%U, y)
-        CASE (METHOD_PRECOND_ICF%id)
-            IF (.NOT. allocated(params%L)) STOP "ERROR :: ICF preconditioner requires &
+        case (METHOD_PRECOND_ICF%id)
+            if (.not. allocated(params%L)) stop "ERROR :: ICF preconditioner requires &
                                                 &preconditioner matrix L to be allocated"
             y = forward(params%L, x)
             y = backward(transpose(params%L), y)
-        CASE (METHOD_PRECOND_SSOR%id)
-            IF (.NOT. allocated(params%L) .OR. &
-               .NOT. allocated(params%D)) STOP "ERROR :: SSOR preconditioner requires &
+        case (METHOD_PRECOND_SSOR%id)
+            if (.not. allocated(params%L) .or. &
+               .not. allocated(params%D)) stop "ERROR :: SSOR preconditioner requires &
                                                 &preconditioner matrices L and D to be allocated"
             y = forward(params%L, x)
             y = matmul(params%D, y)
             y = backward(transpose(params%L), y)
-        CASE DEFAULT
-            STOP "ERROR :: Unknown preconditioner method"
-        END SELECT
+        case DEFAULT
+            stop "ERROR :: Unknown preconditioner method"
+        end select
 
-    END FUNCTION ApplyPreconditioner
+    end function ApplyPreconditioner
 
-    FUNCTION norm_function(this, vector) RESULT(RESULT)
-        CLASS(IterativeParams), INTENT(IN) :: this
-        REAL(dp), DIMENSION(:), INTENT(IN) :: vector
-        REAL(dp) :: RESULT
+    function norm_function(this, vector) result(result)
+        class(IterativeParams), intent(IN) :: this
+        real(dp), dimension(:), intent(IN) :: vector
+        real(dp) :: result
 
-        SELECT CASE (this%norm%id)
-        CASE (NORM_1%id)
-            RESULT = sum(abs(vector))
-        CASE (NORM_2%id)
-            RESULT = norm2(vector)
-        CASE (NORM_INF%id)
-            RESULT = maxval(abs(vector))
-        CASE DEFAULT
-            STOP "ERROR :: Unknown norm type"
-        END SELECT
+        select case (this%norm%id)
+        case (NORM_1%id)
+            result = sum(abs(vector))
+        case (NORM_2%id)
+            result = norm2(vector)
+        case (NORM_INF%id)
+            result = maxval(abs(vector))
+        case DEFAULT
+            stop "ERROR :: Unknown norm type"
+        end select
 
-    END FUNCTION norm_function
+    end function norm_function
 
-END MODULE NAFPack_Iterative_Params
+end module NAFPack_Iterative_Params

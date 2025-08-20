@@ -1,43 +1,43 @@
-MODULE test_NAFPack_fft
+module test_NAFPack_fft
 
-    USE NAFPack_fft
-    USE NAFPack_meshgrid
-    USE NAFPack_constant
+    use NAFPack_fft
+    use NAFPack_meshgrid
+    use NAFPack_constant
 
-    IMPLICIT NONE(TYPE, EXTERNAL)
+    implicit none(type, external)
 
-    PRIVATE
-    PUBLIC :: test_FFT
+    private
+    public :: test_FFT
 
-CONTAINS
+contains
 
-    SUBROUTINE test_FFT(stat)
+    subroutine test_FFT(stat)
 
-        LOGICAL, INTENT(INOUT) :: stat
+        logical, intent(INOUT) :: stat
 
-        INTEGER, PARAMETER :: Mx = 10, My = 20
-        INTEGER, PARAMETER :: Mx2 = 5, My2 = 6
-        REAL(dp), DIMENSION(Mx) :: xlist
-        REAL(dp), DIMENSION(My) :: ylist
-        COMPLEX(dp), DIMENSION(Mx) :: S, fS
-        COMPLEX(dp), DIMENSION(Mx) :: fs_exact_DFT, fs_DFT, diff_DFT
-        COMPLEX(dp), DIMENSION(Mx) :: fs_exact_FFT, fs_FFT, diff_FFT
-        COMPLEX(dp), DIMENSION(Mx) :: s_exact_IFFT, s_IFFT, diff_IFFT
-        COMPLEX(dp), DIMENSION(My, Mx) :: fs_exact_FFT2, fs_FFT2, diff_FFT2
-        COMPLEX(dp), DIMENSION(My2, Mx2) :: s_exact_IFFT2, s_IFFT2, diff_IFFT2
-        REAL(dp), DIMENSION(My, Mx) :: X, Y
-        COMPLEX(dp), DIMENSION(My, Mx) :: S2D
-        COMPLEX(dp), DIMENSION(My2, Mx2) :: fS2S
-        INTEGER :: i
+        integer, parameter :: Mx = 10, My = 20
+        integer, parameter :: Mx2 = 5, My2 = 6
+        real(dp), dimension(Mx) :: xlist
+        real(dp), dimension(My) :: ylist
+        complex(dp), dimension(Mx) :: S, fS
+        complex(dp), dimension(Mx) :: fs_exact_DFT, fs_DFT, diff_DFT
+        complex(dp), dimension(Mx) :: fs_exact_FFT, fs_FFT, diff_FFT
+        complex(dp), dimension(Mx) :: s_exact_IFFT, s_IFFT, diff_IFFT
+        complex(dp), dimension(My, Mx) :: fs_exact_FFT2, fs_FFT2, diff_FFT2
+        complex(dp), dimension(My2, Mx2) :: s_exact_IFFT2, s_IFFT2, diff_IFFT2
+        real(dp), dimension(My, Mx) :: X, Y
+        complex(dp), dimension(My, Mx) :: S2D
+        complex(dp), dimension(My2, Mx2) :: fS2S
+        integer :: i
 
-        DO i = 1, Mx
+        do i = 1, Mx
             xlist(i) = i - 1
-        END DO
+        end do
         xlist = xlist * 2 * pi / Mx
 
-        DO i = 1, My
+        do i = 1, My
             ylist(i) = i - 1
-        END DO
+        end do
         ylist = ylist * 2 * pi / My
 
         !==================================================================
@@ -50,12 +50,12 @@ CONTAINS
         fs_DFT = FFT_1D(S, "NAFPack_DFT")
 
         diff_DFT = fs_exact_DFT - fs_DFT
-        IF (maxval(abs(diff_DFT)) < epsi) THEN
-            WRITE (*, '(A,T50,A,A)') green_color//"DFT", " :: OK"//reset_color
-        ELSE
-            WRITE (*, '(A,T50,A)') red_color//"DFT", " :: ECHEC"//reset_color
-            stat = .TRUE.
-        END IF
+        if (maxval(abs(diff_DFT)) < epsi) then
+            write (*, '(A,T50,A,A)') green_color//"DFT", " :: OK"//reset_color
+        else
+            write (*, '(A,T50,A)') red_color//"DFT", " :: ECHEC"//reset_color
+            stat = .true.
+        end if
 
         !==================================================================
         !test FFT
@@ -71,12 +71,12 @@ CONTAINS
         fs_FFT = FFT_1D(S, "NAFPack_FFT_1D")
 
         diff_FFT = fs_exact_FFT - fs_FFT
-        IF (maxval(abs(diff_FFT)) < epsi) THEN
-            WRITE (*, '(A,T50,A,A)') green_color//"FFT", " :: OK"//reset_color
-        ELSE
-            WRITE (*, '(A,T50,A)') red_color//"FFT", " :: ECHEC"//reset_color
-            stat = .TRUE.
-        END IF
+        if (maxval(abs(diff_FFT)) < epsi) then
+            write (*, '(A,T50,A,A)') green_color//"FFT", " :: OK"//reset_color
+        else
+            write (*, '(A,T50,A)') red_color//"FFT", " :: ECHEC"//reset_color
+            stat = .true.
+        end if
 
         !==================================================================
         !test FFTW
@@ -92,12 +92,12 @@ CONTAINS
         fs_FFT = FFT_1D(S, "FFTW_FFT_1D")
 
         diff_FFT = fs_exact_FFT - fs_FFT
-        IF (maxval(abs(diff_FFT)) < epsi) THEN
-            WRITE (*, '(A,T50,A,A)') green_color//"FFTW", " :: OK"//reset_color
-        ELSE
-            WRITE (*, '(A,T50,A)') red_color//"FFTW", " :: ECHEC"//reset_color
-            stat = .TRUE.
-        END IF
+        if (maxval(abs(diff_FFT)) < epsi) then
+            write (*, '(A,T50,A,A)') green_color//"FFTW", " :: OK"//reset_color
+        else
+            write (*, '(A,T50,A)') red_color//"FFTW", " :: ECHEC"//reset_color
+            stat = .true.
+        end if
 
         !==================================================================
         !test FFTW threads
@@ -113,12 +113,12 @@ CONTAINS
         fs_FFT = FFT_1D(S, "FFTW_FFT_1D", threads=4)
 
         diff_FFT = fs_exact_FFT - fs_FFT
-        IF (maxval(abs(diff_FFT)) < epsi) THEN
-            WRITE (*, '(A,T50,A,A)') green_color//"FFTW threads", " :: OK"//reset_color
-        ELSE
-            WRITE (*, '(A,T50,A)') red_color//"FFTW threads", " :: ECHEC"//reset_color
-            stat = .TRUE.
-        END IF
+        if (maxval(abs(diff_FFT)) < epsi) then
+            write (*, '(A,T50,A,A)') green_color//"FFTW threads", " :: OK"//reset_color
+        else
+            write (*, '(A,T50,A)') red_color//"FFTW threads", " :: ECHEC"//reset_color
+            stat = .true.
+        end if
 
         !==================================================================
         !test IFFT
@@ -143,12 +143,12 @@ CONTAINS
         s_IFFT = IFFT_1D(fS, "NAFPack_IFFT_1D")
 
         diff_IFFT = s_exact_IFFT - s_IFFT
-        IF (maxval(abs(diff_FFT)) < epsi) THEN
-            WRITE (*, '(A,T50,A,A)') green_color//"IFFT", " :: OK"//reset_color
-        ELSE
-            WRITE (*, '(A,T50,A)') red_color//"IFFT", " :: ECHEC"//reset_color
-            stat = .TRUE.
-        END IF
+        if (maxval(abs(diff_FFT)) < epsi) then
+            write (*, '(A,T50,A,A)') green_color//"IFFT", " :: OK"//reset_color
+        else
+            write (*, '(A,T50,A)') red_color//"IFFT", " :: ECHEC"//reset_color
+            stat = .true.
+        end if
 
         !==================================================================
         !test IFFTW
@@ -173,12 +173,12 @@ CONTAINS
         s_IFFT = IFFT_1D(fS, "FFTW_IFFT_1D")
 
         diff_IFFT = s_exact_IFFT - s_IFFT
-        IF (maxval(abs(diff_FFT)) < epsi) THEN
-            WRITE (*, '(A,T50,A,A)') green_color//"IFFTW", " :: OK"//reset_color
-        ELSE
-            WRITE (*, '(A,T50,A)') red_color//"IFFTW", " :: ECHEC"//reset_color
-            stat = .TRUE.
-        END IF
+        if (maxval(abs(diff_FFT)) < epsi) then
+            write (*, '(A,T50,A,A)') green_color//"IFFTW", " :: OK"//reset_color
+        else
+            write (*, '(A,T50,A)') red_color//"IFFTW", " :: ECHEC"//reset_color
+            stat = .true.
+        end if
 
         !==================================================================
         !test IFFTW threads
@@ -203,16 +203,16 @@ CONTAINS
         s_IFFT = IFFT_1D(fS, "FFTW_IFFT_1D", threads=4)
 
         diff_IFFT = s_exact_IFFT - s_IFFT
-        IF (maxval(abs(diff_FFT)) < epsi) THEN
-            WRITE (*, '(A,T50,A,A)') green_color//"IFFTW threads", " :: OK"//reset_color
-        ELSE
-            WRITE (*, '(A,T50,A)') red_color//"IFFTW threads", " :: ECHEC"//reset_color
-            stat = .TRUE.
-        END IF
+        if (maxval(abs(diff_FFT)) < epsi) then
+            write (*, '(A,T50,A,A)') green_color//"IFFTW threads", " :: OK"//reset_color
+        else
+            write (*, '(A,T50,A)') red_color//"IFFTW threads", " :: ECHEC"//reset_color
+            stat = .true.
+        end if
 
         !==================================================================
         !test FFT2
-        CALL meshgrid(xlist, ylist, X, Y)
+        call meshgrid(xlist, ylist, X, Y)
         S2D = sin(2 * X) + sin(Y)
 
         fs_exact_FFT2 = (0.d0, 0.d0)
@@ -224,16 +224,16 @@ CONTAINS
         fs_FFT2 = FFT_2D(S2D, "NAFPack_FFT_2D")
 
         diff_FFT2 = fs_exact_FFT2 - fs_FFT2
-        IF (maxval(abs(diff_FFT2)) < epsi) THEN
-            WRITE (*, '(A,T50,A,A)') green_color//"FFT2", " :: OK"//reset_color
-        ELSE
-            WRITE (*, '(A,T50,A)') red_color//"FFT2", " :: ECHEC"//reset_color
-            stat = .TRUE.
-        END IF
+        if (maxval(abs(diff_FFT2)) < epsi) then
+            write (*, '(A,T50,A,A)') green_color//"FFT2", " :: OK"//reset_color
+        else
+            write (*, '(A,T50,A)') red_color//"FFT2", " :: ECHEC"//reset_color
+            stat = .true.
+        end if
 
         !==================================================================
         !test FFTW2
-        CALL meshgrid(xlist, ylist, X, Y)
+        call meshgrid(xlist, ylist, X, Y)
         S2D = sin(2 * X) + sin(Y)
 
         fs_exact_FFT2 = (0.d0, 0.d0)
@@ -245,16 +245,16 @@ CONTAINS
         fs_FFT2 = FFT_2D(S2D, "FFTW_FFT_2D")
 
         diff_FFT2 = fs_exact_FFT2 - fs_FFT2
-        IF (maxval(abs(diff_FFT2)) < epsi) THEN
-            WRITE (*, '(A,T50,A,A)') green_color//"FFTW2", " :: OK"//reset_color
-        ELSE
-            WRITE (*, '(A,T50,A)') red_color//"FFTW2", " :: ECHEC"//reset_color
-            stat = .TRUE.
-        END IF
+        if (maxval(abs(diff_FFT2)) < epsi) then
+            write (*, '(A,T50,A,A)') green_color//"FFTW2", " :: OK"//reset_color
+        else
+            write (*, '(A,T50,A)') red_color//"FFTW2", " :: ECHEC"//reset_color
+            stat = .true.
+        end if
 
         !==================================================================
         !test FFTW2 threads
-        CALL meshgrid(xlist, ylist, X, Y)
+        call meshgrid(xlist, ylist, X, Y)
         S2D = sin(2 * X) + sin(Y)
 
         fs_exact_FFT2 = (0.d0, 0.d0)
@@ -266,12 +266,12 @@ CONTAINS
         fs_FFT2 = FFT_2D(S2D, "FFTW_FFT_2D", threads=4)
 
         diff_FFT2 = fs_exact_FFT2 - fs_FFT2
-        IF (maxval(abs(diff_FFT2)) < epsi) THEN
-            WRITE (*, '(A,T50,A,A)') green_color//"FFTW2 threads", " :: OK"//reset_color
-        ELSE
-            WRITE (*, '(A,T50,A)') red_color//"FFTW2 threads", " :: ECHEC"//reset_color
-            stat = .TRUE.
-        END IF
+        if (maxval(abs(diff_FFT2)) < epsi) then
+            write (*, '(A,T50,A,A)') green_color//"FFTW2 threads", " :: OK"//reset_color
+        else
+            write (*, '(A,T50,A)') red_color//"FFTW2 threads", " :: ECHEC"//reset_color
+            stat = .true.
+        end if
 
         !==================================================================
         !test IFFT2
@@ -283,12 +283,12 @@ CONTAINS
         s_IFFT2 = IFFT_2D(fS2S, "NAFPack_IFFT_2D")
 
         diff_IFFT2 = s_exact_IFFT2 - s_IFFT2
-        IF (maxval(abs(diff_FFT2)) < epsi) THEN
-            WRITE (*, '(A,T50,A,A)') green_color//"IFFT2", " :: OK"//reset_color
-        ELSE
-            WRITE (*, '(A,T50,A)') red_color//"IFFT2", " :: ECHEC"//reset_color
-            stat = .TRUE.
-        END IF
+        if (maxval(abs(diff_FFT2)) < epsi) then
+            write (*, '(A,T50,A,A)') green_color//"IFFT2", " :: OK"//reset_color
+        else
+            write (*, '(A,T50,A)') red_color//"IFFT2", " :: ECHEC"//reset_color
+            stat = .true.
+        end if
 
         !==================================================================
         !test IFFTW2
@@ -300,12 +300,12 @@ CONTAINS
         s_IFFT2 = IFFT_2D(fS2S, "FFTW_IFFT_2D")
 
         diff_IFFT2 = s_exact_IFFT2 - s_IFFT2
-        IF (maxval(abs(diff_FFT2)) < epsi) THEN
-            WRITE (*, '(A,T50,A,A)') green_color//"IFFTW2", " :: OK"//reset_color
-        ELSE
-            WRITE (*, '(A,T50,A)') red_color//"IFFTW2", " :: ECHEC"//reset_color
-            stat = .TRUE.
-        END IF
+        if (maxval(abs(diff_FFT2)) < epsi) then
+            write (*, '(A,T50,A,A)') green_color//"IFFTW2", " :: OK"//reset_color
+        else
+            write (*, '(A,T50,A)') red_color//"IFFTW2", " :: ECHEC"//reset_color
+            stat = .true.
+        end if
 
         !==================================================================
         !test IFFTW2
@@ -317,13 +317,13 @@ CONTAINS
         s_IFFT2 = IFFT_2D(fS2S, "FFTW_IFFT_2D", threads=4)
 
         diff_IFFT2 = s_exact_IFFT2 - s_IFFT2
-        IF (maxval(abs(diff_FFT2)) < epsi) THEN
-            WRITE (*, '(A,T50,A,A)') green_color//"IFFTW2 threads", " :: OK"//reset_color
-        ELSE
-            WRITE (*, '(A,T50,A)') red_color//"IFFTW2 threads", " :: ECHEC"//reset_color
-            stat = .TRUE.
-        END IF
+        if (maxval(abs(diff_FFT2)) < epsi) then
+            write (*, '(A,T50,A,A)') green_color//"IFFTW2 threads", " :: OK"//reset_color
+        else
+            write (*, '(A,T50,A)') red_color//"IFFTW2 threads", " :: ECHEC"//reset_color
+            stat = .true.
+        end if
 
-    END SUBROUTINE test_FFT
+    end subroutine test_FFT
 
-END MODULE test_NAFPack_fft
+end module test_NAFPack_fft

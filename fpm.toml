@@ -1,16 +1,20 @@
-name = "test_memory"
+name = "NAFPack"
 version = "0.1.0"
 license = "license"
-author = "Jane Doe"
-maintainer = "jane.doe@example.com"
-copyright = "Copyright 2025, Jane Doe"
+author = "Jules Minard"
+maintainer = "minard.jules@yahoo.com"
+copyright = "Copyright 2023, Jules Minard"
+description = "Numerical Analysis in Fortran Package"
+keywords = ["NAFPack"]
+homepage = "https://github.com/Minard-Jules/NAFPack"
+
 
 [build]
 auto-executables = true
 auto-tests = true
 auto-examples = true
 module-naming = false
-link = ["fftw3", "fftw3_omp", "blas", "lapack", "psapi"]
+link = ["fftw3", "fftw3_omp", "blas", "lapack"]
 
 [install]
 library = false
@@ -19,10 +23,6 @@ library = false
 implicit-typing = false
 implicit-external = false
 source-form = "default"
-
-[preprocess]
-cpp.directories = ["src/memory_monitor.f90"]
-cpp.macros=["_WIN32"]
 
 [dependencies]
 openmp = "*"

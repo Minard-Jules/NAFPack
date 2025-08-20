@@ -1,34 +1,34 @@
-MODULE NAFPack_matrix_tools
+module NAFPack_matrix_tools
 
-    USE NAFPack_constant
-    USE NAFPack_matricielle
+    use NAFPack_constant
+    use NAFPack_matricielle
 
-    IMPLICIT NONE(TYPE, EXTERNAL)
+    implicit none(type, external)
 
-CONTAINS
+contains
 
-    SUBROUTINE Faddeev_Leverrier(A, c, Ainv, success, check)
-        INTEGER, PARAMETER :: dp = kind(1.0d0)
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        LOGICAL, OPTIONAL, INTENT(IN) :: check
-        REAL(dp), DIMENSION(:), INTENT(OUT) :: c
-        REAL(dp), DIMENSION(size(A, 1), size(A, 1)), OPTIONAL, INTENT(OUT) :: Ainv
-        LOGICAL, OPTIONAL, INTENT(OUT) :: success
-        REAL(dp), DIMENSION(size(A, 1), size(A, 1)) :: Bk, I, B_Nm1, AB
-        LOGICAL :: do_check = .TRUE.
-        INTEGER :: N, k
+    subroutine Faddeev_Leverrier(A, c, Ainv, success, check)
+        integer, parameter :: dp = kind(1.0d0)
+        real(dp), dimension(:, :), intent(IN) :: A
+        logical, optional, intent(IN) :: check
+        real(dp), dimension(:), intent(OUT) :: c
+        real(dp), dimension(size(A, 1), size(A, 1)), optional, intent(OUT) :: Ainv
+        logical, optional, intent(OUT) :: success
+        real(dp), dimension(size(A, 1), size(A, 1)) :: Bk, I, B_Nm1, AB
+        logical :: do_check = .true.
+        integer :: N, k
 
         N = size(A, 1)
 
-        IF (present(check)) do_check = check
+        if (present(check)) do_check = check
 
-        IF (do_check) THEN
-            PRINT*,"Checking if the matrix A is square and size of c is correct"
-            IF (size(A, 2) /= N .OR. size(c) < N + 1) THEN
-                PRINT*,"Error : Matrix A must be square and size of c must be at least N+1"
-                STOP
-            END IF
-        END IF
+        if (do_check) then
+            print*,"Checking if the matrix A is square and size of c is correct"
+            if (size(A, 2) /= N .or. size(c) < N + 1) then
+                print*,"Error : Matrix A must be square and size of c must be at least N+1"
+                stop
+            end if
+        end if
 
         ! Initialization
         I = Identity_n(N)
@@ -37,29 +37,29 @@ CONTAINS
         c(2) = -Trace(A)
         Bk = A + c(2) * I
 
-        DO k = 2, N
+        do k = 2, N
             AB = matmul(A, Bk)
-            c(k + 1) = -Trace(AB) / REAL(k, dp)
+            c(k + 1) = -Trace(AB) / real(k, dp)
             Bk = AB + c(k + 1) * I
-            IF (k == N - 1 .AND. present(Ainv)) B_Nm1 = -Bk
-        END DO
+            if (k == N - 1 .and. present(Ainv)) B_Nm1 = -Bk
+        end do
 
-        IF (present(Ainv) .AND. present(success)) THEN
-            IF (abs(c(N + 1)) < 1.0e-12_dp) THEN
-                success = .FALSE.
+        if (present(Ainv) .and. present(success)) then
+            if (abs(c(N + 1)) < 1.0e-12_dp) then
+                success = .false.
                 Ainv = 0.0_dp
-            ELSE
-                success = .TRUE.
+            else
+                success = .true.
                 Ainv = B_Nm1 / c(N + 1)
-            END IF
-        ELSE IF (present(Ainv)) THEN
-            IF (abs(c(N + 1)) < 1.0e-12_dp) THEN
+            end if
+        else if (present(Ainv)) then
+            if (abs(c(N + 1)) < 1.0e-12_dp) then
                 Ainv = 0.0_dp
-            ELSE
+            else
                 Ainv = B_Nm1 / c(N + 1)
-            END IF
-        END IF
+            end if
+        end if
 
-    END SUBROUTINE Faddeev_Leverrier
+    end subroutine Faddeev_Leverrier
 
-END MODULE NAFPack_matrix_tools
+end module NAFPack_matrix_tools

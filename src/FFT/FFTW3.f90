@@ -1,9 +1,9 @@
-MODULE FFTW3
+module FFTW3
 
-    USE, INTRINSIC :: iso_c_binding
+    use, intrinsic :: iso_c_binding
 
-    IMPLICIT NONE(TYPE, EXTERNAL)
+    implicit none(type, external)
 
-    INCLUDE '../../fftw-3.3.10/fftw3.f03'
-    
-END MODULE FFTW3
+    include '../../fftw-3.3.10/fftw3.f03'
+
+end module FFTW3

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.15)
-set(CMAKE_Fortran_COMPILER "gfortran" CACHE FILEPATH "")
-project(NAFPack LANGUAGES Fortran)
+# set(CMAKE_Fortran_COMPILER "gfortran" CACHE FILEPATH "")
+project(NAFPack LANGUAGES C Fortran)
 
 # Option
 set(CMAKE_Fortran_MODULE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/mod)
@@ -18,13 +18,28 @@ set(TEST_DIR ${CMAKE_CURRENT_SOURCE_DIR}/test)
 
 # main source files
 set(NAFPACK_SOURCES
+    ${SRC_DIR}/NAFPack_config.f90
     ${SRC_DIR}/NAFPack_constant.f90
+    ${SRC_DIR}/NAFPack_Logger_mod.f90
     ${SRC_DIR}/Array_creation/NAFPack_meshgrid.f90
-    ${SRC_DIR}/algebra/NAFPack_matricielle.f90
-    ${SRC_DIR}/algebra/NAFPack_matrix_decomposition.f90
-    ${SRC_DIR}/algebra/NAFPack_linear_algebra.f90
     ${SRC_DIR}/FFT/FFTW3.f90
     ${SRC_DIR}/FFT/NAFPack_fft.f90
+    ${SRC_DIR}/io/NAFPack_matrix_market.f90
+    ${SRC_DIR}/memory/memory_monitor.c
+    ${SRC_DIR}/memory/NAFPack_memory_monitor.f90
+    ${SRC_DIR}/linear_algebra/NAFPack_linalg.f90
+    ${SRC_DIR}/linear_algebra/NAFPack_Preconditioners.f90
+    ${SRC_DIR}/linear_algebra/Direct_method/NAFPack_Direct_methode.f90
+    ${SRC_DIR}/linear_algebra/Direct_method/NAFPack_Direct_types.f90
+    ${SRC_DIR}/linear_algebra/Eigen/NAFPack_Eigen.f90
+    ${SRC_DIR}/linear_algebra/Iterative_method/NAFPack_Iterative_methods.f90
+    ${SRC_DIR}/linear_algebra/Iterative_method/NAFPack_Iterative_Params.f90
+    ${SRC_DIR}/linear_algebra/Iterative_method/NAFPack_Iterative_types.f90
+    ${SRC_DIR}/linear_algebra/Iterative_method/NAFPack_Krylov_method.f90
+    ${SRC_DIR}/linear_algebra/Matrix/NAFPack_matricielle.f90
+    ${SRC_DIR}/linear_algebra/Matrix/NAFPack_matrix_decomposition.f90
+    ${SRC_DIR}/linear_algebra/Matrix/NAFPack_matrix_properties.f90
+    ${SRC_DIR}/linear_algebra/Matrix/NAFPack_matrix_tools.f90
 )
 
 # Test files

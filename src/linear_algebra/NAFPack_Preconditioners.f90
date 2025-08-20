@@ -1,190 +1,190 @@
-MODULE NAFPack_Preconditioners
+module NAFPack_Preconditioners
 
-    USE NAFPack_constant
-    USE NAFPack_Iterative_types
-    USE NAFPack_matricielle
-    USE NAFPack_matrix_decomposition
+    use NAFPack_constant
+    use NAFPack_Iterative_types
+    use NAFPack_matricielle
+    use NAFPack_matrix_decomposition
 
-    IMPLICIT NONE(TYPE, EXTERNAL)
+    implicit none(type, external)
 
-    PRIVATE
+    private
 
-    PUBLIC :: MethodPreconditioner
-    PUBLIC :: METHOD_PRECOND_NONE
-    PUBLIC :: METHOD_PRECOND_JACOBI, METHOD_PRECOND_JOR
-    PUBLIC :: METHOD_PRECOND_GS, METHOD_PRECOND_SOR, METHOD_PRECOND_SSOR
-    PUBLIC :: METHOD_PRECOND_ILU, METHOD_PRECOND_ICF
+    public :: MethodPreconditioner
+    public :: METHOD_PRECOND_NONE
+    public :: METHOD_PRECOND_JACOBI, METHOD_PRECOND_JOR
+    public :: METHOD_PRECOND_GS, METHOD_PRECOND_SOR, METHOD_PRECOND_SSOR
+    public :: METHOD_PRECOND_ILU, METHOD_PRECOND_ICF
 
-    PUBLIC :: FILL_LEVEL_USED
-    PUBLIC :: FILL_LEVEL_NONE
-    PUBLIC :: FILL_LEVEL_0, FILL_LEVEL_1, FILL_LEVEL_2, FILL_LEVEL_3
-    PUBLIC :: FILL_LEVEL_N
+    public :: FILL_LEVEL_USED
+    public :: FILL_LEVEL_NONE
+    public :: FILL_LEVEL_0, FILL_LEVEL_1, FILL_LEVEL_2, FILL_LEVEL_3
+    public :: FILL_LEVEL_N
 
-    PUBLIC :: Calculate_Jacobi_preconditioner
-    PUBLIC :: Calculate_Gauss_Seidel_preconditioner
-    PUBLIC :: Calculate_SOR_preconditioner
-    PUBLIC :: Calculate_JOR_preconditioner
-    PUBLIC :: Calculate_ILU_preconditioner
-    PUBLIC :: Calculate_ICF_preconditioner
-    PUBLIC :: Calculate_SSOR_preconditioner
+    public :: Calculate_Jacobi_preconditioner
+    public :: Calculate_Gauss_Seidel_preconditioner
+    public :: Calculate_SOR_preconditioner
+    public :: Calculate_JOR_preconditioner
+    public :: Calculate_ILU_preconditioner
+    public :: Calculate_ICF_preconditioner
+    public :: Calculate_SSOR_preconditioner
 
-    TYPE :: MethodPreconditioner
-        INTEGER :: id
-        CHARACTER(LEN=64) :: name
-    END TYPE MethodPreconditioner
+    type :: MethodPreconditioner
+        integer :: id
+        character(LEN=64) :: name
+    end type MethodPreconditioner
 
-    TYPE :: Fill_level_used
-        INTEGER :: id
-        CHARACTER(LEN=64) :: name
-        INTEGER :: VALUE
-    END TYPE Fill_level_used
+    type :: Fill_level_used
+        integer :: id
+        character(LEN=64) :: name
+        integer :: value
+    end type Fill_level_used
 
-    TYPE(MethodPreconditioner), PARAMETER :: METHOD_PRECOND_NONE = MethodPreconditioner(0, "None")
-    TYPE(MethodPreconditioner), PARAMETER :: METHOD_PRECOND_JACOBI = MethodPreconditioner(1, "Jacobi")
-    TYPE(MethodPreconditioner), PARAMETER :: METHOD_PRECOND_GS = MethodPreconditioner(2, "Gauss-Seidel")
-    TYPE(MethodPreconditioner), PARAMETER :: METHOD_PRECOND_SOR = MethodPreconditioner(3, "Successive Over-Relaxation")
-    TYPE(MethodPreconditioner), PARAMETER :: METHOD_PRECOND_JOR = MethodPreconditioner(4, "Jacobi Over-Relaxation")
-    TYPE(MethodPreconditioner), PARAMETER :: METHOD_PRECOND_ILU = MethodPreconditioner(5, "ILU")
-    TYPE(MethodPreconditioner), PARAMETER :: METHOD_PRECOND_ICF = MethodPreconditioner(6, "ICF")
-    TYPE(MethodPreconditioner), PARAMETER :: METHOD_PRECOND_SSOR = MethodPreconditioner(7, "SSOR")
+    type(MethodPreconditioner), parameter :: METHOD_PRECOND_NONE = MethodPreconditioner(0, "None")
+    type(MethodPreconditioner), parameter :: METHOD_PRECOND_JACOBI = MethodPreconditioner(1, "Jacobi")
+    type(MethodPreconditioner), parameter :: METHOD_PRECOND_GS = MethodPreconditioner(2, "Gauss-Seidel")
+    type(MethodPreconditioner), parameter :: METHOD_PRECOND_SOR = MethodPreconditioner(3, "Successive Over-Relaxation")
+    type(MethodPreconditioner), parameter :: METHOD_PRECOND_JOR = MethodPreconditioner(4, "Jacobi Over-Relaxation")
+    type(MethodPreconditioner), parameter :: METHOD_PRECOND_ILU = MethodPreconditioner(5, "ILU")
+    type(MethodPreconditioner), parameter :: METHOD_PRECOND_ICF = MethodPreconditioner(6, "ICF")
+    type(MethodPreconditioner), parameter :: METHOD_PRECOND_SSOR = MethodPreconditioner(7, "SSOR")
 
-    TYPE(Fill_level_used), PARAMETER :: FILL_LEVEL_NONE = Fill_level_used(-1, "None", -huge(1))
-    TYPE(Fill_level_used), PARAMETER :: FILL_LEVEL_0 = Fill_level_used(0, "Level 0", 0)
-    TYPE(Fill_level_used), PARAMETER :: FILL_LEVEL_1 = Fill_level_used(1, "Level 1", 1)
-    TYPE(Fill_level_used), PARAMETER :: FILL_LEVEL_2 = Fill_level_used(2, "Level 2", 2)
-    TYPE(Fill_level_used), PARAMETER :: FILL_LEVEL_3 = Fill_level_used(3, "Level 3", 3)
-    TYPE(Fill_level_used) :: FILL_LEVEL_N = Fill_level_used(3, "Level N", 0)
+    type(Fill_level_used), parameter :: FILL_LEVEL_NONE = Fill_level_used(-1, "None", -huge(1))
+    type(Fill_level_used), parameter :: FILL_LEVEL_0 = Fill_level_used(0, "Level 0", 0)
+    type(Fill_level_used), parameter :: FILL_LEVEL_1 = Fill_level_used(1, "Level 1", 1)
+    type(Fill_level_used), parameter :: FILL_LEVEL_2 = Fill_level_used(2, "Level 2", 2)
+    type(Fill_level_used), parameter :: FILL_LEVEL_3 = Fill_level_used(3, "Level 3", 3)
+    type(Fill_level_used) :: FILL_LEVEL_N = Fill_level_used(3, "Level N", 0)
 
-CONTAINS
+contains
 
-    FUNCTION Calculate_Jacobi_preconditioner(A) RESULT(D)
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(size(A, 1), size(A, 2)) :: D
-        INTEGER :: N, i
+    function Calculate_Jacobi_preconditioner(A) result(D)
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(size(A, 1), size(A, 2)) :: D
+        integer :: N, i
 
         N = size(A, 1)
 
         D = 0.d0
 
-        IF (any(Diag(A) < epsi)) STOP "ERROR :: Zero diagonal in Jacobi preconditioner"
-        FORALL (i=1:N) D(i, i) = 1.d0 / A(i, i)
+        if (any(Diag(A) < epsi)) stop "ERROR :: Zero diagonal in Jacobi preconditioner"
+        forall (i=1:N) D(i, i) = 1.d0 / A(i, i)
 
-    END FUNCTION Calculate_Jacobi_preconditioner
+    end function Calculate_Jacobi_preconditioner
 
-    FUNCTION Calculate_Gauss_Seidel_preconditioner(A) RESULT(L)
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(size(A, 1), size(A, 2)) :: L
-        INTEGER :: N, i, j
-
-        N = size(A, 1)
-
-        L = 0.d0
-
-        IF (any(Diag(A) < epsi)) STOP "ERROR :: Zero diagonal in Gauss-Seidel preconditioner"
-        FORALL (i=1:size(A, 1), j=1:size(A, 2), i >= j) L(i, j) = A(i, j)
-
-    END FUNCTION Calculate_Gauss_Seidel_preconditioner
-
-    FUNCTION Calculate_SOR_preconditioner(A, omega, alpha) RESULT(L)
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), INTENT(IN) :: omega, alpha
-        REAL(dp), DIMENSION(size(A, 1), size(A, 2)) :: L
-        INTEGER :: N, i
+    function Calculate_Gauss_Seidel_preconditioner(A) result(L)
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(size(A, 1), size(A, 2)) :: L
+        integer :: N, i, j
 
         N = size(A, 1)
 
         L = 0.d0
 
-        IF (any(Diag(A) < epsi)) STOP "ERROR :: Zero diagonal in SOR preconditioner"
-        DO i = 1, size(A, 1)
+        if (any(Diag(A) < epsi)) stop "ERROR :: Zero diagonal in Gauss-Seidel preconditioner"
+        forall (i=1:size(A, 1), j=1:size(A, 2), i >= j) L(i, j) = A(i, j)
+
+    end function Calculate_Gauss_Seidel_preconditioner
+
+    function Calculate_SOR_preconditioner(A, omega, alpha) result(L)
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), intent(IN) :: omega, alpha
+        real(dp), dimension(size(A, 1), size(A, 2)) :: L
+        integer :: N, i
+
+        N = size(A, 1)
+
+        L = 0.d0
+
+        if (any(Diag(A) < epsi)) stop "ERROR :: Zero diagonal in SOR preconditioner"
+        do i = 1, size(A, 1)
             L(i, i) = 1.d0 / omega * A(i, i)
             L(i, 1:i - 1) = A(i, 1:i - 1)
-        END DO
+        end do
 
         L = alpha * L
 
-    END FUNCTION Calculate_SOR_preconditioner
+    end function Calculate_SOR_preconditioner
 
-    FUNCTION Calculate_JOR_preconditioner(A, omega, alpha) RESULT(D)
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), INTENT(IN) :: omega, alpha
-        REAL(dp), DIMENSION(size(A, 1), size(A, 2)) :: D
-        INTEGER :: N, i
+    function Calculate_JOR_preconditioner(A, omega, alpha) result(D)
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), intent(IN) :: omega, alpha
+        real(dp), dimension(size(A, 1), size(A, 2)) :: D
+        integer :: N, i
 
         N = size(A, 1)
 
         D = 0.d0
 
-        IF (any(Diag(A) < epsi)) STOP "ERROR :: Zero diagonal in JOR preconditioner"
-        FORALL (i=1:size(A, 1)) D(i, i) = omega / A(i, i)
+        if (any(Diag(A) < epsi)) stop "ERROR :: Zero diagonal in JOR preconditioner"
+        forall (i=1:size(A, 1)) D(i, i) = omega / A(i, i)
 
         D = D / alpha
 
-    END FUNCTION Calculate_JOR_preconditioner
+    end function Calculate_JOR_preconditioner
 
-    SUBROUTINE Calculate_ILU_preconditioner(A, L, U, omega, alpha, fill_level)
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), INTENT(IN) :: omega, alpha
-        REAL(dp), DIMENSION(size(A, 1), size(A, 2)), INTENT(OUT) :: L, U
-        INTEGER, OPTIONAL, INTENT(IN) :: fill_level
-        INTEGER :: N
+    subroutine Calculate_ILU_preconditioner(A, L, U, omega, alpha, fill_level)
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), intent(IN) :: omega, alpha
+        real(dp), dimension(size(A, 1), size(A, 2)), intent(OUT) :: L, U
+        integer, optional, intent(IN) :: fill_level
+        integer :: N
 
         N = size(A, 1)
 
         L = 0.d0
         U = 0.d0
 
-        IF (present(fill_level)) THEN
-            CALL ILU_decomposition(A, L, U, fill_level)
-        ELSE
-            CALL ILU_decomposition(A, L, U)
-        END IF
+        if (present(fill_level)) then
+            call ILU_decomposition(A, L, U, fill_level)
+        else
+            call ILU_decomposition(A, L, U)
+        end if
 
         L = alpha / omega * L
 
-    END SUBROUTINE Calculate_ILU_preconditioner
+    end subroutine Calculate_ILU_preconditioner
 
-    FUNCTION Calculate_ICF_preconditioner(A, omega, alpha, fill_level) RESULT(L)
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), INTENT(IN) :: omega, alpha
-        REAL(dp), DIMENSION(size(A, 1), size(A, 2)) :: L
-        INTEGER, OPTIONAL, INTENT(IN) :: fill_level
-        INTEGER :: N
+    function Calculate_ICF_preconditioner(A, omega, alpha, fill_level) result(L)
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), intent(IN) :: omega, alpha
+        real(dp), dimension(size(A, 1), size(A, 2)) :: L
+        integer, optional, intent(IN) :: fill_level
+        integer :: N
 
         N = size(A, 1)
 
         L = 0.d0
 
-        IF (present(fill_level)) THEN
-            CALL Incomplete_Cholesky_decomposition(A, L, fill_level)
-        ELSE
-            CALL Incomplete_Cholesky_decomposition(A, L)
-        END IF
+        if (present(fill_level)) then
+            call Incomplete_Cholesky_decomposition(A, L, fill_level)
+        else
+            call Incomplete_Cholesky_decomposition(A, L)
+        end if
 
         L = alpha / omega * L
 
-    END FUNCTION Calculate_ICF_preconditioner
+    end function Calculate_ICF_preconditioner
 
-    SUBROUTINE Calculate_SSOR_preconditioner(A, L, D, omega, alpha)
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), INTENT(IN) :: omega, alpha
-        REAL(dp), DIMENSION(size(A, 1), size(A, 2)), INTENT(OUT) :: L, D
-        INTEGER :: N, i
+    subroutine Calculate_SSOR_preconditioner(A, L, D, omega, alpha)
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), intent(IN) :: omega, alpha
+        real(dp), dimension(size(A, 1), size(A, 2)), intent(OUT) :: L, D
+        integer :: N, i
 
         N = size(A, 1)
 
         L = 0.d0
         D = 0.d0
 
-        DO i = 1, size(A, 1)
+        do i = 1, size(A, 1)
             L(i, i) = 1.d0 / omega * A(i, i)
             L(i, 1:i - 1) = A(i, 1:i - 1)
 
             D(i, i) = A(i, i)
-        END DO
+        end do
 
         L = (alpha * omega) / (2 - omega) * L
 
-    END SUBROUTINE Calculate_SSOR_preconditioner
+    end subroutine Calculate_SSOR_preconditioner
 
-END MODULE NAFPack_Preconditioners
+end module NAFPack_Preconditioners

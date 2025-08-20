@@ -1,101 +1,101 @@
 !> Module for matrix decomposition methods
 !>
 !> This module provides subroutines for various matrix decomposition methods including LU, LDU, Cholesky, and QR decompositions.
-MODULE NAFPack_matrix_decomposition
+module NAFPack_matrix_decomposition
 
-    USE NAFPack_constant
-    USE NAFPack_matricielle
+    use NAFPack_constant
+    use NAFPack_matricielle
 
-    IMPLICIT NONE(TYPE, EXTERNAL)
+    implicit none(type, external)
 
-    PRIVATE
+    private
 
-    PUBLIC :: forward, backward
-    PUBLIC :: LU_decomposition, LDU_decomposition, ILU_decomposition
-    PUBLIC :: Cholesky_decomposition, LDL_Cholesky_decomposition, Incomplete_Cholesky_decomposition
-    PUBLIC :: QR_decomposition
-    PUBLIC :: QR_Householder_decomposition, QR_Givens_decomposition, &
+    public :: forward, backward
+    public :: LU_decomposition, LDU_decomposition, ILU_decomposition
+    public :: Cholesky_decomposition, LDL_Cholesky_decomposition, Incomplete_Cholesky_decomposition
+    public :: QR_decomposition
+    public :: QR_Householder_decomposition, QR_Givens_decomposition, &
               QR_Gram_Schmidt_Classical_decomposition, QR_Gram_Schmidt_Modified_decomposition
-    PUBLIC :: pivot_partial, pivot_total
+    public :: pivot_partial, pivot_total
 
-CONTAINS
+contains
 
     !> forward algorithm,
     !> solves the system
     !> \[ L * y = b \]
     !> where **L** is a lower triangular matrix and **b** is a vector
-    FUNCTION forward(L, b) RESULT(y)
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: L
-        REAL(dp), DIMENSION(:), INTENT(IN) :: b
-        REAL(dp), DIMENSION(size(L, 1)) :: y
-        INTEGER :: i, N
+    function forward(L, b) result(y)
+        real(dp), dimension(:, :), intent(IN) :: L
+        real(dp), dimension(:), intent(IN) :: b
+        real(dp), dimension(size(L, 1)) :: y
+        integer :: i, N
 
         N = size(L, 1)
 
         y(1) = b(1) / L(1, 1)
 
-        DO i = 2, N
+        do i = 2, N
             y(i) = (b(i) - dot_product(L(i, 1:i - 1), y(1:i - 1))) / L(i, i)
-        END DO
+        end do
 
-    END FUNCTION forward
+    end function forward
 
     !> backward algorithm,
     !> solves the system
     !> \[ U * x = y \]
     !> where **U** is an upper triangular matrix and **y** is a vector
-    FUNCTION backward(U, y) RESULT(x)
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: U
-        REAL(dp), DIMENSION(:), INTENT(IN) :: y
-        REAL(dp), DIMENSION(size(U, 1)) :: x
-        INTEGER :: i, N
+    function backward(U, y) result(x)
+        real(dp), dimension(:, :), intent(IN) :: U
+        real(dp), dimension(:), intent(IN) :: y
+        real(dp), dimension(size(U, 1)) :: x
+        integer :: i, N
 
         N = size(U, 1)
 
         x(N) = y(N) / U(N, N)
 
-        DO i = N - 1, 1, -1
+        do i = N - 1, 1, -1
             x(i) = (y(i) - dot_product(U(i, i + 1:N), x(i + 1:N))) / U(i, i)
-        END DO
+        end do
 
-    END FUNCTION backward
+    end function backward
 
     !> LU decomposition of a matrix A
     !> \[ A = LU \]
     !> This subroutine performs LU decomposition of a given matrix **A**, where **L** is a lower triangular matrix and **U** is an upper triangular matrix.
-    SUBROUTINE LU_decomposition(A, L, U)
+    subroutine LU_decomposition(A, L, U)
 
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(size(A, 1), size(A, 1)), INTENT(OUT) :: L, U
-        INTEGER :: i, j, N
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(size(A, 1), size(A, 1)), intent(OUT) :: L, U
+        integer :: i, j, N
 
         N = size(A, 1)
 
         L = 0.d0
         U = 0.d0
 
-        DO j = 1, N
+        do j = 1, N
             L(j, j) = 1.d0
 
-            DO i = 1, j
+            do i = 1, j
                 U(i, j) = A(i, j) - dot_product(L(i, 1:i - 1), U(1:i - 1, j))
-            END DO
+            end do
 
-            DO i = j + 1, N
+            do i = j + 1, N
                 L(i, j) = (A(i, j) - dot_product(L(i, 1:j - 1), U(1:j - 1, j))) / U(j, j)
-            END DO
-        END DO
+            end do
+        end do
 
-    END SUBROUTINE LU_decomposition
+    end subroutine LU_decomposition
 
     !> LDU decomposition of a matrix A
     !> \[ A = LDU \]
     !> This subroutine performs LDU decomposition of a given matrix **A**, where **L** is a lower triangular matrix, **D** is a diagonal matrix, and **U** is an upper triangular matrix.
-    SUBROUTINE LDU_decomposition(A, L, D, U)
+    subroutine LDU_decomposition(A, L, D, U)
 
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(size(A, 1), size(A, 1)), INTENT(OUT) :: L, U, D
-        INTEGER :: i, j, k, N
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(size(A, 1), size(A, 1)), intent(OUT) :: L, U, D
+        integer :: i, j, k, N
 
         N = size(A, 1)
 
@@ -103,176 +103,176 @@ CONTAINS
         D = 0.d0
         U = 0.d0
 
-        DO j = 1, N
+        do j = 1, N
             L(j, j) = 1.d0
             U(j, j) = 1.d0
 
-            DO i = 1, j - 1
+            do i = 1, j - 1
                 U(i, j) = (A(i, j) - dot_product(L(i, 1:i - 1), U(1:i - 1, j)*[(D(k, k), k=1, i - 1)])) / D(i, i)
-            END DO
+            end do
 
             i = j
             D(j, j) = A(j, j) - dot_product(L(j, 1:j - 1), U(1:j - 1, j)*[(D(k, k), k=1, j - 1)])
 
-            DO i = j + 1, N
+            do i = j + 1, N
                 L(i, j) = (A(i, j) - dot_product(L(i, 1:j - 1), U(1:j - 1, j)*[(D(k, k), k=1, j - 1)])) / D(j, j)
-            END DO
-        END DO
+            end do
+        end do
 
-    END SUBROUTINE LDU_decomposition
+    end subroutine LDU_decomposition
 
     !> Incomplete LU decomposition of a matrix A
     !> \[ A \approx LU \]
     !> This subroutine performs incomplete LU decomposition of a given matrix **A**, where **L** is a lower triangular matrix and **U** is an upper triangular matrix.
-    SUBROUTINE ILU_decomposition(A, L, U, level)
+    subroutine ILU_decomposition(A, L, U, level)
 
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(size(A, 1), size(A, 1)), INTENT(OUT) :: L, U
-        INTEGER, OPTIONAL, INTENT(IN) :: level
-        INTEGER :: N, i, j
-        INTEGER, DIMENSION(size(A, 1), size(A, 1)) :: fill_level
-        LOGICAL, DIMENSION(size(A, 1), size(A, 1)) :: S
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(size(A, 1), size(A, 1)), intent(OUT) :: L, U
+        integer, optional, intent(IN) :: level
+        integer :: N, i, j
+        integer, dimension(size(A, 1), size(A, 1)) :: fill_level
+        logical, dimension(size(A, 1), size(A, 1)) :: S
 
         N = size(A, 1)
 
         L = 0.d0
         U = 0.d0
 
-        IF (present(level)) THEN
-            CALL compute_fill_pattern_ILU(A, fill_level, level, N)
+        if (present(level)) then
+            call compute_fill_pattern_ILU(A, fill_level, level, N)
             S = (fill_level <= level)
-        ELSE
+        else
             S = A /= 0
-        END IF
+        end if
 
-        DO j = 1, N
+        do j = 1, N
             L(j, j) = 1.d0
 
-            DO i = 1, j
-                IF (S(i, j)) U(i, j) = A(i, j) - dot_product(L(i, 1:i - 1), U(1:i - 1, j))
-            END DO
+            do i = 1, j
+                if (S(i, j)) U(i, j) = A(i, j) - dot_product(L(i, 1:i - 1), U(1:i - 1, j))
+            end do
 
-            IF (abs(U(j, j)) < 1.0e-12_dp) THEN
-                PRINT*,"Warning: Near-zero pivot at row ", j, ", value =", U(j, j)
-                PRINT*,"Replacing with small value, value =", sign(1.0e-12_dp, U(j, j))
+            if (abs(U(j, j)) < 1.0e-12_dp) then
+                print*,"Warning: Near-zero pivot at row ", j, ", value =", U(j, j)
+                print*,"Replacing with small value, value =", sign(1.0e-12_dp, U(j, j))
                 U(j, j) = sign(1.0e-12_dp, U(j, j))
-            END IF
+            end if
 
-            DO i = j + 1, N
-                IF (S(i, j)) L(i, j) = (A(i, j) - dot_product(L(i, 1:j - 1), U(1:j - 1, j))) / U(j, j)
-            END DO
-        END DO
+            do i = j + 1, N
+                if (S(i, j)) L(i, j) = (A(i, j) - dot_product(L(i, 1:j - 1), U(1:j - 1, j))) / U(j, j)
+            end do
+        end do
 
-    END SUBROUTINE ILU_decomposition
+    end subroutine ILU_decomposition
 
     !> Cholesky decomposition of a matrix A
     !> \[ A = LL^T \]
     !> This subroutine performs Cholesky decomposition of a given symmetric positive definite matrix **A**, where **L** is a lower triangular matrix.
-    SUBROUTINE Cholesky_decomposition(A, L)
+    subroutine Cholesky_decomposition(A, L)
 
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(size(A, 1), size(A, 1)), INTENT(OUT) :: L
-        INTEGER :: i, j, N
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(size(A, 1), size(A, 1)), intent(OUT) :: L
+        integer :: i, j, N
 
         N = size(A, 1)
 
-        DO j = 1, N
+        do j = 1, N
             L(j, j) = sqrt(A(j, j) - dot_product(L(j, 1:j - 1), L(j, 1:j - 1)))
 
-            DO i = j + 1, N
+            do i = j + 1, N
                 L(i, j) = (A(i, j) - dot_product(L(i, 1:j - 1), L(j, 1:j - 1))) / L(j, j)
-            END DO
-        END DO
+            end do
+        end do
 
-    END SUBROUTINE Cholesky_decomposition
+    end subroutine Cholesky_decomposition
 
     !> Alternative Cholesky decomposition of a matrix A
     !> \[ A = LDL^T \]
     !> This subroutine performs alternative Cholesky decomposition of a given symmetric positive definite matrix **A**, where **L** is a lower triangular matrix and **D** is a diagonal matrix.
-    SUBROUTINE LDL_Cholesky_decomposition(A, L, D)
+    subroutine LDL_Cholesky_decomposition(A, L, D)
 
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(size(A, 1), size(A, 1)), INTENT(OUT) :: L, D
-        INTEGER :: i, j, N, k
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(size(A, 1), size(A, 1)), intent(OUT) :: L, D
+        integer :: i, j, N, k
 
         N = size(A, 1)
 
         L = Identity_n(N)
         D = 0.d0
 
-        DO j = 1, N
+        do j = 1, N
             D(j, j) = A(j, j) - dot_product(L(j, 1:j - 1), L(j, 1:j - 1)*[(D(k, k), k=1, j - 1)])
 
-            DO i = j + 1, N
+            do i = j + 1, N
                 L(i, j) = (A(i, j) - dot_product(L(i, 1:j - 1), L(j, 1:j - 1)*[(D(k, k), k=1, j - 1)])) / D(j, j)
-            END DO
-        END DO
+            end do
+        end do
 
-    END SUBROUTINE LDL_Cholesky_decomposition
+    end subroutine LDL_Cholesky_decomposition
 
     !> Incomplete Cholesky decomposition of a matrix A
     !> \[ A \approx LL^T \]
     !> This subroutine performs incomplete Cholesky decomposition of a given matrix **A**, where **L** is a lower triangular matrix and **U** is an upper triangular matrix.
-    SUBROUTINE Incomplete_Cholesky_decomposition(A, L, level)
+    subroutine Incomplete_Cholesky_decomposition(A, L, level)
 
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        INTEGER, OPTIONAL, INTENT(IN) :: level
-        REAL(dp), DIMENSION(size(A, 1), size(A, 1)), INTENT(OUT) :: L
-        LOGICAL, DIMENSION(size(A, 1), size(A, 1)) :: S
-        INTEGER :: N, i, j
-        INTEGER, DIMENSION(size(A, 1), size(A, 1)) :: fill_level
+        real(dp), dimension(:, :), intent(IN) :: A
+        integer, optional, intent(IN) :: level
+        real(dp), dimension(size(A, 1), size(A, 1)), intent(OUT) :: L
+        logical, dimension(size(A, 1), size(A, 1)) :: S
+        integer :: N, i, j
+        integer, dimension(size(A, 1), size(A, 1)) :: fill_level
 
         N = size(A, 1)
 
         L = 0.d0
 
-        IF (present(level)) THEN
-            CALL compute_fill_pattern_IC(A, fill_level, level, N)
+        if (present(level)) then
+            call compute_fill_pattern_IC(A, fill_level, level, N)
             S = (fill_level <= level)
-        ELSE
+        else
             S = A /= 0
-        END IF
+        end if
 
-        DO i = 1, N
-            DO j = 1, i - 1
-                IF (S(i, j)) L(i, j) = (A(i, j) - dot_product(L(i, 1:j - 1), L(j, 1:j - 1))) / L(j, j)
-            END DO
+        do i = 1, N
+            do j = 1, i - 1
+                if (S(i, j)) L(i, j) = (A(i, j) - dot_product(L(i, 1:j - 1), L(j, 1:j - 1))) / L(j, j)
+            end do
 
-            IF (S(i, i)) L(i, i) = sqrt(A(i, i) - dot_product(L(i, 1:i - 1), L(i, 1:i - 1)))
-        END DO
+            if (S(i, i)) L(i, i) = sqrt(A(i, i) - dot_product(L(i, 1:i - 1), L(i, 1:i - 1)))
+        end do
 
-    END SUBROUTINE Incomplete_Cholesky_decomposition
+    end subroutine Incomplete_Cholesky_decomposition
 
     !> QR decomposition of a matrix **A** using various methods
     !> \[ A = QR \]
     !> This subroutine performs QR decomposition of a given matrix **A** using the specified method (Householder, Givens, Classical Gram-Schmidt, or Modified Gram-Schmidt).
     !> The output matrices **Q** is an orthogonal matrix and **R** is an upper triangular matrix.
-    SUBROUTINE QR_decomposition(A, method, Q, R)
+    subroutine QR_decomposition(A, method, Q, R)
 
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        CHARACTER(LEN=*), OPTIONAL, INTENT(IN) :: method
-        REAL(dp), DIMENSION(size(A, 1), size(A, 2)), INTENT(OUT) :: Q, R
+        real(dp), dimension(:, :), intent(IN) :: A
+        character(LEN=*), optional, intent(IN) :: method
+        real(dp), dimension(size(A, 1), size(A, 2)), intent(OUT) :: Q, R
 
-        IF (method == "QR_Householder") THEN
-            CALL QR_Householder_decomposition(A, Q, R)
-        ELSE IF (method == "QR_Givens") THEN
-            CALL QR_Givens_decomposition(A, Q, R)
-        ELSE IF (method == "QR_Gram_Schmidt_Classical") THEN
-            CALL QR_Gram_Schmidt_Classical_decomposition(A, Q, R)
-        ELSE IF (method == "QR_Gram_Schmidt_Modified") THEN
-            CALL QR_Gram_Schmidt_Modified_decomposition(A, Q, R)
-        END IF
+        if (method == "QR_Householder") then
+            call QR_Householder_decomposition(A, Q, R)
+        else if (method == "QR_Givens") then
+            call QR_Givens_decomposition(A, Q, R)
+        else if (method == "QR_Gram_Schmidt_Classical") then
+            call QR_Gram_Schmidt_Classical_decomposition(A, Q, R)
+        else if (method == "QR_Gram_Schmidt_Modified") then
+            call QR_Gram_Schmidt_Modified_decomposition(A, Q, R)
+        end if
 
-    END SUBROUTINE QR_decomposition
+    end subroutine QR_decomposition
 
     !> QR decomposition using Householder method
-    SUBROUTINE QR_Householder_decomposition(A, Q, R)
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(size(A, 1), size(A, 2)), INTENT(OUT) :: Q, R
-        REAL(dp), DIMENSION(size(A, 1), size(A, 2)) :: Id, H, v_mat_tmp
-        REAL(dp), DIMENSION(size(A, 1)) :: v, u, x
-        INTEGER :: N, i, j, k
-        REAL(dp) :: alpha, w, signe, norm_u
+    subroutine QR_Householder_decomposition(A, Q, R)
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(size(A, 1), size(A, 2)), intent(OUT) :: Q, R
+        real(dp), dimension(size(A, 1), size(A, 2)) :: Id, H, v_mat_tmp
+        real(dp), dimension(size(A, 1)) :: v, u, x
+        integer :: N, i, j, k
+        real(dp) :: alpha, w, signe, norm_u
 
         N = size(A, 1)
 
@@ -281,7 +281,7 @@ CONTAINS
         Id = Identity_n(N)
         Q = Identity_n(N)
 
-        DO k = 1, N
+        do k = 1, N
 
             x = 0.d0
             u = 0.d0
@@ -295,15 +295,15 @@ CONTAINS
             u(k:N) = x(k:N) - signe * Id(k:N, k)
 
             norm_u = norm2(u)
-            IF (norm_u < epsi) CYCLE
+            if (norm_u < epsi) cycle
             v(k:N) = u(k:N) / norm_u
 
             w = 1.d0
-            DO i = k, N
-                DO j = k, N
+            do i = k, N
+                do j = k, N
                     v_mat_tmp(i, j) = v(i) * v(j)
-                END DO
-            END DO
+                end do
+            end do
 
             H = Id
             H(k:N, k:N) = Id(k:N, k:N) - (1.d0 + w) * v_mat_tmp(k:N, k:N)
@@ -312,15 +312,15 @@ CONTAINS
 
             R(k:N, k:N) = matmul(H(k:N, k:N), R(k:N, k:N))
 
-        END DO
-    END SUBROUTINE QR_Householder_decomposition
+        end do
+    end subroutine QR_Householder_decomposition
 
     !> QR decomposition using Givens rotations
-    SUBROUTINE QR_Givens_decomposition(A, Q, R)
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(size(A, 1), size(A, 2)), INTENT(OUT) :: Q, R
-        REAL(dp), DIMENSION(size(A, 1), size(A, 2)) :: G
-        INTEGER :: N, i, j
+    subroutine QR_Givens_decomposition(A, Q, R)
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(size(A, 1), size(A, 2)), intent(OUT) :: Q, R
+        real(dp), dimension(size(A, 1), size(A, 2)) :: G
+        integer :: N, i, j
 
         N = size(A, 1)
 
@@ -328,8 +328,8 @@ CONTAINS
 
         Q = Identity_n(N)
 
-        DO j = 1, N - 1
-            DO i = j + 1, N
+        do j = 1, N - 1
+            do i = j + 1, N
 
                 G = rotation_matrix(R, [i, j])
 
@@ -337,68 +337,68 @@ CONTAINS
 
                 Q = matmul(Q, transpose(G))
 
-            END DO
-        END DO
+            end do
+        end do
 
-    END SUBROUTINE QR_Givens_decomposition
+    end subroutine QR_Givens_decomposition
 
     !> QR decomposition using Classical Gram-Schmidt method
-    SUBROUTINE QR_Gram_Schmidt_Classical_decomposition(A, Q, R)
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(size(A, 1), size(A, 2)), INTENT(OUT) :: Q, R
-        REAL(dp), DIMENSION(size(A, 1)) :: u
-        INTEGER :: N, i, j
+    subroutine QR_Gram_Schmidt_Classical_decomposition(A, Q, R)
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(size(A, 1), size(A, 2)), intent(OUT) :: Q, R
+        real(dp), dimension(size(A, 1)) :: u
+        integer :: N, i, j
 
         N = size(A, 1)
         Q = 0.d0
         R = 0.d0
 
-        DO j = 1, N
+        do j = 1, N
             u = A(:, j)
-            DO i = 1, j - 1
+            do i = 1, j - 1
                 R(i, j) = dot_product(Q(:, i), A(:, j))
                 u = u - (R(i, j) * Q(:, i))
-            END DO
+            end do
             R(j, j) = norm2(u)
             Q(:, j) = u / R(j, j)
-        END DO
+        end do
 
-    END SUBROUTINE QR_Gram_Schmidt_Classical_decomposition
+    end subroutine QR_Gram_Schmidt_Classical_decomposition
 
     !> QR decomposition using Modified Gram-Schmidt method
-    SUBROUTINE QR_Gram_Schmidt_Modified_decomposition(A, Q, R)
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(size(A, 1), size(A, 2)), INTENT(OUT) :: Q, R
-        REAL(dp), DIMENSION(size(A, 1), size(A, 2)) :: u
-        INTEGER :: N, i, j
+    subroutine QR_Gram_Schmidt_Modified_decomposition(A, Q, R)
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(size(A, 1), size(A, 2)), intent(OUT) :: Q, R
+        real(dp), dimension(size(A, 1), size(A, 2)) :: u
+        integer :: N, i, j
 
         N = size(A, 1)
         u = A
         Q = 0.d0
         R = 0.d0
 
-        DO i = 1, N
+        do i = 1, N
             R(i, i) = norm2(u(:, i))
             Q(:, i) = u(:, i) / R(i, i)
-            DO j = i + 1, N
+            do j = i + 1, N
                 R(i, j) = dot_product(Q(:, i), u(:, j))
                 u(:, j) = u(:, j) - R(i, j) * Q(:, i)
-            END DO
-        END DO
+            end do
+        end do
 
-    END SUBROUTINE QR_Gram_Schmidt_Modified_decomposition
+    end subroutine QR_Gram_Schmidt_Modified_decomposition
 
-    SUBROUTINE pivot_partial(A, P)
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(size(A, 1), size(A, 1)), INTENT(OUT) :: P
-        INTEGER, DIMENSION(1) :: vlmax
-        INTEGER :: N, lmax, k
-        REAL(dp), DIMENSION(size(A, 1), size(A, 1)) :: P_tmp
+    subroutine pivot_partial(A, P)
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(size(A, 1), size(A, 1)), intent(OUT) :: P
+        integer, dimension(1) :: vlmax
+        integer :: N, lmax, k
+        real(dp), dimension(size(A, 1), size(A, 1)) :: P_tmp
 
         N = size(A, 1)
         P = Identity_n(N)
 
-        DO k = 1, N - 1
+        do k = 1, N - 1
 
             ! Find the maximum absolute value in the column from row k to N
             vlmax = maxloc(abs(A(k:N, k)))
@@ -406,27 +406,27 @@ CONTAINS
 
             !calculate permutation matrix P
             P_tmp = Identity_n(N)
-            IF (k /= lmax) THEN
+            if (k /= lmax) then
                 P_tmp([k, lmax], :) = P_tmp([lmax, k], :)
-            END IF
+            end if
             P = matmul(P_tmp, P)
 
-        END DO
+        end do
 
-    END SUBROUTINE pivot_partial
+    end subroutine pivot_partial
 
-    SUBROUTINE pivot_total(A, P, Q)
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(size(A, 1), size(A, 1)), INTENT(OUT) :: P, Q
-        REAL(dp), DIMENSION(size(A, 1), size(A, 1)) :: P_tmp, Q_tmp
-        INTEGER, DIMENSION(2) :: vlmax
-        INTEGER :: N, lmax, cmax, k
+    subroutine pivot_total(A, P, Q)
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(size(A, 1), size(A, 1)), intent(OUT) :: P, Q
+        real(dp), dimension(size(A, 1), size(A, 1)) :: P_tmp, Q_tmp
+        integer, dimension(2) :: vlmax
+        integer :: N, lmax, cmax, k
 
         N = size(A, 1)
         P = Identity_n(N)
         Q = Identity_n(N)
 
-        DO k = 1, N - 1
+        do k = 1, N - 1
             ! Find max abs element in submatrix
             vlmax = maxloc(abs(A(k:N, k:N)))
             lmax = vlmax(1) + k - 1
@@ -434,82 +434,82 @@ CONTAINS
 
             ! permute line if necessary
             P_tmp = Identity_n(N)
-            IF (k /= lmax) THEN
+            if (k /= lmax) then
                 P_tmp([k, lmax], :) = P_tmp([lmax, k], :)
-            END IF
+            end if
             P = matmul(P_tmp, P)
 
             ! permute column if necessary
             Q_tmp = Identity_n(N)
-            IF (cmax /= k) THEN
+            if (cmax /= k) then
                 Q_tmp(:, [k, cmax]) = Q_tmp(:, [cmax, k])
-            END IF
+            end if
             Q = matmul(Q_tmp, Q)
-        END DO
+        end do
 
-    END SUBROUTINE pivot_total
+    end subroutine pivot_total
 
-    SUBROUTINE compute_fill_pattern_ILU(A, fill_level, max_level, N)
-        REAL(dp), DIMENSION(N, N), INTENT(IN) :: A
-        INTEGER, DIMENSION(N, N), INTENT(OUT) :: fill_level
-        INTEGER, INTENT(IN) :: max_level, N
-        LOGICAL, DIMENSION(N, N) :: S
-        INTEGER :: new_level
-        INTEGER :: i, j, k
+    subroutine compute_fill_pattern_ILU(A, fill_level, max_level, N)
+        real(dp), dimension(N, N), intent(IN) :: A
+        integer, dimension(N, N), intent(OUT) :: fill_level
+        integer, intent(IN) :: max_level, N
+        logical, dimension(N, N) :: S
+        integer :: new_level
+        integer :: i, j, k
 
         ! Niveau initial basé sur A
         fill_level = int_inf
         S = A /= 0.d0
-        WHERE (S) fill_level = 0
+        where (S) fill_level = 0
 
         ! Calcul symbolique des niveaux de remplissage
-        DO k = 1, N - 1
-            DO i = k + 1, N
-                IF (fill_level(i, k) <= max_level) THEN
-                    DO j = k + 1, N
-                        IF (fill_level(k, j) <= max_level) THEN
+        do k = 1, N - 1
+            do i = k + 1, N
+                if (fill_level(i, k) <= max_level) then
+                    do j = k + 1, N
+                        if (fill_level(k, j) <= max_level) then
                             new_level = fill_level(i, k) + fill_level(k, j) + 1
-                            IF (new_level < max_level) THEN
+                            if (new_level < max_level) then
                                 fill_level(i, j) = new_level
-                            END IF
-                        END IF
-                    END DO
-                END IF
-            END DO
-        END DO
+                            end if
+                        end if
+                    end do
+                end if
+            end do
+        end do
 
-    END SUBROUTINE compute_fill_pattern_ILU
+    end subroutine compute_fill_pattern_ILU
 
-    SUBROUTINE compute_fill_pattern_IC(A, fill_level, max_level, N)
-        REAL(dp), DIMENSION(N, N), INTENT(IN) :: A
-        INTEGER, DIMENSION(N, N), INTENT(OUT) :: fill_level
-        INTEGER, INTENT(IN) :: max_level, N
-        LOGICAL, DIMENSION(N, N) :: S
-        INTEGER :: new_level
-        INTEGER :: i, j, k
+    subroutine compute_fill_pattern_IC(A, fill_level, max_level, N)
+        real(dp), dimension(N, N), intent(IN) :: A
+        integer, dimension(N, N), intent(OUT) :: fill_level
+        integer, intent(IN) :: max_level, N
+        logical, dimension(N, N) :: S
+        integer :: new_level
+        integer :: i, j, k
 
         ! Niveau initial basé sur A
         fill_level = int_inf
         S = A /= 0.d0
-        WHERE (S) fill_level = 0
+        where (S) fill_level = 0
 
         ! Calcul symbolique des niveaux de remplissage
-        DO k = 1, N - 1
-            DO i = k + 1, N
-                IF (fill_level(i, k) <= max_level) THEN
-                    DO j = k + 1, i
-                        IF (fill_level(k, j) <= max_level) THEN
+        do k = 1, N - 1
+            do i = k + 1, N
+                if (fill_level(i, k) <= max_level) then
+                    do j = k + 1, i
+                        if (fill_level(k, j) <= max_level) then
                             new_level = fill_level(i, k) + fill_level(k, j) + 1
-                            IF (new_level < max_level) THEN
+                            if (new_level < max_level) then
                                 fill_level(i, j) = new_level
                                 fill_level(j, i) = new_level
-                            END IF
-                        END IF
-                    END DO
-                END IF
-            END DO
-        END DO
+                            end if
+                        end if
+                    end do
+                end if
+            end do
+        end do
 
-    END SUBROUTINE compute_fill_pattern_IC
+    end subroutine compute_fill_pattern_IC
 
-END MODULE NAFPack_matrix_decomposition
+end module NAFPack_matrix_decomposition

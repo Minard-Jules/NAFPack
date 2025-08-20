@@ -1,466 +1,466 @@
 !> Module for direct methods in NAFPack
-MODULE NAFPack_Direct_method
+module NAFPack_Direct_method
 
-    USE NAFPack_constant
-    USE NAFPack_matrix_decomposition
-    USE NAFPack_matrix_properties
-    USE NAFPack_Direct_types
-    USE NAFPack_matrix_tools
+    use NAFPack_constant
+    use NAFPack_matrix_decomposition
+    use NAFPack_matrix_properties
+    use NAFPack_Direct_types
+    use NAFPack_matrix_tools
 
-    IMPLICIT NONE(TYPE, EXTERNAL)
+    implicit none(type, external)
 
-    PRIVATE
+    private
 
-    PUBLIC :: DirectMethod
-    PUBLIC :: METHOD_Gauss, METHOD_Gauss_JORDAN
-    PUBLIC :: METHOD_LU, METHOD_LDU
-    PUBLIC :: METHOD_CHOLESKY, METHOD_LDL_Cholesky
-    PUBLIC :: METHOD_QR
-    PUBLIC :: METHOD_TDMA
-    PUBLIC :: METHOD_FADDEEV_LEVERRIER
-    PUBLIC :: QR_HOUSEHOLDER, QR_GIVENS, QR_GRAM_SCHMIDT, QR_GRAM_SCHMIDT_Modified
+    public :: DirectMethod
+    public :: METHOD_Gauss, METHOD_Gauss_JORDAN
+    public :: METHOD_LU, METHOD_LDU
+    public :: METHOD_CHOLESKY, METHOD_LDL_Cholesky
+    public :: METHOD_QR
+    public :: METHOD_TDMA
+    public :: METHOD_FADDEEV_LEVERRIER
+    public :: QR_HOUSEHOLDER, QR_GIVENS, QR_GRAM_SCHMIDT, QR_GRAM_SCHMIDT_Modified
 
-    TYPE :: DirectMethod
-        PRIVATE
-        TYPE(MethodTypeDirect) :: method_type = METHOD_DIRECT_NONE
-        TYPE(MethodQR) :: qr_method = QR_GRAM_SCHMIDT
-        LOGICAL :: use_partial_pivot = .FALSE.
-        LOGICAL :: use_total_pivot = .FALSE.
-        TYPE(DirectMethodRequirements) :: requirements
-        PROCEDURE(solve_interface_Direct), PASS(this), POINTER :: solve_method => null()
+    type :: DirectMethod
+        private
+        type(MethodTypeDirect) :: method_type = METHOD_DIRECT_NONE
+        type(MethodQR) :: qr_method = QR_GRAM_SCHMIDT
+        logical :: use_partial_pivot = .false.
+        logical :: use_total_pivot = .false.
+        type(DirectMethodRequirements) :: requirements
+        procedure(solve_interface_Direct), pass(this), pointer :: solve_method => null()
 
-    CONTAINS
+    contains
 
-        PROCEDURE :: set_method => set_method
-        PROCEDURE :: set_qr_method => set_qr_method
-        PROCEDURE :: solve => DirectMethod_solve
-        PROCEDURE :: test_matrix => test_matrix
+        procedure :: set_method => set_method
+        procedure :: set_qr_method => set_qr_method
+        procedure :: solve => DirectMethod_solve
+        procedure :: test_matrix => test_matrix
 
-    END TYPE DirectMethod
+    end type DirectMethod
 
-    ABSTRACT INTERFACE
-        FUNCTION solve_interface_Direct(this, A, b) RESULT(x)
-            IMPORT :: dp
-            IMPORT :: DirectMethod
-            CLASS(DirectMethod), INTENT(IN) :: this
-            REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-            REAL(dp), DIMENSION(:), INTENT(IN) :: b
-            REAL(dp), DIMENSION(size(A, 1)) :: x
-        END FUNCTION solve_interface_Direct
-    END INTERFACE
+    abstract interface
+        function solve_interface_Direct(this, A, b) result(x)
+            import :: dp
+            import :: DirectMethod
+            class(DirectMethod), intent(IN) :: this
+            real(dp), dimension(:, :), intent(IN) :: A
+            real(dp), dimension(:), intent(IN) :: b
+            real(dp), dimension(size(A, 1)) :: x
+        end function solve_interface_Direct
+    end interface
 
-CONTAINS
+contains
 
-    SUBROUTINE set_method(this, method, set_pivot_partial, set_pivot_total)
-        CLASS(DirectMethod), INTENT(INOUT) :: this
-        TYPE(MethodTypeDirect), INTENT(IN) :: method
-        LOGICAL, OPTIONAL :: set_pivot_partial, set_pivot_total
+    subroutine set_method(this, method, set_pivot_partial, set_pivot_total)
+        class(DirectMethod), intent(INOUT) :: this
+        type(MethodTypeDirect), intent(IN) :: method
+        logical, optional :: set_pivot_partial, set_pivot_total
 
-        this%use_total_pivot = .FALSE.
-        this%use_partial_pivot = .FALSE.
+        this%use_total_pivot = .false.
+        this%use_partial_pivot = .false.
         this%requirements = DirectMethodRequirements()
 
-        SELECT CASE (method%id)
-        CASE (METHOD_Gauss%id)
+        select case (method%id)
+        case (METHOD_Gauss%id)
             this%solve_method => solve_Gauss
             this%method_type = METHOD_Gauss
-            this%requirements%needs_square = .TRUE.
-        CASE (METHOD_Gauss_JORDAN%id)
+            this%requirements%needs_square = .true.
+        case (METHOD_Gauss_JORDAN%id)
             this%solve_method => solve_GaussJordan
             this%method_type = METHOD_Gauss_JORDAN
-            this%requirements%needs_square = .TRUE.
-        CASE (METHOD_LU%id)
+            this%requirements%needs_square = .true.
+        case (METHOD_LU%id)
             this%solve_method => solve_LU
             this%method_type = METHOD_LU
-            this%requirements%needs_square = .TRUE.
-        CASE (METHOD_LDU%id)
+            this%requirements%needs_square = .true.
+        case (METHOD_LDU%id)
             this%solve_method => solve_LDU
             this%method_type = METHOD_LDU
-            this%requirements%needs_square = .TRUE.
-            this%requirements%needs_non_zero_diag = .TRUE.
-        CASE (METHOD_CHOLESKY%id)
+            this%requirements%needs_square = .true.
+            this%requirements%needs_non_zero_diag = .true.
+        case (METHOD_CHOLESKY%id)
             this%solve_method => solve_Cholesky
             this%method_type = METHOD_CHOLESKY
-            this%requirements%needs_square = .TRUE.
-            this%requirements%needs_SPD = .TRUE.
-        CASE (METHOD_LDL_Cholesky%id)
+            this%requirements%needs_square = .true.
+            this%requirements%needs_SPD = .true.
+        case (METHOD_LDL_Cholesky%id)
             this%solve_method => solve_LDL_Cholesky
             this%method_type = METHOD_LDL_Cholesky
-            this%requirements%needs_square = .TRUE.
-            this%requirements%needs_symmetric = .TRUE.
-        CASE (METHOD_QR%id)
+            this%requirements%needs_square = .true.
+            this%requirements%needs_symmetric = .true.
+        case (METHOD_QR%id)
             this%solve_method => solve_QR
             this%method_type = METHOD_QR
-            this%requirements%needs_square = .TRUE.
-        CASE (METHOD_TDMA%id)
+            this%requirements%needs_square = .true.
+        case (METHOD_TDMA%id)
             this%solve_method => solve_TDMA
             this%method_type = METHOD_TDMA
-            this%requirements%needs_square = .TRUE.
-            this%requirements%needs_tridiagonal = .TRUE.
-            this%requirements%needs_non_zero_diag = .TRUE.
-        CASE (METHOD_FADDEEV_LEVERRIER%id)
+            this%requirements%needs_square = .true.
+            this%requirements%needs_tridiagonal = .true.
+            this%requirements%needs_non_zero_diag = .true.
+        case (METHOD_FADDEEV_LEVERRIER%id)
             this%solve_method => solve_Faddeev_Leverrier
             this%method_type = METHOD_FADDEEV_LEVERRIER
-            this%requirements%needs_square = .TRUE.
-        CASE DEFAULT
-            STOP "ERROR :: Unknown method direct"
-        END SELECT
+            this%requirements%needs_square = .true.
+        case DEFAULT
+            stop "ERROR :: Unknown method direct"
+        end select
 
-        IF (present(set_pivot_partial)) THEN
-            IF (set_pivot_partial) this%use_partial_pivot = .TRUE.
-        ELSE IF (present(set_pivot_total)) THEN
-            IF (set_pivot_total) this%use_total_pivot = .TRUE.
-        END IF
+        if (present(set_pivot_partial)) then
+            if (set_pivot_partial) this%use_partial_pivot = .true.
+        else if (present(set_pivot_total)) then
+            if (set_pivot_total) this%use_total_pivot = .true.
+        end if
 
-    END SUBROUTINE set_method
+    end subroutine set_method
 
-    SUBROUTINE set_qr_method(this, qr_method)
-        CLASS(DirectMethod), INTENT(INOUT) :: this
-        TYPE(MethodQR), INTENT(IN) :: qr_method
+    subroutine set_qr_method(this, qr_method)
+        class(DirectMethod), intent(INOUT) :: this
+        type(MethodQR), intent(IN) :: qr_method
 
         this%qr_method = qr_method
 
-    END SUBROUTINE set_qr_method
+    end subroutine set_qr_method
 
-    SUBROUTINE test_matrix(this, A, strict_mode)
-        CLASS(DirectMethod), INTENT(INOUT) :: this
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        LOGICAL, OPTIONAL, INTENT(IN) :: strict_mode
-        LOGICAL :: strict
+    subroutine test_matrix(this, A, strict_mode)
+        class(DirectMethod), intent(INOUT) :: this
+        real(dp), dimension(:, :), intent(IN) :: A
+        logical, optional, intent(IN) :: strict_mode
+        logical :: strict
 
-        strict = .FALSE.
-        IF (present(strict_mode)) strict = strict_mode
+        strict = .false.
+        if (present(strict_mode)) strict = strict_mode
 
-        IF (this%requirements%needs_square) THEN
-            PRINT*,"Checking if the matrix is square..."
-            IF (.NOT. is_square_matrix(A)) THEN
-                IF (strict) THEN
-                    PRINT*,"ERROR :: "//this%method_type%name//" method requires a square matrix."
-                    STOP
-                ELSE
-                    PRINT*,"WARNING :: "//this%method_type%name//" method requires a square matrix."
-                END IF
-            END IF
-        END IF
+        if (this%requirements%needs_square) then
+            print*,"Checking if the matrix is square..."
+            if (.not. is_square_matrix(A)) then
+                if (strict) then
+                    print*,"ERROR :: "//this%method_type%name//" method requires a square matrix."
+                    stop
+                else
+                    print*,"WARNING :: "//this%method_type%name//" method requires a square matrix."
+                end if
+            end if
+        end if
 
-        IF (this%requirements%needs_SPD) THEN
-            PRINT*,"Checking if the matrix is symmetric positive definite (SPD)..."
-            IF (.NOT. is_SPD(A)) THEN
-                IF (strict) THEN
-                    PRINT*,"ERROR :: "//this%method_type%name//" method requires a symmetric positive definite matrix."
-                    STOP
-                ELSE
-                    PRINT*,"WARNING :: "//this%method_type%name//" method requires a symmetric positive definite matrix."
-                END IF
-            END IF
-        END IF
+        if (this%requirements%needs_SPD) then
+            print*,"Checking if the matrix is symmetric positive definite (SPD)..."
+            if (.not. is_SPD(A)) then
+                if (strict) then
+                    print*,"ERROR :: "//this%method_type%name//" method requires a symmetric positive definite matrix."
+                    stop
+                else
+                    print*,"WARNING :: "//this%method_type%name//" method requires a symmetric positive definite matrix."
+                end if
+            end if
+        end if
 
-        IF (this%requirements%needs_non_zero_diag) THEN
-            PRINT*,"Checking if the matrix has a non-zero diagonal..."
-            IF (.NOT. is_non_zero_diagonal(A)) THEN
-                IF (strict) THEN
-                    PRINT*,"ERROR :: "//this%method_type%name//" method requires a non-zero diagonal matrix."
-                    STOP
-                ELSE
-                    PRINT*,"WARNING :: "//this%method_type%name//" method requires a non-zero diagonal matrix."
-                END IF
-            END IF
-        END IF
+        if (this%requirements%needs_non_zero_diag) then
+            print*,"Checking if the matrix has a non-zero diagonal..."
+            if (.not. is_non_zero_diagonal(A)) then
+                if (strict) then
+                    print*,"ERROR :: "//this%method_type%name//" method requires a non-zero diagonal matrix."
+                    stop
+                else
+                    print*,"WARNING :: "//this%method_type%name//" method requires a non-zero diagonal matrix."
+                end if
+            end if
+        end if
 
-        IF (this%requirements%needs_tridiagonal) THEN
-            PRINT*,"Checking if the matrix is tridiagonal..."
-            IF (.NOT. is_tridiagonal(A)) THEN
-                IF (strict) THEN
-                    PRINT*,"ERROR :: "//this%method_type%name//" method requires a tridiagonal matrix."
-                    STOP
-                ELSE
-                    PRINT*,"WARNING :: "//this%method_type%name//" method requires a tridiagonal matrix."
-                END IF
-            END IF
-        END IF
+        if (this%requirements%needs_tridiagonal) then
+            print*,"Checking if the matrix is tridiagonal..."
+            if (.not. is_tridiagonal(A)) then
+                if (strict) then
+                    print*,"ERROR :: "//this%method_type%name//" method requires a tridiagonal matrix."
+                    stop
+                else
+                    print*,"WARNING :: "//this%method_type%name//" method requires a tridiagonal matrix."
+                end if
+            end if
+        end if
 
-        IF (this%requirements%needs_symmetric) THEN
-            PRINT*,"Checking if the matrix is symmetric..."
-            IF (.NOT. is_symmetric(A)) THEN
-                IF (strict) THEN
-                    PRINT*,"ERROR :: "//this%method_type%name//" method requires a symmetric matrix."
-                    STOP
-                ELSE
-                    PRINT*,"WARNING :: "//this%method_type%name//" method requires a symmetric matrix."
-                END IF
-            END IF
-        END IF
+        if (this%requirements%needs_symmetric) then
+            print*,"Checking if the matrix is symmetric..."
+            if (.not. is_symmetric(A)) then
+                if (strict) then
+                    print*,"ERROR :: "//this%method_type%name//" method requires a symmetric matrix."
+                    stop
+                else
+                    print*,"WARNING :: "//this%method_type%name//" method requires a symmetric matrix."
+                end if
+            end if
+        end if
 
-    END SUBROUTINE test_matrix
+    end subroutine test_matrix
 
-    FUNCTION DirectMethod_solve(this, A, b) RESULT(x)
-        CLASS(DirectMethod), INTENT(IN) :: this
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(:), INTENT(IN) :: b
-        REAL(dp), DIMENSION(size(A, 1)) :: x
+    function DirectMethod_solve(this, A, b) result(x)
+        class(DirectMethod), intent(IN) :: this
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:), intent(IN) :: b
+        real(dp), dimension(size(A, 1)) :: x
 
-        IF (.NOT. associated(this%solve_method)) THEN
-            STOP "ERROR :: No solution method has been set. Call set_method first."
-        END IF
+        if (.not. associated(this%solve_method)) then
+            stop "ERROR :: No solution method has been set. Call set_method first."
+        end if
 
         x = this%solve_method(A, b)
 
-    END FUNCTION DirectMethod_solve
+    end function DirectMethod_solve
 
-    FUNCTION solve_Gauss(this, A, b) RESULT(x)
-        CLASS(DirectMethod), INTENT(IN) :: this
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(:), INTENT(IN) :: b
-        REAL(dp), DIMENSION(size(A, 1)) :: x
-        REAL(dp), DIMENSION(size(A, 1), size(A, 2)) :: A_tmp
-        REAL(dp), DIMENSION(:, :), ALLOCATABLE :: P
-        REAL(dp), DIMENSION(:, :), ALLOCATABLE :: Q
-        REAL(dp), DIMENSION(size(b)) :: b_tmp
-        INTEGER :: i, k, N, M, allocate_status
-        REAL(dp) :: pivot, multiplier
+    function solve_Gauss(this, A, b) result(x)
+        class(DirectMethod), intent(IN) :: this
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:), intent(IN) :: b
+        real(dp), dimension(size(A, 1)) :: x
+        real(dp), dimension(size(A, 1), size(A, 2)) :: A_tmp
+        real(dp), dimension(:, :), allocatable :: P
+        real(dp), dimension(:, :), allocatable :: Q
+        real(dp), dimension(size(b)) :: b_tmp
+        integer :: i, k, N, M, allocate_status
+        real(dp) :: pivot, multiplier
 
         N = size(A, 1)
         M = size(A, 2)
 
-        IF (this%use_partial_pivot) THEN
-            ALLOCATE (P(N, N), STAT=allocate_status)
-            IF (allocate_status /= 0) STOP "ERROR :: Unable to allocate P"
+        if (this%use_partial_pivot) then
+            allocate (P(N, N), STAT=allocate_status)
+            if (allocate_status /= 0) stop "ERROR :: Unable to allocate P"
 
-            CALL pivot_partial(A, P)
+            call pivot_partial(A, P)
 
             A_tmp = matmul(P, A)
             b_tmp = matmul(P, b)
-        ELSE IF (this%use_total_pivot) THEN
-            ALLOCATE (P(N, N), STAT=allocate_status)
-            IF (allocate_status /= 0) STOP "ERROR :: Unable to allocate P"
+        else if (this%use_total_pivot) then
+            allocate (P(N, N), STAT=allocate_status)
+            if (allocate_status /= 0) stop "ERROR :: Unable to allocate P"
             P = Identity_n(N)
-            ALLOCATE (Q(N, N), STAT=allocate_status)
-            IF (allocate_status /= 0) STOP "ERROR :: Unable to allocate Q"
+            allocate (Q(N, N), STAT=allocate_status)
+            if (allocate_status /= 0) stop "ERROR :: Unable to allocate Q"
             Q = Identity_n(N)
 
-            CALL pivot_total(A, P, Q)
+            call pivot_total(A, P, Q)
 
             A_tmp = matmul(P, A)
             A_tmp = matmul(A, Q)
 
             b_tmp = matmul(P, b)
-        ELSE
+        else
             A_tmp = A
             b_tmp = b
-        END IF
+        end if
 
-        DO k = 1, N - 1
+        do k = 1, N - 1
             pivot = A_tmp(k, k)
-            IF (abs(pivot) < epsi) STOP "ERROR :: Near-zero pivot – matrix may be singular"
+            if (abs(pivot) < epsi) stop "ERROR :: Near-zero pivot – matrix may be singular"
 
-            DO i = k + 1, N
+            do i = k + 1, N
                 multiplier = A_tmp(i, k) / pivot
                 A_tmp(i, k) = 0
 
                 ! Vectorized operation
                 A_tmp(i, k + 1:N) = A_tmp(i, k + 1:N) - multiplier * A_tmp(k, k + 1:N)
                 b_tmp(i) = b_tmp(i) - multiplier * b_tmp(k)
-            END DO
-        END DO
+            end do
+        end do
 
         x = backward(A_tmp, b_tmp)
-        IF (this%use_total_pivot) x = matmul(Q, x)
+        if (this%use_total_pivot) x = matmul(Q, x)
 
-    END FUNCTION solve_Gauss
+    end function solve_Gauss
 
-    FUNCTION solve_GaussJordan(this, A, b) RESULT(x)
-        CLASS(DirectMethod), INTENT(IN) :: this
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(:), INTENT(IN) :: b
-        REAL(dp), DIMENSION(size(A, 1)) :: x
-        REAL(dp), DIMENSION(size(A, 1), size(A, 2)) :: A_tmp
-        REAL(dp), DIMENSION(:, :), ALLOCATABLE :: P
-        REAL(dp), DIMENSION(:, :), ALLOCATABLE :: Q
-        REAL(dp), DIMENSION(size(b)) :: b_tmp
-        INTEGER :: i, k, N, M, allocate_status
-        REAL(dp) :: pivot, factor
+    function solve_GaussJordan(this, A, b) result(x)
+        class(DirectMethod), intent(IN) :: this
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:), intent(IN) :: b
+        real(dp), dimension(size(A, 1)) :: x
+        real(dp), dimension(size(A, 1), size(A, 2)) :: A_tmp
+        real(dp), dimension(:, :), allocatable :: P
+        real(dp), dimension(:, :), allocatable :: Q
+        real(dp), dimension(size(b)) :: b_tmp
+        integer :: i, k, N, M, allocate_status
+        real(dp) :: pivot, factor
 
         N = size(A_tmp, 1)
         M = size(A_tmp, 2)
 
-        IF (this%use_partial_pivot) THEN
-            ALLOCATE (P(N, N), STAT=allocate_status)
-            IF (allocate_status /= 0) STOP "ERROR :: Unable to allocate P"
+        if (this%use_partial_pivot) then
+            allocate (P(N, N), STAT=allocate_status)
+            if (allocate_status /= 0) stop "ERROR :: Unable to allocate P"
 
-            CALL pivot_partial(A, P)
+            call pivot_partial(A, P)
 
             A_tmp = matmul(P, A)
             b_tmp = matmul(P, b)
-        ELSE IF (this%use_total_pivot) THEN
-            ALLOCATE (P(N, N), STAT=allocate_status)
-            IF (allocate_status /= 0) STOP "ERROR :: Unable to allocate P"
+        else if (this%use_total_pivot) then
+            allocate (P(N, N), STAT=allocate_status)
+            if (allocate_status /= 0) stop "ERROR :: Unable to allocate P"
             P = Identity_n(N)
-            ALLOCATE (Q(N, N), STAT=allocate_status)
-            IF (allocate_status /= 0) STOP "ERROR :: Unable to allocate Q"
+            allocate (Q(N, N), STAT=allocate_status)
+            if (allocate_status /= 0) stop "ERROR :: Unable to allocate Q"
             Q = Identity_n(N)
 
-            CALL pivot_total(A, P, Q)
+            call pivot_total(A, P, Q)
 
             A_tmp = matmul(P, A)
             A_tmp = matmul(A, Q)
 
             b_tmp = matmul(P, b)
-        ELSE
+        else
             A_tmp = A
             b_tmp = b
-        END IF
+        end if
 
-        DO k = 1, N
+        do k = 1, N
             pivot = A_tmp(k, k)
-            IF (abs(pivot) < epsi) STOP "ERROR :: Near-zero pivot – matrix may be singular"
+            if (abs(pivot) < epsi) stop "ERROR :: Near-zero pivot – matrix may be singular"
 
             ! Normalisation du pivot
             A_tmp(k, :) = A_tmp(k, :) / pivot
             b_tmp(k) = b_tmp(k) / pivot
 
             ! Élimination dans toutes les autres lignes
-            DO i = 1, N
-                IF (i /= k) THEN
+            do i = 1, N
+                if (i /= k) then
                     factor = A_tmp(i, k)
                     A_tmp(i, :) = A_tmp(i, :) - factor * A_tmp(k, :)
                     b_tmp(i) = b_tmp(i) - factor * b_tmp(k)
-                END IF
-            END DO
-        END DO
+                end if
+            end do
+        end do
 
         x = b_tmp
-        IF (this%use_total_pivot) x = matmul(Q, x)
+        if (this%use_total_pivot) x = matmul(Q, x)
 
-    END FUNCTION solve_GaussJordan
+    end function solve_GaussJordan
 
-    FUNCTION solve_LU(this, A, b) RESULT(x)
-        CLASS(DirectMethod), INTENT(IN) :: this
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(:), INTENT(IN) :: b
-        REAL(dp), DIMENSION(size(A, 1)) :: x
-        REAL(dp), DIMENSION(size(A, 1), size(A, 1)) :: L, U
-        REAL(dp), DIMENSION(size(A, 1), size(A, 2)) :: A_tmp
-        REAL(dp), DIMENSION(:, :), ALLOCATABLE :: P
-        REAL(dp), DIMENSION(:, :), ALLOCATABLE :: Q
-        REAL(dp), DIMENSION(size(b)) :: b_tmp
-        INTEGER :: N, M, allocate_status
+    function solve_LU(this, A, b) result(x)
+        class(DirectMethod), intent(IN) :: this
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:), intent(IN) :: b
+        real(dp), dimension(size(A, 1)) :: x
+        real(dp), dimension(size(A, 1), size(A, 1)) :: L, U
+        real(dp), dimension(size(A, 1), size(A, 2)) :: A_tmp
+        real(dp), dimension(:, :), allocatable :: P
+        real(dp), dimension(:, :), allocatable :: Q
+        real(dp), dimension(size(b)) :: b_tmp
+        integer :: N, M, allocate_status
 
         N = size(A, 1)
         M = size(A_tmp, 2)
 
-        IF (this%use_partial_pivot) THEN
-            ALLOCATE (P(N, N), STAT=allocate_status)
-            IF (allocate_status /= 0) STOP "ERROR :: Unable to allocate P"
+        if (this%use_partial_pivot) then
+            allocate (P(N, N), STAT=allocate_status)
+            if (allocate_status /= 0) stop "ERROR :: Unable to allocate P"
 
-            CALL pivot_partial(A, P)
+            call pivot_partial(A, P)
 
             A_tmp = matmul(P, A)
             b_tmp = matmul(P, b)
-        ELSE IF (this%use_total_pivot) THEN
-            ALLOCATE (P(N, N), STAT=allocate_status)
-            IF (allocate_status /= 0) STOP "ERROR :: Unable to allocate P"
+        else if (this%use_total_pivot) then
+            allocate (P(N, N), STAT=allocate_status)
+            if (allocate_status /= 0) stop "ERROR :: Unable to allocate P"
             P = Identity_n(N)
-            ALLOCATE (Q(N, N), STAT=allocate_status)
-            IF (allocate_status /= 0) STOP "ERROR :: Unable to allocate Q"
+            allocate (Q(N, N), STAT=allocate_status)
+            if (allocate_status /= 0) stop "ERROR :: Unable to allocate Q"
             Q = Identity_n(N)
 
-            CALL pivot_total(A, P, Q)
+            call pivot_total(A, P, Q)
 
             A_tmp = matmul(P, A)
             A_tmp = matmul(A, Q)
 
             b_tmp = matmul(P, b)
-        ELSE
+        else
             A_tmp = A
             b_tmp = b
-        END IF
+        end if
 
-        CALL LU_decomposition(A_tmp, L, U)
+        call LU_decomposition(A_tmp, L, U)
 
         x = forward(L, b_tmp)
 
         x = backward(U, x)
 
-        IF (this%use_total_pivot) x = matmul(Q, x)
+        if (this%use_total_pivot) x = matmul(Q, x)
 
-    END FUNCTION solve_LU
+    end function solve_LU
 
-    FUNCTION solve_LDU(this, A, b) RESULT(x)
-        CLASS(DirectMethod), INTENT(IN) :: this
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(:), INTENT(IN) :: b
-        REAL(dp), DIMENSION(size(A, 1)) :: x
-        REAL(dp), DIMENSION(size(A, 1), size(A, 1)) :: L, D, U
-        REAL(dp), DIMENSION(size(A, 1), size(A, 2)) :: A_tmp
-        REAL(dp), DIMENSION(:, :), ALLOCATABLE :: P
-        REAL(dp), DIMENSION(:, :), ALLOCATABLE :: Q
-        REAL(dp), DIMENSION(size(b)) :: b_tmp
-        INTEGER :: N, M, allocate_status
+    function solve_LDU(this, A, b) result(x)
+        class(DirectMethod), intent(IN) :: this
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:), intent(IN) :: b
+        real(dp), dimension(size(A, 1)) :: x
+        real(dp), dimension(size(A, 1), size(A, 1)) :: L, D, U
+        real(dp), dimension(size(A, 1), size(A, 2)) :: A_tmp
+        real(dp), dimension(:, :), allocatable :: P
+        real(dp), dimension(:, :), allocatable :: Q
+        real(dp), dimension(size(b)) :: b_tmp
+        integer :: N, M, allocate_status
 
         N = size(A, 1)
         M = size(A, 2)
 
-        IF (this%use_partial_pivot) THEN
-            ALLOCATE (P(N, N), STAT=allocate_status)
-            IF (allocate_status /= 0) STOP "ERROR :: Unable to allocate P"
+        if (this%use_partial_pivot) then
+            allocate (P(N, N), STAT=allocate_status)
+            if (allocate_status /= 0) stop "ERROR :: Unable to allocate P"
 
-            CALL pivot_partial(A, P)
+            call pivot_partial(A, P)
 
             A_tmp = matmul(P, A)
             b_tmp = matmul(P, b)
-        ELSE IF (this%use_total_pivot) THEN
-            ALLOCATE (P(N, N), STAT=allocate_status)
-            IF (allocate_status /= 0) STOP "ERROR :: Unable to allocate P"
+        else if (this%use_total_pivot) then
+            allocate (P(N, N), STAT=allocate_status)
+            if (allocate_status /= 0) stop "ERROR :: Unable to allocate P"
             P = Identity_n(N)
-            ALLOCATE (Q(N, N), STAT=allocate_status)
-            IF (allocate_status /= 0) STOP "ERROR :: Unable to allocate Q"
+            allocate (Q(N, N), STAT=allocate_status)
+            if (allocate_status /= 0) stop "ERROR :: Unable to allocate Q"
             Q = Identity_n(N)
 
-            CALL pivot_total(A, P, Q)
+            call pivot_total(A, P, Q)
 
             A_tmp = matmul(P, A)
             A_tmp = matmul(A, Q)
 
             b_tmp = matmul(P, b)
-        ELSE
+        else
             A_tmp = A
             b_tmp = b
-        END IF
+        end if
 
-        CALL LDU_decomposition(A_tmp, L, D, U)
+        call LDU_decomposition(A_tmp, L, D, U)
 
         x = forward(L, b_tmp)
 
         x = forward(D, x)
 
         x = backward(U, x)
-        IF (this%use_total_pivot) x = matmul(Q, x)
+        if (this%use_total_pivot) x = matmul(Q, x)
 
-    END FUNCTION solve_LDU
+    end function solve_LDU
 
-    FUNCTION solve_Cholesky(this, A, b) RESULT(x)
-        CLASS(DirectMethod), INTENT(IN) :: this
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(:), INTENT(IN) :: b
-        REAL(dp), DIMENSION(size(A, 1)) :: x
-        REAL(dp), DIMENSION(size(A, 1), size(A, 1)) :: L
+    function solve_Cholesky(this, A, b) result(x)
+        class(DirectMethod), intent(IN) :: this
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:), intent(IN) :: b
+        real(dp), dimension(size(A, 1)) :: x
+        real(dp), dimension(size(A, 1), size(A, 1)) :: L
 
-        CALL Cholesky_decomposition(A, L)
+        call Cholesky_decomposition(A, L)
 
         x = forward(L, b)
 
         x = backward(transpose(L), x)
 
-    END FUNCTION solve_Cholesky
+    end function solve_Cholesky
 
-    FUNCTION solve_LDL_Cholesky(this, A, b) RESULT(x)
-        CLASS(DirectMethod), INTENT(IN) :: this
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(:), INTENT(IN) :: b
-        REAL(dp), DIMENSION(size(A, 1)) :: x
-        REAL(dp), DIMENSION(size(A, 1), size(A, 1)) :: L, D
+    function solve_LDL_Cholesky(this, A, b) result(x)
+        class(DirectMethod), intent(IN) :: this
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:), intent(IN) :: b
+        real(dp), dimension(size(A, 1)) :: x
+        real(dp), dimension(size(A, 1), size(A, 1)) :: L, D
 
-        CALL LDL_Cholesky_decomposition(A, L, D)
+        call LDL_Cholesky_decomposition(A, L, D)
 
         x = forward(L, b)
 
@@ -468,40 +468,40 @@ CONTAINS
 
         x = backward(transpose(L), x)
 
-    END FUNCTION solve_LDL_Cholesky
+    end function solve_LDL_Cholesky
 
-    FUNCTION solve_QR(this, A, b) RESULT(x)
-        CLASS(DirectMethod), INTENT(IN) :: this
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(:), INTENT(IN) :: b
-        REAL(dp), DIMENSION(size(A, 1)) :: x
-        REAL(dp), DIMENSION(size(A, 1), size(A, 2)) :: Q, R
+    function solve_QR(this, A, b) result(x)
+        class(DirectMethod), intent(IN) :: this
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:), intent(IN) :: b
+        real(dp), dimension(size(A, 1)) :: x
+        real(dp), dimension(size(A, 1), size(A, 2)) :: Q, R
 
-        SELECT CASE (this%qr_method%id)
-        CASE (QR_HOUSEHOLDER%id)
-            CALL QR_Householder_decomposition(A, Q, R)
-        CASE (QR_GIVENS%id)
-            CALL QR_Givens_decomposition(A, Q, R)
-        CASE (QR_GRAM_SCHMIDT%id)
-            CALL QR_Gram_Schmidt_Classical_decomposition(A, Q, R)
-        CASE (QR_GRAM_SCHMIDT_Modified%id)
-            CALL QR_Gram_Schmidt_Modified_decomposition(A, Q, R)
-        CASE DEFAULT
-            STOP "ERROR :: Unknown QR method"
-        END SELECT
+        select case (this%qr_method%id)
+        case (QR_HOUSEHOLDER%id)
+            call QR_Householder_decomposition(A, Q, R)
+        case (QR_GIVENS%id)
+            call QR_Givens_decomposition(A, Q, R)
+        case (QR_GRAM_SCHMIDT%id)
+            call QR_Gram_Schmidt_Classical_decomposition(A, Q, R)
+        case (QR_GRAM_SCHMIDT_Modified%id)
+            call QR_Gram_Schmidt_Modified_decomposition(A, Q, R)
+        case DEFAULT
+            stop "ERROR :: Unknown QR method"
+        end select
 
         x = backward(R, matmul(transpose(Q), b))
 
-    END FUNCTION solve_QR
+    end function solve_QR
 
-    FUNCTION solve_TDMA(this, A, b) RESULT(x)
-        CLASS(DirectMethod), INTENT(IN) :: this
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(:), INTENT(IN) :: b
-        REAL(dp), DIMENSION(size(A, 1)) :: x
-        REAL(dp), DIMENSION(size(A, 1)) :: alpha, beta
-        REAL(dp) :: denom
-        INTEGER :: n, i
+    function solve_TDMA(this, A, b) result(x)
+        class(DirectMethod), intent(IN) :: this
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:), intent(IN) :: b
+        real(dp), dimension(size(A, 1)) :: x
+        real(dp), dimension(size(A, 1)) :: alpha, beta
+        real(dp) :: denom
+        integer :: n, i
 
         N = size(A, 1)
 
@@ -510,36 +510,36 @@ CONTAINS
 
         alpha(1) = A(1, 2) / A(1, 1)
         beta(1) = b(1) / A(1, 1)
-        DO i = 2, N
+        do i = 2, N
             denom = A(i, i) - A(i, i - 1) * alpha(i - 1)
-            IF (i < N) alpha(i) = A(i, i + 1) / denom
+            if (i < N) alpha(i) = A(i, i + 1) / denom
             beta(i) = (b(i) - A(i, i - 1) * beta(i - 1)) / denom
-        END DO
+        end do
 
         x(n) = beta(n)
-        DO i = n - 1, 1, -1
+        do i = n - 1, 1, -1
             x(i) = beta(i) - alpha(i) * x(i + 1)
-        END DO
+        end do
 
-    END FUNCTION solve_TDMA
+    end function solve_TDMA
 
-    FUNCTION solve_Faddeev_Leverrier(this, A, b) RESULT(x)
-        CLASS(DirectMethod), INTENT(IN) :: this
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(:), INTENT(IN) :: b
-        REAL(dp), DIMENSION(size(A, 1)) :: x
-        REAL(dp), DIMENSION(size(A, 1), size(A, 2)) :: Ainv
-        REAL(dp), DIMENSION(size(A, 1) + 1) :: c
-        LOGICAL :: success
+    function solve_Faddeev_Leverrier(this, A, b) result(x)
+        class(DirectMethod), intent(IN) :: this
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:), intent(IN) :: b
+        real(dp), dimension(size(A, 1)) :: x
+        real(dp), dimension(size(A, 1), size(A, 2)) :: Ainv
+        real(dp), dimension(size(A, 1) + 1) :: c
+        logical :: success
 
-        CALL Faddeev_Leverrier(A, c, Ainv=Ainv, success=success, check=.FALSE.)
-        IF (.NOT. success) THEN
-            PRINT*,"WARNING :: Faddeev-Leverrier method failed, using LU decomposition instead"
+        call Faddeev_Leverrier(A, c, Ainv=Ainv, success=success, check=.false.)
+        if (.not. success) then
+            print*,"WARNING :: Faddeev-Leverrier method failed, using LU decomposition instead"
             x = solve_LU(this, A, b)
-        ELSE
+        else
             x = matmul(Ainv, b)
-        END IF
+        end if
 
-    END FUNCTION solve_Faddeev_Leverrier
+    end function solve_Faddeev_Leverrier
 
-END MODULE NAFPack_Direct_method
+end module NAFPack_Direct_method

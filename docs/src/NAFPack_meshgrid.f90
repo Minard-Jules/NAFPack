@@ -1,34 +1,34 @@
 !> Module for creating a meshgrid from two vectors
 !>
 !> This module provides a subroutine to create a meshgrid.
-MODULE NAFPack_meshgrid
+module NAFPack_meshgrid
 
-    USE NAFPack_constant
+    use NAFPack_constant
 
-    IMPLICIT NONE(TYPE, EXTERNAL)
+    implicit none(type, external)
 
-    PRIVATE
-    PUBLIC :: meshgrid
+    private
+    public :: meshgrid
 
-CONTAINS
+contains
 
     !> Make N-dimensional meshgrid from two vectors **x_vector** and **y_vector**
-    SUBROUTINE meshgrid(x_vector, y_vector, X, Y)
-        REAL(dp), DIMENSION(:), INTENT(IN) :: x_vector, y_vector
-        REAL(dp), DIMENSION(size(y_vector), size(x_vector)), INTENT(OUT) :: X, Y
-        INTEGER :: sX, sY, i
+    subroutine meshgrid(x_vector, y_vector, X, Y)
+        real(dp), dimension(:), intent(IN) :: x_vector, y_vector
+        real(dp), dimension(size(y_vector), size(x_vector)), intent(OUT) :: X, Y
+        integer :: sX, sY, i
 
         sX = size(x_vector)
         sY = size(y_vector)
 
-        DO i = 1, sY
+        do i = 1, sY
             X(i, :) = x_vector
-        END DO
+        end do
 
-        DO i = 1, sX
+        do i = 1, sX
             Y(:, i) = y_vector
-        END DO
+        end do
 
-    END SUBROUTINE meshgrid
+    end subroutine meshgrid
 
-END MODULE NAFPack_meshgrid
+end module NAFPack_meshgrid

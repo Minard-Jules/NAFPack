@@ -1,58 +1,58 @@
-MODULE NAFPack_linalg
+module NAFPack_linalg
 
-    USE NAFPack_Direct_types
-    USE NAFPack_Direct_method
+    use NAFPack_Direct_types
+    use NAFPack_Direct_method
 
-    USE NAFPack_Iterative_types
-    USE NAFPack_Iterative_methods
+    use NAFPack_Iterative_types
+    use NAFPack_Iterative_methods
 
-    IMPLICIT NONE(TYPE, EXTERNAL)
+    implicit none(type, external)
 
-    PRIVATE
+    private
 
-    PUBLIC :: linalg, DirectMethod, IterativeMethod
+    public :: linalg, DirectMethod, IterativeMethod
 
-    PUBLIC :: MethodTypeDirect, MethodQR
-    PUBLIC :: METHOD_DIRECT_NONE
-    PUBLIC :: METHOD_Gauss, METHOD_Gauss_JORDAN
-    PUBLIC :: METHOD_LU, METHOD_LDU
-    PUBLIC :: METHOD_CHOLESKY, METHOD_LDL_Cholesky, METHOD_QR
-    PUBLIC :: METHOD_TDMA, METHOD_FADDEEV_LEVERRIER
-    PUBLIC :: QR_HOUSEHOLDER, QR_GIVENS, QR_GRAM_SCHMIDT
-    PUBLIC :: QR_GRAM_SCHMIDT_Modified
+    public :: MethodTypeDirect, MethodQR
+    public :: METHOD_DIRECT_NONE
+    public :: METHOD_Gauss, METHOD_Gauss_JORDAN
+    public :: METHOD_LU, METHOD_LDU
+    public :: METHOD_CHOLESKY, METHOD_LDL_Cholesky, METHOD_QR
+    public :: METHOD_TDMA, METHOD_FADDEEV_LEVERRIER
+    public :: QR_HOUSEHOLDER, QR_GIVENS, QR_GRAM_SCHMIDT
+    public :: QR_GRAM_SCHMIDT_Modified
 
-    PUBLIC :: IterativeParams
-    PUBLIC :: METHOD_ITERATIVE_NONE
-    PUBLIC :: METHOD_Jacobi, METHOD_JOR
-    PUBLIC :: METHOD_GAUSS_SEIDEL, METHOD_SOR, METHOD_SSOR
-    PUBLIC :: METHOD_SIP_ILU, METHOD_SIP_ICF
-    PUBLIC :: METHOD_RICHARDSON
-    PUBLIC :: METHOD_CONJUGATE_GRADIENT
-    PUBLIC :: METHOD_CONJUGATE_RESIDUAL
-    PUBLIC :: METHOD_CGNE, METHOD_CGNR
-    PUBLIC :: METHOD_GMRES
+    public :: IterativeParams
+    public :: METHOD_ITERATIVE_NONE
+    public :: METHOD_Jacobi, METHOD_JOR
+    public :: METHOD_GAUSS_SEIDEL, METHOD_SOR, METHOD_SSOR
+    public :: METHOD_SIP_ILU, METHOD_SIP_ICF
+    public :: METHOD_RICHARDSON
+    public :: METHOD_CONJUGATE_GRADIENT
+    public :: METHOD_CONJUGATE_RESIDUAL
+    public :: METHOD_CGNE, METHOD_CGNR
+    public :: METHOD_GMRES
 
-    PUBLIC :: MethodPreconditioner
-    PUBLIC :: METHOD_PRECOND_NONE
-    PUBLIC :: METHOD_PRECOND_JACOBI, METHOD_PRECOND_JOR
-    PUBLIC :: METHOD_PRECOND_GS, METHOD_PRECOND_SOR, METHOD_PRECOND_SSOR
-    PUBLIC :: METHOD_PRECOND_ILU, METHOD_PRECOND_ICF
+    public :: MethodPreconditioner
+    public :: METHOD_PRECOND_NONE
+    public :: METHOD_PRECOND_JACOBI, METHOD_PRECOND_JOR
+    public :: METHOD_PRECOND_GS, METHOD_PRECOND_SOR, METHOD_PRECOND_SSOR
+    public :: METHOD_PRECOND_ILU, METHOD_PRECOND_ICF
 
-    PUBLIC :: Norm_used
-    PUBLIC :: NORM_2, NORM_1, NORM_INF
+    public :: Norm_used
+    public :: NORM_2, NORM_1, NORM_INF
 
-    PUBLIC :: FILL_LEVEL_USED
-    PUBLIC :: FILL_LEVEL_NONE
-    PUBLIC :: FILL_LEVEL_0, FILL_LEVEL_1, FILL_LEVEL_2, FILL_LEVEL_3
-    PUBLIC :: FILL_LEVEL_N
+    public :: FILL_LEVEL_USED
+    public :: FILL_LEVEL_NONE
+    public :: FILL_LEVEL_0, FILL_LEVEL_1, FILL_LEVEL_2, FILL_LEVEL_3
+    public :: FILL_LEVEL_N
 
-    TYPE :: linalg
+    type :: linalg
 
-        TYPE(DirectMethod) :: direct
-        TYPE(IterativeMethod) :: iterative
+        type(DirectMethod) :: direct
+        type(IterativeMethod) :: iterative
 
-    END TYPE linalg
+    end type linalg
 
-CONTAINS
+contains
 
-END MODULE NAFPack_linalg
+end module NAFPack_linalg

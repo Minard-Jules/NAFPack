@@ -1,24 +1,24 @@
-MODULE NAFPack_Krylov_method
+module NAFPack_Krylov_method
 
-    USE NAFPack_constant
-    USE NAFPack_matricielle
+    use NAFPack_constant
+    use NAFPack_matricielle
 
-    IMPLICIT NONE(TYPE, EXTERNAL)
+    implicit none(type, external)
 
-    PRIVATE
+    private
 
-CONTAINS
+contains
 
-    SUBROUTINE lanczos(A, q1, m, Q, T)
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(:), INTENT(IN) :: q1
-        INTEGER, INTENT(IN) :: m
-        REAL(dp), DIMENSION(:, :), INTENT(OUT) :: Q
-        REAL(dp), DIMENSION(:, :), INTENT(OUT) :: T
-        REAL(dp), DIMENSION(size(A, 1)) :: y, z
-        REAL(dp), DIMENSION(m) :: alpha
-        REAL(dp), DIMENSION(m - 1) :: beta
-        INTEGER :: N, k
+    subroutine lanczos(A, q1, m, Q, T)
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:), intent(IN) :: q1
+        integer, intent(IN) :: m
+        real(dp), dimension(:, :), intent(OUT) :: Q
+        real(dp), dimension(:, :), intent(OUT) :: T
+        real(dp), dimension(size(A, 1)) :: y, z
+        real(dp), dimension(m) :: alpha
+        real(dp), dimension(m - 1) :: beta
+        integer :: N, k
 
         N = size(A, 1)
 
@@ -28,83 +28,83 @@ CONTAINS
 
         Q(:, 1) = q1 / norm2(q1)
 
-        DO k = 1, m
-            IF (k == 1) THEN
+        do k = 1, m
+            if (k == 1) then
                 y = matmul(A, Q(:, k))
-            ELSE
+            else
                 y = matmul(A, Q(:, k)) - beta(k - 1) * Q(:, k - 1)
-            END IF
+            end if
 
             alpha(k) = dot_product(Q(:, k), y)
             z = y - alpha(k) * Q(:, k)
-            
-            IF (k < m) THEN
+
+            if (k < m) then
                 beta(k) = norm2(z)
-                IF (beta(k) < 1.0d-12) EXIT
+                if (beta(k) < 1.0d-12) exit
                 Q(:, k + 1) = z / beta(k)
-            END IF
-        END DO
+            end if
+        end do
 
         T = Make_Tridiagonal(beta, alpha, beta)
 
-    END SUBROUTINE lanczos
+    end subroutine lanczos
 
-    SUBROUTINE Arnoldi(A, q1, m, Q, H)
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(:), INTENT(IN) :: q1
-        INTEGER, INTENT(IN) :: m
-        REAL(dp), DIMENSION(:, :), INTENT(OUT) :: Q
-        REAL(dp), DIMENSION(:, :), INTENT(OUT) :: H
-        INTEGER :: k, j, N
+    subroutine Arnoldi(A, q1, m, Q, H)
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:), intent(IN) :: q1
+        integer, intent(IN) :: m
+        real(dp), dimension(:, :), intent(OUT) :: Q
+        real(dp), dimension(:, :), intent(OUT) :: H
+        integer :: k, j, N
 
         N = size(A, 1)
         Q(:, 1) = q1 / norm2(q1)
         H = 0.0d0
 
-        DO k = 2, m
+        do k = 2, m
             Q(:, k) = matmul(A, Q(:, k - 1))
-            DO j = 1, k - 1
+            do j = 1, k - 1
                 H(j, k - 1) = dot_product(Q(:, j), Q(:, k))
                 Q(:, k) = Q(:, k) - H(j, k - 1) * Q(:, j)
-            END DO
+            end do
             H(k, k - 1) = norm2(Q(:, k))
             Q(:, k) = Q(:, k) / H(k, k - 1)
-        END DO
+        end do
 
-    END SUBROUTINE Arnoldi
+    end subroutine Arnoldi
 
-    SUBROUTINE Arnoldi_MGS(A, q1, m, Q, H)
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(:), INTENT(IN) :: q1
-        INTEGER, INTENT(IN) :: m
-        REAL(dp), DIMENSION(:, :), INTENT(OUT) :: Q ! (n, m+1)
-        REAL(dp), DIMENSION(:, :), INTENT(OUT) :: H ! (m+1, m)
-        INTEGER :: k, j, N
-        REAL(dp), DIMENSION(size(A, 1)) :: w
+    subroutine Arnoldi_MGS(A, q1, m, Q, H)
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:), intent(IN) :: q1
+        integer, intent(IN) :: m
+        real(dp), dimension(:, :), intent(OUT) :: Q ! (n, m+1)
+        real(dp), dimension(:, :), intent(OUT) :: H ! (m+1, m)
+        integer :: k, j, N
+        real(dp), dimension(size(A, 1)) :: w
 
         N = size(A, 1)
         Q(:, 1) = q1 / norm2(q1)
         H = 0.0d0
 
-        DO k = 1, m
+        do k = 1, m
             ! w = A * q_k
             w = matmul(A, Q(:, k))
 
             ! Modified Gram-Schmidt orthonormalization
-            DO j = 1, k
+            do j = 1, k
                 H(j, k) = dot_product(Q(:, j), w)
                 w = w - H(j, k) * Q(:, j)
-            END DO
+            end do
 
             H(k + 1, k) = norm2(w)
-            IF (H(k + 1, k) > 0.0d0) THEN
+            if (H(k + 1, k) > 0.0d0) then
                 Q(:, k + 1) = w / H(k + 1, k)
-            ELSE
+            else
                 Q(:, k + 1) = 0.0d0
-            END IF
+            end if
 
-        END DO
+        end do
 
-    END SUBROUTINE Arnoldi_MGS
+    end subroutine Arnoldi_MGS
 
-END MODULE NAFPack_Krylov_method
+end module NAFPack_Krylov_method

@@ -1,116 +1,116 @@
-MODULE NAFPack_matrix_market
+module NAFPack_matrix_market
 
-    USE NAFPack_constant
+    use NAFPack_constant
 
-    IMPLICIT NONE(TYPE, EXTERNAL)
+    implicit none(type, external)
 
-CONTAINS
+contains
 
-    SUBROUTINE readMatrixMarket(filename, A)
-        CHARACTER(LEN=*), INTENT(IN) :: filename
-        REAL(dp), DIMENSION(:, :), ALLOCATABLE, INTENT(OUT) :: A
+    subroutine readMatrixMarket(filename, A)
+        character(LEN=*), intent(IN) :: filename
+        real(dp), dimension(:, :), allocatable, intent(OUT) :: A
 
-        INTEGER :: i, j, nrows, ncols, nnz, ios, k, row_idx, col_idx
-        CHARACTER(LEN=256) :: line, header
-        CHARACTER(LEN=50) :: object, format_type, field, symmetry
-        INTEGER :: unit
-        REAL(dp) :: val
+        integer :: i, j, nrows, ncols, nnz, ios, k, row_idx, col_idx
+        character(LEN=256) :: line, header
+        character(LEN=50) :: object, format_type, field, symmetry
+        integer :: unit
+        real(dp) :: val
 
         unit = 10
 
         ! Open the file
-        OPEN (NEWUNIT=unit, FILE=filename, STATUS='old', ACTION='read', IOSTAT=ios)
-        IF (ios /= 0) THEN
-            PRINT*,'Error: opening file: ', filename
-            STOP
-        END IF
+        open (NEWUNIT=unit, FILE=filename, STATUS='old', ACTION='read', IOSTAT=ios)
+        if (ios /= 0) then
+            print*,'Error: opening file: ', filename
+            stop
+        end if
 
         ! read the header
-        READ (unit, '(A)', IOSTAT=ios) header
-        IF (ios /= 0) THEN
-            PRINT*,'Error: reading header Matrix Market'
-            CLOSE (unit)
-            STOP
-        END IF
+        read (unit, '(A)', IOSTAT=ios) header
+        if (ios /= 0) then
+            print*,'Error: reading header Matrix Market'
+            close (unit)
+            stop
+        end if
 
         ! Check Matrix Market format
-        IF (index(header, '%%MatrixMarket') == 0) THEN
-            PRINT*,'Error: file is not in Matrix Market format'
-            CLOSE (unit)
-            RETURN
-        END IF
+        if (index(header, '%%MatrixMarket') == 0) then
+            print*,'Error: file is not in Matrix Market format'
+            close (unit)
+            return
+        end if
 
         ! Parse the header to extract information
-        READ (header, *, iostat=ios) object, object, format_type, field, symmetry
-        IF (ios /= 0) THEN
-            PRINT*,'Error reading Matrix Market header'
-            CLOSE (unit)
-            STOP
-        END IF
+        read (header, *, iostat=ios) object, object, format_type, field, symmetry
+        if (ios /= 0) then
+            print*,'Error reading Matrix Market header'
+            close (unit)
+            stop
+        end if
 
         ! Skip comment lines and find the size line
-        DO
-            READ (unit, '(A)', IOSTAT=ios) line
-            IF (ios /= 0) THEN
-                PRINT*,'Error: malformed file'
-                CLOSE (unit)
-                STOP
-            END IF
-            IF (line(1:1) /= '%') THEN
-                EXIT
-            END IF
-        END DO
+        do
+            read (unit, '(A)', IOSTAT=ios) line
+            if (ios /= 0) then
+                print*,'Error: malformed file'
+                close (unit)
+                stop
+            end if
+            if (line(1:1) /= '%') then
+                exit
+            end if
+        end do
 
         ! Read matrix dimensions
-        READ (line, *, iostat=ios) nrows, ncols, nnz
-        IF (ios /= 0) THEN
-            PRINT*,'Error: unable to read dimensions'
-            CLOSE (unit)
-            RETURN
-        END IF
+        read (line, *, iostat=ios) nrows, ncols, nnz
+        if (ios /= 0) then
+            print*,'Error: unable to read dimensions'
+            close (unit)
+            return
+        end if
 
-        ALLOCATE (A(nrows, ncols))
+        allocate (A(nrows, ncols))
         A = 0.0_dp
 
         ! Read matrix entries
-        IF (trim(format_type) == 'coordinate') THEN
+        if (trim(format_type) == 'coordinate') then
             ! Coordinate format (sparse)
-            DO k = 1, nnz
-                READ (unit, *, iostat=ios) row_idx, col_idx, val
-                IF (ios /= 0) THEN
-                    PRINT*,'Error: reading entry', k
-                    EXIT
-                END IF
+            do k = 1, nnz
+                read (unit, *, iostat=ios) row_idx, col_idx, val
+                if (ios /= 0) then
+                    print*,'Error: reading entry', k
+                    exit
+                end if
 
                 A(row_idx, col_idx) = val
 
                 ! If the matrix is symmetric, also fill A(j,i)
-                IF (trim(symmetry) == 'symmetric' .AND. row_idx /= col_idx) THEN
+                if (trim(symmetry) == 'symmetric' .and. row_idx /= col_idx) then
                     A(col_idx, row_idx) = val
-                END IF
-            END DO
+                end if
+            end do
 
-        ELSE IF (trim(format_type) == 'array') THEN
+        else if (trim(format_type) == 'array') then
             ! Dense format (array)
-            DO j = 1, ncols
-                DO i = 1, nrows
-                    READ (unit, *, iostat=ios) val
-                    IF (ios /= 0) THEN
-                        PRINT*,'Error: reading element (', i, ',', j, ')'
-                        CLOSE (unit)
-                        RETURN
-                    END IF
+            do j = 1, ncols
+                do i = 1, nrows
+                    read (unit, *, iostat=ios) val
+                    if (ios /= 0) then
+                        print*,'Error: reading element (', i, ',', j, ')'
+                        close (unit)
+                        return
+                    end if
                     A(i, j) = val
-                END DO
-            END DO
+                end do
+            end do
 
-        ELSE
-            PRINT*,'Error: unsupported format: ', trim(format_type)
-            CLOSE (unit)
-            RETURN
-        END IF
+        else
+            print*,'Error: unsupported format: ', trim(format_type)
+            close (unit)
+            return
+        end if
 
-        CLOSE (unit)
-    END SUBROUTINE readMatrixMarket
+        close (unit)
+    end subroutine readMatrixMarket
 
-END MODULE NAFPack_matrix_market
+end module NAFPack_matrix_market

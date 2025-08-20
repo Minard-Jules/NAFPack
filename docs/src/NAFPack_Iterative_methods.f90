@@ -4,424 +4,424 @@
 !==========================================================
 
 !> Module for iterative methods in NAFPack
-MODULE NAFPack_Iterative_methods
+module NAFPack_Iterative_methods
 
-    USE NAFPack_constant
-    USE NAFPack_matrix_decomposition
-    USE NAFPack_matricielle
-    USE NAFPack_Iterative_types
-    USE NAFPack_Logger_mod
-    USE NAFPack_Preconditioners
-    USE NAFPack_Iterative_Params
-    USE NAFPack_matrix_properties
-    USE NAFPack_memory_monitor
+    use NAFPack_constant
+    use NAFPack_matrix_decomposition
+    use NAFPack_matricielle
+    use NAFPack_Iterative_types
+    use NAFPack_Logger_mod
+    use NAFPack_Preconditioners
+    use NAFPack_Iterative_Params
+    use NAFPack_matrix_properties
+    use NAFPack_memory_monitor
 
-    IMPLICIT NONE(TYPE, EXTERNAL)
+    implicit none(type, external)
 
-    PRIVATE
+    private
 
-    PUBLIC :: IterativeMethod
-    PUBLIC :: IterativeParams
+    public :: IterativeMethod
+    public :: IterativeParams
 
-    PUBLIC :: MethodTypeIterative
-    PUBLIC :: METHOD_ITERATIVE_NONE
-    PUBLIC :: METHOD_Jacobi, METHOD_JOR
-    PUBLIC :: METHOD_GAUSS_SEIDEL, METHOD_SOR, METHOD_SSOR
-    PUBLIC :: METHOD_SIP_ILU, METHOD_SIP_ICF
-    PUBLIC :: METHOD_RICHARDSON
-    PUBLIC :: METHOD_CONJUGATE_GRADIENT
-    PUBLIC :: METHOD_CONJUGATE_RESIDUAL
-    PUBLIC :: METHOD_CGNR, METHOD_CGNE
-    PUBLIC :: METHOD_GMRES
+    public :: MethodTypeIterative
+    public :: METHOD_ITERATIVE_NONE
+    public :: METHOD_Jacobi, METHOD_JOR
+    public :: METHOD_GAUSS_SEIDEL, METHOD_SOR, METHOD_SSOR
+    public :: METHOD_SIP_ILU, METHOD_SIP_ICF
+    public :: METHOD_RICHARDSON
+    public :: METHOD_CONJUGATE_GRADIENT
+    public :: METHOD_CONJUGATE_RESIDUAL
+    public :: METHOD_CGNR, METHOD_CGNE
+    public :: METHOD_GMRES
 
-    PUBLIC :: MethodPreconditioner
-    PUBLIC :: METHOD_PRECOND_NONE
-    PUBLIC :: METHOD_PRECOND_JACOBI, METHOD_PRECOND_JOR
-    PUBLIC :: METHOD_PRECOND_GS, METHOD_PRECOND_SOR, METHOD_PRECOND_SSOR
-    PUBLIC :: METHOD_PRECOND_ILU, METHOD_PRECOND_ICF
+    public :: MethodPreconditioner
+    public :: METHOD_PRECOND_NONE
+    public :: METHOD_PRECOND_JACOBI, METHOD_PRECOND_JOR
+    public :: METHOD_PRECOND_GS, METHOD_PRECOND_SOR, METHOD_PRECOND_SSOR
+    public :: METHOD_PRECOND_ILU, METHOD_PRECOND_ICF
 
-    PUBLIC :: Norm_used
-    PUBLIC :: NORM_2, NORM_1, NORM_INF
+    public :: Norm_used
+    public :: NORM_2, NORM_1, NORM_INF
 
-    PUBLIC :: FILL_LEVEL_USED
-    PUBLIC :: FILL_LEVEL_NONE
-    PUBLIC :: FILL_LEVEL_0, FILL_LEVEL_1, FILL_LEVEL_2, FILL_LEVEL_3
-    PUBLIC :: FILL_LEVEL_N
+    public :: FILL_LEVEL_USED
+    public :: FILL_LEVEL_NONE
+    public :: FILL_LEVEL_0, FILL_LEVEL_1, FILL_LEVEL_2, FILL_LEVEL_3
+    public :: FILL_LEVEL_N
 
     !======================
     ! Type definitions
     !======================
 
-    TYPE :: IterativeMethod
-        PRIVATE
-        TYPE(MethodTypeIterative) :: method_type = METHOD_ITERATIVE_NONE
-        TYPE(MethodPreconditioner) :: preconditioner_type = METHOD_PRECOND_NONE
-        TYPE(IterativeMethodRequirements) :: requirements
-        TYPE(relaxation_factor_used) :: relaxation_factor = RELAXATION_FACTOR_NONE
-        TYPE(relaxation_factor_used) :: relaxation_factor_preconditioner = RELAXATION_FACTOR_NONE
-        PROCEDURE(solve_interface_Iterative), PASS(this), POINTER :: solve_method => null()
+    type :: IterativeMethod
+        private
+        type(MethodTypeIterative) :: method_type = METHOD_ITERATIVE_NONE
+        type(MethodPreconditioner) :: preconditioner_type = METHOD_PRECOND_NONE
+        type(IterativeMethodRequirements) :: requirements
+        type(relaxation_factor_used) :: relaxation_factor = RELAXATION_FACTOR_NONE
+        type(relaxation_factor_used) :: relaxation_factor_preconditioner = RELAXATION_FACTOR_NONE
+        procedure(solve_interface_Iterative), pass(this), pointer :: solve_method => null()
 
-    CONTAINS
+    contains
 
-        PROCEDURE :: set_method => set_method
-        PROCEDURE :: solve => IterativeMethod_solve
-        PROCEDURE :: Init_IterativeParams => Init_IterativeParams
-        PROCEDURE :: Dealocate_IterativeParams => Dealocate_IterativeParams
-        PROCEDURE :: test_matrix => test_matrix
+        procedure :: set_method => set_method
+        procedure :: solve => IterativeMethod_solve
+        procedure :: Init_IterativeParams => Init_IterativeParams
+        procedure :: Dealocate_IterativeParams => Dealocate_IterativeParams
+        procedure :: test_matrix => test_matrix
 
-    END TYPE IterativeMethod
+    end type IterativeMethod
 
     !======================
     ! Interface
     !======================
 
-    ABSTRACT INTERFACE
-        FUNCTION solve_interface_Iterative(this, A, b, x0, params) RESULT(x)
-            IMPORT :: dp
-            IMPORT :: IterativeParams
-            IMPORT :: IterativeMethod
-            CLASS(IterativeMethod), INTENT(IN) :: this
-            REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-            REAL(dp), DIMENSION(:), INTENT(IN) :: b, x0
-            TYPE(IterativeParams), INTENT(INOUT) :: params
-            REAL(dp), DIMENSION(size(A, 1)) :: x
-        END FUNCTION solve_interface_Iterative
-    END INTERFACE
+    abstract interface
+        function solve_interface_Iterative(this, A, b, x0, params) result(x)
+            import :: dp
+            import :: IterativeParams
+            import :: IterativeMethod
+            class(IterativeMethod), intent(IN) :: this
+            real(dp), dimension(:, :), intent(IN) :: A
+            real(dp), dimension(:), intent(IN) :: b, x0
+            type(IterativeParams), intent(INOUT) :: params
+            real(dp), dimension(size(A, 1)) :: x
+        end function solve_interface_Iterative
+    end interface
 
-CONTAINS
+contains
 
     !======================
     ! Management of iterative methods
     !======================
 
-    SUBROUTINE set_method(this, method)
-        CLASS(IterativeMethod), INTENT(INOUT) :: this
-        TYPE(MethodTypeIterative), INTENT(IN) :: method
+    subroutine set_method(this, method)
+        class(IterativeMethod), intent(INOUT) :: this
+        type(MethodTypeIterative), intent(IN) :: method
 
         this%requirements = IterativeMethodRequirements()
 
-        SELECT CASE (method%id)
-        CASE (METHOD_Jacobi%id)
+        select case (method%id)
+        case (METHOD_Jacobi%id)
             this%solve_method => solve_Jacobi
             this%method_type = METHOD_Jacobi
-            this%requirements%needs_square = .TRUE.
-            this%requirements%needs_diag_dom = .TRUE.
-            this%requirements%needs_SPD = .TRUE.
-        CASE (METHOD_GAUSS_SEIDEL%id)
+            this%requirements%needs_square = .true.
+            this%requirements%needs_diag_dom = .true.
+            this%requirements%needs_SPD = .true.
+        case (METHOD_GAUSS_SEIDEL%id)
             this%solve_method => solve_Gauss_Seidel
             this%method_type = METHOD_GAUSS_SEIDEL
-            this%requirements%needs_square = .TRUE.
-            this%requirements%needs_diag_dom = .TRUE.
-            this%requirements%needs_SPD = .TRUE.
-        CASE (METHOD_SOR%id)
+            this%requirements%needs_square = .true.
+            this%requirements%needs_diag_dom = .true.
+            this%requirements%needs_SPD = .true.
+        case (METHOD_SOR%id)
             this%solve_method => solve_SOR
             this%method_type = METHOD_SOR
-            this%requirements%needs_square = .TRUE.
-            this%requirements%needs_diag_dom = .TRUE.
-            this%requirements%needs_SPD = .TRUE.
+            this%requirements%needs_square = .true.
+            this%requirements%needs_diag_dom = .true.
+            this%requirements%needs_SPD = .true.
             this%relaxation_factor = RELAXATION_FACTOR_OMEGA
-        CASE (METHOD_JOR%id)
+        case (METHOD_JOR%id)
             this%solve_method => solve_JOR
             this%method_type = METHOD_JOR
-            this%requirements%needs_square = .TRUE.
-            this%requirements%needs_diag_dom = .TRUE.
-            this%requirements%needs_SPD = .TRUE.
+            this%requirements%needs_square = .true.
+            this%requirements%needs_diag_dom = .true.
+            this%requirements%needs_SPD = .true.
             this%relaxation_factor = RELAXATION_FACTOR_OMEGA
-        CASE (METHOD_SIP_ILU%id)
+        case (METHOD_SIP_ILU%id)
             this%solve_method => solve_SIP_ILU
             this%method_type = METHOD_SIP_ILU
-            this%requirements%needs_square = .TRUE.
+            this%requirements%needs_square = .true.
             this%relaxation_factor = RELAXATION_FACTOR_OMEGA
-        CASE (METHOD_SIP_ICF%id)
+        case (METHOD_SIP_ICF%id)
             this%solve_method => solve_SIP_ICF
             this%method_type = METHOD_SIP_ICF
-            this%requirements%needs_square = .TRUE.
-            this%requirements%needs_SPD = .TRUE.
+            this%requirements%needs_square = .true.
+            this%requirements%needs_SPD = .true.
             this%relaxation_factor = RELAXATION_FACTOR_OMEGA
-        CASE (METHOD_SSOR%id)
+        case (METHOD_SSOR%id)
             this%solve_method => solve_SSOR
             this%method_type = METHOD_SSOR
-            this%requirements%needs_square = .TRUE.
-            this%requirements%needs_SPD = .TRUE.
+            this%requirements%needs_square = .true.
+            this%requirements%needs_SPD = .true.
             this%relaxation_factor = RELAXATION_FACTOR_OMEGA
-        CASE (METHOD_RICHARDSON%id)
+        case (METHOD_RICHARDSON%id)
             this%solve_method => solve_Richardson
             this%method_type = METHOD_RICHARDSON
-            this%requirements%needs_square = .TRUE.
-            this%requirements%needs_SPD = .TRUE.
+            this%requirements%needs_square = .true.
+            this%requirements%needs_SPD = .true.
             this%relaxation_factor = RELAXATION_FACTOR_ALPHA
-        CASE (METHOD_CONJUGATE_GRADIENT%id)
+        case (METHOD_CONJUGATE_GRADIENT%id)
             this%solve_method => solve_ConjugateGradient
             this%method_type = METHOD_CONJUGATE_GRADIENT
-            this%requirements%needs_square = .TRUE.
-            this%requirements%needs_SPD = .TRUE.
-        CASE (METHOD_CONJUGATE_RESIDUAL%id)
+            this%requirements%needs_square = .true.
+            this%requirements%needs_SPD = .true.
+        case (METHOD_CONJUGATE_RESIDUAL%id)
             this%solve_method => solve_ConjugateResidual
             this%method_type = METHOD_CONJUGATE_RESIDUAL
-            this%requirements%needs_square = .TRUE.
-            this%requirements%needs_symetric = .TRUE.
-        CASE (METHOD_CGNR%id)
+            this%requirements%needs_square = .true.
+            this%requirements%needs_symetric = .true.
+        case (METHOD_CGNR%id)
             this%solve_method => solve_CGNR
             this%method_type = METHOD_CGNR
-        CASE (METHOD_CGNE%id)
+        case (METHOD_CGNE%id)
             this%solve_method => solve_CGNE
             this%method_type = METHOD_CGNE
-        CASE (METHOD_GMRES%id)
+        case (METHOD_GMRES%id)
             this%solve_method => solve_GMRES
             this%method_type = METHOD_GMRES
-            this%requirements%needs_square = .TRUE.
-        CASE DEFAULT
-            STOP "ERROR :: Unknown method iterative"
-        END SELECT
+            this%requirements%needs_square = .true.
+        case DEFAULT
+            stop "ERROR :: Unknown method iterative"
+        end select
 
-    END SUBROUTINE set_method
+    end subroutine set_method
 
-    FUNCTION Init_IterativeParams(this, N, A, x0, max_iter_choice, epsi_tol, omega, Norm_choice, fill_level, &
-                                  method_preconditioner, alpha, is_stationary, is_strict_mode) RESULT(params)
-        CLASS(IterativeMethod), INTENT(INOUT) :: this
-        INTEGER, INTENT(IN) :: N
-        REAL(dp), DIMENSION(:, :), OPTIONAL, INTENT(IN) :: A
-        REAL(dp), DIMENSION(:), OPTIONAL, INTENT(IN) :: x0
-        INTEGER, OPTIONAL, INTENT(IN) :: max_iter_choice
-        REAL(dp), OPTIONAL, INTENT(IN) :: epsi_tol
-        REAL(dp), OPTIONAL, INTENT(IN) :: omega
-        REAL(dp), OPTIONAL, INTENT(IN) :: alpha
-        TYPE(Norm_used), OPTIONAL, INTENT(IN) :: Norm_choice
-        TYPE(MethodPreconditioner), OPTIONAL, INTENT(IN) :: method_preconditioner
-        LOGICAL, OPTIONAL, INTENT(IN) :: is_stationary
-        LOGICAL, OPTIONAL, INTENT(IN) :: is_strict_mode
-        TYPE(FILL_LEVEL_USED), OPTIONAL, INTENT(IN) :: fill_level
-        TYPE(IterativeParams) :: params
-        INTEGER :: allocate_status
+    function Init_IterativeParams(this, N, A, x0, max_iter_choice, epsi_tol, omega, Norm_choice, fill_level, &
+                                  method_preconditioner, alpha, is_stationary, is_strict_mode) result(params)
+        class(IterativeMethod), intent(INOUT) :: this
+        integer, intent(IN) :: N
+        real(dp), dimension(:, :), optional, intent(IN) :: A
+        real(dp), dimension(:), optional, intent(IN) :: x0
+        integer, optional, intent(IN) :: max_iter_choice
+        real(dp), optional, intent(IN) :: epsi_tol
+        real(dp), optional, intent(IN) :: omega
+        real(dp), optional, intent(IN) :: alpha
+        type(Norm_used), optional, intent(IN) :: Norm_choice
+        type(MethodPreconditioner), optional, intent(IN) :: method_preconditioner
+        logical, optional, intent(IN) :: is_stationary
+        logical, optional, intent(IN) :: is_strict_mode
+        type(FILL_LEVEL_USED), optional, intent(IN) :: fill_level
+        type(IterativeParams) :: params
+        integer :: allocate_status
 
-        ALLOCATE (params%x_init(N), STAT=allocate_status)
-        IF (allocate_status /= 0) STOP "ERROR :: Unable to allocate x_init"
-        IF (present(x0)) THEN
+        allocate (params%x_init(N), STAT=allocate_status)
+        if (allocate_status /= 0) stop "ERROR :: Unable to allocate x_init"
+        if (present(x0)) then
             params%x_init = x0
-        ELSE
+        else
             params%x_init = 0.0_dp
-        END IF
+        end if
 
-        IF (present(max_iter_choice)) params%max_iter = 1000
-        IF (present(epsi_tol)) params%tol = 1.0e-6_dp
-        IF (present(omega)) params%omega = omega
-        IF (present(alpha)) params%alpha = alpha
-        IF (present(Norm_choice)) params%norm = Norm_choice
-        IF (present(fill_level)) params%fill_level = fill_level
+        if (present(max_iter_choice)) params%max_iter = 1000
+        if (present(epsi_tol)) params%tol = 1.0e-6_dp
+        if (present(omega)) params%omega = omega
+        if (present(alpha)) params%alpha = alpha
+        if (present(Norm_choice)) params%norm = Norm_choice
+        if (present(fill_level)) params%fill_level = fill_level
 
-        ALLOCATE (params%residual(N), STAT=allocate_status)
-        IF (allocate_status /= 0) STOP "ERROR :: Unable to allocate residual"
+        allocate (params%residual(N), STAT=allocate_status)
+        if (allocate_status /= 0) stop "ERROR :: Unable to allocate residual"
 
-        SELECT CASE (this%method_type%id)
-        CASE (METHOD_SIP_ILU%id)
-            ALLOCATE (params%L(N, N), STAT=allocate_status)
-            IF (allocate_status /= 0) STOP "ERROR :: Unable to allocate L"
-            ALLOCATE (params%U(N, N), STAT=allocate_status)
-            IF (allocate_status /= 0) STOP "ERROR :: Unable to allocate U"
-            CALL ILU_decomposition(A, params%L, params%U)
-        CASE (METHOD_SIP_ICF%id)
-            ALLOCATE (params%L(N, N), STAT=allocate_status)
-            IF (allocate_status /= 0) STOP "ERROR :: Unable to allocate L"
-            CALL Incomplete_Cholesky_decomposition(A, params%L)
-        CASE (METHOD_CONJUGATE_GRADIENT%id)
-            ALLOCATE (params%p(N), STAT=allocate_status)
-            IF (allocate_status /= 0) STOP "ERROR :: Unable to allocate optimal descent direction p"
-        CASE (METHOD_CONJUGATE_RESIDUAL%id)
-            ALLOCATE (params%p(N), STAT=allocate_status)
-            IF (allocate_status /= 0) STOP "ERROR :: Unable to allocate optimal descent direction p"
-        CASE (METHOD_CGNR%id)
-            ALLOCATE (params%p(N), STAT=allocate_status)
-            IF (allocate_status /= 0) STOP "ERROR :: Unable to allocate optimal descent direction p"
-        CASE (METHOD_CGNE%id)
-            ALLOCATE (params%p(N), STAT=allocate_status)
-            IF (allocate_status /= 0) STOP "ERROR :: Unable to allocate optimal descent direction p"
-        END SELECT
+        select case (this%method_type%id)
+        case (METHOD_SIP_ILU%id)
+            allocate (params%L(N, N), STAT=allocate_status)
+            if (allocate_status /= 0) stop "ERROR :: Unable to allocate L"
+            allocate (params%U(N, N), STAT=allocate_status)
+            if (allocate_status /= 0) stop "ERROR :: Unable to allocate U"
+            call ILU_decomposition(A, params%L, params%U)
+        case (METHOD_SIP_ICF%id)
+            allocate (params%L(N, N), STAT=allocate_status)
+            if (allocate_status /= 0) stop "ERROR :: Unable to allocate L"
+            call Incomplete_Cholesky_decomposition(A, params%L)
+        case (METHOD_CONJUGATE_GRADIENT%id)
+            allocate (params%p(N), STAT=allocate_status)
+            if (allocate_status /= 0) stop "ERROR :: Unable to allocate optimal descent direction p"
+        case (METHOD_CONJUGATE_RESIDUAL%id)
+            allocate (params%p(N), STAT=allocate_status)
+            if (allocate_status /= 0) stop "ERROR :: Unable to allocate optimal descent direction p"
+        case (METHOD_CGNR%id)
+            allocate (params%p(N), STAT=allocate_status)
+            if (allocate_status /= 0) stop "ERROR :: Unable to allocate optimal descent direction p"
+        case (METHOD_CGNE%id)
+            allocate (params%p(N), STAT=allocate_status)
+            if (allocate_status /= 0) stop "ERROR :: Unable to allocate optimal descent direction p"
+        end select
 
-        IF (present(method_preconditioner)) THEN
+        if (present(method_preconditioner)) then
             params%precond => ApplyPreconditioner
-            SELECT CASE (method_preconditioner%id)
-            CASE (METHOD_PRECOND_JACOBI%id)
-                ALLOCATE (params%D(N, N), STAT=allocate_status)
-                IF (allocate_status /= 0) STOP "ERROR :: Unable to allocate D"
+            select case (method_preconditioner%id)
+            case (METHOD_PRECOND_JACOBI%id)
+                allocate (params%D(N, N), STAT=allocate_status)
+                if (allocate_status /= 0) stop "ERROR :: Unable to allocate D"
                 params%D = Calculate_Jacobi_preconditioner(A)
                 this%preconditioner_type = METHOD_PRECOND_JACOBI
-                this%requirements%needs_diag_dom = .TRUE.
-                this%requirements%needs_SPD = .TRUE.
-            CASE (METHOD_PRECOND_GS%id)
-                ALLOCATE (params%L(N, N), STAT=allocate_status)
-                IF (allocate_status /= 0) STOP "ERROR :: Unable to allocate L"
+                this%requirements%needs_diag_dom = .true.
+                this%requirements%needs_SPD = .true.
+            case (METHOD_PRECOND_GS%id)
+                allocate (params%L(N, N), STAT=allocate_status)
+                if (allocate_status /= 0) stop "ERROR :: Unable to allocate L"
                 params%L = Calculate_Gauss_Seidel_preconditioner(A)
                 this%preconditioner_type = METHOD_PRECOND_GS
-                this%requirements%needs_diag_dom = .TRUE.
-                this%requirements%needs_SPD = .TRUE.
-            CASE (METHOD_PRECOND_SOR%id)
-                ALLOCATE (params%L(N, N), STAT=allocate_status)
-                IF (allocate_status /= 0) STOP "ERROR :: Unable to allocate L"
+                this%requirements%needs_diag_dom = .true.
+                this%requirements%needs_SPD = .true.
+            case (METHOD_PRECOND_SOR%id)
+                allocate (params%L(N, N), STAT=allocate_status)
+                if (allocate_status /= 0) stop "ERROR :: Unable to allocate L"
                 params%L = Calculate_SOR_preconditioner(A, params%omega, params%alpha)
                 this%preconditioner_type = METHOD_PRECOND_SOR
-                this%requirements%needs_diag_dom = .TRUE.
-                this%requirements%needs_SPD = .TRUE.
+                this%requirements%needs_diag_dom = .true.
+                this%requirements%needs_SPD = .true.
                 this%relaxation_factor_preconditioner = RELAXATION_FACTOR_OMEGA
-            CASE (METHOD_PRECOND_JOR%id)
-                ALLOCATE (params%D(N, N), STAT=allocate_status)
-                IF (allocate_status /= 0) STOP "ERROR :: Unable to allocate D"
+            case (METHOD_PRECOND_JOR%id)
+                allocate (params%D(N, N), STAT=allocate_status)
+                if (allocate_status /= 0) stop "ERROR :: Unable to allocate D"
                 params%D = Calculate_JOR_preconditioner(A, params%omega, params%alpha)
                 this%preconditioner_type = METHOD_PRECOND_JOR
-                this%requirements%needs_diag_dom = .TRUE.
-                this%requirements%needs_SPD = .TRUE.
+                this%requirements%needs_diag_dom = .true.
+                this%requirements%needs_SPD = .true.
                 this%relaxation_factor_preconditioner = RELAXATION_FACTOR_OMEGA
-            CASE (METHOD_PRECOND_ILU%id)
-                ALLOCATE (params%L(N, N), STAT=allocate_status)
-                IF (allocate_status /= 0) STOP "ERROR :: Unable to allocate L"
-                ALLOCATE (params%U(N, N), STAT=allocate_status)
-                IF (allocate_status /= 0) STOP "ERROR :: Unable to allocate U"
-                IF (params%fill_level%id /= FILL_LEVEL_NONE%id) THEN
-                    CALL Calculate_ILU_preconditioner(A, params%L, params%U, params%omega, params%alpha, params%fill_level%id)
-                ELSE
-                    CALL Calculate_ILU_preconditioner(A, params%L, params%U, params%omega, params%alpha)
-                END IF
+            case (METHOD_PRECOND_ILU%id)
+                allocate (params%L(N, N), STAT=allocate_status)
+                if (allocate_status /= 0) stop "ERROR :: Unable to allocate L"
+                allocate (params%U(N, N), STAT=allocate_status)
+                if (allocate_status /= 0) stop "ERROR :: Unable to allocate U"
+                if (params%fill_level%id /= FILL_LEVEL_NONE%id) then
+                    call Calculate_ILU_preconditioner(A, params%L, params%U, params%omega, params%alpha, params%fill_level%id)
+                else
+                    call Calculate_ILU_preconditioner(A, params%L, params%U, params%omega, params%alpha)
+                end if
                 this%preconditioner_type = METHOD_PRECOND_ILU
                 this%relaxation_factor_preconditioner = RELAXATION_FACTOR_OMEGA
-            CASE (METHOD_PRECOND_ICF%id)
-                ALLOCATE (params%L(N, N), STAT=allocate_status)
-                IF (allocate_status /= 0) STOP "ERROR :: Unable to allocate L"
-                IF (params%fill_level%id /= FILL_LEVEL_NONE%id) THEN
+            case (METHOD_PRECOND_ICF%id)
+                allocate (params%L(N, N), STAT=allocate_status)
+                if (allocate_status /= 0) stop "ERROR :: Unable to allocate L"
+                if (params%fill_level%id /= FILL_LEVEL_NONE%id) then
                     params%L = Calculate_ICF_preconditioner(A, params%omega, params%alpha, params%fill_level%id)
-                ELSE
+                else
                     params%L = Calculate_ICF_preconditioner(A, params%omega, params%alpha)
-                END IF
+                end if
                 this%preconditioner_type = METHOD_PRECOND_ICF
-                this%requirements%needs_SPD = .TRUE.
+                this%requirements%needs_SPD = .true.
                 this%relaxation_factor_preconditioner = RELAXATION_FACTOR_OMEGA
-            CASE (METHOD_PRECOND_SSOR%id)
-                ALLOCATE (params%L(N, N), STAT=allocate_status)
-                IF (allocate_status /= 0) STOP "ERROR :: Unable to allocate L"
-                ALLOCATE (params%D(N, N), STAT=allocate_status)
-                IF (allocate_status /= 0) STOP "ERROR :: Unable to allocate D"
-                CALL Calculate_SSOR_preconditioner(A, params%L, params%D, params%omega, params%alpha)
+            case (METHOD_PRECOND_SSOR%id)
+                allocate (params%L(N, N), STAT=allocate_status)
+                if (allocate_status /= 0) stop "ERROR :: Unable to allocate L"
+                allocate (params%D(N, N), STAT=allocate_status)
+                if (allocate_status /= 0) stop "ERROR :: Unable to allocate D"
+                call Calculate_SSOR_preconditioner(A, params%L, params%D, params%omega, params%alpha)
                 this%preconditioner_type = METHOD_PRECOND_SSOR
-                this%requirements%needs_SPD = .TRUE.
+                this%requirements%needs_SPD = .true.
                 this%relaxation_factor_preconditioner = RELAXATION_FACTOR_OMEGA
-            CASE DEFAULT
-                STOP "ERROR :: Unknown method "
-            END SELECT
-        END IF
+            case DEFAULT
+                stop "ERROR :: Unknown method "
+            end select
+        end if
 
-        IF (present(is_stationary)) THEN
-            IF (is_stationary) THEN
-                params%is_stationary = .TRUE.
-                this%requirements%needs_SPD = .FALSE.
-            ELSE
-                params%is_stationary = .FALSE.
-            END IF
-        END IF
+        if (present(is_stationary)) then
+            if (is_stationary) then
+                params%is_stationary = .true.
+                this%requirements%needs_SPD = .false.
+            else
+                params%is_stationary = .false.
+            end if
+        end if
 
-        IF (present(is_strict_mode)) THEN
-            IF (is_strict_mode) THEN
-                params%strict_mode = .TRUE.
-            ELSE
-                params%strict_mode = .FALSE.
-            END IF
-        END IF
+        if (present(is_strict_mode)) then
+            if (is_strict_mode) then
+                params%strict_mode = .true.
+            else
+                params%strict_mode = .false.
+            end if
+        end if
 
-    END FUNCTION Init_IterativeParams
+    end function Init_IterativeParams
 
-    SUBROUTINE test_matrix(this, A, params, verbose)
-        CLASS(IterativeMethod), INTENT(INOUT) :: this
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        TYPE(IterativeParams), INTENT(IN) :: params
-        TYPE(Logger), OPTIONAL, INTENT(INOUT) :: verbose
-        CHARACTER(KIND=ucs4, LEN=100) :: msg
-        LOGICAL :: show_matrix_test
+    subroutine test_matrix(this, A, params, verbose)
+        class(IterativeMethod), intent(INOUT) :: this
+        real(dp), dimension(:, :), intent(IN) :: A
+        type(IterativeParams), intent(IN) :: params
+        type(Logger), optional, intent(INOUT) :: verbose
+        character(KIND=ucs4, LEN=100) :: msg
+        logical :: show_matrix_test
 
-        show_matrix_test = .FALSE.
-        IF (present(verbose)) THEN
-            IF (verbose%show_matrix_test) show_matrix_test = .TRUE.
-        END IF
+        show_matrix_test = .false.
+        if (present(verbose)) then
+            if (verbose%show_matrix_test) show_matrix_test = .true.
+        end if
 
-        IF (show_matrix_test) THEN
-            CALL verbose%WRITE(center_with_fill("Testing matrix properties for method:"//trim(this%method_type%name), &
+        if (show_matrix_test) then
+            call verbose%write(center_with_fill("Testing matrix properties for method:"//trim(this%method_type%name), &
                                                 100, fill_char="="), box_style="top")
-            CALL verbose%WRITE(ucs4_"", box_style="middle")
-        END IF
+            call verbose%write(ucs4_"", box_style="middle")
+        end if
 
-        IF (this%requirements%needs_square) THEN
-            IF (show_matrix_test) CALL verbose%log_info(ucs4_"Checking if the matrix is square...")
-            IF (.NOT. is_square_matrix(A)) THEN
-                WRITE (msg, '(2A)') trim(this%method_type%name), " requires a square matrix"
-                IF (params%strict_mode) THEN
-                    IF (show_matrix_test) CALL verbose%log_error(msg)
-                    STOP
-                ELSE
-                    IF (show_matrix_test) CALL verbose%log_warning(msg)
-                END IF
-            END IF
-        END IF
+        if (this%requirements%needs_square) then
+            if (show_matrix_test) call verbose%log_info(ucs4_"Checking if the matrix is square...")
+            if (.not. is_square_matrix(A)) then
+                write (msg, '(2A)') trim(this%method_type%name), " requires a square matrix"
+                if (params%strict_mode) then
+                    if (show_matrix_test) call verbose%log_error(msg)
+                    stop
+                else
+                    if (show_matrix_test) call verbose%log_warning(msg)
+                end if
+            end if
+        end if
 
-        IF (this%requirements%needs_SPD) THEN
-            IF (show_matrix_test) CALL verbose%log_info(ucs4_"Checking if the matrix is symmetric positive definite (SPD)...")
-            IF (.NOT. is_SPD(A)) THEN
-                WRITE (msg, '(2A)') trim(this%method_type%name), " method requires a symmetric positive definite matrix."
-                IF (params%strict_mode) THEN
-                    IF (show_matrix_test) CALL verbose%log_error(msg)
-                    STOP
-                ELSE
-                    IF (show_matrix_test) CALL verbose%log_warning(msg)
-                END IF
-            END IF
-        END IF
+        if (this%requirements%needs_SPD) then
+            if (show_matrix_test) call verbose%log_info(ucs4_"Checking if the matrix is symmetric positive definite (SPD)...")
+            if (.not. is_SPD(A)) then
+                write (msg, '(2A)') trim(this%method_type%name), " method requires a symmetric positive definite matrix."
+                if (params%strict_mode) then
+                    if (show_matrix_test) call verbose%log_error(msg)
+                    stop
+                else
+                    if (show_matrix_test) call verbose%log_warning(msg)
+                end if
+            end if
+        end if
 
-        IF (this%requirements%needs_diag_dom) THEN
-            IF (show_matrix_test) CALL verbose%log_info(ucs4_"Checking if the matrix is diagonally dominant...")
-            IF (.NOT. is_diagonally_dominant(A)) THEN
-                WRITE (msg, '(2A)') trim(this%method_type%name), " method requires a diagonally dominant matrix."
-                IF (params%strict_mode) THEN
-                    IF (show_matrix_test) CALL verbose%log_error(msg)
-                    STOP
-                ELSE
-                    IF (show_matrix_test) CALL verbose%log_warning(msg)
-                END IF
-            END IF
-        END IF
+        if (this%requirements%needs_diag_dom) then
+            if (show_matrix_test) call verbose%log_info(ucs4_"Checking if the matrix is diagonally dominant...")
+            if (.not. is_diagonally_dominant(A)) then
+                write (msg, '(2A)') trim(this%method_type%name), " method requires a diagonally dominant matrix."
+                if (params%strict_mode) then
+                    if (show_matrix_test) call verbose%log_error(msg)
+                    stop
+                else
+                    if (show_matrix_test) call verbose%log_warning(msg)
+                end if
+            end if
+        end if
 
-        IF (this%requirements%needs_symetric) THEN
-            IF (show_matrix_test) CALL verbose%log_info(ucs4_"Checking if the matrix is symmetric...")
-            IF (.NOT. is_symmetric(A)) THEN
-                WRITE (msg, '(2A)') trim(this%method_type%name), " method requires a symmetric matrix."
-                IF (params%strict_mode) THEN
-                    IF (show_matrix_test) CALL verbose%log_error(msg)
-                    STOP
-                ELSE
-                    IF (show_matrix_test) CALL verbose%log_warning(msg)
-                END IF
-            END IF
-        END IF
+        if (this%requirements%needs_symetric) then
+            if (show_matrix_test) call verbose%log_info(ucs4_"Checking if the matrix is symmetric...")
+            if (.not. is_symmetric(A)) then
+                write (msg, '(2A)') trim(this%method_type%name), " method requires a symmetric matrix."
+                if (params%strict_mode) then
+                    if (show_matrix_test) call verbose%log_error(msg)
+                    stop
+                else
+                    if (show_matrix_test) call verbose%log_warning(msg)
+                end if
+            end if
+        end if
 
-        IF (show_matrix_test) THEN
-            CALL verbose%WRITE(center_with_fill("", width=100, fill_char="="), box_style="bottom")
-            CALL verbose%WRITE(ucs4_"")
-        END IF
+        if (show_matrix_test) then
+            call verbose%write(center_with_fill("", width=100, fill_char="="), box_style="bottom")
+            call verbose%write(ucs4_"")
+        end if
 
-    END SUBROUTINE test_matrix
+    end subroutine test_matrix
 
-    SUBROUTINE Dealocate_IterativeParams(this, params, success)
-        CLASS(IterativeMethod), INTENT(INOUT) :: this
-        TYPE(IterativeParams), INTENT(INOUT) :: params
-        LOGICAL, OPTIONAL, INTENT(OUT) :: success
-        INTEGER :: deallocate_status
+    subroutine Dealocate_IterativeParams(this, params, success)
+        class(IterativeMethod), intent(INOUT) :: this
+        type(IterativeParams), intent(INOUT) :: params
+        logical, optional, intent(OUT) :: success
+        integer :: deallocate_status
 
-        IF (present(success)) success = .TRUE.
+        if (present(success)) success = .true.
 
-        IF (allocated(params%x_init)) DEALLOCATE (params%x_init, STAT=deallocate_status)
-        IF (allocated(params%L)) DEALLOCATE (params%L, STAT=deallocate_status)
-        IF (allocated(params%U)) DEALLOCATE (params%U, STAT=deallocate_status)
-        IF (allocated(params%D)) DEALLOCATE (params%D, STAT=deallocate_status)
-        IF (allocated(params%residual)) DEALLOCATE (params%residual, STAT=deallocate_status)
-        IF (allocated(params%p)) DEALLOCATE (params%p, STAT=deallocate_status)
+        if (allocated(params%x_init)) deallocate (params%x_init, STAT=deallocate_status)
+        if (allocated(params%L)) deallocate (params%L, STAT=deallocate_status)
+        if (allocated(params%U)) deallocate (params%U, STAT=deallocate_status)
+        if (allocated(params%D)) deallocate (params%D, STAT=deallocate_status)
+        if (allocated(params%residual)) deallocate (params%residual, STAT=deallocate_status)
+        if (allocated(params%p)) deallocate (params%p, STAT=deallocate_status)
         params%norm = NORM_2
         params%fill_level = FILL_LEVEL_NONE
 
-        IF (deallocate_status /= 0 .AND. present(success)) success = .FALSE.
+        if (deallocate_status /= 0 .and. present(success)) success = .false.
 
         this%preconditioner_type = METHOD_PRECOND_NONE
         this%method_type = METHOD_ITERATIVE_NONE
@@ -430,27 +430,27 @@ CONTAINS
 
         this%requirements = IterativeMethodRequirements()
 
-    END SUBROUTINE Dealocate_IterativeParams
+    end subroutine Dealocate_IterativeParams
 
     !======================
     ! Solve the system
     !======================
 
-    FUNCTION IterativeMethod_solve(this, A, b, params, verbose) RESULT(x)
+    function IterativeMethod_solve(this, A, b, params, verbose) result(x)
 
-        CLASS(IterativeMethod), INTENT(IN) :: this
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(:), INTENT(IN) :: b
-        TYPE(IterativeParams), INTENT(INOUT) :: params
-        TYPE(Logger), OPTIONAL, INTENT(INOUT) :: verbose
-        REAL(dp), DIMENSION(size(A, 1)) :: x
-        REAL(dp), DIMENSION(size(A, 1)) :: x0, x_new
-        INTEGER :: k, N, frequency
-        INTEGER :: start_system_clock, end_system_clock, rate
-        REAL(dp) :: elapsed_time
-        LOGICAL :: show_info_solver
-        LOGICAL :: show_iteration
-        LOGICAL :: show_final
+        class(IterativeMethod), intent(IN) :: this
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:), intent(IN) :: b
+        type(IterativeParams), intent(INOUT) :: params
+        type(Logger), optional, intent(INOUT) :: verbose
+        real(dp), dimension(size(A, 1)) :: x
+        real(dp), dimension(size(A, 1)) :: x0, x_new
+        integer :: k, N, frequency
+        integer :: start_system_clock, end_system_clock, rate
+        real(dp) :: elapsed_time
+        logical :: show_info_solver
+        logical :: show_iteration
+        logical :: show_final
 
         N = size(A, 1)
         x0 = params%x_init
@@ -458,228 +458,228 @@ CONTAINS
         params%residual = b - matmul(A, x0)
         params%norm_initial_residual = params%norm_function(params%residual)
 
-        show_info_solver = .FALSE.
-        show_iteration = .FALSE.
-        show_final = .FALSE.
+        show_info_solver = .false.
+        show_iteration = .false.
+        show_final = .false.
         frequency = 1
-        IF (present(verbose)) THEN
-            IF (verbose%show_info_solver) show_info_solver = .TRUE.
-            IF (verbose%show_iteration) show_iteration = .TRUE.
-            IF (verbose%show_final) show_final = .TRUE.
+        if (present(verbose)) then
+            if (verbose%show_info_solver) show_info_solver = .true.
+            if (verbose%show_iteration) show_iteration = .true.
+            if (verbose%show_final) show_final = .true.
             frequency = verbose%frequency
-        END IF
+        end if
 
-        IF (show_info_solver) CALL log_solver_info(this, params, verbose, N)
-        IF (show_iteration) CALL log_iteration_header(verbose)
+        if (show_info_solver) call log_solver_info(this, params, verbose, N)
+        if (show_iteration) call log_iteration_header(verbose)
 
-        CALL system_clock(start_system_clock, count_rate=rate)
+        call system_clock(start_system_clock, count_rate=rate)
 
-        DO k = 1, params%max_iter
+        do k = 1, params%max_iter
 
             params%k = k
-            IF (k == params%max_iter) THEN
-                EXIT
-            END IF
+            if (k == params%max_iter) then
+                exit
+            end if
 
             x_new = this%solve_method(A, b, x0, params)
 
             params%residual = b - matmul(A, x_new)
             params%norm_residual = params%norm_function(params%residual)
-            IF (show_iteration .AND. mod(k, frequency) == 0) THEN
-                CALL system_clock(end_system_clock)
-                elapsed_time = REAL(end_system_clock - start_system_clock, dp) / REAL(rate, dp)
-                CALL log_iteration_step(verbose, k, params, elapsed_time)
-            END IF
+            if (show_iteration .and. mod(k, frequency) == 0) then
+                call system_clock(end_system_clock)
+                elapsed_time = real(end_system_clock - start_system_clock, dp) / real(rate, dp)
+                call log_iteration_step(verbose, k, params, elapsed_time)
+            end if
 
-            IF (params%norm_residual < params%tol) EXIT
+            if (params%norm_residual < params%tol) exit
 
             x0 = x_new
 
-        END DO
+        end do
 
-        IF (show_iteration) CALL verbose%WRITE(center_with_fill("", width=100, fill_char="="), box_style="bottom")
+        if (show_iteration) call verbose%write(center_with_fill("", width=100, fill_char="="), box_style="bottom")
 
-        IF (show_final) THEN
-            CALL system_clock(end_system_clock)
-            elapsed_time = REAL(end_system_clock - start_system_clock, dp) / REAL(rate, dp)
-            CALL log_final_result(verbose, k, params, x_new, elapsed_time, N)
-        END IF
+        if (show_final) then
+            call system_clock(end_system_clock)
+            elapsed_time = real(end_system_clock - start_system_clock, dp) / real(rate, dp)
+            call log_final_result(verbose, k, params, x_new, elapsed_time, N)
+        end if
 
         x = x_new
 
-    END FUNCTION IterativeMethod_solve
+    end function IterativeMethod_solve
 
     !======================
     ! Log solver information
     !======================
 
-    SUBROUTINE log_solver_info(solver, params, verbose, N)
-        TYPE(IterativeMethod), INTENT(IN) :: solver
-        TYPE(IterativeParams), INTENT(IN) :: params
-        TYPE(Logger), INTENT(INOUT) :: verbose
-        INTEGER, INTENT(IN) :: N
-        CHARACTER(10) :: date, time
-        CHARACTER(KIND=ucs4, LEN=100) :: msg
+    subroutine log_solver_info(solver, params, verbose, N)
+        type(IterativeMethod), intent(IN) :: solver
+        type(IterativeParams), intent(IN) :: params
+        type(Logger), intent(INOUT) :: verbose
+        integer, intent(IN) :: N
+        character(10) :: date, time
+        character(KIND=ucs4, LEN=100) :: msg
 
-        CALL verbose%WRITE(ucs4_"")
-        CALL verbose%WRITE(center_with_fill("Starting system solver", width=100, fill_char="="), box_style="top")
-        CALL verbose%WRITE(ucs4_"", box_style="middle")
+        call verbose%write(ucs4_"")
+        call verbose%write(center_with_fill("Starting system solver", width=100, fill_char="="), box_style="top")
+        call verbose%write(ucs4_"", box_style="middle")
 
         ! call date_and_time(date,time,zone,values)
-        CALL date_and_time(DATE=date, TIME=time)
-        WRITE (date, '(A)') date(:4)//"-"//date(5:6)//"-"//date(7:8)
-        WRITE (time, '(A)') time(:2)//":"//time(3:4)//":"//time(5:6)
-        CALL log_field(verbose, "Date and time", trim(date)//" "//trim(time))
+        call date_and_time(DATE=date, TIME=time)
+        write (date, '(A)') date(:4)//"-"//date(5:6)//"-"//date(7:8)
+        write (time, '(A)') time(:2)//":"//time(3:4)//":"//time(5:6)
+        call log_field(verbose, "Date and time", trim(date)//" "//trim(time))
 
-        IF (solver%relaxation_factor%id == RELAXATION_FACTOR_OMEGA%id) THEN
-            CALL log_field(verbose, "Method used", trim(solver%method_type%name)//" "//trim(solver%method_type%name2))
-            WRITE (msg, '(A, T40, 3A, ES0.4)') "Relaxation factor used", ": ", trim(solver%relaxation_factor%name), &
+        if (solver%relaxation_factor%id == RELAXATION_FACTOR_OMEGA%id) then
+            call log_field(verbose, "Method used", trim(solver%method_type%name)//" "//trim(solver%method_type%name2))
+            write (msg, '(A, T40, 3A, ES0.4)') "Relaxation factor used", ": ", trim(solver%relaxation_factor%name), &
                 " = ", params%omega
-            CALL verbose%log_info(msg)
-        ELSE IF (solver%relaxation_factor%id == RELAXATION_FACTOR_ALPHA%id) THEN
-            CALL log_field(verbose, "Method used", trim(solver%method_type%name))
-            WRITE (msg, '(A, T40, 3A, ES0.4)') "Relaxation factor used", ": ", trim(solver%relaxation_factor%name), &
+            call verbose%log_info(msg)
+        else if (solver%relaxation_factor%id == RELAXATION_FACTOR_ALPHA%id) then
+            call log_field(verbose, "Method used", trim(solver%method_type%name))
+            write (msg, '(A, T40, 3A, ES0.4)') "Relaxation factor used", ": ", trim(solver%relaxation_factor%name), &
                 " = ", params%alpha
-            CALL verbose%log_info(msg)
-        ELSE
-            CALL log_field(verbose, "Method used", trim(solver%method_type%name))
-        END IF
+            call verbose%log_info(msg)
+        else
+            call log_field(verbose, "Method used", trim(solver%method_type%name))
+        end if
 
-        IF (solver%preconditioner_type%id /= METHOD_PRECOND_NONE%id) THEN
-            IF (solver%relaxation_factor_preconditioner%id == RELAXATION_FACTOR_OMEGA%id) THEN
-                CALL log_field(verbose, "Preconditioner used", trim(solver%preconditioner_type%name))
-                WRITE (msg, '(A, T40, 3A, ES0.4)') "Relaxation factor used", ": ", &
+        if (solver%preconditioner_type%id /= METHOD_PRECOND_NONE%id) then
+            if (solver%relaxation_factor_preconditioner%id == RELAXATION_FACTOR_OMEGA%id) then
+                call log_field(verbose, "Preconditioner used", trim(solver%preconditioner_type%name))
+                write (msg, '(A, T40, 3A, ES0.4)') "Relaxation factor used", ": ", &
                     trim(solver%relaxation_factor_preconditioner%name), " = ", params%omega
-                CALL verbose%log_info(msg)
-            ELSE
-                CALL log_field(verbose, "Preconditioner used", trim(solver%preconditioner_type%name))
-            END IF
-        END IF
+                call verbose%log_info(msg)
+            else
+                call log_field(verbose, "Preconditioner used", trim(solver%preconditioner_type%name))
+            end if
+        end if
 
-        IF (solver%preconditioner_type%id == METHOD_PRECOND_ILU%id .OR. &
-            solver%preconditioner_type%id == METHOD_PRECOND_ICF%id) THEN
-            IF (params%fill_level%id /= FILL_LEVEL_NONE%id) THEN
-                CALL log_field(verbose, "Fill level used", trim(params%fill_level%name))
-            ELSE
-                CALL log_field(verbose, "Fill level used", "basic "//trim(solver%preconditioner_type%name))
-            END IF
-        ELSE IF (solver%method_type%id == METHOD_SIP_ILU%id .OR. &
-                 solver%method_type%id == METHOD_SIP_ICF%id) THEN
-            IF (params%fill_level%id /= FILL_LEVEL_NONE%id) THEN
-                CALL log_field(verbose, "Fill level used", trim(params%fill_level%name))
-            ELSE
-                CALL log_field(verbose, "Fill level used", "basic "//trim(solver%method_type%name2))
-            END IF
-        END IF
+        if (solver%preconditioner_type%id == METHOD_PRECOND_ILU%id .or. &
+            solver%preconditioner_type%id == METHOD_PRECOND_ICF%id) then
+            if (params%fill_level%id /= FILL_LEVEL_NONE%id) then
+                call log_field(verbose, "Fill level used", trim(params%fill_level%name))
+            else
+                call log_field(verbose, "Fill level used", "basic "//trim(solver%preconditioner_type%name))
+            end if
+        else if (solver%method_type%id == METHOD_SIP_ILU%id .or. &
+                 solver%method_type%id == METHOD_SIP_ICF%id) then
+            if (params%fill_level%id /= FILL_LEVEL_NONE%id) then
+                call log_field(verbose, "Fill level used", trim(params%fill_level%name))
+            else
+                call log_field(verbose, "Fill level used", "basic "//trim(solver%method_type%name2))
+            end if
+        end if
 
-        WRITE (msg, '(A,T40,A,I0,A,I0)') "System size", ": ", N, " x ", N
-        CALL verbose%log_info(msg)
+        write (msg, '(A,T40,A,I0,A,I0)') "System size", ": ", N, " x ", N
+        call verbose%log_info(msg)
 
-        WRITE (msg, '(A,T40,A,I0,A)') "Memory used", ": ", get_memory_kb(), " KB"
-        CALL verbose%log_info(msg)
+        write (msg, '(A,T40,A,I0,A)') "Memory used", ": ", get_memory_kb(), " KB"
+        call verbose%log_info(msg)
 
-        CALL log_field(verbose, "Norme used", trim(params%norm%name))
+        call log_field(verbose, "Norme used", trim(params%norm%name))
 
-        WRITE (msg, '(A,T40,A, ES0.2)') "Convergence criterion (Tolerance)", ": ||r|| < ", params%tol
-        CALL verbose%log_info(msg)
+        write (msg, '(A,T40,A, ES0.2)') "Convergence criterion (Tolerance)", ": ||r|| < ", params%tol
+        call verbose%log_info(msg)
 
-        CALL log_field(verbose, "Max iterations", params%max_iter)
+        call log_field(verbose, "Max iterations", params%max_iter)
 
-        WRITE (msg, '(A,T36,A,ES0.7)') "Initial residual norm", ": ||r0|| = ", params%norm_initial_residual
-        CALL verbose%log_detail(msg)
+        write (msg, '(A,T36,A,ES0.7)') "Initial residual norm", ": ||r0|| = ", params%norm_initial_residual
+        call verbose%log_detail(msg)
 
-        CALL verbose%WRITE(center_with_fill("", width=100, fill_char="="), box_style="bottom")
-        CALL verbose%WRITE(ucs4_"")
+        call verbose%write(center_with_fill("", width=100, fill_char="="), box_style="bottom")
+        call verbose%write(ucs4_"")
 
-    END SUBROUTINE log_solver_info
+    end subroutine log_solver_info
 
-    SUBROUTINE log_iteration_header(verbose)
-        CLASS(Logger), INTENT(INOUT) :: verbose
-        CHARACTER(KIND=ucs4, LEN=100) :: msg
+    subroutine log_iteration_header(verbose)
+        class(Logger), intent(INOUT) :: verbose
+        character(KIND=ucs4, LEN=100) :: msg
 
-        CALL verbose%WRITE(center_with_fill("Iterations", width=100, fill_char="="), box_style="top")
-        CALL verbose%WRITE(ucs4_"", box_style="middle")
+        call verbose%write(center_with_fill("Iterations", width=100, fill_char="="), box_style="top")
+        call verbose%write(ucs4_"", box_style="middle")
 
-        WRITE (msg, '(A,5X,A,5X,A,5X,A)') "Iter", &
+        write (msg, '(A,5X,A,5X,A,5X,A)') "Iter", &
             "Residual norm (||r||)", &
             "Relative residual norm (||r||/||r0||)", &
             "Time (s)"
-        CALL verbose%log_info(msg)
-        CALL verbose%WRITE(repeat(ucs4_"-", 100), box_style="middle")
-    END SUBROUTINE log_iteration_header
+        call verbose%log_info(msg)
+        call verbose%write(repeat(ucs4_"-", 100), box_style="middle")
+    end subroutine log_iteration_header
 
-    SUBROUTINE log_iteration_step(verbose, k, params, elapsed_time)
-        CLASS(Logger), INTENT(INOUT) :: verbose
-        INTEGER, INTENT(IN) :: k
-        REAL(dp), INTENT(IN) :: elapsed_time
-        TYPE(IterativeParams), INTENT(IN) :: params
-        CHARACTER(KIND=ucs4, LEN=100) :: msg
-        INTEGER :: end_system_clock
+    subroutine log_iteration_step(verbose, k, params, elapsed_time)
+        class(Logger), intent(INOUT) :: verbose
+        integer, intent(IN) :: k
+        real(dp), intent(IN) :: elapsed_time
+        type(IterativeParams), intent(IN) :: params
+        character(KIND=ucs4, LEN=100) :: msg
+        integer :: end_system_clock
 
-        CALL system_clock(end_system_clock)
-        WRITE (msg, '(T2,I0,T15,ES0.7,T48,ES0.7,T79,ES0.7)') k, &
+        call system_clock(end_system_clock)
+        write (msg, '(T2,I0,T15,ES0.7,T48,ES0.7,T79,ES0.7)') k, &
             params%norm_residual, &
             params%norm_residual / params%norm_initial_residual, &
             elapsed_time
-        CALL verbose%log_time(msg)
-    END SUBROUTINE log_iteration_step
+        call verbose%log_time(msg)
+    end subroutine log_iteration_step
 
-    SUBROUTINE log_final_result(verbose, k, params, x_new, elapsed_time, N)
-        CLASS(Logger), INTENT(INOUT) :: verbose
-        INTEGER, INTENT(IN) :: N
-        INTEGER, INTENT(IN) :: k
-        REAL(dp), INTENT(IN) :: elapsed_time
-        TYPE(IterativeParams), INTENT(IN) :: params
-        REAL(dp), DIMENSION(:), INTENT(IN) :: x_new
-        CHARACTER(KIND=ucs4, LEN=100) :: msg
-        INTEGER :: end_system_clock
-        INTEGER :: i
+    subroutine log_final_result(verbose, k, params, x_new, elapsed_time, N)
+        class(Logger), intent(INOUT) :: verbose
+        integer, intent(IN) :: N
+        integer, intent(IN) :: k
+        real(dp), intent(IN) :: elapsed_time
+        type(IterativeParams), intent(IN) :: params
+        real(dp), dimension(:), intent(IN) :: x_new
+        character(KIND=ucs4, LEN=100) :: msg
+        integer :: end_system_clock
+        integer :: i
 
-        CALL verbose%WRITE(ucs4_"")
-        CALL verbose%WRITE(center_with_fill("Results", width=100, fill_char="="), box_style="top")
-        CALL verbose%WRITE(ucs4_" ", box_style="middle")
+        call verbose%write(ucs4_"")
+        call verbose%write(center_with_fill("Results", width=100, fill_char="="), box_style="top")
+        call verbose%write(ucs4_" ", box_style="middle")
 
-        IF (k < params%max_iter) THEN
-            CALL log_field(verbose, "Status", "CONVERGED")
+        if (k < params%max_iter) then
+            call log_field(verbose, "Status", "CONVERGED")
 
-            WRITE (msg, '(A,T40,A,ES0.7,A,ES0.1,A)') "Final residual", ": ||r|| = ", params%norm_residual, &
+            write (msg, '(A,T40,A,ES0.7,A,ES0.1,A)') "Final residual", ": ||r|| = ", params%norm_residual, &
                 " < ", params%tol, " (convergence achieved)"
-            CALL verbose%log_info(msg)
+            call verbose%log_info(msg)
 
-            WRITE (msg, '(A,T36,A,ES0.7)') "Relative residual norm", ": ||r||/||r0|| = ", &
+            write (msg, '(A,T36,A,ES0.7)') "Relative residual norm", ": ||r||/||r0|| = ", &
                 params%norm_residual / params%norm_initial_residual
-            CALL verbose%log_detail(msg)
+            call verbose%log_detail(msg)
 
-            CALL log_field(verbose, "Total iterations", k)
+            call log_field(verbose, "Total iterations", k)
 
-            WRITE (msg, '(A,T40,A,ES0.7)') "Solution", ": x = ["
-            IF (N < 6) THEN
-                DO i = 1, size(x_new)
-                    WRITE (msg, '(2A,ES0.7)') trim(msg), " ", x_new(i)
-                END DO
-            ELSE
-                WRITE (msg, '(2A,ES0.7,3X,ES0.7,3X,ES0.7,3X,A,ES0.7,3X,ES0.7,3X,ES0.7,A)') trim(msg), " ", &
+            write (msg, '(A,T40,A,ES0.7)') "Solution", ": x = ["
+            if (N < 6) then
+                do i = 1, size(x_new)
+                    write (msg, '(2A,ES0.7)') trim(msg), " ", x_new(i)
+                end do
+            else
+                write (msg, '(2A,ES0.7,3X,ES0.7,3X,ES0.7,3X,A,ES0.7,3X,ES0.7,3X,ES0.7,A)') trim(msg), " ", &
                     x_new(1), x_new(2), x_new(3), x_new(N - 3), x_new(N - 2), x_new(N - 1)
-            END IF
-            WRITE (msg, '(2A,ES0.7)') trim(msg), "]"
-            CALL verbose%log_info(msg)
+            end if
+            write (msg, '(2A,ES0.7)') trim(msg), "]"
+            call verbose%log_info(msg)
 
-            CALL system_clock(end_system_clock)
-            WRITE (msg, '(A,T40,A,ES0.7,A,I0)') "Solver completed in ", ": ", &
+            call system_clock(end_system_clock)
+            write (msg, '(A,T40,A,ES0.7,A,I0)') "Solver completed in ", ": ", &
                 elapsed_time, " seconds"
-            CALL verbose%log_info(msg)
+            call verbose%log_info(msg)
 
-            WRITE (msg, '(A,T40,A,I0,A)') "Memory used", ": ", get_memory_kb(), " KB"
-            CALL verbose%log_info(msg)
-        ELSE
-            CALL log_field(verbose, "Status", "NOT CONVERGED")
+            write (msg, '(A,T40,A,I0,A)') "Memory used", ": ", get_memory_kb(), " KB"
+            call verbose%log_info(msg)
+        else
+            call log_field(verbose, "Status", "NOT CONVERGED")
 
-            WRITE (msg, '(A,T40,A,ES0.7,A,ES0.1,A)') "Final residual", ": ||r|| = ", params%norm_residual, &
+            write (msg, '(A,T40,A,ES0.7,A,ES0.1,A)') "Final residual", ": ||r|| = ", params%norm_residual, &
                 " >= ", params%tol, " (convergence not achieved)"
-            CALL verbose%log_info(msg)
-        END IF
-        CALL verbose%WRITE(center_with_fill("", width=100, fill_char="="), box_style="bottom")
-    END SUBROUTINE
+            call verbose%log_info(msg)
+        end if
+        call verbose%write(center_with_fill("", width=100, fill_char="="), box_style="bottom")
+    end subroutine
 
     !======================
     ! Solve methods
@@ -688,100 +688,100 @@ CONTAINS
     !> Jacobi iterative method
     !>
     !> This subroutine implements the Jacobi method for solving linear systems.
-    FUNCTION solve_Jacobi(this, A, b, x0, params) RESULT(x)
-        CLASS(IterativeMethod), INTENT(IN) :: this
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(:), INTENT(IN) :: b, x0
-        TYPE(IterativeParams), INTENT(INOUT) :: params
-        REAL(dp), DIMENSION(size(A, 1)) :: x
-        INTEGER :: i, N
+    function solve_Jacobi(this, A, b, x0, params) result(x)
+        class(IterativeMethod), intent(IN) :: this
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:), intent(IN) :: b, x0
+        type(IterativeParams), intent(INOUT) :: params
+        real(dp), dimension(size(A, 1)) :: x
+        integer :: i, N
 
         N = size(A, 1)
 
         ! forward
-        DO i = 1, N
+        do i = 1, N
             x(i) = b(i) - dot_product(A(i, 1:i - 1), x0(1:i - 1)) - dot_product(A(i, i + 1:N), x0(i + 1:N))
             x(i) = x(i) / A(i, i)
-        END DO
+        end do
 
-    END FUNCTION solve_Jacobi
+    end function solve_Jacobi
 
     !> Gauss-Seidel iterative method
     !>
     !> This subroutine implements the Gauss-Seidel method for solving linear systems.
-    FUNCTION solve_Gauss_Seidel(this, A, b, x0, params) RESULT(x)
-        CLASS(IterativeMethod), INTENT(IN) :: this
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(:), INTENT(IN) :: b, x0
-        TYPE(IterativeParams), INTENT(INOUT) :: params
-        REAL(dp), DIMENSION(size(A, 1)) :: x
-        INTEGER :: i, N
+    function solve_Gauss_Seidel(this, A, b, x0, params) result(x)
+        class(IterativeMethod), intent(IN) :: this
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:), intent(IN) :: b, x0
+        type(IterativeParams), intent(INOUT) :: params
+        real(dp), dimension(size(A, 1)) :: x
+        integer :: i, N
 
         N = size(A, 1)
 
         ! forward
-        DO i = 1, N
+        do i = 1, N
             x(i) = b(i) - dot_product(A(i, 1:i - 1), x(1:i - 1)) - dot_product(A(i, i + 1:N), x0(i + 1:N))
             x(i) = x(i) / A(i, i)
-        END DO
+        end do
 
-    END FUNCTION solve_Gauss_Seidel
+    end function solve_Gauss_Seidel
 
     !> Successive Over-Relaxation (SOR) iterative method
     !>
     !> This subroutine implements the SOR method for solving linear systems.
-    FUNCTION solve_SOR(this, A, b, x0, params) RESULT(x)
-        CLASS(IterativeMethod), INTENT(IN) :: this
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(:), INTENT(IN) :: b, x0
-        TYPE(IterativeParams), INTENT(INOUT) :: params
-        REAL(dp), DIMENSION(size(A, 1)) :: x
-        INTEGER :: i, N
+    function solve_SOR(this, A, b, x0, params) result(x)
+        class(IterativeMethod), intent(IN) :: this
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:), intent(IN) :: b, x0
+        type(IterativeParams), intent(INOUT) :: params
+        real(dp), dimension(size(A, 1)) :: x
+        integer :: i, N
 
         N = size(A, 1)
 
         ! forward
-        DO i = 1, N
+        do i = 1, N
             x(i) = b(i) - dot_product(A(i, 1:i - 1), x(1:i - 1)) - dot_product(A(i, i + 1:N), x0(i + 1:N))
             x(i) = params%omega * (x(i) / A(i, i) - x0(i)) + x0(i)
-        END DO
+        end do
 
-    END FUNCTION solve_SOR
+    end function solve_SOR
 
     !> Jacobi over-relaxation (JOR) iterative method
     !>
     !> This subroutine implements the Jacobi over-relaxation method for solving linear systems.
-    FUNCTION solve_JOR(this, A, b, x0, params) RESULT(x)
-        CLASS(IterativeMethod), INTENT(IN) :: this
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(:), INTENT(IN) :: b, x0
-        TYPE(IterativeParams), INTENT(INOUT) :: params
-        REAL(dp), DIMENSION(size(A, 1)) :: x
-        INTEGER :: i, N
+    function solve_JOR(this, A, b, x0, params) result(x)
+        class(IterativeMethod), intent(IN) :: this
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:), intent(IN) :: b, x0
+        type(IterativeParams), intent(INOUT) :: params
+        real(dp), dimension(size(A, 1)) :: x
+        integer :: i, N
 
         N = size(A, 1)
 
         ! forward
-        DO i = 1, N
+        do i = 1, N
             x(i) = b(i) - dot_product(A(i, 1:i - 1), x0(1:i - 1)) - dot_product(A(i, i + 1:N), x0(i + 1:N))
             x(i) = params%omega * (x(i) / A(i, i) - x0(i)) + x0(i)
-        END DO
+        end do
 
-    END FUNCTION solve_JOR
+    end function solve_JOR
 
     !> strongly implicit procedure (SIP) method (or stone's method)
     !>
     !> This subroutine implements the SIP method for solving linear systems.
     !> It uses the incomplete LU decomposition of the matrix A.
-    FUNCTION solve_SIP_ILU(this, A, b, x0, params) RESULT(x)
-        CLASS(IterativeMethod), INTENT(IN) :: this
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(:), INTENT(IN) :: b, x0
-        TYPE(IterativeParams), INTENT(INOUT) :: params
-        REAL(dp), DIMENSION(size(A, 1)) :: x
-        REAL(dp), DIMENSION(size(A, 1)) :: y, z
+    function solve_SIP_ILU(this, A, b, x0, params) result(x)
+        class(IterativeMethod), intent(IN) :: this
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:), intent(IN) :: b, x0
+        type(IterativeParams), intent(INOUT) :: params
+        real(dp), dimension(size(A, 1)) :: x
+        real(dp), dimension(size(A, 1)) :: y, z
 
-        IF (.NOT. allocated(params%L) .OR. .NOT. allocated(params%U)) STOP "ERROR :: Incomplete LU decomposition not initialized"
+        if (.not. allocated(params%L) .or. .not. allocated(params%U)) stop "ERROR :: Incomplete LU decomposition not initialized"
 
         y = forward(params%L, params%residual)
 
@@ -789,21 +789,21 @@ CONTAINS
 
         x = x0 + params%omega * z
 
-    END FUNCTION solve_SIP_ILU
+    end function solve_SIP_ILU
 
     !> strongly implicit procedure (SIP) method (or stone's method)
     !>
     !> This subroutine implements the SIP method for solving linear systems.
     !> It uses the incomplete Cholesky decomposition of the matrix A.
-    FUNCTION solve_SIP_ICF(this, A, b, x0, params) RESULT(x)
-        CLASS(IterativeMethod), INTENT(IN) :: this
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(:), INTENT(IN) :: b, x0
-        TYPE(IterativeParams), INTENT(INOUT) :: params
-        REAL(dp), DIMENSION(size(A, 1)) :: x
-        REAL(dp), DIMENSION(size(A, 1)) :: y, z
+    function solve_SIP_ICF(this, A, b, x0, params) result(x)
+        class(IterativeMethod), intent(IN) :: this
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:), intent(IN) :: b, x0
+        type(IterativeParams), intent(INOUT) :: params
+        real(dp), dimension(size(A, 1)) :: x
+        real(dp), dimension(size(A, 1)) :: y, z
 
-        IF (.NOT. allocated(params%L)) STOP "ERROR :: Incomplete LU decomposition not initialized"
+        if (.not. allocated(params%L)) stop "ERROR :: Incomplete LU decomposition not initialized"
 
         y = forward(params%L, params%residual)
 
@@ -811,130 +811,130 @@ CONTAINS
 
         x = x0 + params%omega * z
 
-    END FUNCTION solve_SIP_ICF
+    end function solve_SIP_ICF
 
     !> Symmetric successive Over-Relaxation (SSOR) iterative method
     !>
     !> This subroutine implements the SSOR method for solving linear systems.
-    FUNCTION solve_SSOR(this, A, b, x0, params) RESULT(x)
-        CLASS(IterativeMethod), INTENT(IN) :: this
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(:), INTENT(IN) :: b, x0
-        TYPE(IterativeParams), INTENT(INOUT) :: params
-        REAL(dp), DIMENSION(size(A, 1)) :: x
-        REAL(dp), DIMENSION(size(A, 1)) :: x_tmp
-        INTEGER :: i, N
+    function solve_SSOR(this, A, b, x0, params) result(x)
+        class(IterativeMethod), intent(IN) :: this
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:), intent(IN) :: b, x0
+        type(IterativeParams), intent(INOUT) :: params
+        real(dp), dimension(size(A, 1)) :: x
+        real(dp), dimension(size(A, 1)) :: x_tmp
+        integer :: i, N
 
         N = size(A, 1)
 
         ! forward
-        DO i = 1, N
+        do i = 1, N
             x_tmp(i) = b(i) - dot_product(A(i, 1:i - 1), x_tmp(1:i - 1)) - dot_product(A(i, i + 1:N), x0(i + 1:N))
             x_tmp(i) = params%omega * (x_tmp(i) / A(i, i) - x0(i)) + x0(i)
-        END DO
+        end do
 
         ! backward
-        DO i = N, 1, -1
+        do i = N, 1, -1
             x(i) = b(i) - dot_product(A(i, 1:i - 1), x_tmp(1:i - 1)) - dot_product(A(i, i + 1:N), x(i + 1:N))
             x(i) = params%omega * (x(i) / A(i, i) - x_tmp(i)) + x_tmp(i)
-        END DO
+        end do
 
-    END FUNCTION solve_SSOR
+    end function solve_SSOR
 
     !> Richardson iterative method
     !>
     !> This subroutine implements the Richardson method for solving linear systems.
-    FUNCTION solve_Richardson(this, A, b, x0, params) RESULT(x)
-        CLASS(IterativeMethod), INTENT(IN) :: this
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(:), INTENT(IN) :: b, x0
-        TYPE(IterativeParams), INTENT(INOUT) :: params
-        REAL(dp), DIMENSION(size(A, 1)) :: x
-        REAL(dp), DIMENSION(size(A, 1)) :: z_prec
+    function solve_Richardson(this, A, b, x0, params) result(x)
+        class(IterativeMethod), intent(IN) :: this
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:), intent(IN) :: b, x0
+        type(IterativeParams), intent(INOUT) :: params
+        real(dp), dimension(size(A, 1)) :: x
+        real(dp), dimension(size(A, 1)) :: z_prec
 
-        IF (this%preconditioner_type%id == METHOD_PRECOND_NONE%id) THEN
-            IF (.NOT. params%is_stationary) THEN
+        if (this%preconditioner_type%id == METHOD_PRECOND_NONE%id) then
+            if (.not. params%is_stationary) then
                 params%alpha = dot_product(params%residual, params%residual) / &
                                dot_product(params%residual, matmul(A, params%residual))
-            END IF
+            end if
             x = x0 + params%alpha * params%residual
-        ELSE IF (this%preconditioner_type%id /= METHOD_PRECOND_NONE%id) THEN
+        else if (this%preconditioner_type%id /= METHOD_PRECOND_NONE%id) then
             z_prec = params%precond(this%preconditioner_type, params%residual)
-            IF (.NOT. params%is_stationary) THEN
+            if (.not. params%is_stationary) then
                 params%alpha = dot_product(params%residual, z_prec) / &
                                dot_product(z_prec, matmul(A, z_prec))
-            END IF
+            end if
             x = x0 + params%alpha * z_prec
-        END IF
+        end if
 
-    END FUNCTION solve_Richardson
+    end function solve_Richardson
 
     !> Conjugate Gradient iterative method
     !>
     !> This subroutine implements the Conjugate Gradient method for solving linear systems.
-    FUNCTION solve_ConjugateGradient(this, A, b, x0, params) RESULT(x)
-        CLASS(IterativeMethod), INTENT(IN) :: this
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(:), INTENT(IN) :: b, x0
-        TYPE(IterativeParams), INTENT(INOUT) :: params
-        REAL(dp), DIMENSION(size(A, 1)) :: x
-        REAL(dp), DIMENSION(size(A, 1)) :: z_prec
+    function solve_ConjugateGradient(this, A, b, x0, params) result(x)
+        class(IterativeMethod), intent(IN) :: this
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:), intent(IN) :: b, x0
+        type(IterativeParams), intent(INOUT) :: params
+        real(dp), dimension(size(A, 1)) :: x
+        real(dp), dimension(size(A, 1)) :: z_prec
 
-        IF (this%preconditioner_type%id == METHOD_PRECOND_NONE%id) THEN
-            IF (params%k == 1) THEN
+        if (this%preconditioner_type%id == METHOD_PRECOND_NONE%id) then
+            if (params%k == 1) then
                 params%p = params%residual
-            ELSE IF (params%k /= 1) THEN
+            else if (params%k /= 1) then
                 params%beta = dot_product(params%residual, params%residual) / params%old_dot_product
                 params%p = params%residual + params%beta * params%p
-            END IF
+            end if
 
             params%alpha = dot_product(params%residual, params%residual) / dot_product(params%p, matmul(A, params%p))
 
             x = x0 + params%alpha * params%p
 
             params%old_dot_product = dot_product(params%residual, params%residual)
-        ELSE IF (this%preconditioner_type%id /= METHOD_PRECOND_NONE%id) THEN
-            IF (this%preconditioner_type%id == METHOD_PRECOND_GS%id .OR. &
-                this%preconditioner_type%id == METHOD_PRECOND_SOR%id) THEN
-                STOP "ERROR :: Preconditioner Gauss-Seidel and SOR not supported for Conjugate Gradient method"
-            END IF
+        else if (this%preconditioner_type%id /= METHOD_PRECOND_NONE%id) then
+            if (this%preconditioner_type%id == METHOD_PRECOND_GS%id .or. &
+                this%preconditioner_type%id == METHOD_PRECOND_SOR%id) then
+                stop "ERROR :: Preconditioner Gauss-Seidel and SOR not supported for Conjugate Gradient method"
+            end if
 
-            IF (params%k == 1) THEN
+            if (params%k == 1) then
                 z_prec = params%precond(this%preconditioner_type, params%residual)
                 params%p = z_prec
-            ELSE IF (params%k /= 1) THEN
+            else if (params%k /= 1) then
                 z_prec = params%precond(this%preconditioner_type, params%residual)
                 params%beta = dot_product(z_prec, params%residual) / params%old_dot_product
                 params%p = z_prec + params%beta * params%p
-            END IF
+            end if
 
             params%alpha = dot_product(z_prec, params%residual) / dot_product(params%p, matmul(A, params%p))
 
             x = x0 + params%alpha * params%p
 
             params%old_dot_product = dot_product(z_prec, params%residual)
-        END IF
+        end if
 
-    END FUNCTION solve_ConjugateGradient
+    end function solve_ConjugateGradient
 
     !> Conjugate Residual iterative method
     !>
     !> This subroutine implements the Conjugate Residual method for solving linear systems.
-    FUNCTION solve_ConjugateResidual(this, A, b, x0, params) RESULT(x)
-        CLASS(IterativeMethod), INTENT(IN) :: this
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(:), INTENT(IN) :: b, x0
-        TYPE(IterativeParams), INTENT(INOUT) :: params
-        REAL(dp), DIMENSION(size(A, 1)) :: x
-        REAL(dp), DIMENSION(size(A, 1)) :: z_prec
+    function solve_ConjugateResidual(this, A, b, x0, params) result(x)
+        class(IterativeMethod), intent(IN) :: this
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:), intent(IN) :: b, x0
+        type(IterativeParams), intent(INOUT) :: params
+        real(dp), dimension(size(A, 1)) :: x
+        real(dp), dimension(size(A, 1)) :: z_prec
 
-        IF (this%preconditioner_type%id == METHOD_PRECOND_NONE%id) THEN
-            IF (params%k == 1) THEN
+        if (this%preconditioner_type%id == METHOD_PRECOND_NONE%id) then
+            if (params%k == 1) then
                 params%p = params%residual
-            ELSE IF (params%k /= 1) THEN
+            else if (params%k /= 1) then
                 params%beta = dot_product(params%residual, matmul(A, params%residual)) / params%old_dot_product
                 params%p = params%residual + params%beta * params%p
-            END IF
+            end if
 
             params%alpha = dot_product(params%residual, matmul(A, params%residual)) / &
                            dot_product(matmul(A, params%p), matmul(A, params%p))
@@ -942,20 +942,20 @@ CONTAINS
             x = x0 + params%alpha * params%p
 
             params%old_dot_product = dot_product(params%residual, matmul(A, params%residual))
-        ELSE IF (this%preconditioner_type%id /= METHOD_PRECOND_NONE%id) THEN
-            IF (this%preconditioner_type%id == METHOD_PRECOND_GS%id .OR. &
-                this%preconditioner_type%id == METHOD_PRECOND_SOR%id) THEN
-                STOP "ERROR :: Preconditioner Gauss-Seidel and SOR not supported for Conjugate Gradient method"
-            END IF
+        else if (this%preconditioner_type%id /= METHOD_PRECOND_NONE%id) then
+            if (this%preconditioner_type%id == METHOD_PRECOND_GS%id .or. &
+                this%preconditioner_type%id == METHOD_PRECOND_SOR%id) then
+                stop "ERROR :: Preconditioner Gauss-Seidel and SOR not supported for Conjugate Gradient method"
+            end if
 
-            IF (params%k == 1) THEN
+            if (params%k == 1) then
                 params%p = params%precond(this%preconditioner_type, params%residual)
                 z_prec = params%p
-            ELSE IF (params%k /= 1) THEN
+            else if (params%k /= 1) then
                 z_prec = params%precond(this%preconditioner_type, params%residual)
                 params%beta = dot_product(z_prec, matmul(A, params%residual)) / params%old_dot_product
                 params%p = z_prec + params%beta * params%p
-            END IF
+            end if
 
             params%alpha = dot_product(z_prec, matmul(A, params%residual)) / &
                            dot_product(matmul(A, params%p), matmul(A, params%p))
@@ -963,31 +963,31 @@ CONTAINS
             x = x0 + params%alpha * params%p
 
             params%old_dot_product = dot_product(z_prec, matmul(A, params%residual))
-        END IF
+        end if
 
-    END FUNCTION solve_ConjugateResidual
+    end function solve_ConjugateResidual
 
     !> Conjugate Gradient on Normal Equations iterative method
     !>
     !> This subroutine implements the Conjugate Gradient on Normal Equations method (or Craig’s Method) for solving linear systems.
-    FUNCTION solve_CGNR(this, A, b, x0, params) RESULT(x)
-        CLASS(IterativeMethod), INTENT(IN) :: this
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(:), INTENT(IN) :: b, x0
-        TYPE(IterativeParams), INTENT(INOUT) :: params
-        REAL(dp), DIMENSION(size(A, 1)) :: x
-        REAL(dp), DIMENSION(size(A, 1)) :: z_prec
-        REAL(dp), DIMENSION(size(A, 1)) :: AT_r
+    function solve_CGNR(this, A, b, x0, params) result(x)
+        class(IterativeMethod), intent(IN) :: this
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:), intent(IN) :: b, x0
+        type(IterativeParams), intent(INOUT) :: params
+        real(dp), dimension(size(A, 1)) :: x
+        real(dp), dimension(size(A, 1)) :: z_prec
+        real(dp), dimension(size(A, 1)) :: AT_r
 
-        IF (this%preconditioner_type%id == METHOD_PRECOND_NONE%id) THEN
-            IF (params%k == 1) THEN
+        if (this%preconditioner_type%id == METHOD_PRECOND_NONE%id) then
+            if (params%k == 1) then
                 AT_r = matmul(transpose(A), params%residual)
                 params%p = AT_r
-            ELSE IF (params%k /= 1) THEN
+            else if (params%k /= 1) then
                 AT_r = matmul(transpose(A), params%residual)
                 params%beta = dot_product(AT_r, AT_r) / params%old_dot_product
                 params%p = AT_r + params%beta * params%p
-            END IF
+            end if
 
             params%alpha = dot_product(AT_r, AT_r) / &
                            dot_product(matmul(A, params%p), matmul(A, params%p))
@@ -995,22 +995,22 @@ CONTAINS
             x = x0 + params%alpha * params%p
 
             params%old_dot_product = dot_product(AT_r, AT_r)
-        ELSE IF (this%preconditioner_type%id /= METHOD_PRECOND_NONE%id) THEN
-            IF (this%preconditioner_type%id == METHOD_PRECOND_GS%id .OR. &
-                this%preconditioner_type%id == METHOD_PRECOND_SOR%id) THEN
-                STOP "ERROR :: Preconditioner Gauss-Seidel and SOR not supported for Conjugate Gradient method"
-            END IF
+        else if (this%preconditioner_type%id /= METHOD_PRECOND_NONE%id) then
+            if (this%preconditioner_type%id == METHOD_PRECOND_GS%id .or. &
+                this%preconditioner_type%id == METHOD_PRECOND_SOR%id) then
+                stop "ERROR :: Preconditioner Gauss-Seidel and SOR not supported for Conjugate Gradient method"
+            end if
 
-            IF (params%k == 1) THEN
+            if (params%k == 1) then
                 AT_r = matmul(transpose(A), params%residual)
                 z_prec = params%precond(this%preconditioner_type, AT_r)
                 params%p = z_prec
-            ELSE IF (params%k /= 1) THEN
+            else if (params%k /= 1) then
                 AT_r = matmul(transpose(A), params%residual)
                 z_prec = params%precond(this%preconditioner_type, AT_r)
                 params%beta = dot_product(z_prec, AT_r) / params%old_dot_product
                 params%p = z_prec + params%beta * params%p
-            END IF
+            end if
 
             params%alpha = dot_product(z_prec, AT_r) / &
                            dot_product(matmul(A, params%p), matmul(A, params%p))
@@ -1018,28 +1018,28 @@ CONTAINS
             x = x0 + params%alpha * params%p
 
             params%old_dot_product = dot_product(z_prec, AT_r)
-        END IF
+        end if
 
-    END FUNCTION solve_CGNR
+    end function solve_CGNR
 
     !> Conjugate Gradient on Normal Residual iterative method
     !>
     !> This subroutine implements the Conjugate Gradient on Normal Residual method for solving linear systems.
-    FUNCTION solve_CGNE(this, A, b, x0, params) RESULT(x)
-        CLASS(IterativeMethod), INTENT(IN) :: this
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(:), INTENT(IN) :: b, x0
-        TYPE(IterativeParams), INTENT(INOUT) :: params
-        REAL(dp), DIMENSION(size(A, 1)) :: x
-        REAL(dp), DIMENSION(size(A, 1)) :: z_prec
+    function solve_CGNE(this, A, b, x0, params) result(x)
+        class(IterativeMethod), intent(IN) :: this
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:), intent(IN) :: b, x0
+        type(IterativeParams), intent(INOUT) :: params
+        real(dp), dimension(size(A, 1)) :: x
+        real(dp), dimension(size(A, 1)) :: z_prec
 
-        IF (this%preconditioner_type%id == METHOD_PRECOND_NONE%id) THEN
-            IF (params%k == 1) THEN
+        if (this%preconditioner_type%id == METHOD_PRECOND_NONE%id) then
+            if (params%k == 1) then
                 params%p = matmul(transpose(A), params%residual)
-            ELSE IF (params%k /= 1) THEN
+            else if (params%k /= 1) then
                 params%beta = dot_product(params%residual, params%residual) / params%old_dot_product
                 params%p = matmul(transpose(A), params%residual) + params%beta * params%p
-            END IF
+            end if
 
             params%alpha = dot_product(params%residual, params%residual) / &
                            dot_product(params%p, params%p)
@@ -1047,20 +1047,20 @@ CONTAINS
             x = x0 + params%alpha * params%p
 
             params%old_dot_product = dot_product(params%residual, params%residual)
-        ELSE IF (this%preconditioner_type%id /= METHOD_PRECOND_NONE%id) THEN
-            IF (this%preconditioner_type%id == METHOD_PRECOND_GS%id .OR. &
-                this%preconditioner_type%id == METHOD_PRECOND_SOR%id) THEN
-                STOP "ERROR :: Preconditioner Gauss-Seidel and SOR not supported for Conjugate Gradient method"
-            END IF
+        else if (this%preconditioner_type%id /= METHOD_PRECOND_NONE%id) then
+            if (this%preconditioner_type%id == METHOD_PRECOND_GS%id .or. &
+                this%preconditioner_type%id == METHOD_PRECOND_SOR%id) then
+                stop "ERROR :: Preconditioner Gauss-Seidel and SOR not supported for Conjugate Gradient method"
+            end if
 
-            IF (params%k == 1) THEN
+            if (params%k == 1) then
                 z_prec = params%precond(this%preconditioner_type, params%residual)
                 params%p = matmul(transpose(A), z_prec)
-            ELSE IF (params%k /= 1) THEN
+            else if (params%k /= 1) then
                 z_prec = params%precond(this%preconditioner_type, params%residual)
                 params%beta = dot_product(z_prec, params%residual) / params%old_dot_product
                 params%p = matmul(transpose(A), z_prec) + params%beta * params%p
-            END IF
+            end if
 
             params%alpha = dot_product(z_prec, params%residual) / &
                            dot_product(params%p, params%p)
@@ -1068,19 +1068,19 @@ CONTAINS
             x = x0 + params%alpha * params%p
 
             params%old_dot_product = dot_product(z_prec, params%residual)
-        END IF
+        end if
 
-    END FUNCTION solve_CGNE
+    end function solve_CGNE
 
-    FUNCTION solve_GMRES(this, A, b, x0, params) RESULT(x)
-        CLASS(IterativeMethod), INTENT(IN) :: this
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(:), INTENT(IN) :: b, x0
-        TYPE(IterativeParams), INTENT(INOUT) :: params
-        REAL(dp), DIMENSION(size(A, 1)) :: x
+    function solve_GMRES(this, A, b, x0, params) result(x)
+        class(IterativeMethod), intent(IN) :: this
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:), intent(IN) :: b, x0
+        type(IterativeParams), intent(INOUT) :: params
+        real(dp), dimension(size(A, 1)) :: x
 
         ! in progress
 
-    END FUNCTION solve_GMRES
+    end function solve_GMRES
 
-END MODULE NAFPack_Iterative_methods
+end module NAFPack_Iterative_methods

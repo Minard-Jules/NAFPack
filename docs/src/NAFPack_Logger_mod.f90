@@ -1,331 +1,331 @@
 !>
-MODULE NAFPack_Logger_mod
+module NAFPack_Logger_mod
 
-    USE NAFPack_constant
+    use NAFPack_constant
 
-    IMPLICIT NONE(TYPE, EXTERNAL)
+    implicit none(type, external)
 
-    PRIVATE
+    private
 
-    PUBLIC :: Logger
-    PUBLIC :: Format_file
-    PUBLIC :: FORMAT_FILE_BIN, FORMAT_FILE_TXT, FORMAT_FILE_CSV, FORMAT_FILE_LOG, FORMAT_FILE_TSV
-    PUBLIC :: FORMAT_FILE_JSON, FORMAT_FILE_XML, FORMAT_FILE_YAML
+    public :: Logger
+    public :: Format_file
+    public :: FORMAT_FILE_BIN, FORMAT_FILE_TXT, FORMAT_FILE_CSV, FORMAT_FILE_LOG, FORMAT_FILE_TSV
+    public :: FORMAT_FILE_JSON, FORMAT_FILE_XML, FORMAT_FILE_YAML
 
-    PUBLIC :: log_field
+    public :: log_field
 
-    PUBLIC :: center_with_fill
+    public :: center_with_fill
 
-    TYPE :: Format_file
-        INTEGER :: id = 1
-        CHARACTER(LEN=10) :: format_name = "txt"
-        CHARACTER(LEN=100) :: format_description = "Text file format"
-    END TYPE Format_file
+    type :: Format_file
+        integer :: id = 1
+        character(LEN=10) :: format_name = "txt"
+        character(LEN=100) :: format_description = "Text file format"
+    end type Format_file
 
-    TYPE(Format_file), PARAMETER :: FORMAT_FILE_BIN = Format_file(0, "binary", "Binary file format")
-    TYPE(Format_file), PARAMETER :: FORMAT_FILE_TXT = Format_file(1, "txt", "Text file format")
-    TYPE(Format_file), PARAMETER :: FORMAT_FILE_CSV = Format_file(2, "csv", "Comma-separated values format")
-    TYPE(Format_file), PARAMETER :: FORMAT_FILE_LOG = Format_file(3, "log", "Log file format")
-    TYPE(Format_file), PARAMETER :: FORMAT_FILE_TSV = Format_file(4, "tsv", "Tab-separated values format")
-    TYPE(Format_file), PARAMETER :: FORMAT_FILE_JSON = Format_file(5, "json", "JSON file format")
-    TYPE(Format_file), PARAMETER :: FORMAT_FILE_XML = Format_file(6, "xml", "XML file format")
-    TYPE(Format_file), PARAMETER :: FORMAT_FILE_YAML = Format_file(7, "yaml", "YAML file format")
+    type(Format_file), parameter :: FORMAT_FILE_BIN = Format_file(0, "binary", "Binary file format")
+    type(Format_file), parameter :: FORMAT_FILE_TXT = Format_file(1, "txt", "Text file format")
+    type(Format_file), parameter :: FORMAT_FILE_CSV = Format_file(2, "csv", "Comma-separated values format")
+    type(Format_file), parameter :: FORMAT_FILE_LOG = Format_file(3, "log", "Log file format")
+    type(Format_file), parameter :: FORMAT_FILE_TSV = Format_file(4, "tsv", "Tab-separated values format")
+    type(Format_file), parameter :: FORMAT_FILE_JSON = Format_file(5, "json", "JSON file format")
+    type(Format_file), parameter :: FORMAT_FILE_XML = Format_file(6, "xml", "XML file format")
+    type(Format_file), parameter :: FORMAT_FILE_YAML = Format_file(7, "yaml", "YAML file format")
 
-    TYPE :: Logger
-        INTEGER :: verbosity_level = 1
-        LOGICAL :: to_terminal = .TRUE.
-        LOGICAL :: to_file = .FALSE.
-        INTEGER :: frequency = 10
-        CHARACTER(LEN=100) :: filename = "Log"
-        TYPE(Format_file) :: file_format = FORMAT_FILE_LOG
-        INTEGER :: file_unit = 99
-        CHARACTER(LEN=100) :: message = "Default log message"
+    type :: Logger
+        integer :: verbosity_level = 1
+        logical :: to_terminal = .true.
+        logical :: to_file = .false.
+        integer :: frequency = 10
+        character(LEN=100) :: filename = "Log"
+        type(Format_file) :: file_format = FORMAT_FILE_LOG
+        integer :: file_unit = 99
+        character(LEN=100) :: message = "Default log message"
 
-        LOGICAL :: show_Logger_initialization = .TRUE.
-        LOGICAL :: show_matrix_test = .TRUE.
-        LOGICAL :: show_info_solver = .TRUE.
-        LOGICAL :: show_iteration = .TRUE.
-        LOGICAL :: show_final = .TRUE.
+        logical :: show_Logger_initialization = .true.
+        logical :: show_matrix_test = .true.
+        logical :: show_info_solver = .true.
+        logical :: show_iteration = .true.
+        logical :: show_final = .true.
 
-    CONTAINS
+    contains
 
-        PROCEDURE :: init => init_logger
-        PROCEDURE :: log_info
-        PROCEDURE :: log_detail
-        PROCEDURE :: log_warning
-        PROCEDURE :: log_error
-        PROCEDURE :: log_time
-        PROCEDURE :: WRITE => write_output
-        PROCEDURE :: CLOSE => close_logger
-    END TYPE Logger
+        procedure :: init => init_logger
+        procedure :: log_info
+        procedure :: log_detail
+        procedure :: log_warning
+        procedure :: log_error
+        procedure :: log_time
+        procedure :: write => write_output
+        procedure :: close => close_logger
+    end type Logger
 
-    INTERFACE log_field
-        MODULE PROCEDURE log_field_str, &
+    interface log_field
+        module procedure log_field_str, &
             log_field_real, &
             log_field_int, &
             log_field_ucs4, &
             log_field_logical
-    END INTERFACE log_field
+    end interface log_field
 
-CONTAINS
+contains
 
 !==========================================================================
 
-    SUBROUTINE init_logger(this)
-        CLASS(Logger), INTENT(INOUT) :: this
-        CHARACTER(KIND=ucs4, LEN=100) :: msg
+    subroutine init_logger(this)
+        class(Logger), intent(INOUT) :: this
+        character(KIND=ucs4, LEN=100) :: msg
 
-        IF (this%to_file) THEN
-            OPEN (UNIT=this%file_unit, FILE=trim(this%filename)//"."//this%file_format%format_name, STATUS='REPLACE', &
+        if (this%to_file) then
+            open (UNIT=this%file_unit, FILE=trim(this%filename)//"."//this%file_format%format_name, STATUS='REPLACE', &
                   ACTION='WRITE', ENCODING='UTF-8')
-        END IF
+        end if
 
-        IF (this%to_terminal) THEN
-            OPEN (output_unit, encoding='UTF-8')
-        END IF
+        if (this%to_terminal) then
+            open (output_unit, encoding='UTF-8')
+        end if
 
-        IF (this%show_Logger_initialization) THEN
-            CALL this%WRITE(center_with_fill("NAFPack Logger initialized", width=100, fill_char="="), box_style="top")
-            CALL this%WRITE(ucs4_"", box_style="middle")
+        if (this%show_Logger_initialization) then
+            call this%write(center_with_fill("NAFPack Logger initialized", width=100, fill_char="="), box_style="top")
+            call this%write(ucs4_"", box_style="middle")
 
-            CALL log_field(this, "Verbosity level", this%verbosity_level)
-            CALL log_field(this, "Output to terminal", this%to_terminal)
-            CALL log_field(this, "Output to file", this%to_file)
-            IF (this%to_file) THEN
-                CALL log_field(this, "File unit", this%file_unit)
-                CALL log_field(this, "File format", this%file_format%format_name)
-                CALL log_field(this, "File name", trim(this%filename)//"."//trim(this%file_format%format_name))
-            END IF
+            call log_field(this, "Verbosity level", this%verbosity_level)
+            call log_field(this, "Output to terminal", this%to_terminal)
+            call log_field(this, "Output to file", this%to_file)
+            if (this%to_file) then
+                call log_field(this, "File unit", this%file_unit)
+                call log_field(this, "File format", this%file_format%format_name)
+                call log_field(this, "File name", trim(this%filename)//"."//trim(this%file_format%format_name))
+            end if
 
-            CALL this%WRITE(center_with_fill("", width=100, fill_char="="), box_style="bottom")
-            CALL this%WRITE(ucs4_"")
-        END IF
+            call this%write(center_with_fill("", width=100, fill_char="="), box_style="bottom")
+            call this%write(ucs4_"")
+        end if
 
-    END SUBROUTINE init_logger
-
-!==========================================================================
-
-    SUBROUTINE log_info(this, msg)
-        CLASS(Logger), INTENT(INOUT) :: this
-        CHARACTER(KIND=ucs4, LEN=*), INTENT(IN) :: msg
-
-        IF (this%verbosity_level >= 2) CALL this%WRITE(msg, ucs4_"INFO", blue_color_ucs4)
-
-    END SUBROUTINE log_info
-
-    SUBROUTINE log_detail(this, msg)
-        CLASS(Logger), INTENT(INOUT) :: this
-        CHARACTER(KIND=ucs4, LEN=*), INTENT(IN) :: msg
-
-        IF (this%verbosity_level >= 3) CALL this%WRITE(ucs4_"    "//msg, ucs4_"DETAIL", green_color_ucs4)
-
-    END SUBROUTINE log_detail
-
-    SUBROUTINE log_warning(this, msg)
-        CLASS(Logger), INTENT(INOUT) :: this
-        CHARACTER(KIND=ucs4, LEN=*), INTENT(IN) :: msg
-
-        IF (this%verbosity_level >= 1) CALL this%WRITE(msg, ucs4_"WARNING", yellow_color_ucs4)
-
-    END SUBROUTINE log_warning
-
-    SUBROUTINE log_error(this, msg)
-        CLASS(Logger), INTENT(INOUT) :: this
-        CHARACTER(KIND=ucs4, LEN=*), INTENT(IN) :: msg
-
-        IF (this%verbosity_level >= 1) CALL this%WRITE(msg, ucs4_"ERROR", red_color_ucs4)
-
-    END SUBROUTINE log_error
-
-    SUBROUTINE log_time(this, msg)
-        CLASS(Logger), INTENT(INOUT) :: this
-        CHARACTER(KIND=ucs4, LEN=*), INTENT(IN) :: msg
-        CHARACTER(LEN=10) :: time
-        CHARACTER(KIND=ucs4, LEN=10) :: time_ucs4
-
-        CALL date_and_time(TIME=time)
-        WRITE (time_ucs4, '(A)') time(:2)//":"//time(3:4)//":"//time(5:6)
-
-        IF (this%verbosity_level >= 2) CALL this%WRITE(msg, time_ucs4, purple_color_ucs4)
-
-    END SUBROUTINE log_time
+    end subroutine init_logger
 
 !==========================================================================
 
-    SUBROUTINE write_output(this, msg, name_level, color_level, box_style)
-        CLASS(Logger), INTENT(IN) :: this
-        CHARACTER(KIND=ucs4, LEN=*), INTENT(IN) :: msg
-        CHARACTER(KIND=ucs4, LEN=*), OPTIONAL, INTENT(IN) :: name_level
-        CHARACTER(KIND=ucs4, LEN=*), OPTIONAL, INTENT(IN) :: color_level
-        CHARACTER(LEN=*), OPTIONAL, INTENT(IN) :: box_style
-        CHARACTER(KIND=ucs4, LEN=100) :: info_char
-        CHARACTER(LEN=4) :: box_char = " "
+    subroutine log_info(this, msg)
+        class(Logger), intent(INOUT) :: this
+        character(KIND=ucs4, LEN=*), intent(IN) :: msg
 
-        IF (present(box_style)) THEN
-            SELECT CASE (trim(adjustl(box_style)))
-            CASE ("top")
+        if (this%verbosity_level >= 2) call this%write(msg, ucs4_"INFO", blue_color_ucs4)
+
+    end subroutine log_info
+
+    subroutine log_detail(this, msg)
+        class(Logger), intent(INOUT) :: this
+        character(KIND=ucs4, LEN=*), intent(IN) :: msg
+
+        if (this%verbosity_level >= 3) call this%write(ucs4_"    "//msg, ucs4_"DETAIL", green_color_ucs4)
+
+    end subroutine log_detail
+
+    subroutine log_warning(this, msg)
+        class(Logger), intent(INOUT) :: this
+        character(KIND=ucs4, LEN=*), intent(IN) :: msg
+
+        if (this%verbosity_level >= 1) call this%write(msg, ucs4_"WARNING", yellow_color_ucs4)
+
+    end subroutine log_warning
+
+    subroutine log_error(this, msg)
+        class(Logger), intent(INOUT) :: this
+        character(KIND=ucs4, LEN=*), intent(IN) :: msg
+
+        if (this%verbosity_level >= 1) call this%write(msg, ucs4_"ERROR", red_color_ucs4)
+
+    end subroutine log_error
+
+    subroutine log_time(this, msg)
+        class(Logger), intent(INOUT) :: this
+        character(KIND=ucs4, LEN=*), intent(IN) :: msg
+        character(LEN=10) :: time
+        character(KIND=ucs4, LEN=10) :: time_ucs4
+
+        call date_and_time(TIME=time)
+        write (time_ucs4, '(A)') time(:2)//":"//time(3:4)//":"//time(5:6)
+
+        if (this%verbosity_level >= 2) call this%write(msg, time_ucs4, purple_color_ucs4)
+
+    end subroutine log_time
+
+!==========================================================================
+
+    subroutine write_output(this, msg, name_level, color_level, box_style)
+        class(Logger), intent(IN) :: this
+        character(KIND=ucs4, LEN=*), intent(IN) :: msg
+        character(KIND=ucs4, LEN=*), optional, intent(IN) :: name_level
+        character(KIND=ucs4, LEN=*), optional, intent(IN) :: color_level
+        character(LEN=*), optional, intent(IN) :: box_style
+        character(KIND=ucs4, LEN=100) :: info_char
+        character(LEN=4) :: box_char = " "
+
+        if (present(box_style)) then
+            select case (trim(adjustl(box_style)))
+            case ("top")
                 box_char = "╔"
-            CASE ("bottom")
+            case ("bottom")
                 box_char = "╚"
-            CASE ("middle")
+            case ("middle")
                 box_char = "║ "
-            CASE ("None")
+            case ("None")
                 box_char = " "
-            CASE DEFAULT
+            case DEFAULT
                 box_char = " "
-            END SELECT
-        END IF
+            end select
+        end if
 
         info_char = ""
-        IF (this%to_file) THEN
-            IF (present(name_level)) THEN
+        if (this%to_file) then
+            if (present(name_level)) then
                 info_char = ucs4_"["//trim(name_level)//ucs4_"] "
-                WRITE (this%file_unit, '(A, T15, "║ ", A)') trim(info_char), trim(msg)
-            ELSE
-                IF (present(box_style)) THEN
-                    WRITE (this%file_unit, '(T15, A, A)') trim(box_char), trim(msg)
-                ELSE
-                    WRITE (this%file_unit, '(A)') trim(msg)
-                END IF
-            END IF
-        END IF
+                write (this%file_unit, '(A, T15, "║ ", A)') trim(info_char), trim(msg)
+            else
+                if (present(box_style)) then
+                    write (this%file_unit, '(T15, A, A)') trim(box_char), trim(msg)
+                else
+                    write (this%file_unit, '(A)') trim(msg)
+                end if
+            end if
+        end if
 
-        IF (this%to_terminal) THEN
-            IF (present(name_level)) THEN
-                IF (present(color_level)) THEN
+        if (this%to_terminal) then
+            if (present(name_level)) then
+                if (present(color_level)) then
                     info_char = ucs4_"["//trim(color_level)//trim(name_level)//trim(reset_color_ucs4)//ucs4_"] "
-                ELSE
+                else
                     info_char = ucs4_"["//trim(name_level)//ucs4_"] "
-                END IF
-                WRITE (output_unit, '(A, T24, "║ ", A)') trim(info_char), trim(msg)
-            ELSE
-                IF (present(box_style)) THEN
-                    WRITE (output_unit, '(T15, A, A)') trim(box_char), trim(msg)
-                ELSE
-                    WRITE (output_unit, '(A)') trim(msg)
-                END IF
-            END IF
+                end if
+                write (output_unit, '(A, T24, "║ ", A)') trim(info_char), trim(msg)
+            else
+                if (present(box_style)) then
+                    write (output_unit, '(T15, A, A)') trim(box_char), trim(msg)
+                else
+                    write (output_unit, '(A)') trim(msg)
+                end if
+            end if
 
-        END IF
+        end if
 
-    END SUBROUTINE write_output
-
-!==========================================================================
-
-    SUBROUTINE close_logger(this)
-        CLASS(Logger), INTENT(INOUT) :: this
-
-        IF (this%to_file) CLOSE (this%file_unit)
-
-    END SUBROUTINE close_logger
+    end subroutine write_output
 
 !==========================================================================
 
-    SUBROUTINE log_field_str(verbose, label, VALUE)
-        TYPE(Logger), INTENT(INOUT) :: verbose
-        CHARACTER(*), INTENT(IN) :: label, VALUE
-        CHARACTER(KIND=ucs4, LEN=100) :: msg
+    subroutine close_logger(this)
+        class(Logger), intent(INOUT) :: this
 
-        WRITE (msg, '(A, T40, 2A)') trim(label), ": ", trim(VALUE)
-        CALL verbose%log_info(msg)
+        if (this%to_file) close (this%file_unit)
 
-    END SUBROUTINE log_field_str
+    end subroutine close_logger
 
-    SUBROUTINE log_field_ucs4(verbose, label, VALUE)
-        TYPE(Logger), INTENT(INOUT) :: verbose
-        CHARACTER(*), INTENT(IN) :: label
-        CHARACTER(KIND=ucs4, LEN=*), INTENT(IN) :: VALUE
-        CHARACTER(KIND=ucs4, LEN=100) :: msg
+!==========================================================================
 
-        WRITE (msg, '(A, T40, 2A)') trim(label), ": ", trim(VALUE)
-        CALL verbose%log_info(msg)
+    subroutine log_field_str(verbose, label, value)
+        type(Logger), intent(INOUT) :: verbose
+        character(*), intent(IN) :: label, value
+        character(KIND=ucs4, LEN=100) :: msg
 
-    END SUBROUTINE log_field_ucs4
+        write (msg, '(A, T40, 2A)') trim(label), ": ", trim(value)
+        call verbose%log_info(msg)
 
-    SUBROUTINE log_field_int(verbose, label, VALUE)
-        TYPE(Logger), INTENT(INOUT) :: verbose
-        CHARACTER(*), INTENT(IN) :: label
-        INTEGER, INTENT(IN) :: VALUE
-        CHARACTER(KIND=ucs4, LEN=100) :: msg
+    end subroutine log_field_str
 
-        WRITE (msg, '(A, T40, A, I0)') trim(label), ": ", VALUE
-        CALL verbose%log_info(msg)
+    subroutine log_field_ucs4(verbose, label, value)
+        type(Logger), intent(INOUT) :: verbose
+        character(*), intent(IN) :: label
+        character(KIND=ucs4, LEN=*), intent(IN) :: value
+        character(KIND=ucs4, LEN=100) :: msg
 
-    END SUBROUTINE log_field_int
+        write (msg, '(A, T40, 2A)') trim(label), ": ", trim(value)
+        call verbose%log_info(msg)
 
-    SUBROUTINE log_field_real(verbose, label, VALUE)
-        TYPE(Logger), INTENT(INOUT) :: verbose
-        CHARACTER(*), INTENT(IN) :: label
-        REAL(dp), INTENT(IN) :: VALUE
-        CHARACTER(KIND=ucs4, LEN=100) :: msg
+    end subroutine log_field_ucs4
 
-        WRITE (msg, '(A, T40, A, ES0.7)') trim(label), ": ", VALUE
-        CALL verbose%log_info(msg)
+    subroutine log_field_int(verbose, label, value)
+        type(Logger), intent(INOUT) :: verbose
+        character(*), intent(IN) :: label
+        integer, intent(IN) :: value
+        character(KIND=ucs4, LEN=100) :: msg
 
-    END SUBROUTINE log_field_real
+        write (msg, '(A, T40, A, I0)') trim(label), ": ", value
+        call verbose%log_info(msg)
 
-    SUBROUTINE log_field_logical(verbose, label, VALUE)
-        TYPE(Logger), INTENT(INOUT) :: verbose
-        CHARACTER(*), INTENT(IN) :: label
-        LOGICAL, INTENT(IN) :: VALUE
-        CHARACTER(KIND=ucs4, LEN=100) :: msg
+    end subroutine log_field_int
 
-        WRITE (msg, '(A, T40, A, L)') trim(label), ": ", VALUE
-        CALL verbose%log_info(msg)
+    subroutine log_field_real(verbose, label, value)
+        type(Logger), intent(INOUT) :: verbose
+        character(*), intent(IN) :: label
+        real(dp), intent(IN) :: value
+        character(KIND=ucs4, LEN=100) :: msg
 
-    END SUBROUTINE log_field_logical
+        write (msg, '(A, T40, A, ES0.7)') trim(label), ": ", value
+        call verbose%log_info(msg)
 
-    FUNCTION center_with_fill(text, width, fill_char) RESULT(centered_text)
-        CHARACTER(LEN=*), INTENT(IN) :: text
-        INTEGER, INTENT(IN) :: width
-        CHARACTER(LEN=1), OPTIONAL, INTENT(IN) :: fill_char
-        CHARACTER(LEN=1) :: fill
-        CHARACTER(KIND=ucs4, LEN=width) :: centered_text
-        INTEGER :: text_len, padding, left_padding, right_padding, i
+    end subroutine log_field_real
 
-        IF (present(fill_char)) THEN
+    subroutine log_field_logical(verbose, label, value)
+        type(Logger), intent(INOUT) :: verbose
+        character(*), intent(IN) :: label
+        logical, intent(IN) :: value
+        character(KIND=ucs4, LEN=100) :: msg
+
+        write (msg, '(A, T40, A, L)') trim(label), ": ", value
+        call verbose%log_info(msg)
+
+    end subroutine log_field_logical
+
+    function center_with_fill(text, width, fill_char) result(centered_text)
+        character(LEN=*), intent(IN) :: text
+        integer, intent(IN) :: width
+        character(LEN=1), optional, intent(IN) :: fill_char
+        character(LEN=1) :: fill
+        character(KIND=ucs4, LEN=width) :: centered_text
+        integer :: text_len, padding, left_padding, right_padding, i
+
+        if (present(fill_char)) then
             fill = fill_char
-        ELSE
+        else
             fill = " "
-        END IF
+        end if
 
         text_len = len_trim(text)
-        IF (text_len >= width) THEN
+        if (text_len >= width) then
             centered_text = text(1:width)
-            RETURN
-        END IF
+            return
+        end if
 
         ! Calculate the total padding required
         padding = width - text_len
-        IF (trim(text) == "") THEN
+        if (trim(text) == "") then
             left_padding = padding / 2
             right_padding = padding - left_padding - mod(padding, 2)
-        ELSE
+        else
             text_len = text_len + 1
             left_padding = padding / 2 - 1
             right_padding = padding - left_padding - mod(padding, 2)
-        END IF
+        end if
 
         ! Initialize the result
         centered_text = repeat(' ', width)
 
         ! Fill with fill on the left
-        DO i = 1, left_padding
+        do i = 1, left_padding
             centered_text(i:i) = fill
-        END DO
+        end do
 
         ! Place the text in the center
-        IF (trim(text) == "") THEN
+        if (trim(text) == "") then
             centered_text(left_padding + 1:left_padding + text_len) = trim(text)
-        ELSE
+        else
             centered_text(left_padding + 1:left_padding + text_len) = " "//trim(text)//" "
-        END IF
+        end if
 
         ! Fill with fill on the right
-        DO i = right_padding + text_len, width
+        do i = right_padding + text_len, width
             centered_text(i:i) = fill
-        END DO
+        end do
 
-    END FUNCTION center_with_fill
+    end function center_with_fill
 
-END MODULE NAFPack_Logger_mod
+end module NAFPack_Logger_mod

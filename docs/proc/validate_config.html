@@ -235,42 +235,42 @@
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="hl codehilite"><pre><span></span><span class="w">    </span><span class="k">SUBROUTINE </span><span class="n">validate_config</span><span class="p">(</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="n">is_valid</span><span class="p">,</span><span class="w"> </span><span class="n">error_msg</span><span class="p">)</span>
-<span class="w">        </span><span class="k">TYPE</span><span class="p">(</span><span class="n">config_type</span><span class="p">),</span><span class="w"> </span><span class="k">INTENT</span><span class="p">(</span><span class="n">IN</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">config</span>
-<span class="w">        </span><span class="kt">LOGICAL</span><span class="p">,</span><span class="w"> </span><span class="k">INTENT</span><span class="p">(</span><span class="n">OUT</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">is_valid</span>
-<span class="w">        </span><span class="kt">CHARACTER</span><span class="p">(</span><span class="nb">LEN</span><span class="o">=*</span><span class="p">),</span><span class="w"> </span><span class="k">INTENT</span><span class="p">(</span><span class="n">OUT</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">error_msg</span>
+    <div class="hl codehilite"><pre><span></span><span class="w">    </span><span class="k">subroutine </span><span class="n">validate_config</span><span class="p">(</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="n">is_valid</span><span class="p">,</span><span class="w"> </span><span class="n">error_msg</span><span class="p">)</span>
+<span class="w">        </span><span class="k">type</span><span class="p">(</span><span class="n">config_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">IN</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">config</span>
+<span class="w">        </span><span class="kt">logical</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">OUT</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">is_valid</span>
+<span class="w">        </span><span class="kt">character</span><span class="p">(</span><span class="nb">LEN</span><span class="o">=*</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">OUT</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">error_msg</span>
 
-<span class="w">        </span><span class="n">is_valid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">TRUE</span><span class="p">.</span>
+<span class="w">        </span><span class="n">is_valid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">true</span><span class="p">.</span>
 <span class="w">        </span><span class="n">error_msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
 
 <span class="w">        </span><span class="c">! Check tolerances</span>
-<span class="w">        </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">pivot_tolerance</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">0.0_dp</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
-<span class="k">            </span><span class="n">is_valid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">FALSE</span><span class="p">.</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">pivot_tolerance</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">0.0_dp</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">            </span><span class="n">is_valid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
 <span class="w">            </span><span class="n">error_msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Pivot tolerance must be positive&quot;</span>
-<span class="w">            </span><span class="k">RETURN</span>
-<span class="k">        END IF</span>
+<span class="w">            </span><span class="k">return</span>
+<span class="k">        end if</span>
 
-<span class="k">        IF</span><span class="w"> </span><span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">convergence_tolerance</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">0.0_dp</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
-<span class="k">            </span><span class="n">is_valid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">FALSE</span><span class="p">.</span>
+<span class="k">        if</span><span class="w"> </span><span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">convergence_tolerance</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">0.0_dp</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">            </span><span class="n">is_valid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
 <span class="w">            </span><span class="n">error_msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Convergence tolerance must be positive&quot;</span>
-<span class="w">            </span><span class="k">RETURN</span>
-<span class="k">        END IF</span>
+<span class="w">            </span><span class="k">return</span>
+<span class="k">        end if</span>
 
 <span class="w">        </span><span class="c">! Check iteration limits</span>
-<span class="w">        </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">max_iterations</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
-<span class="k">            </span><span class="n">is_valid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">FALSE</span><span class="p">.</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">max_iterations</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">            </span><span class="n">is_valid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
 <span class="w">            </span><span class="n">error_msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Maximum iterations must be positive&quot;</span>
-<span class="w">            </span><span class="k">RETURN</span>
-<span class="k">        END IF</span>
+<span class="w">            </span><span class="k">return</span>
+<span class="k">        end if</span>
 
 <span class="w">        </span><span class="c">! Check block size</span>
-<span class="w">        </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">block_size</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
-<span class="k">            </span><span class="n">is_valid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">FALSE</span><span class="p">.</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">block_size</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">            </span><span class="n">is_valid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
 <span class="w">            </span><span class="n">error_msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Block size must be positive&quot;</span>
-<span class="w">            </span><span class="k">RETURN</span>
-<span class="k">        END IF</span>
+<span class="w">            </span><span class="k">return</span>
+<span class="k">        end if</span>
 
-<span class="k">    END SUBROUTINE </span><span class="n">validate_config</span>
+<span class="k">    end subroutine </span><span class="n">validate_config</span>
 </pre></div>
 
     </section>

@@ -1,35 +1,35 @@
-PROGRAM test
+program test
 
-    USE NAFPack_constant
-    USE test_NAFPack_linear_algebra
-    USE test_NAFPack_fft
+    use NAFPack_constant
+    use test_NAFPack_linear_algebra
+    use test_NAFPack_fft
 
-    IMPLICIT NONE(TYPE, EXTERNAL)
+    implicit none(type, external)
 
-    LOGICAL :: stat = .FALSE.
+    logical :: stat = .false.
 
-    WRITE (*, '(A)') purple_color, "Test linear systeme :", reset_color
-    PRINT*," "
-    PRINT*," "
-    CALL test_linear_system(stat)
-    PRINT*," "
+    write (*, '(A)') purple_color, "Test linear systeme :", reset_color
+    print*," "
+    print*," "
+    call test_linear_system(stat)
+    print*," "
 
-    WRITE(*,'(A)') purple_color,"Test linear algebre :", reset_color
-    PRINT*, " "
-    PRINT*, " "
-    CALL test_linear_algebra(stat)
-    PRINT*, " "
+    write (*, '(A)') purple_color, "Test linear algebre :", reset_color
+    print*," "
+    print*," "
+    call test_linear_algebra(stat)
+    print*," "
 
-    WRITE(*,'(A)') purple_color,"Test FFT :", reset_color
-    PRINT*, " "
-    PRINT*, " "
-    CALL test_FFT(stat)
-    PRINT*, " "
+    write (*, '(A)') purple_color, "Test FFT :", reset_color
+    print*," "
+    print*," "
+    call test_FFT(stat)
+    print*," "
 
-    IF (stat) THEN
-        WRITE (*, '(A)') red_color, "Test failed", reset_color
-    ELSE
-        WRITE (*, '(A)') green_color, "Test success", reset_color
-    END IF
+    if (stat) then
+        write (*, '(A)') red_color, "Test failed", reset_color
+    else
+        write (*, '(A)') green_color, "Test success", reset_color
+    end if
 
-END PROGRAM test
+end program test

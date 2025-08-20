@@ -1,42 +1,27 @@
-MODULE NAFPack_memory_monitor
+module NAFPack_memory_monitor
 
-    USE iso_c_binding
+    use iso_c_binding
 
-    IMPLICIT NONE(TYPE, EXTERNAL)
+    implicit none(type, external)
 
-    PRIVATE
+    private
 
-    PUBLIC :: get_memory_kb
+    public :: get_memory_kb
 
-#ifdef _WIN32
-    INTERFACE
-        SUBROUTINE get_windows_memory(mem_kb) BIND(C, name="get_windows_memory")
-            IMPORT c_int
-            INTEGER(c_int), INTENT(OUT) :: mem_kb
-        END SUBROUTINE
-    END INTERFACE
-#else
-    INTERFACE
-        SUBROUTINE get_linux_memory(mem_kb) BIND(C, NAME="get_linux_memory")
-            IMPORT c_int
-            INTEGER(c_int), INTENT(OUT) :: mem_kb
-        END SUBROUTINE
-    END INTERFACE
-#endif
+    interface
+        function get_memory_usage() bind(C, name="get_memory_usage") result(mem_usage)
+            use iso_c_binding
+            integer(c_int) :: mem_usage
+        end function
+    end interface
 
-CONTAINS
+contains
 
-    FUNCTION get_memory_kb() RESULT(memory_kb)
-        INTEGER :: memory_kb
+    function get_memory_kb() result(memory_kb)
+        integer :: memory_kb
 
-        memory_kb = 0
-        
-#ifdef _WIN32
-        CALL get_windows_memory(memory_kb)
-#else
-        CALL get_linux_memory(memory_kb)
-#endif
+        memory_kb = get_memory_usage()
 
-    END FUNCTION get_memory_kb
+    end function get_memory_kb
 
-END MODULE NAFPack_memory_monitor
+end module NAFPack_memory_monitor

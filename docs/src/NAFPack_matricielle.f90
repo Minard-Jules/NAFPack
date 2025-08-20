@@ -1,216 +1,216 @@
 !> Module for Tensor operations in NAFPack
-MODULE NAFPack_matricielle
+module NAFPack_matricielle
 
-    USE NAFPack_constant
+    use NAFPack_constant
 
-    IMPLICIT NONE(TYPE, EXTERNAL)
+    implicit none(type, external)
 
-    PRIVATE
-    PUBLIC :: dot, cross
-    PUBLIC :: norm_2_real, norm_2_complex
-    PUBLIC :: normalise, normalise_complexe
-    PUBLIC :: Diagonally_Dominant_Matrix
-    PUBLIC :: Identity_n
-    PUBLIC :: rotation_matrix
-    PUBLIC :: Trace
-    PUBLIC :: Diag, Make_Tridiagonal
+    private
+    public :: dot, cross
+    public :: norm_2_real, norm_2_complex
+    public :: normalise, normalise_complexe
+    public :: Diagonally_Dominant_Matrix
+    public :: Identity_n
+    public :: rotation_matrix
+    public :: Trace
+    public :: Diag, Make_Tridiagonal
 
-CONTAINS
+contains
 
     !> function that calculates the dot product of two real 3-dimensional vectors \( \vec{a} \) and \( \vec{b} \)
     !> \[ \vec{a} \cdot \vec{b} \]
-    FUNCTION dot(a, b) RESULT(RESULT)
-        REAL(dp), DIMENSION(:), INTENT(IN) :: a, b
-        REAL(dp) :: RESULT
-        INTEGER :: i
+    function dot(a, b) result(result)
+        real(dp), dimension(:), intent(IN) :: a, b
+        real(dp) :: result
+        integer :: i
 
-        IF (size(a) /= size(b)) STOP "Error: Vectors must be of the same size."
+        if (size(a) /= size(b)) stop "Error: Vectors must be of the same size."
 
-        RESULT = 0.0_dp
-        DO i = 1, size(a)
-            RESULT = RESULT + a(i) * b(i)
-        END DO
+        result = 0.0_dp
+        do i = 1, size(a)
+            result = result + a(i) * b(i)
+        end do
 
-    END FUNCTION dot
+    end function dot
 
     !> function that calculates the cross product between two real 3-dimensional vectors \( \vec{a} \) and \( \vec{b} \)
     !> \[ \vec{a} \times \vec{b} \][^1]
     !> [^1]: the wedge notation \( \vec{a} \wedge \vec{b} \) can sometimes be used to denote the vector product.
-    FUNCTION cross(a, b) RESULT(RESULT)
+    function cross(a, b) result(result)
 
-        REAL(dp), DIMENSION(3) :: a, b
-        REAL(dp), DIMENSION(3) :: RESULT
+        real(dp), dimension(3) :: a, b
+        real(dp), dimension(3) :: result
 
-        RESULT(1) = a(2) * b(3) - b(2) * a(3)
-        RESULT(2) = -(a(1) * b(3) - b(1) * a(3))
-        RESULT(3) = a(1) * b(2) - b(1) * a(2)
+        result(1) = a(2) * b(3) - b(2) * a(3)
+        result(2) = -(a(1) * b(3) - b(1) * a(3))
+        result(3) = a(1) * b(2) - b(1) * a(2)
 
-    END FUNCTION cross
+    end function cross
 
     !> function that calculates the Euclidean norm (L2 norm) of a vector \( \vec{a} \),
     !> where \( \vec{a} \in \mathbb{R}^n \)
     !> \[ ||\vec{a}||_2 = \sqrt{\sum_{i=1}^{n} a_i^2} \quad \text{ with } \quad \sum_{i=1}^{n} a_i^2 = \vec{a} \cdot \vec{a} \]
     !> where \( n \) is the dimension of the real vector \( \vec{a} \).
-    FUNCTION norm_2_real(a) RESULT(RESULT)
+    function norm_2_real(a) result(result)
 
-        REAL(dp), DIMENSION(:) :: a
-        REAL(dp) :: RESULT
+        real(dp), dimension(:) :: a
+        real(dp) :: result
 
-        RESULT = sqrt(dot_product(a, a))
+        result = sqrt(dot_product(a, a))
 
-    END FUNCTION norm_2_real
+    end function norm_2_real
 
     !> Optimized norm calculation avoiding overflow/underflow
-    PURE FUNCTION norm_2_safe(a) RESULT(RESULT)
-        REAL(dp), DIMENSION(:), INTENT(IN) :: a
-        REAL(dp) :: RESULT
-        REAL(dp) :: scale, sum_of_squares
+    pure function norm_2_safe(a) result(result)
+        real(dp), dimension(:), intent(IN) :: a
+        real(dp) :: result
+        real(dp) :: scale, sum_of_squares
 
         scale = maxval(abs(a))
-        IF (scale == 0.0_dp) THEN
-            RESULT = 0.0_dp
-        ELSE
+        if (scale == 0.0_dp) then
+            result = 0.0_dp
+        else
             sum_of_squares = sum((a / scale)**2)
-            RESULT = scale * sqrt(sum_of_squares)
-        END IF
-    END FUNCTION norm_2_safe
+            result = scale * sqrt(sum_of_squares)
+        end if
+    end function norm_2_safe
 
     !> function that calculates the Euclidean norm (L2 norm or modulus) of a vector \( \vec{a} \),
     !> where \( \vec{a} \in \mathbb{C}^n \)
     !> \[ ||\vec{a}||_2 = \sqrt{\sum_{i=1}^{n} |a_i|^2} \quad \text{ with } \quad \sum_{i=1}^{n} |a_i|^2 = \vec{a} \cdot \overline{\vec{a}} \]
     !> where \( n \) is the dimension of the complex vector \( \vec{a} \).
-    FUNCTION norm_2_complex(a) RESULT(RESULT)
+    function norm_2_complex(a) result(result)
 
-        COMPLEX(dp), DIMENSION(:) :: a
-        REAL(dp) :: RESULT
+        complex(dp), dimension(:) :: a
+        real(dp) :: result
 
-        RESULT = sqrt(REAL(dot_product(a, conjg(a))))
+        result = sqrt(real(dot_product(a, conjg(a))))
 
-    END FUNCTION norm_2_complex
+    end function norm_2_complex
 
     !> function that normalises a real vector a to make it a unit vector,
     !> where \( \vec{a} \in \mathbb{R}^n \)
     !> \[ \hat{a} = \frac{\vec{a}}{||\vec{a}||_2} \]
-    FUNCTION normalise(a) RESULT(RESULT)
+    function normalise(a) result(result)
 
-        REAL(dp), DIMENSION(:) :: a
-        REAL(dp), DIMENSION(size(a)) :: RESULT
+        real(dp), dimension(:) :: a
+        real(dp), dimension(size(a)) :: result
 
-        RESULT = a / norm_2_real(a)
+        result = a / norm_2_real(a)
 
-    END FUNCTION normalise
+    end function normalise
 
     !> function that normalises a complex vector a to make it a unit vector,
     !> where \( \vec{a} \in \mathbb{C}^n \)
     !> \[ \hat{a} = \frac{\vec{a}}{||\vec{a}||_2} \]
-    FUNCTION normalise_complexe(a) RESULT(RESULT)
-        COMPLEX(dp), DIMENSION(:) :: a
-        COMPLEX(dp), DIMENSION(size(a)) :: RESULT
+    function normalise_complexe(a) result(result)
+        complex(dp), dimension(:) :: a
+        complex(dp), dimension(size(a)) :: result
 
-        RESULT = a / norm_2_complex(a)
+        result = a / norm_2_complex(a)
 
-    END FUNCTION normalise_complexe
+    end function normalise_complexe
 
     !> function that calculates the trace of a square matrix \( A \)
     !> \[ \text{Tr}(A) = \sum_{i=1}^{n} A(i,i) \]
-    FUNCTION Trace(A) RESULT(RESULT)
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp) :: RESULT
-        INTEGER :: i, N
+    function Trace(A) result(result)
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp) :: result
+        integer :: i, N
 
         N = size(A, 1)
-        IF (size(A, 2) /= N) STOP "Error: Matrix must be square."
+        if (size(A, 2) /= N) stop "Error: Matrix must be square."
 
-        RESULT = sum([(A(i, i), i=1, N)])
+        result = sum([(A(i, i), i=1, N)])
 
-    END FUNCTION Trace
+    end function Trace
 
     !> function which checks if **A** is diagonally dominant
     !> \[ \forall i, |A(i,i)| \geq \sum_{j \neq i} |A(i,j)| \]
-    FUNCTION Diagonally_Dominant_Matrix(A) RESULT(diagonally_dominant)
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        LOGICAL :: diagonally_dominant
-        REAL(dp) :: summation
-        INTEGER :: i, N
+    function Diagonally_Dominant_Matrix(A) result(diagonally_dominant)
+        real(dp), dimension(:, :), intent(IN) :: A
+        logical :: diagonally_dominant
+        real(dp) :: summation
+        integer :: i, N
 
         N = size(A, 1)
 
-        diagonally_dominant = .TRUE.
+        diagonally_dominant = .true.
 
-        DO i = 1, N
+        do i = 1, N
             summation = sum(abs(A(i, :) - A(i, i)))
-            IF (abs(A(i, i)) < summation) THEN
-                diagonally_dominant = .FALSE.
-                EXIT
-            END IF
-        END DO
+            if (abs(A(i, i)) < summation) then
+                diagonally_dominant = .false.
+                exit
+            end if
+        end do
 
-    END FUNCTION Diagonally_Dominant_Matrix
+    end function Diagonally_Dominant_Matrix
 
     !> function that returns the identity matrix for a given size N
     !> \[ I_N = \begin{pmatrix} 1 & 0 & \cdots & 0 \\ 0 & 1 & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & 1 \end{pmatrix} \]
-    FUNCTION Identity_n(N, use_concurrent) RESULT(Identity)
-        INTEGER, INTENT(IN) :: N
-        LOGICAL, INTENT(IN), OPTIONAL :: use_concurrent
-        REAL(dp), DIMENSION(N, N) :: Identity
-        INTEGER :: i
-        LOGICAL :: concurrent_mode
+    function Identity_n(N, use_concurrent) result(Identity)
+        integer, intent(IN) :: N
+        logical, intent(IN), optional :: use_concurrent
+        real(dp), dimension(N, N) :: Identity
+        integer :: i
+        logical :: concurrent_mode
 
-        concurrent_mode = .FALSE.
-        IF (present(use_concurrent)) concurrent_mode = use_concurrent
+        concurrent_mode = .false.
+        if (present(use_concurrent)) concurrent_mode = use_concurrent
 
         Identity = 0.d0
 
-        IF (concurrent_mode) THEN
-            DO CONCURRENT(i=1:N)
+        if (concurrent_mode) then
+            do concurrent(i=1:N)
                 Identity(i, i) = 1.0_dp
-            END DO
-        ELSE
-            FORALL (i=1:N) Identity(i, i) = 1.0_dp
-        END IF
+            end do
+        else
+            forall (i=1:N) Identity(i, i) = 1.0_dp
+        end if
 
-    END FUNCTION Identity_n
+    end function Identity_n
 
     !> function that extracts the diagonal of a matrix
     !> \[ D = \begin{pmatrix} A(1,1) & 0 & \cdots & 0 \\ 0 & A(2,2) & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & A(n,n) \end{pmatrix} \]
     !> where \( D \) is a vector containing the diagonal elements of the matrix \( A \).
-    FUNCTION Diag(A) RESULT(D)
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        REAL(dp), DIMENSION(size(A, 1)) :: D
-        INTEGER :: i, N
+    function Diag(A) result(D)
+        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(size(A, 1)) :: D
+        integer :: i, N
 
         N = size(A, 1)
 
-        FORALL (i=1:N) D(i) = A(i, i)
+        forall (i=1:N) D(i) = A(i, i)
 
-    END FUNCTION Diag
+    end function Diag
 
-    FUNCTION Make_Tridiagonal(d_minus, d, d_plus) RESULT(T)
-        REAL(dp), DIMENSION(:), INTENT(IN) :: d_minus, d, d_plus
-        REAL(dp), DIMENSION(size(d, 1), size(d, 1)) :: T
-        INTEGER :: i, N
+    function Make_Tridiagonal(d_minus, d, d_plus) result(T)
+        real(dp), dimension(:), intent(IN) :: d_minus, d, d_plus
+        real(dp), dimension(size(d, 1), size(d, 1)) :: T
+        integer :: i, N
 
         N = size(d, 1)
 
         T = 0.d0
-        DO i = 1, N
+        do i = 1, N
             T(i, i) = d(i)
-            IF (i > 1) T(i, i-1) = d_minus(i)
-            IF (i < N) T(i, i+1) = d_plus(i)
-        END DO
+            if (i > 1) T(i, i - 1) = d_minus(i)
+            if (i < N) T(i, i + 1) = d_plus(i)
+        end do
 
-    END FUNCTION Make_Tridiagonal
+    end function Make_Tridiagonal
 
     !> Function to create a rotation matrix
     !>
     !> This function generates a rotation matrix **G** based on the input matrix **A** and the specified rotation indices.
-    FUNCTION rotation_matrix(A, rotation) RESULT(G)
+    function rotation_matrix(A, rotation) result(G)
 
-        REAL(dp), DIMENSION(:, :), INTENT(IN) :: A
-        INTEGER, DIMENSION(2), INTENT(IN) :: rotation
-        REAL(dp), DIMENSION(size(A, 1), size(A, 2)) :: G
-        REAL(dp) :: frac, val_1, val_2
-        INTEGER :: i, j
+        real(dp), dimension(:, :), intent(IN) :: A
+        integer, dimension(2), intent(IN) :: rotation
+        real(dp), dimension(size(A, 1), size(A, 2)) :: G
+        real(dp) :: frac, val_1, val_2
+        integer :: i, j
 
         i = rotation(1)
         j = rotation(2)
@@ -227,6 +227,6 @@ CONTAINS
         G(i, j) = -val_2 / frac
         G(j, i) = val_2 / frac
 
-    END FUNCTION rotation_matrix
+    end function rotation_matrix
 
-END MODULE NAFPack_matricielle
+end module NAFPack_matricielle

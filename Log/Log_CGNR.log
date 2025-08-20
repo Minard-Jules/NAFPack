@@ -15,10 +15,10 @@
 
               ╔====================================== Starting system solver ======================================
               ║
-[INFO]        ║ Date and time                          : 2025-08-15 22:45:13
+[INFO]        ║ Date and time                          : 2025-08-20 21:09:36
 [INFO]        ║ Method used                            : Conjugate Gradient on Normal Residual
 [INFO]        ║ System size                            : 3 x 3
-[INFO]        ║ Memory used                            : 7456 KB
+[INFO]        ║ Memory used                            : 7468 KB
 [INFO]        ║ Norme used                             : Norm L2 or Euclidean
 [INFO]        ║ Convergence criterion (Tolerance)      : ||r|| < 1.00E-12
 [INFO]        ║ Max iterations                         : 1000
@@ -29,9 +29,9 @@
               ║
 [INFO]        ║ Iter     Residual norm (||r||)     Relative residual norm (||r||/||r0||)     Time (s)
               ║----------------------------------------------------------------------------------------------------
-[22:45:13]    ║  1            5.7627640                        5.2606597E-1                   0.0000000
-[22:45:13]    ║  2            2.5469060                        2.3249965E-1                   0.0000000
-[22:45:13]    ║  3            2.8435584E-15                    2.5958018E-16                  0.0000000
+[21:09:36]    ║  1            5.7627640E+0                     5.2606597E-1                   0.0000000E+0
+[21:09:36]    ║  2            2.5469060E+0                     2.3249965E-1                   0.0000000E+0
+[21:09:36]    ║  3            2.8435584E-15                    2.5958018E-16                  0.0000000E+0
               ╚====================================================================================================
 
               ╔============================================= Results ==============================================
@@ -40,7 +40,7 @@
 [INFO]        ║ Final residual                         : ||r|| = 2.8435584E-15 < 1.0E-12 (convergence achieved)
 [DETAIL]      ║     Relative residual norm             : ||r||/||r0|| = 2.5958018E-16
 [INFO]        ║ Total iterations                       : 3
-[INFO]        ║ Solution                               : x = [ 1.0000000 2.0000000 3.0000000]
-[INFO]        ║ Solver completed in                    : 0.0000000 seconds
-[INFO]        ║ Memory used                            : 7472 KB
+[INFO]        ║ Solution                               : x = [ 1.0000000E+0 2.0000000E+0 3.0000000E+0]
+[INFO]        ║ Solver completed in                    : 0.0000000E+0 seconds
+[INFO]        ║ Memory used                            : 7484 KB
               ╚====================================================================================================
