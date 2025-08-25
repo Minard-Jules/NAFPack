@@ -9,11 +9,11 @@ contains
 
     subroutine Faddeev_Leverrier(A, c, Ainv, success, check)
         integer, parameter :: dp = kind(1.0d0)
-        real(dp), dimension(:, :), intent(IN) :: A
-        logical, optional, intent(IN) :: check
-        real(dp), dimension(:), intent(OUT) :: c
-        real(dp), dimension(size(A, 1), size(A, 1)), optional, intent(OUT) :: Ainv
-        logical, optional, intent(OUT) :: success
+        real(dp), dimension(:, :), intent(in) :: A
+        logical, optional, intent(in) :: check
+        real(dp), dimension(:), intent(out) :: c
+        real(dp), dimension(size(A, 1), size(A, 1)), optional, intent(out) :: Ainv
+        logical, optional, intent(out) :: success
         real(dp), dimension(size(A, 1), size(A, 1)) :: Bk, I, B_Nm1, AB
         logical :: do_check = .true.
         integer :: N, k

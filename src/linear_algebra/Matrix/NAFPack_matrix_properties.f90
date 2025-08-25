@@ -1,8 +1,8 @@
 module NAFPack_matrix_properties
 
-    use NAFPack_constant
-    use NAFPack_matricielle
-    use NAFPack_Eigen
+    use NAFPack_constant, only: dp, epsi_test, epsi
+    use NAFPack_matricielle, only: Identity_n, Diag
+    use NAFPack_Eigen, only: Eigen
 
     implicit none(type, external)
 
@@ -13,7 +13,7 @@ module NAFPack_matrix_properties
 contains
 
     function is_square_matrix(A) result(is_square)
-        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:, :), intent(in) :: A
         logical :: is_square
 
         is_square = (size(A, 1) == size(A, 2))
@@ -21,7 +21,7 @@ contains
     end function is_square_matrix
 
     function is_symmetric(A) result(is_sym)
-        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:, :), intent(in) :: A
         logical :: is_sym
 
         is_sym = all(A == transpose(A))
@@ -29,7 +29,7 @@ contains
     end function is_symmetric
 
     function is_orthogonal(A) result(is_orth)
-        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:, :), intent(in) :: A
         logical :: is_orth
 
         is_orth = all(abs(matmul(A, transpose(A)) - Identity_n(size(A, 1))) < epsi_test)
@@ -37,8 +37,8 @@ contains
     end function is_orthogonal
 
     function is_SPD(A, is_sym) result(is_spd_matrix)
-        real(dp), dimension(:, :), intent(IN) :: A
-        logical, optional, intent(IN) :: is_sym
+        real(dp), dimension(:, :), intent(in) :: A
+        logical, optional, intent(in) :: is_sym
         real(dp), dimension(size(A, 1)) :: lambda
         logical :: is_spd_matrix
 
@@ -62,7 +62,7 @@ contains
     end function is_SPD
 
     function is_tridiagonal(A) result(is_tridiag)
-        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:, :), intent(in) :: A
         logical :: is_tridiag
         integer :: i, j, N
 
@@ -83,7 +83,7 @@ contains
     end function is_tridiagonal
 
     function is_diagonally_dominant(A) result(is_diag_dom)
-        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:, :), intent(in) :: A
         logical :: is_diag_dom
         integer :: i, N
         real(dp) :: row_sum
@@ -102,7 +102,7 @@ contains
     end function is_diagonally_dominant
 
     function is_non_zero_diagonal(A) result(is_non_zero_diag)
-        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:, :), intent(in) :: A
         logical :: is_non_zero_diag
 
         is_non_zero_diag = .true.

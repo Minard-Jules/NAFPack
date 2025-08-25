@@ -13,7 +13,7 @@ contains
 
     subroutine test_FFT(stat)
 
-        logical, intent(INOUT) :: stat
+        logical, intent(inout) :: stat
 
         integer, parameter :: Mx = 10, My = 20
         integer, parameter :: Mx2 = 5, My2 = 6

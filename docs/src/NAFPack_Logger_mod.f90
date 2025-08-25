@@ -72,7 +72,7 @@ contains
 !==========================================================================
 
     subroutine init_logger(this)
-        class(Logger), intent(INOUT) :: this
+        class(Logger), intent(inout) :: this
         character(KIND=ucs4, LEN=100) :: msg
 
         if (this%to_file) then
@@ -106,40 +106,40 @@ contains
 !==========================================================================
 
     subroutine log_info(this, msg)
-        class(Logger), intent(INOUT) :: this
-        character(KIND=ucs4, LEN=*), intent(IN) :: msg
+        class(Logger), intent(inout) :: this
+        character(KIND=ucs4, LEN=*), intent(in) :: msg
 
         if (this%verbosity_level >= 2) call this%write(msg, ucs4_"INFO", blue_color_ucs4)
 
     end subroutine log_info
 
     subroutine log_detail(this, msg)
-        class(Logger), intent(INOUT) :: this
-        character(KIND=ucs4, LEN=*), intent(IN) :: msg
+        class(Logger), intent(inout) :: this
+        character(KIND=ucs4, LEN=*), intent(in) :: msg
 
         if (this%verbosity_level >= 3) call this%write(ucs4_"    "//msg, ucs4_"DETAIL", green_color_ucs4)
 
     end subroutine log_detail
 
     subroutine log_warning(this, msg)
-        class(Logger), intent(INOUT) :: this
-        character(KIND=ucs4, LEN=*), intent(IN) :: msg
+        class(Logger), intent(inout) :: this
+        character(KIND=ucs4, LEN=*), intent(in) :: msg
 
         if (this%verbosity_level >= 1) call this%write(msg, ucs4_"WARNING", yellow_color_ucs4)
 
     end subroutine log_warning
 
     subroutine log_error(this, msg)
-        class(Logger), intent(INOUT) :: this
-        character(KIND=ucs4, LEN=*), intent(IN) :: msg
+        class(Logger), intent(inout) :: this
+        character(KIND=ucs4, LEN=*), intent(in) :: msg
 
         if (this%verbosity_level >= 1) call this%write(msg, ucs4_"ERROR", red_color_ucs4)
 
     end subroutine log_error
 
     subroutine log_time(this, msg)
-        class(Logger), intent(INOUT) :: this
-        character(KIND=ucs4, LEN=*), intent(IN) :: msg
+        class(Logger), intent(inout) :: this
+        character(KIND=ucs4, LEN=*), intent(in) :: msg
         character(LEN=10) :: time
         character(KIND=ucs4, LEN=10) :: time_ucs4
 
@@ -153,11 +153,11 @@ contains
 !==========================================================================
 
     subroutine write_output(this, msg, name_level, color_level, box_style)
-        class(Logger), intent(IN) :: this
-        character(KIND=ucs4, LEN=*), intent(IN) :: msg
-        character(KIND=ucs4, LEN=*), optional, intent(IN) :: name_level
-        character(KIND=ucs4, LEN=*), optional, intent(IN) :: color_level
-        character(LEN=*), optional, intent(IN) :: box_style
+        class(Logger), intent(in) :: this
+        character(KIND=ucs4, LEN=*), intent(in) :: msg
+        character(KIND=ucs4, LEN=*), optional, intent(in) :: name_level
+        character(KIND=ucs4, LEN=*), optional, intent(in) :: color_level
+        character(LEN=*), optional, intent(in) :: box_style
         character(KIND=ucs4, LEN=100) :: info_char
         character(LEN=4) :: box_char = " "
 
@@ -213,7 +213,7 @@ contains
 !==========================================================================
 
     subroutine close_logger(this)
-        class(Logger), intent(INOUT) :: this
+        class(Logger), intent(inout) :: this
 
         if (this%to_file) close (this%file_unit)
 
@@ -222,8 +222,8 @@ contains
 !==========================================================================
 
     subroutine log_field_str(verbose, label, value)
-        type(Logger), intent(INOUT) :: verbose
-        character(*), intent(IN) :: label, value
+        type(Logger), intent(inout) :: verbose
+        character(*), intent(in) :: label, value
         character(KIND=ucs4, LEN=100) :: msg
 
         write (msg, '(A, T40, 2A)') trim(label), ": ", trim(value)
@@ -232,9 +232,9 @@ contains
     end subroutine log_field_str
 
     subroutine log_field_ucs4(verbose, label, value)
-        type(Logger), intent(INOUT) :: verbose
-        character(*), intent(IN) :: label
-        character(KIND=ucs4, LEN=*), intent(IN) :: value
+        type(Logger), intent(inout) :: verbose
+        character(*), intent(in) :: label
+        character(KIND=ucs4, LEN=*), intent(in) :: value
         character(KIND=ucs4, LEN=100) :: msg
 
         write (msg, '(A, T40, 2A)') trim(label), ": ", trim(value)
@@ -243,9 +243,9 @@ contains
     end subroutine log_field_ucs4
 
     subroutine log_field_int(verbose, label, value)
-        type(Logger), intent(INOUT) :: verbose
-        character(*), intent(IN) :: label
-        integer, intent(IN) :: value
+        type(Logger), intent(inout) :: verbose
+        character(*), intent(in) :: label
+        integer, intent(in) :: value
         character(KIND=ucs4, LEN=100) :: msg
 
         write (msg, '(A, T40, A, I0)') trim(label), ": ", value
@@ -254,9 +254,9 @@ contains
     end subroutine log_field_int
 
     subroutine log_field_real(verbose, label, value)
-        type(Logger), intent(INOUT) :: verbose
-        character(*), intent(IN) :: label
-        real(dp), intent(IN) :: value
+        type(Logger), intent(inout) :: verbose
+        character(*), intent(in) :: label
+        real(dp), intent(in) :: value
         character(KIND=ucs4, LEN=100) :: msg
 
         write (msg, '(A, T40, A, ES0.7)') trim(label), ": ", value
@@ -265,9 +265,9 @@ contains
     end subroutine log_field_real
 
     subroutine log_field_logical(verbose, label, value)
-        type(Logger), intent(INOUT) :: verbose
-        character(*), intent(IN) :: label
-        logical, intent(IN) :: value
+        type(Logger), intent(inout) :: verbose
+        character(*), intent(in) :: label
+        logical, intent(in) :: value
         character(KIND=ucs4, LEN=100) :: msg
 
         write (msg, '(A, T40, A, L)') trim(label), ": ", value
@@ -276,9 +276,9 @@ contains
     end subroutine log_field_logical
 
     function center_with_fill(text, width, fill_char) result(centered_text)
-        character(LEN=*), intent(IN) :: text
-        integer, intent(IN) :: width
-        character(LEN=1), optional, intent(IN) :: fill_char
+        character(LEN=*), intent(in) :: text
+        integer, intent(in) :: width
+        character(LEN=1), optional, intent(in) :: fill_char
         character(LEN=1) :: fill
         character(KIND=ucs4, LEN=width) :: centered_text
         integer :: text_len, padding, left_padding, right_padding, i

@@ -1,7 +1,7 @@
 !> Module for advanced configuration and tuning parameters
 module NAFPack_config
 
-    use NAFPack_constant
+    use NAFPack_constant, only: dp, TOL_CONVERGENCE, TOL_PIVOT, epsi, kmax
 
     implicit none(type, external)
 
@@ -62,9 +62,9 @@ contains
 
     !> Validate configuration parameters
     subroutine validate_config(config, is_valid, error_msg)
-        type(config_type), intent(IN) :: config
-        logical, intent(OUT) :: is_valid
-        character(LEN=*), intent(OUT) :: error_msg
+        type(config_type), intent(in) :: config
+        logical, intent(out) :: is_valid
+        character(LEN=40), intent(out) :: error_msg
 
         is_valid = .true.
         error_msg = ""

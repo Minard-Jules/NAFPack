@@ -27,9 +27,9 @@ contains
     !> - "FFTW_FFT_1D" + threads: Fast Fourier Transform using FFTW with multithreading
     function FFT_1D(signal, method, threads) result(result)
 
-        complex(dp), dimension(:), intent(INOUT) :: signal
-        character(*), intent(IN) :: method
-        integer, optional, intent(IN) :: threads
+        complex(dp), dimension(:), intent(inout) :: signal
+        character(*), intent(in) :: method
+        integer, optional, intent(in) :: threads
         complex(dp), dimension(size(signal)) :: result
 
         if (method == "NAFPack_DFT") then
@@ -56,9 +56,9 @@ contains
     !> - "FFTW_IFFT_1D" + threads: Fast Fourier Transform using FFTW with multithreading
     function IFFT_1D(signal, method, threads) result(result)
 
-        complex(dp), dimension(:), intent(INOUT) :: signal
-        character(*), intent(IN) :: method
-        integer, optional, intent(IN) :: threads
+        complex(dp), dimension(:), intent(inout) :: signal
+        character(*), intent(in) :: method
+        integer, optional, intent(in) :: threads
         complex(dp), dimension(size(signal)) :: result
 
         if (method == "NAFPack_IFFT_1D") then
@@ -83,9 +83,9 @@ contains
     !> - "FFTW_FFT_2D" + threads: Fast Fourier Transform using FFTW with multithreading
     function FFT_2D(signal, method, threads) result(result)
 
-        complex(dp), dimension(:, :), intent(INOUT) :: signal
-        character(*), intent(IN) :: method
-        integer, optional, intent(IN) :: threads
+        complex(dp), dimension(:, :), intent(inout) :: signal
+        character(*), intent(in) :: method
+        integer, optional, intent(in) :: threads
         complex(dp), dimension(size(signal, 1), size(signal, 2)) :: result
 
         if (method == "NAFPack_FFT_2D") then
@@ -110,9 +110,9 @@ contains
     !> - "FFTW_IFFT_2D" + threads: Fast Fourier Transform using FFTW with multithreading
     function IFFT_2D(signal, method, threads) result(result)
 
-        complex(dp), dimension(:, :), intent(INOUT) :: signal
-        character(*), intent(IN) :: method
-        integer, optional, intent(IN) :: threads
+        complex(dp), dimension(:, :), intent(inout) :: signal
+        character(*), intent(in) :: method
+        integer, optional, intent(in) :: threads
         complex(dp), dimension(size(signal, 1), size(signal, 2)) :: result
 
         if (method == "NAFPack_IFFT_2D") then
@@ -136,9 +136,9 @@ contains
     !> - "FFTW_FFT_3D" + threads: Fast Fourier Transform using FFTW with multithreading
     function FFT_3D(signal, method, threads) result(result)
 
-        complex(dp), dimension(:, :, :), intent(INOUT) :: signal
-        character(*), intent(IN) :: method
-        integer, optional, intent(IN) :: threads
+        complex(dp), dimension(:, :, :), intent(inout) :: signal
+        character(*), intent(in) :: method
+        integer, optional, intent(in) :: threads
         complex(dp), dimension(size(signal, 1), size(signal, 2), size(signal, 3)) :: result
 
         if (method == "FFTW_FFT_3D" .and. .not. present(threads)) then
@@ -160,9 +160,9 @@ contains
     !> - "FFTW_IFFT_3D" + threads: Fast Fourier Transform using FFTW with multithreading
     function IFFT_3D(signal, method, threads) result(result)
 
-        complex(dp), dimension(:, :, :), intent(INOUT) :: signal
-        character(*), intent(IN) :: method
-        integer, optional, intent(IN) :: threads
+        complex(dp), dimension(:, :, :), intent(inout) :: signal
+        character(*), intent(in) :: method
+        integer, optional, intent(in) :: threads
         complex(dp), dimension(size(signal, 1), size(signal, 2), size(signal, 3)) :: result
 
         if (method == "FFTW_IFFT_3D" .and. .not. present(threads)) then
@@ -180,8 +180,8 @@ contains
     !> Perform a 1D Fast Fourier Transform on a signal using FFTW with multithreading
     function FFTW_FFT_1D_threads(signal, threads) result(result)
 
-        complex(c_double_complex), dimension(:), intent(INOUT) :: signal
-        integer, intent(IN) :: threads
+        complex(c_double_complex), dimension(:), intent(inout) :: signal
+        integer, intent(in) :: threads
         complex(c_double_complex), dimension(size(signal)) :: result
         integer :: error_init_thread
         type(c_ptr) :: plan
@@ -202,7 +202,7 @@ contains
     !> Perform a 1D Fast Fourier Transform on a signal using FFTW
     function FFTW_FFT_1D(signal) result(result)
 
-        complex(c_double_complex), dimension(:), intent(INOUT) :: signal
+        complex(c_double_complex), dimension(:), intent(inout) :: signal
         complex(c_double_complex), dimension(size(signal)) :: result
         type(c_ptr) :: plan
 
@@ -215,7 +215,7 @@ contains
     !> Perform a 1D inverse Fast Fourier Transform on a signal using FFTW
     function FFTW_IFFT_1D(signal) result(result)
 
-        complex(c_double_complex), dimension(:), intent(INOUT) :: signal
+        complex(c_double_complex), dimension(:), intent(inout) :: signal
         complex(c_double_complex), dimension(size(signal)) :: result
         type(c_ptr) :: plan
 
@@ -229,8 +229,8 @@ contains
     !> Perform a 1D inverse Fast Fourier Transform on a signal using FFTW with multithreading
     function FFTW_IFFT_1D_threads(signal, threads) result(result)
 
-        complex(c_double_complex), dimension(:), intent(INOUT) :: signal
-        integer, intent(IN) :: threads
+        complex(c_double_complex), dimension(:), intent(inout) :: signal
+        integer, intent(in) :: threads
         complex(c_double_complex), dimension(size(signal)) :: result
         integer :: error_init_thread
         type(c_ptr) :: plan
@@ -252,7 +252,7 @@ contains
     !> Perform a 2D Fast Fourier Transform on a signal using FFTW
     function FFTW_FFT_2D(signal) result(result)
 
-        complex(c_double_complex), dimension(:, :), intent(INOUT) :: signal
+        complex(c_double_complex), dimension(:, :), intent(inout) :: signal
         complex(c_double_complex), dimension(size(signal, 1), size(signal, 2)) :: result
         type(c_ptr) :: plan
 
@@ -265,8 +265,8 @@ contains
     !> Perform a 2D Fast Fourier Transform on a signal using FFTW with multithreading
     function FFTW_FFT_2D_threads(signal, threads) result(result)
 
-        complex(c_double_complex), dimension(:, :), intent(INOUT) :: signal
-        integer, intent(IN) :: threads
+        complex(c_double_complex), dimension(:, :), intent(inout) :: signal
+        integer, intent(in) :: threads
         complex(c_double_complex), dimension(size(signal, 1), size(signal, 2)) :: result
         integer :: error_init_thread
         type(c_ptr) :: plan
@@ -287,7 +287,7 @@ contains
     !> Perform a 2D inverse Fast Fourier Transform on a signal using FFTW
     function FFTW_IFFT_2D(signal) result(result)
 
-        complex(c_double_complex), dimension(:, :), intent(INOUT) :: signal
+        complex(c_double_complex), dimension(:, :), intent(inout) :: signal
         complex(c_double_complex), dimension(size(signal, 1), size(signal, 2)) :: result
         type(c_ptr) :: plan
 
@@ -301,8 +301,8 @@ contains
     !> Perform a 2D inverse Fast Fourier Transform on a signal using FFTW with multithreading
     function FFTW_IFFT_2D_threads(signal, threads) result(result)
 
-        complex(c_double_complex), dimension(:, :), intent(INOUT) :: signal
-        integer, intent(IN) :: threads
+        complex(c_double_complex), dimension(:, :), intent(inout) :: signal
+        integer, intent(in) :: threads
         complex(c_double_complex), dimension(size(signal, 1), size(signal, 2)) :: result
         integer :: error_init_thread
         type(c_ptr) :: plan
@@ -324,7 +324,7 @@ contains
     !> Perform a 3D Fast Fourier Transform on a signal using FFTW
     function FFTW_FFT_3D(signal) result(result)
 
-        complex(c_double_complex), dimension(:, :, :), intent(INOUT) :: signal
+        complex(c_double_complex), dimension(:, :, :), intent(inout) :: signal
         complex(c_double_complex), dimension(size(signal, 1), size(signal, 2), size(signal, 3)) :: result
         type(c_ptr) :: plan
 
@@ -337,8 +337,8 @@ contains
     !> Perform a 3D Fast Fourier Transform on a signal using FFTW with multithreading
     function FFTW_FFT_3D_threads(signal, threads) result(result)
 
-        complex(c_double_complex), dimension(:, :, :), intent(INOUT) :: signal
-        integer, intent(IN) :: threads
+        complex(c_double_complex), dimension(:, :, :), intent(inout) :: signal
+        integer, intent(in) :: threads
         complex(c_double_complex), dimension(size(signal, 1), size(signal, 2), size(signal, 3)) :: result
         integer :: error_init_thread
         type(c_ptr) :: plan
@@ -359,7 +359,7 @@ contains
     !> Perform a 3D inverse Fast Fourier Transform on a signal using FFTW
     function FFTW_IFFT_3D(signal) result(result)
 
-        complex(c_double_complex), dimension(:, :, :), intent(INOUT) :: signal
+        complex(c_double_complex), dimension(:, :, :), intent(inout) :: signal
         complex(c_double_complex), dimension(size(signal, 1), size(signal, 2), size(signal, 3)) :: result
         type(c_ptr) :: plan
 
@@ -373,8 +373,8 @@ contains
     !> Perform a 3D inverse Fast Fourier Transform on a signal using FFTW with multithreading
     function FFTW_IFFT_3D_threads(signal, threads) result(result)
 
-        complex(c_double_complex), dimension(:, :, :), intent(INOUT) :: signal
-        integer, intent(IN) :: threads
+        complex(c_double_complex), dimension(:, :, :), intent(inout) :: signal
+        integer, intent(in) :: threads
         complex(c_double_complex), dimension(size(signal, 1), size(signal, 2), size(signal, 3)) :: result
         integer :: error_init_thread
         type(c_ptr) :: plan
@@ -398,7 +398,7 @@ contains
     !> Perform a 1D Discrete Fourier Transform on a signal
     function NAFPack_DFT_1D(signal) result(result)
 
-        complex(dp), dimension(:), intent(IN) :: signal
+        complex(dp), dimension(:), intent(in) :: signal
         complex(dp), dimension(size(signal)) :: result
         complex(dp) :: S
         integer :: N, i, k, j
@@ -427,7 +427,7 @@ contains
     !> Compute the complex exponential factors for the FFT
     function fun_omega(N) result(result)
 
-        integer, intent(IN) :: N
+        integer, intent(in) :: N
         complex(dp), dimension(N/2) :: result
         integer :: i
 
@@ -440,7 +440,7 @@ contains
     !> Perform a 1D Fast Fourier Transform (Cooley-Tukey) on a signal
     recursive function NAFPack_FFT_1D(signal) result(result)
 
-        complex(dp), dimension(:), intent(IN) :: signal
+        complex(dp), dimension(:), intent(in) :: signal
         complex(dp), dimension(size(signal)) :: result
         complex(dp), dimension(size(signal)/2) :: f_pair, f_impair, omega
         integer :: N
@@ -463,7 +463,7 @@ contains
     !> Perform a 1D inverse Fast Fourier Transform on a signal
     function NAFPack_IFFT_1D(f_signal) result(result)
 
-        complex(dp), dimension(:), intent(IN) :: f_signal
+        complex(dp), dimension(:), intent(in) :: f_signal
         complex(dp), dimension(size(f_signal)) :: result
         complex(dp), dimension(size(f_signal)) :: f_conjugate
         integer :: N
@@ -481,7 +481,7 @@ contains
     !> Perform a 2D Fast Fourier Transform on a signal
     function NAFPack_FFT_2D(signal) result(result)
 
-        complex(dp), dimension(:, :), intent(IN) :: signal
+        complex(dp), dimension(:, :), intent(in) :: signal
         complex(dp), dimension(size(signal, 1), size(signal, 2)) :: result
         integer :: Nx, Ny, i
 
@@ -501,7 +501,7 @@ contains
     !> Perform a 2D inverse Fast Fourier Transform on a signal
     function NAFPack_IFFT_2D(f_signal) result(result)
 
-        complex(dp), dimension(:, :), intent(IN) :: f_signal
+        complex(dp), dimension(:, :), intent(in) :: f_signal
         complex(dp), dimension(size(f_signal, 1), size(f_signal, 2)) :: result
         integer :: Nx, Ny, i
 

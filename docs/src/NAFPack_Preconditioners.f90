@@ -58,7 +58,7 @@ module NAFPack_Preconditioners
 contains
 
     function Calculate_Jacobi_preconditioner(A) result(D)
-        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:, :), intent(in) :: A
         real(dp), dimension(size(A, 1), size(A, 2)) :: D
         integer :: N, i
 
@@ -72,7 +72,7 @@ contains
     end function Calculate_Jacobi_preconditioner
 
     function Calculate_Gauss_Seidel_preconditioner(A) result(L)
-        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:, :), intent(in) :: A
         real(dp), dimension(size(A, 1), size(A, 2)) :: L
         integer :: N, i, j
 
@@ -86,8 +86,8 @@ contains
     end function Calculate_Gauss_Seidel_preconditioner
 
     function Calculate_SOR_preconditioner(A, omega, alpha) result(L)
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), intent(IN) :: omega, alpha
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), intent(in) :: omega, alpha
         real(dp), dimension(size(A, 1), size(A, 2)) :: L
         integer :: N, i
 
@@ -106,8 +106,8 @@ contains
     end function Calculate_SOR_preconditioner
 
     function Calculate_JOR_preconditioner(A, omega, alpha) result(D)
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), intent(IN) :: omega, alpha
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), intent(in) :: omega, alpha
         real(dp), dimension(size(A, 1), size(A, 2)) :: D
         integer :: N, i
 
@@ -123,10 +123,10 @@ contains
     end function Calculate_JOR_preconditioner
 
     subroutine Calculate_ILU_preconditioner(A, L, U, omega, alpha, fill_level)
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), intent(IN) :: omega, alpha
-        real(dp), dimension(size(A, 1), size(A, 2)), intent(OUT) :: L, U
-        integer, optional, intent(IN) :: fill_level
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), intent(in) :: omega, alpha
+        real(dp), dimension(size(A, 1), size(A, 2)), intent(out) :: L, U
+        integer, optional, intent(in) :: fill_level
         integer :: N
 
         N = size(A, 1)
@@ -145,10 +145,10 @@ contains
     end subroutine Calculate_ILU_preconditioner
 
     function Calculate_ICF_preconditioner(A, omega, alpha, fill_level) result(L)
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), intent(IN) :: omega, alpha
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), intent(in) :: omega, alpha
         real(dp), dimension(size(A, 1), size(A, 2)) :: L
-        integer, optional, intent(IN) :: fill_level
+        integer, optional, intent(in) :: fill_level
         integer :: N
 
         N = size(A, 1)
@@ -166,9 +166,9 @@ contains
     end function Calculate_ICF_preconditioner
 
     subroutine Calculate_SSOR_preconditioner(A, L, D, omega, alpha)
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), intent(IN) :: omega, alpha
-        real(dp), dimension(size(A, 1), size(A, 2)), intent(OUT) :: L, D
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), intent(in) :: omega, alpha
+        real(dp), dimension(size(A, 1), size(A, 2)), intent(out) :: L, D
         integer :: N, i
 
         N = size(A, 1)

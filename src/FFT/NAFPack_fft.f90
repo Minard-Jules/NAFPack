@@ -5,9 +5,12 @@
 !> It allows users to choose between different methods for the Fourier Transform, such as NAFPack and FFTW.
 module NAFPack_fft
 
-    use FFTW3
+    use FFTW3, only: c_double_complex, c_ptr, fftw_plan_dft_1d, fftw_plan_dft_2d, &
+                     fftw_plan_dft_3d, fftw_execute_dft, fftw_destroy_plan, &
+                     fftw_cleanup, fftw_init_threads, fftw_cleanup_threads, &
+                     fftw_plan_with_nthreads, FFTW_FORWARD, FFTW_BACKWARD, FFTW_ESTIMATE
 
-    use NAFPack_constant
+    use NAFPack_constant, only: dp, pi, im
     implicit none(type, external)
 
     private
@@ -27,9 +30,9 @@ contains
     !> - "FFTW_FFT_1D" + threads: Fast Fourier Transform using FFTW with multithreading
     function FFT_1D(signal, method, threads) result(result)
 
-        complex(dp), dimension(:), intent(INOUT) :: signal
-        character(*), intent(IN) :: method
-        integer, optional, intent(IN) :: threads
+        complex(dp), dimension(:), intent(inout) :: signal
+        character(*), intent(in) :: method
+        integer, optional, intent(in) :: threads
         complex(dp), dimension(size(signal)) :: result
 
         if (method == "NAFPack_DFT") then
@@ -56,9 +59,9 @@ contains
     !> - "FFTW_IFFT_1D" + threads: Fast Fourier Transform using FFTW with multithreading
     function IFFT_1D(signal, method, threads) result(result)
 
-        complex(dp), dimension(:), intent(INOUT) :: signal
-        character(*), intent(IN) :: method
-        integer, optional, intent(IN) :: threads
+        complex(dp), dimension(:), intent(inout) :: signal
+        character(*), intent(in) :: method
+        integer, optional, intent(in) :: threads
         complex(dp), dimension(size(signal)) :: result
 
         if (method == "NAFPack_IFFT_1D") then
@@ -83,9 +86,9 @@ contains
     !> - "FFTW_FFT_2D" + threads: Fast Fourier Transform using FFTW with multithreading
     function FFT_2D(signal, method, threads) result(result)
 
-        complex(dp), dimension(:, :), intent(INOUT) :: signal
-        character(*), intent(IN) :: method
-        integer, optional, intent(IN) :: threads
+        complex(dp), dimension(:, :), intent(inout) :: signal
+        character(*), intent(in) :: method
+        integer, optional, intent(in) :: threads
         complex(dp), dimension(size(signal, 1), size(signal, 2)) :: result
 
         if (method == "NAFPack_FFT_2D") then
@@ -110,9 +113,9 @@ contains
     !> - "FFTW_IFFT_2D" + threads: Fast Fourier Transform using FFTW with multithreading
     function IFFT_2D(signal, method, threads) result(result)
 
-        complex(dp), dimension(:, :), intent(INOUT) :: signal
-        character(*), intent(IN) :: method
-        integer, optional, intent(IN) :: threads
+        complex(dp), dimension(:, :), intent(inout) :: signal
+        character(*), intent(in) :: method
+        integer, optional, intent(in) :: threads
         complex(dp), dimension(size(signal, 1), size(signal, 2)) :: result
 
         if (method == "NAFPack_IFFT_2D") then
@@ -136,9 +139,9 @@ contains
     !> - "FFTW_FFT_3D" + threads: Fast Fourier Transform using FFTW with multithreading
     function FFT_3D(signal, method, threads) result(result)
 
-        complex(dp), dimension(:, :, :), intent(INOUT) :: signal
-        character(*), intent(IN) :: method
-        integer, optional, intent(IN) :: threads
+        complex(dp), dimension(:, :, :), intent(inout) :: signal
+        character(*), intent(in) :: method
+        integer, optional, intent(in) :: threads
         complex(dp), dimension(size(signal, 1), size(signal, 2), size(signal, 3)) :: result
 
         if (method == "FFTW_FFT_3D" .and. .not. present(threads)) then
@@ -160,9 +163,9 @@ contains
     !> - "FFTW_IFFT_3D" + threads: Fast Fourier Transform using FFTW with multithreading
     function IFFT_3D(signal, method, threads) result(result)
 
-        complex(dp), dimension(:, :, :), intent(INOUT) :: signal
-        character(*), intent(IN) :: method
-        integer, optional, intent(IN) :: threads
+        complex(dp), dimension(:, :, :), intent(inout) :: signal
+        character(*), intent(in) :: method
+        integer, optional, intent(in) :: threads
         complex(dp), dimension(size(signal, 1), size(signal, 2), size(signal, 3)) :: result
 
         if (method == "FFTW_IFFT_3D" .and. .not. present(threads)) then
@@ -180,18 +183,20 @@ contains
     !> Perform a 1D Fast Fourier Transform on a signal using FFTW with multithreading
     function FFTW_FFT_1D_threads(signal, threads) result(result)
 
-        complex(c_double_complex), dimension(:), intent(INOUT) :: signal
-        integer, intent(IN) :: threads
+        complex(c_double_complex), dimension(:), intent(inout) :: signal
+        integer, intent(in) :: threads
         complex(c_double_complex), dimension(size(signal)) :: result
-        integer :: error_init_thread
+        integer :: error_init_thread, N
         type(c_ptr) :: plan
+
+        N = size(signal)
 
         error_init_thread = fftw_init_threads()
         if (error_init_thread == 0) stop "ERROR : Thread FFTW initialization problem"
 
         call fftw_plan_with_nthreads(threads)
 
-        plan = fftw_plan_dft_1d(size(signal), signal, result, FFTW_FORWARD, FFTW_ESTIMATE)
+        plan = fftw_plan_dft_1d(N, signal, result, FFTW_FORWARD, FFTW_ESTIMATE)
         call fftw_execute_dft(plan, signal, result)
         call fftw_destroy_plan(plan)
 
@@ -202,47 +207,59 @@ contains
     !> Perform a 1D Fast Fourier Transform on a signal using FFTW
     function FFTW_FFT_1D(signal) result(result)
 
-        complex(c_double_complex), dimension(:), intent(INOUT) :: signal
+        complex(c_double_complex), dimension(:), intent(inout) :: signal
         complex(c_double_complex), dimension(size(signal)) :: result
         type(c_ptr) :: plan
+        integer :: N
 
-        plan = fftw_plan_dft_1d(size(signal), signal, result, FFTW_FORWARD, FFTW_ESTIMATE)
+        N = size(signal)
+
+        plan = fftw_plan_dft_1d(N, signal, result, FFTW_FORWARD, FFTW_ESTIMATE)
         call fftw_execute_dft(plan, signal, result)
         call fftw_destroy_plan(plan)
+
+        call fftw_cleanup()
 
     end function FFTW_FFT_1D
 
     !> Perform a 1D inverse Fast Fourier Transform on a signal using FFTW
     function FFTW_IFFT_1D(signal) result(result)
 
-        complex(c_double_complex), dimension(:), intent(INOUT) :: signal
+        complex(c_double_complex), dimension(:), intent(inout) :: signal
         complex(c_double_complex), dimension(size(signal)) :: result
         type(c_ptr) :: plan
+        integer :: N
 
-        plan = fftw_plan_dft_1d(size(signal), signal, result, FFTW_BACKWARD, FFTW_ESTIMATE)
+        N = size(signal)
+
+        plan = fftw_plan_dft_1d(N, signal, result, FFTW_BACKWARD, FFTW_ESTIMATE)
         call fftw_execute_dft(plan, signal, result)
-        result = result / size(signal)
+        result = result / N
         call fftw_destroy_plan(plan)
+
+        call fftw_cleanup()
 
     end function FFTW_IFFT_1D
 
     !> Perform a 1D inverse Fast Fourier Transform on a signal using FFTW with multithreading
     function FFTW_IFFT_1D_threads(signal, threads) result(result)
 
-        complex(c_double_complex), dimension(:), intent(INOUT) :: signal
-        integer, intent(IN) :: threads
+        complex(c_double_complex), dimension(:), intent(inout) :: signal
+        integer, intent(in) :: threads
         complex(c_double_complex), dimension(size(signal)) :: result
-        integer :: error_init_thread
+        integer :: error_init_thread, N
         type(c_ptr) :: plan
+
+        N = size(signal)
 
         error_init_thread = fftw_init_threads()
         if (error_init_thread == 0) stop "ERROR : Thread FFTW initialization problem"
 
         call fftw_plan_with_nthreads(threads)
 
-        plan = fftw_plan_dft_1d(size(signal), signal, result, FFTW_BACKWARD, FFTW_ESTIMATE)
+        plan = fftw_plan_dft_1d(N, signal, result, FFTW_BACKWARD, FFTW_ESTIMATE)
         call fftw_execute_dft(plan, signal, result)
-        result = result / size(signal)
+        result = result / N
         call fftw_destroy_plan(plan)
 
         call fftw_cleanup_threads()
@@ -252,31 +269,40 @@ contains
     !> Perform a 2D Fast Fourier Transform on a signal using FFTW
     function FFTW_FFT_2D(signal) result(result)
 
-        complex(c_double_complex), dimension(:, :), intent(INOUT) :: signal
+        complex(c_double_complex), dimension(:, :), intent(inout) :: signal
         complex(c_double_complex), dimension(size(signal, 1), size(signal, 2)) :: result
         type(c_ptr) :: plan
+        integer :: N, M
 
-        plan = fftw_plan_dft_2d(size(signal, 2), size(signal, 1), signal, result, FFTW_FORWARD, FFTW_ESTIMATE)
+        N = size(signal, 1)
+        M = size(signal, 2)
+
+        plan = fftw_plan_dft_2d(M, N, signal, result, FFTW_FORWARD, FFTW_ESTIMATE)
         call fftw_execute_dft(plan, signal, result)
         call fftw_destroy_plan(plan)
+
+        call fftw_cleanup()
 
     end function FFTW_FFT_2D
 
     !> Perform a 2D Fast Fourier Transform on a signal using FFTW with multithreading
     function FFTW_FFT_2D_threads(signal, threads) result(result)
 
-        complex(c_double_complex), dimension(:, :), intent(INOUT) :: signal
-        integer, intent(IN) :: threads
+        complex(c_double_complex), dimension(:, :), intent(inout) :: signal
+        integer, intent(in) :: threads
         complex(c_double_complex), dimension(size(signal, 1), size(signal, 2)) :: result
-        integer :: error_init_thread
+        integer :: error_init_thread, N, M
         type(c_ptr) :: plan
+
+        N = size(signal, 1)
+        M = size(signal, 2)
 
         error_init_thread = fftw_init_threads()
         if (error_init_thread == 0) stop "ERROR : Thread FFTW initialization problem"
 
         call fftw_plan_with_nthreads(threads)
 
-        plan = fftw_plan_dft_2d(size(signal, 2), size(signal, 1), signal, result, FFTW_FORWARD, FFTW_ESTIMATE)
+        plan = fftw_plan_dft_2d(M, N, signal, result, FFTW_FORWARD, FFTW_ESTIMATE)
         call fftw_execute_dft(plan, signal, result)
         call fftw_destroy_plan(plan)
 
@@ -287,34 +313,43 @@ contains
     !> Perform a 2D inverse Fast Fourier Transform on a signal using FFTW
     function FFTW_IFFT_2D(signal) result(result)
 
-        complex(c_double_complex), dimension(:, :), intent(INOUT) :: signal
+        complex(c_double_complex), dimension(:, :), intent(inout) :: signal
         complex(c_double_complex), dimension(size(signal, 1), size(signal, 2)) :: result
         type(c_ptr) :: plan
+        integer :: N, M
 
-        plan = fftw_plan_dft_2d(size(signal, 2), size(signal, 1), signal, result, FFTW_BACKWARD, FFTW_ESTIMATE)
+        N = size(signal, 1)
+        M = size(signal, 2)
+
+        plan = fftw_plan_dft_2d(M, N, signal, result, FFTW_BACKWARD, FFTW_ESTIMATE)
         call fftw_execute_dft(plan, signal, result)
-        result = result / (size(signal, 1) * size(signal, 2))
+        result = result / (N * M)
         call fftw_destroy_plan(plan)
+
+        call fftw_cleanup()
 
     end function FFTW_IFFT_2D
 
     !> Perform a 2D inverse Fast Fourier Transform on a signal using FFTW with multithreading
     function FFTW_IFFT_2D_threads(signal, threads) result(result)
 
-        complex(c_double_complex), dimension(:, :), intent(INOUT) :: signal
-        integer, intent(IN) :: threads
+        complex(c_double_complex), dimension(:, :), intent(inout) :: signal
+        integer, intent(in) :: threads
         complex(c_double_complex), dimension(size(signal, 1), size(signal, 2)) :: result
-        integer :: error_init_thread
+        integer :: error_init_thread, N, M
         type(c_ptr) :: plan
+
+        N = size(signal, 1)
+        M = size(signal, 2)
 
         error_init_thread = fftw_init_threads()
         if (error_init_thread == 0) stop "ERROR : Thread FFTW initialization problem"
 
         call fftw_plan_with_nthreads(threads)
 
-        plan = fftw_plan_dft_2d(size(signal, 2), size(signal, 1), signal, result, FFTW_BACKWARD, FFTW_ESTIMATE)
+        plan = fftw_plan_dft_2d(M, N, signal, result, FFTW_BACKWARD, FFTW_ESTIMATE)
         call fftw_execute_dft(plan, signal, result)
-        result = result / (size(signal, 1) * size(signal, 2))
+        result = result / (N * M)
         call fftw_destroy_plan(plan)
 
         call fftw_cleanup_threads()
@@ -324,31 +359,46 @@ contains
     !> Perform a 3D Fast Fourier Transform on a signal using FFTW
     function FFTW_FFT_3D(signal) result(result)
 
-        complex(c_double_complex), dimension(:, :, :), intent(INOUT) :: signal
-        complex(c_double_complex), dimension(size(signal, 1), size(signal, 2), size(signal, 3)) :: result
+        complex(c_double_complex), dimension(:, :, :), intent(inout) :: signal
+        complex(c_double_complex), dimension(size(signal, 1), &
+                                             size(signal, 2), &
+                                             size(signal, 3)) :: result
         type(c_ptr) :: plan
+        integer :: N, M, P
 
-        plan = fftw_plan_dft_3d(size(signal, 3), size(signal, 2), size(signal, 1), signal, result, FFTW_FORWARD, FFTW_ESTIMATE)
+        N = size(signal, 1)
+        M = size(signal, 2)
+        P = size(signal, 3)
+
+        plan = fftw_plan_dft_3d(M, N, P, signal, result, FFTW_FORWARD, FFTW_ESTIMATE)
         call fftw_execute_dft(plan, signal, result)
         call fftw_destroy_plan(plan)
+
+        call fftw_cleanup()
 
     end function FFTW_FFT_3D
 
     !> Perform a 3D Fast Fourier Transform on a signal using FFTW with multithreading
     function FFTW_FFT_3D_threads(signal, threads) result(result)
 
-        complex(c_double_complex), dimension(:, :, :), intent(INOUT) :: signal
-        integer, intent(IN) :: threads
-        complex(c_double_complex), dimension(size(signal, 1), size(signal, 2), size(signal, 3)) :: result
-        integer :: error_init_thread
+        complex(c_double_complex), dimension(:, :, :), intent(inout) :: signal
+        integer, intent(in) :: threads
+        complex(c_double_complex), dimension(size(signal, 1), &
+                                             size(signal, 2), &
+                                             size(signal, 3)) :: result
+        integer :: error_init_thread, N, M, P
         type(c_ptr) :: plan
+
+        N = size(signal, 1)
+        M = size(signal, 2)
+        P = size(signal, 3)
 
         error_init_thread = fftw_init_threads()
         if (error_init_thread == 0) stop "ERROR : Thread FFTW initialization problem"
 
         call fftw_plan_with_nthreads(threads)
 
-        plan = fftw_plan_dft_3d(size(signal, 3), size(signal, 2), size(signal, 1), signal, result, FFTW_FORWARD, FFTW_ESTIMATE)
+        plan = fftw_plan_dft_3d(M, N, P, signal, result, FFTW_FORWARD, FFTW_ESTIMATE)
         call fftw_execute_dft(plan, signal, result)
         call fftw_destroy_plan(plan)
 
@@ -359,34 +409,49 @@ contains
     !> Perform a 3D inverse Fast Fourier Transform on a signal using FFTW
     function FFTW_IFFT_3D(signal) result(result)
 
-        complex(c_double_complex), dimension(:, :, :), intent(INOUT) :: signal
-        complex(c_double_complex), dimension(size(signal, 1), size(signal, 2), size(signal, 3)) :: result
+        complex(c_double_complex), dimension(:, :, :), intent(inout) :: signal
+        complex(c_double_complex), dimension(size(signal, 1), &
+                                             size(signal, 2), &
+                                             size(signal, 3)) :: result
         type(c_ptr) :: plan
+        integer :: N, M, P
 
-        plan = fftw_plan_dft_3d(size(signal, 3), size(signal, 2), size(signal, 1), signal, result, FFTW_BACKWARD, FFTW_ESTIMATE)
+        N = size(signal, 1)
+        M = size(signal, 2)
+        P = size(signal, 3)
+
+        plan = fftw_plan_dft_3d(M, N, P, signal, result, FFTW_BACKWARD, FFTW_ESTIMATE)
         call fftw_execute_dft(plan, signal, result)
-        result = result / (size(signal, 1) * size(signal, 2) * size(signal, 3))
+        result = result / (N * M * P)
         call fftw_destroy_plan(plan)
+
+        call fftw_cleanup()
 
     end function FFTW_IFFT_3D
 
     !> Perform a 3D inverse Fast Fourier Transform on a signal using FFTW with multithreading
     function FFTW_IFFT_3D_threads(signal, threads) result(result)
 
-        complex(c_double_complex), dimension(:, :, :), intent(INOUT) :: signal
-        integer, intent(IN) :: threads
-        complex(c_double_complex), dimension(size(signal, 1), size(signal, 2), size(signal, 3)) :: result
-        integer :: error_init_thread
+        complex(c_double_complex), dimension(:, :, :), intent(inout) :: signal
+        integer, intent(in) :: threads
+        complex(c_double_complex), dimension(size(signal, 1), &
+                                             size(signal, 2), &
+                                             size(signal, 3)) :: result
+        integer :: error_init_thread, N, M, P
         type(c_ptr) :: plan
+
+        N = size(signal, 1)
+        M = size(signal, 2)
+        P = size(signal, 3)
 
         error_init_thread = fftw_init_threads()
         if (error_init_thread == 0) stop "ERROR : Thread FFTW initialization problem"
 
         call fftw_plan_with_nthreads(threads)
 
-        plan = fftw_plan_dft_3d(size(signal, 3), size(signal, 2), size(signal, 1), signal, result, FFTW_BACKWARD, FFTW_ESTIMATE)
+        plan = fftw_plan_dft_3d(M, N, P, signal, result, FFTW_BACKWARD, FFTW_ESTIMATE)
         call fftw_execute_dft(plan, signal, result)
-        result = result / (size(signal, 1) * size(signal, 2) * size(signal, 3))
+        result = result / (N * M * P)
         call fftw_destroy_plan(plan)
 
         call fftw_cleanup_threads()
@@ -398,7 +463,7 @@ contains
     !> Perform a 1D Discrete Fourier Transform on a signal
     function NAFPack_DFT_1D(signal) result(result)
 
-        complex(dp), dimension(:), intent(IN) :: signal
+        complex(dp), dimension(:), intent(in) :: signal
         complex(dp), dimension(size(signal)) :: result
         complex(dp) :: S
         integer :: N, i, k, j
@@ -427,7 +492,7 @@ contains
     !> Compute the complex exponential factors for the FFT
     function fun_omega(N) result(result)
 
-        integer, intent(IN) :: N
+        integer, intent(in) :: N
         complex(dp), dimension(N/2) :: result
         integer :: i
 
@@ -440,7 +505,7 @@ contains
     !> Perform a 1D Fast Fourier Transform (Cooley-Tukey) on a signal
     recursive function NAFPack_FFT_1D(signal) result(result)
 
-        complex(dp), dimension(:), intent(IN) :: signal
+        complex(dp), dimension(:), intent(in) :: signal
         complex(dp), dimension(size(signal)) :: result
         complex(dp), dimension(size(signal)/2) :: f_pair, f_impair, omega
         integer :: N
@@ -463,7 +528,7 @@ contains
     !> Perform a 1D inverse Fast Fourier Transform on a signal
     function NAFPack_IFFT_1D(f_signal) result(result)
 
-        complex(dp), dimension(:), intent(IN) :: f_signal
+        complex(dp), dimension(:), intent(in) :: f_signal
         complex(dp), dimension(size(f_signal)) :: result
         complex(dp), dimension(size(f_signal)) :: f_conjugate
         integer :: N
@@ -481,7 +546,7 @@ contains
     !> Perform a 2D Fast Fourier Transform on a signal
     function NAFPack_FFT_2D(signal) result(result)
 
-        complex(dp), dimension(:, :), intent(IN) :: signal
+        complex(dp), dimension(:, :), intent(in) :: signal
         complex(dp), dimension(size(signal, 1), size(signal, 2)) :: result
         integer :: Nx, Ny, i
 
@@ -501,7 +566,7 @@ contains
     !> Perform a 2D inverse Fast Fourier Transform on a signal
     function NAFPack_IFFT_2D(f_signal) result(result)
 
-        complex(dp), dimension(:, :), intent(IN) :: f_signal
+        complex(dp), dimension(:, :), intent(in) :: f_signal
         complex(dp), dimension(size(f_signal, 1), size(f_signal, 2)) :: result
         integer :: Nx, Ny, i
 

@@ -1,7 +1,7 @@
 module NAFPack_Krylov_method
 
-    use NAFPack_constant
-    use NAFPack_matricielle
+    use NAFPack_constant, only: dp
+    use NAFPack_matricielle, only: Make_Tridiagonal
 
     implicit none(type, external)
 
@@ -10,11 +10,11 @@ module NAFPack_Krylov_method
 contains
 
     subroutine lanczos(A, q1, m, Q, T)
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: q1
-        integer, intent(IN) :: m
-        real(dp), dimension(:, :), intent(OUT) :: Q
-        real(dp), dimension(:, :), intent(OUT) :: T
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: q1
+        integer, intent(in) :: m
+        real(dp), dimension(:, :), intent(out) :: Q
+        real(dp), dimension(:, :), intent(out) :: T
         real(dp), dimension(size(A, 1)) :: y, z
         real(dp), dimension(m) :: alpha
         real(dp), dimension(m - 1) :: beta
@@ -50,11 +50,11 @@ contains
     end subroutine lanczos
 
     subroutine Arnoldi(A, q1, m, Q, H)
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: q1
-        integer, intent(IN) :: m
-        real(dp), dimension(:, :), intent(OUT) :: Q
-        real(dp), dimension(:, :), intent(OUT) :: H
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: q1
+        integer, intent(in) :: m
+        real(dp), dimension(:, :), intent(out) :: Q
+        real(dp), dimension(:, :), intent(out) :: H
         integer :: k, j, N
 
         N = size(A, 1)
@@ -74,11 +74,11 @@ contains
     end subroutine Arnoldi
 
     subroutine Arnoldi_MGS(A, q1, m, Q, H)
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: q1
-        integer, intent(IN) :: m
-        real(dp), dimension(:, :), intent(OUT) :: Q ! (n, m+1)
-        real(dp), dimension(:, :), intent(OUT) :: H ! (m+1, m)
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: q1
+        integer, intent(in) :: m
+        real(dp), dimension(:, :), intent(out) :: Q ! (n, m+1)
+        real(dp), dimension(:, :), intent(out) :: H ! (m+1, m)
         integer :: k, j, N
         real(dp), dimension(size(A, 1)) :: w
 

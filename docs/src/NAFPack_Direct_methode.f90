@@ -42,9 +42,9 @@ module NAFPack_Direct_method
         function solve_interface_Direct(this, A, b) result(x)
             import :: dp
             import :: DirectMethod
-            class(DirectMethod), intent(IN) :: this
-            real(dp), dimension(:, :), intent(IN) :: A
-            real(dp), dimension(:), intent(IN) :: b
+            class(DirectMethod), intent(in) :: this
+            real(dp), dimension(:, :), intent(in) :: A
+            real(dp), dimension(:), intent(in) :: b
             real(dp), dimension(size(A, 1)) :: x
         end function solve_interface_Direct
     end interface
@@ -52,8 +52,8 @@ module NAFPack_Direct_method
 contains
 
     subroutine set_method(this, method, set_pivot_partial, set_pivot_total)
-        class(DirectMethod), intent(INOUT) :: this
-        type(MethodTypeDirect), intent(IN) :: method
+        class(DirectMethod), intent(inout) :: this
+        type(MethodTypeDirect), intent(in) :: method
         logical, optional :: set_pivot_partial, set_pivot_total
 
         this%use_total_pivot = .false.
@@ -115,17 +115,17 @@ contains
     end subroutine set_method
 
     subroutine set_qr_method(this, qr_method)
-        class(DirectMethod), intent(INOUT) :: this
-        type(MethodQR), intent(IN) :: qr_method
+        class(DirectMethod), intent(inout) :: this
+        type(MethodQR), intent(in) :: qr_method
 
         this%qr_method = qr_method
 
     end subroutine set_qr_method
 
     subroutine test_matrix(this, A, strict_mode)
-        class(DirectMethod), intent(INOUT) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        logical, optional, intent(IN) :: strict_mode
+        class(DirectMethod), intent(inout) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        logical, optional, intent(in) :: strict_mode
         logical :: strict
 
         strict = .false.
@@ -194,9 +194,9 @@ contains
     end subroutine test_matrix
 
     function DirectMethod_solve(this, A, b) result(x)
-        class(DirectMethod), intent(IN) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: b
+        class(DirectMethod), intent(in) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: b
         real(dp), dimension(size(A, 1)) :: x
 
         if (.not. associated(this%solve_method)) then
@@ -208,9 +208,9 @@ contains
     end function DirectMethod_solve
 
     function solve_Gauss(this, A, b) result(x)
-        class(DirectMethod), intent(IN) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: b
+        class(DirectMethod), intent(in) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: b
         real(dp), dimension(size(A, 1)) :: x
         real(dp), dimension(size(A, 1), size(A, 2)) :: A_tmp
         real(dp), dimension(:, :), allocatable :: P
@@ -269,9 +269,9 @@ contains
     end function solve_Gauss
 
     function solve_GaussJordan(this, A, b) result(x)
-        class(DirectMethod), intent(IN) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: b
+        class(DirectMethod), intent(in) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: b
         real(dp), dimension(size(A, 1)) :: x
         real(dp), dimension(size(A, 1), size(A, 2)) :: A_tmp
         real(dp), dimension(:, :), allocatable :: P
@@ -334,9 +334,9 @@ contains
     end function solve_GaussJordan
 
     function solve_LU(this, A, b) result(x)
-        class(DirectMethod), intent(IN) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: b
+        class(DirectMethod), intent(in) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: b
         real(dp), dimension(size(A, 1)) :: x
         real(dp), dimension(size(A, 1), size(A, 1)) :: L, U
         real(dp), dimension(size(A, 1), size(A, 2)) :: A_tmp
@@ -386,9 +386,9 @@ contains
     end function solve_LU
 
     function solve_LDU(this, A, b) result(x)
-        class(DirectMethod), intent(IN) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: b
+        class(DirectMethod), intent(in) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: b
         real(dp), dimension(size(A, 1)) :: x
         real(dp), dimension(size(A, 1), size(A, 1)) :: L, D, U
         real(dp), dimension(size(A, 1), size(A, 2)) :: A_tmp
@@ -439,9 +439,9 @@ contains
     end function solve_LDU
 
     function solve_Cholesky(this, A, b) result(x)
-        class(DirectMethod), intent(IN) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: b
+        class(DirectMethod), intent(in) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: b
         real(dp), dimension(size(A, 1)) :: x
         real(dp), dimension(size(A, 1), size(A, 1)) :: L
 
@@ -454,9 +454,9 @@ contains
     end function solve_Cholesky
 
     function solve_LDL_Cholesky(this, A, b) result(x)
-        class(DirectMethod), intent(IN) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: b
+        class(DirectMethod), intent(in) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: b
         real(dp), dimension(size(A, 1)) :: x
         real(dp), dimension(size(A, 1), size(A, 1)) :: L, D
 
@@ -471,9 +471,9 @@ contains
     end function solve_LDL_Cholesky
 
     function solve_QR(this, A, b) result(x)
-        class(DirectMethod), intent(IN) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: b
+        class(DirectMethod), intent(in) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: b
         real(dp), dimension(size(A, 1)) :: x
         real(dp), dimension(size(A, 1), size(A, 2)) :: Q, R
 
@@ -495,9 +495,9 @@ contains
     end function solve_QR
 
     function solve_TDMA(this, A, b) result(x)
-        class(DirectMethod), intent(IN) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: b
+        class(DirectMethod), intent(in) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: b
         real(dp), dimension(size(A, 1)) :: x
         real(dp), dimension(size(A, 1)) :: alpha, beta
         real(dp) :: denom
@@ -524,9 +524,9 @@ contains
     end function solve_TDMA
 
     function solve_Faddeev_Leverrier(this, A, b) result(x)
-        class(DirectMethod), intent(IN) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: b
+        class(DirectMethod), intent(in) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: b
         real(dp), dimension(size(A, 1)) :: x
         real(dp), dimension(size(A, 1), size(A, 2)) :: Ainv
         real(dp), dimension(size(A, 1) + 1) :: c

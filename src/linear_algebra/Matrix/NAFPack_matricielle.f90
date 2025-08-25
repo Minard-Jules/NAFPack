@@ -1,7 +1,7 @@
 !> Module for Tensor operations in NAFPack
 module NAFPack_matricielle
 
-    use NAFPack_constant
+    use NAFPack_constant, only: dp
 
     implicit none(type, external)
 
@@ -20,7 +20,7 @@ contains
     !> function that calculates the dot product of two real 3-dimensional vectors \( \vec{a} \) and \( \vec{b} \)
     !> \[ \vec{a} \cdot \vec{b} \]
     function dot(a, b) result(result)
-        real(dp), dimension(:), intent(IN) :: a, b
+        real(dp), dimension(:), intent(in) :: a, b
         real(dp) :: result
         integer :: i
 
@@ -38,7 +38,7 @@ contains
     !> [^1]: the wedge notation \( \vec{a} \wedge \vec{b} \) can sometimes be used to denote the vector product.
     function cross(a, b) result(result)
 
-        real(dp), dimension(3) :: a, b
+        real(dp), dimension(3), intent(in) :: a, b
         real(dp), dimension(3) :: result
 
         result(1) = a(2) * b(3) - b(2) * a(3)
@@ -53,7 +53,7 @@ contains
     !> where \( n \) is the dimension of the real vector \( \vec{a} \).
     function norm_2_real(a) result(result)
 
-        real(dp), dimension(:) :: a
+        real(dp), dimension(:), intent(in) :: a
         real(dp) :: result
 
         result = sqrt(dot_product(a, a))
@@ -62,7 +62,7 @@ contains
 
     !> Optimized norm calculation avoiding overflow/underflow
     pure function norm_2_safe(a) result(result)
-        real(dp), dimension(:), intent(IN) :: a
+        real(dp), dimension(:), intent(in) :: a
         real(dp) :: result
         real(dp) :: scale, sum_of_squares
 
@@ -81,7 +81,7 @@ contains
     !> where \( n \) is the dimension of the complex vector \( \vec{a} \).
     function norm_2_complex(a) result(result)
 
-        complex(dp), dimension(:) :: a
+        complex(dp), dimension(:), intent(in) :: a
         real(dp) :: result
 
         result = sqrt(real(dot_product(a, conjg(a))))
@@ -93,7 +93,7 @@ contains
     !> \[ \hat{a} = \frac{\vec{a}}{||\vec{a}||_2} \]
     function normalise(a) result(result)
 
-        real(dp), dimension(:) :: a
+        real(dp), dimension(:), intent(in) :: a
         real(dp), dimension(size(a)) :: result
 
         result = a / norm_2_real(a)
@@ -104,7 +104,7 @@ contains
     !> where \( \vec{a} \in \mathbb{C}^n \)
     !> \[ \hat{a} = \frac{\vec{a}}{||\vec{a}||_2} \]
     function normalise_complexe(a) result(result)
-        complex(dp), dimension(:) :: a
+        complex(dp), dimension(:), intent(in) :: a
         complex(dp), dimension(size(a)) :: result
 
         result = a / norm_2_complex(a)
@@ -114,7 +114,7 @@ contains
     !> function that calculates the trace of a square matrix \( A \)
     !> \[ \text{Tr}(A) = \sum_{i=1}^{n} A(i,i) \]
     function Trace(A) result(result)
-        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:, :), intent(in) :: A
         real(dp) :: result
         integer :: i, N
 
@@ -128,7 +128,7 @@ contains
     !> function which checks if **A** is diagonally dominant
     !> \[ \forall i, |A(i,i)| \geq \sum_{j \neq i} |A(i,j)| \]
     function Diagonally_Dominant_Matrix(A) result(diagonally_dominant)
-        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:, :), intent(in) :: A
         logical :: diagonally_dominant
         real(dp) :: summation
         integer :: i, N
@@ -150,8 +150,8 @@ contains
     !> function that returns the identity matrix for a given size N
     !> \[ I_N = \begin{pmatrix} 1 & 0 & \cdots & 0 \\ 0 & 1 & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & 1 \end{pmatrix} \]
     function Identity_n(N, use_concurrent) result(Identity)
-        integer, intent(IN) :: N
-        logical, intent(IN), optional :: use_concurrent
+        integer, intent(in) :: N
+        logical, intent(in), optional :: use_concurrent
         real(dp), dimension(N, N) :: Identity
         integer :: i
         logical :: concurrent_mode
@@ -175,7 +175,7 @@ contains
     !> \[ D = \begin{pmatrix} A(1,1) & 0 & \cdots & 0 \\ 0 & A(2,2) & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & A(n,n) \end{pmatrix} \]
     !> where \( D \) is a vector containing the diagonal elements of the matrix \( A \).
     function Diag(A) result(D)
-        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:, :), intent(in) :: A
         real(dp), dimension(size(A, 1)) :: D
         integer :: i, N
 
@@ -186,7 +186,7 @@ contains
     end function Diag
 
     function Make_Tridiagonal(d_minus, d, d_plus) result(T)
-        real(dp), dimension(:), intent(IN) :: d_minus, d, d_plus
+        real(dp), dimension(:), intent(in) :: d_minus, d, d_plus
         real(dp), dimension(size(d, 1), size(d, 1)) :: T
         integer :: i, N
 
@@ -206,8 +206,8 @@ contains
     !> This function generates a rotation matrix **G** based on the input matrix **A** and the specified rotation indices.
     function rotation_matrix(A, rotation) result(G)
 
-        real(dp), dimension(:, :), intent(IN) :: A
-        integer, dimension(2), intent(IN) :: rotation
+        real(dp), dimension(:, :), intent(in) :: A
+        integer, dimension(2), intent(in) :: rotation
         real(dp), dimension(size(A, 1), size(A, 2)) :: G
         real(dp) :: frac, val_1, val_2
         integer :: i, j

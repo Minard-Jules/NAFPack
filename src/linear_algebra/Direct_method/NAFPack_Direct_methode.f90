@@ -1,11 +1,32 @@
 !> Module for direct methods in NAFPack
 module NAFPack_Direct_method
 
-    use NAFPack_constant
-    use NAFPack_matrix_decomposition
-    use NAFPack_matrix_properties
-    use NAFPack_Direct_types
-    use NAFPack_matrix_tools
+    use NAFPack_constant, only: dp, epsi
+
+    use NAFPack_Direct_types, only: MethodTypeDirect, METHOD_DIRECT_NONE, &
+                                    METHOD_CHOLESKY, METHOD_LDL_Cholesky, &
+                                    METHOD_FADDEEV_LEVERRIER, &
+                                    METHOD_Gauss, METHOD_Gauss_JORDAN, &
+                                    METHOD_LU, METHOD_LDU, &
+                                    METHOD_QR, METHOD_TDMA, &
+                                    DirectMethodRequirements, MethodQR, &
+                                    QR_HOUSEHOLDER, QR_GIVENS, &
+                                    QR_GRAM_SCHMIDT, QR_GRAM_SCHMIDT_Modified
+
+    use NAFPack_matrix_decomposition, only: pivot_partial, pivot_total, &
+                                            backward, forward, &
+                                            LU_decomposition, LDU_decomposition, &
+                                            Cholesky_decomposition, LDL_Cholesky_decomposition, &
+                                            QR_Gram_Schmidt_Classical_decomposition, &
+                                            QR_Gram_Schmidt_Modified_decomposition, &
+                                            QR_Givens_decomposition, QR_Householder_decomposition
+
+    use NAFPack_matrix_properties, only: is_non_zero_diagonal, is_SPD, is_square_matrix, &
+                                         is_symmetric, is_tridiagonal
+
+    use NAFPack_matrix_tools, only: Faddeev_Leverrier
+
+    use NAFPack_matricielle, only: Identity_n
 
     implicit none(type, external)
 
@@ -42,9 +63,10 @@ module NAFPack_Direct_method
         function solve_interface_Direct(this, A, b) result(x)
             import :: dp
             import :: DirectMethod
-            class(DirectMethod), intent(IN) :: this
-            real(dp), dimension(:, :), intent(IN) :: A
-            real(dp), dimension(:), intent(IN) :: b
+            implicit none(type, external)
+            class(DirectMethod), intent(in) :: this
+            real(dp), dimension(:, :), intent(in) :: A
+            real(dp), dimension(:), intent(in) :: b
             real(dp), dimension(size(A, 1)) :: x
         end function solve_interface_Direct
     end interface
@@ -52,9 +74,9 @@ module NAFPack_Direct_method
 contains
 
     subroutine set_method(this, method, set_pivot_partial, set_pivot_total)
-        class(DirectMethod), intent(INOUT) :: this
-        type(MethodTypeDirect), intent(IN) :: method
-        logical, optional :: set_pivot_partial, set_pivot_total
+        class(DirectMethod), intent(inout) :: this
+        type(MethodTypeDirect), intent(in) :: method
+        logical, optional, intent(in) :: set_pivot_partial, set_pivot_total
 
         this%use_total_pivot = .false.
         this%use_partial_pivot = .false.
@@ -115,17 +137,17 @@ contains
     end subroutine set_method
 
     subroutine set_qr_method(this, qr_method)
-        class(DirectMethod), intent(INOUT) :: this
-        type(MethodQR), intent(IN) :: qr_method
+        class(DirectMethod), intent(inout) :: this
+        type(MethodQR), intent(in) :: qr_method
 
         this%qr_method = qr_method
 
     end subroutine set_qr_method
 
     subroutine test_matrix(this, A, strict_mode)
-        class(DirectMethod), intent(INOUT) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        logical, optional, intent(IN) :: strict_mode
+        class(DirectMethod), intent(inout) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        logical, optional, intent(in) :: strict_mode
         logical :: strict
 
         strict = .false.
@@ -135,10 +157,12 @@ contains
             print*,"Checking if the matrix is square..."
             if (.not. is_square_matrix(A)) then
                 if (strict) then
-                    print*,"ERROR :: "//this%method_type%name//" method requires a square matrix."
+                    print*,"ERROR :: ", trim(this%method_type%name), &
+                        " method requires a square matrix."
                     stop
                 else
-                    print*,"WARNING :: "//this%method_type%name//" method requires a square matrix."
+                    print*,"WARNING :: ", trim(this%method_type%name), &
+                        " method requires a square matrix."
                 end if
             end if
         end if
@@ -147,10 +171,12 @@ contains
             print*,"Checking if the matrix is symmetric positive definite (SPD)..."
             if (.not. is_SPD(A)) then
                 if (strict) then
-                    print*,"ERROR :: "//this%method_type%name//" method requires a symmetric positive definite matrix."
+                    print*,"ERROR :: ", trim(this%method_type%name), &
+                        " method requires a symmetric positive definite matrix."
                     stop
                 else
-                    print*,"WARNING :: "//this%method_type%name//" method requires a symmetric positive definite matrix."
+                    print*,"WARNING :: ", trim(this%method_type%name), &
+                        " method requires a symmetric positive definite matrix."
                 end if
             end if
         end if
@@ -159,10 +185,12 @@ contains
             print*,"Checking if the matrix has a non-zero diagonal..."
             if (.not. is_non_zero_diagonal(A)) then
                 if (strict) then
-                    print*,"ERROR :: "//this%method_type%name//" method requires a non-zero diagonal matrix."
+                    print*,"ERROR :: ", trim(this%method_type%name), &
+                        " method requires a non-zero diagonal matrix."
                     stop
                 else
-                    print*,"WARNING :: "//this%method_type%name//" method requires a non-zero diagonal matrix."
+                    print*,"WARNING :: ", trim(this%method_type%name), &
+                        " method requires a non-zero diagonal matrix."
                 end if
             end if
         end if
@@ -171,10 +199,12 @@ contains
             print*,"Checking if the matrix is tridiagonal..."
             if (.not. is_tridiagonal(A)) then
                 if (strict) then
-                    print*,"ERROR :: "//this%method_type%name//" method requires a tridiagonal matrix."
+                    print*,"ERROR :: ", trim(this%method_type%name), &
+                        " method requires a tridiagonal matrix."
                     stop
                 else
-                    print*,"WARNING :: "//this%method_type%name//" method requires a tridiagonal matrix."
+                    print*,"WARNING :: ", trim(this%method_type%name), &
+                        " method requires a tridiagonal matrix."
                 end if
             end if
         end if
@@ -183,10 +213,12 @@ contains
             print*,"Checking if the matrix is symmetric..."
             if (.not. is_symmetric(A)) then
                 if (strict) then
-                    print*,"ERROR :: "//this%method_type%name//" method requires a symmetric matrix."
+                    print*,"ERROR :: ", trim(this%method_type%name), &
+                        " method requires a symmetric matrix."
                     stop
                 else
-                    print*,"WARNING :: "//this%method_type%name//" method requires a symmetric matrix."
+                    print*,"WARNING :: ", trim(this%method_type%name), &
+                        " method requires a symmetric matrix."
                 end if
             end if
         end if
@@ -194,9 +226,9 @@ contains
     end subroutine test_matrix
 
     function DirectMethod_solve(this, A, b) result(x)
-        class(DirectMethod), intent(IN) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: b
+        class(DirectMethod), intent(in) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: b
         real(dp), dimension(size(A, 1)) :: x
 
         if (.not. associated(this%solve_method)) then
@@ -208,9 +240,9 @@ contains
     end function DirectMethod_solve
 
     function solve_Gauss(this, A, b) result(x)
-        class(DirectMethod), intent(IN) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: b
+        class(DirectMethod), intent(in) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: b
         real(dp), dimension(size(A, 1)) :: x
         real(dp), dimension(size(A, 1), size(A, 2)) :: A_tmp
         real(dp), dimension(:, :), allocatable :: P
@@ -269,9 +301,9 @@ contains
     end function solve_Gauss
 
     function solve_GaussJordan(this, A, b) result(x)
-        class(DirectMethod), intent(IN) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: b
+        class(DirectMethod), intent(in) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: b
         real(dp), dimension(size(A, 1)) :: x
         real(dp), dimension(size(A, 1), size(A, 2)) :: A_tmp
         real(dp), dimension(:, :), allocatable :: P
@@ -334,9 +366,9 @@ contains
     end function solve_GaussJordan
 
     function solve_LU(this, A, b) result(x)
-        class(DirectMethod), intent(IN) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: b
+        class(DirectMethod), intent(in) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: b
         real(dp), dimension(size(A, 1)) :: x
         real(dp), dimension(size(A, 1), size(A, 1)) :: L, U
         real(dp), dimension(size(A, 1), size(A, 2)) :: A_tmp
@@ -386,9 +418,9 @@ contains
     end function solve_LU
 
     function solve_LDU(this, A, b) result(x)
-        class(DirectMethod), intent(IN) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: b
+        class(DirectMethod), intent(in) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: b
         real(dp), dimension(size(A, 1)) :: x
         real(dp), dimension(size(A, 1), size(A, 1)) :: L, D, U
         real(dp), dimension(size(A, 1), size(A, 2)) :: A_tmp
@@ -439,9 +471,9 @@ contains
     end function solve_LDU
 
     function solve_Cholesky(this, A, b) result(x)
-        class(DirectMethod), intent(IN) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: b
+        class(DirectMethod), intent(in) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: b
         real(dp), dimension(size(A, 1)) :: x
         real(dp), dimension(size(A, 1), size(A, 1)) :: L
 
@@ -454,9 +486,9 @@ contains
     end function solve_Cholesky
 
     function solve_LDL_Cholesky(this, A, b) result(x)
-        class(DirectMethod), intent(IN) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: b
+        class(DirectMethod), intent(in) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: b
         real(dp), dimension(size(A, 1)) :: x
         real(dp), dimension(size(A, 1), size(A, 1)) :: L, D
 
@@ -471,9 +503,9 @@ contains
     end function solve_LDL_Cholesky
 
     function solve_QR(this, A, b) result(x)
-        class(DirectMethod), intent(IN) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: b
+        class(DirectMethod), intent(in) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: b
         real(dp), dimension(size(A, 1)) :: x
         real(dp), dimension(size(A, 1), size(A, 2)) :: Q, R
 
@@ -495,9 +527,9 @@ contains
     end function solve_QR
 
     function solve_TDMA(this, A, b) result(x)
-        class(DirectMethod), intent(IN) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: b
+        class(DirectMethod), intent(in) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: b
         real(dp), dimension(size(A, 1)) :: x
         real(dp), dimension(size(A, 1)) :: alpha, beta
         real(dp) :: denom
@@ -524,9 +556,9 @@ contains
     end function solve_TDMA
 
     function solve_Faddeev_Leverrier(this, A, b) result(x)
-        class(DirectMethod), intent(IN) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: b
+        class(DirectMethod), intent(in) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: b
         real(dp), dimension(size(A, 1)) :: x
         real(dp), dimension(size(A, 1), size(A, 2)) :: Ainv
         real(dp), dimension(size(A, 1) + 1) :: c

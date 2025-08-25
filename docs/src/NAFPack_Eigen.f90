@@ -24,11 +24,11 @@ contains
     !> - QR algorithm (with or without shift)
     !> The default method is Power iteration.
     subroutine Eigen(A, lambda, vp, method, k)
-        real(dp), dimension(:, :), intent(IN) :: A
-        character(LEN=*), optional, intent(IN) :: method
-        integer, optional, intent(IN) :: k
-        real(dp), dimension(:, :), optional, intent(OUT) :: vp
-        real(dp), dimension(:), intent(OUT) :: lambda
+        real(dp), dimension(:, :), intent(in) :: A
+        character(LEN=*), optional, intent(in) :: method
+        integer, optional, intent(in) :: k
+        real(dp), dimension(:, :), optional, intent(out) :: vp
+        real(dp), dimension(:), intent(out) :: lambda
         real(dp), dimension(size(A, 1), size(A, 1)) :: A_tmp
         real(dp), dimension(size(A, 1), size(A, 1)) :: vp_tmp
         character(LEN=50) :: base_method
@@ -81,10 +81,10 @@ contains
     !>
     !> This subroutine implements the QR algorithm for computing the eigenvalues of a matrix.
     subroutine Eigen_QR(A, lambda, method, N, k)
-        real(dp), dimension(:, :), intent(IN) :: A
-        character(LEN=*), intent(IN) :: method
-        integer, intent(IN) :: N, k
-        real(dp), dimension(:), intent(OUT) :: lambda
+        real(dp), dimension(:, :), intent(in) :: A
+        character(LEN=*), intent(in) :: method
+        integer, intent(in) :: N, k
+        real(dp), dimension(:), intent(out) :: lambda
         real(dp), dimension(size(A, 1)) :: lambda_old
         real(dp), dimension(size(A, 1), size(A, 1)) :: A_tmp, Q, R
         real(dp) :: diff
@@ -126,10 +126,10 @@ contains
     !> This subroutine implements the shifted QR algorithm for computing the eigenvalues of a matrix.
     !> The shift is chosen as the last diagonal element of the matrix.
     subroutine Eigen_QR_Shifted(A, lambda, method, N, k)
-        integer, intent(IN) :: N, k
-        character(LEN=*), intent(IN) :: method
-        real(dp), dimension(N, N), intent(IN) :: A
-        real(dp), dimension(N), intent(OUT) :: lambda
+        integer, intent(in) :: N, k
+        character(LEN=*), intent(in) :: method
+        real(dp), dimension(N, N), intent(in) :: A
+        real(dp), dimension(N), intent(out) :: lambda
         integer :: i, j
         real(dp), dimension(size(A, 1), size(A, 1)) :: A_tmp, Q, R, Id
         real(dp) :: shift, diff
@@ -177,10 +177,10 @@ contains
     !> This subroutine implements the power iteration method for finding the dominant eigenvalue and eigenvector of a matrix.
     !> It iteratively computes the eigenvector and eigenvalue until convergence
     subroutine Power_iteration(A, lambda, vp, k)
-        real(dp), dimension(:, :), intent(IN) :: A
-        integer, intent(IN) :: k
-        real(dp), dimension(:), intent(OUT) :: vp
-        real(dp), intent(OUT) :: lambda
+        real(dp), dimension(:, :), intent(in) :: A
+        integer, intent(in) :: k
+        real(dp), dimension(:), intent(out) :: vp
+        real(dp), intent(out) :: lambda
         real(dp), dimension(size(A, 1)) :: u, vp_tmp, r
         integer :: i, N
 
@@ -212,10 +212,10 @@ contains
     !> This function performs deflation on a matrix A by removing the influence of an eigenvalue and its corresponding eigenvector.
     function deflation(A, lambda, vp, k) result(result)
 
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: vp
-        real(dp), intent(IN) :: lambda
-        integer, intent(IN) :: k
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: vp
+        real(dp), intent(in) :: lambda
+        integer, intent(in) :: k
         real(dp), dimension(size(A, 1), size(A, 1)) :: result
         real(dp), dimension(size(A, 1)) :: wp
         integer :: i, j, N

@@ -14,8 +14,8 @@ contains
 
     !> Make N-dimensional meshgrid from two vectors **x_vector** and **y_vector**
     subroutine meshgrid(x_vector, y_vector, X, Y)
-        real(dp), dimension(:), intent(IN) :: x_vector, y_vector
-        real(dp), dimension(size(y_vector), size(x_vector)), intent(OUT) :: X, Y
+        real(dp), dimension(:), intent(in) :: x_vector, y_vector
+        real(dp), dimension(size(y_vector), size(x_vector)), intent(out) :: X, Y
         integer :: sX, sY, i
 
         sX = size(x_vector)

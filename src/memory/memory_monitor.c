@@ -12,15 +12,11 @@ void get_memory(int *memory_kb) {
 
     PROCESS_MEMORY_COUNTERS memInfo;
     GetProcessMemoryInfo(GetCurrentProcess(), &memInfo, sizeof(memInfo));
-    *memory_kb = memInfo.WorkingSetSize / 1024; // Convert to KB
+    *memory_kb = memInfo.WorkingSetSize / 1024;  // Convert to KB
 }
 #elif __linux__
 
 void get_memory(int *memory_kb) {
-
-    printf("Getting memory usage on Linux...\n");
-
-
     FILE *file;
     char line[256];
     int found = 0;

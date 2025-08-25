@@ -1,24 +1,28 @@
 module NAFPack_matrix_tools
 
-    use NAFPack_constant
-    use NAFPack_matricielle
+    use NAFPack_constant, only: dp
+    use NAFPack_matricielle, only: Identity_n, Trace
 
     implicit none(type, external)
+
+    private
+    public :: Faddeev_Leverrier
 
 contains
 
     subroutine Faddeev_Leverrier(A, c, Ainv, success, check)
         integer, parameter :: dp = kind(1.0d0)
-        real(dp), dimension(:, :), intent(IN) :: A
-        logical, optional, intent(IN) :: check
-        real(dp), dimension(:), intent(OUT) :: c
-        real(dp), dimension(size(A, 1), size(A, 1)), optional, intent(OUT) :: Ainv
-        logical, optional, intent(OUT) :: success
+        real(dp), dimension(:, :), intent(in) :: A
+        logical, optional, intent(in) :: check
+        real(dp), dimension(:), intent(out) :: c
+        real(dp), dimension(size(A, 1), size(A, 1)), optional, intent(out) :: Ainv
+        logical, optional, intent(out) :: success
         real(dp), dimension(size(A, 1), size(A, 1)) :: Bk, I, B_Nm1, AB
-        logical :: do_check = .true.
+        logical :: do_check
         integer :: N, k
 
         N = size(A, 1)
+        do_check = .true.
 
         if (present(check)) do_check = check
 

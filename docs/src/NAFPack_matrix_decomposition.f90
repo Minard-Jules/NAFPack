@@ -25,8 +25,8 @@ contains
     !> \[ L * y = b \]
     !> where **L** is a lower triangular matrix and **b** is a vector
     function forward(L, b) result(y)
-        real(dp), dimension(:, :), intent(IN) :: L
-        real(dp), dimension(:), intent(IN) :: b
+        real(dp), dimension(:, :), intent(in) :: L
+        real(dp), dimension(:), intent(in) :: b
         real(dp), dimension(size(L, 1)) :: y
         integer :: i, N
 
@@ -45,8 +45,8 @@ contains
     !> \[ U * x = y \]
     !> where **U** is an upper triangular matrix and **y** is a vector
     function backward(U, y) result(x)
-        real(dp), dimension(:, :), intent(IN) :: U
-        real(dp), dimension(:), intent(IN) :: y
+        real(dp), dimension(:, :), intent(in) :: U
+        real(dp), dimension(:), intent(in) :: y
         real(dp), dimension(size(U, 1)) :: x
         integer :: i, N
 
@@ -65,8 +65,8 @@ contains
     !> This subroutine performs LU decomposition of a given matrix **A**, where **L** is a lower triangular matrix and **U** is an upper triangular matrix.
     subroutine LU_decomposition(A, L, U)
 
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(size(A, 1), size(A, 1)), intent(OUT) :: L, U
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(size(A, 1), size(A, 1)), intent(out) :: L, U
         integer :: i, j, N
 
         N = size(A, 1)
@@ -93,8 +93,8 @@ contains
     !> This subroutine performs LDU decomposition of a given matrix **A**, where **L** is a lower triangular matrix, **D** is a diagonal matrix, and **U** is an upper triangular matrix.
     subroutine LDU_decomposition(A, L, D, U)
 
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(size(A, 1), size(A, 1)), intent(OUT) :: L, U, D
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(size(A, 1), size(A, 1)), intent(out) :: L, U, D
         integer :: i, j, k, N
 
         N = size(A, 1)
@@ -126,9 +126,9 @@ contains
     !> This subroutine performs incomplete LU decomposition of a given matrix **A**, where **L** is a lower triangular matrix and **U** is an upper triangular matrix.
     subroutine ILU_decomposition(A, L, U, level)
 
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(size(A, 1), size(A, 1)), intent(OUT) :: L, U
-        integer, optional, intent(IN) :: level
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(size(A, 1), size(A, 1)), intent(out) :: L, U
+        integer, optional, intent(in) :: level
         integer :: N, i, j
         integer, dimension(size(A, 1), size(A, 1)) :: fill_level
         logical, dimension(size(A, 1), size(A, 1)) :: S
@@ -170,8 +170,8 @@ contains
     !> This subroutine performs Cholesky decomposition of a given symmetric positive definite matrix **A**, where **L** is a lower triangular matrix.
     subroutine Cholesky_decomposition(A, L)
 
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(size(A, 1), size(A, 1)), intent(OUT) :: L
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(size(A, 1), size(A, 1)), intent(out) :: L
         integer :: i, j, N
 
         N = size(A, 1)
@@ -191,8 +191,8 @@ contains
     !> This subroutine performs alternative Cholesky decomposition of a given symmetric positive definite matrix **A**, where **L** is a lower triangular matrix and **D** is a diagonal matrix.
     subroutine LDL_Cholesky_decomposition(A, L, D)
 
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(size(A, 1), size(A, 1)), intent(OUT) :: L, D
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(size(A, 1), size(A, 1)), intent(out) :: L, D
         integer :: i, j, N, k
 
         N = size(A, 1)
@@ -215,9 +215,9 @@ contains
     !> This subroutine performs incomplete Cholesky decomposition of a given matrix **A**, where **L** is a lower triangular matrix and **U** is an upper triangular matrix.
     subroutine Incomplete_Cholesky_decomposition(A, L, level)
 
-        real(dp), dimension(:, :), intent(IN) :: A
-        integer, optional, intent(IN) :: level
-        real(dp), dimension(size(A, 1), size(A, 1)), intent(OUT) :: L
+        real(dp), dimension(:, :), intent(in) :: A
+        integer, optional, intent(in) :: level
+        real(dp), dimension(size(A, 1), size(A, 1)), intent(out) :: L
         logical, dimension(size(A, 1), size(A, 1)) :: S
         integer :: N, i, j
         integer, dimension(size(A, 1), size(A, 1)) :: fill_level
@@ -249,9 +249,9 @@ contains
     !> The output matrices **Q** is an orthogonal matrix and **R** is an upper triangular matrix.
     subroutine QR_decomposition(A, method, Q, R)
 
-        real(dp), dimension(:, :), intent(IN) :: A
-        character(LEN=*), optional, intent(IN) :: method
-        real(dp), dimension(size(A, 1), size(A, 2)), intent(OUT) :: Q, R
+        real(dp), dimension(:, :), intent(in) :: A
+        character(LEN=*), optional, intent(in) :: method
+        real(dp), dimension(size(A, 1), size(A, 2)), intent(out) :: Q, R
 
         if (method == "QR_Householder") then
             call QR_Householder_decomposition(A, Q, R)
@@ -267,8 +267,8 @@ contains
 
     !> QR decomposition using Householder method
     subroutine QR_Householder_decomposition(A, Q, R)
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(size(A, 1), size(A, 2)), intent(OUT) :: Q, R
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(size(A, 1), size(A, 2)), intent(out) :: Q, R
         real(dp), dimension(size(A, 1), size(A, 2)) :: Id, H, v_mat_tmp
         real(dp), dimension(size(A, 1)) :: v, u, x
         integer :: N, i, j, k
@@ -317,8 +317,8 @@ contains
 
     !> QR decomposition using Givens rotations
     subroutine QR_Givens_decomposition(A, Q, R)
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(size(A, 1), size(A, 2)), intent(OUT) :: Q, R
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(size(A, 1), size(A, 2)), intent(out) :: Q, R
         real(dp), dimension(size(A, 1), size(A, 2)) :: G
         integer :: N, i, j
 
@@ -344,8 +344,8 @@ contains
 
     !> QR decomposition using Classical Gram-Schmidt method
     subroutine QR_Gram_Schmidt_Classical_decomposition(A, Q, R)
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(size(A, 1), size(A, 2)), intent(OUT) :: Q, R
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(size(A, 1), size(A, 2)), intent(out) :: Q, R
         real(dp), dimension(size(A, 1)) :: u
         integer :: N, i, j
 
@@ -367,8 +367,8 @@ contains
 
     !> QR decomposition using Modified Gram-Schmidt method
     subroutine QR_Gram_Schmidt_Modified_decomposition(A, Q, R)
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(size(A, 1), size(A, 2)), intent(OUT) :: Q, R
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(size(A, 1), size(A, 2)), intent(out) :: Q, R
         real(dp), dimension(size(A, 1), size(A, 2)) :: u
         integer :: N, i, j
 
@@ -389,8 +389,8 @@ contains
     end subroutine QR_Gram_Schmidt_Modified_decomposition
 
     subroutine pivot_partial(A, P)
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(size(A, 1), size(A, 1)), intent(OUT) :: P
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(size(A, 1), size(A, 1)), intent(out) :: P
         integer, dimension(1) :: vlmax
         integer :: N, lmax, k
         real(dp), dimension(size(A, 1), size(A, 1)) :: P_tmp
@@ -416,8 +416,8 @@ contains
     end subroutine pivot_partial
 
     subroutine pivot_total(A, P, Q)
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(size(A, 1), size(A, 1)), intent(OUT) :: P, Q
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(size(A, 1), size(A, 1)), intent(out) :: P, Q
         real(dp), dimension(size(A, 1), size(A, 1)) :: P_tmp, Q_tmp
         integer, dimension(2) :: vlmax
         integer :: N, lmax, cmax, k
@@ -450,9 +450,9 @@ contains
     end subroutine pivot_total
 
     subroutine compute_fill_pattern_ILU(A, fill_level, max_level, N)
-        real(dp), dimension(N, N), intent(IN) :: A
-        integer, dimension(N, N), intent(OUT) :: fill_level
-        integer, intent(IN) :: max_level, N
+        real(dp), dimension(N, N), intent(in) :: A
+        integer, dimension(N, N), intent(out) :: fill_level
+        integer, intent(in) :: max_level, N
         logical, dimension(N, N) :: S
         integer :: new_level
         integer :: i, j, k
@@ -481,9 +481,9 @@ contains
     end subroutine compute_fill_pattern_ILU
 
     subroutine compute_fill_pattern_IC(A, fill_level, max_level, N)
-        real(dp), dimension(N, N), intent(IN) :: A
-        integer, dimension(N, N), intent(OUT) :: fill_level
-        integer, intent(IN) :: max_level, N
+        real(dp), dimension(N, N), intent(in) :: A
+        integer, dimension(N, N), intent(out) :: fill_level
+        integer, intent(in) :: max_level, N
         logical, dimension(N, N) :: S
         integer :: new_level
         integer :: i, j, k

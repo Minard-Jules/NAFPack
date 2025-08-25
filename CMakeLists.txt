@@ -1,5 +1,4 @@
 cmake_minimum_required(VERSION 3.15)
-# set(CMAKE_Fortran_COMPILER "gfortran" CACHE FILEPATH "")
 project(NAFPack LANGUAGES C Fortran)
 
 # Option

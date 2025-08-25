@@ -1,9 +1,8 @@
 module NAFPack_Preconditioners
 
-    use NAFPack_constant
-    use NAFPack_Iterative_types
-    use NAFPack_matricielle
-    use NAFPack_matrix_decomposition
+    use NAFPack_constant, only: dp, epsi
+    use NAFPack_matricielle, only: Diag
+    use NAFPack_matrix_decomposition, only: Incomplete_Cholesky_decomposition, ILU_decomposition
 
     implicit none(type, external)
 
@@ -39,14 +38,22 @@ module NAFPack_Preconditioners
         integer :: value
     end type Fill_level_used
 
-    type(MethodPreconditioner), parameter :: METHOD_PRECOND_NONE = MethodPreconditioner(0, "None")
-    type(MethodPreconditioner), parameter :: METHOD_PRECOND_JACOBI = MethodPreconditioner(1, "Jacobi")
-    type(MethodPreconditioner), parameter :: METHOD_PRECOND_GS = MethodPreconditioner(2, "Gauss-Seidel")
-    type(MethodPreconditioner), parameter :: METHOD_PRECOND_SOR = MethodPreconditioner(3, "Successive Over-Relaxation")
-    type(MethodPreconditioner), parameter :: METHOD_PRECOND_JOR = MethodPreconditioner(4, "Jacobi Over-Relaxation")
-    type(MethodPreconditioner), parameter :: METHOD_PRECOND_ILU = MethodPreconditioner(5, "ILU")
-    type(MethodPreconditioner), parameter :: METHOD_PRECOND_ICF = MethodPreconditioner(6, "ICF")
-    type(MethodPreconditioner), parameter :: METHOD_PRECOND_SSOR = MethodPreconditioner(7, "SSOR")
+    type(MethodPreconditioner), parameter :: METHOD_PRECOND_NONE = &
+                                             MethodPreconditioner(0, "None")
+    type(MethodPreconditioner), parameter :: METHOD_PRECOND_JACOBI = &
+                                             MethodPreconditioner(1, "Jacobi")
+    type(MethodPreconditioner), parameter :: METHOD_PRECOND_GS = &
+                                             MethodPreconditioner(2, "Gauss-Seidel")
+    type(MethodPreconditioner), parameter :: METHOD_PRECOND_SOR = &
+                                             MethodPreconditioner(3, "Successive Over-Relaxation")
+    type(MethodPreconditioner), parameter :: METHOD_PRECOND_JOR = &
+                                             MethodPreconditioner(4, "Jacobi Over-Relaxation")
+    type(MethodPreconditioner), parameter :: METHOD_PRECOND_ILU = &
+                                             MethodPreconditioner(5, "ILU")
+    type(MethodPreconditioner), parameter :: METHOD_PRECOND_ICF = &
+                                             MethodPreconditioner(6, "ICF")
+    type(MethodPreconditioner), parameter :: METHOD_PRECOND_SSOR = &
+                                             MethodPreconditioner(7, "SSOR")
 
     type(Fill_level_used), parameter :: FILL_LEVEL_NONE = Fill_level_used(-1, "None", -huge(1))
     type(Fill_level_used), parameter :: FILL_LEVEL_0 = Fill_level_used(0, "Level 0", 0)
@@ -58,7 +65,7 @@ module NAFPack_Preconditioners
 contains
 
     function Calculate_Jacobi_preconditioner(A) result(D)
-        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:, :), intent(in) :: A
         real(dp), dimension(size(A, 1), size(A, 2)) :: D
         integer :: N, i
 
@@ -72,7 +79,7 @@ contains
     end function Calculate_Jacobi_preconditioner
 
     function Calculate_Gauss_Seidel_preconditioner(A) result(L)
-        real(dp), dimension(:, :), intent(IN) :: A
+        real(dp), dimension(:, :), intent(in) :: A
         real(dp), dimension(size(A, 1), size(A, 2)) :: L
         integer :: N, i, j
 
@@ -86,8 +93,8 @@ contains
     end function Calculate_Gauss_Seidel_preconditioner
 
     function Calculate_SOR_preconditioner(A, omega, alpha) result(L)
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), intent(IN) :: omega, alpha
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), intent(in) :: omega, alpha
         real(dp), dimension(size(A, 1), size(A, 2)) :: L
         integer :: N, i
 
@@ -106,8 +113,8 @@ contains
     end function Calculate_SOR_preconditioner
 
     function Calculate_JOR_preconditioner(A, omega, alpha) result(D)
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), intent(IN) :: omega, alpha
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), intent(in) :: omega, alpha
         real(dp), dimension(size(A, 1), size(A, 2)) :: D
         integer :: N, i
 
@@ -123,10 +130,10 @@ contains
     end function Calculate_JOR_preconditioner
 
     subroutine Calculate_ILU_preconditioner(A, L, U, omega, alpha, fill_level)
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), intent(IN) :: omega, alpha
-        real(dp), dimension(size(A, 1), size(A, 2)), intent(OUT) :: L, U
-        integer, optional, intent(IN) :: fill_level
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), intent(in) :: omega, alpha
+        real(dp), dimension(size(A, 1), size(A, 2)), intent(out) :: L, U
+        integer, optional, intent(in) :: fill_level
         integer :: N
 
         N = size(A, 1)
@@ -145,10 +152,10 @@ contains
     end subroutine Calculate_ILU_preconditioner
 
     function Calculate_ICF_preconditioner(A, omega, alpha, fill_level) result(L)
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), intent(IN) :: omega, alpha
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), intent(in) :: omega, alpha
         real(dp), dimension(size(A, 1), size(A, 2)) :: L
-        integer, optional, intent(IN) :: fill_level
+        integer, optional, intent(in) :: fill_level
         integer :: N
 
         N = size(A, 1)
@@ -166,9 +173,9 @@ contains
     end function Calculate_ICF_preconditioner
 
     subroutine Calculate_SSOR_preconditioner(A, L, D, omega, alpha)
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), intent(IN) :: omega, alpha
-        real(dp), dimension(size(A, 1), size(A, 2)), intent(OUT) :: L, D
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), intent(in) :: omega, alpha
+        real(dp), dimension(size(A, 1), size(A, 2)), intent(out) :: L, D
         integer :: N, i
 
         N = size(A, 1)

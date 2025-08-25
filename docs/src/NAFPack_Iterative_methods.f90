@@ -80,10 +80,10 @@ module NAFPack_Iterative_methods
             import :: dp
             import :: IterativeParams
             import :: IterativeMethod
-            class(IterativeMethod), intent(IN) :: this
-            real(dp), dimension(:, :), intent(IN) :: A
-            real(dp), dimension(:), intent(IN) :: b, x0
-            type(IterativeParams), intent(INOUT) :: params
+            class(IterativeMethod), intent(in) :: this
+            real(dp), dimension(:, :), intent(in) :: A
+            real(dp), dimension(:), intent(in) :: b, x0
+            type(IterativeParams), intent(inout) :: params
             real(dp), dimension(size(A, 1)) :: x
         end function solve_interface_Iterative
     end interface
@@ -95,8 +95,8 @@ contains
     !======================
 
     subroutine set_method(this, method)
-        class(IterativeMethod), intent(INOUT) :: this
-        type(MethodTypeIterative), intent(IN) :: method
+        class(IterativeMethod), intent(inout) :: this
+        type(MethodTypeIterative), intent(in) :: method
 
         this%requirements = IterativeMethodRequirements()
 
@@ -178,19 +178,19 @@ contains
 
     function Init_IterativeParams(this, N, A, x0, max_iter_choice, epsi_tol, omega, Norm_choice, fill_level, &
                                   method_preconditioner, alpha, is_stationary, is_strict_mode) result(params)
-        class(IterativeMethod), intent(INOUT) :: this
-        integer, intent(IN) :: N
-        real(dp), dimension(:, :), optional, intent(IN) :: A
-        real(dp), dimension(:), optional, intent(IN) :: x0
-        integer, optional, intent(IN) :: max_iter_choice
-        real(dp), optional, intent(IN) :: epsi_tol
-        real(dp), optional, intent(IN) :: omega
-        real(dp), optional, intent(IN) :: alpha
-        type(Norm_used), optional, intent(IN) :: Norm_choice
-        type(MethodPreconditioner), optional, intent(IN) :: method_preconditioner
-        logical, optional, intent(IN) :: is_stationary
-        logical, optional, intent(IN) :: is_strict_mode
-        type(FILL_LEVEL_USED), optional, intent(IN) :: fill_level
+        class(IterativeMethod), intent(inout) :: this
+        integer, intent(in) :: N
+        real(dp), dimension(:, :), optional, intent(in) :: A
+        real(dp), dimension(:), optional, intent(in) :: x0
+        integer, optional, intent(in) :: max_iter_choice
+        real(dp), optional, intent(in) :: epsi_tol
+        real(dp), optional, intent(in) :: omega
+        real(dp), optional, intent(in) :: alpha
+        type(Norm_used), optional, intent(in) :: Norm_choice
+        type(MethodPreconditioner), optional, intent(in) :: method_preconditioner
+        logical, optional, intent(in) :: is_stationary
+        logical, optional, intent(in) :: is_strict_mode
+        type(FILL_LEVEL_USED), optional, intent(in) :: fill_level
         type(IterativeParams) :: params
         integer :: allocate_status
 
@@ -327,10 +327,10 @@ contains
     end function Init_IterativeParams
 
     subroutine test_matrix(this, A, params, verbose)
-        class(IterativeMethod), intent(INOUT) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        type(IterativeParams), intent(IN) :: params
-        type(Logger), optional, intent(INOUT) :: verbose
+        class(IterativeMethod), intent(inout) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        type(IterativeParams), intent(in) :: params
+        type(Logger), optional, intent(inout) :: verbose
         character(KIND=ucs4, LEN=100) :: msg
         logical :: show_matrix_test
 
@@ -405,9 +405,9 @@ contains
     end subroutine test_matrix
 
     subroutine Dealocate_IterativeParams(this, params, success)
-        class(IterativeMethod), intent(INOUT) :: this
-        type(IterativeParams), intent(INOUT) :: params
-        logical, optional, intent(OUT) :: success
+        class(IterativeMethod), intent(inout) :: this
+        type(IterativeParams), intent(inout) :: params
+        logical, optional, intent(out) :: success
         integer :: deallocate_status
 
         if (present(success)) success = .true.
@@ -438,11 +438,11 @@ contains
 
     function IterativeMethod_solve(this, A, b, params, verbose) result(x)
 
-        class(IterativeMethod), intent(IN) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: b
-        type(IterativeParams), intent(INOUT) :: params
-        type(Logger), optional, intent(INOUT) :: verbose
+        class(IterativeMethod), intent(in) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: b
+        type(IterativeParams), intent(inout) :: params
+        type(Logger), optional, intent(inout) :: verbose
         real(dp), dimension(size(A, 1)) :: x
         real(dp), dimension(size(A, 1)) :: x0, x_new
         integer :: k, N, frequency
@@ -514,10 +514,10 @@ contains
     !======================
 
     subroutine log_solver_info(solver, params, verbose, N)
-        type(IterativeMethod), intent(IN) :: solver
-        type(IterativeParams), intent(IN) :: params
-        type(Logger), intent(INOUT) :: verbose
-        integer, intent(IN) :: N
+        type(IterativeMethod), intent(in) :: solver
+        type(IterativeParams), intent(in) :: params
+        type(Logger), intent(inout) :: verbose
+        integer, intent(in) :: N
         character(10) :: date, time
         character(KIND=ucs4, LEN=100) :: msg
 
@@ -594,7 +594,7 @@ contains
     end subroutine log_solver_info
 
     subroutine log_iteration_header(verbose)
-        class(Logger), intent(INOUT) :: verbose
+        class(Logger), intent(inout) :: verbose
         character(KIND=ucs4, LEN=100) :: msg
 
         call verbose%write(center_with_fill("Iterations", width=100, fill_char="="), box_style="top")
@@ -609,10 +609,10 @@ contains
     end subroutine log_iteration_header
 
     subroutine log_iteration_step(verbose, k, params, elapsed_time)
-        class(Logger), intent(INOUT) :: verbose
-        integer, intent(IN) :: k
-        real(dp), intent(IN) :: elapsed_time
-        type(IterativeParams), intent(IN) :: params
+        class(Logger), intent(inout) :: verbose
+        integer, intent(in) :: k
+        real(dp), intent(in) :: elapsed_time
+        type(IterativeParams), intent(in) :: params
         character(KIND=ucs4, LEN=100) :: msg
         integer :: end_system_clock
 
@@ -625,12 +625,12 @@ contains
     end subroutine log_iteration_step
 
     subroutine log_final_result(verbose, k, params, x_new, elapsed_time, N)
-        class(Logger), intent(INOUT) :: verbose
-        integer, intent(IN) :: N
-        integer, intent(IN) :: k
-        real(dp), intent(IN) :: elapsed_time
-        type(IterativeParams), intent(IN) :: params
-        real(dp), dimension(:), intent(IN) :: x_new
+        class(Logger), intent(inout) :: verbose
+        integer, intent(in) :: N
+        integer, intent(in) :: k
+        real(dp), intent(in) :: elapsed_time
+        type(IterativeParams), intent(in) :: params
+        real(dp), dimension(:), intent(in) :: x_new
         character(KIND=ucs4, LEN=100) :: msg
         integer :: end_system_clock
         integer :: i
@@ -689,10 +689,10 @@ contains
     !>
     !> This subroutine implements the Jacobi method for solving linear systems.
     function solve_Jacobi(this, A, b, x0, params) result(x)
-        class(IterativeMethod), intent(IN) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: b, x0
-        type(IterativeParams), intent(INOUT) :: params
+        class(IterativeMethod), intent(in) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: b, x0
+        type(IterativeParams), intent(inout) :: params
         real(dp), dimension(size(A, 1)) :: x
         integer :: i, N
 
@@ -710,10 +710,10 @@ contains
     !>
     !> This subroutine implements the Gauss-Seidel method for solving linear systems.
     function solve_Gauss_Seidel(this, A, b, x0, params) result(x)
-        class(IterativeMethod), intent(IN) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: b, x0
-        type(IterativeParams), intent(INOUT) :: params
+        class(IterativeMethod), intent(in) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: b, x0
+        type(IterativeParams), intent(inout) :: params
         real(dp), dimension(size(A, 1)) :: x
         integer :: i, N
 
@@ -731,10 +731,10 @@ contains
     !>
     !> This subroutine implements the SOR method for solving linear systems.
     function solve_SOR(this, A, b, x0, params) result(x)
-        class(IterativeMethod), intent(IN) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: b, x0
-        type(IterativeParams), intent(INOUT) :: params
+        class(IterativeMethod), intent(in) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: b, x0
+        type(IterativeParams), intent(inout) :: params
         real(dp), dimension(size(A, 1)) :: x
         integer :: i, N
 
@@ -752,10 +752,10 @@ contains
     !>
     !> This subroutine implements the Jacobi over-relaxation method for solving linear systems.
     function solve_JOR(this, A, b, x0, params) result(x)
-        class(IterativeMethod), intent(IN) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: b, x0
-        type(IterativeParams), intent(INOUT) :: params
+        class(IterativeMethod), intent(in) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: b, x0
+        type(IterativeParams), intent(inout) :: params
         real(dp), dimension(size(A, 1)) :: x
         integer :: i, N
 
@@ -774,10 +774,10 @@ contains
     !> This subroutine implements the SIP method for solving linear systems.
     !> It uses the incomplete LU decomposition of the matrix A.
     function solve_SIP_ILU(this, A, b, x0, params) result(x)
-        class(IterativeMethod), intent(IN) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: b, x0
-        type(IterativeParams), intent(INOUT) :: params
+        class(IterativeMethod), intent(in) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: b, x0
+        type(IterativeParams), intent(inout) :: params
         real(dp), dimension(size(A, 1)) :: x
         real(dp), dimension(size(A, 1)) :: y, z
 
@@ -796,10 +796,10 @@ contains
     !> This subroutine implements the SIP method for solving linear systems.
     !> It uses the incomplete Cholesky decomposition of the matrix A.
     function solve_SIP_ICF(this, A, b, x0, params) result(x)
-        class(IterativeMethod), intent(IN) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: b, x0
-        type(IterativeParams), intent(INOUT) :: params
+        class(IterativeMethod), intent(in) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: b, x0
+        type(IterativeParams), intent(inout) :: params
         real(dp), dimension(size(A, 1)) :: x
         real(dp), dimension(size(A, 1)) :: y, z
 
@@ -817,10 +817,10 @@ contains
     !>
     !> This subroutine implements the SSOR method for solving linear systems.
     function solve_SSOR(this, A, b, x0, params) result(x)
-        class(IterativeMethod), intent(IN) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: b, x0
-        type(IterativeParams), intent(INOUT) :: params
+        class(IterativeMethod), intent(in) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: b, x0
+        type(IterativeParams), intent(inout) :: params
         real(dp), dimension(size(A, 1)) :: x
         real(dp), dimension(size(A, 1)) :: x_tmp
         integer :: i, N
@@ -845,10 +845,10 @@ contains
     !>
     !> This subroutine implements the Richardson method for solving linear systems.
     function solve_Richardson(this, A, b, x0, params) result(x)
-        class(IterativeMethod), intent(IN) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: b, x0
-        type(IterativeParams), intent(INOUT) :: params
+        class(IterativeMethod), intent(in) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: b, x0
+        type(IterativeParams), intent(inout) :: params
         real(dp), dimension(size(A, 1)) :: x
         real(dp), dimension(size(A, 1)) :: z_prec
 
@@ -873,10 +873,10 @@ contains
     !>
     !> This subroutine implements the Conjugate Gradient method for solving linear systems.
     function solve_ConjugateGradient(this, A, b, x0, params) result(x)
-        class(IterativeMethod), intent(IN) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: b, x0
-        type(IterativeParams), intent(INOUT) :: params
+        class(IterativeMethod), intent(in) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: b, x0
+        type(IterativeParams), intent(inout) :: params
         real(dp), dimension(size(A, 1)) :: x
         real(dp), dimension(size(A, 1)) :: z_prec
 
@@ -921,10 +921,10 @@ contains
     !>
     !> This subroutine implements the Conjugate Residual method for solving linear systems.
     function solve_ConjugateResidual(this, A, b, x0, params) result(x)
-        class(IterativeMethod), intent(IN) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: b, x0
-        type(IterativeParams), intent(INOUT) :: params
+        class(IterativeMethod), intent(in) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: b, x0
+        type(IterativeParams), intent(inout) :: params
         real(dp), dimension(size(A, 1)) :: x
         real(dp), dimension(size(A, 1)) :: z_prec
 
@@ -971,10 +971,10 @@ contains
     !>
     !> This subroutine implements the Conjugate Gradient on Normal Equations method (or Craig’s Method) for solving linear systems.
     function solve_CGNR(this, A, b, x0, params) result(x)
-        class(IterativeMethod), intent(IN) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: b, x0
-        type(IterativeParams), intent(INOUT) :: params
+        class(IterativeMethod), intent(in) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: b, x0
+        type(IterativeParams), intent(inout) :: params
         real(dp), dimension(size(A, 1)) :: x
         real(dp), dimension(size(A, 1)) :: z_prec
         real(dp), dimension(size(A, 1)) :: AT_r
@@ -1026,10 +1026,10 @@ contains
     !>
     !> This subroutine implements the Conjugate Gradient on Normal Residual method for solving linear systems.
     function solve_CGNE(this, A, b, x0, params) result(x)
-        class(IterativeMethod), intent(IN) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: b, x0
-        type(IterativeParams), intent(INOUT) :: params
+        class(IterativeMethod), intent(in) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: b, x0
+        type(IterativeParams), intent(inout) :: params
         real(dp), dimension(size(A, 1)) :: x
         real(dp), dimension(size(A, 1)) :: z_prec
 
@@ -1073,10 +1073,10 @@ contains
     end function solve_CGNE
 
     function solve_GMRES(this, A, b, x0, params) result(x)
-        class(IterativeMethod), intent(IN) :: this
-        real(dp), dimension(:, :), intent(IN) :: A
-        real(dp), dimension(:), intent(IN) :: b, x0
-        type(IterativeParams), intent(INOUT) :: params
+        class(IterativeMethod), intent(in) :: this
+        real(dp), dimension(:, :), intent(in) :: A
+        real(dp), dimension(:), intent(in) :: b, x0
+        type(IterativeParams), intent(inout) :: params
         real(dp), dimension(size(A, 1)) :: x
 
         ! in progress

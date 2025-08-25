@@ -16,10 +16,10 @@ contains
 !================ Linear System ===========================================================
 
     subroutine test_direct_method(x_true, x, method, stat, pivot_method)
-        real(dp), dimension(:), intent(IN) :: x, x_true
-        character(LEN=*), intent(IN) :: method
-        character(LEN=*), optional, intent(IN) :: pivot_method
-        logical, intent(INOUT) :: stat
+        real(dp), dimension(:), intent(in) :: x, x_true
+        character(LEN=*), intent(in) :: method
+        character(LEN=*), optional, intent(in) :: pivot_method
+        logical, intent(inout) :: stat
         real(dp), dimension(size(x)) :: diff_x
 
         diff_x = x_true - x
@@ -33,10 +33,10 @@ contains
     end subroutine test_direct_method
 
     subroutine test_iterative_method(x_true, x, method, stat, preconditioner)
-        real(dp), dimension(:), intent(IN) :: x, x_true
-        character(LEN=*), intent(IN) :: method
-        character(LEN=*), optional, intent(IN) :: preconditioner
-        logical, intent(INOUT) :: stat
+        real(dp), dimension(:), intent(in) :: x, x_true
+        character(LEN=*), intent(in) :: method
+        character(LEN=*), optional, intent(in) :: preconditioner
+        logical, intent(inout) :: stat
         real(dp), dimension(size(x)) :: diff_x
 
         diff_x = x_true - x
@@ -51,7 +51,7 @@ contains
 
     subroutine test_linear_system(stat)
 
-        logical, intent(INOUT) :: stat
+        logical, intent(inout) :: stat
 
         integer, parameter :: N = 3
 
@@ -62,6 +62,9 @@ contains
         type(linalg) :: solver
         type(IterativeParams) :: params
         type(Logger) :: verbose
+
+        character(len=100) :: fname
+        logical :: exists_dir
 
         A = reshape([4, -1, 0, &
                      -1, 4, -1, &
@@ -215,10 +218,18 @@ contains
         verbose%frequency = 1
         verbose%file_format = FORMAT_FILE_LOG
 
+        fname = "Log"
+
+        inquire(FILE = fname, EXIST = exists_dir)
+
+        if (.not. exists_dir) then
+            call execute_command_line("mkdir "//trim(fname))
+        end if
+
         !=====================================================================================
         !Jacobi method
 
-        verbose%filename = "Log/Log_Jacobi"
+        verbose%filename = trim(fname)//"/Log_Jacobi"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_Jacobi)
@@ -233,7 +244,7 @@ contains
         !=====================================================================================
         !Gauss-Seidel method
 
-        verbose%filename = "Log/Log_Gauss_Seidel"
+        verbose%filename = trim(fname)//"/Log_Gauss_Seidel"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_Gauss_Seidel)
@@ -248,7 +259,7 @@ contains
         !=====================================================================================
         !SOR method
 
-        verbose%filename = "Log/Log_SOR"
+        verbose%filename = trim(fname)//"/Log_SOR"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_SOR)
@@ -263,7 +274,7 @@ contains
         !=====================================================================================
         !JOR method
 
-        verbose%filename = "Log/Log_JOR"
+        verbose%filename = trim(fname)//"/Log_JOR"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_JOR)
@@ -278,7 +289,7 @@ contains
         !=====================================================================================
         !SIP_ILU method
 
-        verbose%filename = "Log/Log_SIP_ILU"
+        verbose%filename = trim(fname)//"/Log_SIP_ILU"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_SIP_ILU)
@@ -293,7 +304,7 @@ contains
         !=====================================================================================
         !SIP_ICF method
 
-        verbose%filename = "Log/Log_SIP_ICF"
+        verbose%filename = trim(fname)//"/Log_SIP_ICF"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_SIP_ICF)
@@ -308,7 +319,7 @@ contains
         !=====================================================================================
         !SSOR method
 
-        verbose%filename = "Log/Log_SSOR"
+        verbose%filename = trim(fname)//"/Log_SSOR"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_SSOR)
@@ -323,7 +334,7 @@ contains
         !=====================================================================================
         !Richardson method
 
-        verbose%filename = "Log/Log_Richardson"
+        verbose%filename = trim(fname)//"/Log_Richardson"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_RICHARDSON)
@@ -338,7 +349,7 @@ contains
         !=====================================================================================
         !Richardson method with Jacobi preconditioner
 
-        verbose%filename = "Log/Log_Richardson_Jacobi"
+        verbose%filename = trim(fname)//"/Log_Richardson_Jacobi"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_RICHARDSON)
@@ -353,7 +364,7 @@ contains
         !=====================================================================================
         !Richardson method with Gauss-Seidel preconditioner
 
-        verbose%filename = "Log/Log_Richardson_GS"
+        verbose%filename = trim(fname)//"/Log_Richardson_GS"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_RICHARDSON)
@@ -368,7 +379,7 @@ contains
         !=====================================================================================
         !Richardson method with SOR preconditioner
 
-        verbose%filename = "Log/Log_Richardson_SOR"
+        verbose%filename = trim(fname)//"/Log_Richardson_SOR"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_RICHARDSON)
@@ -383,7 +394,7 @@ contains
         !=====================================================================================
         !Richardson method with JOR preconditioner
 
-        verbose%filename = "Log/Log_Richardson_JOR"
+        verbose%filename = trim(fname)//"/Log_Richardson_JOR"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_RICHARDSON)
@@ -398,7 +409,7 @@ contains
         !=====================================================================================
         !Richardson method with ILU preconditioner
 
-        verbose%filename = "Log/Log_Richardson_ILU"
+        verbose%filename = trim(fname)//"/Log_Richardson_ILU"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_RICHARDSON)
@@ -413,7 +424,7 @@ contains
         !=====================================================================================
         !Richardson method with ICF preconditioner
 
-        verbose%filename = "Log/Log_Richardson_ICF"
+        verbose%filename = trim(fname)//"/Log_Richardson_ICF"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_RICHARDSON)
@@ -428,7 +439,7 @@ contains
         !=====================================================================================
         !Richardson method with SSOR preconditioner
 
-        verbose%filename = "Log/Log_Richardson_SSOR"
+        verbose%filename = trim(fname)//"/Log_Richardson_SSOR"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_RICHARDSON)
@@ -443,7 +454,7 @@ contains
         !=====================================================================================
         !Richardson unsteady method
 
-        verbose%filename = "Log/Log_Richardson_unsteady"
+        verbose%filename = trim(fname)//"/Log_Richardson_unsteady"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_RICHARDSON)
@@ -458,7 +469,7 @@ contains
         !=====================================================================================
         !Richardson unsteady method with Jacobi preconditioner
 
-        verbose%filename = "Log/Log_Richardson_unsteady_Jacobi"
+        verbose%filename = trim(fname)//"/Log_Richardson_unsteady_Jacobi"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_RICHARDSON)
@@ -474,7 +485,7 @@ contains
         !=====================================================================================
         !Richardson unsteady method with Gauss-Seidel preconditioner
 
-        verbose%filename = "Log/Log_Richardson_unsteady_GS"
+        verbose%filename = trim(fname)//"/Log_Richardson_unsteady_GS"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_RICHARDSON)
@@ -489,7 +500,7 @@ contains
         !=====================================================================================
         !Richardson unsteady method with SOR preconditioner
 
-        verbose%filename = "Log/Log_Richardson_unsteady_SOR"
+        verbose%filename = trim(fname)//"/Log_Richardson_unsteady_SOR"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_RICHARDSON)
@@ -505,7 +516,7 @@ contains
         !=====================================================================================
         !Richardson unsteady method with JOR preconditioner
 
-        verbose%filename = "Log/Log_Richardson_unsteady_JOR"
+        verbose%filename = trim(fname)//"/Log_Richardson_unsteady_JOR"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_RICHARDSON)
@@ -521,7 +532,7 @@ contains
         !=====================================================================================
         !Richardson unsteady method with ILU preconditioner
 
-        verbose%filename = "Log/Log_Richardson_unsteady_ILU"
+        verbose%filename = trim(fname)//"/Log_Richardson_unsteady_ILU"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_RICHARDSON)
@@ -537,7 +548,7 @@ contains
         !=====================================================================================
         !Richardson unsteady method with ICF preconditioner
 
-        verbose%filename = "Log/Log_Richardson_unsteady_ICF"
+        verbose%filename = trim(fname)//"/Log_Richardson_unsteady_ICF"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_RICHARDSON)
@@ -553,7 +564,7 @@ contains
         !=====================================================================================
         !Richardson unsteady method with SSOR preconditioner
 
-        verbose%filename = "Log/Log_Richardson_unsteady_SSOR"
+        verbose%filename = trim(fname)//"/Log_Richardson_unsteady_SSOR"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_RICHARDSON)
@@ -569,7 +580,7 @@ contains
         !=====================================================================================
         !Conjugate Gradient method
 
-        verbose%filename = "Log/Log_Conjugate_Gradient"
+        verbose%filename = trim(fname)//"/Log_Conjugate_Gradient"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_CONJUGATE_GRADIENT)
@@ -584,7 +595,7 @@ contains
         !=====================================================================================
         !Conjugate Gradient method with Jacobi preconditioner
 
-        verbose%filename = "Log/Log_Conjugate_Gradient_Jacobi"
+        verbose%filename = trim(fname)//"/Log_Conjugate_Gradient_Jacobi"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_CONJUGATE_GRADIENT)
@@ -599,7 +610,7 @@ contains
         !=====================================================================================
         !Conjugate Gradient method with JOR preconditioner
 
-        verbose%filename = "Log/Log_Conjugate_Gradient_JOR"
+        verbose%filename = trim(fname)//"/Log_Conjugate_Gradient_JOR"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_CONJUGATE_GRADIENT)
@@ -614,7 +625,7 @@ contains
         !=====================================================================================
         !Conjugate Gradient method with ILU preconditioner
 
-        verbose%filename = "Log/Log_Conjugate_Gradient_ILU"
+        verbose%filename = trim(fname)//"/Log_Conjugate_Gradient_ILU"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_CONJUGATE_GRADIENT)
@@ -629,7 +640,7 @@ contains
         !=====================================================================================
         !Conjugate Gradient method with ICF preconditioner
 
-        verbose%filename = "Log/Log_Conjugate_Gradient_ICF"
+        verbose%filename = trim(fname)//"/Log_Conjugate_Gradient_ICF"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_CONJUGATE_GRADIENT)
@@ -644,7 +655,7 @@ contains
         !=====================================================================================
         !Conjugate Gradient method with SSOR preconditioner
 
-        verbose%filename = "Log/Log_Conjugate_Gradient_SSOR"
+        verbose%filename = trim(fname)//"/Log_Conjugate_Gradient_SSOR"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_CONJUGATE_GRADIENT)
@@ -659,7 +670,7 @@ contains
         !=====================================================================================
         !Conjugate Residual method
 
-        verbose%filename = "Log/Log_Conjugate_Residual"
+        verbose%filename = trim(fname)//"/Log_Conjugate_Residual"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_CONJUGATE_RESIDUAL)
@@ -674,7 +685,7 @@ contains
         !=====================================================================================
         !Conjugate Residual method with Jacobi preconditioner
 
-        verbose%filename = "Log/Log_Conjugate_Residual_Jacobi"
+        verbose%filename = trim(fname)//"/Log_Conjugate_Residual_Jacobi"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_CONJUGATE_RESIDUAL)
@@ -689,7 +700,7 @@ contains
         !=====================================================================================
         !Conjugate Residual method with JOR preconditioner
 
-        verbose%filename = "Log/Log_Conjugate_Residual_JOR"
+        verbose%filename = trim(fname)//"/Log_Conjugate_Residual_JOR"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_CONJUGATE_RESIDUAL)
@@ -704,7 +715,7 @@ contains
         !=====================================================================================
         !Conjugate Residual method with ILU preconditioner
 
-        verbose%filename = "Log/Log_Conjugate_Residual_ILU"
+        verbose%filename = trim(fname)//"/Log_Conjugate_Residual_ILU"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_CONJUGATE_RESIDUAL)
@@ -719,7 +730,7 @@ contains
         !=====================================================================================
         !Conjugate Residual method with ICF preconditioner
 
-        verbose%filename = "Log/Log_Conjugate_Residual_ICF"
+        verbose%filename = trim(fname)//"/Log_Conjugate_Residual_ICF"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_CONJUGATE_RESIDUAL)
@@ -734,7 +745,7 @@ contains
         !=====================================================================================
         !Conjugate Residual method with SSOR preconditioner
 
-        verbose%filename = "Log/Log_Conjugate_Residual_SSOR"
+        verbose%filename = trim(fname)//"/Log_Conjugate_Residual_SSOR"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_CONJUGATE_RESIDUAL)
@@ -749,7 +760,7 @@ contains
         !=====================================================================================
         !CGNR method
 
-        verbose%filename = "Log/Log_CGNR"
+        verbose%filename = trim(fname)//"/Log_CGNR"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_CGNR)
@@ -764,7 +775,7 @@ contains
         !=====================================================================================
         !CGNR method with Jacobi preconditioner
 
-        verbose%filename = "Log/Log_CGNR_Jacobi"
+        verbose%filename = trim(fname)//"/Log_CGNR_Jacobi"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_CGNR)
@@ -779,7 +790,7 @@ contains
         !=====================================================================================
         !CGNR method with JOR preconditioner
 
-        verbose%filename = "Log/Log_CGNR_JOR"
+        verbose%filename = trim(fname)//"/Log_CGNR_JOR"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_CGNR)
@@ -794,7 +805,7 @@ contains
         !=====================================================================================
         !CGNR method with ILU preconditioner
 
-        verbose%filename = "Log/Log_CGNR_ILU"
+        verbose%filename = trim(fname)//"/Log_CGNR_ILU"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_CGNR)
@@ -809,7 +820,7 @@ contains
         !=====================================================================================
         !CGNR method with ICF preconditioner
 
-        verbose%filename = "Log/Log_CGNR_ICF"
+        verbose%filename = trim(fname)//"/Log_CGNR_ICF"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_CGNR)
@@ -824,7 +835,7 @@ contains
         !=====================================================================================
         !CGNR method with SSOR preconditioner
 
-        verbose%filename = "Log/Log_CGNR_SSOR"
+        verbose%filename = trim(fname)//"/Log_CGNR_SSOR"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_CGNR)
@@ -839,7 +850,7 @@ contains
         !=====================================================================================
         !CGNE method
 
-        verbose%filename = "Log/Log_CGNE"
+        verbose%filename = trim(fname)//"/Log_CGNE"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_CGNE)
@@ -854,7 +865,7 @@ contains
         !=====================================================================================
         !CGNE method with Jacobi preconditioner
 
-        verbose%filename = "Log/Log_CGNE_Jacobi"
+        verbose%filename = trim(fname)//"/Log_CGNE_Jacobi"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_CGNE)
@@ -869,7 +880,7 @@ contains
         !=====================================================================================
         !CGNE method with JOR preconditioner
 
-        verbose%filename = "Log/Log_CGNE_JOR"
+        verbose%filename = trim(fname)//"/Log_CGNE_JOR"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_CGNE)
@@ -884,7 +895,7 @@ contains
         !=====================================================================================
         !CGNE method with ILU preconditioner
 
-        verbose%filename = "Log/Log_CGNE_ILU"
+        verbose%filename = trim(fname)//"/Log_CGNE_ILU"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_CGNE)
@@ -899,7 +910,7 @@ contains
         !=====================================================================================
         !CGNE method with ICF preconditioner
 
-        verbose%filename = "Log/Log_CGNE_ICF"
+        verbose%filename = trim(fname)//"/Log_CGNE_ICF"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_CGNE)
@@ -914,7 +925,7 @@ contains
         !=====================================================================================
         !CGNE method with SSOR preconditioner
 
-        verbose%filename = "Log/Log_CGNE_SSOR"
+        verbose%filename = trim(fname)//"/Log_CGNE_SSOR"
         call verbose%init()
 
         call solver%iterative%set_method(METHOD_CGNE)
@@ -934,9 +945,9 @@ contains
 
     subroutine test_Eigen_vecteur_propre(A, method, stat)
 
-        real(dp), dimension(:, :), intent(IN) :: A
-        character(LEN=*), intent(IN) :: method
-        logical, intent(INOUT) :: stat
+        real(dp), dimension(:, :), intent(in) :: A
+        character(LEN=*), intent(in) :: method
+        logical, intent(inout) :: stat
         real(dp), dimension(size(A, 1), size(A, 2)) :: vp
         real(dp), dimension(size(A, 1)) :: lambda, diff
         integer :: i
@@ -963,9 +974,9 @@ contains
 
     subroutine test_Eigen_without_vecteur_propre(A, method, stat)
 
-        real(dp), dimension(:, :), intent(IN) :: A
-        character(LEN=*), intent(IN) :: method
-        logical, intent(INOUT) :: stat
+        real(dp), dimension(:, :), intent(in) :: A
+        character(LEN=*), intent(in) :: method
+        logical, intent(inout) :: stat
         real(dp), dimension(size(A, 1)) :: lambda_test, lambda, diff
         character(LEN=25) :: method_test
         logical :: verif_Eigen = .true.
@@ -993,7 +1004,7 @@ contains
 
     subroutine test_linear_algebra(stat)
 
-        logical, intent(INOUT) :: stat
+        logical, intent(inout) :: stat
         logical :: stat_tmp = .false.
 
         integer, parameter :: N = 3

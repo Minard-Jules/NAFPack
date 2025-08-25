@@ -50,9 +50,9 @@ module NAFPack_Iterative_Params
 contains
 
     function ApplyPreconditioner(params, method, x) result(y)
-        class(IterativeParams), intent(IN) :: params
-        class(MethodPreconditioner), intent(IN) :: method
-        real(dp), dimension(:), intent(IN) :: x
+        class(IterativeParams), intent(in) :: params
+        class(MethodPreconditioner), intent(in) :: method
+        real(dp), dimension(:), intent(in) :: x
         real(dp), dimension(size(params%x_init)) :: y
 
         select case (method%id)
@@ -97,8 +97,8 @@ contains
     end function ApplyPreconditioner
 
     function norm_function(this, vector) result(result)
-        class(IterativeParams), intent(IN) :: this
-        real(dp), dimension(:), intent(IN) :: vector
+        class(IterativeParams), intent(in) :: this
+        real(dp), dimension(:), intent(in) :: vector
         real(dp) :: result
 
         select case (this%norm%id)

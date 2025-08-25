@@ -4,21 +4,27 @@
 !> and other parameters that are used throughout the NAFPack library.
 module NAFPack_constant
 
-    use, intrinsic :: iso_fortran_env, only: sp => real32, dp => real64, &
-                                                                                isp => int32, idp => int64, &
-                                                                                output_unit
+    use, intrinsic :: iso_fortran_env, only: output_unit, &
+                                             sp => real32, &
+                                             dp => real64, &
+                                             isp => int32, &
+                                             idp => int64
 
     implicit none(type, external)
 
     private
     public :: pi, im, epsi, kmax, sp, dp, epsi_test, idp, isp, int_inf, output_unit
     public :: status_len
-    public :: red_color, green_color, yellow_color, blue_color, white_color, cyan_color, purple_color, reset_color
+    public :: red_color, green_color, &
+              yellow_color, blue_color, &
+              white_color, cyan_color, &
+              purple_color, reset_color
     public :: red_color_ucs4, green_color_ucs4, yellow_color_ucs4, blue_color_ucs4, &
               white_color_ucs4, cyan_color_ucs4, purple_color_ucs4, reset_color_ucs4
     public :: ascii, ucs4
-    public :: NAF_SUCCESS, NAF_ERROR_DIMENSION, NAF_ERROR_SINGULAR, NAF_ERROR_CONVERGENCE, NAF_ERROR_MEMORY, &
-              NAF_ERROR_INVALID_METHOD
+    public :: NAF_SUCCESS, NAF_ERROR_DIMENSION, &
+              NAF_ERROR_SINGULAR, NAF_ERROR_CONVERGENCE, &
+              NAF_ERROR_MEMORY, NAF_ERROR_INVALID_METHOD
     public :: TOL_PIVOT, TOL_CONVERGENCE
 
     !> \( \pi \) constant

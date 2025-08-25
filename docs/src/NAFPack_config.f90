@@ -62,9 +62,9 @@ contains
 
     !> Validate configuration parameters
     subroutine validate_config(config, is_valid, error_msg)
-        type(config_type), intent(IN) :: config
-        logical, intent(OUT) :: is_valid
-        character(LEN=*), intent(OUT) :: error_msg
+        type(config_type), intent(in) :: config
+        logical, intent(out) :: is_valid
+        character(LEN=*), intent(out) :: error_msg
 
         is_valid = .true.
         error_msg = ""

@@ -1,9 +1,17 @@
 module NAFPack_Iterative_Params
 
-    use NAFPack_constant
-    use NAFPack_Iterative_types
-    use NAFPack_Preconditioners
-    use NAFPack_matrix_decomposition
+    use NAFPack_constant, only: dp
+
+    use NAFPack_Iterative_types, only: Norm_used, NORM_1, NORM_2, NORM_INF
+
+    use NAFPack_Preconditioners, only: FILL_LEVEL_USED, FILL_LEVEL_NONE, &
+                                       MethodPreconditioner, &
+                                       METHOD_PRECOND_JACOBI, METHOD_PRECOND_GS, &
+                                       METHOD_PRECOND_SOR, METHOD_PRECOND_JOR, &
+                                       METHOD_PRECOND_ILU, METHOD_PRECOND_ICF, &
+                                       METHOD_PRECOND_SSOR
+
+    use NAFPack_matrix_decomposition, only: forward, backward
 
     implicit none(type, external)
 
@@ -50,9 +58,9 @@ module NAFPack_Iterative_Params
 contains
 
     function ApplyPreconditioner(params, method, x) result(y)
-        class(IterativeParams), intent(IN) :: params
-        class(MethodPreconditioner), intent(IN) :: method
-        real(dp), dimension(:), intent(IN) :: x
+        class(IterativeParams), intent(in) :: params
+        class(MethodPreconditioner), intent(in) :: method
+        real(dp), dimension(:), intent(in) :: x
         real(dp), dimension(size(params%x_init)) :: y
 
         select case (method%id)
@@ -97,8 +105,8 @@ contains
     end function ApplyPreconditioner
 
     function norm_function(this, vector) result(result)
-        class(IterativeParams), intent(IN) :: this
-        real(dp), dimension(:), intent(IN) :: vector
+        class(IterativeParams), intent(in) :: this
+        real(dp), dimension(:), intent(in) :: vector
         real(dp) :: result
 
         select case (this%norm%id)

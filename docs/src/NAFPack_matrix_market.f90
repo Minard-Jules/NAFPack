@@ -7,8 +7,8 @@ module NAFPack_matrix_market
 contains
 
     subroutine readMatrixMarket(filename, A)
-        character(LEN=*), intent(IN) :: filename
-        real(dp), dimension(:, :), allocatable, intent(OUT) :: A
+        character(LEN=*), intent(in) :: filename
+        real(dp), dimension(:, :), allocatable, intent(out) :: A
 
         integer :: i, j, nrows, ncols, nnz, ios, k, row_idx, col_idx
         character(LEN=256) :: line, header
