@@ -1,11 +1,33 @@
 !> Module for direct methods in NAFPack
 module NAFPack_Direct_method
 
-    use NAFPack_constant
-    use NAFPack_matrix_decomposition
-    use NAFPack_matrix_properties
-    use NAFPack_Direct_types
-    use NAFPack_matrix_tools
+    use NAFPack_kinds, only: dp
+    use NAFPack_constant, only: TOL_PIVOT
+
+    use NAFPack_Direct_types, only: MethodTypeDirect, METHOD_DIRECT_NONE, &
+                                    METHOD_CHOLESKY, METHOD_LDL_Cholesky, &
+                                    METHOD_FADDEEV_LEVERRIER, &
+                                    METHOD_Gauss, METHOD_Gauss_JORDAN, &
+                                    METHOD_LU, METHOD_LDU, &
+                                    METHOD_QR, METHOD_TDMA, &
+                                    DirectMethodRequirements, MethodQR, &
+                                    QR_HOUSEHOLDER, QR_GIVENS, &
+                                    QR_GRAM_SCHMIDT, QR_GRAM_SCHMIDT_Modified
+
+    use NAFPack_matrix_decomposition, only: pivot_partial, pivot_total, &
+                                            backward, forward, &
+                                            LU_decomposition, LDU_decomposition, &
+                                            Cholesky_decomposition, LDL_Cholesky_decomposition, &
+                                            QR_Gram_Schmidt_Classical_decomposition, &
+                                            QR_Gram_Schmidt_Modified_decomposition, &
+                                            QR_Givens_decomposition, QR_Householder_decomposition
+
+    use NAFPack_matrix_properties, only: is_non_zero_diagonal, is_SPD, is_square_matrix, &
+                                         is_symmetric, is_tridiagonal
+
+    use NAFPack_matrix_tools, only: Faddeev_Leverrier
+
+    use NAFPack_matricielle, only: Identity_n
 
     implicit none(type, external)
 
@@ -42,6 +64,7 @@ module NAFPack_Direct_method
         function solve_interface_Direct(this, A, b) result(x)
             import :: dp
             import :: DirectMethod
+            implicit none(type, external)
             class(DirectMethod), intent(in) :: this
             real(dp), dimension(:, :), intent(in) :: A
             real(dp), dimension(:), intent(in) :: b
@@ -54,7 +77,7 @@ contains
     subroutine set_method(this, method, set_pivot_partial, set_pivot_total)
         class(DirectMethod), intent(inout) :: this
         type(MethodTypeDirect), intent(in) :: method
-        logical, optional :: set_pivot_partial, set_pivot_total
+        logical, optional, intent(in) :: set_pivot_partial, set_pivot_total
 
         this%use_total_pivot = .false.
         this%use_partial_pivot = .false.
@@ -135,10 +158,12 @@ contains
             print*,"Checking if the matrix is square..."
             if (.not. is_square_matrix(A)) then
                 if (strict) then
-                    print*,"ERROR :: "//this%method_type%name//" method requires a square matrix."
+                    print*,"ERROR :: ", trim(this%method_type%name), &
+                        " method requires a square matrix."
                     stop
                 else
-                    print*,"WARNING :: "//this%method_type%name//" method requires a square matrix."
+                    print*,"WARNING :: ", trim(this%method_type%name), &
+                        " method requires a square matrix."
                 end if
             end if
         end if
@@ -147,10 +172,12 @@ contains
             print*,"Checking if the matrix is symmetric positive definite (SPD)..."
             if (.not. is_SPD(A)) then
                 if (strict) then
-                    print*,"ERROR :: "//this%method_type%name//" method requires a symmetric positive definite matrix."
+                    print*,"ERROR :: ", trim(this%method_type%name), &
+                        " method requires a symmetric positive definite matrix."
                     stop
                 else
-                    print*,"WARNING :: "//this%method_type%name//" method requires a symmetric positive definite matrix."
+                    print*,"WARNING :: ", trim(this%method_type%name), &
+                        " method requires a symmetric positive definite matrix."
                 end if
             end if
         end if
@@ -159,10 +186,12 @@ contains
             print*,"Checking if the matrix has a non-zero diagonal..."
             if (.not. is_non_zero_diagonal(A)) then
                 if (strict) then
-                    print*,"ERROR :: "//this%method_type%name//" method requires a non-zero diagonal matrix."
+                    print*,"ERROR :: ", trim(this%method_type%name), &
+                        " method requires a non-zero diagonal matrix."
                     stop
                 else
-                    print*,"WARNING :: "//this%method_type%name//" method requires a non-zero diagonal matrix."
+                    print*,"WARNING :: ", trim(this%method_type%name), &
+                        " method requires a non-zero diagonal matrix."
                 end if
             end if
         end if
@@ -171,10 +200,12 @@ contains
             print*,"Checking if the matrix is tridiagonal..."
             if (.not. is_tridiagonal(A)) then
                 if (strict) then
-                    print*,"ERROR :: "//this%method_type%name//" method requires a tridiagonal matrix."
+                    print*,"ERROR :: ", trim(this%method_type%name), &
+                        " method requires a tridiagonal matrix."
                     stop
                 else
-                    print*,"WARNING :: "//this%method_type%name//" method requires a tridiagonal matrix."
+                    print*,"WARNING :: ", trim(this%method_type%name), &
+                        " method requires a tridiagonal matrix."
                 end if
             end if
         end if
@@ -183,10 +214,12 @@ contains
             print*,"Checking if the matrix is symmetric..."
             if (.not. is_symmetric(A)) then
                 if (strict) then
-                    print*,"ERROR :: "//this%method_type%name//" method requires a symmetric matrix."
+                    print*,"ERROR :: ", trim(this%method_type%name), &
+                        " method requires a symmetric matrix."
                     stop
                 else
-                    print*,"WARNING :: "//this%method_type%name//" method requires a symmetric matrix."
+                    print*,"WARNING :: ", trim(this%method_type%name), &
+                        " method requires a symmetric matrix."
                 end if
             end if
         end if
@@ -251,7 +284,7 @@ contains
 
         do k = 1, N - 1
             pivot = A_tmp(k, k)
-            if (abs(pivot) < epsi) stop "ERROR :: Near-zero pivot – matrix may be singular"
+            if (abs(pivot) < TOL_PIVOT) stop "ERROR :: Near-zero pivot – matrix may be singular"
 
             do i = k + 1, N
                 multiplier = A_tmp(i, k) / pivot
@@ -312,7 +345,7 @@ contains
 
         do k = 1, N
             pivot = A_tmp(k, k)
-            if (abs(pivot) < epsi) stop "ERROR :: Near-zero pivot – matrix may be singular"
+            if (abs(pivot) < TOL_PIVOT) stop "ERROR :: Near-zero pivot – matrix may be singular"
 
             ! Normalisation du pivot
             A_tmp(k, :) = A_tmp(k, :) / pivot

@@ -1,7 +1,11 @@
 !>
 module NAFPack_Logger_mod
 
-    use NAFPack_constant
+    use NAFPack_kinds, only: dp, ucs4
+    use NAFPack_terminal, only: output_unit
+    use NAFPack_terminal_colors, only: &
+        red_color_ucs4, green_color_ucs4, yellow_color_ucs4, blue_color_ucs4, &
+        white_color_ucs4, cyan_color_ucs4, purple_color_ucs4, reset_color_ucs4
 
     implicit none(type, external)
 
@@ -22,14 +26,30 @@ module NAFPack_Logger_mod
         character(LEN=100) :: format_description = "Text file format"
     end type Format_file
 
-    type(Format_file), parameter :: FORMAT_FILE_BIN = Format_file(0, "binary", "Binary file format")
-    type(Format_file), parameter :: FORMAT_FILE_TXT = Format_file(1, "txt", "Text file format")
-    type(Format_file), parameter :: FORMAT_FILE_CSV = Format_file(2, "csv", "Comma-separated values format")
-    type(Format_file), parameter :: FORMAT_FILE_LOG = Format_file(3, "log", "Log file format")
-    type(Format_file), parameter :: FORMAT_FILE_TSV = Format_file(4, "tsv", "Tab-separated values format")
-    type(Format_file), parameter :: FORMAT_FILE_JSON = Format_file(5, "json", "JSON file format")
-    type(Format_file), parameter :: FORMAT_FILE_XML = Format_file(6, "xml", "XML file format")
-    type(Format_file), parameter :: FORMAT_FILE_YAML = Format_file(7, "yaml", "YAML file format")
+    type(Format_file), parameter :: FORMAT_FILE_BIN = Format_file(0, &
+                                                                  "binary", &
+                                                                  "Binary file format")
+    type(Format_file), parameter :: FORMAT_FILE_TXT = Format_file(1, &
+                                                                  "txt", &
+                                                                  "Text file format")
+    type(Format_file), parameter :: FORMAT_FILE_CSV = Format_file(2, &
+                                                                  "csv", &
+                                                                  "Comma-separated values format")
+    type(Format_file), parameter :: FORMAT_FILE_LOG = Format_file(3, &
+                                                                  "log", &
+                                                                  "Log file format")
+    type(Format_file), parameter :: FORMAT_FILE_TSV = Format_file(4, &
+                                                                  "tsv", &
+                                                                  "Tab-separated values format")
+    type(Format_file), parameter :: FORMAT_FILE_JSON = Format_file(5, &
+                                                                   "json", &
+                                                                   "JSON file format")
+    type(Format_file), parameter :: FORMAT_FILE_XML = Format_file(6, &
+                                                                  "xml", &
+                                                                  "XML file format")
+    type(Format_file), parameter :: FORMAT_FILE_YAML = Format_file(7, &
+                                                                   "yaml", &
+                                                                   "YAML file format")
 
     type :: Logger
         integer :: verbosity_level = 1
@@ -73,11 +93,13 @@ contains
 
     subroutine init_logger(this)
         class(Logger), intent(inout) :: this
-        character(KIND=ucs4, LEN=100) :: msg
 
         if (this%to_file) then
-            open (UNIT=this%file_unit, FILE=trim(this%filename)//"."//this%file_format%format_name, STATUS='REPLACE', &
-                  ACTION='WRITE', ENCODING='UTF-8')
+            open (UNIT=this%file_unit, &
+                  FILE=trim(this%filename)//"."//this%file_format%format_name, &
+                  STATUS='REPLACE', &
+                  ACTION='WRITE', &
+                  ENCODING='UTF-8')
         end if
 
         if (this%to_terminal) then
@@ -85,7 +107,9 @@ contains
         end if
 
         if (this%show_Logger_initialization) then
-            call this%write(center_with_fill("NAFPack Logger initialized", width=100, fill_char="="), box_style="top")
+            call this%write(center_with_fill("NAFPack Logger initialized", &
+                                             width=100, &
+                                             fill_char="="), box_style="top")
             call this%write(ucs4_"", box_style="middle")
 
             call log_field(this, "Verbosity level", this%verbosity_level)
@@ -94,7 +118,9 @@ contains
             if (this%to_file) then
                 call log_field(this, "File unit", this%file_unit)
                 call log_field(this, "File format", this%file_format%format_name)
-                call log_field(this, "File name", trim(this%filename)//"."//trim(this%file_format%format_name))
+                call log_field(this, &
+                               "File name", &
+                               trim(this%filename)//"."//trim(this%file_format%format_name))
             end if
 
             call this%write(center_with_fill("", width=100, fill_char="="), box_style="bottom")
@@ -117,7 +143,9 @@ contains
         class(Logger), intent(inout) :: this
         character(KIND=ucs4, LEN=*), intent(in) :: msg
 
-        if (this%verbosity_level >= 3) call this%write(ucs4_"    "//msg, ucs4_"DETAIL", green_color_ucs4)
+        if (this%verbosity_level >= 3) call this%write(ucs4_"    "//msg, &
+                                                       ucs4_"DETAIL", &
+                                                       green_color_ucs4)
 
     end subroutine log_detail
 
@@ -159,7 +187,7 @@ contains
         character(KIND=ucs4, LEN=*), optional, intent(in) :: color_level
         character(LEN=*), optional, intent(in) :: box_style
         character(KIND=ucs4, LEN=100) :: info_char
-        character(LEN=4) :: box_char = " "
+        character(LEN=4) :: box_char
 
         if (present(box_style)) then
             select case (trim(adjustl(box_style)))

@@ -1,7 +1,7 @@
 module NAFPack_Krylov_method
 
-    use NAFPack_constant
-    use NAFPack_matricielle
+    use NAFPack_kinds, only: dp
+    use NAFPack_matricielle, only: Make_Tridiagonal
 
     implicit none(type, external)
 

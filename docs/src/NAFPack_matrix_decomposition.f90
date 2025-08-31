@@ -3,8 +3,9 @@
 !> This module provides subroutines for various matrix decomposition methods including LU, LDU, Cholesky, and QR decompositions.
 module NAFPack_matrix_decomposition
 
-    use NAFPack_constant
-    use NAFPack_matricielle
+    use NAFPack_kinds, only: dp
+    use NAFPack_constant, only: TOL_CONVERGENCE, int_inf
+    use NAFPack_matricielle, only: Identity_n, rotation_matrix
 
     implicit none(type, external)
 
@@ -108,14 +109,19 @@ contains
             U(j, j) = 1.d0
 
             do i = 1, j - 1
-                U(i, j) = (A(i, j) - dot_product(L(i, 1:i - 1), U(1:i - 1, j)*[(D(k, k), k=1, i - 1)])) / D(i, i)
+                U(i, j) = (A(i, j) - &
+                           dot_product(L(i, 1:i - 1), U(1:i - 1, j)*[(D(k, k), k=1, i - 1)])) / &
+                          D(i, i)
             end do
 
             i = j
-            D(j, j) = A(j, j) - dot_product(L(j, 1:j - 1), U(1:j - 1, j)*[(D(k, k), k=1, j - 1)])
+            D(j, j) = A(j, j) - &
+                      dot_product(L(j, 1:j - 1), U(1:j - 1, j)*[(D(k, k), k=1, j - 1)])
 
             do i = j + 1, N
-                L(i, j) = (A(i, j) - dot_product(L(i, 1:j - 1), U(1:j - 1, j)*[(D(k, k), k=1, j - 1)])) / D(j, j)
+                L(i, j) = (A(i, j) - &
+                           dot_product(L(i, 1:j - 1), U(1:j - 1, j)*[(D(k, k), k=1, j - 1)])) / &
+                          D(j, j)
             end do
         end do
 
@@ -159,7 +165,9 @@ contains
             end if
 
             do i = j + 1, N
-                if (S(i, j)) L(i, j) = (A(i, j) - dot_product(L(i, 1:j - 1), U(1:j - 1, j))) / U(j, j)
+                if (S(i, j)) L(i, j) = (A(i, j) - &
+                                        dot_product(L(i, 1:j - 1), U(1:j - 1, j))) / &
+                                       U(j, j)
             end do
         end do
 
@@ -201,10 +209,13 @@ contains
         D = 0.d0
 
         do j = 1, N
-            D(j, j) = A(j, j) - dot_product(L(j, 1:j - 1), L(j, 1:j - 1)*[(D(k, k), k=1, j - 1)])
+            D(j, j) = A(j, j) - &
+                      dot_product(L(j, 1:j - 1), L(j, 1:j - 1)*[(D(k, k), k=1, j - 1)])
 
             do i = j + 1, N
-                L(i, j) = (A(i, j) - dot_product(L(i, 1:j - 1), L(j, 1:j - 1)*[(D(k, k), k=1, j - 1)])) / D(j, j)
+                L(i, j) = (A(i, j) - &
+                           dot_product(L(i, 1:j - 1), L(j, 1:j - 1)*[(D(k, k), k=1, j - 1)])) / &
+                          D(j, j)
             end do
         end do
 
@@ -235,10 +246,13 @@ contains
 
         do i = 1, N
             do j = 1, i - 1
-                if (S(i, j)) L(i, j) = (A(i, j) - dot_product(L(i, 1:j - 1), L(j, 1:j - 1))) / L(j, j)
+                if (S(i, j)) L(i, j) = (A(i, j) - &
+                                        dot_product(L(i, 1:j - 1), L(j, 1:j - 1))) / &
+                                       L(j, j)
             end do
 
-            if (S(i, i)) L(i, i) = sqrt(A(i, i) - dot_product(L(i, 1:i - 1), L(i, 1:i - 1)))
+            if (S(i, i)) L(i, i) = sqrt(A(i, i) - &
+                                        dot_product(L(i, 1:i - 1), L(i, 1:i - 1)))
         end do
 
     end subroutine Incomplete_Cholesky_decomposition
@@ -295,7 +309,7 @@ contains
             u(k:N) = x(k:N) - signe * Id(k:N, k)
 
             norm_u = norm2(u)
-            if (norm_u < epsi) cycle
+            if (norm_u < TOL_CONVERGENCE) cycle
             v(k:N) = u(k:N) / norm_u
 
             w = 1.d0

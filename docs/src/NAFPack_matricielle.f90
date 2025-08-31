@@ -1,7 +1,7 @@
 !> Module for Tensor operations in NAFPack
 module NAFPack_matricielle
 
-    use NAFPack_constant
+    use NAFPack_kinds, only: dp
 
     implicit none(type, external)
 
@@ -38,7 +38,7 @@ contains
     !> [^1]: the wedge notation \( \vec{a} \wedge \vec{b} \) can sometimes be used to denote the vector product.
     function cross(a, b) result(result)
 
-        real(dp), dimension(3) :: a, b
+        real(dp), dimension(3), intent(in) :: a, b
         real(dp), dimension(3) :: result
 
         result(1) = a(2) * b(3) - b(2) * a(3)
@@ -53,7 +53,7 @@ contains
     !> where \( n \) is the dimension of the real vector \( \vec{a} \).
     function norm_2_real(a) result(result)
 
-        real(dp), dimension(:) :: a
+        real(dp), dimension(:), intent(in) :: a
         real(dp) :: result
 
         result = sqrt(dot_product(a, a))
@@ -81,7 +81,7 @@ contains
     !> where \( n \) is the dimension of the complex vector \( \vec{a} \).
     function norm_2_complex(a) result(result)
 
-        complex(dp), dimension(:) :: a
+        complex(dp), dimension(:), intent(in) :: a
         real(dp) :: result
 
         result = sqrt(real(dot_product(a, conjg(a))))
@@ -93,7 +93,7 @@ contains
     !> \[ \hat{a} = \frac{\vec{a}}{||\vec{a}||_2} \]
     function normalise(a) result(result)
 
-        real(dp), dimension(:) :: a
+        real(dp), dimension(:), intent(in) :: a
         real(dp), dimension(size(a)) :: result
 
         result = a / norm_2_real(a)
@@ -104,7 +104,7 @@ contains
     !> where \( \vec{a} \in \mathbb{C}^n \)
     !> \[ \hat{a} = \frac{\vec{a}}{||\vec{a}||_2} \]
     function normalise_complexe(a) result(result)
-        complex(dp), dimension(:) :: a
+        complex(dp), dimension(:), intent(in) :: a
         complex(dp), dimension(size(a)) :: result
 
         result = a / norm_2_complex(a)

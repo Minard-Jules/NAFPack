@@ -1,6 +1,7 @@
 module NAFPack_Preconditioners
 
-    use NAFPack_constant, only: dp, epsi
+    use NAFPack_kinds, only: dp
+    USE NAFPack_constant, only: TOL_CONVERGENCE
     use NAFPack_matricielle, only: Diag
     use NAFPack_matrix_decomposition, only: Incomplete_Cholesky_decomposition, ILU_decomposition
 
@@ -73,7 +74,7 @@ contains
 
         D = 0.d0
 
-        if (any(Diag(A) < epsi)) stop "ERROR :: Zero diagonal in Jacobi preconditioner"
+        if (any(Diag(A) < TOL_CONVERGENCE)) stop "ERROR :: Zero diagonal in Jacobi preconditioner"
         forall (i=1:N) D(i, i) = 1.d0 / A(i, i)
 
     end function Calculate_Jacobi_preconditioner
@@ -87,7 +88,7 @@ contains
 
         L = 0.d0
 
-        if (any(Diag(A) < epsi)) stop "ERROR :: Zero diagonal in Gauss-Seidel preconditioner"
+        if (any(Diag(A) < TOL_CONVERGENCE)) stop "ERROR :: Zero diagonal in Gauss-Seidel preconditioner"
         forall (i=1:size(A, 1), j=1:size(A, 2), i >= j) L(i, j) = A(i, j)
 
     end function Calculate_Gauss_Seidel_preconditioner
@@ -102,7 +103,7 @@ contains
 
         L = 0.d0
 
-        if (any(Diag(A) < epsi)) stop "ERROR :: Zero diagonal in SOR preconditioner"
+        if (any(Diag(A) < TOL_CONVERGENCE)) stop "ERROR :: Zero diagonal in SOR preconditioner"
         do i = 1, size(A, 1)
             L(i, i) = 1.d0 / omega * A(i, i)
             L(i, 1:i - 1) = A(i, 1:i - 1)
@@ -122,7 +123,7 @@ contains
 
         D = 0.d0
 
-        if (any(Diag(A) < epsi)) stop "ERROR :: Zero diagonal in JOR preconditioner"
+        if (any(Diag(A) < TOL_CONVERGENCE)) stop "ERROR :: Zero diagonal in JOR preconditioner"
         forall (i=1:size(A, 1)) D(i, i) = omega / A(i, i)
 
         D = D / alpha

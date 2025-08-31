@@ -1,6 +1,6 @@
 module NAFPack_matrix_market
 
-    use NAFPack_constant, only: dp
+    use NAFPack_kinds, only: dp
 
     implicit none(type, external)
 

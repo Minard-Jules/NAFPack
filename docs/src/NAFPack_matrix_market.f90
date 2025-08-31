@@ -1,8 +1,11 @@
 module NAFPack_matrix_market
 
-    use NAFPack_constant
+    use NAFPack_kinds, only: dp
 
     implicit none(type, external)
+
+    private
+    public :: readMatrixMarket
 
 contains
 

@@ -1,7 +1,7 @@
 !> Module for Tensor operations in NAFPack
 module NAFPack_matricielle
 
-    use NAFPack_constant, only: dp
+    use NAFPack_kinds, only: dp
 
     implicit none(type, external)
 

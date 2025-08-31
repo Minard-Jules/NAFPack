@@ -1,9 +1,10 @@
 !> Module for eigenvalue and eigenvector computations in NAFPack
 module NAFPack_Eigen
 
-    use NAFPack_constant
-    use NAFPack_matrix_decomposition
-    use NAFPack_matricielle
+    use NAFPack_kinds, only: dp
+    use NAFPack_constant, only: TOL_CONVERGENCE, MAX_ITERATION
+    use NAFPack_matrix_decomposition, only: QR_decomposition
+    use NAFPack_matricielle, only: Identity_n, normalise
 
     implicit none(type, external)
 
@@ -38,7 +39,7 @@ contains
             if (k <= 0) stop "ERROR :: k must be a positive integer"
             k_max = k
         else
-            k_max = kmax
+            k_max = MAX_ITERATION
         end if
 
         N = size(A, 1)
@@ -113,7 +114,7 @@ contains
                 exit
             end if
 
-            if (diff <= epsi) exit
+            if (diff <= TOL_CONVERGENCE) exit
         end do
 
         ! Extract eigenvalues
@@ -158,12 +159,13 @@ contains
             end do
 
             if (i == k) then
-                print*," WARNING :: non-convergence of the Shifted QR Algorithm for eigenvalues "//method
+                print*,"WARNING :: non-convergence of the Shifted QR Algorithm for eigenvalues ", &
+                    trim(method)
                 print*,"convergence = ", diff
                 exit
             end if
 
-            if (diff <= epsi) exit
+            if (diff <= TOL_CONVERGENCE) exit
 
         end do
 
@@ -196,7 +198,7 @@ contains
             u = normalise(vp_tmp)
             vp_tmp = matmul(A, u)
             lambda = dot_product(vp_tmp, u)
-            if (norm2(r) <= epsi) exit
+            if (norm2(r) <= TOL_CONVERGENCE) exit
             r = vp_tmp - lambda * u
             if (i == k) then
                 print*,"WARNING :: non-convergence of the power iteration method"

@@ -10,7 +10,8 @@ module NAFPack_fft
                      fftw_cleanup, fftw_init_threads, fftw_cleanup_threads, &
                      fftw_plan_with_nthreads, FFTW_FORWARD, FFTW_BACKWARD, FFTW_ESTIMATE
 
-    use NAFPack_constant, only: dp, pi, im
+    use NAFPack_kinds, only: dp
+    use NAFPack_constant, only: pi, im
     implicit none(type, external)
 
     private

@@ -1,9 +1,12 @@
 module NAFPack_matrix_tools
 
-    use NAFPack_constant
-    use NAFPack_matricielle
+    use NAFPack_kinds, only: dp
+    use NAFPack_matricielle, only: Identity_n, Trace
 
     implicit none(type, external)
+
+    private
+    public :: Faddeev_Leverrier
 
 contains
 
@@ -15,10 +18,11 @@ contains
         real(dp), dimension(size(A, 1), size(A, 1)), optional, intent(out) :: Ainv
         logical, optional, intent(out) :: success
         real(dp), dimension(size(A, 1), size(A, 1)) :: Bk, I, B_Nm1, AB
-        logical :: do_check = .true.
+        logical :: do_check
         integer :: N, k
 
         N = size(A, 1)
+        do_check = .true.
 
         if (present(check)) do_check = check
 

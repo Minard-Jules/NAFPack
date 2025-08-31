@@ -1,6 +1,6 @@
 module NAFPack_matrix_tools
 
-    use NAFPack_constant, only: dp
+    use NAFPack_kinds, only: dp
     use NAFPack_matricielle, only: Identity_n, Trace
 
     implicit none(type, external)

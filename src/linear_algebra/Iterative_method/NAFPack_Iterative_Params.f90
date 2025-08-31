@@ -1,6 +1,6 @@
 module NAFPack_Iterative_Params
 
-    use NAFPack_constant, only: dp
+    use NAFPack_kinds, only: dp
 
     use NAFPack_Iterative_types, only: Norm_used, NORM_1, NORM_2, NORM_INF
 

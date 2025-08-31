@@ -33,20 +33,34 @@ module NAFPack_Direct_types
         logical :: needs_symmetric = .false.
     end type DirectMethodRequirements
 
-    type(MethodTypeDirect), parameter :: METHOD_DIRECT_NONE = MethodTypeDirect(0, "None")
-    type(MethodTypeDirect), parameter :: METHOD_Gauss = MethodTypeDirect(1, "Gauss")
-    type(MethodTypeDirect), parameter :: METHOD_Gauss_JORDAN = MethodTypeDirect(2, "Gauss-Jordan")
-    type(MethodTypeDirect), parameter :: METHOD_LU = MethodTypeDirect(3, "LU")
-    type(MethodTypeDirect), parameter :: METHOD_LDU = MethodTypeDirect(4, "LDU")
-    type(MethodTypeDirect), parameter :: METHOD_CHOLESKY = MethodTypeDirect(5, "Cholesky")
-    type(MethodTypeDirect), parameter :: METHOD_LDL_Cholesky = MethodTypeDirect(6, "LDL-Cholesky")
-    type(MethodTypeDirect), parameter :: METHOD_QR = MethodTypeDirect(7, "QR")
-    type(MethodTypeDirect), parameter :: METHOD_TDMA = MethodTypeDirect(8, "TDMA")
-    type(MethodTypeDirect), parameter :: METHOD_FADDEEV_LEVERRIER = MethodTypeDirect(9, "Faddeev-Leverrier")
+    type(MethodTypeDirect), parameter :: METHOD_DIRECT_NONE = &
+                                         MethodTypeDirect(0, "None")
+    type(MethodTypeDirect), parameter :: METHOD_Gauss = &
+                                         MethodTypeDirect(1, "Gauss")
+    type(MethodTypeDirect), parameter :: METHOD_Gauss_JORDAN = &
+                                         MethodTypeDirect(2, "Gauss-Jordan")
+    type(MethodTypeDirect), parameter :: METHOD_LU = &
+                                         MethodTypeDirect(3, "LU")
+    type(MethodTypeDirect), parameter :: METHOD_LDU = &
+                                         MethodTypeDirect(4, "LDU")
+    type(MethodTypeDirect), parameter :: METHOD_CHOLESKY = &
+                                         MethodTypeDirect(5, "Cholesky")
+    type(MethodTypeDirect), parameter :: METHOD_LDL_Cholesky = &
+                                         MethodTypeDirect(6, "LDL-Cholesky")
+    type(MethodTypeDirect), parameter :: METHOD_QR = &
+                                         MethodTypeDirect(7, "QR")
+    type(MethodTypeDirect), parameter :: METHOD_TDMA = &
+                                         MethodTypeDirect(8, "TDMA")
+    type(MethodTypeDirect), parameter :: METHOD_FADDEEV_LEVERRIER = &
+                                         MethodTypeDirect(9, "Faddeev-Leverrier")
 
-    type(MethodQR), parameter :: QR_HOUSEHOLDER = MethodQR(1, "Householder")
-    type(MethodQR), parameter :: QR_GIVENS = MethodQR(2, "Givens")
-    type(MethodQR), parameter :: QR_GRAM_SCHMIDT = MethodQR(3, "Gram-Schmidt")
-    type(MethodQR), parameter :: QR_GRAM_SCHMIDT_Modified = MethodQR(4, "Gram_Schmidt_Modified")
+    type(MethodQR), parameter :: QR_HOUSEHOLDER = &
+                                 MethodQR(1, "Householder")
+    type(MethodQR), parameter :: QR_GIVENS = &
+                                 MethodQR(2, "Givens")
+    type(MethodQR), parameter :: QR_GRAM_SCHMIDT = &
+                                 MethodQR(3, "Gram-Schmidt")
+    type(MethodQR), parameter :: QR_GRAM_SCHMIDT_Modified = &
+                                 MethodQR(4, "Gram-Schmidt_Modified")
 
 end module NAFPack_Direct_types

@@ -3,7 +3,8 @@
 !> This module provides subroutines for various matrix decomposition methods including LU, LDU, Cholesky, and QR decompositions.
 module NAFPack_matrix_decomposition
 
-    use NAFPack_constant, only: dp, epsi, int_inf
+    use NAFPack_kinds, only: dp
+    use NAFPack_constant, only: TOL_CONVERGENCE, int_inf
     use NAFPack_matricielle, only: Identity_n, rotation_matrix
 
     implicit none(type, external)
@@ -308,7 +309,7 @@ contains
             u(k:N) = x(k:N) - signe * Id(k:N, k)
 
             norm_u = norm2(u)
-            if (norm_u < epsi) cycle
+            if (norm_u < TOL_CONVERGENCE) cycle
             v(k:N) = u(k:N) / norm_u
 
             w = 1.d0

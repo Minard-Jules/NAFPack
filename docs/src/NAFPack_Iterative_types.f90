@@ -1,6 +1,6 @@
 module NAFPack_Iterative_types
 
-    use NAFPack_constant
+    use NAFPack_kinds, only: dp, ucs4
 
     implicit none(type, external)
 
@@ -53,27 +53,63 @@ module NAFPack_Iterative_types
         character(KIND=ucs4, LEN=64) :: name
     end type relaxation_factor_used
 
-    type(MethodTypeIterative), parameter :: METHOD_ITERATIVE_NONE = MethodTypeIterative(0, "None")
-    type(MethodTypeIterative), parameter :: METHOD_Jacobi = MethodTypeIterative(1, "Jacobi")
-    type(MethodTypeIterative), parameter :: METHOD_GAUSS_SEIDEL = MethodTypeIterative(2, "Gauss-Seidel")
-    type(MethodTypeIterative), parameter :: METHOD_SOR = MethodTypeIterative(3, "Successive Over-Relaxation")
-    type(MethodTypeIterative), parameter :: METHOD_JOR = MethodTypeIterative(4, "Jacobi Over-Relaxation")
-    type(MethodTypeIterative), parameter :: METHOD_SIP_ILU = MethodTypeIterative(5, "Strongly Implicit Procedure", "ILU")
-    type(MethodTypeIterative), parameter :: METHOD_SIP_ICF = MethodTypeIterative(6, "Strongly Implicit Procedure", "ICF")
-    type(MethodTypeIterative), parameter :: METHOD_SSOR = MethodTypeIterative(7, "Symmetric Successive Over-Relaxation")
-    type(MethodTypeIterative), parameter :: METHOD_RICHARDSON = MethodTypeIterative(8, "Richardson")
-    type(MethodTypeIterative), parameter :: METHOD_CONJUGATE_GRADIENT = MethodTypeIterative(9, "Conjugate Gradient")
-    type(MethodTypeIterative), parameter :: METHOD_CONJUGATE_RESIDUAL = MethodTypeIterative(10, "Conjugate Residual")
-    type(MethodTypeIterative), parameter :: METHOD_CGNE = MethodTypeIterative(11, "Conjugate Gradient on Normal Equations")
-    type(MethodTypeIterative), parameter :: METHOD_CGNR = MethodTypeIterative(12, "Conjugate Gradient on Normal Residual")
-    type(MethodTypeIterative), parameter :: METHOD_GMRES = MethodTypeIterative(13, "Generalized Minimal Residual")
+    type(MethodTypeIterative), parameter :: METHOD_ITERATIVE_NONE = &
+                                            MethodTypeIterative(0, &
+                                                                "None")
+    type(MethodTypeIterative), parameter :: METHOD_Jacobi = &
+                                            MethodTypeIterative(1, &
+                                                                "Jacobi")
+    type(MethodTypeIterative), parameter :: METHOD_GAUSS_SEIDEL = &
+                                            MethodTypeIterative(2, &
+                                                                "Gauss-Seidel")
+    type(MethodTypeIterative), parameter :: METHOD_SOR = &
+                                            MethodTypeIterative(3, &
+                                                                "Successive Over-Relaxation")
+    type(MethodTypeIterative), parameter :: METHOD_JOR = &
+                                            MethodTypeIterative(4, &
+                                                                "Jacobi Over-Relaxation")
+    type(MethodTypeIterative), parameter :: METHOD_SIP_ILU = &
+                                            MethodTypeIterative(5, &
+                                                                "Strongly Implicit Procedure", &
+                                                                "ILU")
+    type(MethodTypeIterative), parameter :: METHOD_SIP_ICF = &
+                                            MethodTypeIterative(6, &
+                                                                "Strongly Implicit Procedure", &
+                                                                "ICF")
+    type(MethodTypeIterative), parameter :: METHOD_SSOR = &
+                                            MethodTypeIterative(7, &
+                                                                "Symmetric Successive &
+                                                                &Over-Relaxation")
+    type(MethodTypeIterative), parameter :: METHOD_RICHARDSON = &
+                                            MethodTypeIterative(8, &
+                                                                "Richardson")
+    type(MethodTypeIterative), parameter :: METHOD_CONJUGATE_GRADIENT = &
+                                            MethodTypeIterative(9, &
+                                                                "Conjugate Gradient")
+    type(MethodTypeIterative), parameter :: METHOD_CONJUGATE_RESIDUAL = &
+                                            MethodTypeIterative(10, &
+                                                                "Conjugate Residual")
+    type(MethodTypeIterative), parameter :: METHOD_CGNE = &
+                                            MethodTypeIterative(11, &
+                                                                "Conjugate Gradient on &
+                                                                &Normal Equations")
+    type(MethodTypeIterative), parameter :: METHOD_CGNR = &
+                                            MethodTypeIterative(12, &
+                                                                "Conjugate Gradient on &
+                                                                &Normal Residual")
+    type(MethodTypeIterative), parameter :: METHOD_GMRES = &
+                                            MethodTypeIterative(13, &
+                                                                "Generalized Minimal Residual")
 
     type(Norm_used), parameter :: NORM_2 = Norm_used(1, "Norm L2 or Euclidean")
     type(Norm_used), parameter :: NORM_1 = Norm_used(2, "Norm L1 or Manhattan")
     type(Norm_used), parameter :: NORM_INF = Norm_used(3, "Norm LInfini or Maximum")
 
-    type(relaxation_factor_used), parameter :: RELAXATION_FACTOR_NONE = relaxation_factor_used(0, none)
-    type(relaxation_factor_used), parameter :: RELAXATION_FACTOR_OMEGA = relaxation_factor_used(1, omega)
-    type(relaxation_factor_used), parameter :: RELAXATION_FACTOR_ALPHA = relaxation_factor_used(2, alpha)
+    type(relaxation_factor_used), parameter :: RELAXATION_FACTOR_NONE = &
+                                               relaxation_factor_used(0, none)
+    type(relaxation_factor_used), parameter :: RELAXATION_FACTOR_OMEGA = &
+                                               relaxation_factor_used(1, omega)
+    type(relaxation_factor_used), parameter :: RELAXATION_FACTOR_ALPHA = &
+                                               relaxation_factor_used(2, alpha)
 
 end module NAFPack_Iterative_types

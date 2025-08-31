@@ -1,6 +1,6 @@
 module NAFPack_Iterative_types
 
-    use NAFPack_constant, only: dp, ucs4
+    use NAFPack_kinds, only: dp, ucs4
 
     implicit none(type, external)
 

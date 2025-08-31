@@ -1,8 +1,0 @@
-C:/Users/minar/OneDrive/Bureau/NAFPack/build/CMakeFiles/NAFPack.dir
-C:/Users/minar/OneDrive/Bureau/NAFPack/build/CMakeFiles/main_test.dir
-C:/Users/minar/OneDrive/Bureau/NAFPack/build/CMakeFiles/edit_cache.dir
-C:/Users/minar/OneDrive/Bureau/NAFPack/build/CMakeFiles/rebuild_cache.dir
-C:/Users/minar/OneDrive/Bureau/NAFPack/build/CMakeFiles/list_install_components.dir
-C:/Users/minar/OneDrive/Bureau/NAFPack/build/CMakeFiles/install.dir
-C:/Users/minar/OneDrive/Bureau/NAFPack/build/CMakeFiles/install/local.dir
-C:/Users/minar/OneDrive/Bureau/NAFPack/build/CMakeFiles/install/strip.dir

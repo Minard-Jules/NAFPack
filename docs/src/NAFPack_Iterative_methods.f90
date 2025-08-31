@@ -6,15 +6,48 @@
 !> Module for iterative methods in NAFPack
 module NAFPack_Iterative_methods
 
-    use NAFPack_constant
-    use NAFPack_matrix_decomposition
-    use NAFPack_matricielle
-    use NAFPack_Iterative_types
-    use NAFPack_Logger_mod
-    use NAFPack_Preconditioners
-    use NAFPack_Iterative_Params
-    use NAFPack_matrix_properties
-    use NAFPack_memory_monitor
+    use NAFPack_kinds, only: dp, ucs4
+
+    use NAFPack_matrix_decomposition, only: forward, backward, &
+                                            Incomplete_Cholesky_decomposition, ILU_decomposition
+
+    use NAFPack_Iterative_types, only: MethodTypeIterative, METHOD_ITERATIVE_NONE, &
+                                       METHOD_Jacobi, METHOD_JOR, &
+                                       METHOD_GAUSS_SEIDEL, METHOD_SOR, METHOD_SSOR, &
+                                       METHOD_SIP_ILU, METHOD_SIP_ICF, &
+                                       METHOD_RICHARDSON, &
+                                       METHOD_CONJUGATE_GRADIENT, METHOD_CONJUGATE_RESIDUAL, &
+                                       METHOD_CGNE, METHOD_CGNR, &
+                                       METHOD_GMRES, &
+                                       IterativeMethodRequirements, &
+                                       Norm_used, NORM_2, NORM_1, NORM_INF, &
+                                       relaxation_factor_used, RELAXATION_FACTOR_NONE, &
+                                       RELAXATION_FACTOR_OMEGA, RELAXATION_FACTOR_ALPHA
+
+    use NAFPack_Logger_mod, only: Logger, center_with_fill, log_field
+
+    use NAFPack_Preconditioners, only: FILL_LEVEL_USED, FILL_LEVEL_NONE, &
+                                       FILL_LEVEL_0, FILL_LEVEL_1, FILL_LEVEL_2, FILL_LEVEL_3, &
+                                       FILL_LEVEL_N, &
+                                       MethodPreconditioner, METHOD_PRECOND_NONE, &
+                                       METHOD_PRECOND_JACOBI, METHOD_PRECOND_GS, &
+                                       METHOD_PRECOND_SOR, METHOD_PRECOND_JOR, &
+                                       METHOD_PRECOND_ILU, METHOD_PRECOND_ICF, &
+                                       METHOD_PRECOND_SSOR, &
+                                       Calculate_Gauss_Seidel_preconditioner, &
+                                       Calculate_ICF_preconditioner, &
+                                       Calculate_ILU_preconditioner, &
+                                       Calculate_Jacobi_preconditioner, &
+                                       Calculate_JOR_preconditioner, &
+                                       Calculate_SOR_preconditioner, &
+                                       Calculate_SSOR_preconditioner
+
+    use NAFPack_Iterative_Params, only: IterativeParams, ApplyPreconditioner
+
+    use NAFPack_matrix_properties, only: is_square_matrix, is_SPD, &
+                                         is_diagonally_dominant, is_symmetric
+
+    use NAFPack_memory_monitor, only: get_memory_kb
 
     implicit none(type, external)
 
@@ -80,6 +113,7 @@ module NAFPack_Iterative_methods
             import :: dp
             import :: IterativeParams
             import :: IterativeMethod
+            implicit none(type, external)
             class(IterativeMethod), intent(in) :: this
             real(dp), dimension(:, :), intent(in) :: A
             real(dp), dimension(:), intent(in) :: b, x0
@@ -176,8 +210,9 @@ contains
 
     end subroutine set_method
 
-    function Init_IterativeParams(this, N, A, x0, max_iter_choice, epsi_tol, omega, Norm_choice, fill_level, &
-                                  method_preconditioner, alpha, is_stationary, is_strict_mode) result(params)
+    function Init_IterativeParams(this, N, A, x0, max_iter_choice, epsi_tol, omega, Norm_choice, &
+                                  fill_level, method_preconditioner, alpha, is_stationary, &
+                                  is_strict_mode) result(params)
         class(IterativeMethod), intent(inout) :: this
         integer, intent(in) :: N
         real(dp), dimension(:, :), optional, intent(in) :: A
@@ -225,16 +260,24 @@ contains
             call Incomplete_Cholesky_decomposition(A, params%L)
         case (METHOD_CONJUGATE_GRADIENT%id)
             allocate (params%p(N), STAT=allocate_status)
-            if (allocate_status /= 0) stop "ERROR :: Unable to allocate optimal descent direction p"
+            if (allocate_status /= 0) then
+                stop "ERROR :: Unable to allocate optimal descent direction p"
+            end if
         case (METHOD_CONJUGATE_RESIDUAL%id)
             allocate (params%p(N), STAT=allocate_status)
-            if (allocate_status /= 0) stop "ERROR :: Unable to allocate optimal descent direction p"
+            if (allocate_status /= 0) then
+                stop "ERROR :: Unable to allocate optimal descent direction p"
+            end if
         case (METHOD_CGNR%id)
             allocate (params%p(N), STAT=allocate_status)
-            if (allocate_status /= 0) stop "ERROR :: Unable to allocate optimal descent direction p"
+            if (allocate_status /= 0) then
+                stop "ERROR :: Unable to allocate optimal descent direction p"
+            end if
         case (METHOD_CGNE%id)
             allocate (params%p(N), STAT=allocate_status)
-            if (allocate_status /= 0) stop "ERROR :: Unable to allocate optimal descent direction p"
+            if (allocate_status /= 0) then
+                stop "ERROR :: Unable to allocate optimal descent direction p"
+            end if
         end select
 
         if (present(method_preconditioner)) then
@@ -276,9 +319,12 @@ contains
                 allocate (params%U(N, N), STAT=allocate_status)
                 if (allocate_status /= 0) stop "ERROR :: Unable to allocate U"
                 if (params%fill_level%id /= FILL_LEVEL_NONE%id) then
-                    call Calculate_ILU_preconditioner(A, params%L, params%U, params%omega, params%alpha, params%fill_level%id)
+                    call Calculate_ILU_preconditioner(A, params%L, params%U, &
+                                                      params%omega, params%alpha, &
+                                                      params%fill_level%id)
                 else
-                    call Calculate_ILU_preconditioner(A, params%L, params%U, params%omega, params%alpha)
+                    call Calculate_ILU_preconditioner(A, params%L, params%U, &
+                                                      params%omega, params%alpha)
                 end if
                 this%preconditioner_type = METHOD_PRECOND_ILU
                 this%relaxation_factor_preconditioner = RELAXATION_FACTOR_OMEGA
@@ -286,9 +332,12 @@ contains
                 allocate (params%L(N, N), STAT=allocate_status)
                 if (allocate_status /= 0) stop "ERROR :: Unable to allocate L"
                 if (params%fill_level%id /= FILL_LEVEL_NONE%id) then
-                    params%L = Calculate_ICF_preconditioner(A, params%omega, params%alpha, params%fill_level%id)
+                    params%L = Calculate_ICF_preconditioner(A, &
+                                                            params%omega, params%alpha, &
+                                                            params%fill_level%id)
                 else
-                    params%L = Calculate_ICF_preconditioner(A, params%omega, params%alpha)
+                    params%L = Calculate_ICF_preconditioner(A, &
+                                                            params%omega, params%alpha)
                 end if
                 this%preconditioner_type = METHOD_PRECOND_ICF
                 this%requirements%needs_SPD = .true.
@@ -298,7 +347,8 @@ contains
                 if (allocate_status /= 0) stop "ERROR :: Unable to allocate L"
                 allocate (params%D(N, N), STAT=allocate_status)
                 if (allocate_status /= 0) stop "ERROR :: Unable to allocate D"
-                call Calculate_SSOR_preconditioner(A, params%L, params%D, params%omega, params%alpha)
+                call Calculate_SSOR_preconditioner(A, params%L, params%D, &
+                                                   params%omega, params%alpha)
                 this%preconditioner_type = METHOD_PRECOND_SSOR
                 this%requirements%needs_SPD = .true.
                 this%relaxation_factor_preconditioner = RELAXATION_FACTOR_OMEGA
@@ -340,13 +390,17 @@ contains
         end if
 
         if (show_matrix_test) then
-            call verbose%write(center_with_fill("Testing matrix properties for method:"//trim(this%method_type%name), &
+            call verbose%write(center_with_fill("Testing matrix properties for method:"// &
+                                                trim(this%method_type%name), &
                                                 100, fill_char="="), box_style="top")
             call verbose%write(ucs4_"", box_style="middle")
         end if
 
         if (this%requirements%needs_square) then
-            if (show_matrix_test) call verbose%log_info(ucs4_"Checking if the matrix is square...")
+            if (show_matrix_test) then
+                msg = ucs4_"Checking if the matrix is square..."
+                call verbose%log_info(msg)
+            end if
             if (.not. is_square_matrix(A)) then
                 write (msg, '(2A)') trim(this%method_type%name), " requires a square matrix"
                 if (params%strict_mode) then
@@ -359,9 +413,13 @@ contains
         end if
 
         if (this%requirements%needs_SPD) then
-            if (show_matrix_test) call verbose%log_info(ucs4_"Checking if the matrix is symmetric positive definite (SPD)...")
+            if (show_matrix_test) then
+                msg = ucs4_"Checking if the matrix is symmetric positive definite (SPD)..."
+                call verbose%log_info(msg)
+            end if
             if (.not. is_SPD(A)) then
-                write (msg, '(2A)') trim(this%method_type%name), " method requires a symmetric positive definite matrix."
+                write (msg, '(2A)') trim(this%method_type%name), &
+                    " method requires a symmetric positive definite matrix."
                 if (params%strict_mode) then
                     if (show_matrix_test) call verbose%log_error(msg)
                     stop
@@ -372,9 +430,13 @@ contains
         end if
 
         if (this%requirements%needs_diag_dom) then
-            if (show_matrix_test) call verbose%log_info(ucs4_"Checking if the matrix is diagonally dominant...")
+            if (show_matrix_test) then
+                msg = ucs4_"Checking if the matrix is diagonally dominant..."
+                call verbose%log_info(msg)
+            end if
             if (.not. is_diagonally_dominant(A)) then
-                write (msg, '(2A)') trim(this%method_type%name), " method requires a diagonally dominant matrix."
+                write (msg, '(2A)') trim(this%method_type%name), &
+                    " method requires a diagonally dominant matrix."
                 if (params%strict_mode) then
                     if (show_matrix_test) call verbose%log_error(msg)
                     stop
@@ -385,9 +447,13 @@ contains
         end if
 
         if (this%requirements%needs_symetric) then
-            if (show_matrix_test) call verbose%log_info(ucs4_"Checking if the matrix is symmetric...")
+            if (show_matrix_test) then
+                msg = ucs4_"Checking if the matrix is symmetric..."
+                call verbose%log_info(msg)
+            end if
             if (.not. is_symmetric(A)) then
-                write (msg, '(2A)') trim(this%method_type%name), " method requires a symmetric matrix."
+                write (msg, '(2A)') trim(this%method_type%name), &
+                    " method requires a symmetric matrix."
                 if (params%strict_mode) then
                     if (show_matrix_test) call verbose%log_error(msg)
                     stop
@@ -497,7 +563,9 @@ contains
 
         end do
 
-        if (show_iteration) call verbose%write(center_with_fill("", width=100, fill_char="="), box_style="bottom")
+        if (show_iteration) then
+            call verbose%write(center_with_fill("", width=100, fill_char="="), box_style="bottom")
+        end if
 
         if (show_final) then
             call system_clock(end_system_clock)
@@ -522,7 +590,8 @@ contains
         character(KIND=ucs4, LEN=100) :: msg
 
         call verbose%write(ucs4_"")
-        call verbose%write(center_with_fill("Starting system solver", width=100, fill_char="="), box_style="top")
+        call verbose%write(center_with_fill("Starting system solver", width=100, fill_char="="), &
+                           box_style="top")
         call verbose%write(ucs4_"", box_style="middle")
 
         ! call date_and_time(date,time,zone,values)
@@ -532,13 +601,19 @@ contains
         call log_field(verbose, "Date and time", trim(date)//" "//trim(time))
 
         if (solver%relaxation_factor%id == RELAXATION_FACTOR_OMEGA%id) then
-            call log_field(verbose, "Method used", trim(solver%method_type%name)//" "//trim(solver%method_type%name2))
-            write (msg, '(A, T40, 3A, ES0.4)') "Relaxation factor used", ": ", trim(solver%relaxation_factor%name), &
+            call log_field(verbose, &
+                           "Method used", &
+                           trim(solver%method_type%name)//" "//trim(solver%method_type%name2))
+            write (msg, '(A, T40, 3A, ES0.4)') "Relaxation factor used", &
+                ": ", &
+                trim(solver%relaxation_factor%name), &
                 " = ", params%omega
             call verbose%log_info(msg)
         else if (solver%relaxation_factor%id == RELAXATION_FACTOR_ALPHA%id) then
             call log_field(verbose, "Method used", trim(solver%method_type%name))
-            write (msg, '(A, T40, 3A, ES0.4)') "Relaxation factor used", ": ", trim(solver%relaxation_factor%name), &
+            write (msg, '(A, T40, 3A, ES0.4)') "Relaxation factor used", &
+                ": ", &
+                trim(solver%relaxation_factor%name), &
                 " = ", params%alpha
             call verbose%log_info(msg)
         else
@@ -547,12 +622,16 @@ contains
 
         if (solver%preconditioner_type%id /= METHOD_PRECOND_NONE%id) then
             if (solver%relaxation_factor_preconditioner%id == RELAXATION_FACTOR_OMEGA%id) then
-                call log_field(verbose, "Preconditioner used", trim(solver%preconditioner_type%name))
+                call log_field(verbose, &
+                               "Preconditioner used", &
+                               trim(solver%preconditioner_type%name))
                 write (msg, '(A, T40, 3A, ES0.4)') "Relaxation factor used", ": ", &
                     trim(solver%relaxation_factor_preconditioner%name), " = ", params%omega
                 call verbose%log_info(msg)
             else
-                call log_field(verbose, "Preconditioner used", trim(solver%preconditioner_type%name))
+                call log_field(verbose, &
+                               "Preconditioner used", &
+                               trim(solver%preconditioner_type%name))
             end if
         end if
 
@@ -561,14 +640,18 @@ contains
             if (params%fill_level%id /= FILL_LEVEL_NONE%id) then
                 call log_field(verbose, "Fill level used", trim(params%fill_level%name))
             else
-                call log_field(verbose, "Fill level used", "basic "//trim(solver%preconditioner_type%name))
+                call log_field(verbose, &
+                               "Fill level used", &
+                               "basic "//trim(solver%preconditioner_type%name))
             end if
         else if (solver%method_type%id == METHOD_SIP_ILU%id .or. &
                  solver%method_type%id == METHOD_SIP_ICF%id) then
             if (params%fill_level%id /= FILL_LEVEL_NONE%id) then
                 call log_field(verbose, "Fill level used", trim(params%fill_level%name))
             else
-                call log_field(verbose, "Fill level used", "basic "//trim(solver%method_type%name2))
+                call log_field(verbose, &
+                               "Fill level used", &
+                               "basic "//trim(solver%method_type%name2))
             end if
         end if
 
@@ -580,12 +663,16 @@ contains
 
         call log_field(verbose, "Norme used", trim(params%norm%name))
 
-        write (msg, '(A,T40,A, ES0.2)') "Convergence criterion (Tolerance)", ": ||r|| < ", params%tol
+        write (msg, '(A,T40,A, ES0.2)') "Convergence criterion (Tolerance)", &
+            ": ||r|| < ", &
+            params%tol
         call verbose%log_info(msg)
 
         call log_field(verbose, "Max iterations", params%max_iter)
 
-        write (msg, '(A,T36,A,ES0.7)') "Initial residual norm", ": ||r0|| = ", params%norm_initial_residual
+        write (msg, '(A,T36,A,ES0.7)') "Initial residual norm", &
+            ": ||r0|| = ", &
+            params%norm_initial_residual
         call verbose%log_detail(msg)
 
         call verbose%write(center_with_fill("", width=100, fill_char="="), box_style="bottom")
@@ -597,7 +684,8 @@ contains
         class(Logger), intent(inout) :: verbose
         character(KIND=ucs4, LEN=100) :: msg
 
-        call verbose%write(center_with_fill("Iterations", width=100, fill_char="="), box_style="top")
+        call verbose%write(center_with_fill("Iterations", width=100, fill_char="="), &
+                           box_style="top")
         call verbose%write(ucs4_"", box_style="middle")
 
         write (msg, '(A,5X,A,5X,A,5X,A)') "Iter", &
@@ -642,8 +730,12 @@ contains
         if (k < params%max_iter) then
             call log_field(verbose, "Status", "CONVERGED")
 
-            write (msg, '(A,T40,A,ES0.7,A,ES0.1,A)') "Final residual", ": ||r|| = ", params%norm_residual, &
-                " < ", params%tol, " (convergence achieved)"
+            write (msg, '(A,T40,A,ES0.7,A,ES0.1,A)') "Final residual", &
+                ": ||r|| = ", &
+                params%norm_residual, &
+                " < ", &
+                params%tol, &
+                " (convergence achieved)"
             call verbose%log_info(msg)
 
             write (msg, '(A,T36,A,ES0.7)') "Relative residual norm", ": ||r||/||r0|| = ", &
@@ -658,8 +750,15 @@ contains
                     write (msg, '(2A,ES0.7)') trim(msg), " ", x_new(i)
                 end do
             else
-                write (msg, '(2A,ES0.7,3X,ES0.7,3X,ES0.7,3X,A,ES0.7,3X,ES0.7,3X,ES0.7,A)') trim(msg), " ", &
-                    x_new(1), x_new(2), x_new(3), x_new(N - 3), x_new(N - 2), x_new(N - 1)
+                write (msg, '(2A,ES0.7,3X,ES0.7,3X,ES0.7,3X,A,ES0.7,3X,ES0.7,3X,ES0.7,A)') &
+                    trim(msg), &
+                    " ", &
+                    x_new(1), &
+                    x_new(2), &
+                    x_new(3), &
+                    x_new(N - 3), &
+                    x_new(N - 2), &
+                    x_new(N - 1)
             end if
             write (msg, '(2A,ES0.7)') trim(msg), "]"
             call verbose%log_info(msg)
@@ -674,12 +773,14 @@ contains
         else
             call log_field(verbose, "Status", "NOT CONVERGED")
 
-            write (msg, '(A,T40,A,ES0.7,A,ES0.1,A)') "Final residual", ": ||r|| = ", params%norm_residual, &
+            write (msg, '(A,T40,A,ES0.7,A,ES0.1,A)') "Final residual", &
+                ": ||r|| = ", &
+                params%norm_residual, &
                 " >= ", params%tol, " (convergence not achieved)"
             call verbose%log_info(msg)
         end if
         call verbose%write(center_with_fill("", width=100, fill_char="="), box_style="bottom")
-    end subroutine
+    end subroutine log_final_result
 
     !======================
     ! Solve methods
@@ -700,7 +801,9 @@ contains
 
         ! forward
         do i = 1, N
-            x(i) = b(i) - dot_product(A(i, 1:i - 1), x0(1:i - 1)) - dot_product(A(i, i + 1:N), x0(i + 1:N))
+            x(i) = b(i) - &
+                   dot_product(A(i, 1:i - 1), x0(1:i - 1)) - &
+                   dot_product(A(i, i + 1:N), x0(i + 1:N))
             x(i) = x(i) / A(i, i)
         end do
 
@@ -721,7 +824,9 @@ contains
 
         ! forward
         do i = 1, N
-            x(i) = b(i) - dot_product(A(i, 1:i - 1), x(1:i - 1)) - dot_product(A(i, i + 1:N), x0(i + 1:N))
+            x(i) = b(i) - &
+                   dot_product(A(i, 1:i - 1), x(1:i - 1)) - &
+                   dot_product(A(i, i + 1:N), x0(i + 1:N))
             x(i) = x(i) / A(i, i)
         end do
 
@@ -742,7 +847,9 @@ contains
 
         ! forward
         do i = 1, N
-            x(i) = b(i) - dot_product(A(i, 1:i - 1), x(1:i - 1)) - dot_product(A(i, i + 1:N), x0(i + 1:N))
+            x(i) = b(i) - &
+                   dot_product(A(i, 1:i - 1), x(1:i - 1)) - &
+                   dot_product(A(i, i + 1:N), x0(i + 1:N))
             x(i) = params%omega * (x(i) / A(i, i) - x0(i)) + x0(i)
         end do
 
@@ -763,7 +870,9 @@ contains
 
         ! forward
         do i = 1, N
-            x(i) = b(i) - dot_product(A(i, 1:i - 1), x0(1:i - 1)) - dot_product(A(i, i + 1:N), x0(i + 1:N))
+            x(i) = b(i) - &
+                   dot_product(A(i, 1:i - 1), x0(1:i - 1)) - &
+                   dot_product(A(i, i + 1:N), x0(i + 1:N))
             x(i) = params%omega * (x(i) / A(i, i) - x0(i)) + x0(i)
         end do
 
@@ -781,7 +890,9 @@ contains
         real(dp), dimension(size(A, 1)) :: x
         real(dp), dimension(size(A, 1)) :: y, z
 
-        if (.not. allocated(params%L) .or. .not. allocated(params%U)) stop "ERROR :: Incomplete LU decomposition not initialized"
+        if (.not. allocated(params%L) .or. .not. allocated(params%U)) then
+            stop "ERROR :: Incomplete LU decomposition not initialized"
+        end if
 
         y = forward(params%L, params%residual)
 
@@ -803,7 +914,9 @@ contains
         real(dp), dimension(size(A, 1)) :: x
         real(dp), dimension(size(A, 1)) :: y, z
 
-        if (.not. allocated(params%L)) stop "ERROR :: Incomplete LU decomposition not initialized"
+        if (.not. allocated(params%L)) then
+            stop "ERROR :: Incomplete LU decomposition not initialized"
+        end if
 
         y = forward(params%L, params%residual)
 
@@ -829,13 +942,17 @@ contains
 
         ! forward
         do i = 1, N
-            x_tmp(i) = b(i) - dot_product(A(i, 1:i - 1), x_tmp(1:i - 1)) - dot_product(A(i, i + 1:N), x0(i + 1:N))
+            x_tmp(i) = b(i) - &
+                       dot_product(A(i, 1:i - 1), x_tmp(1:i - 1)) - &
+                       dot_product(A(i, i + 1:N), x0(i + 1:N))
             x_tmp(i) = params%omega * (x_tmp(i) / A(i, i) - x0(i)) + x0(i)
         end do
 
         ! backward
         do i = N, 1, -1
-            x(i) = b(i) - dot_product(A(i, 1:i - 1), x_tmp(1:i - 1)) - dot_product(A(i, i + 1:N), x(i + 1:N))
+            x(i) = b(i) - &
+                   dot_product(A(i, 1:i - 1), x_tmp(1:i - 1)) - &
+                   dot_product(A(i, i + 1:N), x(i + 1:N))
             x(i) = params%omega * (x(i) / A(i, i) - x_tmp(i)) + x_tmp(i)
         end do
 
@@ -884,11 +1001,13 @@ contains
             if (params%k == 1) then
                 params%p = params%residual
             else if (params%k /= 1) then
-                params%beta = dot_product(params%residual, params%residual) / params%old_dot_product
+                params%beta = dot_product(params%residual, params%residual) / &
+                              params%old_dot_product
                 params%p = params%residual + params%beta * params%p
             end if
 
-            params%alpha = dot_product(params%residual, params%residual) / dot_product(params%p, matmul(A, params%p))
+            params%alpha = dot_product(params%residual, params%residual) / &
+                           dot_product(params%p, matmul(A, params%p))
 
             x = x0 + params%alpha * params%p
 
@@ -908,7 +1027,8 @@ contains
                 params%p = z_prec + params%beta * params%p
             end if
 
-            params%alpha = dot_product(z_prec, params%residual) / dot_product(params%p, matmul(A, params%p))
+            params%alpha = dot_product(z_prec, params%residual) / &
+                           dot_product(params%p, matmul(A, params%p))
 
             x = x0 + params%alpha * params%p
 
@@ -932,7 +1052,8 @@ contains
             if (params%k == 1) then
                 params%p = params%residual
             else if (params%k /= 1) then
-                params%beta = dot_product(params%residual, matmul(A, params%residual)) / params%old_dot_product
+                params%beta = dot_product(params%residual, matmul(A, params%residual)) / &
+                              params%old_dot_product
                 params%p = params%residual + params%beta * params%p
             end if
 
@@ -953,7 +1074,8 @@ contains
                 z_prec = params%p
             else if (params%k /= 1) then
                 z_prec = params%precond(this%preconditioner_type, params%residual)
-                params%beta = dot_product(z_prec, matmul(A, params%residual)) / params%old_dot_product
+                params%beta = dot_product(z_prec, matmul(A, params%residual)) / &
+                params%old_dot_product
                 params%p = z_prec + params%beta * params%p
             end if
 

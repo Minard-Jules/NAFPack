@@ -3,7 +3,7 @@
 !> This module provides a subroutine to create a meshgrid.
 module NAFPack_meshgrid
 
-    use NAFPack_constant
+    use NAFPack_kinds, only: dp
 
     implicit none(type, external)
 

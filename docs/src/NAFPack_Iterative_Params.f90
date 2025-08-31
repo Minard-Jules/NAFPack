@@ -1,9 +1,17 @@
 module NAFPack_Iterative_Params
 
-    use NAFPack_constant
-    use NAFPack_Iterative_types
-    use NAFPack_Preconditioners
-    use NAFPack_matrix_decomposition
+    use NAFPack_kinds, only: dp
+
+    use NAFPack_Iterative_types, only: Norm_used, NORM_1, NORM_2, NORM_INF
+
+    use NAFPack_Preconditioners, only: FILL_LEVEL_USED, FILL_LEVEL_NONE, &
+                                       MethodPreconditioner, &
+                                       METHOD_PRECOND_JACOBI, METHOD_PRECOND_GS, &
+                                       METHOD_PRECOND_SOR, METHOD_PRECOND_JOR, &
+                                       METHOD_PRECOND_ILU, METHOD_PRECOND_ICF, &
+                                       METHOD_PRECOND_SSOR
+
+    use NAFPack_matrix_decomposition, only: forward, backward
 
     implicit none(type, external)
 

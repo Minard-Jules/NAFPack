@@ -26,3 +26,7 @@ source-form = "default"
 
 [dependencies]
 openmp = "*"
+
+[dev-dependencies]
+test-drive.git = "https://github.com/fortran-lang/test-drive"
+test-drive.branch = "main"

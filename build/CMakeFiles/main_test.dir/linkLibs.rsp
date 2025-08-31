@@ -1,1 +1,0 @@
- lib/libNAFPack.a -lfftw3_threads C:/msys64/ucrt64/lib/libfftw3.dll.a 

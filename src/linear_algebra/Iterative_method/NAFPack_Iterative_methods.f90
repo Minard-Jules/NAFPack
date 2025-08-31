@@ -6,7 +6,7 @@
 !> Module for iterative methods in NAFPack
 module NAFPack_Iterative_methods
 
-    use NAFPack_constant, only: dp, ucs4
+    use NAFPack_kinds, only: dp, ucs4
 
     use NAFPack_matrix_decomposition, only: forward, backward, &
                                             Incomplete_Cholesky_decomposition, ILU_decomposition
