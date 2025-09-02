@@ -1,8 +1,8 @@
 name = "NAFPack"
-version = "0.1.0"
-license = "license"
+version = "VERSION"
+license = "MIT"
 author = "Jules Minard"
-maintainer = "minard.jules@yahoo.com"
+maintainer = "https://github.com/Minard-Jules/NAFPack/issues"
 copyright = "Copyright 2023, Jules Minard"
 description = "Numerical Analysis in Fortran Package"
 keywords = ["NAFPack"]
@@ -14,7 +14,7 @@ auto-executables = true
 auto-tests = true
 auto-examples = true
 module-naming = false
-link = ["fftw3", "fftw3_omp", "blas", "lapack"]
+link = ["fftw3", "fftw3_omp"]
 
 [install]
 library = false

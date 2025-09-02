@@ -30,7 +30,7 @@ contains
 
             allocate (X(sY, sX, sZ), Y(sY, sX, sZ), Z(sY, sX, sZ))
 
-            if (loop_method%use_do_classic) then
+            if (loop_method_used%use_do_classic) then
 
                 do k = 1, sZ
                     do i = 1, sY
@@ -49,7 +49,7 @@ contains
                         Z(i, j, :) = z_vector
                     end do
                 end do
-            else if (loop_method%use_vectorized) then
+            else if (loop_method_used%use_vectorized) then
                 X = spread(spread(x_vector, 1, sY), 3, sZ)
                 Y = spread(spread(y_vector, 2, sX), 3, sZ)
                 Z = spread(spread(z_vector, 1, sX), 1, sY)
@@ -101,7 +101,7 @@ contains
 
             allocate (X(sX, sY, sZ), Y(sX, sY, sZ), Z(sX, sY, sZ))
 
-            if (loop_method%use_do_classic) then
+            if (loop_method_used%use_do_classic) then
 
                 do k = 1, sZ
                     do i = 1, sY
@@ -120,7 +120,7 @@ contains
                         Z(j, i, :) = z_vector
                     end do
                 end do
-            else if (loop_method%use_vectorized) then
+            else if (loop_method_used%use_vectorized) then
                 X = spread(spread(x_vector, 2, sY), 3, sZ)
                 Y = spread(spread(y_vector, 1, sX), 3, sZ)
                 Z = spread(spread(z_vector, 1, sX), 2, sY)
@@ -196,7 +196,7 @@ contains
 
             allocate (X(sY, sX, sZ), Y(sY, sX, sZ), Z(sY, sX, sZ))
 
-            if (loop_method%use_do_classic) then
+            if (loop_method_used%use_do_classic) then
 
                 do k = 1, sZ
                     do i = 1, sY
@@ -215,7 +215,7 @@ contains
                         Z(i, j, :) = z_vector
                     end do
                 end do
-            else if (loop_method%use_vectorized) then
+            else if (loop_method_used%use_vectorized) then
                 X = spread(spread(x_vector, 1, sY), 3, sZ)
                 Y = spread(spread(y_vector, 2, sX), 3, sZ)
                 Z = spread(spread(z_vector, 1, sX), 1, sY)
@@ -267,7 +267,7 @@ contains
 
             allocate (X(sX, sY, sZ), Y(sX, sY, sZ), Z(sX, sY, sZ))
 
-            if (loop_method%use_do_classic) then
+            if (loop_method_used%use_do_classic) then
 
                 do k = 1, sZ
                     do i = 1, sY
@@ -286,7 +286,7 @@ contains
                         Z(j, i, :) = z_vector
                     end do
                 end do
-            else if (loop_method%use_vectorized) then
+            else if (loop_method_used%use_vectorized) then
                 X = spread(spread(x_vector, 2, sY), 3, sZ)
                 Y = spread(spread(y_vector, 1, sX), 3, sZ)
                 Z = spread(spread(z_vector, 1, sX), 2, sY)
@@ -363,7 +363,7 @@ contains
 
             allocate (X(sY, sX, sZ), Y(sY, sX, sZ), Z(sY, sX, sZ))
 
-            if (loop_method%use_do_classic) then
+            if (loop_method_used%use_do_classic) then
 
                 do k = 1, sZ
                     do i = 1, sY
@@ -382,7 +382,7 @@ contains
                         Z(i, j, :) = z_vector
                     end do
                 end do
-            else if (loop_method%use_vectorized) then
+            else if (loop_method_used%use_vectorized) then
                 X = spread(spread(x_vector, 1, sY), 3, sZ)
                 Y = spread(spread(y_vector, 2, sX), 3, sZ)
                 Z = spread(spread(z_vector, 1, sX), 1, sY)
@@ -434,7 +434,7 @@ contains
 
             allocate (X(sX, sY, sZ), Y(sX, sY, sZ), Z(sX, sY, sZ))
 
-            if (loop_method%use_do_classic) then
+            if (loop_method_used%use_do_classic) then
 
                 do k = 1, sZ
                     do i = 1, sY
@@ -453,7 +453,7 @@ contains
                         Z(j, i, :) = z_vector
                     end do
                 end do
-            else if (loop_method%use_vectorized) then
+            else if (loop_method_used%use_vectorized) then
                 X = spread(spread(x_vector, 2, sY), 3, sZ)
                 Y = spread(spread(y_vector, 1, sX), 3, sZ)
                 Z = spread(spread(z_vector, 1, sX), 2, sY)
@@ -529,7 +529,7 @@ contains
 
             allocate (X(sY, sX, sZ), Y(sY, sX, sZ), Z(sY, sX, sZ))
 
-            if (loop_method%use_do_classic) then
+            if (loop_method_used%use_do_classic) then
 
                 do k = 1, sZ
                     do i = 1, sY
@@ -548,7 +548,7 @@ contains
                         Z(i, j, :) = z_vector
                     end do
                 end do
-            else if (loop_method%use_vectorized) then
+            else if (loop_method_used%use_vectorized) then
                 X = spread(spread(x_vector, 1, sY), 3, sZ)
                 Y = spread(spread(y_vector, 2, sX), 3, sZ)
                 Z = spread(spread(z_vector, 1, sX), 1, sY)
@@ -600,7 +600,7 @@ contains
 
             allocate (X(sX, sY, sZ), Y(sX, sY, sZ), Z(sX, sY, sZ))
 
-            if (loop_method%use_do_classic) then
+            if (loop_method_used%use_do_classic) then
 
                 do k = 1, sZ
                     do i = 1, sY
@@ -619,7 +619,7 @@ contains
                         Z(j, i, :) = z_vector
                     end do
                 end do
-            else if (loop_method%use_vectorized) then
+            else if (loop_method_used%use_vectorized) then
                 X = spread(spread(x_vector, 2, sY), 3, sZ)
                 Y = spread(spread(y_vector, 1, sX), 3, sZ)
                 Z = spread(spread(z_vector, 1, sX), 2, sY)

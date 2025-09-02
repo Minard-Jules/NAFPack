@@ -1,0 +1,6 @@
+ADDTEST(meshgrid_complex_2D)
+ADDTEST(meshgrid_complex_3D)
+ADDTEST(meshgrid_integer_2D)
+ADDTEST(meshgrid_integer_3D)
+ADDTEST(meshgrid_real_2D)
+ADDTEST(meshgrid_real_3D)

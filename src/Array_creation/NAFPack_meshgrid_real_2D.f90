@@ -29,7 +29,7 @@ contains
 
             allocate (X(sY, sX), Y(sY, sX))
 
-            if (loop_method%use_do_classic) then
+            if (loop_method_used%use_do_classic) then
                 do i = 1, sY
                     X(i, :) = x_vector
                 end do
@@ -37,7 +37,7 @@ contains
                 do j = 1, sX
                     Y(:, j) = y_vector
                 end do
-            else if (loop_method%use_vectorized) then
+            else if (loop_method_used%use_vectorized) then
                 X = spread(x_vector, 1, sY)
                 Y = spread(y_vector, 2, sX)
             else if (loop_method_used%use_do_concurrent) then
@@ -70,7 +70,7 @@ contains
         else if (use_xy_indexing) then
             allocate (X(sX, sY), Y(sX, sY))
 
-            if (loop_method%use_do_classic) then
+            if (loop_method_used%use_do_classic) then
                 do i = 1, sY
                     X(:, i) = x_vector
                 end do
@@ -78,7 +78,7 @@ contains
                 do j = 1, sX
                     Y(j, :) = y_vector
                 end do
-            else if (loop_method%use_vectorized) then
+            else if (loop_method_used%use_vectorized) then
                 X = spread(x_vector, 2, sY)
                 Y = spread(y_vector, 1, sX)
             else if (loop_method_used%use_do_concurrent) then
@@ -137,7 +137,7 @@ contains
 
             allocate (X(sY, sX), Y(sY, sX))
 
-            if (loop_method%use_do_classic) then
+            if (loop_method_used%use_do_classic) then
                 do i = 1, sY
                     X(i, :) = x_vector
                 end do
@@ -145,7 +145,7 @@ contains
                 do j = 1, sX
                     Y(:, j) = y_vector
                 end do
-            else if (loop_method%use_vectorized) then
+            else if (loop_method_used%use_vectorized) then
                 X = spread(x_vector, 1, sY)
                 Y = spread(y_vector, 2, sX)
             else if (loop_method_used%use_do_concurrent) then
@@ -178,7 +178,7 @@ contains
         else if (use_xy_indexing) then
             allocate (X(sX, sY), Y(sX, sY))
 
-            if (loop_method%use_do_classic) then
+            if (loop_method_used%use_do_classic) then
                 do i = 1, sY
                     X(:, i) = x_vector
                 end do
@@ -186,7 +186,7 @@ contains
                 do j = 1, sX
                     Y(j, :) = y_vector
                 end do
-            else if (loop_method%use_vectorized) then
+            else if (loop_method_used%use_vectorized) then
                 X = spread(x_vector, 2, sY)
                 Y = spread(y_vector, 1, sX)
             else if (loop_method_used%use_do_concurrent) then
@@ -245,7 +245,7 @@ contains
 
             allocate (X(sY, sX), Y(sY, sX))
 
-            if (loop_method%use_do_classic) then
+            if (loop_method_used%use_do_classic) then
                 do i = 1, sY
                     X(i, :) = x_vector
                 end do
@@ -253,7 +253,7 @@ contains
                 do j = 1, sX
                     Y(:, j) = y_vector
                 end do
-            else if (loop_method%use_vectorized) then
+            else if (loop_method_used%use_vectorized) then
                 X = spread(x_vector, 1, sY)
                 Y = spread(y_vector, 2, sX)
             else if (loop_method_used%use_do_concurrent) then
@@ -286,7 +286,7 @@ contains
         else if (use_xy_indexing) then
             allocate (X(sX, sY), Y(sX, sY))
 
-            if (loop_method%use_do_classic) then
+            if (loop_method_used%use_do_classic) then
                 do i = 1, sY
                     X(:, i) = x_vector
                 end do
@@ -294,7 +294,7 @@ contains
                 do j = 1, sX
                     Y(j, :) = y_vector
                 end do
-            else if (loop_method%use_vectorized) then
+            else if (loop_method_used%use_vectorized) then
                 X = spread(x_vector, 2, sY)
                 Y = spread(y_vector, 1, sX)
             else if (loop_method_used%use_do_concurrent) then

@@ -90,13 +90,8 @@ Ensure you have [CMake](https://cmake.org/download/), [**FFTW**](https://www.fft
     ```
 
 4. Run the tests:
-    - Linux
     ```sh
-    $ ./bin/main_test
-    ```
-    - Windows
-    ```sh
-    $ .\bin\main_test.exe
+    $ ctest
     ```
 
 #### Using Fortran Package Manager (fpm)
