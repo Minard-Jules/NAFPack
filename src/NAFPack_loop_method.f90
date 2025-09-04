@@ -4,7 +4,7 @@ module NAFPack_loop_method
     implicit none(type, external)
 
     private
-    public :: LoopMethod, init_loop_method, count_true_methods
+    public :: LoopMethod, init_loop_method, count_true_methods, check_loop_method
     public :: default_loop_method
 
     type :: ParallelMethod
@@ -26,18 +26,27 @@ module NAFPack_loop_method
 contains
 
     pure function init_loop_method( &
-        use_do_classic, use_vectorized, use_do_concurrent, use_openmp, use_mpi, num_threads) result(loop_method)
-        logical, intent(in), optional :: use_do_classic, use_vectorized, use_do_concurrent, use_openmp, use_mpi
+        use_do_classic, &
+        use_vectorized, &
+        use_do_concurrent, &
+        use_openmp, &
+        use_mpi, &
+        num_threads) result(loop_method)
+        logical, intent(in), optional :: use_do_classic, &
+                                         use_vectorized, &
+                                         use_do_concurrent, &
+                                         use_openmp, &
+                                         use_mpi
         integer, intent(in), optional :: num_threads
-        logical :: method_used
         type(LoopMethod) :: loop_method
+        logical :: method_used
 
         loop_method = empty_loop_method
 
         method_used = .false.
         if (present(use_do_classic)) then
             if (use_do_classic) loop_method%use_do_classic = .true.
-                
+
         end if
 
         if (present(use_vectorized)) then
@@ -88,7 +97,7 @@ contains
         else
             error stop "Multiple loop methods cannot be used simultaneously"
         end if
-    end subroutine
+    end subroutine check_method_used
 
     pure function count_true_methods(loop_method) result(count_true)
         type(LoopMethod), intent(in) :: loop_method
@@ -101,5 +110,20 @@ contains
         if (loop_method%parallel%use_openmp) count_true = count_true + 1
         if (loop_method%parallel%use_mpi) count_true = count_true + 1
     end function count_true_methods
+
+    function check_loop_method(loop_method) result(loop_method_used)
+        type(LoopMethod), intent(in) :: loop_method
+        type(LoopMethod) :: loop_method_used
+        integer :: nb_of_true
+
+        nb_of_true = count_true_methods(loop_method)
+        if (nb_of_true == 0) then
+            loop_method_used = default_loop_method
+        else if (nb_of_true == 1) then
+            loop_method_used = loop_method
+        else
+            loop_method_used = default_loop_method
+        end if
+    end function check_loop_method
 
 end module NAFPack_loop_method

@@ -2,15 +2,17 @@ set(NAFPACK_SOURCES
     ${SRC_DIR}/NAFPack_kinds.f90
     ${SRC_DIR}/NAFPack_constant.f90
     ${SRC_DIR}/NAFPack_loop_method.f90
-    ${SRC_DIR}/Array_creation/NAFPack_meshgrid.f90
-    ${SRC_DIR}/Array_creation/NAFPack_meshgrid_real_2D.f90
-    ${SRC_DIR}/Array_creation/NAFPack_meshgrid_real_3D.f90
-    ${SRC_DIR}/Array_creation/NAFPack_meshgrid_integer_2D.f90
-    ${SRC_DIR}/Array_creation/NAFPack_meshgrid_integer_3D.f90
-    ${SRC_DIR}/Array_creation/NAFPack_meshgrid_complex_2D.f90
-    ${SRC_DIR}/Array_creation/NAFPack_meshgrid_complex_3D.f90
-    ${SRC_DIR}/FFT/FFTW3.f90
-    ${SRC_DIR}/FFT/NAFPack_fft.f90
+    ${SRC_DIR}/Array_creation/meshgrid/NAFPack_meshgrid.f90
+    ${SRC_DIR}/Array_creation/meshgrid/NAFPack_meshgrid_real_2D.f90
+    ${SRC_DIR}/Array_creation/meshgrid/NAFPack_meshgrid_real_3D.f90
+    ${SRC_DIR}/Array_creation/meshgrid/NAFPack_meshgrid_integer_2D.f90
+    ${SRC_DIR}/Array_creation/meshgrid/NAFPack_meshgrid_integer_3D.f90
+    ${SRC_DIR}/Array_creation/meshgrid/NAFPack_meshgrid_complex_2D.f90
+    ${SRC_DIR}/Array_creation/meshgrid/NAFPack_meshgrid_complex_3D.f90
+    ${SRC_DIR}/Fourier_Transform/FFTW3.f90
+    ${SRC_DIR}/Fourier_Transform/NAFPack_fft.f90
+    ${SRC_DIR}/Fourier_Transform/NAFPack_Fourier_Transform.f90
+    ${SRC_DIR}/Fourier_Transform/NAFPack_Fourier_Transform_dft.f90
     ${SRC_DIR}/io/NAFPack_ANSI_ASCII.f90
     ${SRC_DIR}/io/NAFPack_ANSI_ucs4.f90
     ${SRC_DIR}/io/NAFPack_ANSI.f90

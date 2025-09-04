@@ -39,16 +39,16 @@ contains
         do i = 1, Mx
             xlist(i) = i - 1
         end do
-        xlist = xlist * 2 * pi / Mx
+        xlist = xlist * 2 * pi_dp / Mx
 
         do i = 1, My
             ylist(i) = i - 1
         end do
-        ylist = ylist * 2 * pi / My
+        ylist = ylist * 2 * pi_dp / My
 
         !==================================================================
         !test DFT
-        S = exp(-im * xlist)
+        S = exp(-im_dp * xlist)
 
         fs_exact_DFT = (0.d0, 0.d0)
         fs_exact_DFT(Mx) = (10.d0, 0.d0)
@@ -132,8 +132,8 @@ contains
         fS(1) = Mx
         fS(2) = 2 * Mx
         fS(Mx) = 2 * Mx
-        fS(3) = -im * Mx / 2
-        fS(Mx - 1) = im * Mx / 2
+        fS(3) = -im_dp * Mx / 2
+        fS(Mx - 1) = im_dp * Mx / 2
 
         s_exact_IFFT = [(5.d0, 0.d0), &
                         (5.19d0, 0.d0), &
@@ -162,8 +162,8 @@ contains
         fS(1) = Mx
         fS(2) = 2 * Mx
         fS(Mx) = 2 * Mx
-        fS(3) = -im * Mx / 2
-        fS(Mx - 1) = im * Mx / 2
+        fS(3) = -im_dp * Mx / 2
+        fS(Mx - 1) = im_dp * Mx / 2
 
         s_exact_IFFT = [(5.d0, 0.d0), &
                         (5.19d0, 0.d0), &
@@ -192,8 +192,8 @@ contains
         fS(1) = Mx
         fS(2) = 2 * Mx
         fS(Mx) = 2 * Mx
-        fS(3) = -im * Mx / 2
-        fS(Mx - 1) = im * Mx / 2
+        fS(3) = -im_dp * Mx / 2
+        fS(Mx - 1) = im_dp * Mx / 2
 
         s_exact_IFFT = [(5.d0, 0.d0), &
                         (5.19d0, 0.d0), &

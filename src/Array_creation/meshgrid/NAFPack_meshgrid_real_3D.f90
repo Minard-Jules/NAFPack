@@ -4,8 +4,12 @@ submodule(NAFPack_meshgrid) NAFPack_meshgrid_real_3D
 
 contains
 
-    module subroutine meshgrid_sp_3D( &
-        x_vector, y_vector, z_vector, X, Y, Z, indexing, strict_mode, loop_method)
+    module subroutine meshgrid_real_sp_3D( &
+        x_vector, y_vector, z_vector, &
+        X, Y, Z, &
+        indexing, &
+        strict_mode, &
+        loop_method)
         real(sp), dimension(:), intent(in) :: x_vector, y_vector, z_vector
         real(sp), dimension(:, :, :), allocatable, intent(out) :: X, Y, Z
         type(meshgrid_indexing), optional, intent(in) :: indexing
@@ -169,10 +173,14 @@ contains
             end if
         end if
 
-    end subroutine meshgrid_sp_3D
+    end subroutine meshgrid_real_sp_3D
 
-    module subroutine meshgrid_dp_3D( &
-        x_vector, y_vector, z_vector, X, Y, Z, indexing, strict_mode, loop_method)
+    module subroutine meshgrid_real_dp_3D( &
+        x_vector, y_vector, z_vector, &
+        X, Y, Z, &
+        indexing, &
+        strict_mode, &
+        loop_method)
         real(dp), dimension(:), intent(in) :: x_vector, y_vector, z_vector
         real(dp), dimension(:, :, :), allocatable, intent(out) :: X, Y, Z
         type(meshgrid_indexing), optional, intent(in) :: indexing
@@ -336,10 +344,14 @@ contains
             end if
         end if
 
-    end subroutine meshgrid_dp_3D
+    end subroutine meshgrid_real_dp_3D
 
-    module subroutine meshgrid_qp_3D( &
-        x_vector, y_vector, z_vector, X, Y, Z, indexing, strict_mode, loop_method)
+    module subroutine meshgrid_real_qp_3D( &
+        x_vector, y_vector, z_vector, &
+        X, Y, Z, &
+        indexing, &
+        strict_mode, &
+        loop_method)
         real(qp), dimension(:), intent(in) :: x_vector, y_vector, z_vector
         real(qp), dimension(:, :, :), allocatable, intent(out) :: X, Y, Z
         type(meshgrid_indexing), optional, intent(in) :: indexing
@@ -503,6 +515,6 @@ contains
             end if
         end if
 
-    end subroutine meshgrid_qp_3D
+    end subroutine meshgrid_real_qp_3D
 
 end submodule NAFPack_meshgrid_real_3D

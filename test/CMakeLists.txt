@@ -28,3 +28,4 @@ target_link_libraries(test_old "${PROJECT_NAME}" "test-drive")
 # target_include_directories(test_old PRIVATE ${CMAKE_Fortran_MODULE_DIRECTORY})
 
 add_subdirectory(Array_creation)
+add_subdirectory(Fourier_Transform)

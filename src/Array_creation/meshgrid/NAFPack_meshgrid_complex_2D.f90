@@ -1,13 +1,17 @@
-submodule(NAFPack_meshgrid) NAFPack_meshgrid_real_2D
+submodule(NAFPack_meshgrid) NAFPack_meshgrid_complex_2D
 
     implicit none(type, external)
 
 contains
 
-    module subroutine meshgrid_sp_2D( &
-        x_vector, y_vector, X, Y, indexing, strict_mode, loop_method)
-        real(sp), dimension(:), intent(in) :: x_vector, y_vector
-        real(sp), dimension(:, :), allocatable, intent(out) :: X, Y
+    module subroutine meshgrid_cmplx_sp_2D( &
+        x_vector, y_vector, &
+        X, Y, &
+        indexing, &
+        strict_mode, &
+        loop_method)
+        complex(sp), dimension(:), intent(in) :: x_vector, y_vector
+        complex(sp), dimension(:, :), allocatable, intent(out) :: X, Y
         type(meshgrid_indexing), optional, intent(in) :: indexing
         logical, optional, intent(in) :: strict_mode
         type(LoopMethod), optional, intent(in) :: loop_method
@@ -110,12 +114,16 @@ contains
             end if
         end if
 
-    end subroutine meshgrid_sp_2D
+    end subroutine meshgrid_cmplx_sp_2D
 
-    module subroutine meshgrid_dp_2D( &
-        x_vector, y_vector, X, Y, indexing, strict_mode, loop_method)
-        real(dp), dimension(:), intent(in) :: x_vector, y_vector
-        real(dp), dimension(:, :), allocatable, intent(out) :: X, Y
+    module subroutine meshgrid_cmplx_dp_2D( &
+        x_vector, y_vector, &
+        X, Y, &
+        indexing, &
+        strict_mode, &
+        loop_method)
+        complex(dp), dimension(:), intent(in) :: x_vector, y_vector
+        complex(dp), dimension(:, :), allocatable, intent(out) :: X, Y
         type(meshgrid_indexing), optional, intent(in) :: indexing
         logical, optional, intent(in) :: strict_mode
         type(LoopMethod), optional, intent(in) :: loop_method
@@ -218,12 +226,16 @@ contains
             end if
         end if
 
-    end subroutine meshgrid_dp_2D
+    end subroutine meshgrid_cmplx_dp_2D
 
-    module subroutine meshgrid_qp_2D( &
-        x_vector, y_vector, X, Y, indexing, strict_mode, loop_method)
-        real(qp), dimension(:), intent(in) :: x_vector, y_vector
-        real(qp), dimension(:, :), allocatable, intent(out) :: X, Y
+    module subroutine meshgrid_cmplx_qp_2D( &
+        x_vector, y_vector, &
+        X, Y, &
+        indexing, &
+        strict_mode, &
+        loop_method)
+        complex(qp), dimension(:), intent(in) :: x_vector, y_vector
+        complex(qp), dimension(:, :), allocatable, intent(out) :: X, Y
         type(meshgrid_indexing), optional, intent(in) :: indexing
         logical, optional, intent(in) :: strict_mode
         type(LoopMethod), optional, intent(in) :: loop_method
@@ -326,6 +338,6 @@ contains
             end if
         end if
 
-    end subroutine meshgrid_qp_2D
+    end subroutine meshgrid_cmplx_qp_2D
 
-end submodule NAFPack_meshgrid_real_2D
+end submodule NAFPack_meshgrid_complex_2D

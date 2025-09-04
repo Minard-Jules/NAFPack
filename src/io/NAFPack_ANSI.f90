@@ -37,7 +37,7 @@ module NAFPack_ANSI
         integer(i16) :: bg = -1_i16
     end type AnsiCode
 
-    type :: AnsiConstants 
+    type :: AnsiConstants
         ! Styles
         type(AnsiCode) :: &
             STYLE_RESET = AnsiCode(use_style=.true., style=0_i8), &
