@@ -1,0 +1,702 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+    <meta name="author" content="Minard Jules" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>NAFPack_math_utils &ndash; NAFPack</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="../css/local.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">NAFPack </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>NAFPack_math_utils
+      <small>Module</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 0.6% of total for modules and submodules.">55 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/NAFPack_math_utils.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='..\sourcefile\nafpack_math_utils.f90.html'>NAFPack_math_utils.f90</a></li>
+            <li class="breadcrumb-item active" aria-current="page">NAFPack_math_utils</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
+  </script>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+        <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#funcs-0"
+         aria-expanded="false" aria-controls="funcs-0">
+         <h4 class="card-header bg-primary text-white">Functions</h4>
+      </a>
+      <div id="funcs-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/nafpack_math_utils.html#proc-sieve_of_eratosthenes">sieve_of_eratosthenes</a>
+            <a class="list-group-item" href="../module/nafpack_math_utils.html#proc-is_power_of_two">is_power_of_two</a>
+            <a class="list-group-item" href="../module/nafpack_math_utils.html#proc-power_of_p_exponent">power_of_p_exponent</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+
+    <div class="col-md-9" id='text'>
+      
+<br>          <div class="card mb-4">
+      <h3 class="card-header card-title bg-light">Uses</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <ul class="list-inline">
+                  <li class="list-inline-item"><a href='nafpack_kinds.html'>NAFPack_kinds</a></li>
+              </ul>
+            </li>
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.1.2 (20250808.2320)
+ -->
+<!-- Title: module~~nafpack_math_utils~~UsesGraph Pages: 1 -->
+<svg id="modulenafpack_math_utilsUsesGraph" width="363pt" height="32pt"
+ viewBox="0.00 0.00 363.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~nafpack_math_utils~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 27.52)">
+<title>module~~nafpack_math_utils~~UsesGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 358.81,-27.52 358.81,4 -4,4"/>
+<!-- module~nafpack_math_utils -->
+<g id="module~~nafpack_math_utils~~UsesGraph_node1" class="node">
+<title>module~nafpack_math_utils</title>
+<polygon fill="none" stroke="black" points="354.81,-23.52 244.29,-23.52 244.29,0 354.81,0 354.81,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="299.55" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">NAFPack_math_utils</text>
+</g>
+<!-- module~nafpack_kinds -->
+<g id="module~~nafpack_math_utils~~UsesGraph_node2" class="node">
+<title>module~nafpack_kinds</title>
+<g id="a_module~~nafpack_math_utils~~UsesGraph_node2"><a xlink:href="../module/nafpack_kinds.html" xlink:title="NAFPack_kinds">
+<polygon fill="#337ab7" stroke="#337ab7" points="208.29,-23.52 121.77,-23.52 121.77,0 208.29,0 208.29,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="165.03" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_kinds</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_math_utils&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_math_utils~~UsesGraph_edge1" class="edge">
+<title>module~nafpack_math_utils&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M243.88,-11.76C235.93,-11.76 227.75,-11.76 219.82,-11.76"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="219.94,-8.26 209.94,-11.76 219.94,-15.26 219.94,-8.26"/>
+</g>
+<!-- iso_fortran_env -->
+<g id="module~~nafpack_math_utils~~UsesGraph_node3" class="node">
+<title>iso_fortran_env</title>
+<g id="a_module~~nafpack_math_utils~~UsesGraph_node3"><a xlink:href="http://fortranwiki.org/fortran/show/iso_fortran_env" xlink:title="iso_fortran_env">
+<polygon fill="#337ab7" stroke="#337ab7" points="85.77,-23.52 0,-23.52 0,0 85.77,0 85.77,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="42.88" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_kinds&#45;&gt;iso_fortran_env -->
+<g id="module~~nafpack_math_utils~~UsesGraph_edge2" class="edge">
+<title>module~nafpack_kinds&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M121.33,-11.76C113.63,-11.76 105.51,-11.76 97.54,-11.76"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="97.55,-8.26 87.55,-11.76 97.55,-15.26 97.55,-8.26"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsesGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsesGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.1.2 (20250808.2320)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="485pt" height="32pt"
+ viewBox="0.00 0.00 485.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 27.52)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 481.13,-27.52 481.13,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-23.52 0,-23.52 0,0 54,0 54,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="137.76,-23.52 72.24,-23.52 72.24,0 137.76,0 137.76,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="105" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="218.63,-23.52 155.37,-23.52 155.37,0 218.63,0 218.63,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="187" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="291,-23.52 237,-23.52 237,0 291,0 291,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="264" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="363,-23.52 309,-23.52 309,0 363,0 363,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="336" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="477.13,-23.52 380.87,-23.52 380.87,0 477.13,0 477.13,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="429" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+          <div class="card">
+      <h3 class="card-header card-title bg-light">Used by</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.1.2 (20250808.2320)
+ -->
+<!-- Title: module~~nafpack_math_utils~~UsedByGraph Pages: 1 -->
+<svg id="modulenafpack_math_utilsUsedByGraph" width="641pt" height="131pt"
+ viewBox="0.00 0.00 641.00 131.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~nafpack_math_utils~~UsedByGraph" class="graph" transform="scale(0.833734 0.833734) rotate(0) translate(4 153.52)">
+<title>module~~nafpack_math_utils~~UsedByGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-153.52 764.83,-153.52 764.83,4 -4,4"/>
+<!-- module~nafpack_math_utils -->
+<g id="module~~nafpack_math_utils~~UsedByGraph_node1" class="node">
+<title>module~nafpack_math_utils</title>
+<polygon fill="none" stroke="black" points="110.52,-86.52 0,-86.52 0,-63 110.52,-63 110.52,-86.52"/>
+<text xml:space="preserve" text-anchor="middle" x="55.26" y="-70.79" font-family="Helvetica,sans-Serif" font-size="10.50">NAFPack_math_utils</text>
+</g>
+<!-- module~nafpack_fourier_transform -->
+<g id="module~~nafpack_math_utils~~UsedByGraph_node2" class="node">
+<title>module~nafpack_fourier_transform</title>
+<g id="a_module~~nafpack_math_utils~~UsedByGraph_node2"><a xlink:href="../module/nafpack_fourier_transform.html" xlink:title="NAFPack_Fourier_Transform">
+<polygon fill="#337ab7" stroke="#337ab7" points="297.54,-86.52 146.52,-86.52 146.52,-63 297.54,-63 297.54,-86.52"/>
+<text xml:space="preserve" text-anchor="middle" x="222.03" y="-70.79" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Fourier_Transform</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_fourier_transform&#45;&gt;module~nafpack_math_utils -->
+<g id="module~~nafpack_math_utils~~UsedByGraph_edge1" class="edge">
+<title>module~nafpack_fourier_transform&#45;&gt;module~nafpack_math_utils</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M146.36,-74.76C138.35,-74.76 130.24,-74.76 122.34,-74.76"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="122.47,-71.26 112.47,-74.76 122.47,-78.26 122.47,-71.26"/>
+</g>
+<!-- module~nafpack_fourier_transform_dft -->
+<g id="module~~nafpack_math_utils~~UsedByGraph_node3" class="node">
+<title>module~nafpack_fourier_transform_dft</title>
+<g id="a_module~~nafpack_math_utils~~UsedByGraph_node3"><a xlink:href="../module/nafpack_fourier_transform_dft.html" xlink:title="NAFPack_Fourier_Transform_dft">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="505.56,-149.52 336.54,-149.52 336.54,-126 505.56,-126 505.56,-149.52"/>
+<text xml:space="preserve" text-anchor="middle" x="421.05" y="-133.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Fourier_Transform_dft</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_fourier_transform_dft&#45;&gt;module~nafpack_fourier_transform -->
+<g id="module~~nafpack_math_utils~~UsedByGraph_edge2" class="edge">
+<title>module~nafpack_fourier_transform_dft&#45;&gt;module~nafpack_fourier_transform</title>
+<path fill="none" stroke="#ff0000" d="M365.31,-125.57C354.71,-122.9 343.73,-119.92 333.54,-116.76 309.67,-109.36 283.5,-99.49 262.63,-91.19"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="264.22,-88.05 253.63,-87.57 261.61,-94.55 264.22,-88.05"/>
+</g>
+<!-- module~nafpack_fourier_transform_dft2 -->
+<g id="module~~nafpack_math_utils~~UsedByGraph_node4" class="node">
+<title>module~nafpack_fourier_transform_dft2</title>
+<g id="a_module~~nafpack_math_utils~~UsedByGraph_node4"><a xlink:href="../module/nafpack_fourier_transform_dft2.html" xlink:title="NAFPack_Fourier_Transform_dft2">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="508.56,-107.52 333.54,-107.52 333.54,-84 508.56,-84 508.56,-107.52"/>
+<text xml:space="preserve" text-anchor="middle" x="421.05" y="-91.79" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Fourier_Transform_dft2</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_fourier_transform_dft2&#45;&gt;module~nafpack_fourier_transform -->
+<g id="module~~nafpack_math_utils~~UsedByGraph_edge3" class="edge">
+<title>module~nafpack_fourier_transform_dft2&#45;&gt;module~nafpack_fourier_transform</title>
+<path fill="none" stroke="#ff0000" d="M333.06,-86.49C325.07,-85.64 316.98,-84.77 309.01,-83.92"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="309.64,-80.47 299.33,-82.89 308.9,-87.43 309.64,-80.47"/>
+</g>
+<!-- module~nafpack_fourier_transform_dft3 -->
+<g id="module~~nafpack_math_utils~~UsedByGraph_node5" class="node">
+<title>module~nafpack_fourier_transform_dft3</title>
+<g id="a_module~~nafpack_math_utils~~UsedByGraph_node5"><a xlink:href="../module/nafpack_fourier_transform_dft3.html" xlink:title="NAFPack_Fourier_Transform_dft3">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="508.56,-65.52 333.54,-65.52 333.54,-42 508.56,-42 508.56,-65.52"/>
+<text xml:space="preserve" text-anchor="middle" x="421.05" y="-49.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Fourier_Transform_dft3</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_fourier_transform_dft3&#45;&gt;module~nafpack_fourier_transform -->
+<g id="module~~nafpack_math_utils~~UsedByGraph_edge4" class="edge">
+<title>module~nafpack_fourier_transform_dft3&#45;&gt;module~nafpack_fourier_transform</title>
+<path fill="none" stroke="#ff0000" d="M333.06,-63.03C325.07,-63.88 316.98,-64.75 309.01,-65.6"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="308.9,-62.09 299.33,-66.63 309.64,-69.05 308.9,-62.09"/>
+</g>
+<!-- module~nafpack_fourier_transform_fft -->
+<g id="module~~nafpack_math_utils~~UsedByGraph_node6" class="node">
+<title>module~nafpack_fourier_transform_fft</title>
+<g id="a_module~~nafpack_math_utils~~UsedByGraph_node6"><a xlink:href="../module/nafpack_fourier_transform_fft.html" xlink:title="NAFPack_Fourier_Transform_fft">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="504.06,-23.52 338.04,-23.52 338.04,0 504.06,0 504.06,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="421.05" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Fourier_Transform_fft</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_fourier_transform_fft&#45;&gt;module~nafpack_fourier_transform -->
+<g id="module~~nafpack_math_utils~~UsedByGraph_edge5" class="edge">
+<title>module~nafpack_fourier_transform_fft&#45;&gt;module~nafpack_fourier_transform</title>
+<path fill="none" stroke="#ff0000" d="M365.31,-23.95C354.71,-26.62 343.73,-29.6 333.54,-32.76 309.67,-40.16 283.5,-50.03 262.63,-58.33"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="261.61,-54.97 253.63,-61.95 264.22,-61.47 261.61,-54.97"/>
+</g>
+<!-- module~nafpack_fourier_transform_dft_compute -->
+<g id="module~~nafpack_math_utils~~UsedByGraph_node7" class="node">
+<title>module~nafpack_fourier_transform_dft_compute</title>
+<g id="a_module~~nafpack_math_utils~~UsedByGraph_node7"><a xlink:href="../module/nafpack_fourier_transform_dft_compute.html" xlink:title="NAFPack_Fourier_Transform_dft_compute">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="760.83,-149.52 544.56,-149.52 544.56,-126 760.83,-126 760.83,-149.52"/>
+<text xml:space="preserve" text-anchor="middle" x="652.7" y="-133.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Fourier_Transform_dft_compute</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_fourier_transform_dft_compute&#45;&gt;module~nafpack_fourier_transform_dft -->
+<g id="module~~nafpack_math_utils~~UsedByGraph_edge6" class="edge">
+<title>module~nafpack_fourier_transform_dft_compute&#45;&gt;module~nafpack_fourier_transform_dft</title>
+<path fill="none" stroke="#ff0000" d="M544.27,-137.76C535.34,-137.76 526.35,-137.76 517.52,-137.76"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="517.53,-134.26 507.53,-137.76 517.53,-141.26 517.53,-134.26"/>
+</g>
+<!-- module~nafpack_fourier_transform_fft_compute -->
+<g id="module~~nafpack_math_utils~~UsedByGraph_node8" class="node">
+<title>module~nafpack_fourier_transform_fft_compute</title>
+<g id="a_module~~nafpack_math_utils~~UsedByGraph_node8"><a xlink:href="../module/nafpack_fourier_transform_fft_compute.html" xlink:title="NAFPack_Fourier_Transform_fft_compute">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="759.33,-23.52 546.06,-23.52 546.06,0 759.33,0 759.33,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="652.7" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Fourier_Transform_fft_compute</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_fourier_transform_fft_compute&#45;&gt;module~nafpack_fourier_transform_fft -->
+<g id="module~~nafpack_math_utils~~UsedByGraph_edge7" class="edge">
+<title>module~nafpack_fourier_transform_fft_compute&#45;&gt;module~nafpack_fourier_transform_fft</title>
+<path fill="none" stroke="#7f00ff" d="M545.61,-11.76C535.64,-11.76 525.59,-11.76 515.75,-11.76"/>
+<polygon fill="#7f00ff" stroke="#7f00ff" points="515.82,-8.26 505.82,-11.76 515.82,-15.26 515.82,-8.26"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var panmodulenafpack_math_utilsUsedByGraph = svgPanZoom('#modulenafpack_math_utilsUsedByGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsedByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsedByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.1.2 (20250808.2320)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="485pt" height="32pt"
+ viewBox="0.00 0.00 485.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 27.52)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 481.13,-27.52 481.13,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-23.52 0,-23.52 0,0 54,0 54,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="137.76,-23.52 72.24,-23.52 72.24,0 137.76,0 137.76,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="105" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="218.63,-23.52 155.37,-23.52 155.37,0 218.63,0 218.63,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="187" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="291,-23.52 237,-23.52 237,0 291,0 291,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="264" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="363,-23.52 309,-23.52 309,0 363,0 363,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="336" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="477.13,-23.52 380.87,-23.52 380.87,0 477.13,0 477.13,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="429" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+      <br>
+
+
+
+
+
+
+
+        <section>
+          <h2>Functions</h2>
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-sieve_of_eratosthenes"></span> <h3>public  function <a href='..\proc\sieve_of_eratosthenes.html'>sieve_of_eratosthenes</a>(N) result(primes)  
+</h3></div>
+    <div class="card-body">
+          
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-n~51"></span>
+              integer(kind=isp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>N</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>integer(kind=isp), dimension(:), allocatable</small>
+    </h4>
+    
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-is_power_of_two"></span> <h3>public  function <a href='..\proc\is_power_of_two.html'>is_power_of_two</a>(N) result(value)  
+</h3></div>
+    <div class="card-body">
+          
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-n~52"></span>
+              integer(kind=isp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>N</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>logical</small>
+    </h4>
+    
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-power_of_p_exponent"></span> <h3>public  function <a href='..\proc\power_of_p_exponent.html'>power_of_p_exponent</a>(N, p) result(exponent)  
+</h3></div>
+    <div class="card-body">
+          
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-n~53"></span>
+              integer(kind=isp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>N</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-p~34"></span>
+              integer(kind=isp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>p</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>integer(kind=isp)</small>
+    </h4>
+    
+
+    </div>
+  </div>
+
+        </section>
+        <br>
+
+
+
+
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              NAFPack
+ was developed by Minard Jules<br>              &copy; 2025 
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+            </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>

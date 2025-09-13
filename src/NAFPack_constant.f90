@@ -30,11 +30,21 @@ module NAFPack_constant
     integer, parameter :: NAF_ERROR_INVALID_METHOD = 5
 
     ! Numerical tolerances
-    real(dp), parameter :: TOL_PIVOT = 1.0e-14_dp
-    real(dp), parameter :: TOL_CONVERGENCE = 1.0e-12_dp
-    real(dp), parameter :: TOL_RESIDUAL = 1.0e-10_dp
-    real(dp), parameter :: TOL_TEST = 1.0e-10_dp
+    real(sp), parameter :: TOL_PIVOT_sp = 1.0e-7_sp + epsilon(1.0_sp)
+    real(dp), parameter :: TOL_PIVOT_dp = 1.0e-14_dp + epsilon(1.0_dp)
+    real(qp), parameter :: TOL_PIVOT_qp = 1.0e-28_qp + epsilon(1.0_qp)
 
+    real(sp), parameter :: TOL_CONVERGENCE_sp = 1.0e-6_sp + epsilon(1.0_sp)
+    real(dp), parameter :: TOL_CONVERGENCE_dp = 1.0e-12_dp + epsilon(1.0_dp)
+    real(qp), parameter :: TOL_CONVERGENCE_qp = 1.0e-24_qp + epsilon(1.0_qp)
+
+    real(sp), parameter :: TOL_RESIDUAL_sp = 1.0e-5_sp + epsilon(1.0_sp)
+    real(dp), parameter :: TOL_RESIDUAL_dp = 1.0e-10_dp + epsilon(1.0_dp)
+    real(qp), parameter :: TOL_RESIDUAL_qp = 1.0e-20_qp + epsilon(1.0_qp)
+
+    real(sp), parameter :: TOL_TEST_sp = 1.0e-5_sp + epsilon(1.0_sp)
+    real(dp), parameter :: TOL_TEST_dp = 1.0e-12_dp + epsilon(1.0_dp)
+    real(qp), parameter :: TOL_TEST_qp = 1.0e-24_qp + epsilon(1.0_qp)
 
     ! Performance settings
     integer, parameter :: MAX_ITERATION = 10000

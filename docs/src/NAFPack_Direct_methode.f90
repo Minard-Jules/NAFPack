@@ -2,7 +2,7 @@
 module NAFPack_Direct_method
 
     use NAFPack_kinds, only: dp
-    use NAFPack_constant, only: TOL_PIVOT
+    use NAFPack_constant, only: TOL_PIVOT_dp
 
     use NAFPack_Direct_types, only: MethodTypeDirect, METHOD_DIRECT_NONE, &
                                     METHOD_CHOLESKY, METHOD_LDL_Cholesky, &
@@ -284,7 +284,7 @@ contains
 
         do k = 1, N - 1
             pivot = A_tmp(k, k)
-            if (abs(pivot) < TOL_PIVOT) stop "ERROR :: Near-zero pivot – matrix may be singular"
+            if (abs(pivot) < TOL_PIVOT_dp) stop "ERROR :: Near-zero pivot – matrix may be singular"
 
             do i = k + 1, N
                 multiplier = A_tmp(i, k) / pivot
@@ -345,7 +345,7 @@ contains
 
         do k = 1, N
             pivot = A_tmp(k, k)
-            if (abs(pivot) < TOL_PIVOT) stop "ERROR :: Near-zero pivot – matrix may be singular"
+            if (abs(pivot) < TOL_PIVOT_dp) stop "ERROR :: Near-zero pivot – matrix may be singular"
 
             ! Normalisation du pivot
             A_tmp(k, :) = A_tmp(k, :) / pivot

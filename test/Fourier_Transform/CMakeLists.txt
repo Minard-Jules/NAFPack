@@ -1,1 +1,7 @@
-ADDTEST(Fourier_Transform_dft)
+ADDTEST(Fourier_Transform_dft_complex)
+ADDTEST(Fourier_Transform_dft_real)
+ADDTEST(Fourier_Transform_dft2_complex)
+ADDTEST(Fourier_Transform_dft2_real)
+ADDTEST(Fourier_Transform_dft3_complex)
+ADDTEST(Fourier_Transform_dft3_real)
+ADDTEST(Fourier_Transform_fft_complex)

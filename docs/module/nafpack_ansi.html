@@ -1,0 +1,2319 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+    <meta name="author" content="Minard Jules" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>NAFPack_ANSI &ndash; NAFPack</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="../css/local.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">NAFPack </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>NAFPack_ANSI
+      <small>Module</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 1.6% of total for modules and submodules.">139 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/NAFPack_ANSI.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='..\sourcefile\nafpack_ansi.f90.html'>NAFPack_ANSI.f90</a></li>
+            <li class="breadcrumb-item active" aria-current="page">NAFPack_ANSI</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
+  </script>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+        <div id="sidebar">
+      <h3>Contents</h3>
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#vars-0"
+         aria-expanded="false" aria-controls="vars-0">
+         <h4 class="card-header bg-primary text-white">Variables</h4>
+      </a>
+      <div id="vars-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/nafpack_ansi.html#variable-ansi_constants">Ansi_Constants</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#inters-0"
+         aria-expanded="false" aria-controls="inters-0">
+         <h4 class="card-header bg-primary text-white">Interfaces</h4>
+      </a>
+      <div id="inters-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/nafpack_ansi.html#interface-create_ansi_ascii">create_ansi_ascii</a>
+            <a class="list-group-item" href="../module/nafpack_ansi.html#interface-apply_style_ascii">apply_style_ascii</a>
+            <a class="list-group-item" href="../module/nafpack_ansi.html#interface-colorize_text_ascii">colorize_text_ascii</a>
+            <a class="list-group-item" href="../module/nafpack_ansi.html#interface-cursor_position_ascii">cursor_position_ascii</a>
+            <a class="list-group-item" href="../module/nafpack_ansi.html#interface-clear_screen_ascii">clear_screen_ascii</a>
+            <a class="list-group-item" href="../module/nafpack_ansi.html#interface-clear_line_ascii">clear_line_ascii</a>
+            <a class="list-group-item" href="../module/nafpack_ansi.html#interface-save_cursor_ascii">save_cursor_ascii</a>
+            <a class="list-group-item" href="../module/nafpack_ansi.html#interface-restore_cursor_ascii">restore_cursor_ascii</a>
+            <a class="list-group-item" href="../module/nafpack_ansi.html#interface-create_ansi_ucs4">create_ansi_ucs4</a>
+            <a class="list-group-item" href="../module/nafpack_ansi.html#interface-apply_style_ucs4">apply_style_ucs4</a>
+            <a class="list-group-item" href="../module/nafpack_ansi.html#interface-colorize_text_ucs4">colorize_text_ucs4</a>
+            <a class="list-group-item" href="../module/nafpack_ansi.html#interface-cursor_position_ucs4">cursor_position_ucs4</a>
+            <a class="list-group-item" href="../module/nafpack_ansi.html#interface-clear_screen_ucs4">clear_screen_ucs4</a>
+            <a class="list-group-item" href="../module/nafpack_ansi.html#interface-clear_line_ucs4">clear_line_ucs4</a>
+            <a class="list-group-item" href="../module/nafpack_ansi.html#interface-save_cursor_ucs4">save_cursor_ucs4</a>
+            <a class="list-group-item" href="../module/nafpack_ansi.html#interface-restore_cursor_ucs4">restore_cursor_ucs4</a>
+        </div>
+      </div>
+    </div>
+
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#types-0"
+         aria-expanded="false" aria-controls="types-0">
+         <h4 class="card-header bg-primary text-white">Derived Types</h4>
+      </a>
+      <div id="types-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/nafpack_ansi.html#type-ansicode">AnsiCode</a>
+            <a class="list-group-item" href="../module/nafpack_ansi.html#type-colorsascii">ColorsAscii</a>
+            <a class="list-group-item" href="../module/nafpack_ansi.html#type-colorsucs4">ColorsUcs4</a>
+        </div>
+      </div>
+    </div>
+
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#funcs-0"
+         aria-expanded="false" aria-controls="funcs-0">
+         <h4 class="card-header bg-primary text-white">Functions</h4>
+      </a>
+      <div id="funcs-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/nafpack_ansi.html#proc-set_ansi_code">set_ansi_code</a>
+            <a class="list-group-item" href="../module/nafpack_ansi.html#proc-reset_ansi_code">reset_ansi_code</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+
+    <div class="col-md-9" id='text'>
+      
+<br>          <div class="card mb-4">
+      <h3 class="card-header card-title bg-light">Uses</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <ul class="list-inline">
+                  <li class="list-inline-item"><a href='http://fortranwiki.org/fortran/show/iso_fortran_env'>iso_fortran_env</a></li>
+                  <li class="list-inline-item"><a href='nafpack_io_utils.html'>NAFPack_io_utils</a></li>
+                  <li class="list-inline-item"><a href='nafpack_kinds.html'>NAFPack_kinds</a></li>
+              </ul>
+            </li>
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.1.2 (20250808.2320)
+ -->
+<!-- Title: module~~nafpack_ansi~~UsesGraph Pages: 1 -->
+<svg id="modulenafpack_ansiUsesGraph" width="469pt" height="65pt"
+ viewBox="0.00 0.00 469.00 65.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~nafpack_ansi~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 60.9)">
+<title>module~~nafpack_ansi~~UsesGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-60.9 464.83,-60.9 464.83,4 -4,4"/>
+<!-- module~nafpack_ansi -->
+<g id="module~~nafpack_ansi~~UsesGraph_node1" class="node">
+<title>module~nafpack_ansi</title>
+<polygon fill="none" stroke="black" points="460.83,-36.9 375.06,-36.9 375.06,-13.38 460.83,-13.38 460.83,-36.9"/>
+<text xml:space="preserve" text-anchor="middle" x="417.94" y="-21.17" font-family="Helvetica,sans-Serif" font-size="10.50">NAFPack_ANSI</text>
+</g>
+<!-- iso_fortran_env -->
+<g id="module~~nafpack_ansi~~UsesGraph_node2" class="node">
+<title>iso_fortran_env</title>
+<g id="a_module~~nafpack_ansi~~UsesGraph_node2"><a xlink:href="http://fortranwiki.org/fortran/show/iso_fortran_env" xlink:title="iso_fortran_env">
+<polygon fill="#337ab7" stroke="#337ab7" points="85.77,-56.9 0,-56.9 0,-33.38 85.77,-33.38 85.77,-56.9"/>
+<text xml:space="preserve" text-anchor="middle" x="42.88" y="-41.17" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_ansi&#45;&gt;iso_fortran_env -->
+<g id="module~~nafpack_ansi~~UsesGraph_edge1" class="edge">
+<title>module~nafpack_ansi&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M379.72,-37.32C366.97,-40.91 352.53,-44.36 339.06,-46.14 255.24,-57.24 156.84,-53.62 97.49,-49.64"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="97.88,-46.16 87.66,-48.95 97.39,-53.14 97.88,-46.16"/>
+</g>
+<!-- module~nafpack_io_utils -->
+<g id="module~~nafpack_ansi~~UsesGraph_node3" class="node">
+<title>module~nafpack_io_utils</title>
+<g id="a_module~~nafpack_ansi~~UsesGraph_node3"><a xlink:href="../module/nafpack_io_utils.html" xlink:title="NAFPack_io_utils">
+<polygon fill="#337ab7" stroke="#337ab7" points="339.06,-36.9 244.29,-36.9 244.29,-13.38 339.06,-13.38 339.06,-36.9"/>
+<text xml:space="preserve" text-anchor="middle" x="291.68" y="-21.17" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_io_utils</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_ansi&#45;&gt;module~nafpack_io_utils -->
+<g id="module~~nafpack_ansi~~UsesGraph_edge2" class="edge">
+<title>module~nafpack_ansi&#45;&gt;module~nafpack_io_utils</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M374.87,-25.14C367.12,-25.14 358.9,-25.14 350.77,-25.14"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="350.92,-21.64 340.92,-25.14 350.92,-28.64 350.92,-21.64"/>
+</g>
+<!-- module~nafpack_kinds -->
+<g id="module~~nafpack_ansi~~UsesGraph_node4" class="node">
+<title>module~nafpack_kinds</title>
+<g id="a_module~~nafpack_ansi~~UsesGraph_node4"><a xlink:href="../module/nafpack_kinds.html" xlink:title="NAFPack_kinds">
+<polygon fill="#337ab7" stroke="#337ab7" points="208.29,-36.9 121.77,-36.9 121.77,-13.38 208.29,-13.38 208.29,-36.9"/>
+<text xml:space="preserve" text-anchor="middle" x="165.03" y="-21.17" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_kinds</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_ansi&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_ansi~~UsesGraph_edge3" class="edge">
+<title>module~nafpack_ansi&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M379.72,-12.97C366.97,-9.37 352.53,-5.93 339.06,-4.14 297.3,1.39 286.05,1.36 244.29,-4.14 234.46,-5.44 224.11,-7.61 214.28,-10.08"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="213.67,-6.62 204.9,-12.58 215.47,-13.39 213.67,-6.62"/>
+</g>
+<!-- module~nafpack_io_utils&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_ansi~~UsesGraph_edge4" class="edge">
+<title>module~nafpack_io_utils&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#00ff00" stroke-dasharray="5,2" d="M243.91,-25.14C236.11,-25.14 227.97,-25.14 220.01,-25.14"/>
+<polygon fill="#00ff00" stroke="#00ff00" points="220.05,-21.64 210.05,-25.14 220.05,-28.64 220.05,-21.64"/>
+</g>
+<!-- module~nafpack_kinds&#45;&gt;iso_fortran_env -->
+<g id="module~~nafpack_ansi~~UsesGraph_edge5" class="edge">
+<title>module~nafpack_kinds&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#0000ff" stroke-dasharray="5,2" d="M121.33,-32.25C113.54,-33.55 105.32,-34.91 97.26,-36.26"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="96.82,-32.78 87.53,-37.88 97.97,-39.69 96.82,-32.78"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsesGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsesGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.1.2 (20250808.2320)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="485pt" height="32pt"
+ viewBox="0.00 0.00 485.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 27.52)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 481.13,-27.52 481.13,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-23.52 0,-23.52 0,0 54,0 54,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="137.76,-23.52 72.24,-23.52 72.24,0 137.76,0 137.76,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="105" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="218.63,-23.52 155.37,-23.52 155.37,0 218.63,0 218.63,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="187" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="291,-23.52 237,-23.52 237,0 291,0 291,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="264" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="363,-23.52 309,-23.52 309,0 363,0 363,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="336" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="477.13,-23.52 380.87,-23.52 380.87,0 477.13,0 477.13,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="429" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+          <div class="card">
+      <h3 class="card-header card-title bg-light">Used by</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <ul class="list-inline">
+                <li class="list-inline-item"><h5>Descendants:</h5></li>
+                  <li class="list-inline-item"><a href='nafpack_ansi_ascii.html'>NAFPack_ANSI_ASCII</a></li>
+                  <li class="list-inline-item"><a href='nafpack_ansi_ucs4.html'>NAFPack_ANSI_ucs4</a></li>
+              </ul>
+            </li>
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.1.2 (20250808.2320)
+ -->
+<!-- Title: module~~nafpack_ansi~~UsedByGraph Pages: 1 -->
+<svg id="modulenafpack_ansiUsedByGraph" width="641pt" height="138pt"
+ viewBox="0.00 0.00 641.00 138.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~nafpack_ansi~~UsedByGraph" class="graph" transform="scale(0.899207 0.899207) rotate(0) translate(4 149.52)">
+<title>module~~nafpack_ansi~~UsedByGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-149.52 708.85,-149.52 708.85,4 -4,4"/>
+<!-- module~nafpack_ansi -->
+<g id="module~~nafpack_ansi~~UsedByGraph_node1" class="node">
+<title>module~nafpack_ansi</title>
+<polygon fill="none" stroke="black" points="85.77,-83.52 0,-83.52 0,-60 85.77,-60 85.77,-83.52"/>
+<text xml:space="preserve" text-anchor="middle" x="42.88" y="-67.78" font-family="Helvetica,sans-Serif" font-size="10.50">NAFPack_ANSI</text>
+</g>
+<!-- module~nafpack_ansi_ascii -->
+<g id="module~~nafpack_ansi~~UsedByGraph_node2" class="node">
+<title>module~nafpack_ansi_ascii</title>
+<g id="a_module~~nafpack_ansi~~UsedByGraph_node2"><a xlink:href="../module/nafpack_ansi_ascii.html" xlink:title="NAFPack_ANSI_ASCII">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="240.54,-145.52 121.77,-145.52 121.77,-122 240.54,-122 240.54,-145.52"/>
+<text xml:space="preserve" text-anchor="middle" x="181.15" y="-129.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_ANSI_ASCII</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_ansi_ascii&#45;&gt;module~nafpack_ansi -->
+<g id="module~~nafpack_ansi~~UsedByGraph_edge3" class="edge">
+<title>module~nafpack_ansi_ascii&#45;&gt;module~nafpack_ansi</title>
+<path fill="none" stroke="#ff0000" d="M143.72,-121.54C136.38,-118.83 128.77,-115.84 121.77,-112.76 105.9,-105.77 88.8,-96.92 74.68,-89.24"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="76.75,-86.38 66.3,-84.62 73.37,-92.51 76.75,-86.38"/>
+</g>
+<!-- module~nafpack_ansi_ucs4 -->
+<g id="module~~nafpack_ansi~~UsedByGraph_node3" class="node">
+<title>module~nafpack_ansi_ucs4</title>
+<g id="a_module~~nafpack_ansi~~UsedByGraph_node3"><a xlink:href="../module/nafpack_ansi_ucs4.html" xlink:title="NAFPack_ANSI_ucs4">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="238.29,-103.52 124.02,-103.52 124.02,-80 238.29,-80 238.29,-103.52"/>
+<text xml:space="preserve" text-anchor="middle" x="181.15" y="-87.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_ANSI_ucs4</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_ansi_ucs4&#45;&gt;module~nafpack_ansi -->
+<g id="module~~nafpack_ansi~~UsedByGraph_edge4" class="edge">
+<title>module~nafpack_ansi_ucs4&#45;&gt;module~nafpack_ansi</title>
+<path fill="none" stroke="#ff0000" d="M123.55,-83.45C114.8,-82.17 105.8,-80.85 97.13,-79.57"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="97.88,-76.15 87.48,-78.16 96.86,-83.07 97.88,-76.15"/>
+</g>
+<!-- module~nafpack_logger_mod -->
+<g id="module~~nafpack_ansi~~UsedByGraph_node4" class="node">
+<title>module~nafpack_logger_mod</title>
+<g id="a_module~~nafpack_ansi~~UsedByGraph_node4"><a xlink:href="../module/nafpack_logger_mod.html" xlink:title="NAFPack_Logger_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="399.06,-43.52 276.54,-43.52 276.54,-20 399.06,-20 399.06,-43.52"/>
+<text xml:space="preserve" text-anchor="middle" x="337.8" y="-27.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Logger_mod</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_logger_mod&#45;&gt;module~nafpack_ansi -->
+<g id="module~~nafpack_ansi~~UsedByGraph_edge1" class="edge">
+<title>module~nafpack_logger_mod&#45;&gt;module~nafpack_ansi</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M276.11,-40.05C223.41,-47.24 147.83,-57.57 97.36,-64.46"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="96.98,-60.98 87.55,-65.8 97.93,-67.91 96.98,-60.98"/>
+</g>
+<!-- module~nafpack_terminal -->
+<g id="module~~nafpack_ansi~~UsedByGraph_node5" class="node">
+<title>module~nafpack_terminal</title>
+<g id="a_module~~nafpack_ansi~~UsedByGraph_node5"><a xlink:href="../module/nafpack_terminal.html" xlink:title="NAFPack_terminal">
+<polygon fill="#337ab7" stroke="#337ab7" points="231.16,-23.52 131.14,-23.52 131.14,0 231.16,0 231.16,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="181.15" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_terminal</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_logger_mod&#45;&gt;module~nafpack_terminal -->
+<g id="module~~nafpack_ansi~~UsedByGraph_edge6" class="edge">
+<title>module~nafpack_logger_mod&#45;&gt;module~nafpack_terminal</title>
+<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M276.12,-23.91C265.07,-22.48 253.54,-20.99 242.5,-19.56"/>
+<polygon fill="#7f00ff" stroke="#7f00ff" points="243.07,-16.11 232.71,-18.3 242.17,-23.05 243.07,-16.11"/>
+</g>
+<!-- module~nafpack_terminal&#45;&gt;module~nafpack_ansi -->
+<g id="module~~nafpack_ansi~~UsedByGraph_edge2" class="edge">
+<title>module~nafpack_terminal&#45;&gt;module~nafpack_ansi</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M152.58,-23.9C132.26,-32.85 104.38,-45.12 81.94,-55"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="80.55,-51.79 72.81,-59.03 83.37,-58.2 80.55,-51.79"/>
+</g>
+<!-- module~nafpack_iterative_methods -->
+<g id="module~~nafpack_ansi~~UsedByGraph_node6" class="node">
+<title>module~nafpack_iterative_methods</title>
+<g id="a_module~~nafpack_ansi~~UsedByGraph_node6"><a xlink:href="../module/nafpack_iterative_methods.html" xlink:title="NAFPack_Iterative_methods">
+<polygon fill="#337ab7" stroke="#337ab7" points="582.33,-43.52 435.06,-43.52 435.06,-20 582.33,-20 582.33,-43.52"/>
+<text xml:space="preserve" text-anchor="middle" x="508.69" y="-27.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Iterative_methods</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_iterative_methods&#45;&gt;module~nafpack_logger_mod -->
+<g id="module~~nafpack_ansi~~UsedByGraph_edge5" class="edge">
+<title>module~nafpack_iterative_methods&#45;&gt;module~nafpack_logger_mod</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M434.6,-31.76C426.69,-31.76 418.65,-31.76 410.76,-31.76"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="410.85,-28.26 400.84,-31.76 410.84,-35.26 410.85,-28.26"/>
+</g>
+<!-- module~nafpack_linalg -->
+<g id="module~~nafpack_ansi~~UsedByGraph_node7" class="node">
+<title>module~nafpack_linalg</title>
+<g id="a_module~~nafpack_ansi~~UsedByGraph_node7"><a xlink:href="../module/nafpack_linalg.html" xlink:title="NAFPack_linalg">
+<polygon fill="#337ab7" stroke="#337ab7" points="704.85,-43.52 618.33,-43.52 618.33,-20 704.85,-20 704.85,-43.52"/>
+<text xml:space="preserve" text-anchor="middle" x="661.59" y="-27.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_linalg</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_linalg&#45;&gt;module~nafpack_iterative_methods -->
+<g id="module~~nafpack_ansi~~UsedByGraph_edge7" class="edge">
+<title>module~nafpack_linalg&#45;&gt;module~nafpack_iterative_methods</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M618.16,-31.76C610.54,-31.76 602.38,-31.76 594.06,-31.76"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="594.18,-28.26 584.18,-31.76 594.18,-35.26 594.18,-28.26"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var panmodulenafpack_ansiUsedByGraph = svgPanZoom('#modulenafpack_ansiUsedByGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsedByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsedByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.1.2 (20250808.2320)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="485pt" height="32pt"
+ viewBox="0.00 0.00 485.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 27.52)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 481.13,-27.52 481.13,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-23.52 0,-23.52 0,0 54,0 54,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="137.76,-23.52 72.24,-23.52 72.24,0 137.76,0 137.76,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="105" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="218.63,-23.52 155.37,-23.52 155.37,0 218.63,0 218.63,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="187" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="291,-23.52 237,-23.52 237,0 291,0 291,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="264" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="363,-23.52 309,-23.52 309,0 363,0 363,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="336" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="477.13,-23.52 380.87,-23.52 380.87,0 477.13,0 477.13,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="429" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+      <br>
+
+
+        <section>
+          <h2>Variables</h2>
+            <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Visibility</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ansi_constants"></span>
+              type(AnsiConstants),
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>Ansi_Constants</strong></td>
+<td> =</td>
+                <td>AnsiConstants()</td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+        </section>
+        <br>
+
+
+        <section>
+          <h2>Interfaces</h2>
+              <div class="card">
+    <div class="card-header bg-light codesum">
+      <span class="anchor" id="interface-create_ansi_ascii"></span>
+      <h3>        interface
+      </h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+              <h3>
+    public pure module function create_ansi_ascii(ansi_code) result(ansi_string)  
+
+    </h3>
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ansi_code~2"></span>
+              type(<a href='..\type\ansicode.html'>AnsiCode</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>ansi_code</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>character(kind=ascii, len=:), allocatable</small>
+    </h4>
+    
+
+        </li>
+    </ul>
+  </div>
+
+              <div class="card">
+    <div class="card-header bg-light codesum">
+      <span class="anchor" id="interface-apply_style_ascii"></span>
+      <h3>        interface
+      </h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+              <h3>
+    public pure module function apply_style_ascii(text, style) result(styled_text)  
+
+    </h3>
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-text~4"></span>
+              character(kind=ascii, len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>text</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-style~4"></span>
+              type(<a href='..\type\ansicode.html'>AnsiCode</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>style</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>character(kind=ascii, len=:), allocatable</small>
+    </h4>
+    
+
+        </li>
+    </ul>
+  </div>
+
+              <div class="card">
+    <div class="card-header bg-light codesum">
+      <span class="anchor" id="interface-colorize_text_ascii"></span>
+      <h3>        interface
+      </h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+              <h3>
+    public pure module function colorize_text_ascii(text, color) result(colored_text)  
+
+    </h3>
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-text~5"></span>
+              character(kind=ascii, len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>text</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-color~4"></span>
+              integer(kind=i16),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>color</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>character(kind=ascii, len=:), allocatable</small>
+    </h4>
+    
+
+        </li>
+    </ul>
+  </div>
+
+              <div class="card">
+    <div class="card-header bg-light codesum">
+      <span class="anchor" id="interface-cursor_position_ascii"></span>
+      <h3>        interface
+      </h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+              <h3>
+    public module subroutine cursor_position_ascii(row, col)  
+
+    </h3>
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-row~2"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>row</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-col~2"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>col</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+        </li>
+    </ul>
+  </div>
+
+              <div class="card">
+    <div class="card-header bg-light codesum">
+      <span class="anchor" id="interface-clear_screen_ascii"></span>
+      <h3>        interface
+      </h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+              <h3>
+    public module subroutine clear_screen_ascii()  
+
+    </h3>
+  
+
+  <h4>Arguments</h4>
+    <em>None</em>
+
+        </li>
+    </ul>
+  </div>
+
+              <div class="card">
+    <div class="card-header bg-light codesum">
+      <span class="anchor" id="interface-clear_line_ascii"></span>
+      <h3>        interface
+      </h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+              <h3>
+    public module subroutine clear_line_ascii()  
+
+    </h3>
+  
+
+  <h4>Arguments</h4>
+    <em>None</em>
+
+        </li>
+    </ul>
+  </div>
+
+              <div class="card">
+    <div class="card-header bg-light codesum">
+      <span class="anchor" id="interface-save_cursor_ascii"></span>
+      <h3>        interface
+      </h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+              <h3>
+    public module subroutine save_cursor_ascii()  
+
+    </h3>
+  
+
+  <h4>Arguments</h4>
+    <em>None</em>
+
+        </li>
+    </ul>
+  </div>
+
+              <div class="card">
+    <div class="card-header bg-light codesum">
+      <span class="anchor" id="interface-restore_cursor_ascii"></span>
+      <h3>        interface
+      </h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+              <h3>
+    public module subroutine restore_cursor_ascii()  
+
+    </h3>
+  
+
+  <h4>Arguments</h4>
+    <em>None</em>
+
+        </li>
+    </ul>
+  </div>
+
+              <div class="card">
+    <div class="card-header bg-light codesum">
+      <span class="anchor" id="interface-create_ansi_ucs4"></span>
+      <h3>        interface
+      </h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+              <h3>
+    public pure module function create_ansi_ucs4(ansi_code) result(ansi_string)  
+
+    </h3>
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ansi_code~3"></span>
+              type(<a href='..\type\ansicode.html'>AnsiCode</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>ansi_code</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>character(kind=ucs4, len=:), allocatable</small>
+    </h4>
+    
+
+        </li>
+    </ul>
+  </div>
+
+              <div class="card">
+    <div class="card-header bg-light codesum">
+      <span class="anchor" id="interface-apply_style_ucs4"></span>
+      <h3>        interface
+      </h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+              <h3>
+    public pure module function apply_style_ucs4(text, style) result(styled_text)  
+
+    </h3>
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-text~6"></span>
+              character(kind=ucs4, len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>text</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-style~5"></span>
+              type(<a href='..\type\ansicode.html'>AnsiCode</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>style</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>character(kind=ucs4, len=:), allocatable</small>
+    </h4>
+    
+
+        </li>
+    </ul>
+  </div>
+
+              <div class="card">
+    <div class="card-header bg-light codesum">
+      <span class="anchor" id="interface-colorize_text_ucs4"></span>
+      <h3>        interface
+      </h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+              <h3>
+    public pure module function colorize_text_ucs4(text, color) result(colored_text)  
+
+    </h3>
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-text~7"></span>
+              character(kind=ucs4, len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>text</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-color~5"></span>
+              integer(kind=i16),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>color</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>character(kind=ucs4, len=:), allocatable</small>
+    </h4>
+    
+
+        </li>
+    </ul>
+  </div>
+
+              <div class="card">
+    <div class="card-header bg-light codesum">
+      <span class="anchor" id="interface-cursor_position_ucs4"></span>
+      <h3>        interface
+      </h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+              <h3>
+    public module subroutine cursor_position_ucs4(row, col)  
+
+    </h3>
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-row~3"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>row</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-col~3"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>col</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+        </li>
+    </ul>
+  </div>
+
+              <div class="card">
+    <div class="card-header bg-light codesum">
+      <span class="anchor" id="interface-clear_screen_ucs4"></span>
+      <h3>        interface
+      </h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+              <h3>
+    public module subroutine clear_screen_ucs4()  
+
+    </h3>
+  
+
+  <h4>Arguments</h4>
+    <em>None</em>
+
+        </li>
+    </ul>
+  </div>
+
+              <div class="card">
+    <div class="card-header bg-light codesum">
+      <span class="anchor" id="interface-clear_line_ucs4"></span>
+      <h3>        interface
+      </h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+              <h3>
+    public module subroutine clear_line_ucs4()  
+
+    </h3>
+  
+
+  <h4>Arguments</h4>
+    <em>None</em>
+
+        </li>
+    </ul>
+  </div>
+
+              <div class="card">
+    <div class="card-header bg-light codesum">
+      <span class="anchor" id="interface-save_cursor_ucs4"></span>
+      <h3>        interface
+      </h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+              <h3>
+    public module subroutine save_cursor_ucs4()  
+
+    </h3>
+  
+
+  <h4>Arguments</h4>
+    <em>None</em>
+
+        </li>
+    </ul>
+  </div>
+
+              <div class="card">
+    <div class="card-header bg-light codesum">
+      <span class="anchor" id="interface-restore_cursor_ucs4"></span>
+      <h3>        interface
+      </h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+              <h3>
+    public module subroutine restore_cursor_ucs4()  
+
+    </h3>
+  
+
+  <h4>Arguments</h4>
+    <em>None</em>
+
+        </li>
+    </ul>
+  </div>
+
+        </section>
+        <br>
+
+
+        <section>
+          <h2>Derived Types</h2>
+              <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="type-ansicode"></span>
+      <h3>
+        type, public&nbsp;::&nbsp;
+        <a href='..\type\ansicode.html'>AnsiCode</a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      
+
+
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="type-colorsascii"></span>
+      <h3>
+        type, public&nbsp;::&nbsp;
+        <a href='..\type\colorsascii.html'>ColorsAscii</a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      
+
+        <h4>Components</h4>
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Visibility</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-reset"></span>
+              character(len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>reset</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-bold"></span>
+              character(len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>bold</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-faint"></span>
+              character(len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>faint</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-italic"></span>
+              character(len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>italic</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-underline"></span>
+              character(len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>underline</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-blink"></span>
+              character(len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>blink</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-reverse"></span>
+              character(len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>reverse</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-hidden"></span>
+              character(len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>hidden</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-strikethrough"></span>
+              character(len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>strikethrough</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-red"></span>
+              character(len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>red</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-green"></span>
+              character(len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>green</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-yellow"></span>
+              character(len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>yellow</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-blue"></span>
+              character(len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>blue</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-magenta"></span>
+              character(len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>magenta</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-cyan"></span>
+              character(len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>cyan</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-white"></span>
+              character(len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>white</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-bright_red"></span>
+              character(len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>bright_red</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-bright_green"></span>
+              character(len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>bright_green</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-bright_yellow"></span>
+              character(len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>bright_yellow</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-bright_blue"></span>
+              character(len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>bright_blue</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-bright_magenta"></span>
+              character(len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>bright_magenta</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-bright_cyan"></span>
+              character(len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>bright_cyan</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-bright_white"></span>
+              character(len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>bright_white</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+
+        <h4>Type-Bound Procedures</h4>
+        <table class="table table-striped varlist">
+          <tbody>
+              <tr>
+                <td>  procedure, public ::
+  <strong><a href='..\type\colorsascii.html#boundprocedure-init~2'>init</a></strong> => init_colors_ascii</td>
+                  <td></td>
+              </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="type-colorsucs4"></span>
+      <h3>
+        type, public&nbsp;::&nbsp;
+        <a href='..\type\colorsucs4.html'>ColorsUcs4</a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      
+
+        <h4>Components</h4>
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Visibility</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-reset~2"></span>
+              character(kind=ucs4, len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>reset</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-bold~2"></span>
+              character(kind=ucs4, len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>bold</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-faint~2"></span>
+              character(kind=ucs4, len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>faint</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-italic~2"></span>
+              character(kind=ucs4, len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>italic</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-underline~2"></span>
+              character(kind=ucs4, len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>underline</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-blink~2"></span>
+              character(kind=ucs4, len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>blink</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-reverse~2"></span>
+              character(kind=ucs4, len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>reverse</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-hidden~2"></span>
+              character(kind=ucs4, len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>hidden</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-strikethrough~2"></span>
+              character(kind=ucs4, len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>strikethrough</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-red~2"></span>
+              character(kind=ucs4, len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>red</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-green~2"></span>
+              character(kind=ucs4, len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>green</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-yellow~2"></span>
+              character(kind=ucs4, len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>yellow</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-blue~2"></span>
+              character(kind=ucs4, len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>blue</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-magenta~2"></span>
+              character(kind=ucs4, len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>magenta</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-cyan~2"></span>
+              character(kind=ucs4, len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>cyan</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-white~2"></span>
+              character(kind=ucs4, len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>white</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-bright_red~2"></span>
+              character(kind=ucs4, len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>bright_red</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-bright_green~2"></span>
+              character(kind=ucs4, len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>bright_green</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-bright_yellow~2"></span>
+              character(kind=ucs4, len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>bright_yellow</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-bright_blue~2"></span>
+              character(kind=ucs4, len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>bright_blue</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-bright_magenta~2"></span>
+              character(kind=ucs4, len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>bright_magenta</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-bright_cyan~2"></span>
+              character(kind=ucs4, len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>bright_cyan</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-bright_white~2"></span>
+              character(kind=ucs4, len=:),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>bright_white</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+
+        <h4>Type-Bound Procedures</h4>
+        <table class="table table-striped varlist">
+          <tbody>
+              <tr>
+                <td>  procedure, public ::
+  <strong><a href='..\type\colorsucs4.html#boundprocedure-init~3'>init</a></strong> => init_colors_ucs4</td>
+                  <td></td>
+              </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+
+        </section>
+        <br>
+
+        <section>
+          <h2>Functions</h2>
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-set_ansi_code"></span> <h3>public pure module function <a href='..\proc\set_ansi_code.html'>set_ansi_code</a>(style, fg_color, bg_color) result(ansi_code)  
+</h3></div>
+    <div class="card-body">
+          
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-style~6"></span>
+              integer(kind=i8),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>style</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-fg_color"></span>
+              integer(kind=i16),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>fg_color</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-bg_color"></span>
+              integer(kind=i16),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>bg_color</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>type(<a href='..\type\ansicode.html'>AnsiCode</a>)</small>
+    </h4>
+    
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-reset_ansi_code"></span> <h3>public pure module function <a href='..\proc\reset_ansi_code.html'>reset_ansi_code</a>() result(ansi_code)  
+</h3></div>
+    <div class="card-body">
+          
+  
+
+  <h4>Arguments</h4>
+    <em>None</em>
+    <h4>
+    Return Value
+    <small>type(<a href='..\type\ansicode.html'>AnsiCode</a>)</small>
+    </h4>
+    
+
+    </div>
+  </div>
+
+        </section>
+        <br>
+
+
+
+
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              NAFPack
+ was developed by Minard Jules<br>              &copy; 2025 
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+            </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>

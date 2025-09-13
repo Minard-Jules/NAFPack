@@ -1,7 +1,7 @@
 module NAFPack_matrix_properties
 
     use NAFPack_kinds, only: dp
-    use NAFPack_constant, only: TOL_TEST
+    use NAFPack_constant, only: TOL_TEST_dp
     use NAFPack_matricielle, only: Identity_n, Diag
     use NAFPack_Eigen, only: Eigen
 
@@ -33,7 +33,7 @@ contains
         real(dp), dimension(:, :), intent(in) :: A
         logical :: is_orth
 
-        is_orth = all(abs(matmul(A, transpose(A)) - Identity_n(size(A, 1))) < TOL_TEST)
+        is_orth = all(abs(matmul(A, transpose(A)) - Identity_n(size(A, 1))) < TOL_TEST_dp)
 
     end function is_orthogonal
 
@@ -73,7 +73,7 @@ contains
         do i = 1, N
             do j = 1, N
                 if (abs(i - j) > 1) then
-                    if (abs(A(i, j)) > TOL_TEST) then
+                    if (abs(A(i, j)) > TOL_TEST_dp) then
                         is_tridiag = .false.
                         return
                     end if
@@ -108,7 +108,7 @@ contains
 
         is_non_zero_diag = .true.
 
-        if (any(abs(Diag(A)) < TOL_TEST)) is_non_zero_diag = .false.
+        if (any(abs(Diag(A)) < TOL_TEST_dp)) is_non_zero_diag = .false.
 
     end function is_non_zero_diagonal
 

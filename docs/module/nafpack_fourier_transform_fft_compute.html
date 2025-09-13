@@ -1,0 +1,420 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+    <meta name="author" content="Minard Jules" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>NAFPack_Fourier_Transform_fft_compute &ndash; NAFPack</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="../css/local.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">NAFPack </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>NAFPack_Fourier_Transform_fft_compute
+      <small>Submodule</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 1.8% of total for modules and submodules.">162 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/NAFPack_Fourier_Transform_fft_compute.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='..\sourcefile\nafpack_fourier_transform_fft_compute.f90.html'>NAFPack_Fourier_Transform_fft_compute.f90</a></li>
+            <li class="breadcrumb-item active" aria-current="page">NAFPack_Fourier_Transform_fft_compute</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
+  </script>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+        <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+    <em>None</em>
+
+  </div>
+
+    </div>
+
+    <div class="col-md-9" id='text'>
+      
+<br>          <div class="card mb-4">
+      <h3 class="card-header card-title bg-light">Uses</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <ul class="list-inline">
+                <li><h5>Ancestors:</h5></li>
+                  <li class="list-inline-item"><a href='nafpack_fourier_transform.html'>NAFPack_Fourier_Transform</a></li>
+<li>:</li>                  <li class="list-inline-item"><a href='nafpack_fourier_transform_fft.html'>NAFPack_Fourier_Transform_fft</a></li>
+              </ul>
+            </li>
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.1.2 (20250808.2320)
+ -->
+<!-- Title: module~~nafpack_fourier_transform_fft_compute~~UsesGraph Pages: 1 -->
+<svg id="modulenafpack_fourier_transform_fft_computeUsesGraph" width="641pt" height="97pt"
+ viewBox="0.00 0.00 641.00 97.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~nafpack_fourier_transform_fft_compute~~UsesGraph" class="graph" transform="scale(0.631764 0.631764) rotate(0) translate(4 149.52)">
+<title>module~~nafpack_fourier_transform_fft_compute~~UsesGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-149.52 1010.62,-149.52 1010.62,4 -4,4"/>
+<!-- module~nafpack_fourier_transform_fft_compute -->
+<g id="module~~nafpack_fourier_transform_fft_compute~~UsesGraph_node1" class="node">
+<title>module~nafpack_fourier_transform_fft_compute</title>
+<polygon fill="none" stroke="black" points="1006.62,-85.52 793.35,-85.52 793.35,-62 1006.62,-62 1006.62,-85.52"/>
+<text xml:space="preserve" text-anchor="middle" x="899.99" y="-69.79" font-family="Helvetica,sans-Serif" font-size="10.50">NAFPack_Fourier_Transform_fft_compute</text>
+</g>
+<!-- module~nafpack_fourier_transform_fft -->
+<g id="module~~nafpack_fourier_transform_fft_compute~~UsesGraph_node2" class="node">
+<title>module~nafpack_fourier_transform_fft</title>
+<g id="a_module~~nafpack_fourier_transform_fft_compute~~UsesGraph_node2"><a xlink:href="../module/nafpack_fourier_transform_fft.html" xlink:title="NAFPack_Fourier_Transform_fft">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="757.35,-85.52 591.33,-85.52 591.33,-62 757.35,-62 757.35,-85.52"/>
+<text xml:space="preserve" text-anchor="middle" x="674.34" y="-69.79" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Fourier_Transform_fft</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_fourier_transform_fft_compute&#45;&gt;module~nafpack_fourier_transform_fft -->
+<g id="module~~nafpack_fourier_transform_fft_compute~~UsesGraph_edge1" class="edge">
+<title>module~nafpack_fourier_transform_fft_compute&#45;&gt;module~nafpack_fourier_transform_fft</title>
+<path fill="none" stroke="#ff0000" d="M793.06,-73.76C785.09,-73.76 777.09,-73.76 769.2,-73.76"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="769.28,-70.26 759.28,-73.76 769.28,-77.26 769.28,-70.26"/>
+</g>
+<!-- module~nafpack_fourier_transform -->
+<g id="module~~nafpack_fourier_transform_fft_compute~~UsesGraph_node3" class="node">
+<title>module~nafpack_fourier_transform</title>
+<g id="a_module~~nafpack_fourier_transform_fft_compute~~UsesGraph_node3"><a xlink:href="../module/nafpack_fourier_transform.html" xlink:title="NAFPack_Fourier_Transform">
+<polygon fill="#337ab7" stroke="#337ab7" points="555.33,-85.52 404.31,-85.52 404.31,-62 555.33,-62 555.33,-85.52"/>
+<text xml:space="preserve" text-anchor="middle" x="479.82" y="-69.79" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Fourier_Transform</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_fourier_transform_fft&#45;&gt;module~nafpack_fourier_transform -->
+<g id="module~~nafpack_fourier_transform_fft_compute~~UsesGraph_edge2" class="edge">
+<title>module~nafpack_fourier_transform_fft&#45;&gt;module~nafpack_fourier_transform</title>
+<path fill="none" stroke="#ff0000" d="M590.86,-73.76C583.04,-73.76 575.1,-73.76 567.25,-73.76"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="567.34,-70.26 557.34,-73.76 567.34,-77.26 567.34,-70.26"/>
+</g>
+<!-- module~nafpack_constant -->
+<g id="module~~nafpack_fourier_transform_fft_compute~~UsesGraph_node4" class="node">
+<title>module~nafpack_constant</title>
+<g id="a_module~~nafpack_fourier_transform_fft_compute~~UsesGraph_node4"><a xlink:href="../module/nafpack_constant.html" xlink:title="NAFPack_constant">
+<polygon fill="#337ab7" stroke="#337ab7" points="357.44,-145.52 255.17,-145.52 255.17,-122 357.44,-122 357.44,-145.52"/>
+<text xml:space="preserve" text-anchor="middle" x="306.3" y="-129.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_constant</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_fourier_transform&#45;&gt;module~nafpack_constant -->
+<g id="module~~nafpack_fourier_transform_fft_compute~~UsesGraph_edge3" class="edge">
+<title>module~nafpack_fourier_transform&#45;&gt;module~nafpack_constant</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M444.11,-85.9C417.81,-95.1 381.44,-107.83 352.81,-117.84"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="351.96,-114.43 343.68,-121.03 354.28,-121.04 351.96,-114.43"/>
+</g>
+<!-- module~nafpack_kinds -->
+<g id="module~~nafpack_fourier_transform_fft_compute~~UsesGraph_node5" class="node">
+<title>module~nafpack_kinds</title>
+<g id="a_module~~nafpack_fourier_transform_fft_compute~~UsesGraph_node5"><a xlink:href="../module/nafpack_kinds.html" xlink:title="NAFPack_kinds">
+<polygon fill="#337ab7" stroke="#337ab7" points="208.29,-105.52 121.77,-105.52 121.77,-82 208.29,-82 208.29,-105.52"/>
+<text xml:space="preserve" text-anchor="middle" x="165.03" y="-89.79" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_kinds</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_fourier_transform&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_fourier_transform_fft_compute~~UsesGraph_edge4" class="edge">
+<title>module~nafpack_fourier_transform&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M403.9,-78.55C347.23,-82.17 270.75,-87.06 219.98,-90.31"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="219.88,-86.81 210.12,-90.94 220.32,-93.8 219.88,-86.81"/>
+</g>
+<!-- module~nafpack_loop_method -->
+<g id="module~~nafpack_fourier_transform_fft_compute~~UsesGraph_node6" class="node">
+<title>module~nafpack_loop_method</title>
+<g id="a_module~~nafpack_fourier_transform_fft_compute~~UsesGraph_node6"><a xlink:href="../module/nafpack_loop_method.html" xlink:title="NAFPack_loop_method">
+<polygon fill="#337ab7" stroke="#337ab7" points="368.31,-65.52 244.29,-65.52 244.29,-42 368.31,-42 368.31,-65.52"/>
+<text xml:space="preserve" text-anchor="middle" x="306.3" y="-49.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_loop_method</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_fourier_transform&#45;&gt;module~nafpack_loop_method -->
+<g id="module~~nafpack_fourier_transform_fft_compute~~UsesGraph_edge5" class="edge">
+<title>module~nafpack_fourier_transform&#45;&gt;module~nafpack_loop_method</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M404.09,-65.05C396.05,-64.11 387.88,-63.16 379.87,-62.22"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="380.52,-58.77 370.18,-61.09 379.71,-65.73 380.52,-58.77"/>
+</g>
+<!-- module~nafpack_math_utils -->
+<g id="module~~nafpack_fourier_transform_fft_compute~~UsesGraph_node7" class="node">
+<title>module~nafpack_math_utils</title>
+<g id="a_module~~nafpack_fourier_transform_fft_compute~~UsesGraph_node7"><a xlink:href="../module/nafpack_math_utils.html" xlink:title="NAFPack_math_utils">
+<polygon fill="#337ab7" stroke="#337ab7" points="361.56,-23.52 251.04,-23.52 251.04,0 361.56,0 361.56,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="306.3" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_math_utils</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_fourier_transform&#45;&gt;module~nafpack_math_utils -->
+<g id="module~~nafpack_fourier_transform_fft_compute~~UsesGraph_edge6" class="edge">
+<title>module~nafpack_fourier_transform&#45;&gt;module~nafpack_math_utils</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M446.5,-61.54C424.5,-53.28 394.71,-42.2 368.31,-32.76 363.61,-31.08 358.71,-29.35 353.8,-27.64"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="355.18,-24.41 344.59,-24.44 352.89,-31.03 355.18,-24.41"/>
+</g>
+<!-- module~nafpack_constant&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_fourier_transform_fft_compute~~UsesGraph_edge7" class="edge">
+<title>module~nafpack_constant&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M262.76,-121.54C248.99,-117.59 233.55,-113.15 219.11,-109.01"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="220.34,-105.72 209.77,-106.32 218.41,-112.45 220.34,-105.72"/>
+</g>
+<!-- iso_fortran_env -->
+<g id="module~~nafpack_fourier_transform_fft_compute~~UsesGraph_node8" class="node">
+<title>iso_fortran_env</title>
+<g id="a_module~~nafpack_fourier_transform_fft_compute~~UsesGraph_node8"><a xlink:href="http://fortranwiki.org/fortran/show/iso_fortran_env" xlink:title="iso_fortran_env">
+<polygon fill="#337ab7" stroke="#337ab7" points="85.77,-105.52 0,-105.52 0,-82 85.77,-82 85.77,-105.52"/>
+<text xml:space="preserve" text-anchor="middle" x="42.88" y="-89.79" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_kinds&#45;&gt;iso_fortran_env -->
+<g id="module~~nafpack_fourier_transform_fft_compute~~UsesGraph_edge8" class="edge">
+<title>module~nafpack_kinds&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#7fff00" stroke-dasharray="5,2" d="M121.33,-93.76C113.63,-93.76 105.51,-93.76 97.54,-93.76"/>
+<polygon fill="#7fff00" stroke="#7fff00" points="97.55,-90.26 87.55,-93.76 97.55,-97.26 97.55,-90.26"/>
+</g>
+<!-- module~nafpack_math_utils&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_fourier_transform_fft_compute~~UsesGraph_edge9" class="edge">
+<title>module~nafpack_math_utils&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M263.81,-23.96C257.12,-26.51 250.4,-29.45 244.29,-32.76 223.35,-44.11 202.19,-61 187.17,-74.13"/>
+<polygon fill="#7f00ff" stroke="#7f00ff" points="184.91,-71.46 179.79,-80.73 189.58,-76.67 184.91,-71.46"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var panmodulenafpack_fourier_transform_fft_computeUsesGraph = svgPanZoom('#modulenafpack_fourier_transform_fft_computeUsesGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsesGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsesGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.1.2 (20250808.2320)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="485pt" height="32pt"
+ viewBox="0.00 0.00 485.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 27.52)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 481.13,-27.52 481.13,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-23.52 0,-23.52 0,0 54,0 54,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="137.76,-23.52 72.24,-23.52 72.24,0 137.76,0 137.76,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="105" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="218.63,-23.52 155.37,-23.52 155.37,0 218.63,0 218.63,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="187" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="291,-23.52 237,-23.52 237,0 291,0 291,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="264" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="363,-23.52 309,-23.52 309,0 363,0 363,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="336" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="477.13,-23.52 380.87,-23.52 380.87,0 477.13,0 477.13,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="429" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+      
+      <br>
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              NAFPack
+ was developed by Minard Jules<br>              &copy; 2025 
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+            </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>

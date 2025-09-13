@@ -2,7 +2,7 @@
 module NAFPack_Eigen
 
     use NAFPack_kinds, only: dp
-    use NAFPack_constant, only: TOL_CONVERGENCE, MAX_ITERATION
+    use NAFPack_constant, only: TOL_CONVERGENCE_dp, MAX_ITERATION
     use NAFPack_matrix_decomposition, only: QR_decomposition
     use NAFPack_matricielle, only: Identity_n, normalise
 
@@ -114,7 +114,7 @@ contains
                 exit
             end if
 
-            if (diff <= TOL_CONVERGENCE) exit
+            if (diff <= TOL_CONVERGENCE_dp) exit
         end do
 
         ! Extract eigenvalues
@@ -165,7 +165,7 @@ contains
                 exit
             end if
 
-            if (diff <= TOL_CONVERGENCE) exit
+            if (diff <= TOL_CONVERGENCE_dp) exit
 
         end do
 
@@ -198,7 +198,7 @@ contains
             u = normalise(vp_tmp)
             vp_tmp = matmul(A, u)
             lambda = dot_product(vp_tmp, u)
-            if (norm2(r) <= TOL_CONVERGENCE) exit
+            if (norm2(r) <= TOL_CONVERGENCE_dp) exit
             r = vp_tmp - lambda * u
             if (i == k) then
                 print*,"WARNING :: non-convergence of the power iteration method"

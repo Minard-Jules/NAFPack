@@ -3,16 +3,27 @@ set(NAFPACK_SOURCES
     ${SRC_DIR}/NAFPack_constant.f90
     ${SRC_DIR}/NAFPack_loop_method.f90
     ${SRC_DIR}/Array_creation/meshgrid/NAFPack_meshgrid.f90
+    ${SRC_DIR}/Array_creation/meshgrid/NAFPack_meshgrid_real_2D_compute.f90
     ${SRC_DIR}/Array_creation/meshgrid/NAFPack_meshgrid_real_2D.f90
+    ${SRC_DIR}/Array_creation/meshgrid/NAFPack_meshgrid_real_3D_compute.f90
     ${SRC_DIR}/Array_creation/meshgrid/NAFPack_meshgrid_real_3D.f90
+    ${SRC_DIR}/Array_creation/meshgrid/NAFPack_meshgrid_integer_2D_compute.f90
     ${SRC_DIR}/Array_creation/meshgrid/NAFPack_meshgrid_integer_2D.f90
+    ${SRC_DIR}/Array_creation/meshgrid/NAFPack_meshgrid_integer_3D_compute.f90
     ${SRC_DIR}/Array_creation/meshgrid/NAFPack_meshgrid_integer_3D.f90
+    ${SRC_DIR}/Array_creation/meshgrid/NAFPack_meshgrid_complex_2D_compute.f90
     ${SRC_DIR}/Array_creation/meshgrid/NAFPack_meshgrid_complex_2D.f90
+    ${SRC_DIR}/Array_creation/meshgrid/NAFPack_meshgrid_complex_3D_compute.f90
     ${SRC_DIR}/Array_creation/meshgrid/NAFPack_meshgrid_complex_3D.f90
     ${SRC_DIR}/Fourier_Transform/FFTW3.f90
     ${SRC_DIR}/Fourier_Transform/NAFPack_fft.f90
-    ${SRC_DIR}/Fourier_Transform/NAFPack_Fourier_Transform.f90
+    ${SRC_DIR}/Fourier_Transform/NAFPack_Fourier_Transform_dft_compute.f90
     ${SRC_DIR}/Fourier_Transform/NAFPack_Fourier_Transform_dft.f90
+    ${SRC_DIR}/Fourier_Transform/NAFPack_Fourier_Transform_dft2.f90
+    ${SRC_DIR}/Fourier_Transform/NAFPack_Fourier_Transform_dft3.f90
+    ${SRC_DIR}/Fourier_Transform/NAFPack_Fourier_Transform_fft_compute.f90
+    ${SRC_DIR}/Fourier_Transform/NAFPack_Fourier_Transform_fft.f90
+    ${SRC_DIR}/Fourier_Transform/NAFPack_Fourier_Transform.f90
     ${SRC_DIR}/io/NAFPack_ANSI_ASCII.f90
     ${SRC_DIR}/io/NAFPack_ANSI_ucs4.f90
     ${SRC_DIR}/io/NAFPack_ANSI.f90
@@ -20,6 +31,7 @@ set(NAFPACK_SOURCES
     ${SRC_DIR}/io/NAFPack_Logger_mod.f90
     ${SRC_DIR}/io/NAFPack_matrix_market.f90
     ${SRC_DIR}/io/NAFPack_terminal.f90
+    ${SRC_DIR}/math_utils/NAFPack_math_utils.f90
     ${SRC_DIR}/memory/memory_monitor.c
     ${SRC_DIR}/memory/NAFPack_memory_monitor.f90
     ${SRC_DIR}/linear_algebra/NAFPack_linalg.f90

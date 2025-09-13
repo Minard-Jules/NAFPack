@@ -11,7 +11,7 @@ module NAFPack_fft
                      fftw_plan_with_nthreads, FFTW_FORWARD, FFTW_BACKWARD, FFTW_ESTIMATE
 
     use NAFPack_kinds, only: dp
-    use NAFPack_constant, only: pi, im
+    use NAFPack_constant, only: pi => pi_dp, im => im_dp
     implicit none(type, external)
 
     private

@@ -1,7 +1,7 @@
 module test_meshgrid_integer_3D
 
     use NAFPack_kinds, only: i8, i16, isp, idp
-    use NAFPack_constant, only: TOL_TEST
+    use NAFPack_constant, only: TOL_TEST_sp, TOL_TEST_dp, TOL_TEST_qp
     use testdrive, only: new_unittest, unittest_type, error_type, check
     use NAFPack_loop_method, only: LoopMethod, init_loop_method
     use NAFPack_meshgrid, only: meshgrid, INDEXING_IJ, INDEXING_XY
@@ -101,21 +101,21 @@ contains
 
         do k = 1, nz
             do i = 1, ny
-                call check(error, all(abs(X(i, :, k) - x_vector) < TOL_TEST))
+                call check(error, all(abs(X(i, :, k) - x_vector) < TOL_TEST_sp))
                 if (allocated(error)) return
             end do
         end do
 
         do k = 1, nz
             do j = 1, nx
-                call check(error, all(abs(Y(:, j, k) - y_vector) < TOL_TEST))
+                call check(error, all(abs(Y(:, j, k) - y_vector) < TOL_TEST_sp))
                 if (allocated(error)) return
             end do
         end do
 
         do j = 1, nx
             do i = 1, ny
-                call check(error, all(abs(Z(i, j, :) - z_vector) < TOL_TEST))
+                call check(error, all(abs(Z(i, j, :) - z_vector) < TOL_TEST_sp))
                 if (allocated(error)) return
             end do
         end do
@@ -137,21 +137,21 @@ contains
 
         do k = 1, nz
             do j = 1, ny
-                call check(error, all(abs(X(:, j, k) - x_vector) < TOL_TEST))
+                call check(error, all(abs(X(:, j, k) - x_vector) < TOL_TEST_sp))
                 if (allocated(error)) return
             end do
         end do
 
         do k = 1, nz
             do i = 1, nx
-                call check(error, all(abs(Y(i, :, k) - y_vector) < TOL_TEST))
+                call check(error, all(abs(Y(i, :, k) - y_vector) < TOL_TEST_sp))
                 if (allocated(error)) return
             end do
         end do
 
         do j = 1, ny
             do i = 1, nx
-                call check(error, all(abs(Z(i, j, :) - z_vector) < TOL_TEST))
+                call check(error, all(abs(Z(i, j, :) - z_vector) < TOL_TEST_sp))
                 if (allocated(error)) return
             end do
         end do
@@ -233,21 +233,21 @@ contains
 
         do k = 1, nz
             do i = 1, ny
-                call check(error, all(abs(X(i, :, k) - x_vector) < TOL_TEST))
+                call check(error, all(abs(X(i, :, k) - x_vector) < TOL_TEST_dp))
                 if (allocated(error)) return
             end do
         end do
 
         do k = 1, nz
             do j = 1, nx
-                call check(error, all(abs(Y(:, j, k) - y_vector) < TOL_TEST))
+                call check(error, all(abs(Y(:, j, k) - y_vector) < TOL_TEST_dp))
                 if (allocated(error)) return
             end do
         end do
 
         do j = 1, nx
             do i = 1, ny
-                call check(error, all(abs(Z(i, j, :) - z_vector) < TOL_TEST))
+                call check(error, all(abs(Z(i, j, :) - z_vector) < TOL_TEST_dp))
                 if (allocated(error)) return
             end do
         end do
@@ -269,21 +269,21 @@ contains
 
         do k = 1, nz
             do j = 1, ny
-                call check(error, all(abs(X(:, j, k) - x_vector) < TOL_TEST))
+                call check(error, all(abs(X(:, j, k) - x_vector) < TOL_TEST_dp))
                 if (allocated(error)) return
             end do
         end do
 
         do k = 1, nz
             do i = 1, nx
-                call check(error, all(abs(Y(i, :, k) - y_vector) < TOL_TEST))
+                call check(error, all(abs(Y(i, :, k) - y_vector) < TOL_TEST_dp))
                 if (allocated(error)) return
             end do
         end do
 
         do j = 1, ny
             do i = 1, nx
-                call check(error, all(abs(Z(i, j, :) - z_vector) < TOL_TEST))
+                call check(error, all(abs(Z(i, j, :) - z_vector) < TOL_TEST_dp))
                 if (allocated(error)) return
             end do
         end do
@@ -365,21 +365,21 @@ contains
 
         do k = 1, nz
             do i = 1, ny
-                call check(error, all(abs(X(i, :, k) - x_vector) < TOL_TEST))
+                call check(error, all(abs(X(i, :, k) - x_vector) < TOL_TEST_qp))
                 if (allocated(error)) return
             end do
         end do
 
         do k = 1, nz
             do j = 1, nx
-                call check(error, all(abs(Y(:, j, k) - y_vector) < TOL_TEST))
+                call check(error, all(abs(Y(:, j, k) - y_vector) < TOL_TEST_qp))
                 if (allocated(error)) return
             end do
         end do
 
         do j = 1, nx
             do i = 1, ny
-                call check(error, all(abs(Z(i, j, :) - z_vector) < TOL_TEST))
+                call check(error, all(abs(Z(i, j, :) - z_vector) < TOL_TEST_qp))
                 if (allocated(error)) return
             end do
         end do
@@ -401,21 +401,21 @@ contains
 
         do k = 1, nz
             do j = 1, ny
-                call check(error, all(abs(X(:, j, k) - x_vector) < TOL_TEST))
+                call check(error, all(abs(X(:, j, k) - x_vector) < TOL_TEST_qp))
                 if (allocated(error)) return
             end do
         end do
 
         do k = 1, nz
             do i = 1, nx
-                call check(error, all(abs(Y(i, :, k) - y_vector) < TOL_TEST))
+                call check(error, all(abs(Y(i, :, k) - y_vector) < TOL_TEST_qp))
                 if (allocated(error)) return
             end do
         end do
 
         do j = 1, ny
             do i = 1, nx
-                call check(error, all(abs(Z(i, j, :) - z_vector) < TOL_TEST))
+                call check(error, all(abs(Z(i, j, :) - z_vector) < TOL_TEST_qp))
                 if (allocated(error)) return
             end do
         end do
@@ -497,21 +497,21 @@ contains
 
         do k = 1, nz
             do i = 1, ny
-                call check(error, all(abs(X(i, :, k) - x_vector) < TOL_TEST))
+                call check(error, all(abs(X(i, :, k) - x_vector) < TOL_TEST_qp))
                 if (allocated(error)) return
             end do
         end do
 
         do k = 1, nz
             do j = 1, nx
-                call check(error, all(abs(Y(:, j, k) - y_vector) < TOL_TEST))
+                call check(error, all(abs(Y(:, j, k) - y_vector) < TOL_TEST_qp))
                 if (allocated(error)) return
             end do
         end do
 
         do j = 1, nx
             do i = 1, ny
-                call check(error, all(abs(Z(i, j, :) - z_vector) < TOL_TEST))
+                call check(error, all(abs(Z(i, j, :) - z_vector) < TOL_TEST_qp))
                 if (allocated(error)) return
             end do
         end do
@@ -533,21 +533,21 @@ contains
 
         do k = 1, nz
             do j = 1, ny
-                call check(error, all(abs(X(:, j, k) - x_vector) < TOL_TEST))
+                call check(error, all(abs(X(:, j, k) - x_vector) < TOL_TEST_qp))
                 if (allocated(error)) return
             end do
         end do
 
         do k = 1, nz
             do i = 1, nx
-                call check(error, all(abs(Y(i, :, k) - y_vector) < TOL_TEST))
+                call check(error, all(abs(Y(i, :, k) - y_vector) < TOL_TEST_qp))
                 if (allocated(error)) return
             end do
         end do
 
         do j = 1, ny
             do i = 1, nx
-                call check(error, all(abs(Z(i, j, :) - z_vector) < TOL_TEST))
+                call check(error, all(abs(Z(i, j, :) - z_vector) < TOL_TEST_qp))
                 if (allocated(error)) return
             end do
         end do

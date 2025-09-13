@@ -8,7 +8,6 @@ description = "Numerical Analysis in Fortran Package"
 keywords = ["NAFPack"]
 homepage = "https://github.com/Minard-Jules/NAFPack"
 
-
 [build]
 auto-executables = true
 auto-tests = true
@@ -26,6 +25,8 @@ source-form = "default"
 
 [dependencies]
 openmp = "*"
+# blas = "*"
+# lapack = "*"
 
 [dev-dependencies]
 test-drive.git = "https://github.com/fortran-lang/test-drive"

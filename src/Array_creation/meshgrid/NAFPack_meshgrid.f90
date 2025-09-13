@@ -5,7 +5,6 @@ module NAFPack_meshgrid
 
     use NAFPack_kinds, only: dp, sp, qp, i8, i16, isp, idp
     use NAFPack_loop_method, only: LoopMethod, count_true_methods, default_loop_method, check_loop_method
-    use OMP_LIB, only: omp_get_num_threads, omp_get_thread_num, omp_set_num_threads
 
     implicit none(type, external)
 

@@ -56,7 +56,7 @@ contains
         fs_DFT = FFT_1D(S, "NAFPack_DFT")
 
         diff_DFT = fs_exact_DFT - fs_DFT
-        if (maxval(abs(diff_DFT)) < TOL_CONVERGENCE) then
+        if (maxval(abs(diff_DFT)) < TOL_CONVERGENCE_dp) then
             write (*, '(A,T50,A,A)') colors%green//"DFT", " :: OK"//colors%reset
         else
             write (*, '(A,T50,A)') colors%red//"DFT", " :: ECHEC"//colors%reset
@@ -77,7 +77,7 @@ contains
         fs_FFT = FFT_1D(S, "NAFPack_FFT_1D")
 
         diff_FFT = fs_exact_FFT - fs_FFT
-        if (maxval(abs(diff_FFT)) < TOL_CONVERGENCE) then
+        if (maxval(abs(diff_FFT)) < TOL_CONVERGENCE_dp) then
             write (*, '(A,T50,A,A)') colors%green//"FFT", " :: OK"//colors%reset
         else
             write (*, '(A,T50,A)') colors%red//"FFT", " :: ECHEC"//colors%reset
@@ -98,7 +98,7 @@ contains
         fs_FFT = FFT_1D(S, "FFTW_FFT_1D")
 
         diff_FFT = fs_exact_FFT - fs_FFT
-        if (maxval(abs(diff_FFT)) < TOL_CONVERGENCE) then
+        if (maxval(abs(diff_FFT)) < TOL_CONVERGENCE_dp) then
             write (*, '(A,T50,A,A)') colors%green//"FFTW", " :: OK"//colors%reset
         else
             write (*, '(A,T50,A)') colors%red//"FFTW", " :: ECHEC"//colors%reset
@@ -119,7 +119,7 @@ contains
         fs_FFT = FFT_1D(S, "FFTW_FFT_1D", threads=4)
 
         diff_FFT = fs_exact_FFT - fs_FFT
-        if (maxval(abs(diff_FFT)) < TOL_CONVERGENCE) then
+        if (maxval(abs(diff_FFT)) < TOL_CONVERGENCE_dp) then
             write (*, '(A,T50,A,A)') colors%green//"FFTW threads", " :: OK"//colors%reset
         else
             write (*, '(A,T50,A)') colors%red//"FFTW threads", " :: ECHEC"//colors%reset
@@ -149,7 +149,7 @@ contains
         s_IFFT = IFFT_1D(fS, "NAFPack_IFFT_1D")
 
         diff_IFFT = s_exact_IFFT - s_IFFT
-        if (maxval(abs(diff_FFT)) < TOL_CONVERGENCE) then
+        if (maxval(abs(diff_FFT)) < TOL_CONVERGENCE_dp) then
             write (*, '(A,T50,A,A)') colors%green//"IFFT", " :: OK"//colors%reset
         else
             write (*, '(A,T50,A)') colors%red//"IFFT", " :: ECHEC"//colors%reset
@@ -179,7 +179,7 @@ contains
         s_IFFT = IFFT_1D(fS, "FFTW_IFFT_1D")
 
         diff_IFFT = s_exact_IFFT - s_IFFT
-        if (maxval(abs(diff_FFT)) < TOL_CONVERGENCE) then
+        if (maxval(abs(diff_FFT)) < TOL_CONVERGENCE_dp) then
             write (*, '(A,T50,A,A)') colors%green//"IFFTW", " :: OK"//colors%reset
         else
             write (*, '(A,T50,A)') colors%red//"IFFTW", " :: ECHEC"//colors%reset
@@ -209,7 +209,7 @@ contains
         s_IFFT = IFFT_1D(fS, "FFTW_IFFT_1D", threads=4)
 
         diff_IFFT = s_exact_IFFT - s_IFFT
-        if (maxval(abs(diff_FFT)) < TOL_CONVERGENCE) then
+        if (maxval(abs(diff_FFT)) < TOL_CONVERGENCE_dp) then
             write (*, '(A,T50,A,A)') colors%green//"IFFTW threads", " :: OK"//colors%reset
         else
             write (*, '(A,T50,A)') colors%red//"IFFTW threads", " :: ECHEC"//colors%reset
@@ -231,7 +231,7 @@ contains
         fs_FFT2 = FFT_2D(S2D, "NAFPack_FFT_2D")
 
         diff_FFT2 = fs_exact_FFT2 - fs_FFT2
-        if (maxval(abs(diff_FFT2)) < TOL_CONVERGENCE) then
+        if (maxval(abs(diff_FFT2)) < TOL_CONVERGENCE_dp) then
             write (*, '(A,T50,A,A)') colors%green//"FFT2", " :: OK"//colors%reset
         else
             write (*, '(A,T50,A)') colors%red//"FFT2", " :: ECHEC"//colors%reset
@@ -252,7 +252,7 @@ contains
         fs_FFT2 = FFT_2D(S2D, "FFTW_FFT_2D")
 
         diff_FFT2 = fs_exact_FFT2 - fs_FFT2
-        if (maxval(abs(diff_FFT2)) < TOL_CONVERGENCE) then
+        if (maxval(abs(diff_FFT2)) < TOL_CONVERGENCE_dp) then
             write (*, '(A,T50,A,A)') colors%green//"FFTW2", " :: OK"//colors%reset
         else
             write (*, '(A,T50,A)') colors%red//"FFTW2", " :: ECHEC"//colors%reset
@@ -273,7 +273,7 @@ contains
         fs_FFT2 = FFT_2D(S2D, "FFTW_FFT_2D", threads=4)
 
         diff_FFT2 = fs_exact_FFT2 - fs_FFT2
-        if (maxval(abs(diff_FFT2)) < TOL_CONVERGENCE) then
+        if (maxval(abs(diff_FFT2)) < TOL_CONVERGENCE_dp) then
             write (*, '(A,T50,A,A)') colors%green//"FFTW2 threads", " :: OK"//colors%reset
         else
             write (*, '(A,T50,A)') colors%red//"FFTW2 threads", " :: ECHEC"//colors%reset
@@ -290,7 +290,7 @@ contains
         s_IFFT2 = IFFT_2D(fS2S, "NAFPack_IFFT_2D")
 
         diff_IFFT2 = s_exact_IFFT2 - s_IFFT2
-        if (maxval(abs(diff_FFT2)) < TOL_CONVERGENCE) then
+        if (maxval(abs(diff_FFT2)) < TOL_CONVERGENCE_dp) then
             write (*, '(A,T50,A,A)') colors%green//"IFFT2", " :: OK"//colors%reset
         else
             write (*, '(A,T50,A)') colors%red//"IFFT2", " :: ECHEC"//colors%reset
@@ -307,7 +307,7 @@ contains
         s_IFFT2 = IFFT_2D(fS2S, "FFTW_IFFT_2D")
 
         diff_IFFT2 = s_exact_IFFT2 - s_IFFT2
-        if (maxval(abs(diff_FFT2)) < TOL_CONVERGENCE) then
+        if (maxval(abs(diff_FFT2)) < TOL_CONVERGENCE_dp) then
             write (*, '(A,T50,A,A)') colors%green//"IFFTW2", " :: OK"//colors%reset
         else
             write (*, '(A,T50,A)') colors%red//"IFFTW2", " :: ECHEC"//colors%reset
@@ -324,7 +324,7 @@ contains
         s_IFFT2 = IFFT_2D(fS2S, "FFTW_IFFT_2D", threads=4)
 
         diff_IFFT2 = s_exact_IFFT2 - s_IFFT2
-        if (maxval(abs(diff_FFT2)) < TOL_CONVERGENCE) then
+        if (maxval(abs(diff_FFT2)) < TOL_CONVERGENCE_dp) then
             write (*, '(A,T50,A,A)') colors%green//"IFFTW2 threads", " :: OK"//colors%reset
         else
             write (*, '(A,T50,A)') colors%red//"IFFTW2 threads", " :: ECHEC"//colors%reset

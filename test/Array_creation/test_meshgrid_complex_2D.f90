@@ -1,7 +1,7 @@
 module test_meshgrid_complex_2D
 
     use NAFPack_kinds, only: dp, sp, qp
-    use NAFPack_constant, only: TOL_TEST
+    use NAFPack_constant, only: TOL_TEST_sp, TOL_TEST_dp, TOL_TEST_qp
     use testdrive, only: new_unittest, unittest_type, error_type, check
     use NAFPack_meshgrid, only: meshgrid, INDEXING_IJ, INDEXING_XY
     use NAFPack_loop_method, only: LoopMethod, init_loop_method
@@ -17,9 +17,9 @@ contains
         type(unittest_type), allocatable, intent(out) :: testsuite(:)
 
         testsuite = [ &
-                    new_unittest("meshgrid_cmplx_sp", test_meshgrid_cmplx_sp_2D), &
-                    new_unittest("meshgrid_cmplx_dp", test_meshgrid_cmplx_dp_2D), &
-                    new_unittest("meshgrid_cmplx_qp", test_meshgrid_cmplx_qp_2D) &
+                    new_unittest("meshgrid complex sp 2D", test_meshgrid_cmplx_sp_2D), &
+                    new_unittest("meshgrid complex dp 2D", test_meshgrid_cmplx_dp_2D), &
+                    new_unittest("meshgrid complex qp 2D", test_meshgrid_cmplx_qp_2D) &
                     ]
 
     end subroutine collect_meshgrid
@@ -96,12 +96,12 @@ contains
         if (allocated(error)) return
 
         do i = 1, ny
-            call check(error, all(abs(X(i, :) - x_vector) < TOL_TEST))
+            call check(error, all(abs(X(i, :) - x_vector) < TOL_TEST_sp))
             if (allocated(error)) return
         end do
 
         do j = 1, nx
-            call check(error, all(abs(Y(:, j) - y_vector) < TOL_TEST))
+            call check(error, all(abs(Y(:, j) - y_vector) < TOL_TEST_sp))
             if (allocated(error)) return
         end do
     end subroutine check_meshgrid_cmplx_sp_2D_ij
@@ -119,11 +119,11 @@ contains
         if (allocated(error)) return
 
         do j = 1, ny
-            call check(error, all(abs(X(:, j) - x_vector) < TOL_TEST))
+            call check(error, all(abs(X(:, j) - x_vector) < TOL_TEST_sp))
             if (allocated(error)) return
         end do
         do i = 1, nx
-            call check(error, all(abs(Y(i, :) - y_vector) < TOL_TEST))
+            call check(error, all(abs(Y(i, :) - y_vector) < TOL_TEST_sp))
             if (allocated(error)) return
         end do
     end subroutine check_meshgrid_cmplx_sp_2D_xy
@@ -200,12 +200,12 @@ contains
         if (allocated(error)) return
 
         do i = 1, ny
-            call check(error, all(abs(X(i, :) - x_vector) < TOL_TEST))
+            call check(error, all(abs(X(i, :) - x_vector) < TOL_TEST_dp))
             if (allocated(error)) return
         end do
 
         do j = 1, nx
-            call check(error, all(abs(Y(:, j) - y_vector) < TOL_TEST))
+            call check(error, all(abs(Y(:, j) - y_vector) < TOL_TEST_dp))
             if (allocated(error)) return
         end do
     end subroutine check_meshgrid_cmplx_dp_2D_ij
@@ -223,11 +223,11 @@ contains
         if (allocated(error)) return
 
         do j = 1, ny
-            call check(error, all(abs(X(:, j) - x_vector) < TOL_TEST))
+            call check(error, all(abs(X(:, j) - x_vector) < TOL_TEST_dp))
             if (allocated(error)) return
         end do
         do i = 1, nx
-            call check(error, all(abs(Y(i, :) - y_vector) < TOL_TEST))
+            call check(error, all(abs(Y(i, :) - y_vector) < TOL_TEST_dp))
             if (allocated(error)) return
         end do
     end subroutine check_meshgrid_cmplx_dp_2D_xy
@@ -304,12 +304,12 @@ contains
         if (allocated(error)) return
 
         do i = 1, ny
-            call check(error, all(abs(X(i, :) - x_vector) < TOL_TEST))
+            call check(error, all(abs(X(i, :) - x_vector) < TOL_TEST_qp))
             if (allocated(error)) return
         end do
 
         do j = 1, nx
-            call check(error, all(abs(Y(:, j) - y_vector) < TOL_TEST))
+            call check(error, all(abs(Y(:, j) - y_vector) < TOL_TEST_qp))
             if (allocated(error)) return
         end do
     end subroutine check_meshgrid_cmplx_qp_2D_ij
@@ -327,11 +327,11 @@ contains
         if (allocated(error)) return
 
         do j = 1, ny
-            call check(error, all(abs(X(:, j) - x_vector) < TOL_TEST))
+            call check(error, all(abs(X(:, j) - x_vector) < TOL_TEST_qp))
             if (allocated(error)) return
         end do
         do i = 1, nx
-            call check(error, all(abs(Y(i, :) - y_vector) < TOL_TEST))
+            call check(error, all(abs(Y(i, :) - y_vector) < TOL_TEST_qp))
             if (allocated(error)) return
         end do
     end subroutine check_meshgrid_cmplx_qp_2D_xy

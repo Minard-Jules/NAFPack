@@ -1,9 +1,12 @@
 module NAFPack_kinds
 
-    use iso_fortran_env, only: int8, int16, int32, int64, &
-                               real32, real64, real128
+    use, intrinsic :: iso_fortran_env, only: &
+        int8, int16, int32, int64, &
+        real32, real64, real128
 
     implicit none(type, external)
+
+    public
 
     integer, parameter :: ascii = selected_char_kind('ascii')
     integer, parameter :: ucs4 = selected_char_kind('ISO_10646')
@@ -16,7 +19,5 @@ module NAFPack_kinds
     integer, parameter :: i16 = int16
     integer, parameter :: isp = int32
     integer, parameter :: idp = int64
-
-    public
 
 end module NAFPack_kinds

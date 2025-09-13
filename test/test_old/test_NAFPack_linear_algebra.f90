@@ -27,7 +27,7 @@ contains
         CALL colors%init()
 
         diff_x = x_true - x
-        if (maxval(abs(diff_x)) < TOL_CONVERGENCE) then
+        if (maxval(abs(diff_x)) < TOL_CONVERGENCE_dp) then
             write (*, '(A,T50,A,A)') colors%green//method//" "//pivot_method, " :: OK"//colors%reset
         else
             write (*, '(A,T50,A)') colors%red//method//" "//pivot_method, " :: ECHEC"//colors%reset
@@ -47,7 +47,7 @@ contains
         CALL colors%init()
 
         diff_x = x_true - x
-        if (maxval(abs(diff_x)) < TOL_CONVERGENCE) then
+        if (maxval(abs(diff_x)) < TOL_CONVERGENCE_dp) then
             write (*, '(A,T50,A,A)') colors%green//method//" "//preconditioner, " :: OK"//colors%reset
         else
             write (*, '(A,T50,A)') colors%red//method//" "//preconditioner, " :: ECHEC"//colors%reset
@@ -973,7 +973,7 @@ contains
 
         do i = 1, size(A, 1)
             diff = matmul(A, vp(i, :)) - lambda(i) * vp(i, :)
-            if (maxval(abs(diff)) > TOL_CONVERGENCE) verif_Eigen = .false.
+            if (maxval(abs(diff)) > TOL_CONVERGENCE_dp) verif_Eigen = .false.
         end do
 
         if (verif_Eigen) then
@@ -1006,7 +1006,7 @@ contains
             call Eigen(A, lambda, method=method)
 
             diff = lambda_test - lambda
-            if (maxval(abs(diff)) > TOL_CONVERGENCE) verif_Eigen = .false.
+            if (maxval(abs(diff)) > TOL_CONVERGENCE_dp) verif_Eigen = .false.
         end if
 
         if (verif_Eigen) then

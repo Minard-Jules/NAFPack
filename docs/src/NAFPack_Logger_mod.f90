@@ -2,10 +2,11 @@
 module NAFPack_Logger_mod
 
     use NAFPack_kinds, only: dp, ucs4
+    use NAFPack_ANSI, only: ColorsUcs4
     use NAFPack_terminal, only: output_unit
-    use NAFPack_terminal_colors, only: &
-        red_color_ucs4, green_color_ucs4, yellow_color_ucs4, blue_color_ucs4, &
-        white_color_ucs4, cyan_color_ucs4, purple_color_ucs4, reset_color_ucs4
+    ! use NAFPack_terminal_colors, only: &
+    !     red_color_ucs4, green_color_ucs4, yellow_color_ucs4, blue_color_ucs4, &
+    !     white_color_ucs4, cyan_color_ucs4, purple_color_ucs4, reset_color_ucs4
 
     implicit none(type, external)
 
@@ -134,34 +135,46 @@ contains
     subroutine log_info(this, msg)
         class(Logger), intent(inout) :: this
         character(KIND=ucs4, LEN=*), intent(in) :: msg
+        type(ColorsUcs4) :: colors
 
-        if (this%verbosity_level >= 2) call this%write(msg, ucs4_"INFO", blue_color_ucs4)
+        CALL colors%init()
+
+        if (this%verbosity_level >= 2) call this%write(msg, ucs4_"INFO", colors%blue)
 
     end subroutine log_info
 
     subroutine log_detail(this, msg)
         class(Logger), intent(inout) :: this
         character(KIND=ucs4, LEN=*), intent(in) :: msg
+        type(ColorsUcs4) :: colors
+
+        CALL colors%init()
 
         if (this%verbosity_level >= 3) call this%write(ucs4_"    "//msg, &
                                                        ucs4_"DETAIL", &
-                                                       green_color_ucs4)
+                                                       colors%green)
 
     end subroutine log_detail
 
     subroutine log_warning(this, msg)
         class(Logger), intent(inout) :: this
         character(KIND=ucs4, LEN=*), intent(in) :: msg
+        type(ColorsUcs4) :: colors
 
-        if (this%verbosity_level >= 1) call this%write(msg, ucs4_"WARNING", yellow_color_ucs4)
+        CALL colors%init()
+
+        if (this%verbosity_level >= 1) call this%write(msg, ucs4_"WARNING", colors%yellow)
 
     end subroutine log_warning
 
     subroutine log_error(this, msg)
         class(Logger), intent(inout) :: this
         character(KIND=ucs4, LEN=*), intent(in) :: msg
+        type(ColorsUcs4) :: colors
 
-        if (this%verbosity_level >= 1) call this%write(msg, ucs4_"ERROR", red_color_ucs4)
+        CALL colors%init()
+
+        if (this%verbosity_level >= 1) call this%write(msg, ucs4_"ERROR", colors%red)
 
     end subroutine log_error
 
@@ -170,11 +183,14 @@ contains
         character(KIND=ucs4, LEN=*), intent(in) :: msg
         character(LEN=10) :: time
         character(KIND=ucs4, LEN=10) :: time_ucs4
+        type(ColorsUcs4) :: colors
+
+        CALL colors%init()
 
         call date_and_time(TIME=time)
         write (time_ucs4, '(A)') time(:2)//":"//time(3:4)//":"//time(5:6)
 
-        if (this%verbosity_level >= 2) call this%write(msg, time_ucs4, purple_color_ucs4)
+        if (this%verbosity_level >= 2) call this%write(msg, time_ucs4, colors%magenta)
 
     end subroutine log_time
 
@@ -188,6 +204,9 @@ contains
         character(LEN=*), optional, intent(in) :: box_style
         character(KIND=ucs4, LEN=100) :: info_char
         character(LEN=4) :: box_char
+        type(ColorsUcs4) :: colors
+
+        CALL colors%init()
 
         if (present(box_style)) then
             select case (trim(adjustl(box_style)))
@@ -221,7 +240,7 @@ contains
         if (this%to_terminal) then
             if (present(name_level)) then
                 if (present(color_level)) then
-                    info_char = ucs4_"["//trim(color_level)//trim(name_level)//trim(reset_color_ucs4)//ucs4_"] "
+                    info_char = ucs4_"["//trim(color_level)//trim(name_level)//trim(colors%reset)//ucs4_"] "
                 else
                     info_char = ucs4_"["//trim(name_level)//ucs4_"] "
                 end if
