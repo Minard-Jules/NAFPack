@@ -57,20 +57,12 @@ contains
         complex(sp), intent(in) :: omega
         integer(isp), intent(in) :: N
         complex(sp), dimension(N) :: result
-        real(sp), dimension(:), allocatable :: k_vector
-        complex(sp), dimension(:, :), allocatable :: fourier_matrix
-        integer(isp) :: stat_alloc
-
-        allocate (fourier_matrix(N, N), stat=stat_alloc)
-        if (stat_alloc /= 0) error stop "Error in allocation of fourier_matrix in dft_cmplx_sp"
-        allocate (k_vector(N), stat=stat_alloc)
-        if (stat_alloc /= 0) error stop "Error in allocation of k_vector in dft_cmplx_sp"
+        real(sp), dimension(N) :: k_vector
+        complex(sp), dimension(N, N) :: fourier_matrix
 
         k_vector = n_vector
         fourier_matrix = omega**reshape(spread(k_vector, 2, N) * spread(n_vector, 1, N), [N, N])
         result = matmul(fourier_matrix, signal)
-
-        deallocate (fourier_matrix, k_vector)
 
     end function compute_do_vectorized_cmplx_sp
 
@@ -161,20 +153,12 @@ contains
         complex(dp), intent(in) :: omega
         integer(isp), intent(in) :: N
         complex(dp), dimension(N) :: result
-        real(dp), dimension(:), allocatable :: k_vector
-        complex(dp), dimension(:, :), allocatable :: fourier_matrix
-        integer(isp) :: stat_alloc
-
-        allocate (fourier_matrix(N, N), stat=stat_alloc)
-        if (stat_alloc /= 0) error stop "Error in allocation of fourier_matrix in dft_cmplx_sp"
-        allocate (k_vector(N), stat=stat_alloc)
-        if (stat_alloc /= 0) error stop "Error in allocation of k_vector in dft_cmplx_sp"
+        real(dp), dimension(N) :: k_vector
+        complex(dp), dimension(N, N) :: fourier_matrix
 
         k_vector = n_vector
         fourier_matrix = omega**reshape(spread(k_vector, 2, N) * spread(n_vector, 1, N), [N, N])
         result = matmul(fourier_matrix, signal)
-
-        deallocate (fourier_matrix, k_vector)
 
     end function compute_do_vectorized_cmplx_dp
 
@@ -265,20 +249,12 @@ contains
         complex(qp), intent(in) :: omega
         integer(isp), intent(in) :: N
         complex(qp), dimension(N) :: result
-        real(qp), dimension(:), allocatable :: k_vector
-        complex(qp), dimension(:, :), allocatable :: fourier_matrix
-        integer(isp) :: stat_alloc
-
-        allocate (fourier_matrix(N, N), stat=stat_alloc)
-        if (stat_alloc /= 0) error stop "Error in allocation of fourier_matrix in dft_cmplx_sp"
-        allocate (k_vector(N), stat=stat_alloc)
-        if (stat_alloc /= 0) error stop "Error in allocation of k_vector in dft_cmplx_sp"
+        real(qp), dimension(N) :: k_vector
+        complex(qp), dimension(N, N) :: fourier_matrix
 
         k_vector = n_vector
         fourier_matrix = omega**reshape(spread(k_vector, 2, N) * spread(n_vector, 1, N), [N, N])
         result = matmul(fourier_matrix, signal)
-
-        deallocate (fourier_matrix, k_vector)
 
     end function compute_do_vectorized_cmplx_qp
 

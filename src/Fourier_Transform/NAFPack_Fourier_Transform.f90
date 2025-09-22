@@ -11,19 +11,70 @@ module NAFPack_Fourier_Transform
     public :: Fourier_Transform
     public :: dft, idft
     public :: dft2, idft2
+    public :: dft3, idft3
+
+    public :: DecimationMethod, DIT, DIF
+    public :: FFTAlgorithm, ALG_AUTO, &
+              ALG_RADIX2_DIT, ALG_RADIX2_DIF, &
+              ALG_MIXED_DIT, ALG_MIXED_DIF, &
+              ALG_SPLIT_DIT, ALG_SPLIT_DIF
+
+    type :: DecimationMethod
+        integer(isp) :: id
+        character(len=20) :: name
+    end type DecimationMethod
+
+    type(DecimationMethod), parameter :: DIT = DecimationMethod(1, "DIT"), &
+                                         DIF = DecimationMethod(2, "DIF")
+
+    type :: FFTAlgorithm
+        integer(isp) :: id
+        character(len=20) :: name
+        type(DecimationMethod) :: decimation_method
+    end type FFTAlgorithm
+
+    type(FFTAlgorithm), parameter :: &
+        ALG_NONE = FFTAlgorithm(-1, "None", DIT), &
+        ALG_AUTO = FFTAlgorithm(0, "Auto", DIT), &
+        ALG_RADIX2_DIT = FFTAlgorithm(1, "Radix-2 DIT", DIT), &
+        ALG_RADIX2_DIF = FFTAlgorithm(2, "Radix-2 DIF", DIF), &
+        ALG_MIXED_DIT = FFTAlgorithm(3, "Mixed Radix DIT", DIT), &
+        ALG_MIXED_DIF = FFTAlgorithm(4, "Mixed Radix DIF", DIF), &
+        ALG_SPLIT_DIT = FFTAlgorithm(5, "Split Radix DIT", DIT), &
+        ALG_SPLIT_DIF = FFTAlgorithm(6, "Split Radix DIF", DIF)
 
     type :: Twiddles_sp
         integer(isp) :: block_size = 0
+        integer(isp) :: current_block_size = 0
         integer(isp) :: radix = 0
         complex(sp), dimension(:), allocatable :: twiddles_factor
     end type Twiddles_sp
+
+    type :: SplitRadixindices
+        integer(isp) :: num_stages
+        integer(isp), dimension(:), allocatable :: start_indices
+        integer(isp), dimension(:), allocatable :: strides
+    end type SplitRadixindices
+
+    type :: SplitRadixTwiddles
+        integer(isp) :: block_size = 0
+        integer(isp) :: current_block_size = 0
+        integer(isp) :: radix = 0
+        type(SplitRadixindices), dimension(:), allocatable :: indices
+        complex(sp), dimension(:), allocatable :: twiddles_Wk
+        complex(sp), dimension(:), allocatable :: twiddles_W3k
+    end type SplitRadixTwiddles
 
     type :: FFTPlan
         integer(isp) :: N = 0
         integer(isp), dimension(:), allocatable :: radix_plan
         type(Twiddles_sp), dimension(:), allocatable :: twiddles
+        type(SplitRadixTwiddles), dimension(:), allocatable :: split_radix_twiddles
         logical :: is_initialized = .false.
-        logical :: is_pure_radix2 = .false.
+        logical :: use_pure_radix2 = .false.
+        logical :: use_split_radix = .false.
+        logical :: use_mixed_radix = .false.
+        type(FFTAlgorithm) :: algorithm = ALG_NONE
     end type FFTPlan
 
     type :: Fourier_Transform
@@ -100,8 +151,10 @@ module NAFPack_Fourier_Transform
     !====================================================================================
 
     interface
-        module subroutine init_fft_plan_sp(this, N)
+        module subroutine init_fft_plan_sp(this, N, algorithm, decimation_method)
             class(Fourier_Transform), intent(inout) :: this
+            type(FFTAlgorithm), optional, intent(in) :: algorithm
+            type(DecimationMethod), optional, intent(in) :: decimation_method
             integer(isp), intent(in) :: N
         end subroutine init_fft_plan_sp
     end interface
@@ -123,8 +176,8 @@ module NAFPack_Fourier_Transform
     ! destr
 
     interface
-        module subroutine destroy_fft_plan_sp(this)
-        class(Fourier_Transform), intent(inout) :: this
+        pure module subroutine destroy_fft_plan_sp(this)
+            class(Fourier_Transform), intent(inout) :: this
         end subroutine destroy_fft_plan_sp
     end interface
 

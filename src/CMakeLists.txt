@@ -21,7 +21,9 @@ set(NAFPACK_SOURCES
     ${SRC_DIR}/Fourier_Transform/NAFPack_Fourier_Transform_dft.f90
     ${SRC_DIR}/Fourier_Transform/NAFPack_Fourier_Transform_dft2.f90
     ${SRC_DIR}/Fourier_Transform/NAFPack_Fourier_Transform_dft3.f90
-    ${SRC_DIR}/Fourier_Transform/NAFPack_Fourier_Transform_fft_compute.f90
+    ${SRC_DIR}/Fourier_Transform/NAFPack_Fourier_Transform_fft_compute_mixed_radix.f90
+    ${SRC_DIR}/Fourier_Transform/NAFPack_Fourier_Transform_fft_compute_radix2.f90
+    ${SRC_DIR}/Fourier_Transform/NAFPack_Fourier_Transform_fft_compute_split_radix.f90
     ${SRC_DIR}/Fourier_Transform/NAFPack_Fourier_Transform_fft.f90
     ${SRC_DIR}/Fourier_Transform/NAFPack_Fourier_Transform.f90
     ${SRC_DIR}/io/NAFPack_ANSI_ASCII.f90
@@ -31,9 +33,6 @@ set(NAFPACK_SOURCES
     ${SRC_DIR}/io/NAFPack_Logger_mod.f90
     ${SRC_DIR}/io/NAFPack_matrix_market.f90
     ${SRC_DIR}/io/NAFPack_terminal.f90
-    ${SRC_DIR}/math_utils/NAFPack_math_utils.f90
-    ${SRC_DIR}/memory/memory_monitor.c
-    ${SRC_DIR}/memory/NAFPack_memory_monitor.f90
     ${SRC_DIR}/linear_algebra/NAFPack_linalg.f90
     ${SRC_DIR}/linear_algebra/NAFPack_Preconditioners.f90
     ${SRC_DIR}/linear_algebra/Direct_method/NAFPack_Direct_methode.f90
@@ -47,6 +46,13 @@ set(NAFPACK_SOURCES
     ${SRC_DIR}/linear_algebra/Matrix/NAFPack_matrix_decomposition.f90
     ${SRC_DIR}/linear_algebra/Matrix/NAFPack_matrix_properties.f90
     ${SRC_DIR}/linear_algebra/Matrix/NAFPack_matrix_tools.f90
+    ${SRC_DIR}/math_utils/NAFPack_math_utils.f90
+    ${SRC_DIR}/memory/memory_monitor.c
+    ${SRC_DIR}/memory/NAFPack_memory_management_complex.f90
+    ${SRC_DIR}/memory/NAFPack_memory_management_integer.f90
+    ${SRC_DIR}/memory/NAFPack_memory_management_real.f90
+    ${SRC_DIR}/memory/NAFPack_memory_management.f90
+    ${SRC_DIR}/memory/NAFPack_memory_monitor.f90
 )
 
 add_library(${PROJECT_NAME} ${NAFPACK_SOURCES})

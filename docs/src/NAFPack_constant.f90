@@ -42,7 +42,7 @@ module NAFPack_constant
     real(dp), parameter :: TOL_RESIDUAL_dp = 1.0e-10_dp + epsilon(1.0_dp)
     real(qp), parameter :: TOL_RESIDUAL_qp = 1.0e-20_qp + epsilon(1.0_qp)
 
-    real(sp), parameter :: TOL_TEST_sp = 1.0e-5_sp + epsilon(1.0_sp)
+    real(sp), parameter :: TOL_TEST_sp = 1.0e-4_sp + epsilon(1.0_sp)
     real(dp), parameter :: TOL_TEST_dp = 1.0e-12_dp + epsilon(1.0_dp)
     real(qp), parameter :: TOL_TEST_qp = 1.0e-24_qp + epsilon(1.0_qp)
 

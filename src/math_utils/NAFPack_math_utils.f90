@@ -10,7 +10,7 @@ module NAFPack_math_utils
 
 contains
 
-    function sieve_of_eratosthenes(N) result(primes)
+    pure function sieve_of_eratosthenes(N) result(primes)
         integer(isp), intent(in) :: N
         integer(isp), dimension(:), allocatable :: primes
         logical, dimension(:), allocatable :: is_prime
@@ -42,7 +42,7 @@ contains
         deallocate (is_prime)
     end function sieve_of_eratosthenes
 
-    function is_power_of_two(N) result(value)
+    pure function is_power_of_two(N) result(value)
         integer(isp), intent(in) :: N
         logical :: value
 
@@ -53,7 +53,7 @@ contains
         end if
     end function is_power_of_two
 
-    function power_of_p_exponent(N, p) result(exponent)
+    pure function power_of_p_exponent(N, p) result(exponent)
         integer(isp), intent(in) :: N, p
         integer(isp) :: exponent
         integer(isp) :: tmp

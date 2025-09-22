@@ -31,217 +31,405 @@ contains
     subroutine test_real_dft2_sp(error)
         type(error_type), allocatable, intent(out) :: error
 
-        integer, parameter :: Nx = 5, Ny = 10
+        integer, parameter :: Nx = 5, Ny = 10, number_tests = 3
         type(Fourier_Transform) :: FT
         type(LoopMethod) :: loop_method
-        real(sp), dimension(Nx, Ny) :: signal
-        complex(sp), dimension(Nx, Ny) :: fs_exact, fs_DFT2
+        real(sp), dimension(Nx) :: xlist
+        real(sp), dimension(Ny) :: ylist
+        real(sp), dimension(number_tests, Nx, Ny) :: signal
+        real(sp), dimension(Nx, Ny) :: signal_used
+        complex(sp), dimension(number_tests, Nx, Ny) :: fs_exact
+        complex(sp), dimension(Nx, Ny) :: fs_DFT2
+        integer :: i, j, freqx, freqy
 
-        signal = 0._sp
-        signal(1, 1) = 1._sp
+        xlist = [(real((i - 1), kind=sp), i=1, Nx)]
+        xlist = xlist * 2 * pi_sp / Nx
 
-        fs_exact = (1._sp, 0._sp)
+        ylist = [(real((i - 1), kind=sp), i=1, Ny)]
+        ylist = ylist * 2 * pi_sp / Ny
 
-        loop_method = init_loop_method(use_do_classic=.true.)
-        fs_DFT2 = FT%dft(signal, loop_method=loop_method)
-        call check(error, maxval(abs(fs_exact - fs_DFT2)) < TOL_TEST_sp)
-        if (allocated(error)) return
+        ! test 1: Dirac delta function
+        signal(1, :, :) = 0._sp
+        signal(1, 1, 1) = 1._sp
 
-        loop_method = init_loop_method(use_vectorized=.true.)
-        fs_DFT2 = FT%dft(signal, loop_method=loop_method)
-        call check(error, maxval(abs(fs_exact - fs_DFT2)) < TOL_TEST_sp)
-        if (allocated(error)) return
+        fs_exact(1, :, :) = (1._sp, 0._sp)
 
-        loop_method = init_loop_method(use_do_concurrent=.true.)
-        fs_DFT2 = FT%dft(signal, loop_method=loop_method)
-        call check(error, maxval(abs(fs_exact - fs_DFT2)) < TOL_TEST_sp)
-        if (allocated(error)) return
+        !test 2: sinusoidal signal of frequency 2
+        freqx = 2
+        freqy = 1
+        do i = 1, Nx
+            do j = 1, Ny
+                signal(2, i, j) = cos(freqx * xlist(i) + freqy * ylist(j))
+            end do
+        end do
 
-        loop_method = init_loop_method(use_openmp=.true., num_threads=4)
-        fs_DFT2 = FT%dft(signal, loop_method=loop_method)
-        call check(error, maxval(abs(fs_exact - fs_DFT2)) < TOL_TEST_sp)
-        if (allocated(error)) return
+        fs_exact(2, :, :) = (0._sp, 0._sp)
+        fs_exact(2, freqx + 1, freqy + 1) = cmplx(real(Nx * Ny, kind=sp) / 2, 0._sp, kind=sp)
+        fs_exact(2, Nx - freqx + 1, Ny - freqy + 1) = cmplx(real(Nx * Ny, kind=sp) / 2, 0._sp, kind=sp)
+
+        ! test 3: constant signal (DC component)
+        signal(3, :, :) = 1._sp
+
+        fs_exact(3, :, :) = (0._sp, 0._sp)
+        fs_exact(3, 1, 1) = cmplx(real(Nx * Ny, kind=sp), 0._sp, kind=sp)
+
+        do i = 1, number_tests
+            signal_used(:, :) = signal(i, :, :)
+            loop_method = init_loop_method(use_do_classic=.true.)
+            fs_DFT2 = FT%dft(signal_used, loop_method=loop_method)
+            call check(error, maxval(abs(fs_exact(i, :, :) - fs_DFT2)) < TOL_TEST_sp)
+            if (allocated(error)) return
+
+            loop_method = init_loop_method(use_vectorized=.true.)
+            fs_DFT2 = FT%dft(signal_used, loop_method=loop_method)
+            call check(error, maxval(abs(fs_exact(i, :, :) - fs_DFT2)) < TOL_TEST_sp)
+            if (allocated(error)) return
+
+            loop_method = init_loop_method(use_do_concurrent=.true.)
+            fs_DFT2 = FT%dft(signal_used, loop_method=loop_method)
+            call check(error, maxval(abs(fs_exact(i, :, :) - fs_DFT2)) < TOL_TEST_sp)
+            if (allocated(error)) return
+
+            loop_method = init_loop_method(use_openmp=.true., num_threads=4)
+            fs_DFT2 = FT%dft(signal_used, loop_method=loop_method)
+            call check(error, maxval(abs(fs_exact(i, :, :) - fs_DFT2)) < TOL_TEST_sp)
+            if (allocated(error)) return
+        end do
 
     end subroutine test_real_dft2_sp
 
     subroutine test_real_idft2_sp(error)
         type(error_type), allocatable, intent(out) :: error
 
-        integer, parameter :: Nx = 5, Ny = 10
+        integer, parameter :: Nx = 5, Ny = 10, number_tests = 3
         type(Fourier_Transform) :: FT
         type(LoopMethod) :: loop_method
-        real(sp), dimension(Nx, Ny) :: fs
-        complex(sp), dimension(Nx, Ny) :: signal_exact, signal_IDFT2
+        real(sp), dimension(Nx) :: xlist
+        real(sp), dimension(Ny) :: ylist
+        real(sp), dimension(number_tests, Nx, Ny) :: fs
+        real(sp), dimension(Nx, Ny) :: fs_used
+        complex(sp), dimension(number_tests, Nx, Ny) :: signal_exact
+        complex(sp), dimension(Nx, Ny) :: signal_IDFT2
+        integer :: i, j, freqx, freqy
 
-        fs = 1._sp
+        xlist = [(real((i - 1), kind=sp), i=1, Nx)]
+        xlist = xlist * 2 * pi_sp / Nx
 
-        signal_exact = (0._sp, 0._sp)
-        signal_exact(1, 1) = (1._sp, 0._sp)
+        ylist = [(real((i - 1), kind=sp), i=1, Ny)]
+        ylist = ylist * 2 * pi_sp / Ny
 
-        loop_method = init_loop_method(use_do_classic=.true.)
-        signal_IDFT2 = FT%idft(fs, loop_method=loop_method)
-        call check(error, maxval(abs(signal_exact - signal_IDFT2)) < TOL_TEST_sp)
-        if (allocated(error)) return
+        ! test 1: Dirac delta function
+        signal_exact(1, :, :) = 0._sp
+        signal_exact(1, 1, 1) = 1._sp
 
-        loop_method = init_loop_method(use_vectorized=.true.)
-        signal_IDFT2 = FT%idft(fs, loop_method=loop_method)
-        call check(error, maxval(abs(signal_exact - signal_IDFT2)) < TOL_TEST_sp)
-        if (allocated(error)) return
+        fs(1, :, :) = (1._sp, 0._sp)
 
-        loop_method = init_loop_method(use_do_concurrent=.true.)
-        signal_IDFT2 = FT%idft(fs, loop_method=loop_method)
-        call check(error, maxval(abs(signal_exact - signal_IDFT2)) < TOL_TEST_sp)
-        if (allocated(error)) return
+        !test 2: sinusoidal signal of frequency 2
+        freqx = 2
+        freqy = 1
+        do i = 1, Nx
+            do j = 1, Ny
+                signal_exact(2, i, j) = cos(freqx * xlist(i) + freqy * ylist(j))
+            end do
+        end do
 
-        loop_method = init_loop_method(use_vectorized=.true.)
-        signal_IDFT2 = FT%idft(fs, loop_method=loop_method)
-        call check(error, maxval(abs(signal_exact - signal_IDFT2)) < TOL_TEST_sp)
-        if (allocated(error)) return
+        fs(2, :, :) = (0._sp, 0._sp)
+        fs(2, freqx + 1, freqy + 1) = cmplx(real(Nx * Ny, kind=sp) / 2, 0._sp, kind=sp)
+        fs(2, Nx - freqx + 1, Ny - freqy + 1) = cmplx(real(Nx * Ny, kind=sp) / 2, 0._sp, kind=sp)
+
+        ! test 3: constant signal (DC component)
+        signal_exact(3, :, :) = 1._sp
+
+        fs(3, :, :) = (0._sp, 0._sp)
+        fs(3, 1, 1) = cmplx(real(Nx * Ny, kind=sp), 0._sp, kind=sp)
+
+        do i = 1, number_tests
+            fs_used(:, :) = fs(i, :, :)
+            loop_method = init_loop_method(use_do_classic=.true.)
+            signal_IDFT2 = FT%idft(fs_used, loop_method=loop_method)
+            call check(error, maxval(abs(signal_exact(i, :, :) - signal_IDFT2)) < TOL_TEST_sp)
+            if (allocated(error)) return
+
+            loop_method = init_loop_method(use_vectorized=.true.)
+            signal_IDFT2 = FT%idft(fs_used, loop_method=loop_method)
+            call check(error, maxval(abs(signal_exact(i, :, :) - signal_IDFT2)) < TOL_TEST_sp)
+            if (allocated(error)) return
+
+            loop_method = init_loop_method(use_do_concurrent=.true.)
+            signal_IDFT2 = FT%idft(fs_used, loop_method=loop_method)
+            call check(error, maxval(abs(signal_exact(i, :, :) - signal_IDFT2)) < TOL_TEST_sp)
+            if (allocated(error)) return
+
+            loop_method = init_loop_method(use_openmp=.true., num_threads=4)
+            signal_IDFT2 = FT%idft(fs_used, loop_method=loop_method)
+            call check(error, maxval(abs(signal_exact(i, :, :) - signal_IDFT2)) < TOL_TEST_sp)
+            if (allocated(error)) return
+        end do
 
     end subroutine test_real_idft2_sp
 
     subroutine test_real_dft2_dp(error)
         type(error_type), allocatable, intent(out) :: error
 
-        integer, parameter :: Nx = 5, Ny = 10
+        integer, parameter :: Nx = 5, Ny = 10, number_tests = 3
         type(Fourier_Transform) :: FT
         type(LoopMethod) :: loop_method
-        real(dp), dimension(Nx, Ny) :: signal
-        complex(dp), dimension(Nx, Ny) :: fs_exact, fs_DFT2
+        real(dp), dimension(Nx) :: xlist
+        real(dp), dimension(Ny) :: ylist
+        real(dp), dimension(number_tests, Nx, Ny) :: signal
+        real(dp), dimension(Nx, Ny) :: signal_used
+        complex(dp), dimension(number_tests, Nx, Ny) :: fs_exact
+        complex(dp), dimension(Nx, Ny) :: fs_DFT2
+        integer :: i, j, freqx, freqy
 
-        signal = 0._dp
-        signal(1, 1) = 1._dp
+        xlist = [(real((i - 1), kind=dp), i=1, Nx)]
+        xlist = xlist * 2 * pi_dp / Nx
 
-        fs_exact = (1._dp, 0._dp)
+        ylist = [(real((i - 1), kind=dp), i=1, Ny)]
+        ylist = ylist * 2 * pi_dp / Ny
 
-        loop_method = init_loop_method(use_do_classic=.true.)
-        fs_DFT2 = FT%dft(signal, loop_method=loop_method)
-        call check(error, maxval(abs(fs_exact - fs_DFT2)) < TOL_TEST_dp)
-        if (allocated(error)) return
+        ! test 1: Dirac delta function
+        signal(1, :, :) = 0._dp
+        signal(1, 1, 1) = 1._dp
+        fs_exact(1, :, :) = cmplx(1._dp, 0._dp, kind=dp)
 
-        loop_method = init_loop_method(use_vectorized=.true.)
-        fs_DFT2 = FT%dft(signal, loop_method=loop_method)
-        call check(error, maxval(abs(fs_exact - fs_DFT2)) < TOL_TEST_dp)
-        if (allocated(error)) return
+        ! test 2: sinusoidal signal of frequency 2
+        freqx = 2
+        freqy = 1
+        do i = 1, Nx
+            do j = 1, Ny
+                signal(2, i, j) = cos(freqx * xlist(i) + freqy * ylist(j))
+            end do
+        end do
+        fs_exact(2, :, :) = cmplx(0._dp, 0._dp, kind=dp)
+        fs_exact(2, freqx + 1, freqy + 1) = cmplx(real(Nx * Ny, kind=dp) / 2, 0._dp, kind=dp)
+        fs_exact(2, Nx - freqx + 1, Ny - freqy + 1) = cmplx(real(Nx * Ny, kind=dp) / 2, 0._dp, kind=dp)
 
-        loop_method = init_loop_method(use_do_concurrent=.true.)
-        fs_DFT2 = FT%dft(signal, loop_method=loop_method)
-        call check(error, maxval(abs(fs_exact - fs_DFT2)) < TOL_TEST_dp)
-        if (allocated(error)) return
+        ! test 3: constant signal (DC component)
+        signal(3, :, :) = 1._dp
+        fs_exact(3, :, :) = cmplx(0._dp, 0._dp, kind=dp)
+        fs_exact(3, 1, 1) = cmplx(real(Nx * Ny, kind=dp), 0._dp, kind=dp)
 
-        loop_method = init_loop_method(use_openmp=.true., num_threads=4)
-        fs_DFT2 = FT%dft(signal, loop_method=loop_method)
-        call check(error, maxval(abs(fs_exact - fs_DFT2)) < TOL_TEST_dp)
-        if (allocated(error)) return
+        do i = 1, number_tests
+            signal_used(:, :) = signal(i, :, :)
+            loop_method = init_loop_method(use_do_classic=.true.)
+            fs_DFT2 = FT%dft(signal_used, loop_method=loop_method)
+            call check(error, maxval(abs(fs_exact(i, :, :) - fs_DFT2)) < TOL_TEST_dp)
+            if (allocated(error)) return
 
+            loop_method = init_loop_method(use_vectorized=.true.)
+            fs_DFT2 = FT%dft(signal_used, loop_method=loop_method)
+            call check(error, maxval(abs(fs_exact(i, :, :) - fs_DFT2)) < TOL_TEST_dp)
+            if (allocated(error)) return
+
+            loop_method = init_loop_method(use_do_concurrent=.true.)
+            fs_DFT2 = FT%dft(signal_used, loop_method=loop_method)
+            call check(error, maxval(abs(fs_exact(i, :, :) - fs_DFT2)) < TOL_TEST_dp)
+            if (allocated(error)) return
+
+            loop_method = init_loop_method(use_openmp=.true., num_threads=4)
+            fs_DFT2 = FT%dft(signal_used, loop_method=loop_method)
+            call check(error, maxval(abs(fs_exact(i, :, :) - fs_DFT2)) < TOL_TEST_dp)
+            if (allocated(error)) return
+        end do
     end subroutine test_real_dft2_dp
 
     subroutine test_real_idft2_dp(error)
         type(error_type), allocatable, intent(out) :: error
 
-        integer, parameter :: Nx = 5, Ny = 10
+        integer, parameter :: Nx = 5, Ny = 10, number_tests = 3
         type(Fourier_Transform) :: FT
         type(LoopMethod) :: loop_method
-        real(dp), dimension(Nx, Ny) :: fs
-        complex(dp), dimension(Nx, Ny) :: signal_exact, signal_IDFT2
+        real(dp), dimension(Nx) :: xlist
+        real(dp), dimension(Ny) :: ylist
+        real(dp), dimension(number_tests, Nx, Ny) :: fs
+        real(dp), dimension(Nx, Ny) :: fs_used
+        complex(dp), dimension(number_tests, Nx, Ny) :: signal_exact
+        complex(dp), dimension(Nx, Ny) :: signal_IDFT2
+        integer :: i, j, freqx, freqy
 
-        fs = 1._dp
+        xlist = [(real((i - 1), kind=dp), i=1, Nx)]
+        xlist = xlist * 2 * pi_dp / Nx
 
-        signal_exact = (0._dp, 0._dp)
-        signal_exact(1, 1) = (1._dp, 0._dp)
+        ylist = [(real((i - 1), kind=dp), i=1, Ny)]
+        ylist = ylist * 2 * pi_dp / Ny
 
-        loop_method = init_loop_method(use_do_classic=.true.)
-        signal_IDFT2 = FT%idft(fs, loop_method=loop_method)
-        call check(error, maxval(abs(signal_exact - signal_IDFT2)) < TOL_TEST_dp)
-        if (allocated(error)) return
+        ! test 1: Dirac delta function
+        signal_exact(1, :, :) = 0._dp
+        signal_exact(1, 1, 1) = 1._dp
+        fs(1, :, :) = cmplx(1._dp, 0._dp, kind=dp)
 
-        loop_method = init_loop_method(use_vectorized=.true.)
-        signal_IDFT2 = FT%idft(fs, loop_method=loop_method)
-        call check(error, maxval(abs(signal_exact - signal_IDFT2)) < TOL_TEST_dp)
-        if (allocated(error)) return
+        ! test 2: sinusoidal signal of frequency 2
+        freqx = 2
+        freqy = 1
+        do i = 1, Nx
+            do j = 1, Ny
+                signal_exact(2, i, j) = cos(freqx * xlist(i) + freqy * ylist(j))
+            end do
+        end do
+        fs(2, :, :) = cmplx(0._dp, 0._dp, kind=dp)
+        fs(2, freqx + 1, freqy + 1) = cmplx(real(Nx * Ny, kind=dp) / 2, 0._dp, kind=dp)
+        fs(2, Nx - freqx + 1, Ny - freqy + 1) = cmplx(real(Nx * Ny, kind=dp) / 2, 0._dp, kind=dp)
 
-        loop_method = init_loop_method(use_do_concurrent=.true.)
-        signal_IDFT2 = FT%idft(fs, loop_method=loop_method)
-        call check(error, maxval(abs(signal_exact - signal_IDFT2)) < TOL_TEST_dp)
-        if (allocated(error)) return
+        ! test 3: constant signal (DC component)
+        signal_exact(3, :, :) = 1._dp
+        fs(3, :, :) = cmplx(0._dp, 0._dp, kind=dp)
+        fs(3, 1, 1) = cmplx(real(Nx * Ny, kind=dp), 0._dp, kind=dp)
 
-        loop_method = init_loop_method(use_vectorized=.true.)
-        signal_IDFT2 = FT%idft(fs, loop_method=loop_method)
-        call check(error, maxval(abs(signal_exact - signal_IDFT2)) < TOL_TEST_dp)
-        if (allocated(error)) return
+        do i = 1, number_tests
+            fs_used(:, :) = fs(i, :, :)
+            loop_method = init_loop_method(use_do_classic=.true.)
+            signal_IDFT2 = FT%idft(fs_used, loop_method=loop_method)
+            call check(error, maxval(abs(signal_exact(i, :, :) - signal_IDFT2)) < TOL_TEST_dp)
+            if (allocated(error)) return
 
+            loop_method = init_loop_method(use_vectorized=.true.)
+            signal_IDFT2 = FT%idft(fs_used, loop_method=loop_method)
+            call check(error, maxval(abs(signal_exact(i, :, :) - signal_IDFT2)) < TOL_TEST_dp)
+            if (allocated(error)) return
+
+            loop_method = init_loop_method(use_do_concurrent=.true.)
+            signal_IDFT2 = FT%idft(fs_used, loop_method=loop_method)
+            call check(error, maxval(abs(signal_exact(i, :, :) - signal_IDFT2)) < TOL_TEST_dp)
+            if (allocated(error)) return
+
+            loop_method = init_loop_method(use_openmp=.true., num_threads=4)
+            signal_IDFT2 = FT%idft(fs_used, loop_method=loop_method)
+            call check(error, maxval(abs(signal_exact(i, :, :) - signal_IDFT2)) < TOL_TEST_dp)
+            if (allocated(error)) return
+        end do
     end subroutine test_real_idft2_dp
 
     subroutine test_real_dft2_qp(error)
         type(error_type), allocatable, intent(out) :: error
 
-        integer, parameter :: Nx = 5, Ny = 10
+        integer, parameter :: Nx = 5, Ny = 10, number_tests = 3
         type(Fourier_Transform) :: FT
         type(LoopMethod) :: loop_method
-        real(sp), dimension(Nx, Ny) :: signal
-        complex(sp), dimension(Nx, Ny) :: fs_exact, fs_DFT2
+        real(qp), dimension(Nx) :: xlist
+        real(qp), dimension(Ny) :: ylist
+        real(qp), dimension(number_tests, Nx, Ny) :: signal
+        real(qp), dimension(Nx, Ny) :: signal_used
+        complex(qp), dimension(number_tests, Nx, Ny) :: fs_exact
+        complex(qp), dimension(Nx, Ny) :: fs_DFT2
+        integer :: i, j, freqx, freqy
 
-        signal = 0._qp
-        signal(1, 1) = 1._qp
+        xlist = [(real((i - 1), kind=qp), i=1, Nx)]
+        xlist = xlist * 2 * pi_qp / Nx
 
-        fs_exact = (1._qp, 0._qp)
+        ylist = [(real((i - 1), kind=qp), i=1, Ny)]
+        ylist = ylist * 2 * pi_qp / Ny
 
-        loop_method = init_loop_method(use_do_classic=.true.)
-        fs_DFT2 = FT%dft(signal, loop_method=loop_method)
-        call check(error, maxval(abs(fs_exact - fs_DFT2)) < TOL_TEST_qp)
-        if (allocated(error)) return
+        ! test 1: Dirac delta function
+        signal(1, :, :) = 0._qp
+        signal(1, 1, 1) = 1._qp
+        fs_exact(1, :, :) = cmplx(1._qp, 0._qp, kind=qp)
 
-        loop_method = init_loop_method(use_vectorized=.true.)
-        fs_DFT2 = FT%dft(signal, loop_method=loop_method)
-        call check(error, maxval(abs(fs_exact - fs_DFT2)) < TOL_TEST_qp)
-        if (allocated(error)) return
+        ! test 2: sinusoidal signal of frequency 2
+        freqx = 2
+        freqy = 1
+        do i = 1, Nx
+            do j = 1, Ny
+                signal(2, i, j) = cos(freqx * xlist(i) + freqy * ylist(j))
+            end do
+        end do
+        fs_exact(2, :, :) = cmplx(0._qp, 0._qp, kind=qp)
+        fs_exact(2, freqx + 1, freqy + 1) = cmplx(real(Nx * Ny, kind=qp) / 2, 0._qp, kind=qp)
+        fs_exact(2, Nx - freqx + 1, Ny - freqy + 1) = cmplx(real(Nx * Ny, kind=qp) / 2, 0._qp, kind=qp)
 
-        loop_method = init_loop_method(use_do_concurrent=.true.)
-        fs_DFT2 = FT%dft(signal, loop_method=loop_method)
-        call check(error, maxval(abs(fs_exact - fs_DFT2)) < TOL_TEST_qp)
-        if (allocated(error)) return
+        ! test 3: constant signal (DC component)
+        signal(3, :, :) = 1._qp
+        fs_exact(3, :, :) = cmplx(0._qp, 0._qp, kind=qp)
+        fs_exact(3, 1, 1) = cmplx(real(Nx * Ny, kind=qp), 0._qp, kind=qp)
 
-        loop_method = init_loop_method(use_openmp=.true., num_threads=4)
-        fs_DFT2 = FT%dft(signal, loop_method=loop_method)
-        call check(error, maxval(abs(fs_exact - fs_DFT2)) < TOL_TEST_qp)
-        if (allocated(error)) return
+        do i = 1, number_tests
+            signal_used(:, :) = signal(i, :, :)
+            loop_method = init_loop_method(use_do_classic=.true.)
+            fs_DFT2 = FT%dft(signal_used, loop_method=loop_method)
+            call check(error, maxval(abs(fs_exact(i, :, :) - fs_DFT2)) < TOL_TEST_qp)
+            if (allocated(error)) return
 
+            loop_method = init_loop_method(use_vectorized=.true.)
+            fs_DFT2 = FT%dft(signal_used, loop_method=loop_method)
+            call check(error, maxval(abs(fs_exact(i, :, :) - fs_DFT2)) < TOL_TEST_qp)
+            if (allocated(error)) return
+
+            loop_method = init_loop_method(use_do_concurrent=.true.)
+            fs_DFT2 = FT%dft(signal_used, loop_method=loop_method)
+            call check(error, maxval(abs(fs_exact(i, :, :) - fs_DFT2)) < TOL_TEST_qp)
+            if (allocated(error)) return
+
+            loop_method = init_loop_method(use_openmp=.true., num_threads=4)
+            fs_DFT2 = FT%dft(signal_used, loop_method=loop_method)
+            call check(error, maxval(abs(fs_exact(i, :, :) - fs_DFT2)) < TOL_TEST_qp)
+            if (allocated(error)) return
+        end do
     end subroutine test_real_dft2_qp
 
     subroutine test_real_idft2_qp(error)
         type(error_type), allocatable, intent(out) :: error
 
-        integer, parameter :: Nx = 5, Ny = 10
+        integer, parameter :: Nx = 5, Ny = 10, number_tests = 3
         type(Fourier_Transform) :: FT
         type(LoopMethod) :: loop_method
-        real(qp), dimension(Nx, Ny) :: fs
-        complex(qp), dimension(Nx, Ny) :: signal_exact, signal_IDFT2
+        real(qp), dimension(Nx) :: xlist
+        real(qp), dimension(Ny) :: ylist
+        real(qp), dimension(number_tests, Nx, Ny) :: fs
+        real(qp), dimension(Nx, Ny) :: fs_used
+        complex(qp), dimension(number_tests, Nx, Ny) :: signal_exact
+        complex(qp), dimension(Nx, Ny) :: signal_IDFT2
+        integer :: i, j, freqx, freqy
 
-        fs = 1._qp
+        xlist = [(real((i - 1), kind=qp), i=1, Nx)]
+        xlist = xlist * 2 * pi_qp / Nx
 
-        signal_exact = (0._qp, 0._qp)
-        signal_exact(1, 1) = (1._qp, 0._qp)
+        ylist = [(real((i - 1), kind=qp), i=1, Ny)]
+        ylist = ylist * 2 * pi_qp / Ny
 
-        loop_method = init_loop_method(use_do_classic=.true.)
-        signal_IDFT2 = FT%idft(fs, loop_method=loop_method)
-        call check(error, maxval(abs(signal_exact - signal_IDFT2)) < TOL_TEST_qp)
-        if (allocated(error)) return
+        ! test 1: Dirac delta function
+        signal_exact(1, :, :) = 0._qp
+        signal_exact(1, 1, 1) = 1._qp
+        fs(1, :, :) = cmplx(1._qp, 0._qp, kind=qp)
 
-        loop_method = init_loop_method(use_vectorized=.true.)
-        signal_IDFT2 = FT%idft(fs, loop_method=loop_method)
-        call check(error, maxval(abs(signal_exact - signal_IDFT2)) < TOL_TEST_qp)
-        if (allocated(error)) return
+        ! test 2: sinusoidal signal of frequency 2
+        freqx = 2
+        freqy = 1
+        do i = 1, Nx
+            do j = 1, Ny
+                signal_exact(2, i, j) = cos(freqx * xlist(i) + freqy * ylist(j))
+            end do
+        end do
+        fs(2, :, :) = cmplx(0._qp, 0._qp, kind=qp)
+        fs(2, freqx + 1, freqy + 1) = cmplx(real(Nx * Ny, kind=qp) / 2, 0._qp, kind=qp)
+        fs(2, Nx - freqx + 1, Ny - freqy + 1) = cmplx(real(Nx * Ny, kind=qp) / 2, 0._qp, kind=qp)
 
-        loop_method = init_loop_method(use_do_concurrent=.true.)
-        signal_IDFT2 = FT%idft(fs, loop_method=loop_method)
-        call check(error, maxval(abs(signal_exact - signal_IDFT2)) < TOL_TEST_qp)
-        if (allocated(error)) return
+        ! test 3: constant signal (DC component)
+        signal_exact(3, :, :) = 1._qp
+        fs(3, :, :) = cmplx(0._qp, 0._qp, kind=qp)
+        fs(3, 1, 1) = cmplx(real(Nx * Ny, kind=qp), 0._qp, kind=qp)
 
-        loop_method = init_loop_method(use_vectorized=.true.)
-        signal_IDFT2 = FT%idft(fs, loop_method=loop_method)
-        call check(error, maxval(abs(signal_exact - signal_IDFT2)) < TOL_TEST_qp)
-        if (allocated(error)) return
+        do i = 1, number_tests
+            fs_used(:, :) = fs(i, :, :)
+            loop_method = init_loop_method(use_do_classic=.true.)
+            signal_IDFT2 = FT%idft(fs_used, loop_method=loop_method)
+            call check(error, maxval(abs(signal_exact(i, :, :) - signal_IDFT2)) < TOL_TEST_qp)
+            if (allocated(error)) return
 
+            loop_method = init_loop_method(use_vectorized=.true.)
+            signal_IDFT2 = FT%idft(fs_used, loop_method=loop_method)
+            call check(error, maxval(abs(signal_exact(i, :, :) - signal_IDFT2)) < TOL_TEST_qp)
+            if (allocated(error)) return
+
+            loop_method = init_loop_method(use_do_concurrent=.true.)
+            signal_IDFT2 = FT%idft(fs_used, loop_method=loop_method)
+            call check(error, maxval(abs(signal_exact(i, :, :) - signal_IDFT2)) < TOL_TEST_qp)
+            if (allocated(error)) return
+
+            loop_method = init_loop_method(use_openmp=.true., num_threads=4)
+            signal_IDFT2 = FT%idft(fs_used, loop_method=loop_method)
+            call check(error, maxval(abs(signal_exact(i, :, :) - signal_IDFT2)) < TOL_TEST_qp)
+            if (allocated(error)) return
+        end do
     end subroutine test_real_idft2_qp
 
 end module test_Fourier_Transform_dft2_real

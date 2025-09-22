@@ -2,13 +2,13 @@ if(CMAKE_Fortran_COMPILER_ID STREQUAL "GNU")
     set(
         CMAKE_Fortran_FLAGS_INIT
         "-fimplicit-none"
-        "-ffree-line-length-132"
+        "-ffree-line-length-2000"
     )
     set(
         CMAKE_Fortran_FLAGS_RELEASE_INIT
         "-O2"
         "-fimplicit-none"
-        "-ffree-line-length-132"
+        "-ffree-line-length-2000"
     )
     set(
         CMAKE_Fortran_FLAGS_DEBUG_INIT
@@ -16,6 +16,7 @@ if(CMAKE_Fortran_COMPILER_ID STREQUAL "GNU")
         "-Wextra"
         "-Wimplicit-procedure"
         "-Werror=implicit-procedure"
+        "-ffree-line-length-2000"
         "-std=f2018"
         "-g"
         "-fbacktrace"

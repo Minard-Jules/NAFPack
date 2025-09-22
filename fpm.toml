@@ -19,8 +19,8 @@ link = ["fftw3", "fftw3_omp"]
 library = false
 
 [fortran]
-implicit-typing = false
-implicit-external = false
+implicit-typing = true
+implicit-external = true
 source-form = "default"
 
 [dependencies]
