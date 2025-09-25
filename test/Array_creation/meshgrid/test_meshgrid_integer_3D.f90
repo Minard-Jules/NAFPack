@@ -1,38 +1,17 @@
-module test_meshgrid_integer_3D
-
-    use NAFPack_kinds, only: i8, i16, isp, idp
-    use NAFPack_constant, only: TOL_TEST_sp, TOL_TEST_dp, TOL_TEST_qp
-    use testdrive, only: new_unittest, unittest_type, error_type, check
-    use NAFPack_loop_method, only: LoopMethod, init_loop_method
-    use NAFPack_meshgrid, only: meshgrid, INDEXING_IJ, INDEXING_XY
+submodule (test_meshgrid) test_meshgrid_integer_3D
 
     implicit none(type, external)
 
-    private
-    public :: collect_meshgrid
-
 contains
 
-    subroutine collect_meshgrid(testsuite)
-        type(unittest_type), allocatable, intent(out) :: testsuite(:)
-
-        testsuite = [ &
-                    new_unittest("meshgrid integer i8 3D", test_meshgrid_i8_3D), &
-                    new_unittest("meshgrid integer i16 3D", test_meshgrid_i16_3D), &
-                    new_unittest("meshgrid integer isp 3D", test_meshgrid_isp_3D), &
-                    new_unittest("meshgrid integer idp 3D", test_meshgrid_idp_3D) &
-                    ]
-
-    end subroutine collect_meshgrid
-
-    subroutine test_meshgrid_i8_3D(error)
+    module subroutine test_meshgrid_i8_3D(error)
         type(error_type), allocatable, intent(out) :: error
 
         integer, parameter :: nx = 3, ny = 2, nz = 4
         integer(i8), dimension(:), allocatable :: x_vector, y_vector, z_vector
         integer(i8), dimension(:, :, :), allocatable :: X, Y, Z
         type(LoopMethod) :: loop_method
-        integer :: i
+        integer(isp) :: i
 
         allocate(x_vector(nx), y_vector(ny))
 
@@ -90,7 +69,7 @@ contains
         integer(i8), dimension(:), intent(in) :: x_vector, y_vector, z_vector
         integer(i8), dimension(:, :, :), intent(in) :: X, Y, Z
         integer, intent(in) :: nx, ny, nz
-        integer :: i, j, k
+        integer(isp) :: i, j, k
 
         call check(error, size(X, 1) == ny .and. size(X, 2) == nx .and. size(X, 3) == nz)
         if (allocated(error)) return
@@ -126,7 +105,7 @@ contains
         integer(i8), dimension(:), intent(in) :: x_vector, y_vector, z_vector
         integer(i8), dimension(:, :, :), intent(in) :: X, Y, Z
         integer, intent(in) :: nx, ny, nz
-        integer :: i, j, k
+        integer(isp) :: i, j, k
 
         call check(error, size(X, 1) == nx .and. size(X, 2) == ny .and. size(X, 3) == nz)
         if (allocated(error)) return
@@ -157,14 +136,14 @@ contains
         end do
     end subroutine check_meshgrid_i8_3D_xy
 
-    subroutine test_meshgrid_i16_3D(error)
+    module subroutine test_meshgrid_i16_3D(error)
         type(error_type), allocatable, intent(out) :: error
 
         integer, parameter :: nx = 3, ny = 2, nz = 4
         integer(i16), dimension(:), allocatable :: x_vector, y_vector, z_vector
         integer(i16), dimension(:, :, :), allocatable :: X, Y, Z
         type(LoopMethod) :: loop_method
-        integer :: i
+        integer(isp) :: i
 
         allocate(x_vector(nx), y_vector(ny), z_vector(nz))
 
@@ -222,7 +201,7 @@ contains
         integer(i16), dimension(:), intent(in) :: x_vector, y_vector, z_vector
         integer(i16), dimension(:, :, :), intent(in) :: X, Y, Z
         integer, intent(in) :: nx, ny, nz
-        integer :: i, j, k
+        integer(isp) :: i, j, k
 
         call check(error, size(X, 1) == ny .and. size(X, 2) == nx .and. size(X, 3) == nz)
         if (allocated(error)) return
@@ -258,7 +237,7 @@ contains
         integer(i16), dimension(:), intent(in) :: x_vector, y_vector, z_vector
         integer(i16), dimension(:, :, :), intent(in) :: X, Y, Z
         integer, intent(in) :: nx, ny, nz
-        integer :: i, j, k
+        integer(isp) :: i, j, k
 
         call check(error, size(X, 1) == nx .and. size(X, 2) == ny .and. size(X, 3) == nz)
         if (allocated(error)) return
@@ -289,14 +268,14 @@ contains
         end do
     end subroutine check_meshgrid_i16_3D_xy
 
-    subroutine test_meshgrid_isp_3D(error)
+    module subroutine test_meshgrid_isp_3D(error)
         type(error_type), allocatable, intent(out) :: error
 
         integer, parameter :: nx = 3, ny = 2, nz = 4
         integer(isp), dimension(:), allocatable :: x_vector, y_vector, z_vector
         integer(isp), dimension(:, :, :), allocatable :: X, Y, Z
         type(LoopMethod) :: loop_method
-        integer :: i
+        integer(isp) :: i
 
         allocate(x_vector(nx), y_vector(ny), z_vector(nz))
 
@@ -354,7 +333,7 @@ contains
         integer(isp), dimension(:), intent(in) :: x_vector, y_vector, z_vector
         integer(isp), dimension(:, :, :), intent(in) :: X, Y, Z
         integer, intent(in) :: nx, ny, nz
-        integer :: i, j, k
+        integer(isp) :: i, j, k
 
         call check(error, size(X, 1) == ny .and. size(X, 2) == nx .and. size(X, 3) == nz)
         if (allocated(error)) return
@@ -390,7 +369,7 @@ contains
         integer(isp), dimension(:), intent(in) :: x_vector, y_vector, z_vector
         integer(isp), dimension(:, :, :), intent(in) :: X, Y, Z
         integer, intent(in) :: nx, ny, nz
-        integer :: i, j, k
+        integer(isp) :: i, j, k
 
         call check(error, size(X, 1) == nx .and. size(X, 2) == ny .and. size(X, 3) == nz)
         if (allocated(error)) return
@@ -421,14 +400,14 @@ contains
         end do
     end subroutine check_meshgrid_isp_3D_xy
 
-    subroutine test_meshgrid_idp_3D(error)
+    module subroutine test_meshgrid_idp_3D(error)
         type(error_type), allocatable, intent(out) :: error
 
         integer, parameter :: nx = 3, ny = 2, nz = 4
         integer(idp), dimension(:), allocatable :: x_vector, y_vector, z_vector
         integer(idp), dimension(:, :, :), allocatable :: X, Y, Z
         type(LoopMethod) :: loop_method
-        integer :: i
+        integer(isp) :: i
 
         allocate(x_vector(nx), y_vector(ny), z_vector(nz))
 
@@ -486,7 +465,7 @@ contains
         integer(idp), dimension(:), intent(in) :: x_vector, y_vector, z_vector
         integer(idp), dimension(:, :, :), intent(in) :: X, Y, Z
         integer, intent(in) :: nx, ny, nz
-        integer :: i, j, k
+        integer(isp) :: i, j, k
 
         call check(error, size(X, 1) == ny .and. size(X, 2) == nx .and. size(X, 3) == nz)
         if (allocated(error)) return
@@ -522,7 +501,7 @@ contains
         integer(idp), dimension(:), intent(in) :: x_vector, y_vector, z_vector
         integer(idp), dimension(:, :, :), intent(in) :: X, Y, Z
         integer, intent(in) :: nx, ny, nz
-        integer :: i, j, k
+        integer(isp) :: i, j, k
 
         call check(error, size(X, 1) == nx .and. size(X, 2) == ny .and. size(X, 3) == nz)
         if (allocated(error)) return
@@ -553,35 +532,4 @@ contains
         end do
     end subroutine check_meshgrid_idp_3D_xy
 
-end module test_meshgrid_integer_3D
-
-program test
-    use, intrinsic :: iso_fortran_env, only: error_unit, output_unit
-    use testdrive, only: run_testsuite, new_testsuite, testsuite_type, init_color_output
-    use test_meshgrid_integer_3D
-
-    implicit none(type, external)
-
-    integer :: stat, is
-    type(testsuite_type), allocatable :: testsuites(:)
-    character(len=*), parameter :: fmt = '("#", *(1x, a))'
-
-    stat = 0
-
-    testsuites = [ &
-                 new_testsuite("meshgrid integer 3D", collect_meshgrid) &
-                 ]
-
-    call init_color_output(.true.)
-
-    do is = 1, size(testsuites)
-        write (error_unit, fmt) "Testing:", testsuites(is)%name
-        call run_testsuite(testsuites(is)%collect, error_unit, stat, parallel=.false.)
-    end do
-
-    if (stat > 0) then
-        write (error_unit, '(i0, 1x, a)') stat, "test(s) failed!"
-        error stop
-    end if
-
-end program test
+end submodule test_meshgrid_integer_3D

@@ -16,16 +16,17 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(test-drive)
 
 macro(ADDTEST name)
-    add_executable(test_${name} test_${name}.f90)
-    target_link_libraries(test_${name} "${PROJECT_NAME}" "test-drive")
+    add_executable(${name} ${ARGN})
+    target_link_libraries(${name} "${PROJECT_NAME}" "test-drive")
     add_test(NAME ${name}
-             COMMAND $<TARGET_FILE:test_${name}> ${CMAKE_CURRENT_BINARY_DIR}
+             COMMAND $<TARGET_FILE:${name}> ${CMAKE_CURRENT_BINARY_DIR}
              WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 endmacro(ADDTEST)
 
-add_executable(test_old ${TEST_SOURCES_old})
-target_link_libraries(test_old "${PROJECT_NAME}" "test-drive")
+# add_executable(test_old ${TEST_SOURCES_old})
+# target_link_libraries(test_old "${PROJECT_NAME}" "test-drive")
 # target_include_directories(test_old PRIVATE ${CMAKE_Fortran_MODULE_DIRECTORY})
 
-add_subdirectory(Array_creation)
+add_subdirectory(Array_creation/meshgrid)
 add_subdirectory(Fourier_Transform)
+add_subdirectory(memory/memory_management)

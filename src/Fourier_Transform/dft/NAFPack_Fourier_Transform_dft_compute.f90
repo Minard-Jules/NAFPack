@@ -132,7 +132,7 @@ contains
 
     end function compute_dft_cmplx_dp
 
-    module pure function compute_do_classic_cmplx_dp(signal, n_vector, omega, N) result(result)
+    pure module function compute_do_classic_cmplx_dp(signal, n_vector, omega, N) result(result)
         complex(dp), dimension(:), intent(in) :: signal
         real(dp), dimension(:), intent(in) :: n_vector
         complex(dp), intent(in) :: omega
@@ -147,7 +147,7 @@ contains
 
     end function compute_do_classic_cmplx_dp
 
-    module pure function compute_do_vectorized_cmplx_dp(signal, n_vector, omega, N) result(result)
+    pure module function compute_do_vectorized_cmplx_dp(signal, n_vector, omega, N) result(result)
         complex(dp), dimension(:), intent(in) :: signal
         real(dp), dimension(:), intent(in) :: n_vector
         complex(dp), intent(in) :: omega
@@ -162,7 +162,7 @@ contains
 
     end function compute_do_vectorized_cmplx_dp
 
-    module pure function compute_do_concurrent_cmplx_dp(signal, n_vector, omega, N) result(result)
+    pure module function compute_do_concurrent_cmplx_dp(signal, n_vector, omega, N) result(result)
         complex(dp), dimension(:), intent(in) :: signal
         real(dp), dimension(:), intent(in) :: n_vector
         complex(dp), intent(in) :: omega
@@ -228,7 +228,7 @@ contains
 
     end function compute_dft_cmplx_qp
 
-    module pure function compute_do_classic_cmplx_qp(signal, n_vector, omega, N) result(result)
+    pure module function compute_do_classic_cmplx_qp(signal, n_vector, omega, N) result(result)
         complex(qp), dimension(:), intent(in) :: signal
         real(qp), dimension(:), intent(in) :: n_vector
         complex(qp), intent(in) :: omega
@@ -243,7 +243,7 @@ contains
 
     end function compute_do_classic_cmplx_qp
 
-    module pure function compute_do_vectorized_cmplx_qp(signal, n_vector, omega, N) result(result)
+    pure module function compute_do_vectorized_cmplx_qp(signal, n_vector, omega, N) result(result)
         complex(qp), dimension(:), intent(in) :: signal
         real(qp), dimension(:), intent(in) :: n_vector
         complex(qp), intent(in) :: omega
@@ -258,7 +258,7 @@ contains
 
     end function compute_do_vectorized_cmplx_qp
 
-    module pure function compute_do_concurrent_cmplx_qp(signal, n_vector, omega, N) result(result)
+    pure module function compute_do_concurrent_cmplx_qp(signal, n_vector, omega, N) result(result)
         complex(qp), dimension(:), intent(in) :: signal
         real(qp), dimension(:), intent(in) :: n_vector
         complex(qp), intent(in) :: omega

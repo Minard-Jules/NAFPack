@@ -4,6 +4,7 @@ module NAFPack_Fourier_Transform
     use NAFPack_constant, only: pi_sp, pi_dp, pi_qp, im_sp, im_dp, im_qp
     use NAFPack_loop_method, only: LoopMethod, default_loop_method, check_loop_method
     use NAFPack_math_utils, only: sieve_of_eratosthenes, is_power_of_two, power_of_p_exponent
+    use NAFPack_implementation_type, only: ImplementationType, RECURSIVE, ITERATIVE
 
     implicit none(type, external)
 
@@ -70,6 +71,7 @@ module NAFPack_Fourier_Transform
         integer(isp), dimension(:), allocatable :: radix_plan
         type(Twiddles_sp), dimension(:), allocatable :: twiddles
         type(SplitRadixTwiddles), dimension(:), allocatable :: split_radix_twiddles
+        logical :: precompute_twiddles = .false.
         logical :: is_initialized = .false.
         logical :: use_pure_radix2 = .false.
         logical :: use_split_radix = .false.
@@ -164,10 +166,11 @@ module NAFPack_Fourier_Transform
     !====================================================================================
 
     interface
-        module function fft_cmplx_sp(this, signal, loop_method) result(result)
+        module function fft_cmplx_sp(this, signal, loop_method, implementation_type) result(result)
             class(Fourier_Transform), intent(inout) :: this
             complex(sp), dimension(:), intent(in) :: signal
             type(LoopMethod), optional, intent(in) :: loop_method
+            type(ImplementationType), optional, intent(in) :: implementation_type
             complex(sp), dimension(:), allocatable :: result
         end function fft_cmplx_sp
     end interface

@@ -18,12 +18,12 @@ contains
         type(unittest_type), allocatable, intent(out) :: testsuite(:)
 
         testsuite = [ &
-                    new_unittest("dft complex sp 1D", test_cmplx_dft_sp), &
-                    new_unittest("idft complex sp 1D", test_cmplx_idft_sp), &
-                    new_unittest("dft complex dp 1D", test_cmplx_dft_dp), &
-                    new_unittest("idft complex dp 1D", test_cmplx_idft_dp), &
-                    new_unittest("dft complex qp 1D", test_cmplx_dft_qp), &
-                    new_unittest("idft complex qp 1D", test_cmplx_idft_qp) &
+                    new_unittest("dft complex(sp)  1D", test_cmplx_dft_sp), &
+                    new_unittest("idft complex(sp) 1D", test_cmplx_idft_sp), &
+                    new_unittest("dft complex(dp)  1D", test_cmplx_dft_dp), &
+                    new_unittest("idft complex(dp) 1D", test_cmplx_idft_dp), &
+                    new_unittest("dft complex(qp)  1D", test_cmplx_dft_qp), &
+                    new_unittest("idft complex(qp) 1D", test_cmplx_idft_qp) &
                     ]
 
     end subroutine collect_Fourier_Transform_dft
@@ -390,5 +390,7 @@ program test
         write (error_unit, '(i0, 1x, a)') stat, "test(signal) failed!"
         error stop
     end if
+
+    deallocate(testsuites)
 
 end program test

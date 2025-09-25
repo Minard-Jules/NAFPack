@@ -18,12 +18,12 @@ contains
         type(unittest_type), allocatable, intent(out) :: testsuite(:)
 
         testsuite = [ &
-                    new_unittest("dft real sp 2D", test_real_dft2_sp), &
-                    new_unittest("idft real sp 2D", test_real_idft2_sp), &
-                    new_unittest("dft real dp 2D", test_real_dft2_dp), &
-                    new_unittest("idft real dp 2D", test_real_idft2_dp), &
-                    new_unittest("dft real qp 2D", test_real_dft2_qp), &
-                    new_unittest("idft real qp 2D", test_real_idft2_qp) &
+                    new_unittest("dft real(sp)  2D", test_real_dft2_sp), &
+                    new_unittest("idft real(sp) 2D", test_real_idft2_sp), &
+                    new_unittest("dft real(dp)  2D", test_real_dft2_dp), &
+                    new_unittest("idft real(dp) 2D", test_real_idft2_dp), &
+                    new_unittest("dft real(qp)  2D", test_real_dft2_qp), &
+                    new_unittest("idft real(qp) 2D", test_real_idft2_qp) &
                     ]
 
     end subroutine collect_Fourier_Transform_dft2
@@ -463,4 +463,6 @@ program test
         error stop
     end if
 
+    deallocate(testsuites)
+    
 end program test

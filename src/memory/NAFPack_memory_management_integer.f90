@@ -18,7 +18,7 @@ contains
         old_size = size(vec)
         call move_alloc(vec, vec_tmp)
         allocate (vec(new_size))
-        vec(:) = vec_tmp(1:min(old_size, new_size))
+        vec(1:min(old_size, new_size)) = vec_tmp(1:min(old_size, new_size))
         deallocate (vec_tmp)
     end subroutine realloc_vec_integer_i8_1D
 
@@ -36,7 +36,7 @@ contains
         old_size = size(vec)
         call move_alloc(vec, vec_tmp)
         allocate (vec(new_size))
-        vec(:) = vec_tmp(1:min(old_size, new_size))
+        vec(1:min(old_size, new_size)) = vec_tmp(1:min(old_size, new_size))
         deallocate (vec_tmp)
     end subroutine realloc_vec_integer_i16_1D
 
@@ -54,7 +54,7 @@ contains
         old_size = size(vec)
         call move_alloc(vec, vec_tmp)
         allocate (vec(new_size))
-        vec(:) = vec_tmp(1:min(old_size, new_size))
+        vec(1:min(old_size, new_size)) = vec_tmp(1:min(old_size, new_size))
         deallocate (vec_tmp)
     end subroutine realloc_vec_integer_isp_1D
 
@@ -72,7 +72,7 @@ contains
         old_size = size(vec)
         call move_alloc(vec, vec_tmp)
         allocate (vec(new_size))
-        vec(:) = vec_tmp(1:min(old_size, new_size))
+        vec(1:min(old_size, new_size)) = vec_tmp(1:min(old_size, new_size))
         deallocate (vec_tmp)
     end subroutine realloc_vec_integer_idp_1D
 
@@ -90,7 +90,9 @@ contains
         old_size = [size(vec, 1), size(vec, 2)]
         call move_alloc(vec, vec_tmp)
         allocate (vec(new_size(1), new_size(2)))
-        vec(:, :) = vec_tmp(1:min(old_size(1), new_size(1)), 1:min(old_size(2), new_size(2)))
+        vec(1:min(old_size(1), new_size(1)), &
+            1:min(old_size(2), new_size(2))) = vec_tmp(1:min(old_size(1), new_size(1)), &
+                                                       1:min(old_size(2), new_size(2)))
         deallocate (vec_tmp)
     end subroutine realloc_vec_integer_i8_2D
 
@@ -108,7 +110,9 @@ contains
         old_size = [size(vec, 1), size(vec, 2)]
         call move_alloc(vec, vec_tmp)
         allocate (vec(new_size(1), new_size(2)))
-        vec(:, :) = vec_tmp(1:min(old_size(1), new_size(1)), 1:min(old_size(2), new_size(2)))
+        vec(1:min(old_size(1), new_size(1)), &
+            1:min(old_size(2), new_size(2))) = vec_tmp(1:min(old_size(1), new_size(1)), &
+                                                       1:min(old_size(2), new_size(2)))
         deallocate (vec_tmp)
     end subroutine realloc_vec_integer_i16_2D
 
@@ -126,7 +130,9 @@ contains
         old_size = [size(vec, 1), size(vec, 2)]
         call move_alloc(vec, vec_tmp)
         allocate (vec(new_size(1), new_size(2)))
-        vec(:, :) = vec_tmp(1:min(old_size(1), new_size(1)), 1:min(old_size(2), new_size(2)))
+        vec(1:min(old_size(1), new_size(1)), &
+            1:min(old_size(2), new_size(2))) = vec_tmp(1:min(old_size(1), new_size(1)), &
+                                                       1:min(old_size(2), new_size(2)))
         deallocate (vec_tmp)
     end subroutine realloc_vec_integer_isp_2D
 
@@ -144,7 +150,9 @@ contains
         old_size = [size(vec, 1), size(vec, 2)]
         call move_alloc(vec, vec_tmp)
         allocate (vec(new_size(1), new_size(2)))
-        vec(:, :) = vec_tmp(1:min(old_size(1), new_size(1)), 1:min(old_size(2), new_size(2)))
+        vec(1:min(old_size(1), new_size(1)), &
+            1:min(old_size(2), new_size(2))) = vec_tmp(1:min(old_size(1), new_size(1)), &
+                                                       1:min(old_size(2), new_size(2)))
         deallocate (vec_tmp)
     end subroutine realloc_vec_integer_idp_2D
 
@@ -162,9 +170,11 @@ contains
         old_size = [size(vec, 1), size(vec, 2), size(vec, 3)]
         call move_alloc(vec, vec_tmp)
         allocate (vec(new_size(1), new_size(2), new_size(3)))
-        vec(:, :, :) = vec_tmp(1:min(old_size(1), new_size(1)), &
-                               1:min(old_size(2), new_size(2)), &
-                               1:min(old_size(3), new_size(3)))
+        vec(1:min(old_size(1), new_size(1)), &
+            1:min(old_size(2), new_size(2)), &
+            1:min(old_size(3), new_size(3))) = vec_tmp(1:min(old_size(1), new_size(1)), &
+                                                       1:min(old_size(2), new_size(2)), &
+                                                       1:min(old_size(3), new_size(3)))
         deallocate (vec_tmp)
     end subroutine realloc_vec_integer_i8_3D
 
@@ -182,9 +192,11 @@ contains
         old_size = [size(vec, 1), size(vec, 2), size(vec, 3)]
         call move_alloc(vec, vec_tmp)
         allocate (vec(new_size(1), new_size(2), new_size(3)))
-        vec(:, :, :) = vec_tmp(1:min(old_size(1), new_size(1)), &
-                               1:min(old_size(2), new_size(2)), &
-                               1:min(old_size(3), new_size(3)))
+        vec(1:min(old_size(1), new_size(1)), &
+            1:min(old_size(2), new_size(2)), &
+            1:min(old_size(3), new_size(3))) = vec_tmp(1:min(old_size(1), new_size(1)), &
+                                                       1:min(old_size(2), new_size(2)), &
+                                                       1:min(old_size(3), new_size(3)))
         deallocate (vec_tmp)
     end subroutine realloc_vec_integer_i16_3D
 
@@ -202,9 +214,11 @@ contains
         old_size = [size(vec, 1), size(vec, 2), size(vec, 3)]
         call move_alloc(vec, vec_tmp)
         allocate (vec(new_size(1), new_size(2), new_size(3)))
-        vec(:, :, :) = vec_tmp(1:min(old_size(1), new_size(1)), &
-                               1:min(old_size(2), new_size(2)), &
-                               1:min(old_size(3), new_size(3)))
+        vec(1:min(old_size(1), new_size(1)), &
+            1:min(old_size(2), new_size(2)), &
+            1:min(old_size(3), new_size(3))) = vec_tmp(1:min(old_size(1), new_size(1)), &
+                                                       1:min(old_size(2), new_size(2)), &
+                                                       1:min(old_size(3), new_size(3)))
         deallocate (vec_tmp)
     end subroutine realloc_vec_integer_isp_3D
 
@@ -222,9 +236,11 @@ contains
         old_size = [size(vec, 1), size(vec, 2), size(vec, 3)]
         call move_alloc(vec, vec_tmp)
         allocate (vec(new_size(1), new_size(2), new_size(3)))
-        vec(:, :, :) = vec_tmp(1:min(old_size(1), new_size(1)), &
-                               1:min(old_size(2), new_size(2)), &
-                               1:min(old_size(3), new_size(3)))
+        vec(1:min(old_size(1), new_size(1)), &
+            1:min(old_size(2), new_size(2)), &
+            1:min(old_size(3), new_size(3))) = vec_tmp(1:min(old_size(1), new_size(1)), &
+                                                       1:min(old_size(2), new_size(2)), &
+                                                       1:min(old_size(3), new_size(3)))
         deallocate (vec_tmp)
     end subroutine realloc_vec_integer_idp_3D
 

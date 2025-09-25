@@ -1,7 +1,21 @@
-ADDTEST(Fourier_Transform_dft_complex)
-ADDTEST(Fourier_Transform_dft_real)
-ADDTEST(Fourier_Transform_dft2_complex)
-ADDTEST(Fourier_Transform_dft2_real)
-ADDTEST(Fourier_Transform_dft3_complex)
-ADDTEST(Fourier_Transform_dft3_real)
-ADDTEST(Fourier_Transform_fft_complex)
+ADDTEST(test_Fourier_Transform_dft_complex
+    test_Fourier_Transform_dft_complex.f90
+)
+ADDTEST(test_Fourier_Transform_dft_real
+    test_Fourier_Transform_dft_real.f90
+)
+ADDTEST(test_Fourier_Transform_dft2_complex
+    test_Fourier_Transform_dft2_complex.f90
+)
+ADDTEST(test_Fourier_Transform_dft2_real
+    test_Fourier_Transform_dft2_real.f90
+)
+ADDTEST(test_Fourier_Transform_dft3_complex
+    test_Fourier_Transform_dft3_complex.f90
+)
+ADDTEST(test_Fourier_Transform_dft3_real
+    test_Fourier_Transform_dft3_real.f90
+)
+ADDTEST(test_Fourier_Transform_fft_complex
+    test_Fourier_Transform_fft_complex.f90
+)

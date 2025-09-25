@@ -76,7 +76,6 @@ contains
         case (ALG_SPLIT_DIF%id, ALG_SPLIT_DIT%id)
             if (.not. is_power_of_two(N)) &
                 error stop "Error in init_fft_plan_sp: N must be a power of two for split FFT."
-            ! TODO implement get_radix_split_radix_sp
             call get_radix_2(this%fft_plan)
             this%fft_plan%use_split_radix = .true.
         case (ALG_MIXED_DIT%id, ALG_MIXED_DIF%id)
@@ -451,8 +450,6 @@ contains
                 result = compute_fft_mixed_radix_cmplx_sp( &
                          result, plan, stage_params, loop_method)
             else if (plan%use_split_radix) then
-                ! TODO implement split-radix FFT
-                ! error stop "Split-radix FFT not yet implemented."
                 result = compute_fft_split_radix_cmplx_sp( &
                          result, plan, stage_params, loop_method)
             else

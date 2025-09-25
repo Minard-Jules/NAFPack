@@ -1,0 +1,21 @@
+{
+   <testdrive_generic>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:malloc
+   fun:__testdrive_MOD_new_unittest
+   fun:__test_*
+   fun:__testdrive_MOD_run_testsuite
+   fun:MAIN__
+   fun:main
+}
+
+{
+   <new_testsuite>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:malloc
+   fun:__testdrive_MOD_new_testsuite
+   fun:MAIN__
+   fun:main
+}

@@ -139,7 +139,7 @@ contains
 
     end subroutine compute_meshgrid_cmplx_2D_dp
 
-    module pure subroutine compute_do_classic_cmplx_2D_dp( &
+    pure module subroutine compute_do_classic_cmplx_2D_dp( &
         x_vector, y_vector, &
         X, Y, &
         Nx, Ny)
@@ -158,7 +158,7 @@ contains
 
     end subroutine compute_do_classic_cmplx_2D_dp
 
-    module pure subroutine compute_do_vectorized_cmplx_2D_dp( &
+    pure module subroutine compute_do_vectorized_cmplx_2D_dp( &
         x_vector, y_vector, &
         X, Y, &
         Nx, Ny)
@@ -171,7 +171,7 @@ contains
 
     end subroutine compute_do_vectorized_cmplx_2D_dp
 
-    module pure subroutine compute_do_concurrent_cmplx_2D_dp( &
+    pure module subroutine compute_do_concurrent_cmplx_2D_dp( &
         x_vector, y_vector, &
         X, Y, &
         Nx, Ny)
@@ -245,7 +245,7 @@ contains
 
     end subroutine compute_meshgrid_cmplx_2D_qp
 
-    module pure subroutine compute_do_classic_cmplx_2D_qp( &
+    pure module subroutine compute_do_classic_cmplx_2D_qp( &
         x_vector, y_vector, &
         X, Y, &
         Nx, Ny)
@@ -264,7 +264,7 @@ contains
 
     end subroutine compute_do_classic_cmplx_2D_qp
 
-    module pure subroutine compute_do_vectorized_cmplx_2D_qp( &
+    pure module subroutine compute_do_vectorized_cmplx_2D_qp( &
         x_vector, y_vector, &
         X, Y, &
         Nx, Ny)
@@ -277,7 +277,7 @@ contains
 
     end subroutine compute_do_vectorized_cmplx_2D_qp
 
-    module pure subroutine compute_do_concurrent_cmplx_2D_qp( &
+    pure module subroutine compute_do_concurrent_cmplx_2D_qp( &
         x_vector, y_vector, &
         X, Y, &
         Nx, Ny)

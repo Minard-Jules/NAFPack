@@ -1,0 +1,9 @@
+ADDTEST(test_meshgrid
+    test_meshgrid.f90
+    test_meshgrid_real_2D.f90
+    test_meshgrid_real_3D.f90
+    test_meshgrid_complex_2D.f90
+    test_meshgrid_complex_3D.f90
+    test_meshgrid_integer_2D.f90
+    test_meshgrid_integer_3D.f90
+)

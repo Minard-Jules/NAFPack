@@ -1,0 +1,12 @@
+ADDTEST(test_realloc
+    test_realloc.f90
+    test_realloc_complex_1D.f90
+    test_realloc_complex_2D.f90
+    test_realloc_complex_3D.f90
+    test_realloc_integer_1D.f90
+    test_realloc_integer_2D.f90
+    test_realloc_integer_3D.f90
+    test_realloc_real_1D.f90
+    test_realloc_real_2D.f90
+    test_realloc_real_3D.f90
+)

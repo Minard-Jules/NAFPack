@@ -12,14 +12,32 @@ submodule(NAFPack_Fourier_Transform) NAFPack_Fourier_Transform_fft
     end type FFTStageParams
 
     interface
-        module function compute_fft_radix2_cmplx_sp( &
+        recursive module function compute_fft_radix2_recursive_cmplx_sp( &
+            signal, plan, stage) result(result)
+            complex(sp), dimension(:), intent(in) :: signal
+            type(FFTPlan), intent(in) :: plan
+            integer(isp), intent(in) :: stage
+            complex(sp), dimension(plan%N) :: result
+        end function compute_fft_radix2_recursive_cmplx_sp
+
+        module function compute_fft_radix2_iterative_cmplx_sp( &
             signal, plan, stage_params, loop_method) result(result)
             complex(sp), dimension(:), intent(in) :: signal
             type(FFTPlan), intent(in) :: plan
             type(FFTStageParams), intent(in) :: stage_params
             type(LoopMethod), intent(in) :: loop_method
             complex(sp), dimension(plan%N) :: result
-        end function compute_fft_radix2_cmplx_sp
+        end function compute_fft_radix2_iterative_cmplx_sp
+    end interface
+
+    interface
+        recursive module function compute_fft_mixed_radix_recursive_cmplx_sp( &
+            signal, plan, stage, radix) result(result)
+            complex(sp), dimension(:), intent(in) :: signal
+            type(FFTPlan), intent(in) :: plan
+            integer(isp), intent(in) :: stage, radix
+            complex(sp), dimension(size(signal)) :: result
+        end function compute_fft_mixed_radix_recursive_cmplx_sp
 
         module function compute_fft_mixed_radix_cmplx_sp( &
             signal, plan, stage_params, loop_method) result(result)
@@ -29,6 +47,16 @@ submodule(NAFPack_Fourier_Transform) NAFPack_Fourier_Transform_fft
             type(LoopMethod), intent(in) :: loop_method
             complex(sp), dimension(plan%N) :: result
         end function compute_fft_mixed_radix_cmplx_sp
+    end interface
+
+    interface
+        recursive module function compute_fft_split_radix_recursive_cmplx_sp( &
+            signal, plan, stage) result(result)
+            complex(sp), dimension(:), intent(in) :: signal
+            type(FFTPlan), intent(in) :: plan
+            integer(isp), intent(in) :: stage
+            complex(sp), dimension(size(signal)) :: result
+        end function compute_fft_split_radix_recursive_cmplx_sp
 
         module function compute_fft_split_radix_cmplx_sp( &
             signal, plan, stage_params, loop_method) result(result)
@@ -76,7 +104,6 @@ contains
         case (ALG_SPLIT_DIF%id, ALG_SPLIT_DIT%id)
             if (.not. is_power_of_two(N)) &
                 error stop "Error in init_fft_plan_sp: N must be a power of two for split FFT."
-            ! TODO implement get_radix_split_radix_sp
             call get_radix_2(this%fft_plan)
             this%fft_plan%use_split_radix = .true.
         case (ALG_MIXED_DIT%id, ALG_MIXED_DIF%id)
@@ -247,7 +274,7 @@ contains
         current_block_size = 2
         do i = 1, N_radix
             r = plan%radix_plan(i)
-            block_size = current_block_size / (2*r)
+            block_size = current_block_size / (2 * r)
 
             ! Initialize stage parameters
             plan%split_radix_twiddles(i)%radix = r
@@ -287,10 +314,10 @@ contains
                     num_stages = num_stages + 1
                     tmp_size = size(tmp_start_indices)
                     if (num_stages > size(tmp_start_indices)) then
-                        call realloc(tmp_start_indices, 2*tmp_size)
-                        call realloc(tmp_strides, 2*tmp_size)
+                        call realloc(tmp_start_indices, 2 * tmp_size)
+                        call realloc(tmp_strides, 2 * tmp_size)
                     end if
-                    start_index =  2 * stride - current_block_size + j
+                    start_index = 2 * stride - current_block_size + j
                     stride = 4 * stride
                     tmp_start_indices(num_stages) = start_index
                     tmp_strides(num_stages) = stride
@@ -308,21 +335,25 @@ contains
         end do
     end subroutine generate_split_twiddles_sp
 
-    module function fft_cmplx_sp(this, signal, loop_method) result(result)
+    module function fft_cmplx_sp(this, signal, loop_method, implementation_type) result(result)
         class(Fourier_Transform), intent(inout) :: this
         complex(sp), dimension(:), intent(in) :: signal
         type(LoopMethod), optional, intent(in) :: loop_method
+        type(ImplementationType), optional, intent(in) :: implementation_type
         complex(sp), dimension(:), allocatable :: result
-        complex(sp), dimension(:), allocatable :: signal_reversed
+        type(ImplementationType) :: implementation_type_used
         type(LoopMethod) :: loop_method_used
-        integer(isp) :: N_radix
-
-        N_radix = size(this%fft_plan%radix_plan)
 
         if (present(loop_method)) then
             loop_method_used = check_loop_method(loop_method)
         else
             loop_method_used = default_loop_method
+        end if
+
+        if (present(implementation_type)) then
+            implementation_type_used = implementation_type
+        else
+            implementation_type_used = ITERATIVE
         end if
 
         if (.not. this%fft_plan%is_initialized) then
@@ -332,30 +363,49 @@ contains
             error stop
         end if
 
-        select case (this%fft_plan%algorithm%decimation_method%id)
+        select case (implementation_type_used%id)
+        case (ITERATIVE%id)
+            result = fft_sp_iterative(signal, this%fft_plan, loop_method_used)
+        case (recursive%id)
+            result = fft_sp_recursive(signal, this%fft_plan)
+        end select
+
+    end function fft_cmplx_sp
+
+    function fft_sp_iterative(signal, plan, loop_method) result(result)
+        complex(sp), dimension(:), intent(in) :: signal
+        type(FFTPlan), intent(in) :: plan
+        type(LoopMethod), intent(in) :: loop_method
+        complex(sp), dimension(:), allocatable :: result
+        complex(sp), dimension(:), allocatable :: signal_reversed
+        integer(isp) :: N_radix
+
+        N_radix = size(plan%radix_plan)
+
+        select case (plan%algorithm%decimation_method%id)
         case (DIT%id)
-            if (this%fft_plan%use_pure_radix2 .or. this%fft_plan%use_split_radix) then
-                signal_reversed = bit_reverse(signal, this%fft_plan%N)
-            else if (this%fft_plan%use_mixed_radix) then
-                signal_reversed = digit_reverse(signal, this%fft_plan%radix_plan)
+            if (plan%use_pure_radix2 .or. plan%use_split_radix) then
+                signal_reversed = bit_reverse(signal, plan%N)
+            else if (plan%use_mixed_radix) then
+                signal_reversed = digit_reverse(signal, plan%radix_plan)
             else
                 print*,"Error in fft_cmplx_sp: Unknown FFT plan type."
                 error stop
             end if
-            result = compute_fft_sp(signal_reversed, this%fft_plan, loop_method_used)
+            result = compute_fft_sp_iterative(signal_reversed, plan, loop_method)
         case (DIF%id)
-            result = compute_fft_sp(signal, this%fft_plan, loop_method_used)
-            if (this%fft_plan%use_pure_radix2 .or. this%fft_plan%use_split_radix) then
-                result = bit_reverse(result, this%fft_plan%N)
-            else if (this%fft_plan%use_mixed_radix) then
-                result = digit_reverse(result, this%fft_plan%radix_plan(N_radix:1:-1))
+            result = compute_fft_sp_iterative(signal, plan, loop_method)
+            if (plan%use_pure_radix2 .or. plan%use_split_radix) then
+                result = bit_reverse(result, plan%N)
+            else if (plan%use_mixed_radix) then
+                result = digit_reverse(result, plan%radix_plan(N_radix:1:-1))
             else
                 print*,"Error in fft_cmplx_sp: Unknown FFT plan type."
                 error stop
             end if
         end select
 
-    end function fft_cmplx_sp
+    end function fft_sp_iterative
 
     pure function bit_reverse(x, N) result(y)
         complex(sp), dimension(N), intent(in) :: x
@@ -413,7 +463,7 @@ contains
 
     end function digit_reverse
 
-    function compute_fft_sp(signal, plan, loop_method) result(result)
+    function compute_fft_sp_iterative(signal, plan, loop_method) result(result)
         complex(sp), dimension(:), intent(in) :: signal
         type(FFTPlan), intent(in) :: plan
         type(LoopMethod), intent(in) :: loop_method
@@ -445,14 +495,12 @@ contains
             end if
 
             if (plan%use_pure_radix2) then
-                result = compute_fft_radix2_cmplx_sp( &
+                result = compute_fft_radix2_iterative_cmplx_sp( &
                          result, plan, stage_params, loop_method)
             else if (plan%use_mixed_radix) then
                 result = compute_fft_mixed_radix_cmplx_sp( &
                          result, plan, stage_params, loop_method)
             else if (plan%use_split_radix) then
-                ! TODO implement split-radix FFT
-                ! error stop "Split-radix FFT not yet implemented."
                 result = compute_fft_split_radix_cmplx_sp( &
                          result, plan, stage_params, loop_method)
             else
@@ -461,7 +509,39 @@ contains
             end if
         end do
 
-    end function compute_fft_sp
+    end function compute_fft_sp_iterative
+
+    function fft_sp_recursive(signal, plan) result(result)
+        complex(sp), dimension(:), intent(in) :: signal
+        type(FFTPlan), intent(in) :: plan
+        complex(sp), dimension(:), allocatable :: result
+        integer(isp) :: N, num_stages, radix
+
+        N = size(signal)
+
+        select case (plan%algorithm%decimation_method%id)
+        case (DIT%id)
+            num_stages = size(plan%radix_plan)
+        case (DIF%id)
+            num_stages = 1
+        end select
+        radix = plan%radix_plan(size(plan%radix_plan))
+
+        if (plan%use_pure_radix2) then
+            result = compute_fft_radix2_recursive_cmplx_sp( &
+                     signal, plan, num_stages)
+        else if (plan%use_mixed_radix) then
+            result = compute_fft_mixed_radix_recursive_cmplx_sp( &
+                     signal, plan, num_stages, radix)
+        else if (plan%use_split_radix) then
+            result = compute_fft_split_radix_recursive_cmplx_sp( &
+                     signal, plan, num_stages)
+        else
+            print*,"Error in compute_fft_sp: Unknown FFT plan type."
+            error stop
+        end if
+
+    end function fft_sp_recursive
 
     pure module subroutine destroy_fft_plan_sp(this)
         class(Fourier_Transform), intent(inout) :: this

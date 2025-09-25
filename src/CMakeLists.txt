@@ -17,14 +17,14 @@ set(NAFPACK_SOURCES
     ${SRC_DIR}/Array_creation/meshgrid/NAFPack_meshgrid_complex_3D.f90
     ${SRC_DIR}/Fourier_Transform/FFTW3.f90
     ${SRC_DIR}/Fourier_Transform/NAFPack_fft.f90
-    ${SRC_DIR}/Fourier_Transform/NAFPack_Fourier_Transform_dft_compute.f90
-    ${SRC_DIR}/Fourier_Transform/NAFPack_Fourier_Transform_dft.f90
-    ${SRC_DIR}/Fourier_Transform/NAFPack_Fourier_Transform_dft2.f90
-    ${SRC_DIR}/Fourier_Transform/NAFPack_Fourier_Transform_dft3.f90
-    ${SRC_DIR}/Fourier_Transform/NAFPack_Fourier_Transform_fft_compute_mixed_radix.f90
-    ${SRC_DIR}/Fourier_Transform/NAFPack_Fourier_Transform_fft_compute_radix2.f90
-    ${SRC_DIR}/Fourier_Transform/NAFPack_Fourier_Transform_fft_compute_split_radix.f90
-    ${SRC_DIR}/Fourier_Transform/NAFPack_Fourier_Transform_fft.f90
+    ${SRC_DIR}/Fourier_Transform/dft/NAFPack_Fourier_Transform_dft_compute.f90
+    ${SRC_DIR}/Fourier_Transform/dft/NAFPack_Fourier_Transform_dft.f90
+    ${SRC_DIR}/Fourier_Transform/dft/NAFPack_Fourier_Transform_dft2.f90
+    ${SRC_DIR}/Fourier_Transform/dft/NAFPack_Fourier_Transform_dft3.f90
+    ${SRC_DIR}/Fourier_Transform/fft/NAFPack_Fourier_Transform_fft_compute_mixed_radix.f90
+    ${SRC_DIR}/Fourier_Transform/fft/NAFPack_Fourier_Transform_fft_compute_radix2.f90
+    ${SRC_DIR}/Fourier_Transform/fft/NAFPack_Fourier_Transform_fft_compute_split_radix.f90
+    ${SRC_DIR}/Fourier_Transform/fft/NAFPack_Fourier_Transform_fft.f90
     ${SRC_DIR}/Fourier_Transform/NAFPack_Fourier_Transform.f90
     ${SRC_DIR}/io/NAFPack_ANSI_ASCII.f90
     ${SRC_DIR}/io/NAFPack_ANSI_ucs4.f90

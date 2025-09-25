@@ -17,12 +17,12 @@ contains
     subroutine collect_Fourier_Transform_dft3(testsuite)
         type(unittest_type), allocatable, intent(out) :: testsuite(:)
         testsuite = [ &
-                    new_unittest("dft real sp 3D", test_real_dft3_sp), &
-                    new_unittest("idft real sp 3D", test_real_idft3_sp), &
-                    new_unittest("dft real dp 3D", test_real_dft3_dp), &
-                    new_unittest("idft real dp 3D", test_real_idft3_dp), &
-                    new_unittest("dft real qp 3D", test_real_dft3_qp), &
-                    new_unittest("idft real qp 3D", test_real_idft3_qp) &
+                    new_unittest("dft real(sp)  3D", test_real_dft3_sp), &
+                    new_unittest("idft real(sp) 3D", test_real_idft3_sp), &
+                    new_unittest("dft real(dp)  3D", test_real_dft3_dp), &
+                    new_unittest("idft real(dp) 3D", test_real_idft3_dp), &
+                    new_unittest("dft real(qp)  3D", test_real_dft3_qp), &
+                    new_unittest("idft real(qp) 3D", test_real_idft3_qp) &
                     ]
     end subroutine collect_Fourier_Transform_dft3
 
@@ -459,5 +459,7 @@ program test
         write (error_unit, '(i0, 1x, a)') stat, "test(s) failed!"
         error stop
     end if
+
+    deallocate(testsuites)
 
 end program test
