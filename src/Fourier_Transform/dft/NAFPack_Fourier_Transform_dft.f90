@@ -134,7 +134,7 @@ contains
         N = size(signal)
         allocate (result(N))
 
-        signal_cmplx = cmplx(signal, 0.0_dp, kind=sp)
+        signal_cmplx = cmplx(signal, 0.0_sp, kind=sp)
 
         if (present(loop_method)) then
             result = dft_cmplx_sp(signal_cmplx, loop_method)

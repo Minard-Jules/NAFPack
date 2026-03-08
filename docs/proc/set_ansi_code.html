@@ -100,8 +100,8 @@
       <div class="col">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb justify-content-end mb-0">
-                <li class="breadcrumb-item"><a href='..\sourcefile\nafpack_ansi.f90.html'>NAFPack_ANSI.f90</a></li>
-                <li class="breadcrumb-item"><a href='..\module\nafpack_ansi.html'>NAFPack_ANSI</a></li>
+                <li class="breadcrumb-item"><a href='../sourcefile/nafpack_ansi.f90.html'>NAFPack_ANSI.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/nafpack_ansi.html'>NAFPack_ANSI</a></li>
             <li class="breadcrumb-item active" aria-current="page">set_ansi_code</li>
           </ol>
         </nav>
@@ -174,7 +174,7 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-style~8"></span>
+              <span class="anchor" id="variable-style~6"></span>
               integer(kind=i8),
             </td>
 <td>intent(in),</td>
@@ -222,8 +222,8 @@
 
       <h3>Return Value
         <small>
-          <span class="anchor" id="variable-ansi_code~5"></span>
-          type(<a href='..\type\ansicode.html'>AnsiCode</a>)
+          <span class="anchor" id="variable-ansi_code~4"></span>
+          type(<a href='../type/ansicode.html'>AnsiCode</a>)
         </small>
       </h3>
       
@@ -241,35 +241,35 @@
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="hl codehilite"><pre><span></span><span class="w">    </span><span class="k">pure module function </span><span class="n">set_ansi_code</span><span class="p">(</span><span class="n">style</span><span class="p">,</span><span class="w"> </span><span class="n">fg_color</span><span class="p">,</span><span class="w"> </span><span class="n">bg_color</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">ansi_code</span><span class="p">)</span>
-<span class="w">        </span><span class="kt">integer</span><span class="p">(</span><span class="n">i8</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">style</span>
-<span class="w">        </span><span class="kt">integer</span><span class="p">(</span><span class="n">i16</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">fg_color</span><span class="p">,</span><span class="w"> </span><span class="n">bg_color</span>
-<span class="w">        </span><span class="k">type</span><span class="p">(</span><span class="n">AnsiCode</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ansi_code</span>
+    <div class="hl codehilite"><pre><span></span><span class="w">    </span><span class="k">pure module function </span><span class="n">set_ansi_code</span><span class="p">(</span><span class="n">style</span><span class="p">,</span><span class="w"> </span><span class="n">fg_color</span><span class="p">,</span><span class="w"> </span><span class="n">bg_color</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">ansi_code</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="kt">integer</span><span class="p">(</span><span class="n">i8</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">style</span><span class="w"></span>
+<span class="w">        </span><span class="kt">integer</span><span class="p">(</span><span class="n">i16</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">fg_color</span><span class="p">,</span><span class="w"> </span><span class="n">bg_color</span><span class="w"></span>
+<span class="w">        </span><span class="k">type</span><span class="p">(</span><span class="n">AnsiCode</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ansi_code</span><span class="w"></span>
 
-<span class="w">        </span><span class="n">ansi_code</span><span class="p">%</span><span class="n">use_style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
-<span class="w">        </span><span class="n">ansi_code</span><span class="p">%</span><span class="n">use_fg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
-<span class="w">        </span><span class="n">ansi_code</span><span class="p">%</span><span class="n">use_bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
+<span class="w">        </span><span class="n">ansi_code</span><span class="p">%</span><span class="n">use_style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="n">ansi_code</span><span class="p">%</span><span class="n">use_fg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="n">ansi_code</span><span class="p">%</span><span class="n">use_bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">style</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
-<span class="k">            </span><span class="n">ansi_code</span><span class="p">%</span><span class="n">use_style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">style</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">.</span><span class="nb">and</span><span class="p">.</span><span class="w"> </span><span class="n">style</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ansi_code</span><span class="p">%</span><span class="n">use_style</span><span class="p">)</span><span class="w"> </span><span class="n">ansi_code</span><span class="p">%</span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">style</span>
+<span class="k">            </span><span class="n">ansi_code</span><span class="p">%</span><span class="n">use_style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">style</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">.</span><span class="nb">and</span><span class="p">.</span><span class="w"> </span><span class="n">style</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ansi_code</span><span class="p">%</span><span class="n">use_style</span><span class="p">)</span><span class="w"> </span><span class="n">ansi_code</span><span class="p">%</span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">style</span><span class="w"></span>
 <span class="w">        </span><span class="k">end if</span>
 
 <span class="k">        if</span><span class="w"> </span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">fg_color</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
-<span class="k">            </span><span class="n">ansi_code</span><span class="p">%</span><span class="n">use_fg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fg_color</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">.</span><span class="nb">and</span><span class="p">.</span><span class="w"> </span><span class="n">fg_color</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">255</span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ansi_code</span><span class="p">%</span><span class="n">use_fg</span><span class="p">)</span><span class="w"> </span><span class="n">ansi_code</span><span class="p">%</span><span class="n">fg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fg_color</span>
+<span class="k">            </span><span class="n">ansi_code</span><span class="p">%</span><span class="n">use_fg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fg_color</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">.</span><span class="nb">and</span><span class="p">.</span><span class="w"> </span><span class="n">fg_color</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">255</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ansi_code</span><span class="p">%</span><span class="n">use_fg</span><span class="p">)</span><span class="w"> </span><span class="n">ansi_code</span><span class="p">%</span><span class="n">fg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fg_color</span><span class="w"></span>
 <span class="w">        </span><span class="k">end if</span>
 
 <span class="k">        if</span><span class="w"> </span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">bg_color</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
-<span class="k">            </span><span class="n">ansi_code</span><span class="p">%</span><span class="n">use_bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bg_color</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">.</span><span class="nb">and</span><span class="p">.</span><span class="w"> </span><span class="n">bg_color</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">255</span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ansi_code</span><span class="p">%</span><span class="n">use_bg</span><span class="p">)</span><span class="w"> </span><span class="n">ansi_code</span><span class="p">%</span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bg_color</span>
+<span class="k">            </span><span class="n">ansi_code</span><span class="p">%</span><span class="n">use_bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bg_color</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">.</span><span class="nb">and</span><span class="p">.</span><span class="w"> </span><span class="n">bg_color</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">255</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ansi_code</span><span class="p">%</span><span class="n">use_bg</span><span class="p">)</span><span class="w"> </span><span class="n">ansi_code</span><span class="p">%</span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bg_color</span><span class="w"></span>
 <span class="w">        </span><span class="k">end if</span>
 
 <span class="k">        if</span><span class="w"> </span><span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="w"> </span><span class="p">(</span><span class="n">ansi_code</span><span class="p">%</span><span class="n">use_style</span><span class="w"> </span><span class="p">.</span><span class="nb">or</span><span class="p">.</span><span class="w"> </span><span class="n">ansi_code</span><span class="p">%</span><span class="n">use_fg</span><span class="w"> </span><span class="p">.</span><span class="nb">or</span><span class="p">.</span><span class="w"> </span><span class="n">ansi_code</span><span class="p">%</span><span class="n">use_bg</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
-<span class="k">            </span><span class="n">ansi_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ansi_Constants</span><span class="p">%</span><span class="n">STYLE_RESET</span>
+<span class="k">            </span><span class="n">ansi_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ansi_Constants</span><span class="p">%</span><span class="n">STYLE_RESET</span><span class="w"></span>
 <span class="w">        </span><span class="k">end if</span>
 
-<span class="k">    end function </span><span class="n">set_ansi_code</span>
+<span class="k">    end function </span><span class="n">set_ansi_code</span><span class="w"></span>
 </pre></div>
 
     </section>
@@ -286,7 +286,7 @@
           <div class="col">
             <p>
               NAFPack
- was developed by Minard Jules<br>              &copy; 2025 
+ was developed by Minard Jules<br>              &copy; 2026 
 </p>
           </div>
           <div class="col">

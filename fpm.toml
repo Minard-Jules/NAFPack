@@ -13,7 +13,7 @@ auto-executables = true
 auto-tests = true
 auto-examples = true
 module-naming = false
-link = ["fftw3", "fftw3_omp"]
+link = ["fftw3"]
 
 [install]
 library = false

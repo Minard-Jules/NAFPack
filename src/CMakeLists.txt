@@ -2,6 +2,7 @@ set(NAFPACK_SOURCES
     ${SRC_DIR}/NAFPack_kinds.f90
     ${SRC_DIR}/NAFPack_constant.f90
     ${SRC_DIR}/NAFPack_loop_method.f90
+    ${SRC_DIR}/NAFPack_implementation_type.f90
     ${SRC_DIR}/Array_creation/meshgrid/NAFPack_meshgrid.f90
     ${SRC_DIR}/Array_creation/meshgrid/NAFPack_meshgrid_real_2D_compute.f90
     ${SRC_DIR}/Array_creation/meshgrid/NAFPack_meshgrid_real_2D.f90
@@ -73,7 +74,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 )
 
 target_link_libraries(${PROJECT_NAME} OpenMP::OpenMP_Fortran)
-target_link_libraries(${PROJECT_NAME} PkgConfig::FFTW3 fftw3_threads)
+target_link_libraries(${PROJECT_NAME} PkgConfig::FFTW3)
 
 install(TARGETS ${PROJECT_NAME}
         EXPORT ${PROJECT_NAME}-targets

@@ -18,7 +18,7 @@ contains
         old_size = size(vec)
         call move_alloc(vec, vec_tmp)
         allocate (vec(new_size))
-        vec(:) = vec_tmp(1:min(old_size, new_size))
+        vec(1:min(old_size, new_size)) = vec_tmp(1:min(old_size, new_size))
         deallocate (vec_tmp)
     end subroutine realloc_vec_complex_sp_1D
 
@@ -36,7 +36,7 @@ contains
         old_size = size(vec)
         call move_alloc(vec, vec_tmp)
         allocate (vec(new_size))
-        vec(:) = vec_tmp(1:min(old_size, new_size))
+        vec(1:min(old_size, new_size)) = vec_tmp(1:min(old_size, new_size))
         deallocate (vec_tmp)
     end subroutine realloc_vec_complex_dp_1D
 
@@ -54,7 +54,7 @@ contains
         old_size = size(vec)
         call move_alloc(vec, vec_tmp)
         allocate (vec(new_size))
-        vec(:) = vec_tmp(1:min(old_size, new_size))
+        vec(1:min(old_size, new_size)) = vec_tmp(1:min(old_size, new_size))
         deallocate (vec_tmp)
     end subroutine realloc_vec_complex_qp_1D
 
@@ -72,7 +72,9 @@ contains
         old_size = [size(vec, 1), size(vec, 2)]
         call move_alloc(vec, vec_tmp)
         allocate (vec(new_size(1), new_size(2)))
-        vec(:, :) = vec_tmp(1:min(old_size(1), new_size(1)), 1:min(old_size(2), new_size(2)))
+        vec(1:min(old_size(1), new_size(1)), &
+            1:min(old_size(2), new_size(2))) = vec_tmp(1:min(old_size(1), new_size(1)), &
+                                                       1:min(old_size(2), new_size(2)))
         deallocate (vec_tmp)
     end subroutine realloc_vec_complex_sp_2D
 
@@ -90,7 +92,9 @@ contains
         old_size = [size(vec, 1), size(vec, 2)]
         call move_alloc(vec, vec_tmp)
         allocate (vec(new_size(1), new_size(2)))
-        vec(:, :) = vec_tmp(1:min(old_size(1), new_size(1)), 1:min(old_size(2), new_size(2)))
+        vec(1:min(old_size(1), new_size(1)), &
+            1:min(old_size(2), new_size(2))) = vec_tmp(1:min(old_size(1), new_size(1)), &
+                                                       1:min(old_size(2), new_size(2)))
         deallocate (vec_tmp)
     end subroutine realloc_vec_complex_dp_2D
 
@@ -108,7 +112,9 @@ contains
         old_size = [size(vec, 1), size(vec, 2)]
         call move_alloc(vec, vec_tmp)
         allocate (vec(new_size(1), new_size(2)))
-        vec(:, :) = vec_tmp(1:min(old_size(1), new_size(1)), 1:min(old_size(2), new_size(2)))
+        vec(1:min(old_size(1), new_size(1)), &
+            1:min(old_size(2), new_size(2))) = vec_tmp(1:min(old_size(1), new_size(1)), &
+                                                       1:min(old_size(2), new_size(2)))
         deallocate (vec_tmp)
     end subroutine realloc_vec_complex_qp_2D
 
@@ -126,9 +132,11 @@ contains
         old_size = [size(vec, 1), size(vec, 2), size(vec, 3)]
         call move_alloc(vec, vec_tmp)
         allocate (vec(new_size(1), new_size(2), new_size(3)))
-        vec(:, :, :) = vec_tmp(1:min(old_size(1), new_size(1)), &
-                               1:min(old_size(2), new_size(2)), &
-                               1:min(old_size(3), new_size(3)))
+        vec(1:min(old_size(1), new_size(1)), &
+            1:min(old_size(2), new_size(2)), &
+            1:min(old_size(3), new_size(3))) = vec_tmp(1:min(old_size(1), new_size(1)), &
+                                                       1:min(old_size(2), new_size(2)), &
+                                                       1:min(old_size(3), new_size(3)))
         deallocate (vec_tmp)
     end subroutine realloc_vec_complex_sp_3D
 
@@ -146,9 +154,11 @@ contains
         old_size = [size(vec, 1), size(vec, 2), size(vec, 3)]
         call move_alloc(vec, vec_tmp)
         allocate (vec(new_size(1), new_size(2), new_size(3)))
-        vec(:, :, :) = vec_tmp(1:min(old_size(1), new_size(1)), &
-                               1:min(old_size(2), new_size(2)), &
-                               1:min(old_size(3), new_size(3)))
+        vec(1:min(old_size(1), new_size(1)), &
+            1:min(old_size(2), new_size(2)), &
+            1:min(old_size(3), new_size(3))) = vec_tmp(1:min(old_size(1), new_size(1)), &
+                                                       1:min(old_size(2), new_size(2)), &
+                                                       1:min(old_size(3), new_size(3)))
         deallocate (vec_tmp)
     end subroutine realloc_vec_complex_dp_3D
 
@@ -166,9 +176,11 @@ contains
         old_size = [size(vec, 1), size(vec, 2), size(vec, 3)]
         call move_alloc(vec, vec_tmp)
         allocate (vec(new_size(1), new_size(2), new_size(3)))
-        vec(:, :, :) = vec_tmp(1:min(old_size(1), new_size(1)), &
-                               1:min(old_size(2), new_size(2)), &
-                               1:min(old_size(3), new_size(3)))
+        vec(1:min(old_size(1), new_size(1)), &
+            1:min(old_size(2), new_size(2)), &
+            1:min(old_size(3), new_size(3))) = vec_tmp(1:min(old_size(1), new_size(1)), &
+                                                       1:min(old_size(2), new_size(2)), &
+                                                       1:min(old_size(3), new_size(3)))
         deallocate (vec_tmp)
     end subroutine realloc_vec_complex_qp_3D
 

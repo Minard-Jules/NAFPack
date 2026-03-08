@@ -100,8 +100,8 @@
       <div class="col">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb justify-content-end mb-0">
-                <li class="breadcrumb-item"><a href='..\sourcefile\nafpack_meshgrid.f90.html'>NAFPack_meshgrid.f90</a></li>
-                <li class="breadcrumb-item"><a href='..\module\nafpack_meshgrid.html'>NAFPack_meshgrid</a></li>
+                <li class="breadcrumb-item"><a href='../sourcefile/nafpack_meshgrid.f90.html'>NAFPack_meshgrid.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/nafpack_meshgrid.html'>NAFPack_meshgrid</a></li>
             <li class="breadcrumb-item active" aria-current="page">check_indexing</li>
           </ol>
         </nav>
@@ -174,7 +174,7 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-indexing~41"></span>
+              <span class="anchor" id="variable-indexing~21"></span>
               type(meshgrid_indexing),
             </td>
 <td>intent(in),</td>
@@ -189,7 +189,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-strict_mode~42"></span>
+              <span class="anchor" id="variable-strict_mode~21"></span>
               logical,
             </td>
 <td>intent(in),</td>
@@ -204,7 +204,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-use_ij_indexing~21"></span>
+              <span class="anchor" id="variable-use_ij_indexing"></span>
               logical,
             </td>
 <td>intent(out)</td>
@@ -219,7 +219,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-use_xy_indexing~21"></span>
+              <span class="anchor" id="variable-use_xy_indexing"></span>
               logical,
             </td>
 <td>intent(out)</td>
@@ -249,33 +249,33 @@
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="hl codehilite"><pre><span></span><span class="w">    </span><span class="k">subroutine </span><span class="n">check_indexing</span><span class="p">(</span><span class="n">indexing</span><span class="p">,</span><span class="w"> </span><span class="n">strict_mode</span><span class="p">,</span><span class="w"> </span><span class="n">use_ij_indexing</span><span class="p">,</span><span class="w"> </span><span class="n">use_xy_indexing</span><span class="p">)</span>
-<span class="w">        </span><span class="k">type</span><span class="p">(</span><span class="n">meshgrid_indexing</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">indexing</span>
-<span class="w">        </span><span class="kt">logical</span><span class="p">,</span><span class="w"> </span><span class="k">optional</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">strict_mode</span>
-<span class="w">        </span><span class="kt">logical</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">use_ij_indexing</span><span class="p">,</span><span class="w"> </span><span class="n">use_xy_indexing</span>
-<span class="w">        </span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">is_strict</span>
+    <div class="hl codehilite"><pre><span></span><span class="w">    </span><span class="k">subroutine </span><span class="n">check_indexing</span><span class="p">(</span><span class="n">indexing</span><span class="p">,</span><span class="w"> </span><span class="n">strict_mode</span><span class="p">,</span><span class="w"> </span><span class="n">use_ij_indexing</span><span class="p">,</span><span class="w"> </span><span class="n">use_xy_indexing</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="k">type</span><span class="p">(</span><span class="n">meshgrid_indexing</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">indexing</span><span class="w"></span>
+<span class="w">        </span><span class="kt">logical</span><span class="p">,</span><span class="w"> </span><span class="k">optional</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">strict_mode</span><span class="w"></span>
+<span class="w">        </span><span class="kt">logical</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">use_ij_indexing</span><span class="p">,</span><span class="w"> </span><span class="n">use_xy_indexing</span><span class="w"></span>
+<span class="w">        </span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">is_strict</span><span class="w"></span>
 
-<span class="w">        </span><span class="n">is_strict</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">strict_mode</span><span class="p">))</span><span class="w"> </span><span class="n">is_strict</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strict_mode</span>
+<span class="w">        </span><span class="n">is_strict</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">strict_mode</span><span class="p">))</span><span class="w"> </span><span class="n">is_strict</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strict_mode</span><span class="w"></span>
 
-<span class="w">        </span><span class="n">use_ij_indexing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
-<span class="w">        </span><span class="n">use_xy_indexing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
+<span class="w">        </span><span class="n">use_ij_indexing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="n">use_xy_indexing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">indexing</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
 <span class="k">            if</span><span class="w"> </span><span class="p">(</span><span class="n">indexing</span><span class="p">%</span><span class="n">id</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">INDEXING_IJ</span><span class="p">%</span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
-<span class="k">                </span><span class="n">use_ij_indexing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">true</span><span class="p">.</span>
+<span class="k">                </span><span class="n">use_ij_indexing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w"></span>
 <span class="w">            </span><span class="k">else if</span><span class="w"> </span><span class="p">(</span><span class="n">indexing</span><span class="p">%</span><span class="n">id</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">INDEXING_XY</span><span class="p">%</span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
-<span class="k">                </span><span class="n">use_xy_indexing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">true</span><span class="p">.</span>
+<span class="k">                </span><span class="n">use_xy_indexing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w"></span>
 <span class="w">            </span><span class="k">else</span>
 <span class="k">                if</span><span class="w"> </span><span class="p">(</span><span class="n">is_strict</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
-<span class="k">                    error stop</span><span class="w"> </span><span class="s2">&quot;Error: Unknown indexing%id in meshgrid&quot;</span>
+<span class="k">                    error stop</span><span class="w"> </span><span class="s2">&quot;Error: Unknown indexing%id in meshgrid&quot;</span><span class="w"></span>
 <span class="w">                </span><span class="k">else</span>
-<span class="k">                    </span><span class="n">use_ij_indexing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">true</span><span class="p">.</span>
+<span class="k">                    </span><span class="n">use_ij_indexing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w"></span>
 <span class="w">                </span><span class="k">end if</span>
 <span class="k">            end if</span>
 <span class="k">        else</span>
-<span class="k">            </span><span class="n">use_ij_indexing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">true</span><span class="p">.</span>
+<span class="k">            </span><span class="n">use_ij_indexing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w"></span>
 <span class="w">        </span><span class="k">end if</span>
-<span class="k">    end subroutine </span><span class="n">check_indexing</span>
+<span class="k">    end subroutine </span><span class="n">check_indexing</span><span class="w"></span>
 </pre></div>
 
     </section>
@@ -292,7 +292,7 @@
           <div class="col">
             <p>
               NAFPack
- was developed by Minard Jules<br>              &copy; 2025 
+ was developed by Minard Jules<br>              &copy; 2026 
 </p>
           </div>
           <div class="col">

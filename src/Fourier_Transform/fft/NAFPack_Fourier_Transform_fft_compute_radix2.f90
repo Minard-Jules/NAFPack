@@ -112,7 +112,7 @@ pure function compute_vectorized_cmplx_sp( &
     type(FFTStageParams), intent(in) :: stage_params
     complex(sp), dimension(plan%N) :: result
     complex(sp), dimension(stage_params%block_size) :: even, odd, twiddles
-    integer(sp), dimension(stage_params%block_size) :: idx, i0, i1
+    integer(isp), dimension(stage_params%block_size) :: idx, i0, i1
     integer(isp) :: j, block_index, base
 
     result = signal

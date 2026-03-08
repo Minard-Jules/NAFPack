@@ -438,7 +438,7 @@ contains
         complex(sp), dimension(:), intent(in) :: x
         integer, dimension(:), intent(in) :: radix_plan ! [r1, r2, ..., rm]
         complex(sp), dimension(size(x)) :: y
-        integer(sp), dimension(size(radix_plan)) :: d
+        integer(isp), dimension(size(radix_plan)) :: d
         integer :: N, m, i, j, idx, rev, factor
 
         N = size(x)
@@ -545,7 +545,7 @@ contains
 
     pure module subroutine destroy_fft_plan_sp(this)
         class(Fourier_Transform), intent(inout) :: this
-        integer(isp) :: i
+        integer(isp) :: i, j
 
         if (this%fft_plan%is_initialized) then
 
@@ -565,6 +565,18 @@ contains
                     end if
                     if (allocated(this%fft_plan%split_radix_twiddles(i)%twiddles_W3k)) then
                         deallocate (this%fft_plan%split_radix_twiddles(i)%twiddles_W3k)
+                    end if
+
+                    if (allocated(this%fft_plan%split_radix_twiddles(i)%indices)) then
+                        do j = 1, size(this%fft_plan%split_radix_twiddles(i)%indices)
+                            if (allocated(this%fft_plan%split_radix_twiddles(i)%indices(j)%start_indices)) then
+                                deallocate(this%fft_plan%split_radix_twiddles(i)%indices(j)%start_indices)
+                            end if
+                            if (allocated(this%fft_plan%split_radix_twiddles(i)%indices(j)%strides)) then
+                                deallocate(this%fft_plan%split_radix_twiddles(i)%indices(j)%strides)
+                            end if
+                        end do
+                        deallocate(this%fft_plan%split_radix_twiddles(i)%indices)
                     end if
                 end do
                 deallocate (this%fft_plan%split_radix_twiddles)

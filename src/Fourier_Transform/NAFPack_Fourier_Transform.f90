@@ -176,7 +176,8 @@ module NAFPack_Fourier_Transform
     end interface
 
     !====================================================================================
-    ! destr
+    ! destroy FFT plan and deallocate resources
+    !====================================================================================
 
     interface
         pure module subroutine destroy_fft_plan_sp(this)

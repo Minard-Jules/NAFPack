@@ -107,6 +107,11 @@ Ensure you have [CMake](https://cmake.org/download/), [**FFTW**](https://www.fft
     $ fpm test
     ```
 
+3. If you use conda environments with windows, you need to specify the path to the fftw library:
+    ```sh
+    $ fpm test --link-flag "-L$env:CONDA_PREFIX/Library/bin"
+    ```
+
 ## Getting Started
 
 -  To integrate NAFPack into your project, you can use the Fortran Package Manager [**fpm**](https://fpm.fortran-lang.org/).
