@@ -6,6 +6,7 @@ module NAFPack_implementation_type
         character(len=20) :: name
     end type ImplementationType
 
-    type(ImplementationType), parameter :: RECURSIVE = ImplementationType(1, "Recursive"), &
-                                           ITERATIVE = ImplementationType(2, "Iterative")
+    type(ImplementationType), parameter :: recursive = ImplementationType(1, "Recursive"), &
+                                           ITERATIVE = ImplementationType(2, "Iterative"), &
+                                           DEFAULT_IMPLEMENTATION_TYPE = ITERATIVE
 end module NAFPack_implementation_type
