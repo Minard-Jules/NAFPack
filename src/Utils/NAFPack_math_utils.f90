@@ -6,7 +6,7 @@ module NAFPack_math_utils
 
     private
     public :: sieve_of_eratosthenes
-    public :: is_power_of_two, power_of_p_exponent
+    public :: is_power_of_two, is_power_of_p, power_of_p_exponent
 
 contains
 
@@ -53,17 +53,36 @@ contains
         end if
     end function is_power_of_two
 
-    pure function power_of_p_exponent(N, p) result(exponent)
+    pure function is_power_of_p(N, p) result(value)
         integer(isp), intent(in) :: N, p
-        integer(isp) :: exponent
+        logical :: value
         integer(isp) :: tmp
 
-        exponent = 0
-        tmp = N
-        do while (tmp > 1)
-            tmp = tmp / p
-            exponent = exponent + 1
-        end do
+        if (N < 1 .or. p < 2) then
+            value = .false.
+        else
+            tmp = N
+            do while (mod(tmp, p) == 0)
+                tmp = tmp / p
+            end do
+            value = (tmp == 1)
+        end if
+    end function is_power_of_p
+
+    pure function power_of_p_exponent(N, p) result(exponent)
+        integer(isp), intent(in) :: N, p
+        integer(isp) :: exponent, tmp
+
+        if (N < 1 .or. p < 2) then
+            exponent = 0
+        else
+            exponent = 0
+            tmp = N
+            do while (mod(tmp, p) == 0)
+                tmp = tmp / p
+                exponent = exponent + 1
+            end do
+        end if
     end function power_of_p_exponent
 
 end module NAFPack_math_utils

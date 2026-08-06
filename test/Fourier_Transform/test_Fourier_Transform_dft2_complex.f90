@@ -4,7 +4,8 @@ module test_Fourier_Transform_dft2_complex
     use NAFPack_constant, only: TOL_TEST_sp, TOL_TEST_dp, TOL_TEST_qp
     use NAFPack_constant, only: pi_sp, im_sp, pi_dp, im_dp, pi_qp, im_qp
     use testdrive, only: new_unittest, unittest_type, error_type, check
-    use NAFPack_loop_method, only: LoopMethod, init_loop_method
+    use NAFPack_loop_method_type, only: LoopMethod
+    use NAFPack_loop_method, only: init_loop_method
     use NAFPack_Fourier_Transform, only: Fourier_Transform
 
     implicit none(type, external)
@@ -18,11 +19,11 @@ contains
         type(unittest_type), allocatable, intent(out) :: testsuite(:)
 
         testsuite = [ &
-                    new_unittest("dft complex(sp)  2D", test_cmplx_dft2_sp), &
+                    new_unittest("dft  complex(sp) 2D", test_cmplx_dft2_sp), &
                     new_unittest("idft complex(sp) 2D", test_cmplx_idft2_sp), &
-                    new_unittest("dft complex(dp)  2D", test_cmplx_dft2_dp), &
+                    new_unittest("dft  complex(dp) 2D", test_cmplx_dft2_dp), &
                     new_unittest("idft complex(dp) 2D", test_cmplx_idft2_dp), &
-                    new_unittest("dft complex(qp)  2D", test_cmplx_dft2_qp), &
+                    new_unittest("dft  complex(qp) 2D", test_cmplx_dft2_qp), &
                     new_unittest("idft complex(qp) 2D", test_cmplx_idft2_qp) &
                     ]
 
@@ -80,7 +81,7 @@ contains
             call check(error, maxval(abs(fs_exact(i, :, :) - fs_DFT2)) < TOL_TEST_sp)
             if (allocated(error)) return
 
-            loop_method = init_loop_method(use_vectorized=.true.)
+            loop_method = init_loop_method(use_array_syntax=.true.)
             fs_DFT2 = FT%dft(signal_used, loop_method=loop_method)
             call check(error, maxval(abs(fs_exact(i, :, :) - fs_DFT2)) < TOL_TEST_sp)
             if (allocated(error)) return
@@ -152,7 +153,7 @@ contains
             call check(error, maxval(abs(signal_exact(i, :, :) - signal_IDFT2)) < TOL_TEST_sp)
             if (allocated(error)) return
 
-            loop_method = init_loop_method(use_vectorized=.true.)
+            loop_method = init_loop_method(use_array_syntax=.true.)
             signal_IDFT2 = FT%idft(fs_used, loop_method=loop_method)
             call check(error, maxval(abs(signal_exact(i, :, :) - signal_IDFT2)) < TOL_TEST_sp)
             if (allocated(error)) return
@@ -219,7 +220,7 @@ contains
             call check(error, maxval(abs(fs_exact(i, :, :) - fs_DFT2)) < TOL_TEST_dp)
             if (allocated(error)) return
 
-            loop_method = init_loop_method(use_vectorized=.true.)
+            loop_method = init_loop_method(use_array_syntax=.true.)
             fs_DFT2 = FT%dft(signal_used, loop_method=loop_method)
             call check(error, maxval(abs(fs_exact(i, :, :) - fs_DFT2)) < TOL_TEST_dp)
             if (allocated(error)) return
@@ -285,7 +286,7 @@ contains
             call check(error, maxval(abs(signal_exact(i, :, :) - signal_IDFT2)) < TOL_TEST_dp)
             if (allocated(error)) return
 
-            loop_method = init_loop_method(use_vectorized=.true.)
+            loop_method = init_loop_method(use_array_syntax=.true.)
             signal_IDFT2 = FT%idft(fs_used, loop_method=loop_method)
             call check(error, maxval(abs(signal_exact(i, :, :) - signal_IDFT2)) < TOL_TEST_dp)
             if (allocated(error)) return
@@ -351,7 +352,7 @@ contains
             call check(error, maxval(abs(fs_exact(i, :, :) - fs_DFT2)) < TOL_TEST_qp)
             if (allocated(error)) return
 
-            loop_method = init_loop_method(use_vectorized=.true.)
+            loop_method = init_loop_method(use_array_syntax=.true.)
             fs_DFT2 = FT%dft(signal_used, loop_method=loop_method)
             call check(error, maxval(abs(fs_exact(i, :, :) - fs_DFT2)) < TOL_TEST_qp)
             if (allocated(error)) return
@@ -417,7 +418,7 @@ contains
             call check(error, maxval(abs(signal_exact(i, :, :) - signal_IDFT2)) < TOL_TEST_qp)
             if (allocated(error)) return
 
-            loop_method = init_loop_method(use_vectorized=.true.)
+            loop_method = init_loop_method(use_array_syntax=.true.)
             signal_IDFT2 = FT%idft(fs_used, loop_method=loop_method)
             call check(error, maxval(abs(signal_exact(i, :, :) - signal_IDFT2)) < TOL_TEST_qp)
             if (allocated(error)) return
@@ -465,6 +466,6 @@ program test
         error stop
     end if
 
-    deallocate(testsuites)
+    deallocate (testsuites)
 
 end program test

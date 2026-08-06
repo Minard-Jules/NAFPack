@@ -21,6 +21,14 @@ module NAFPack_constant
     !> Integer infinity
     integer, parameter :: int_inf = huge(1)
 
+    real(sp), parameter :: SQRT3_HALF_sp = 0.5_sp * sqrt(3.0_sp)
+    real(dp), parameter :: SQRT3_HALF_dp = 0.5_dp * sqrt(3.0_dp)
+    real(qp), parameter :: SQRT3_HALF_qp = 0.5_qp * sqrt(3.0_qp)
+
+    real(sp), parameter :: SQRT2_HALF_sp = 0.5_sp * sqrt(2.0_sp)
+    real(dp), parameter :: SQRT2_HALF_dp = 0.5_dp * sqrt(2.0_dp)
+    real(qp), parameter :: SQRT2_HALF_qp = 0.5_qp * sqrt(2.0_qp)
+
     !> Error codes for better error handling
     integer, parameter :: NAF_SUCCESS = 0
     integer, parameter :: NAF_ERROR_DIMENSION = 1

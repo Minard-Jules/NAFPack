@@ -24,7 +24,7 @@ contains
             n_vec = [(real(i - 1, sp), i=1, N)]
             if (loop_method%use_do_classic) then
                 result = compute_do_classic_cmplx_sp(signal, n_vec, omega, N)
-            else if (loop_method%use_vectorized) then
+            else if (loop_method%vectorization%use_array_syntax) then
                 result = compute_do_vectorized_cmplx_sp(signal, n_vec, omega, N)
             else if (loop_method%use_do_concurrent) then
                 result = compute_do_concurrent_cmplx_sp(signal, n_vec, omega, N)
@@ -120,7 +120,7 @@ contains
             n_vec = [(real(i - 1, dp), i=1, N)]
             if (loop_method%use_do_classic) then
                 result = compute_do_classic_cmplx_dp(signal, n_vec, omega, N)
-            else if (loop_method%use_vectorized) then
+            else if (loop_method%vectorization%use_array_syntax) then
                 result = compute_do_vectorized_cmplx_dp(signal, n_vec, omega, N)
             else if (loop_method%use_do_concurrent) then
                 result = compute_do_concurrent_cmplx_dp(signal, n_vec, omega, N)
@@ -216,7 +216,7 @@ contains
             n_vec = [(real(i - 1, qp), i=1, N)]
             if (loop_method%use_do_classic) then
                 result = compute_do_classic_cmplx_qp(signal, n_vec, omega, N)
-            else if (loop_method%use_vectorized) then
+            else if (loop_method%vectorization%use_array_syntax) then
                 result = compute_do_vectorized_cmplx_qp(signal, n_vec, omega, N)
             else if (loop_method%use_do_concurrent) then
                 result = compute_do_concurrent_cmplx_qp(signal, n_vec, omega, N)
