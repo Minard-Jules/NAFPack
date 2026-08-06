@@ -22,7 +22,7 @@ contains
 
         if (loop_method%use_do_classic) then
             call compute_do_classic_integer_3D_i8(x_vector, y_vector, z_vector, X, Y, Z, Nx, Ny, Nz)
-        else if (loop_method%use_vectorized) then
+        else if (loop_method%vectorization%use_array_syntax) then
             call compute_do_vectorized_integer_3D_i8(x_vector, y_vector, z_vector, X, Y, Z, Nx, Ny, Nz)
         else if (loop_method%use_do_concurrent) then
             call compute_do_concurrent_integer_3D_i8(x_vector, y_vector, z_vector, X, Y, Z, Nx, Ny, Nz)
@@ -158,7 +158,7 @@ contains
 
         if (loop_method%use_do_classic) then
             call compute_do_classic_integer_3D_i16(x_vector, y_vector, z_vector, X, Y, Z, Nx, Ny, Nz)
-        else if (loop_method%use_vectorized) then
+        else if (loop_method%vectorization%use_array_syntax) then
             call compute_do_vectorized_integer_3D_i16(x_vector, y_vector, z_vector, X, Y, Z, Nx, Ny, Nz)
         else if (loop_method%use_do_concurrent) then
             call compute_do_concurrent_integer_3D_i16(x_vector, y_vector, z_vector, X, Y, Z, Nx, Ny, Nz)
@@ -294,7 +294,7 @@ contains
 
         if (loop_method%use_do_classic) then
             call compute_do_classic_integer_3D_isp(x_vector, y_vector, z_vector, X, Y, Z, Nx, Ny, Nz)
-        else if (loop_method%use_vectorized) then
+        else if (loop_method%vectorization%use_array_syntax) then
             call compute_do_vectorized_integer_3D_isp(x_vector, y_vector, z_vector, X, Y, Z, Nx, Ny, Nz)
         else if (loop_method%use_do_concurrent) then
             call compute_do_concurrent_integer_3D_isp(x_vector, y_vector, z_vector, X, Y, Z, Nx, Ny, Nz)
@@ -430,7 +430,7 @@ contains
 
         if (loop_method%use_do_classic) then
             call compute_do_classic_integer_3D_idp(x_vector, y_vector, z_vector, X, Y, Z, Nx, Ny, Nz)
-        else if (loop_method%use_vectorized) then
+        else if (loop_method%vectorization%use_array_syntax) then
             call compute_do_vectorized_integer_3D_idp(x_vector, y_vector, z_vector, X, Y, Z, Nx, Ny, Nz)
         else if (loop_method%use_do_concurrent) then
             call compute_do_concurrent_integer_3D_idp(x_vector, y_vector, z_vector, X, Y, Z, Nx, Ny, Nz)

@@ -4,7 +4,8 @@ module test_meshgrid
     use NAFPack_constant, only: TOL_TEST_sp, TOL_TEST_dp, TOL_TEST_qp
     use testdrive, only: new_unittest, unittest_type, error_type, check
     use NAFPack_meshgrid, only: meshgrid, INDEXING_IJ, INDEXING_XY
-    use NAFPack_loop_method, only: LoopMethod, init_loop_method
+    use NAFPack_loop_method_type, only: LoopMethod
+    use NAFPack_loop_method, only: init_loop_method
 
     implicit none(type, external)
 

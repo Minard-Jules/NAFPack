@@ -1,4 +1,4 @@
-submodule (test_meshgrid) test_meshgrid_real_3D
+submodule(test_meshgrid) test_meshgrid_real_3D
 
     implicit none(type, external)
 
@@ -13,7 +13,7 @@ contains
         type(LoopMethod) :: loop_method
         integer(isp) :: i
 
-        allocate(x_vector(nx), y_vector(ny))
+        allocate (x_vector(nx), y_vector(ny))
 
         x_vector = [(real(i, sp), i=1, nx)]
         y_vector = [(real(i, sp), i=1, ny)]
@@ -22,45 +22,44 @@ contains
         loop_method = init_loop_method(use_do_classic=.true.)
         call meshgrid(x_vector, y_vector, z_vector, X, Y, Z, indexing=INDEXING_IJ, loop_method=loop_method)
         call check_meshgrid_real_sp_3D_ij(error, x_vector, y_vector, z_vector, X, Y, Z, nx, ny, nz)
-        deallocate(X, Y, Z)
+        deallocate (X, Y, Z)
 
-        loop_method = init_loop_method(use_vectorized=.true.)
+        loop_method = init_loop_method(use_array_syntax=.true.)
         call meshgrid(x_vector, y_vector, z_vector, X, Y, Z, indexing=INDEXING_IJ, loop_method=loop_method)
         call check_meshgrid_real_sp_3D_ij(error, x_vector, y_vector, z_vector, X, Y, Z, nx, ny, nz)
-        deallocate(X, Y, Z)
+        deallocate (X, Y, Z)
 
         loop_method = init_loop_method(use_do_concurrent=.true.)
         call meshgrid(x_vector, y_vector, z_vector, X, Y, Z, indexing=INDEXING_IJ, loop_method=loop_method)
         call check_meshgrid_real_sp_3D_ij(error, x_vector, y_vector, z_vector, X, Y, Z, nx, ny, nz)
-        deallocate(X, Y, Z)
+        deallocate (X, Y, Z)
 
         loop_method = init_loop_method(use_openmp=.true., num_threads=4)
         call meshgrid(x_vector, y_vector, z_vector, X, Y, Z, indexing=INDEXING_IJ, loop_method=loop_method)
         call check_meshgrid_real_sp_3D_ij(error, x_vector, y_vector, z_vector, X, Y, Z, nx, ny, nz)
-        deallocate(X, Y, Z)
-
+        deallocate (X, Y, Z)
 
         loop_method = init_loop_method(use_do_classic=.true.)
         call meshgrid(x_vector, y_vector, z_vector, X, Y, Z, indexing=INDEXING_XY, loop_method=loop_method)
         call check_meshgrid_real_sp_3D_xy(error, x_vector, y_vector, z_vector, X, Y, Z, nx, ny, nz)
-        deallocate(X, Y, Z)
+        deallocate (X, Y, Z)
 
-        loop_method = init_loop_method(use_vectorized=.true.)
+        loop_method = init_loop_method(use_array_syntax=.true.)
         call meshgrid(x_vector, y_vector, z_vector, X, Y, Z, indexing=INDEXING_XY, loop_method=loop_method)
         call check_meshgrid_real_sp_3D_xy(error, x_vector, y_vector, z_vector, X, Y, Z, nx, ny, nz)
-        deallocate(X, Y, Z)
+        deallocate (X, Y, Z)
 
         loop_method = init_loop_method(use_do_concurrent=.true.)
         call meshgrid(x_vector, y_vector, z_vector, X, Y, Z, indexing=INDEXING_XY, loop_method=loop_method)
         call check_meshgrid_real_sp_3D_xy(error, x_vector, y_vector, z_vector, X, Y, Z, nx, ny, nz)
-        deallocate(X, Y, Z)
+        deallocate (X, Y, Z)
 
         loop_method = init_loop_method(use_openmp=.true., num_threads=4)
         call meshgrid(x_vector, y_vector, z_vector, X, Y, Z, indexing=INDEXING_XY, loop_method=loop_method)
         call check_meshgrid_real_sp_3D_xy(error, x_vector, y_vector, z_vector, X, Y, Z, nx, ny, nz)
-        deallocate(X, Y, Z)
+        deallocate (X, Y, Z)
 
-        deallocate(x_vector, y_vector, z_vector)
+        deallocate (x_vector, y_vector, z_vector)
 
     end subroutine test_meshgrid_real_sp_3D
 
@@ -145,7 +144,7 @@ contains
         type(LoopMethod) :: loop_method
         integer(isp) :: i
 
-        allocate(x_vector(nx), y_vector(ny), z_vector(nz))
+        allocate (x_vector(nx), y_vector(ny), z_vector(nz))
 
         x_vector = [(real(i, dp), i=1, nx)]
         y_vector = [(real(i, dp), i=1, ny)]
@@ -154,45 +153,44 @@ contains
         loop_method = init_loop_method(use_do_classic=.true.)
         call meshgrid(x_vector, y_vector, z_vector, X, Y, Z, indexing=INDEXING_IJ, loop_method=loop_method)
         call check_meshgrid_real_dp_3D_ij(error, x_vector, y_vector, z_vector, X, Y, Z, nx, ny, nz)
-        deallocate(X, Y, Z)
+        deallocate (X, Y, Z)
 
-        loop_method = init_loop_method(use_vectorized=.true.)
+        loop_method = init_loop_method(use_array_syntax=.true.)
         call meshgrid(x_vector, y_vector, z_vector, X, Y, Z, indexing=INDEXING_IJ, loop_method=loop_method)
         call check_meshgrid_real_dp_3D_ij(error, x_vector, y_vector, z_vector, X, Y, Z, nx, ny, nz)
-        deallocate(X, Y, Z)
+        deallocate (X, Y, Z)
 
         loop_method = init_loop_method(use_do_concurrent=.true.)
         call meshgrid(x_vector, y_vector, z_vector, X, Y, Z, indexing=INDEXING_IJ, loop_method=loop_method)
         call check_meshgrid_real_dp_3D_ij(error, x_vector, y_vector, z_vector, X, Y, Z, nx, ny, nz)
-        deallocate(X, Y, Z)
+        deallocate (X, Y, Z)
 
         loop_method = init_loop_method(use_openmp=.true., num_threads=4)
         call meshgrid(x_vector, y_vector, z_vector, X, Y, Z, indexing=INDEXING_IJ, loop_method=loop_method)
         call check_meshgrid_real_dp_3D_ij(error, x_vector, y_vector, z_vector, X, Y, Z, nx, ny, nz)
-        deallocate(X, Y, Z)
-
+        deallocate (X, Y, Z)
 
         loop_method = init_loop_method(use_do_classic=.true.)
         call meshgrid(x_vector, y_vector, z_vector, X, Y, Z, indexing=INDEXING_XY, loop_method=loop_method)
         call check_meshgrid_real_dp_3D_xy(error, x_vector, y_vector, z_vector, X, Y, Z, nx, ny, nz)
-        deallocate(X, Y, Z)
+        deallocate (X, Y, Z)
 
-        loop_method = init_loop_method(use_vectorized=.true.)
+        loop_method = init_loop_method(use_array_syntax=.true.)
         call meshgrid(x_vector, y_vector, z_vector, X, Y, Z, indexing=INDEXING_XY, loop_method=loop_method)
         call check_meshgrid_real_dp_3D_xy(error, x_vector, y_vector, z_vector, X, Y, Z, nx, ny, nz)
-        deallocate(X, Y, Z)
+        deallocate (X, Y, Z)
 
         loop_method = init_loop_method(use_do_concurrent=.true.)
         call meshgrid(x_vector, y_vector, z_vector, X, Y, Z, indexing=INDEXING_XY, loop_method=loop_method)
         call check_meshgrid_real_dp_3D_xy(error, x_vector, y_vector, z_vector, X, Y, Z, nx, ny, nz)
-        deallocate(X, Y, Z)
+        deallocate (X, Y, Z)
 
         loop_method = init_loop_method(use_openmp=.true., num_threads=4)
         call meshgrid(x_vector, y_vector, z_vector, X, Y, Z, indexing=INDEXING_XY, loop_method=loop_method)
         call check_meshgrid_real_dp_3D_xy(error, x_vector, y_vector, z_vector, X, Y, Z, nx, ny, nz)
-        deallocate(X, Y, Z)
+        deallocate (X, Y, Z)
 
-        deallocate(x_vector, y_vector, z_vector)
+        deallocate (x_vector, y_vector, z_vector)
 
     end subroutine test_meshgrid_real_dp_3D
 
@@ -277,7 +275,7 @@ contains
         type(LoopMethod) :: loop_method
         integer(isp) :: i
 
-        allocate(x_vector(nx), y_vector(ny), z_vector(nz))
+        allocate (x_vector(nx), y_vector(ny), z_vector(nz))
 
         x_vector = [(real(i, qp), i=1, nx)]
         y_vector = [(real(i, qp), i=1, ny)]
@@ -286,45 +284,44 @@ contains
         loop_method = init_loop_method(use_do_classic=.true.)
         call meshgrid(x_vector, y_vector, z_vector, X, Y, Z, indexing=INDEXING_IJ, loop_method=loop_method)
         call check_meshgrid_real_qp_3D_ij(error, x_vector, y_vector, z_vector, X, Y, Z, nx, ny, nz)
-        deallocate(X, Y, Z)
+        deallocate (X, Y, Z)
 
-        loop_method = init_loop_method(use_vectorized=.true.)
+        loop_method = init_loop_method(use_array_syntax=.true.)
         call meshgrid(x_vector, y_vector, z_vector, X, Y, Z, indexing=INDEXING_IJ, loop_method=loop_method)
         call check_meshgrid_real_qp_3D_ij(error, x_vector, y_vector, z_vector, X, Y, Z, nx, ny, nz)
-        deallocate(X, Y, Z)
+        deallocate (X, Y, Z)
 
         loop_method = init_loop_method(use_do_concurrent=.true.)
         call meshgrid(x_vector, y_vector, z_vector, X, Y, Z, indexing=INDEXING_IJ, loop_method=loop_method)
         call check_meshgrid_real_qp_3D_ij(error, x_vector, y_vector, z_vector, X, Y, Z, nx, ny, nz)
-        deallocate(X, Y, Z)
+        deallocate (X, Y, Z)
 
         loop_method = init_loop_method(use_openmp=.true., num_threads=4)
         call meshgrid(x_vector, y_vector, z_vector, X, Y, Z, indexing=INDEXING_IJ, loop_method=loop_method)
         call check_meshgrid_real_qp_3D_ij(error, x_vector, y_vector, z_vector, X, Y, Z, nx, ny, nz)
-        deallocate(X, Y, Z)
-
+        deallocate (X, Y, Z)
 
         loop_method = init_loop_method(use_do_classic=.true.)
         call meshgrid(x_vector, y_vector, z_vector, X, Y, Z, indexing=INDEXING_XY, loop_method=loop_method)
         call check_meshgrid_real_qp_3D_xy(error, x_vector, y_vector, z_vector, X, Y, Z, nx, ny, nz)
-        deallocate(X, Y, Z)
+        deallocate (X, Y, Z)
 
-        loop_method = init_loop_method(use_vectorized=.true.)
+        loop_method = init_loop_method(use_array_syntax=.true.)
         call meshgrid(x_vector, y_vector, z_vector, X, Y, Z, indexing=INDEXING_XY, loop_method=loop_method)
         call check_meshgrid_real_qp_3D_xy(error, x_vector, y_vector, z_vector, X, Y, Z, nx, ny, nz)
-        deallocate(X, Y, Z)
+        deallocate (X, Y, Z)
 
         loop_method = init_loop_method(use_do_concurrent=.true.)
         call meshgrid(x_vector, y_vector, z_vector, X, Y, Z, indexing=INDEXING_XY, loop_method=loop_method)
         call check_meshgrid_real_qp_3D_xy(error, x_vector, y_vector, z_vector, X, Y, Z, nx, ny, nz)
-        deallocate(X, Y, Z)
+        deallocate (X, Y, Z)
 
         loop_method = init_loop_method(use_openmp=.true., num_threads=4)
         call meshgrid(x_vector, y_vector, z_vector, X, Y, Z, indexing=INDEXING_XY, loop_method=loop_method)
         call check_meshgrid_real_qp_3D_xy(error, x_vector, y_vector, z_vector, X, Y, Z, nx, ny, nz)
-        deallocate(X, Y, Z)
+        deallocate (X, Y, Z)
 
-        deallocate(x_vector, y_vector, z_vector)
+        deallocate (x_vector, y_vector, z_vector)
 
     end subroutine test_meshgrid_real_qp_3D
 
