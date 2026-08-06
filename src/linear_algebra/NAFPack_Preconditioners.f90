@@ -1,7 +1,7 @@
 module NAFPack_Preconditioners
 
     use NAFPack_kinds, only: dp
-    USE NAFPack_constant, only: TOL_CONVERGENCE_dp
+    use NAFPack_constant, only: TOL_CONVERGENCE_dp
     use NAFPack_matricielle, only: Diag
     use NAFPack_matrix_decomposition, only: Incomplete_Cholesky_decomposition, ILU_decomposition
 

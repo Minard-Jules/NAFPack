@@ -12,14 +12,14 @@ contains
         n1 = 5
         n2 = 10
         allocate (array(n1))
-        array = [(cmplx(i, i+1, sp), i=1, n1)]
+        array = [(cmplx(i, i + 1, sp), i=1, n1)]
         call realloc(array, n2)
 
         call check(error, size(array) == n2)
         if (allocated(error)) return
 
         do i = 1, n1
-            call check(error, array(i) == cmplx(i, i+1, sp))
+            call check(error, array(i) == cmplx(i, i + 1, sp))
             if (allocated(error)) return
         end do
     end subroutine test_realloc_complex_sp_1D_grow
@@ -32,14 +32,14 @@ contains
         n1 = 10
         n2 = 5
         allocate (array(n1))
-        array = [(cmplx(i, i+1, sp), i=1, n1)]
+        array = [(cmplx(i, i + 1, sp), i=1, n1)]
         call realloc(array, n2)
 
         call check(error, size(array) == n2)
         if (allocated(error)) return
 
         do i = 1, n2
-            call check(error, array(i) == cmplx(i, i+1, sp))
+            call check(error, array(i) == cmplx(i, i + 1, sp))
             if (allocated(error)) return
         end do
     end subroutine test_realloc_complex_sp_1D_shrink
@@ -52,14 +52,14 @@ contains
         n1 = 5
         n2 = 10
         allocate (array(n1))
-        array = [(cmplx(i, i+1, dp), i=1, n1)]
+        array = [(cmplx(i, i + 1, dp), i=1, n1)]
         call realloc(array, n2)
 
         call check(error, size(array) == n2)
         if (allocated(error)) return
 
         do i = 1, n1
-            call check(error, array(i) == cmplx(i, i+1, dp))
+            call check(error, array(i) == cmplx(i, i + 1, dp))
             if (allocated(error)) return
         end do
     end subroutine test_realloc_complex_dp_1D_grow
@@ -72,14 +72,14 @@ contains
         n1 = 10
         n2 = 5
         allocate (array(n1))
-        array = [(cmplx(i, i+1, dp), i=1, n1)]
+        array = [(cmplx(i, i + 1, dp), i=1, n1)]
         call realloc(array, n2)
 
         call check(error, size(array) == n2)
         if (allocated(error)) return
 
         do i = 1, n2
-            call check(error, array(i) == cmplx(i, i+1, sp))
+            call check(error, array(i) == cmplx(i, i + 1, sp))
             if (allocated(error)) return
         end do
     end subroutine test_realloc_complex_dp_1D_shrink
@@ -92,14 +92,14 @@ contains
         n1 = 5
         n2 = 10
         allocate (array(n1))
-        array = [(cmplx(i, i+1, qp), i=1, n1)]
+        array = [(cmplx(i, i + 1, qp), i=1, n1)]
         call realloc(array, n2)
 
         call check(error, size(array) == n2)
         if (allocated(error)) return
 
         do i = 1, n1
-            call check(error, array(i) == cmplx(i, i+1, qp))
+            call check(error, array(i) == cmplx(i, i + 1, qp))
             if (allocated(error)) return
         end do
     end subroutine test_realloc_complex_qp_1D_grow
@@ -112,14 +112,14 @@ contains
         n1 = 10
         n2 = 5
         allocate (array(n1))
-        array = [(cmplx(i, i+1, qp), i=1, n1)]
+        array = [(cmplx(i, i + 1, qp), i=1, n1)]
         call realloc(array, n2)
 
         call check(error, size(array) == n2)
         if (allocated(error)) return
 
         do i = 1, n2
-            call check(error, array(i) == cmplx(i, i+1, sp))
+            call check(error, array(i) == cmplx(i, i + 1, sp))
             if (allocated(error)) return
         end do
     end subroutine test_realloc_complex_qp_1D_shrink

@@ -1075,7 +1075,7 @@ contains
             else if (params%k /= 1) then
                 z_prec = params%precond(this%preconditioner_type, params%residual)
                 params%beta = dot_product(z_prec, matmul(A, params%residual)) / &
-                params%old_dot_product
+                              params%old_dot_product
                 params%p = z_prec + params%beta * params%p
             end if
 

@@ -32,7 +32,7 @@ contains
         character(kind=ascii, len=*), intent(in) :: color
         type(ColorsAscii) :: ansii_colors
 
-        CALL ansii_colors%init()
+        call ansii_colors%init()
 
         open (output_unit, encoding='DEFAULT')
 
@@ -49,7 +49,7 @@ contains
         character(kind=ucs4, len=*), intent(in) :: color
         type(ColorsUcs4) :: ucs4_colors
 
-        CALL ucs4_colors%init()
+        call ucs4_colors%init()
 
         open (output_unit, encoding='UTF-8')
 
