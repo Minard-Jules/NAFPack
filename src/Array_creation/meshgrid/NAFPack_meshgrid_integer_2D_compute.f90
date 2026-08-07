@@ -22,7 +22,7 @@ contains
 
         if (loop_method%use_do_classic) then
             call compute_do_classic_integer_2D_i8(x_vector, y_vector, X, Y, Nx, Ny)
-        else if (loop_method%use_vectorized) then
+        else if (loop_method%vectorization%use_array_syntax) then
             call compute_do_vectorized_integer_2D_i8(x_vector, y_vector, X, Y, Nx, Ny)
         else if (loop_method%use_do_concurrent) then
             call compute_do_concurrent_integer_2D_i8(x_vector, y_vector, X, Y, Nx, Ny)
@@ -119,7 +119,7 @@ contains
 
         if (loop_method%use_do_classic) then
             call compute_do_classic_integer_2D_i16(x_vector, y_vector, X, Y, Nx, Ny)
-        else if (loop_method%use_vectorized) then
+        else if (loop_method%vectorization%use_array_syntax) then
             call compute_do_vectorized_integer_2D_i16(x_vector, y_vector, X, Y, Nx, Ny)
         else if (loop_method%use_do_concurrent) then
             call compute_do_concurrent_integer_2D_i16(x_vector, y_vector, X, Y, Nx, Ny)
@@ -216,7 +216,7 @@ contains
 
         if (loop_method%use_do_classic) then
             call compute_do_classic_integer_2D_isp(x_vector, y_vector, X, Y, Nx, Ny)
-        else if (loop_method%use_vectorized) then
+        else if (loop_method%vectorization%use_array_syntax) then
             call compute_do_vectorized_integer_2D_isp(x_vector, y_vector, X, Y, Nx, Ny)
         else if (loop_method%use_do_concurrent) then
             call compute_do_concurrent_integer_2D_isp(x_vector, y_vector, X, Y, Nx, Ny)
@@ -313,7 +313,7 @@ contains
 
         if (loop_method%use_do_classic) then
             call compute_do_classic_integer_2D_idp(x_vector, y_vector, X, Y, Nx, Ny)
-        else if (loop_method%use_vectorized) then
+        else if (loop_method%vectorization%use_array_syntax) then
             call compute_do_vectorized_integer_2D_idp(x_vector, y_vector, X, Y, Nx, Ny)
         else if (loop_method%use_do_concurrent) then
             call compute_do_concurrent_integer_2D_idp(x_vector, y_vector, X, Y, Nx, Ny)

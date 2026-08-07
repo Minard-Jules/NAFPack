@@ -22,7 +22,7 @@ contains
 
         if (loop_method%use_do_classic) then
             call compute_do_classic_cmplx_2D_sp(x_vector, y_vector, X, Y, Nx, Ny)
-        else if (loop_method%use_vectorized) then
+        else if (loop_method%vectorization%use_array_syntax) then
             call compute_do_vectorized_cmplx_2D_sp(x_vector, y_vector, X, Y, Nx, Ny)
         else if (loop_method%use_do_concurrent) then
             call compute_do_concurrent_cmplx_2D_sp(x_vector, y_vector, X, Y, Nx, Ny)
@@ -128,7 +128,7 @@ contains
 
         if (loop_method%use_do_classic) then
             call compute_do_classic_cmplx_2D_dp(x_vector, y_vector, X, Y, Nx, Ny)
-        else if (loop_method%use_vectorized) then
+        else if (loop_method%vectorization%use_array_syntax) then
             call compute_do_vectorized_cmplx_2D_dp(x_vector, y_vector, X, Y, Nx, Ny)
         else if (loop_method%use_do_concurrent) then
             call compute_do_concurrent_cmplx_2D_dp(x_vector, y_vector, X, Y, Nx, Ny)
@@ -234,7 +234,7 @@ contains
 
         if (loop_method%use_do_classic) then
             call compute_do_classic_cmplx_2D_qp(x_vector, y_vector, X, Y, Nx, Ny)
-        else if (loop_method%use_vectorized) then
+        else if (loop_method%vectorization%use_array_syntax) then
             call compute_do_vectorized_cmplx_2D_qp(x_vector, y_vector, X, Y, Nx, Ny)
         else if (loop_method%use_do_concurrent) then
             call compute_do_concurrent_cmplx_2D_qp(x_vector, y_vector, X, Y, Nx, Ny)

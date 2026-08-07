@@ -103,7 +103,7 @@ contains
         Nx = size(x_vector, 1)
         Ny = size(y_vector, 1)
         Nz = size(z_vector, 1)
-       if (use_ij_indexing) then
+        if (use_ij_indexing) then
             call compute_meshgrid_cmplx_3D_dp(x_vector, y_vector, z_vector, X, Y, Z, Nx, Ny, Nz, loop_method_used)
         else if (use_xy_indexing) then
             call compute_meshgrid_cmplx_3D_dp(y_vector, x_vector, z_vector, Y, X, Z, Ny, Nx, Nz, loop_method_used)

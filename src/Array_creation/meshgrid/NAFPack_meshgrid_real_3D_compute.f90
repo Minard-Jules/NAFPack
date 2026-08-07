@@ -22,7 +22,7 @@ contains
 
         if (loop_method%use_do_classic) then
             call compute_do_classic_real_3D_sp(x_vector, y_vector, z_vector, X, Y, Z, Nx, Ny, Nz)
-        else if (loop_method%use_vectorized) then
+        else if (loop_method%vectorization%use_array_syntax) then
             call compute_do_vectorized_real_3D_sp(x_vector, y_vector, z_vector, X, Y, Z, Nx, Ny, Nz)
         else if (loop_method%use_do_concurrent) then
             call compute_do_concurrent_real_3D_sp(x_vector, y_vector, z_vector, X, Y, Z, Nx, Ny, Nz)
@@ -158,7 +158,7 @@ contains
 
         if (loop_method%use_do_classic) then
             call compute_do_classic_real_3D_dp(x_vector, y_vector, z_vector, X, Y, Z, Nx, Ny, Nz)
-        else if (loop_method%use_vectorized) then
+        else if (loop_method%vectorization%use_array_syntax) then
             call compute_do_vectorized_real_3D_dp(x_vector, y_vector, z_vector, X, Y, Z, Nx, Ny, Nz)
         else if (loop_method%use_do_concurrent) then
             call compute_do_concurrent_real_3D_dp(x_vector, y_vector, z_vector, X, Y, Z, Nx, Ny, Nz)
@@ -294,7 +294,7 @@ contains
 
         if (loop_method%use_do_classic) then
             call compute_do_classic_real_3D_qp(x_vector, y_vector, z_vector, X, Y, Z, Nx, Ny, Nz)
-        else if (loop_method%use_vectorized) then
+        else if (loop_method%vectorization%use_array_syntax) then
             call compute_do_vectorized_real_3D_qp(x_vector, y_vector, z_vector, X, Y, Z, Nx, Ny, Nz)
         else if (loop_method%use_do_concurrent) then
             call compute_do_concurrent_real_3D_qp(x_vector, y_vector, z_vector, X, Y, Z, Nx, Ny, Nz)

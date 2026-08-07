@@ -1,4 +1,4 @@
-submodule (test_meshgrid) test_meshgrid_integer_2D
+submodule(test_meshgrid) test_meshgrid_integer_2D
 
     implicit none(type, external)
 
@@ -23,7 +23,7 @@ contains
         call check_meshgrid_i8_2D_ij(error, x_vector, y_vector, X, Y, nx, ny)
         deallocate (X, Y)
 
-        loop_method = init_loop_method(use_vectorized=.true.)
+        loop_method = init_loop_method(use_array_syntax=.true.)
         call meshgrid(x_vector, y_vector, X, Y, indexing=INDEXING_IJ, loop_method=loop_method)
         call check_meshgrid_i8_2D_ij(error, x_vector, y_vector, X, Y, nx, ny)
         deallocate (X, Y)
@@ -38,13 +38,12 @@ contains
         call check_meshgrid_i8_2D_ij(error, x_vector, y_vector, X, Y, nx, ny)
         deallocate (X, Y)
 
-
         loop_method = init_loop_method(use_do_classic=.true.)
         call meshgrid(x_vector, y_vector, X, Y, indexing=INDEXING_XY, loop_method=loop_method)
         call check_meshgrid_i8_2D_xy(error, x_vector, y_vector, X, Y, nx, ny)
         deallocate (X, Y)
 
-        loop_method = init_loop_method(use_vectorized=.true.)
+        loop_method = init_loop_method(use_array_syntax=.true.)
         call meshgrid(x_vector, y_vector, X, Y, indexing=INDEXING_XY, loop_method=loop_method)
         call check_meshgrid_i8_2D_xy(error, x_vector, y_vector, X, Y, nx, ny)
         deallocate (X, Y)
@@ -127,7 +126,7 @@ contains
         call check_meshgrid_i16_2D_ij(error, x_vector, y_vector, X, Y, nx, ny)
         deallocate (X, Y)
 
-        loop_method = init_loop_method(use_vectorized=.true.)
+        loop_method = init_loop_method(use_array_syntax=.true.)
         call meshgrid(x_vector, y_vector, X, Y, indexing=INDEXING_IJ, loop_method=loop_method)
         call check_meshgrid_i16_2D_ij(error, x_vector, y_vector, X, Y, nx, ny)
         deallocate (X, Y)
@@ -142,13 +141,12 @@ contains
         call check_meshgrid_i16_2D_ij(error, x_vector, y_vector, X, Y, nx, ny)
         deallocate (X, Y)
 
-
         loop_method = init_loop_method(use_do_classic=.true.)
         call meshgrid(x_vector, y_vector, X, Y, indexing=INDEXING_XY, loop_method=loop_method)
         call check_meshgrid_i16_2D_xy(error, x_vector, y_vector, X, Y, nx, ny)
         deallocate (X, Y)
 
-        loop_method = init_loop_method(use_vectorized=.true.)
+        loop_method = init_loop_method(use_array_syntax=.true.)
         call meshgrid(x_vector, y_vector, X, Y, indexing=INDEXING_XY, loop_method=loop_method)
         call check_meshgrid_i16_2D_xy(error, x_vector, y_vector, X, Y, nx, ny)
         deallocate (X, Y)
@@ -231,7 +229,7 @@ contains
         call check_meshgrid_isp_2D_ij(error, x_vector, y_vector, X, Y, nx, ny)
         deallocate (X, Y)
 
-        loop_method = init_loop_method(use_vectorized=.true.)
+        loop_method = init_loop_method(use_array_syntax=.true.)
         call meshgrid(x_vector, y_vector, X, Y, indexing=INDEXING_IJ, loop_method=loop_method)
         call check_meshgrid_isp_2D_ij(error, x_vector, y_vector, X, Y, nx, ny)
         deallocate (X, Y)
@@ -246,13 +244,12 @@ contains
         call check_meshgrid_isp_2D_ij(error, x_vector, y_vector, X, Y, nx, ny)
         deallocate (X, Y)
 
-
         loop_method = init_loop_method(use_do_classic=.true.)
         call meshgrid(x_vector, y_vector, X, Y, indexing=INDEXING_XY, loop_method=loop_method)
         call check_meshgrid_isp_2D_xy(error, x_vector, y_vector, X, Y, nx, ny)
         deallocate (X, Y)
 
-        loop_method = init_loop_method(use_vectorized=.true.)
+        loop_method = init_loop_method(use_array_syntax=.true.)
         call meshgrid(x_vector, y_vector, X, Y, indexing=INDEXING_XY, loop_method=loop_method)
         call check_meshgrid_isp_2D_xy(error, x_vector, y_vector, X, Y, nx, ny)
         deallocate (X, Y)
@@ -335,7 +332,7 @@ contains
         call check_meshgrid_idp_2D_ij(error, x_vector, y_vector, X, Y, nx, ny)
         deallocate (X, Y)
 
-        loop_method = init_loop_method(use_vectorized=.true.)
+        loop_method = init_loop_method(use_array_syntax=.true.)
         call meshgrid(x_vector, y_vector, X, Y, indexing=INDEXING_IJ, loop_method=loop_method)
         call check_meshgrid_idp_2D_ij(error, x_vector, y_vector, X, Y, nx, ny)
         deallocate (X, Y)
@@ -350,13 +347,12 @@ contains
         call check_meshgrid_idp_2D_ij(error, x_vector, y_vector, X, Y, nx, ny)
         deallocate (X, Y)
 
-
         loop_method = init_loop_method(use_do_classic=.true.)
         call meshgrid(x_vector, y_vector, X, Y, indexing=INDEXING_XY, loop_method=loop_method)
         call check_meshgrid_idp_2D_xy(error, x_vector, y_vector, X, Y, nx, ny)
         deallocate (X, Y)
 
-        loop_method = init_loop_method(use_vectorized=.true.)
+        loop_method = init_loop_method(use_array_syntax=.true.)
         call meshgrid(x_vector, y_vector, X, Y, indexing=INDEXING_XY, loop_method=loop_method)
         call check_meshgrid_idp_2D_xy(error, x_vector, y_vector, X, Y, nx, ny)
         deallocate (X, Y)

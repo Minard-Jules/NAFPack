@@ -4,7 +4,8 @@
 module NAFPack_meshgrid
 
     use NAFPack_kinds, only: dp, sp, qp, i8, i16, isp, idp
-    use NAFPack_loop_method, only: LoopMethod, count_true_methods, default_loop_method, check_loop_method
+    use NAFPack_loop_method_type, only: LoopMethod, default_loop_method
+    use NAFPack_loop_method, only: count_true_methods, check_loop_method
 
     implicit none(type, external)
 

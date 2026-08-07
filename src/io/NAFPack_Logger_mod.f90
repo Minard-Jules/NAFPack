@@ -137,7 +137,7 @@ contains
         character(KIND=ucs4, LEN=*), intent(in) :: msg
         type(ColorsUcs4) :: colors
 
-        CALL colors%init()
+        call colors%init()
 
         if (this%verbosity_level >= 2) call this%write(msg, ucs4_"INFO", colors%blue)
 
@@ -148,7 +148,7 @@ contains
         character(KIND=ucs4, LEN=*), intent(in) :: msg
         type(ColorsUcs4) :: colors
 
-        CALL colors%init()
+        call colors%init()
 
         if (this%verbosity_level >= 3) call this%write(ucs4_"    "//msg, &
                                                        ucs4_"DETAIL", &
@@ -161,7 +161,7 @@ contains
         character(KIND=ucs4, LEN=*), intent(in) :: msg
         type(ColorsUcs4) :: colors
 
-        CALL colors%init()
+        call colors%init()
 
         if (this%verbosity_level >= 1) call this%write(msg, ucs4_"WARNING", colors%yellow)
 
@@ -172,7 +172,7 @@ contains
         character(KIND=ucs4, LEN=*), intent(in) :: msg
         type(ColorsUcs4) :: colors
 
-        CALL colors%init()
+        call colors%init()
 
         if (this%verbosity_level >= 1) call this%write(msg, ucs4_"ERROR", colors%red)
 
@@ -185,7 +185,7 @@ contains
         character(KIND=ucs4, LEN=10) :: time_ucs4
         type(ColorsUcs4) :: colors
 
-        CALL colors%init()
+        call colors%init()
 
         call date_and_time(TIME=time)
         write (time_ucs4, '(A)') time(:2)//":"//time(3:4)//":"//time(5:6)
@@ -206,7 +206,7 @@ contains
         character(LEN=4) :: box_char
         type(ColorsUcs4) :: colors
 
-        CALL colors%init()
+        call colors%init()
 
         if (present(box_style)) then
             select case (trim(adjustl(box_style)))

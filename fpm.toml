@@ -28,7 +28,11 @@ openmp = "*"
 # blas = "*"
 # lapack = "*"
 
+[[test]]
+name = "test_fft"
+main = "test_Fourier_Transform_fft_complex.f90"
+source-dir = "test/Fourier_Transform"
+
 [dev-dependencies]
 test-drive.git = "https://github.com/fortran-lang/test-drive"
 test-drive.branch = "main"
-

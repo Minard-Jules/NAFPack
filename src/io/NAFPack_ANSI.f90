@@ -103,8 +103,8 @@ module NAFPack_ANSI
             red, green, yellow, blue, magenta, cyan, white, &
             bright_red, bright_green, bright_yellow, bright_blue, bright_magenta, bright_cyan, &
             bright_white
-        contains
-            procedure :: init => init_colors_ascii
+    contains
+        procedure :: init => init_colors_ascii
     end type ColorsAscii
 
     interface
@@ -119,8 +119,8 @@ module NAFPack_ANSI
             red, green, yellow, blue, magenta, cyan, white, &
             bright_red, bright_green, bright_yellow, bright_blue, bright_magenta, bright_cyan, &
             bright_white
-        contains
-            procedure :: init => init_colors_ucs4
+    contains
+        procedure :: init => init_colors_ucs4
     end type ColorsUcs4
 
     interface
