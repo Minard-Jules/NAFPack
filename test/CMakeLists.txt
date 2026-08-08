@@ -1,7 +1,7 @@
 set(TEST_SOURCES_old
-    ${TEST_DIR}/test_old/test_old.f90
-    ${TEST_DIR}/test_old/test_NAFPack_fft.f90
-    ${TEST_DIR}/test_old/test_NAFPack_linear_algebra.f90
+  ${TEST_DIR}/test_old/test_old.f90
+  ${TEST_DIR}/test_old/test_NAFPack_fft.f90
+  ${TEST_DIR}/test_old/test_NAFPack_linear_algebra.f90
 )
 
 include(FetchContent)
@@ -11,22 +11,28 @@ set(TEST_DRIVE_BUILD_TESTING OFF CACHE BOOL "" FORCE)
 FetchContent_Declare(
   test-drive
   GIT_REPOSITORY https://github.com/fortran-lang/test-drive.git
-  GIT_TAG        main
+  GIT_TAG main
 )
+
+set(_saved_fortran_flags_release "${CMAKE_Fortran_FLAGS_RELEASE}")
+string(REPLACE "-ffast-math" "" CMAKE_Fortran_FLAGS_RELEASE "${CMAKE_Fortran_FLAGS_RELEASE}")
+set(CMAKE_Fortran_FLAGS_RELEASE "${CMAKE_Fortran_FLAGS_RELEASE}" CACHE STRING "Flags for Fortran compiler release" FORCE)
+
 FetchContent_MakeAvailable(test-drive)
 
+set(CMAKE_Fortran_FLAGS_RELEASE "${_saved_fortran_flags_release}")
+
 macro(ADDTEST name)
-    add_executable(${name} ${ARGN})
-    target_link_libraries(${name} "${PROJECT_NAME}" "test-drive")
-    add_test(NAME ${name}
-             COMMAND $<TARGET_FILE:${name}> ${CMAKE_CURRENT_BINARY_DIR}
-             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+  add_executable(${name} ${ARGN})
+  target_link_libraries(${name} "${PROJECT_NAME}" "test-drive")
+  add_test(NAME ${name}
+    COMMAND $<TARGET_FILE:${name}> ${CMAKE_CURRENT_BINARY_DIR}
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 endmacro(ADDTEST)
 
 # add_executable(test_old ${TEST_SOURCES_old})
 # target_link_libraries(test_old "${PROJECT_NAME}" "test-drive")
 # target_include_directories(test_old PRIVATE ${CMAKE_Fortran_MODULE_DIRECTORY})
-
 add_subdirectory(Array_creation/meshgrid)
 add_subdirectory(Fourier_Transform)
 add_subdirectory(memory/memory_management)

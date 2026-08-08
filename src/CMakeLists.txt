@@ -2,6 +2,7 @@ set(NAFPACK_SOURCES
     ${SRC_DIR}/NAFPack_kinds.f90
     ${SRC_DIR}/NAFPack_constant.f90
     ${SRC_DIR}/NAFPack_loop_method.f90
+    ${SRC_DIR}/NAFPack_loop_method_type.f90
     ${SRC_DIR}/NAFPack_implementation_type.f90
     ${SRC_DIR}/Array_creation/meshgrid/NAFPack_meshgrid.f90
     ${SRC_DIR}/Array_creation/meshgrid/NAFPack_meshgrid_real_2D_compute.f90
@@ -22,10 +23,18 @@ set(NAFPACK_SOURCES
     ${SRC_DIR}/Fourier_Transform/dft/NAFPack_Fourier_Transform_dft.f90
     ${SRC_DIR}/Fourier_Transform/dft/NAFPack_Fourier_Transform_dft2.f90
     ${SRC_DIR}/Fourier_Transform/dft/NAFPack_Fourier_Transform_dft3.f90
-    ${SRC_DIR}/Fourier_Transform/fft/NAFPack_Fourier_Transform_fft_compute_mixed_radix.f90
-    ${SRC_DIR}/Fourier_Transform/fft/NAFPack_Fourier_Transform_fft_compute_radix2.f90
-    ${SRC_DIR}/Fourier_Transform/fft/NAFPack_Fourier_Transform_fft_compute_split_radix.f90
-    ${SRC_DIR}/Fourier_Transform/fft/NAFPack_Fourier_Transform_fft.f90
+    ${SRC_DIR}/Fourier_Transform/fft/butterfly/NAFPack_butterfly_dft.f90
+    ${SRC_DIR}/Fourier_Transform/fft/butterfly/NAFPack_butterfly_mixed_radix.f90
+    ${SRC_DIR}/Fourier_Transform/fft/butterfly/NAFPack_butterfly_radix2.f90
+    ${SRC_DIR}/Fourier_Transform/fft/butterfly/NAFPack_butterfly_radix3.f90
+    ${SRC_DIR}/Fourier_Transform/fft/butterfly/NAFPack_butterfly_radix4.f90
+    ${SRC_DIR}/Fourier_Transform/fft/butterfly/NAFPack_butterfly_radix5.f90
+    ${SRC_DIR}/Fourier_Transform/fft/butterfly/NAFPack_butterfly_split_radix.f90
+    ${SRC_DIR}/Fourier_Transform/fft/butterfly/NAFPack_butterfly.f90
+    ${SRC_DIR}/Fourier_Transform/fft/planner/NAFPack_plan_create.f90
+    ${SRC_DIR}/Fourier_Transform/fft/planner/NAFPack_plan_destroy.f90
+    ${SRC_DIR}/Fourier_Transform/fft/planner/NAFPack_plan_execute.f90
+    ${SRC_DIR}/Fourier_Transform/fft/planner/NAFPack_plan_type.f90
     ${SRC_DIR}/Fourier_Transform/NAFPack_Fourier_Transform.f90
     ${SRC_DIR}/io/NAFPack_ANSI_ASCII.f90
     ${SRC_DIR}/io/NAFPack_ANSI_ucs4.f90
@@ -47,7 +56,12 @@ set(NAFPACK_SOURCES
     ${SRC_DIR}/linear_algebra/Matrix/NAFPack_matrix_decomposition.f90
     ${SRC_DIR}/linear_algebra/Matrix/NAFPack_matrix_properties.f90
     ${SRC_DIR}/linear_algebra/Matrix/NAFPack_matrix_tools.f90
-    ${SRC_DIR}/math_utils/NAFPack_math_utils.f90
+    ${SRC_DIR}/Utils/NAFPack_math_utils.f90
+    ${SRC_DIR}/Utils/NAFPack_utils_complex.f90
+    ${SRC_DIR}/Utils/NAFPack_utils_integer.f90
+    ${SRC_DIR}/Utils/NAFPack_utils_real.f90
+    ${SRC_DIR}/Utils/NAFPack_utils_type.f90
+    ${SRC_DIR}/Utils/NAFPack_utils.f90
     ${SRC_DIR}/memory/memory_monitor.c
     ${SRC_DIR}/memory/NAFPack_memory_management_complex.f90
     ${SRC_DIR}/memory/NAFPack_memory_management_integer.f90
@@ -59,27 +73,27 @@ set(NAFPACK_SOURCES
 add_library(${PROJECT_NAME} ${NAFPACK_SOURCES})
 
 set_target_properties(${PROJECT_NAME}
-                      PROPERTIES
-                      POSITION_INDEPENDENT_CODE ON
-                      WINDOWS_EXPORT_ALL_SYMBOLS ON
+    PROPERTIES
+    POSITION_INDEPENDENT_CODE ON
+    WINDOWS_EXPORT_ALL_SYMBOLS ON
 )
 
 set_target_properties(${PROJECT_NAME}
-                      PROPERTIES
-                      Fortran_MODULE_DIRECTORY ${CMAKE_Fortran_MODULE_DIRECTORY}
+    PROPERTIES
+    Fortran_MODULE_DIRECTORY ${CMAKE_Fortran_MODULE_DIRECTORY}
 )
 target_include_directories(${PROJECT_NAME} PUBLIC
-                           $<BUILD_INTERFACE:${CMAKE_Fortran_MODULE_DIRECTORY}>
-                           $<INSTALL_INTERFACE:${CMAKE_INSTALL_MODULEDIR}>
+    $<BUILD_INTERFACE:${CMAKE_Fortran_MODULE_DIRECTORY}>
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_MODULEDIR}>
 )
 
 target_link_libraries(${PROJECT_NAME} OpenMP::OpenMP_Fortran)
 target_link_libraries(${PROJECT_NAME} PkgConfig::FFTW3)
 
 install(TARGETS ${PROJECT_NAME}
-        EXPORT ${PROJECT_NAME}-targets
-        RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}"
-        ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}"
-        LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}"
+    EXPORT ${PROJECT_NAME}-targets
+    RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}"
+    ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}"
+    LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}"
 )
 install(DIRECTORY ${CMAKE_Fortran_MODULE_DIRECTORY} DESTINATION "${CMAKE_INSTALL_MODULEDIR}")

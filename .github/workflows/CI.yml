@@ -1,0 +1,72 @@
+name: Build with CMake and FPM
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ master, develop ]
+  pull_request:
+    branches: [ master, develop ]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v7
+    
+    - name: Setup Conda environment
+      uses: conda-incubator/setup-miniconda@v4
+      with:
+        auto-update-conda: true
+        miniconda-version: latest
+        channels: conda-forge
+        channel-priority: true
+        environment-file: environment.yml
+        activate-environment: nafpack-dev
+    
+    # ============================================
+    # FPM BUILD & TESTS
+    # ============================================
+    - name: Build with FPM
+      shell: bash -l {0}
+      run: fpm build --profile release --build-dir build_fpm
+    
+    - name: Run FPM tests
+      shell: bash -l {0}
+      run: fpm test --profile release --build-dir build_fpm
+    
+    # ============================================
+    # CMAKE BUILD & TESTS
+    # ============================================
+    - name: Configure CMake
+      shell: bash -l {0}
+      run: |
+        mkdir build_cmake
+        cd build_cmake
+        cmake -G "Ninja" .. \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DBUILD_TESTING=ON
+    
+    - name: Build with CMake
+      shell: bash -l {0}
+      run: |
+        cd build_cmake
+        cmake --build . --config Release
+    
+    - name: Run CMake tests
+      shell: bash -l {0}
+      run: |
+        cd build_cmake
+        ctest --output-on-failure -V
+    
+    - name: Upload CMake test results
+      if: always()
+      uses: actions/upload-artifact@v7
+      with:
+        name: cmake-results-${{ matrix.os }}
+        path: build_cmake/Testing/
+        if-no-files-found: ignore
