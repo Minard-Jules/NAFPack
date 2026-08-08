@@ -38,15 +38,7 @@ jobs:
     - name: Run FPM tests
       shell: bash -l {0}
       continue-on-error: true
-      run: fpm test --profile release --build-dir build_fpm > build_fpm/test-output.log 2>&1
-    
-    - name: Upload FPM test results
-      if: always()
-      uses: actions/upload-artifact@v7
-      with:
-        name: fpm-results-${{ matrix.os }}
-        path: build_fpm/test-output.log
-        if-no-files-found: ignore
+      run: fpm test --profile release --build-dir build_fpm
     
     # ============================================
     # CMAKE BUILD & TESTS

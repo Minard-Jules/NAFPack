@@ -28,6 +28,7 @@ jobs:
           activate-environment: nafpack-dev
       
       - name: Build Documentation
+        shell: bash -l {0}
         run: ford docs.md
 
       - uses: JamesIves/github-pages-deploy-action@v4.7.6
