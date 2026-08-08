@@ -10,7 +10,7 @@ homepage = "https://github.com/Minard-Jules/NAFPack"
 
 [features]
 release.flags = "-O3"
-release.gfortran.flags = "-march=native -ffast-math -fimplicit-none -ffree-line-length-2000 -flto -funroll-loops"
+release.gfortran.flags = "-march=native -ffast-math -fimplicit-none -ffree-line-length-2000 -funroll-loops"
 release.preprocess.cpp.macros = ["NDEBUG"]
 
 debug.flags = "-g -O0"

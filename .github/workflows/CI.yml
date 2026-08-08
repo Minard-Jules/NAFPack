@@ -37,7 +37,6 @@ jobs:
     
     - name: Run FPM tests
       shell: bash -l {0}
-      continue-on-error: true
       run: fpm test --profile release --build-dir build_fpm
     
     # ============================================
@@ -60,7 +59,6 @@ jobs:
     
     - name: Run CMake tests
       shell: bash -l {0}
-      continue-on-error: true
       run: |
         cd build_cmake
         ctest --output-on-failure -V
