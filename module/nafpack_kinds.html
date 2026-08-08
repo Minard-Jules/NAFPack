@@ -1,0 +1,1877 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+    <meta name="author" content="Minard Jules" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>NAFPack_kinds &ndash; NAFPack</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="../css/local.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">NAFPack </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>NAFPack_kinds
+      <small>Module</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 0.1% of total for modules and submodules.">14 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/NAFPack_kinds.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/nafpack_kinds.f90.html'>NAFPack_kinds.f90</a></li>
+            <li class="breadcrumb-item active" aria-current="page">NAFPack_kinds</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
+  </script>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+        <div id="sidebar">
+      <h3>Contents</h3>
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#vars-0"
+         aria-expanded="false" aria-controls="vars-0">
+         <h4 class="card-header bg-primary text-white">Variables</h4>
+      </a>
+      <div id="vars-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/nafpack_kinds.html#variable-ascii">ascii</a>
+            <a class="list-group-item" href="../module/nafpack_kinds.html#variable-ucs4">ucs4</a>
+            <a class="list-group-item" href="../module/nafpack_kinds.html#variable-sp">sp</a>
+            <a class="list-group-item" href="../module/nafpack_kinds.html#variable-dp~2">dp</a>
+            <a class="list-group-item" href="../module/nafpack_kinds.html#variable-qp">qp</a>
+            <a class="list-group-item" href="../module/nafpack_kinds.html#variable-i8">i8</a>
+            <a class="list-group-item" href="../module/nafpack_kinds.html#variable-i16">i16</a>
+            <a class="list-group-item" href="../module/nafpack_kinds.html#variable-isp">isp</a>
+            <a class="list-group-item" href="../module/nafpack_kinds.html#variable-idp">idp</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+
+    <div class="col-md-9" id='text'>
+      
+<br>          <div class="card mb-4">
+      <h3 class="card-header card-title bg-light">Uses</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <ul class="list-inline">
+                  <li class="list-inline-item"><a href='http://fortranwiki.org/fortran/show/iso_fortran_env'>iso_fortran_env</a></li>
+              </ul>
+            </li>
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.2 (20260126.1125)
+ -->
+<!-- Title: module~~nafpack_kinds~~UsesGraph Pages: 1 -->
+<svg id="modulenafpack_kindsUsesGraph" width="228pt" height="32pt"
+ viewBox="0.00 0.00 228.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~nafpack_kinds~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28.27)">
+<title>module~~nafpack_kinds~~UsesGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-28.27 223.54,-28.27 223.54,4 -4,4"/>
+<!-- module~nafpack_kinds -->
+<g id="module~~nafpack_kinds~~UsesGraph_node1" class="node">
+<title>module~nafpack_kinds</title>
+<polygon fill="none" stroke="black" points="219.54,-24.27 129.27,-24.27 129.27,0 219.54,0 219.54,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="174.41" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50">NAFPack_kinds</text>
+</g>
+<!-- iso_fortran_env -->
+<g id="module~~nafpack_kinds~~UsesGraph_node2" class="node">
+<title>iso_fortran_env</title>
+<g id="a_module~~nafpack_kinds~~UsesGraph_node2"><a xlink:href="http://fortranwiki.org/fortran/show/iso_fortran_env" xlink:title="iso_fortran_env">
+<polygon fill="#337ab7" stroke="#337ab7" points="93.27,-24.27 0,-24.27 0,0 93.27,0 93.27,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="46.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_kinds&#45;&gt;iso_fortran_env -->
+<g id="module~~nafpack_kinds~~UsesGraph_edge1" class="edge">
+<title>module~nafpack_kinds&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M129.06,-12.13C121.28,-12.13 113.07,-12.13 104.99,-12.13"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="105.22,-8.64 95.22,-12.14 105.22,-15.64 105.22,-8.64"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsesGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsesGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.2 (20260126.1125)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="511pt" height="32pt"
+ viewBox="0.00 0.00 511.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28.27)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-28.27 506.88,-28.27 506.88,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24.27 0,-24.27 0,0 54,0 54,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="144.13,-24.27 71.87,-24.27 71.87,0 144.13,0 144.13,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="108" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="231.63,-24.27 162.37,-24.27 162.37,0 231.63,0 231.63,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="197" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="306.26,-24.27 249.74,-24.27 249.74,0 306.26,0 306.26,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="278" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="381.26,-24.27 324.74,-24.27 324.74,0 381.26,0 381.26,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="353" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="502.88,-24.27 399.12,-24.27 399.12,0 502.88,0 502.88,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="451" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+          <div class="card">
+      <h3 class="card-header card-title bg-light">Used by</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.2 (20260126.1125)
+ -->
+<!-- Title: module~~nafpack_kinds~~UsedByGraph Pages: 1 -->
+<svg id="modulenafpack_kindsUsedByGraph" width="641pt" height="582pt"
+ viewBox="0.00 0.00 641.00 582.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~nafpack_kinds~~UsedByGraph" class="graph" transform="scale(0.439149 0.439149) rotate(0) translate(4 1322.08)">
+<title>module~~nafpack_kinds~~UsedByGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-1322.08 1455.64,-1322.08 1455.64,4 -4,4"/>
+<!-- module~nafpack_kinds -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node1" class="node">
+<title>module~nafpack_kinds</title>
+<polygon fill="none" stroke="black" points="90.27,-644.27 0,-644.27 0,-620 90.27,-620 90.27,-644.27"/>
+<text xml:space="preserve" text-anchor="middle" x="45.13" y="-628.53" font-family="Helvetica,sans-Serif" font-size="10.50">NAFPack_kinds</text>
+</g>
+<!-- module~nafpack_ansi -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node2" class="node">
+<title>module~nafpack_ansi</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node2"><a xlink:href="../module/nafpack_ansi.html" xlink:title="NAFPack_ANSI">
+<polygon fill="#337ab7" stroke="#337ab7" points="508.19,-1231.27 420.92,-1231.27 420.92,-1207 508.19,-1207 508.19,-1231.27"/>
+<text xml:space="preserve" text-anchor="middle" x="464.55" y="-1215.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_ANSI</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_ansi&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge1" class="edge">
+<title>module~nafpack_ansi&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M420.48,-1228.74C348.84,-1241.93 205.3,-1256.03 126.27,-1179.13 50.31,-1105.23 45.77,-751.74 45.96,-656.06"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="49.46,-656.08 46,-646.07 42.46,-656.05 49.46,-656.08"/>
+</g>
+<!-- module~nafpack_io_utils -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node10" class="node">
+<title>module~nafpack_io_utils</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node10"><a xlink:href="../module/nafpack_io_utils.html" xlink:title="NAFPack_io_utils">
+<polygon fill="#337ab7" stroke="#337ab7" points="268.29,-1170.27 169.02,-1170.27 169.02,-1146 268.29,-1146 268.29,-1170.27"/>
+<text xml:space="preserve" text-anchor="middle" x="218.66" y="-1154.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_io_utils</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_ansi&#45;&gt;module~nafpack_io_utils -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge61" class="edge">
+<title>module~nafpack_ansi&#45;&gt;module~nafpack_io_utils</title>
+<path fill="none" stroke="#38ff00" stroke-dasharray="5,2" d="M420.51,-1208.37C381.38,-1198.58 323.27,-1184.05 279.6,-1173.13"/>
+<polygon fill="#38ff00" stroke="#38ff00" points="280.57,-1169.76 270.02,-1170.73 278.87,-1176.55 280.57,-1169.76"/>
+</g>
+<!-- module~nafpack_butterfly -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node3" class="node">
+<title>module~nafpack_butterfly</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node3"><a xlink:href="../module/nafpack_butterfly.html" xlink:title="NAFPack_butterfly">
+<polygon fill="#337ab7" stroke="#337ab7" points="932.48,-508.27 824.96,-508.27 824.96,-484 932.48,-484 932.48,-508.27"/>
+<text xml:space="preserve" text-anchor="middle" x="878.72" y="-492.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_butterfly</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_butterfly&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge2" class="edge">
+<title>module~nafpack_butterfly&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M824.55,-507.22C805.27,-510.88 783.26,-514.65 763.08,-517.13 631.57,-533.32 595.57,-510.59 465.55,-536.13"/>
+</g>
+<!-- module~nafpack_loop_method -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node16" class="node">
+<title>module~nafpack_loop_method</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node16"><a xlink:href="../module/nafpack_loop_method.html" xlink:title="NAFPack_loop_method">
+<polygon fill="#337ab7" stroke="#337ab7" points="756.71,-508.27 624.44,-508.27 624.44,-484 756.71,-484 756.71,-508.27"/>
+<text xml:space="preserve" text-anchor="middle" x="690.57" y="-492.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_loop_method</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_butterfly&#45;&gt;module~nafpack_loop_method -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge69" class="edge">
+<title>module~nafpack_butterfly&#45;&gt;module~nafpack_loop_method</title>
+<path fill="none" stroke="#00e2ff" stroke-dasharray="5,2" d="M824.87,-496.13C807.34,-496.13 787.46,-496.13 768.49,-496.13"/>
+<polygon fill="#00e2ff" stroke="#00e2ff" points="768.66,-492.64 758.66,-496.14 768.66,-499.64 768.66,-492.64"/>
+</g>
+<!-- module~nafpack_plan_type -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node25" class="node">
+<title>module~nafpack_plan_type</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node25"><a xlink:href="../module/nafpack_plan_type.html" xlink:title="NAFPack_plan_type">
+<polygon fill="#337ab7" stroke="#337ab7" points="275.79,-392.27 161.52,-392.27 161.52,-368 275.79,-368 275.79,-392.27"/>
+<text xml:space="preserve" text-anchor="middle" x="218.66" y="-376.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_plan_type</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_butterfly&#45;&gt;module~nafpack_plan_type -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge98" class="edge">
+<title>module~nafpack_butterfly&#45;&gt;module~nafpack_plan_type</title>
+<path fill="none" stroke="#ff00e2" stroke-dasharray="5,2" d="M824.65,-486.32C805.28,-482.76 783.2,-478.74 763.08,-475.13 591.79,-444.47 389.91,-409.48 287.14,-391.75"/>
+<polygon fill="#ff00e2" stroke="#ff00e2" points="287.95,-388.34 277.5,-390.09 286.76,-395.24 287.95,-388.34"/>
+</g>
+<!-- module~nafpack_constant -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node4" class="node">
+<title>module~nafpack_constant</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node4"><a xlink:href="../module/nafpack_constant.html" xlink:title="NAFPack_constant">
+<polygon fill="#337ab7" stroke="#337ab7" points="272.79,-664.27 164.52,-664.27 164.52,-640 272.79,-640 272.79,-664.27"/>
+<text xml:space="preserve" text-anchor="middle" x="218.66" y="-648.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_constant</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_constant&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge3" class="edge">
+<title>module~nafpack_constant&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M164.33,-645.92C144.42,-643.6 121.78,-640.96 101.68,-638.61"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="102.34,-635.17 92,-637.48 101.53,-642.12 102.34,-635.17"/>
+</g>
+<!-- module~nafpack_direct_method -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node5" class="node">
+<title>module~nafpack_direct_method</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node5"><a xlink:href="../module/nafpack_direct_method.html" xlink:title="NAFPack_Direct_method">
+<polygon fill="#337ab7" stroke="#337ab7" points="1157.37,-966.27 1016.85,-966.27 1016.85,-942 1157.37,-942 1157.37,-966.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1087.11" y="-950.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Direct_method</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_direct_method&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge4" class="edge">
+<title>module~nafpack_direct_method&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M689.57,-728.13C616.18,-707.41 420.86,-729.98 347.04,-749.13 286.28,-764.9 278.69,-831.46 219.66,-810.13"/>
+</g>
+<!-- module~nafpack_direct_method&#45;&gt;module~nafpack_constant -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge44" class="edge">
+<title>module~nafpack_direct_method&#45;&gt;module~nafpack_constant</title>
+<path fill="none" stroke="#ff7100" stroke-dasharray="5,2" d="M1023.47,-941.5C1013.23,-937.85 1003.11,-933.15 994.35,-927.13 972.66,-912.24 975.86,-899.78 958.35,-880.13 926.01,-843.85 924.26,-823.58 879.72,-804.13"/>
+<path fill="none" stroke="#ff7100" stroke-dasharray="5,2" d="M877.72,-804.13C843.13,-789.04 831.43,-791.55 799.08,-772.13 781.22,-761.42 781.89,-751.08 763.08,-742.13 733.83,-728.22 722.74,-736.94 691.57,-728.13"/>
+<path fill="none" stroke="#ff7100" stroke-dasharray="5,2" d="M689.57,-728.13C637.12,-713.32 633.59,-686.89 582.06,-669.13 532.46,-652.05 516.19,-663.84 465.55,-650.13"/>
+</g>
+<!-- module~nafpack_matricielle -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node18" class="node">
+<title>module~nafpack_matricielle</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node18"><a xlink:href="../module/nafpack_matricielle.html" xlink:title="NAFPack_matricielle">
+<polygon fill="#337ab7" stroke="#337ab7" points="278.41,-898.27 158.9,-898.27 158.9,-874 278.41,-874 278.41,-898.27"/>
+<text xml:space="preserve" text-anchor="middle" x="218.66" y="-882.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_matricielle</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_direct_method&#45;&gt;module~nafpack_matricielle -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge74" class="edge">
+<title>module~nafpack_direct_method&#45;&gt;module~nafpack_matricielle</title>
+<path fill="none" stroke="#0071ff" stroke-dasharray="5,2" d="M689.57,-804.13C537.45,-805.82 361.68,-847.31 274.53,-870.61"/>
+<polygon fill="#0071ff" stroke="#0071ff" points="273.79,-867.18 265.05,-873.17 275.62,-873.94 273.79,-867.18"/>
+</g>
+<!-- module~nafpack_matrix_decomposition -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node19" class="node">
+<title>module~nafpack_matrix_decomposition</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node19"><a xlink:href="../module/nafpack_matrix_decomposition.html" xlink:title="NAFPack_matrix_decomposition">
+<polygon fill="#337ab7" stroke="#337ab7" points="555.06,-976.27 374.04,-976.27 374.04,-952 555.06,-952 555.06,-976.27"/>
+<text xml:space="preserve" text-anchor="middle" x="464.55" y="-960.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_matrix_decomposition</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_direct_method&#45;&gt;module~nafpack_matrix_decomposition -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge81" class="edge">
+<title>module~nafpack_direct_method&#45;&gt;module~nafpack_matrix_decomposition</title>
+<path fill="none" stroke="#0038ff" stroke-dasharray="5,2" d="M1016.43,-955.26C906.71,-957.03 693.15,-960.47 566.58,-962.51"/>
+<polygon fill="#0038ff" stroke="#0038ff" points="566.82,-959 556.88,-962.66 566.93,-966 566.82,-959"/>
+</g>
+<!-- module~nafpack_matrix_properties -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node21" class="node">
+<title>module~nafpack_matrix_properties</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node21"><a xlink:href="../module/nafpack_matrix_properties.html" xlink:title="NAFPack_matrix_properties">
+<polygon fill="#337ab7" stroke="#337ab7" points="956.85,-913.27 800.58,-913.27 800.58,-889 956.85,-889 956.85,-913.27"/>
+<text xml:space="preserve" text-anchor="middle" x="878.72" y="-897.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_matrix_properties</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_direct_method&#45;&gt;module~nafpack_matrix_properties -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge86" class="edge">
+<title>module~nafpack_direct_method&#45;&gt;module~nafpack_matrix_properties</title>
+<path fill="none" stroke="#3800ff" stroke-dasharray="5,2" d="M1036.94,-941.51C1007.84,-934.04 970.76,-924.52 939.92,-916.6"/>
+<polygon fill="#3800ff" stroke="#3800ff" points="940.89,-913.23 930.34,-914.13 939.15,-920.01 940.89,-913.23"/>
+</g>
+<!-- module~nafpack_matrix_tools -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node22" class="node">
+<title>module~nafpack_matrix_tools</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node22"><a xlink:href="../module/nafpack_matrix_tools.html" xlink:title="NAFPack_matrix_tools">
+<polygon fill="#337ab7" stroke="#337ab7" points="528.44,-782.27 400.67,-782.27 400.67,-758 528.44,-758 528.44,-782.27"/>
+<text xml:space="preserve" text-anchor="middle" x="464.55" y="-766.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_matrix_tools</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_direct_method&#45;&gt;module~nafpack_matrix_tools -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge88" class="edge">
+<title>module~nafpack_direct_method&#45;&gt;module~nafpack_matrix_tools</title>
+<path fill="none" stroke="#7100ff" stroke-dasharray="5,2" d="M877.72,-804.13C801.89,-771.04 774.3,-803.22 691.57,-804.13"/>
+<path fill="none" stroke="#7100ff" stroke-dasharray="5,2" d="M689.57,-804.13C634.45,-804.74 572.55,-794.5 527.81,-785.1"/>
+<polygon fill="#7100ff" stroke="#7100ff" points="528.82,-781.74 518.3,-783.06 527.34,-788.58 528.82,-781.74"/>
+</g>
+<!-- module~nafpack_eigen -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node6" class="node">
+<title>module~nafpack_eigen</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node6"><a xlink:href="../module/nafpack_eigen.html" xlink:title="NAFPack_Eigen">
+<polygon fill="#337ab7" stroke="#337ab7" points="736.83,-894.27 644.31,-894.27 644.31,-870 736.83,-870 736.83,-894.27"/>
+<text xml:space="preserve" text-anchor="middle" x="690.57" y="-878.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Eigen</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_eigen&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge5" class="edge">
+<title>module~nafpack_eigen&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M644.03,-885.23C598.73,-887.77 527.26,-890.33 465.55,-886.13"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M463.55,-886.13C350.27,-878.44 326.97,-847.22 219.66,-810.13"/>
+</g>
+<!-- module~nafpack_eigen&#45;&gt;module~nafpack_constant -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge45" class="edge">
+<title>module~nafpack_eigen&#45;&gt;module~nafpack_constant</title>
+<path fill="none" stroke="#ff7100" stroke-dasharray="5,2" d="M669.86,-869.56C653.53,-858.11 630.97,-839.73 618.06,-818.13 583.1,-759.66 632.02,-715.46 582.06,-669.13 543.59,-633.46 516.31,-663.41 465.55,-650.13"/>
+</g>
+<!-- module~nafpack_eigen&#45;&gt;module~nafpack_matricielle -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge75" class="edge">
+<title>module~nafpack_eigen&#45;&gt;module~nafpack_matricielle</title>
+<path fill="none" stroke="#0071ff" stroke-dasharray="5,2" d="M463.55,-886.13C405.28,-882.18 338.99,-882.48 290.24,-883.61"/>
+<polygon fill="#0071ff" stroke="#0071ff" points="290.29,-880.11 280.38,-883.86 290.47,-887.11 290.29,-880.11"/>
+</g>
+<!-- module~nafpack_eigen&#45;&gt;module~nafpack_matrix_decomposition -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge82" class="edge">
+<title>module~nafpack_eigen&#45;&gt;module~nafpack_matrix_decomposition</title>
+<path fill="none" stroke="#0038ff" stroke-dasharray="5,2" d="M655.06,-894.77C616.22,-908.98 553,-932.13 510.37,-947.73"/>
+<polygon fill="#0038ff" stroke="#0038ff" points="509.34,-944.38 501.16,-951.1 511.75,-950.95 509.34,-944.38"/>
+</g>
+<!-- module~nafpack_fft -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node7" class="node">
+<title>module~nafpack_fft</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node7"><a xlink:href="../module/nafpack_fft.html" xlink:title="NAFPack_fft">
+<polygon fill="#337ab7" stroke="#337ab7" points="501.44,-702.27 427.67,-702.27 427.67,-678 501.44,-678 501.44,-702.27"/>
+<text xml:space="preserve" text-anchor="middle" x="464.55" y="-686.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_fft</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_fft&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge6" class="edge">
+<title>module~nafpack_fft&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M427.39,-694.25C403.74,-697.89 372.59,-704.49 347.04,-716.13 283.02,-745.32 286.16,-833.12 219.66,-810.13"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M217.66,-810.13C139.65,-783.18 82.05,-696.27 58.22,-654.7"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="61.31,-653.06 53.38,-646.03 55.2,-656.47 61.31,-653.06"/>
+</g>
+<!-- module~nafpack_fft&#45;&gt;module~nafpack_constant -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge46" class="edge">
+<title>module~nafpack_fft&#45;&gt;module~nafpack_constant</title>
+<path fill="none" stroke="#ff7100" stroke-dasharray="5,2" d="M427.3,-684.49C389.74,-678.64 330.26,-669.37 284.57,-662.25"/>
+<polygon fill="#ff7100" stroke="#ff7100" points="285.19,-658.8 274.77,-660.72 284.11,-665.72 285.19,-658.8"/>
+</g>
+<!-- module~nafpack_fourier_transform -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node8" class="node">
+<title>module~nafpack_fourier_transform</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node8"><a xlink:href="../module/nafpack_fourier_transform.html" xlink:title="NAFPack_Fourier_Transform">
+<polygon fill="#337ab7" stroke="#337ab7" points="958.35,-267.27 799.08,-267.27 799.08,-243 958.35,-243 958.35,-267.27"/>
+<text xml:space="preserve" text-anchor="middle" x="878.72" y="-251.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Fourier_Transform</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_fourier_transform&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge7" class="edge">
+<title>module~nafpack_fourier_transform&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M858.67,-242.72C800.51,-206.31 619.83,-104.34 465.55,-136.13"/>
+</g>
+<!-- module~nafpack_fourier_transform&#45;&gt;module~nafpack_constant -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge47" class="edge">
+<title>module~nafpack_fourier_transform&#45;&gt;module~nafpack_constant</title>
+<path fill="none" stroke="#ff7100" stroke-dasharray="5,2" d="M689.57,-380.13C643.09,-405.28 645.52,-429.98 618.06,-475.13 598.85,-506.73 611.2,-527.37 582.06,-550.13 540.4,-582.68 515.1,-555.69 465.55,-574.13"/>
+<path fill="none" stroke="#ff7100" stroke-dasharray="5,2" d="M463.55,-574.13C396.43,-599.11 379.39,-604.77 311.04,-626.13 299.94,-629.6 288.03,-633.13 276.59,-636.43"/>
+<polygon fill="#ff7100" stroke="#ff7100" points="275.92,-632.98 267.27,-639.09 277.85,-639.71 275.92,-632.98"/>
+</g>
+<!-- module~nafpack_implementation_type -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node9" class="node">
+<title>module~nafpack_implementation_type</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node9"><a xlink:href="../module/nafpack_implementation_type.html" xlink:title="NAFPack_implementation_type">
+<polygon fill="#337ab7" stroke="#337ab7" points="306.54,-350.27 130.77,-350.27 130.77,-326 306.54,-326 306.54,-350.27"/>
+<text xml:space="preserve" text-anchor="middle" x="218.66" y="-334.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_implementation_type</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_fourier_transform&#45;&gt;module~nafpack_implementation_type -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge59" class="edge">
+<title>module~nafpack_fourier_transform&#45;&gt;module~nafpack_implementation_type</title>
+<path fill="none" stroke="#71ff00" stroke-dasharray="5,2" d="M867.78,-267.69C849.49,-289.94 808.2,-336.31 763.08,-361.13 734.27,-376.99 720.49,-364.49 691.57,-380.13"/>
+<path fill="none" stroke="#71ff00" stroke-dasharray="5,2" d="M689.57,-380.13C602,-427.51 565.02,-384.37 465.55,-380.13"/>
+<path fill="none" stroke="#71ff00" stroke-dasharray="5,2" d="M463.55,-380.13C431.24,-378.76 352.58,-364.48 293.27,-352.94"/>
+<polygon fill="#71ff00" stroke="#71ff00" points="294.03,-349.53 283.54,-351.04 292.68,-356.4 294.03,-349.53"/>
+</g>
+<!-- module~nafpack_fourier_transform&#45;&gt;module~nafpack_loop_method -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge70" class="edge">
+<title>module~nafpack_fourier_transform&#45;&gt;module~nafpack_loop_method</title>
+<path fill="none" stroke="#00e2ff" stroke-dasharray="5,2" d="M867.97,-267.75C837.88,-306.71 746.17,-425.44 708.25,-474.54"/>
+<polygon fill="#00e2ff" stroke="#00e2ff" points="705.49,-472.39 702.14,-482.44 711.03,-476.67 705.49,-472.39"/>
+</g>
+<!-- module~nafpack_math_utils -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node17" class="node">
+<title>module~nafpack_math_utils</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node17"><a xlink:href="../module/nafpack_math_utils.html" xlink:title="NAFPack_math_utils">
+<polygon fill="#337ab7" stroke="#337ab7" points="749.21,-108.27 631.94,-108.27 631.94,-84 749.21,-84 749.21,-108.27"/>
+<text xml:space="preserve" text-anchor="middle" x="690.57" y="-92.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_math_utils</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_fourier_transform&#45;&gt;module~nafpack_math_utils -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge72" class="edge">
+<title>module~nafpack_fourier_transform&#45;&gt;module~nafpack_math_utils</title>
+<path fill="none" stroke="#00a9ff" stroke-dasharray="5,2" d="M859.5,-242.63C842.39,-230.24 816.83,-209.99 799.08,-188.13 778.01,-162.2 788.42,-143.92 763.08,-122.13 759.32,-118.9 755.12,-116.05 750.69,-113.55"/>
+<polygon fill="#00a9ff" stroke="#00a9ff" points="752.59,-110.59 742.07,-109.28 749.48,-116.86 752.59,-110.59"/>
+</g>
+<!-- module~nafpack_fourier_transform&#45;&gt;module~nafpack_plan_type -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge99" class="edge">
+<title>module~nafpack_fourier_transform&#45;&gt;module~nafpack_plan_type</title>
+<path fill="none" stroke="#ff00e2" stroke-dasharray="5,2" d="M463.55,-380.13C404.02,-377.6 336.24,-377.85 287.27,-378.59"/>
+<polygon fill="#ff00e2" stroke="#ff00e2" points="287.32,-375.09 277.38,-378.75 287.44,-382.09 287.32,-375.09"/>
+</g>
+<!-- module~nafpack_implementation_type&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge8" class="edge">
+<title>module~nafpack_implementation_type&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M137.63,-350.75C133.54,-353.12 129.71,-355.9 126.27,-359.13 54.37,-426.87 45.9,-555.36 45.64,-608.36"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="42.14,-608.09 45.7,-618.07 49.14,-608.05 42.14,-608.09"/>
+</g>
+<!-- module~nafpack_io_utils&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge9" class="edge">
+<title>module~nafpack_io_utils&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M168.94,-1154.57C153.24,-1151 137.11,-1144.34 126.27,-1132.13 62.35,-1060.17 49.15,-745.51 46.67,-655.98"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="50.17,-656.09 46.42,-646.19 43.17,-656.27 50.17,-656.09"/>
+</g>
+<!-- module~nafpack_iterative_methods -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node11" class="node">
+<title>module~nafpack_iterative_methods</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node11"><a xlink:href="../module/nafpack_iterative_methods.html" xlink:title="NAFPack_Iterative_methods">
+<polygon fill="#337ab7" stroke="#337ab7" points="1166.37,-1052.27 1007.85,-1052.27 1007.85,-1028 1166.37,-1028 1166.37,-1052.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1087.11" y="-1036.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Iterative_methods</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_iterative_methods&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge10" class="edge">
+<title>module~nafpack_iterative_methods&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M877.72,-1080.13C821.16,-1089.36 816.55,-1118.55 763.08,-1139.13 732.39,-1150.95 724.45,-1157.65 691.57,-1158.13"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M689.57,-1158.13C588.44,-1159.61 566.68,-1116.55 465.55,-1118.13"/>
+</g>
+<!-- module~nafpack_iterative_params -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node12" class="node">
+<title>module~nafpack_iterative_params</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node12"><a xlink:href="../module/nafpack_iterative_params.html" xlink:title="NAFPack_Iterative_Params">
+<polygon fill="#337ab7" stroke="#337ab7" points="954.6,-1052.27 802.83,-1052.27 802.83,-1028 954.6,-1028 954.6,-1052.27"/>
+<text xml:space="preserve" text-anchor="middle" x="878.72" y="-1036.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Iterative_Params</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_iterative_methods&#45;&gt;module~nafpack_iterative_params -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge63" class="edge">
+<title>module~nafpack_iterative_methods&#45;&gt;module~nafpack_iterative_params</title>
+<path fill="none" stroke="#00ff38" stroke-dasharray="5,2" d="M1007.49,-1040.13C994.05,-1040.13 980.02,-1040.13 966.39,-1040.13"/>
+<polygon fill="#00ff38" stroke="#00ff38" points="966.56,-1036.64 956.56,-1040.14 966.56,-1043.64 966.56,-1036.64"/>
+</g>
+<!-- module~nafpack_iterative_types -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node13" class="node">
+<title>module~nafpack_iterative_types</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node13"><a xlink:href="../module/nafpack_iterative_types.html" xlink:title="NAFPack_Iterative_types">
+<polygon fill="#337ab7" stroke="#337ab7" points="760.83,-1130.27 620.31,-1130.27 620.31,-1106 760.83,-1106 760.83,-1130.27"/>
+<text xml:space="preserve" text-anchor="middle" x="690.57" y="-1114.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Iterative_types</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_iterative_methods&#45;&gt;module~nafpack_iterative_types -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge65" class="edge">
+<title>module~nafpack_iterative_methods&#45;&gt;module~nafpack_iterative_types</title>
+<path fill="none" stroke="#00ff71" stroke-dasharray="5,2" d="M877.72,-1080.13C837.91,-1086.63 793.67,-1095.59 758.31,-1103.18"/>
+<polygon fill="#00ff71" stroke="#00ff71" points="757.67,-1099.73 748.63,-1105.27 759.15,-1106.58 757.67,-1099.73"/>
+</g>
+<!-- module~nafpack_logger_mod -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node15" class="node">
+<title>module~nafpack_logger_mod</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node15"><a xlink:href="../module/nafpack_logger_mod.html" xlink:title="NAFPack_Logger_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="943.35,-1170.27 814.08,-1170.27 814.08,-1146 943.35,-1146 943.35,-1170.27"/>
+<text xml:space="preserve" text-anchor="middle" x="878.72" y="-1154.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Logger_mod</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_iterative_methods&#45;&gt;module~nafpack_logger_mod -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge68" class="edge">
+<title>module~nafpack_iterative_methods&#45;&gt;module~nafpack_logger_mod</title>
+<path fill="none" stroke="#00ffe2" stroke-dasharray="5,2" d="M1064.02,-1052.76C1027.32,-1073.74 953.65,-1115.86 911.41,-1140.01"/>
+<polygon fill="#00ffe2" stroke="#00ffe2" points="909.9,-1136.84 902.96,-1144.85 913.38,-1142.92 909.9,-1136.84"/>
+</g>
+<!-- module~nafpack_iterative_methods&#45;&gt;module~nafpack_matrix_decomposition -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge83" class="edge">
+<title>module~nafpack_iterative_methods&#45;&gt;module~nafpack_matrix_decomposition</title>
+<path fill="none" stroke="#0038ff" stroke-dasharray="5,2" d="M1026.22,-1052.72C985.11,-1061.11 929.25,-1072.05 879.72,-1080.13"/>
+<path fill="none" stroke="#0038ff" stroke-dasharray="5,2" d="M877.72,-1080.13C794.2,-1093.76 774.24,-1058.2 691.57,-1040.13"/>
+</g>
+<!-- module~nafpack_iterative_methods&#45;&gt;module~nafpack_matrix_properties -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge87" class="edge">
+<title>module~nafpack_iterative_methods&#45;&gt;module~nafpack_matrix_properties</title>
+<path fill="none" stroke="#3800ff" stroke-dasharray="5,2" d="M1025.11,-1027.51C1014.47,-1024.02 1003.79,-1019.63 994.35,-1014.13 972.68,-1001.52 925.07,-951.07 898.53,-922.03"/>
+<polygon fill="#3800ff" stroke="#3800ff" points="901.35,-919.93 892.04,-914.88 896.17,-924.64 901.35,-919.93"/>
+</g>
+<!-- module~nafpack_preconditioners -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node26" class="node">
+<title>module~nafpack_preconditioners</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node26"><a xlink:href="../module/nafpack_preconditioners.html" xlink:title="NAFPack_Preconditioners">
+<polygon fill="#337ab7" stroke="#337ab7" points="763.08,-1012.27 618.06,-1012.27 618.06,-988 763.08,-988 763.08,-1012.27"/>
+<text xml:space="preserve" text-anchor="middle" x="690.57" y="-996.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Preconditioners</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_iterative_methods&#45;&gt;module~nafpack_preconditioners -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge101" class="edge">
+<title>module~nafpack_iterative_methods&#45;&gt;module~nafpack_preconditioners</title>
+<path fill="none" stroke="#ff00aa" stroke-dasharray="5,2" d="M1041.07,-1027.53C999.56,-1016.84 936.04,-1002.83 879.72,-1000.13"/>
+</g>
+<!-- module~nafpack_iterative_params&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge11" class="edge">
+<title>module~nafpack_iterative_params&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M823.82,-1052.7C728.77,-1074.46 534.82,-1116.97 465.55,-1118.13"/>
+</g>
+<!-- module~nafpack_iterative_params&#45;&gt;module~nafpack_iterative_types -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge66" class="edge">
+<title>module~nafpack_iterative_params&#45;&gt;module~nafpack_iterative_types</title>
+<path fill="none" stroke="#00ff71" stroke-dasharray="5,2" d="M831.84,-1052.68C820.84,-1056.4 809.32,-1060.9 799.08,-1066.13 781.51,-1075.12 780.52,-1082.9 763.08,-1092.13 756.57,-1095.58 749.5,-1098.76 742.43,-1101.63"/>
+<polygon fill="#00ff71" stroke="#00ff71" points="741.62,-1098.19 733.54,-1105.05 744.13,-1104.72 741.62,-1098.19"/>
+</g>
+<!-- module~nafpack_iterative_params&#45;&gt;module~nafpack_matrix_decomposition -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge84" class="edge">
+<title>module~nafpack_iterative_params&#45;&gt;module~nafpack_matrix_decomposition</title>
+<path fill="none" stroke="#0038ff" stroke-dasharray="5,2" d="M802.66,-1047.39C768.41,-1048.86 727.56,-1048 691.57,-1040.13"/>
+<path fill="none" stroke="#0038ff" stroke-dasharray="5,2" d="M689.57,-1040.13C657.44,-1033.11 649.39,-1031.13 618.06,-1021.13 580.04,-1009.01 537.58,-992.93 507.13,-980.94"/>
+<polygon fill="#0038ff" stroke="#0038ff" points="508.48,-977.71 497.9,-977.28 505.91,-984.21 508.48,-977.71"/>
+</g>
+<!-- module~nafpack_iterative_params&#45;&gt;module~nafpack_preconditioners -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge102" class="edge">
+<title>module~nafpack_iterative_params&#45;&gt;module~nafpack_preconditioners</title>
+<path fill="none" stroke="#ff00aa" stroke-dasharray="5,2" d="M819.07,-1027.53C800.72,-1023.59 780.29,-1019.2 761.26,-1015.11"/>
+<polygon fill="#ff00aa" stroke="#ff00aa" points="762.23,-1011.74 751.72,-1013.06 760.76,-1018.58 762.23,-1011.74"/>
+</g>
+<!-- module~nafpack_iterative_types&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge12" class="edge">
+<title>module~nafpack_iterative_types&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M619.94,-1117.53C575.72,-1117.3 517.27,-1117.27 465.55,-1118.13"/>
+</g>
+<!-- module~nafpack_krylov_method -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node14" class="node">
+<title>module~nafpack_krylov_method</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node14"><a xlink:href="../module/nafpack_krylov_method.html" xlink:title="NAFPack_Krylov_method">
+<polygon fill="#337ab7" stroke="#337ab7" points="535.56,-1090.27 393.54,-1090.27 393.54,-1066 535.56,-1066 535.56,-1090.27"/>
+<text xml:space="preserve" text-anchor="middle" x="464.55" y="-1074.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Krylov_method</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_krylov_method&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge13" class="edge">
+<title>module~nafpack_krylov_method&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M408.44,-1090.75C341.68,-1105.48 236.07,-1126.79 219.66,-1118.13"/>
+</g>
+<!-- module~nafpack_krylov_method&#45;&gt;module~nafpack_matricielle -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge76" class="edge">
+<title>module~nafpack_krylov_method&#45;&gt;module~nafpack_matricielle</title>
+<path fill="none" stroke="#0071ff" stroke-dasharray="5,2" d="M432.52,-1065.51C408.08,-1054.8 373.79,-1038.02 347.04,-1018.13 302.46,-984.99 259.49,-935.73 236.63,-907.7"/>
+<polygon fill="#0071ff" stroke="#0071ff" points="239.36,-905.51 230.37,-899.91 233.91,-909.9 239.36,-905.51"/>
+</g>
+<!-- module~nafpack_logger_mod&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge14" class="edge">
+<title>module~nafpack_logger_mod&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M813.96,-1157.67C778.01,-1157.53 732.28,-1157.54 691.57,-1158.13"/>
+</g>
+<!-- module~nafpack_logger_mod&#45;&gt;module~nafpack_ansi -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge28" class="edge">
+<title>module~nafpack_logger_mod&#45;&gt;module~nafpack_ansi</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M872.55,-1170.56C859.44,-1200.2 821.71,-1274.75 763.08,-1303.13 668.23,-1349.06 543.85,-1275.13 491.04,-1238.17"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="493.15,-1235.38 482.98,-1232.41 489.08,-1241.07 493.15,-1235.38"/>
+</g>
+<!-- module~nafpack_terminal -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node27" class="node">
+<title>module~nafpack_terminal</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node27"><a xlink:href="../module/nafpack_terminal.html" xlink:title="NAFPack_terminal">
+<polygon fill="#337ab7" stroke="#337ab7" points="744.33,-1210.27 636.81,-1210.27 636.81,-1186 744.33,-1186 744.33,-1210.27"/>
+<text xml:space="preserve" text-anchor="middle" x="690.57" y="-1194.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_terminal</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_logger_mod&#45;&gt;module~nafpack_terminal -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge104" class="edge">
+<title>module~nafpack_logger_mod&#45;&gt;module~nafpack_terminal</title>
+<path fill="none" stroke="#ff0071" stroke-dasharray="5,2" d="M819.07,-1170.74C798.93,-1175.06 776.29,-1179.93 755.73,-1184.35"/>
+<polygon fill="#ff0071" stroke="#ff0071" points="755.07,-1180.91 746.03,-1186.43 756.55,-1187.75 755.07,-1180.91"/>
+</g>
+<!-- module~nafpack_loop_method&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge15" class="edge">
+<title>module~nafpack_loop_method&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M624.27,-507.18C579.52,-514.9 518.85,-525.66 465.55,-536.13"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M463.55,-536.13C411.67,-546.33 397.62,-544.75 347.04,-560.13 288.54,-577.93 280.26,-603.96 219.66,-612.13"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M217.66,-612.13C179.12,-617.33 135.6,-622.4 102.04,-626.13"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="101.67,-622.65 92.12,-627.23 102.44,-629.61 101.67,-622.65"/>
+</g>
+<!-- module~nafpack_utils -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node28" class="node">
+<title>module~nafpack_utils</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node28"><a xlink:href="../module/nafpack_utils.html" xlink:title="NAFPack_utils">
+<polygon fill="#337ab7" stroke="#337ab7" points="506.69,-310.27 422.42,-310.27 422.42,-286 506.69,-286 506.69,-310.27"/>
+<text xml:space="preserve" text-anchor="middle" x="464.55" y="-294.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_utils</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_loop_method&#45;&gt;module~nafpack_utils -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge105" class="edge">
+<title>module~nafpack_loop_method&#45;&gt;module~nafpack_utils</title>
+<path fill="none" stroke="#ff0038" stroke-dasharray="5,2" d="M672.45,-483.56C656.93,-471.57 634.1,-452.38 618.06,-432.13 597.31,-405.95 605.34,-390.1 582.06,-366.13 560.88,-344.33 531.23,-327.16 507.14,-315.52"/>
+<polygon fill="#ff0038" stroke="#ff0038" points="508.77,-312.42 498.23,-311.36 505.81,-318.76 508.77,-312.42"/>
+</g>
+<!-- module~nafpack_math_utils&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge16" class="edge">
+<title>module~nafpack_math_utils&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M631.6,-107.8C615.57,-110.93 598.16,-114.25 582.06,-117.13 530.42,-126.39 516.94,-125.55 465.55,-136.13"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M463.55,-136.13C391.89,-150.9 381.04,-176.82 311.04,-198.13 271.35,-210.22 254.19,-194.15 219.66,-217.13"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M217.66,-217.13C167.54,-250.5 154.86,-264.15 126.27,-317.13 72.45,-416.88 53.75,-554.02 48.2,-608.47"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="44.74,-607.84 47.27,-618.12 51.71,-608.5 44.74,-607.84"/>
+</g>
+<!-- module~nafpack_matricielle&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge17" class="edge">
+<title>module~nafpack_matricielle&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M191.35,-873.64C171.21,-862.93 143.98,-845.81 126.27,-824.13 83.79,-772.14 60.75,-694.43 51.32,-655.75"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="54.75,-655.07 49.07,-646.13 47.93,-656.66 54.75,-655.07"/>
+</g>
+<!-- module~nafpack_matrix_decomposition&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge18" class="edge">
+<title>module~nafpack_matrix_decomposition&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M447.21,-976.76C396.42,-1015.7 243.24,-1130.58 219.66,-1118.13"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M217.66,-1118.13C130.73,-1072.29 66.69,-747.28 50.27,-655.95"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="53.72,-655.4 48.53,-646.16 46.83,-656.62 53.72,-655.4"/>
+</g>
+<!-- module~nafpack_matrix_decomposition&#45;&gt;module~nafpack_constant -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge48" class="edge">
+<title>module~nafpack_matrix_decomposition&#45;&gt;module~nafpack_constant</title>
+<path fill="none" stroke="#ff7100" stroke-dasharray="5,2" d="M425.47,-951.5C400.06,-941.29 367.65,-924.56 347.04,-900.13 315.5,-862.75 332.29,-840.19 311.04,-796.13 288.93,-750.29 255.31,-701.09 235.61,-673.71"/>
+<polygon fill="#ff7100" stroke="#ff7100" points="238.63,-671.91 229.91,-665.88 232.96,-676.02 238.63,-671.91"/>
+</g>
+<!-- module~nafpack_matrix_decomposition&#45;&gt;module~nafpack_matricielle -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge77" class="edge">
+<title>module~nafpack_matrix_decomposition&#45;&gt;module~nafpack_matricielle</title>
+<path fill="none" stroke="#0071ff" stroke-dasharray="5,2" d="M398.02,-951.54C381.26,-947.76 363.36,-943.25 347.04,-938.13 316.06,-928.43 282.08,-914.38 257.01,-903.33"/>
+<polygon fill="#0071ff" stroke="#0071ff" points="258.44,-900.13 247.89,-899.26 255.59,-906.53 258.44,-900.13"/>
+</g>
+<!-- module~nafpack_matrix_market -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node20" class="node">
+<title>module~nafpack_matrix_market</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node20"><a xlink:href="../module/nafpack_matrix_market.html" xlink:title="NAFPack_matrix_market">
+<polygon fill="#337ab7" stroke="#337ab7" points="288.92,-189.27 148.39,-189.27 148.39,-165 288.92,-165 288.92,-189.27"/>
+<text xml:space="preserve" text-anchor="middle" x="218.66" y="-173.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_matrix_market</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_matrix_market&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge19" class="edge">
+<title>module~nafpack_matrix_market&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M147.96,-187.86C139.81,-191.59 132.27,-196.55 126.27,-203.13 71.16,-263.6 52,-527.32 47.36,-608.36"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="43.87,-608.05 46.82,-618.22 50.86,-608.43 43.87,-608.05"/>
+</g>
+<!-- module~nafpack_matrix_properties&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge20" class="edge">
+<title>module~nafpack_matrix_properties&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M848.12,-888.58C825.3,-879.45 792.74,-867.6 763.08,-861.13 526.06,-809.46 448.93,-889.38 219.66,-810.13"/>
+</g>
+<!-- module~nafpack_matrix_properties&#45;&gt;module~nafpack_constant -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge49" class="edge">
+<title>module~nafpack_matrix_properties&#45;&gt;module~nafpack_constant</title>
+<path fill="none" stroke="#ff7100" stroke-dasharray="5,2" d="M858.36,-888.55C835.67,-873.84 796.85,-848.89 763.08,-828.13 699.24,-788.89 668.96,-797.12 618.06,-742.13 593.49,-715.59 611.14,-690.66 582.06,-669.13 539.89,-637.92 516.31,-663.41 465.55,-650.13"/>
+</g>
+<!-- module~nafpack_matrix_properties&#45;&gt;module~nafpack_eigen -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge52" class="edge">
+<title>module~nafpack_matrix_properties&#45;&gt;module~nafpack_eigen</title>
+<path fill="none" stroke="#ffe200" stroke-dasharray="5,2" d="M800.12,-893.21C782.69,-891.44 764.52,-889.58 748.14,-887.91"/>
+<polygon fill="#ffe200" stroke="#ffe200" points="748.93,-884.47 738.63,-886.94 748.22,-891.44 748.93,-884.47"/>
+</g>
+<!-- module~nafpack_matrix_properties&#45;&gt;module~nafpack_matricielle -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge78" class="edge">
+<title>module~nafpack_matrix_properties&#45;&gt;module~nafpack_matricielle</title>
+<path fill="none" stroke="#0071ff" stroke-dasharray="5,2" d="M800.29,-903.81C696.87,-906.75 507.98,-909.85 347.04,-900.13 328.56,-899.02 308.63,-897.15 290.15,-895.13"/>
+<polygon fill="#0071ff" stroke="#0071ff" points="290.69,-891.67 280.36,-894.03 289.9,-898.63 290.69,-891.67"/>
+</g>
+<!-- module~nafpack_matrix_tools&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge21" class="edge">
+<title>module~nafpack_matrix_tools&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M405.01,-782.72C338.49,-796.56 236.87,-816.08 219.66,-810.13"/>
+</g>
+<!-- module~nafpack_matrix_tools&#45;&gt;module~nafpack_matricielle -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge79" class="edge">
+<title>module~nafpack_matrix_tools&#45;&gt;module~nafpack_matricielle</title>
+<path fill="none" stroke="#0071ff" stroke-dasharray="5,2" d="M436.98,-782.77C393.28,-803.56 306.11,-845.02 256.47,-868.62"/>
+<polygon fill="#0071ff" stroke="#0071ff" points="255.08,-865.41 247.55,-872.87 258.09,-871.73 255.08,-865.41"/>
+</g>
+<!-- module~nafpack_memory_management -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node23" class="node">
+<title>module~nafpack_memory_management</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node23"><a xlink:href="../module/nafpack_memory_management.html" xlink:title="NAFPack_memory_management">
+<polygon fill="#337ab7" stroke="#337ab7" points="311.04,-87.27 126.27,-87.27 126.27,-63 311.04,-63 311.04,-87.27"/>
+<text xml:space="preserve" text-anchor="middle" x="218.66" y="-71.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_memory_management</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_memory_management&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge22" class="edge">
+<title>module~nafpack_memory_management&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M196.48,-87.73C175.09,-101.64 142.92,-126.1 126.27,-156.13 82.12,-235.78 55.17,-523.29 48.04,-608.3"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="44.56,-607.97 47.23,-618.23 51.54,-608.55 44.56,-607.97"/>
+</g>
+<!-- module~nafpack_meshgrid -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node24" class="node">
+<title>module~nafpack_meshgrid</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node24"><a xlink:href="../module/nafpack_meshgrid.html" xlink:title="NAFPack_meshgrid">
+<polygon fill="#337ab7" stroke="#337ab7" points="935.1,-763.27 822.33,-763.27 822.33,-739 935.1,-739 935.1,-763.27"/>
+<text xml:space="preserve" text-anchor="middle" x="878.72" y="-747.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_meshgrid&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge23" class="edge">
+<title>module~nafpack_meshgrid&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M853.21,-738.62C803.57,-713.96 686.9,-659.42 582.06,-636.13 424.48,-601.14 379.63,-590.56 219.66,-612.13"/>
+</g>
+<!-- module~nafpack_meshgrid&#45;&gt;module~nafpack_loop_method -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge71" class="edge">
+<title>module~nafpack_meshgrid&#45;&gt;module~nafpack_loop_method</title>
+<path fill="none" stroke="#00e2ff" stroke-dasharray="5,2" d="M868.74,-738.84C839.26,-698.45 745.15,-569.54 707.43,-517.87"/>
+<polygon fill="#00e2ff" stroke="#00e2ff" points="710.29,-515.85 701.57,-509.83 704.64,-519.97 710.29,-515.85"/>
+</g>
+<!-- module~nafpack_plan_type&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge24" class="edge">
+<title>module~nafpack_plan_type&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M209.15,-392.63C181.83,-432.77 96.07,-558.78 61.15,-610.08"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="58.28,-608.08 55.54,-618.31 64.06,-612.01 58.28,-608.08"/>
+</g>
+<!-- module~nafpack_preconditioners&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge25" class="edge">
+<title>module~nafpack_preconditioners&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M675.17,-1012.71C660.61,-1025.5 637.55,-1045.95 618.06,-1064.13 601.74,-1079.36 601.99,-1089.1 582.06,-1099.13 535.2,-1122.73 518.01,-1117.25 465.55,-1118.13"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M463.55,-1118.13C409.36,-1119.05 267.59,-1143.42 219.66,-1118.13"/>
+</g>
+<!-- module~nafpack_preconditioners&#45;&gt;module~nafpack_constant -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge50" class="edge">
+<title>module~nafpack_preconditioners&#45;&gt;module~nafpack_constant</title>
+<path fill="none" stroke="#ff7100" stroke-dasharray="5,2" d="M677.13,-987.6C660.69,-970.23 632.19,-937.14 618.06,-903.13 577.67,-805.97 656.13,-743.87 582.06,-669.13 545.13,-631.87 516.31,-663.41 465.55,-650.13"/>
+</g>
+<!-- module~nafpack_preconditioners&#45;&gt;module~nafpack_matricielle -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge80" class="edge">
+<title>module~nafpack_preconditioners&#45;&gt;module~nafpack_matricielle</title>
+<path fill="none" stroke="#0071ff" stroke-dasharray="5,2" d="M617.57,-1009.37C546.49,-1015.66 435.87,-1017.78 347.04,-985.13 302.52,-968.77 261.15,-930.73 238.25,-906.85"/>
+<polygon fill="#0071ff" stroke="#0071ff" points="240.83,-904.49 231.44,-899.58 235.72,-909.27 240.83,-904.49"/>
+</g>
+<!-- module~nafpack_preconditioners&#45;&gt;module~nafpack_matrix_decomposition -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge85" class="edge">
+<title>module~nafpack_preconditioners&#45;&gt;module~nafpack_matrix_decomposition</title>
+<path fill="none" stroke="#0038ff" stroke-dasharray="5,2" d="M617.76,-988.6C597.8,-985.39 575.88,-981.86 555.04,-978.52"/>
+<polygon fill="#0038ff" stroke="#0038ff" points="555.85,-975.1 545.42,-976.97 554.74,-982.01 555.85,-975.1"/>
+</g>
+<!-- module~nafpack_terminal&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge26" class="edge">
+<title>module~nafpack_terminal&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M655.03,-1185.63C592.8,-1163.11 468.03,-1118.09 465.55,-1118.13"/>
+</g>
+<!-- module~nafpack_terminal&#45;&gt;module~nafpack_ansi -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge29" class="edge">
+<title>module~nafpack_terminal&#45;&gt;module~nafpack_ansi</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M636.48,-1203.11C601.22,-1206.42 555.07,-1210.74 519.62,-1214.07"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="519.64,-1210.55 510.01,-1214.97 520.3,-1217.52 519.64,-1210.55"/>
+</g>
+<!-- module~nafpack_utils&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge27" class="edge">
+<title>module~nafpack_utils&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M449.75,-285.72C410.72,-252.15 297.28,-165.46 219.66,-217.13"/>
+</g>
+<!-- module~nafpack_utils&#45;&gt;module~nafpack_implementation_type -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge60" class="edge">
+<title>module~nafpack_utils&#45;&gt;module~nafpack_implementation_type</title>
+<path fill="none" stroke="#71ff00" stroke-dasharray="5,2" d="M422.18,-304.92C390.81,-310.06 346.58,-317.32 307.45,-323.74"/>
+<polygon fill="#71ff00" stroke="#71ff00" points="307.09,-320.25 297.79,-325.32 308.23,-327.16 307.09,-320.25"/>
+</g>
+<!-- module~nafpack_utils&#45;&gt;module~nafpack_plan_type -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge100" class="edge">
+<title>module~nafpack_utils&#45;&gt;module~nafpack_plan_type</title>
+<path fill="none" stroke="#ff00e2" stroke-dasharray="5,2" d="M435.91,-310.7C405.71,-324.06 355.67,-345.17 311.04,-359.13 303.35,-361.54 295.22,-363.8 287.1,-365.88"/>
+<polygon fill="#ff00e2" stroke="#ff00e2" points="286.42,-362.45 277.55,-368.24 288.1,-369.24 286.42,-362.45"/>
+</g>
+<!-- module~nafpack_ansi_ascii -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node29" class="node">
+<title>module~nafpack_ansi_ascii</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node29"><a xlink:href="../module/nafpack_ansi_ascii.html" xlink:title="NAFPack_ANSI_ASCII">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="750.71,-1252.27 630.44,-1252.27 630.44,-1228 750.71,-1228 750.71,-1252.27"/>
+<text xml:space="preserve" text-anchor="middle" x="690.57" y="-1236.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_ANSI_ASCII</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_ansi_ascii&#45;&gt;module~nafpack_ansi -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge30" class="edge">
+<title>module~nafpack_ansi_ascii&#45;&gt;module~nafpack_ansi</title>
+<path fill="none" stroke="#ff0000" d="M630.12,-1234.56C595.92,-1231.36 553.26,-1227.36 519.94,-1224.23"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="520.36,-1220.76 510.08,-1223.31 519.71,-1227.73 520.36,-1220.76"/>
+</g>
+<!-- module~nafpack_ansi_ucs4 -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node30" class="node">
+<title>module~nafpack_ansi_ucs4</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node30"><a xlink:href="../module/nafpack_ansi_ucs4.html" xlink:title="NAFPack_ANSI_ucs4">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="749.21,-1294.27 631.94,-1294.27 631.94,-1270 749.21,-1270 749.21,-1294.27"/>
+<text xml:space="preserve" text-anchor="middle" x="690.57" y="-1278.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_ANSI_ucs4</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_ansi_ucs4&#45;&gt;module~nafpack_ansi -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge31" class="edge">
+<title>module~nafpack_ansi_ucs4&#45;&gt;module~nafpack_ansi</title>
+<path fill="none" stroke="#ff0000" d="M644.77,-1269.54C608.63,-1259.37 557.67,-1245.04 519.33,-1234.26"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="520.4,-1230.92 509.82,-1231.59 518.5,-1237.66 520.4,-1230.92"/>
+</g>
+<!-- module~nafpack_butterfly_dft -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node31" class="node">
+<title>module~nafpack_butterfly_dft</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node31"><a xlink:href="../module/nafpack_butterfly_dft.html" xlink:title="NAFPack_butterfly_dft">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="1150.62,-582.27 1023.6,-582.27 1023.6,-558 1150.62,-558 1150.62,-582.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1087.11" y="-566.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_butterfly_dft</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_butterfly_dft&#45;&gt;module~nafpack_butterfly -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge33" class="edge">
+<title>module~nafpack_butterfly_dft&#45;&gt;module~nafpack_butterfly</title>
+<path fill="none" stroke="#ff3800" d="M1023.43,-557.63C1013.6,-555.14 1003.63,-552.3 994.35,-549.13 966.05,-539.47 935.36,-525.06 912.87,-513.7"/>
+<polygon fill="#ff3800" stroke="#ff3800" points="914.68,-510.7 904.18,-509.26 911.49,-516.93 914.68,-510.7"/>
+</g>
+<!-- module~nafpack_butterfly_dft&#45;&gt;module~nafpack_constant -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge40" class="edge">
+<title>module~nafpack_butterfly_dft&#45;&gt;module~nafpack_constant</title>
+<path fill="none" stroke="#ff7100" stroke-dasharray="5,2" d="M1028.79,-582.72C972.99,-594.82 894.48,-611.39 879.72,-612.13"/>
+<path fill="none" stroke="#ff7100" stroke-dasharray="5,2" d="M877.72,-612.13C693.99,-621.37 643.56,-696.55 465.55,-650.13"/>
+<path fill="none" stroke="#ff7100" stroke-dasharray="5,2" d="M463.55,-650.13C404.39,-634.13 334.17,-636.86 284.31,-642.26"/>
+<polygon fill="#ff7100" stroke="#ff7100" points="284.07,-638.76 274.54,-643.39 284.88,-645.71 284.07,-638.76"/>
+</g>
+<!-- module~nafpack_butterfly_mixed_radix -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node32" class="node">
+<title>module~nafpack_butterfly_mixed_radix</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node32"><a xlink:href="../module/nafpack_butterfly_mixed_radix.html" xlink:title="NAFPack_butterfly_mixed_radix">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="1176.12,-540.27 998.1,-540.27 998.1,-516 1176.12,-516 1176.12,-540.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1087.11" y="-524.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_butterfly_mixed_radix</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_butterfly_mixed_radix&#45;&gt;module~nafpack_butterfly -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge34" class="edge">
+<title>module~nafpack_butterfly_mixed_radix&#45;&gt;module~nafpack_butterfly</title>
+<path fill="none" stroke="#ff3800" d="M1004.83,-515.53C984.65,-512.4 963.3,-509.09 944.06,-506.11"/>
+<polygon fill="#ff3800" stroke="#ff3800" points="944.61,-502.65 934.19,-504.58 943.53,-509.57 944.61,-502.65"/>
+</g>
+<!-- module~nafpack_butterfly_mixed_radix&#45;&gt;module~nafpack_constant -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge41" class="edge">
+<title>module~nafpack_butterfly_mixed_radix&#45;&gt;module~nafpack_constant</title>
+<path fill="none" stroke="#ff7100" stroke-dasharray="5,2" d="M997.68,-534.05C829.23,-545.41 477.85,-569.56 465.55,-574.13"/>
+</g>
+<!-- module~nafpack_butterfly_radix2 -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node33" class="node">
+<title>module~nafpack_butterfly_radix2</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node33"><a xlink:href="../module/nafpack_butterfly_radix2.html" xlink:title="NAFPack_butterfly_radix2">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="1160.37,-498.27 1013.85,-498.27 1013.85,-474 1160.37,-474 1160.37,-498.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1087.11" y="-482.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_butterfly_radix2</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_butterfly_radix2&#45;&gt;module~nafpack_butterfly -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge35" class="edge">
+<title>module~nafpack_butterfly_radix2&#45;&gt;module~nafpack_butterfly</title>
+<path fill="none" stroke="#ff3800" d="M1013.63,-489.65C990.98,-490.74 966.16,-491.95 944.1,-493.02"/>
+<polygon fill="#ff3800" stroke="#ff3800" points="944.18,-489.51 934.36,-493.49 944.52,-496.5 944.18,-489.51"/>
+</g>
+<!-- module~nafpack_butterfly_radix3 -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node34" class="node">
+<title>module~nafpack_butterfly_radix3</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node34"><a xlink:href="../module/nafpack_butterfly_radix3.html" xlink:title="NAFPack_butterfly_radix3">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="1160.37,-666.27 1013.85,-666.27 1013.85,-642 1160.37,-642 1160.37,-666.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1087.11" y="-650.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_butterfly_radix3</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_butterfly_radix3&#45;&gt;module~nafpack_butterfly -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge36" class="edge">
+<title>module~nafpack_butterfly_radix3&#45;&gt;module~nafpack_butterfly</title>
+<path fill="none" stroke="#ff3800" d="M1013.69,-642.34C1006.91,-639.83 1000.34,-636.81 994.35,-633.13 981.79,-625.44 924.71,-553.69 896.13,-517.21"/>
+<polygon fill="#ff3800" stroke="#ff3800" points="899.05,-515.26 890.13,-509.54 893.54,-519.58 899.05,-515.26"/>
+</g>
+<!-- module~nafpack_butterfly_radix3&#45;&gt;module~nafpack_constant -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge42" class="edge">
+<title>module~nafpack_butterfly_radix3&#45;&gt;module~nafpack_constant</title>
+<path fill="none" stroke="#ff7100" stroke-dasharray="5,2" d="M1013.4,-658.24C872.4,-665.44 566.78,-677.18 465.55,-650.13"/>
+</g>
+<!-- module~nafpack_butterfly_radix4 -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node35" class="node">
+<title>module~nafpack_butterfly_radix4</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node35"><a xlink:href="../module/nafpack_butterfly_radix4.html" xlink:title="NAFPack_butterfly_radix4">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="1160.37,-456.27 1013.85,-456.27 1013.85,-432 1160.37,-432 1160.37,-456.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1087.11" y="-440.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_butterfly_radix4</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_butterfly_radix4&#45;&gt;module~nafpack_butterfly -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge37" class="edge">
+<title>module~nafpack_butterfly_radix4&#45;&gt;module~nafpack_butterfly</title>
+<path fill="none" stroke="#ff3800" d="M1029.74,-456.67C1018.02,-459.38 1005.77,-462.29 994.35,-465.13 975.21,-469.91 954.36,-475.45 935.76,-480.51"/>
+<polygon fill="#ff3800" stroke="#ff3800" points="934.98,-477.09 926.26,-483.11 936.83,-483.85 934.98,-477.09"/>
+</g>
+<!-- module~nafpack_butterfly_radix5 -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node36" class="node">
+<title>module~nafpack_butterfly_radix5</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node36"><a xlink:href="../module/nafpack_butterfly_radix5.html" xlink:title="NAFPack_butterfly_radix5">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="1160.37,-414.27 1013.85,-414.27 1013.85,-390 1160.37,-390 1160.37,-414.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1087.11" y="-398.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_butterfly_radix5</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_butterfly_radix5&#45;&gt;module~nafpack_butterfly -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge38" class="edge">
+<title>module~nafpack_butterfly_radix5&#45;&gt;module~nafpack_butterfly</title>
+<path fill="none" stroke="#ff3800" d="M1019.11,-414.64C1010.63,-417.04 1002.19,-419.86 994.35,-423.13 961.17,-437.01 926.85,-460.25 904.52,-476.77"/>
+<polygon fill="#ff3800" stroke="#ff3800" points="902.53,-473.89 896.65,-482.71 906.74,-479.48 902.53,-473.89"/>
+</g>
+<!-- module~nafpack_butterfly_split_radix -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node37" class="node">
+<title>module~nafpack_butterfly_split_radix</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node37"><a xlink:href="../module/nafpack_butterfly_split_radix.html" xlink:title="NAFPack_butterfly_split_radix">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="1170.5,-624.27 1003.73,-624.27 1003.73,-600 1170.5,-600 1170.5,-624.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1087.11" y="-608.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_butterfly_split_radix</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_butterfly_split_radix&#45;&gt;module~nafpack_butterfly -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge39" class="edge">
+<title>module~nafpack_butterfly_split_radix&#45;&gt;module~nafpack_butterfly</title>
+<path fill="none" stroke="#ff3800" d="M1015.78,-599.64C1008.37,-597.27 1001.09,-594.46 994.35,-591.13 956.26,-572.33 919.82,-538.52 898.62,-516.71"/>
+<polygon fill="#ff3800" stroke="#ff3800" points="901.24,-514.38 891.81,-509.55 896.17,-519.21 901.24,-514.38"/>
+</g>
+<!-- module~nafpack_butterfly_split_radix&#45;&gt;module~nafpack_constant -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge43" class="edge">
+<title>module~nafpack_butterfly_split_radix&#45;&gt;module~nafpack_constant</title>
+<path fill="none" stroke="#ff7100" stroke-dasharray="5,2" d="M1003.71,-610.24C965.9,-609.86 920.51,-610.08 879.72,-612.13"/>
+</g>
+<!-- module~nafpack_fourier_transform_dft -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node38" class="node">
+<title>module~nafpack_fourier_transform_dft</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node38"><a xlink:href="../module/nafpack_fourier_transform_dft.html" xlink:title="NAFPack_Fourier_Transform_dft">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="1176.5,-288.27 997.73,-288.27 997.73,-264 1176.5,-264 1176.5,-288.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1087.11" y="-272.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Fourier_Transform_dft</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_fourier_transform_dft&#45;&gt;module~nafpack_fourier_transform -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge53" class="edge">
+<title>module~nafpack_fourier_transform_dft&#45;&gt;module~nafpack_fourier_transform</title>
+<path fill="none" stroke="#aaff00" d="M997.38,-267.11C988.32,-266.18 979.1,-265.25 970.02,-264.32"/>
+<polygon fill="#aaff00" stroke="#aaff00" points="970.42,-260.85 960.11,-263.32 969.71,-267.81 970.42,-260.85"/>
+</g>
+<!-- module~nafpack_fourier_transform_dft2 -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node39" class="node">
+<title>module~nafpack_fourier_transform_dft2</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node39"><a xlink:href="../module/nafpack_fourier_transform_dft2.html" xlink:title="NAFPack_Fourier_Transform_dft2">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="1179.87,-246.27 994.35,-246.27 994.35,-222 1179.87,-222 1179.87,-246.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1087.11" y="-230.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Fourier_Transform_dft2</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_fourier_transform_dft2&#45;&gt;module~nafpack_fourier_transform -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge54" class="edge">
+<title>module~nafpack_fourier_transform_dft2&#45;&gt;module~nafpack_fourier_transform</title>
+<path fill="none" stroke="#aaff00" d="M994.08,-243.5C986.04,-244.32 977.91,-245.14 969.89,-245.96"/>
+<polygon fill="#aaff00" stroke="#aaff00" points="969.74,-242.46 960.15,-246.95 970.45,-249.42 969.74,-242.46"/>
+</g>
+<!-- module~nafpack_fourier_transform_dft3 -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node40" class="node">
+<title>module~nafpack_fourier_transform_dft3</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node40"><a xlink:href="../module/nafpack_fourier_transform_dft3.html" xlink:title="NAFPack_Fourier_Transform_dft3">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="1179.87,-204.27 994.35,-204.27 994.35,-180 1179.87,-180 1179.87,-204.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1087.11" y="-188.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Fourier_Transform_dft3</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_fourier_transform_dft3&#45;&gt;module~nafpack_fourier_transform -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge55" class="edge">
+<title>module~nafpack_fourier_transform_dft3&#45;&gt;module~nafpack_fourier_transform</title>
+<path fill="none" stroke="#aaff00" d="M1026.1,-204.72C1015.46,-207.28 1004.53,-210.12 994.35,-213.13 969.66,-220.45 942.59,-230.28 920.96,-238.59"/>
+<polygon fill="#aaff00" stroke="#aaff00" points="919.96,-235.22 911.91,-242.11 922.5,-241.75 919.96,-235.22"/>
+</g>
+<!-- module~nafpack_linalg -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node41" class="node">
+<title>module~nafpack_linalg</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node41"><a xlink:href="../module/nafpack_linalg.html" xlink:title="NAFPack_linalg">
+<polygon fill="#337ab7" stroke="#337ab7" points="1379.64,-1032.27 1287.87,-1032.27 1287.87,-1008 1379.64,-1008 1379.64,-1032.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1333.76" y="-1016.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_linalg</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_linalg&#45;&gt;module~nafpack_direct_method -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge51" class="edge">
+<title>module~nafpack_linalg&#45;&gt;module~nafpack_direct_method</title>
+<path fill="none" stroke="#ffaa00" stroke-dasharray="5,2" d="M1287.6,-1007.95C1247.59,-997.16 1188.97,-981.34 1145.62,-969.65"/>
+<polygon fill="#ffaa00" stroke="#ffaa00" points="1146.7,-966.31 1136.13,-967.09 1144.87,-973.07 1146.7,-966.31"/>
+</g>
+<!-- module~nafpack_linalg&#45;&gt;module~nafpack_iterative_methods -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge62" class="edge">
+<title>module~nafpack_linalg&#45;&gt;module~nafpack_iterative_methods</title>
+<path fill="none" stroke="#00ff00" stroke-dasharray="5,2" d="M1287.6,-1023.83C1256.94,-1026.33 1215.36,-1029.73 1178.09,-1032.78"/>
+<polygon fill="#00ff00" stroke="#00ff00" points="1177.87,-1029.29 1168.19,-1033.59 1178.44,-1036.26 1177.87,-1029.29"/>
+</g>
+<!-- module~nafpack_linalg&#45;&gt;module~nafpack_iterative_params -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge64" class="edge">
+<title>module~nafpack_linalg&#45;&gt;module~nafpack_iterative_params</title>
+<path fill="none" stroke="#00ff38" stroke-dasharray="5,2" d="M1086.11,-1000.13C1032.78,-1000.53 973.1,-1013.5 931.68,-1024.57"/>
+<polygon fill="#00ff38" stroke="#00ff38" points="930.95,-1021.14 922.23,-1027.15 932.8,-1027.89 930.95,-1021.14"/>
+</g>
+<!-- module~nafpack_linalg&#45;&gt;module~nafpack_iterative_types -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge67" class="edge">
+<title>module~nafpack_linalg&#45;&gt;module~nafpack_iterative_types</title>
+<path fill="none" stroke="#00ff71" stroke-dasharray="5,2" d="M1290.88,-1032.75C1260.33,-1041.61 1217.81,-1053.25 1179.87,-1061.13 1038.2,-1090.58 870.01,-1106.03 772.57,-1113.1"/>
+<polygon fill="#00ff71" stroke="#00ff71" points="772.57,-1109.59 762.84,-1113.79 773.06,-1116.57 772.57,-1109.59"/>
+</g>
+<!-- module~nafpack_linalg&#45;&gt;module~nafpack_preconditioners -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge103" class="edge">
+<title>module~nafpack_linalg&#45;&gt;module~nafpack_preconditioners</title>
+<path fill="none" stroke="#ff00aa" stroke-dasharray="5,2" d="M1287.75,-1014.04C1238.74,-1007.97 1158,-999.62 1088.11,-1000.13"/>
+<path fill="none" stroke="#ff00aa" stroke-dasharray="5,2" d="M1086.11,-1000.13C994.38,-1000.81 971.34,-1004.52 879.72,-1000.13"/>
+<path fill="none" stroke="#ff00aa" stroke-dasharray="5,2" d="M877.72,-1000.13C843.93,-998.52 806.66,-998.22 774.4,-998.44"/>
+<polygon fill="#ff00aa" stroke="#ff00aa" points="774.69,-994.94 764.72,-998.52 774.75,-1001.94 774.69,-994.94"/>
+</g>
+<!-- module~nafpack_memory_management_complex -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node42" class="node">
+<title>module~nafpack_memory_management_complex</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node42"><a xlink:href="../module/nafpack_memory_management_complex.html" xlink:title="NAFPack_memory_management_complex">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="582.06,-108.27 347.04,-108.27 347.04,-84 582.06,-84 582.06,-108.27"/>
+<text xml:space="preserve" text-anchor="middle" x="464.55" y="-92.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_memory_management_complex</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_memory_management_complex&#45;&gt;module~nafpack_memory_management -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge89" class="edge">
+<title>module~nafpack_memory_management_complex&#45;&gt;module~nafpack_memory_management</title>
+<path fill="none" stroke="#aa00ff" d="M346.6,-86.07C338.64,-85.38 330.64,-84.69 322.75,-84.01"/>
+<polygon fill="#aa00ff" stroke="#aa00ff" points="323.06,-80.53 312.8,-83.15 322.46,-87.5 323.06,-80.53"/>
+</g>
+<!-- module~nafpack_memory_management_integer -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node43" class="node">
+<title>module~nafpack_memory_management_integer</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node43"><a xlink:href="../module/nafpack_memory_management_integer.html" xlink:title="NAFPack_memory_management_integer">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="578.69,-66.27 350.42,-66.27 350.42,-42 578.69,-42 578.69,-66.27"/>
+<text xml:space="preserve" text-anchor="middle" x="464.55" y="-50.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_memory_management_integer</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_memory_management_integer&#45;&gt;module~nafpack_memory_management -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge90" class="edge">
+<title>module~nafpack_memory_management_integer&#45;&gt;module~nafpack_memory_management</title>
+<path fill="none" stroke="#aa00ff" d="M350.17,-63.9C340.99,-64.69 331.74,-65.48 322.63,-66.27"/>
+<polygon fill="#aa00ff" stroke="#aa00ff" points="322.36,-62.78 312.7,-67.12 322.96,-69.75 322.36,-62.78"/>
+</g>
+<!-- module~nafpack_memory_management_real -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node44" class="node">
+<title>module~nafpack_memory_management_real</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node44"><a xlink:href="../module/nafpack_memory_management_real.html" xlink:title="NAFPack_memory_management_real">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="569.69,-24.27 359.42,-24.27 359.42,0 569.69,0 569.69,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="464.55" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_memory_management_real</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_memory_management_real&#45;&gt;module~nafpack_memory_management -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge91" class="edge">
+<title>module~nafpack_memory_management_real&#45;&gt;module~nafpack_memory_management</title>
+<path fill="none" stroke="#aa00ff" d="M384.89,-24.76C372.17,-27.25 359.19,-30.05 347.04,-33.13 319.05,-40.23 288.29,-50.31 264,-58.81"/>
+<polygon fill="#aa00ff" stroke="#aa00ff" points="263.02,-55.45 254.76,-62.09 265.36,-62.05 263.02,-55.45"/>
+</g>
+<!-- module~nafpack_meshgrid_complex_2d -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node45" class="node">
+<title>module~nafpack_meshgrid_complex_2d</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node45"><a xlink:href="../module/nafpack_meshgrid_complex_2d.html" xlink:title="NAFPack_meshgrid_complex_2D">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="1178.75,-834.27 995.48,-834.27 995.48,-810 1178.75,-810 1178.75,-834.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1087.11" y="-818.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_complex_2D</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_meshgrid_complex_2d&#45;&gt;module~nafpack_meshgrid -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge92" class="edge">
+<title>module~nafpack_meshgrid_complex_2d&#45;&gt;module~nafpack_meshgrid</title>
+<path fill="none" stroke="#e200ff" d="M1023.98,-809.57C1013.98,-807.08 1003.82,-804.25 994.35,-801.13 967.06,-792.15 937.35,-779.09 915.01,-768.57"/>
+<polygon fill="#e200ff" stroke="#e200ff" points="916.58,-765.44 906.05,-764.29 913.57,-771.76 916.58,-765.44"/>
+</g>
+<!-- module~nafpack_meshgrid_complex_3d -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node46" class="node">
+<title>module~nafpack_meshgrid_complex_3d</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node46"><a xlink:href="../module/nafpack_meshgrid_complex_3d.html" xlink:title="NAFPack_meshgrid_complex_3D">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="1178.75,-750.27 995.48,-750.27 995.48,-726 1178.75,-726 1178.75,-750.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1087.11" y="-734.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_complex_3D</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_meshgrid_complex_3d&#45;&gt;module~nafpack_meshgrid -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge93" class="edge">
+<title>module~nafpack_meshgrid_complex_3d&#45;&gt;module~nafpack_meshgrid</title>
+<path fill="none" stroke="#e200ff" d="M994.98,-743.87C978.8,-744.89 962.22,-745.94 946.86,-746.91"/>
+<polygon fill="#e200ff" stroke="#e200ff" points="946.65,-743.41 936.89,-747.53 947.09,-750.4 946.65,-743.41"/>
+</g>
+<!-- module~nafpack_meshgrid_integer_2d -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node47" class="node">
+<title>module~nafpack_meshgrid_integer_2d</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node47"><a xlink:href="../module/nafpack_meshgrid_integer_2d.html" xlink:title="NAFPack_meshgrid_integer_2D">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="1175.37,-792.27 998.85,-792.27 998.85,-768 1175.37,-768 1175.37,-792.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1087.11" y="-776.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_integer_2D</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_meshgrid_integer_2d&#45;&gt;module~nafpack_meshgrid -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge94" class="edge">
+<title>module~nafpack_meshgrid_integer_2d&#45;&gt;module~nafpack_meshgrid</title>
+<path fill="none" stroke="#e200ff" d="M998.58,-767.84C981.17,-765.39 963.16,-762.86 946.57,-760.53"/>
+<polygon fill="#e200ff" stroke="#e200ff" points="947.24,-757.09 936.85,-759.16 946.26,-764.02 947.24,-757.09"/>
+</g>
+<!-- module~nafpack_meshgrid_integer_3d -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node48" class="node">
+<title>module~nafpack_meshgrid_integer_3d</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node48"><a xlink:href="../module/nafpack_meshgrid_integer_3d.html" xlink:title="NAFPack_meshgrid_integer_3D">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="1175.37,-918.27 998.85,-918.27 998.85,-894 1175.37,-894 1175.37,-918.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1087.11" y="-902.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_integer_3D</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_meshgrid_integer_3d&#45;&gt;module~nafpack_meshgrid -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge95" class="edge">
+<title>module~nafpack_meshgrid_integer_3d&#45;&gt;module~nafpack_meshgrid</title>
+<path fill="none" stroke="#e200ff" d="M1006.91,-893.7C1002.41,-891.29 998.17,-888.46 994.35,-885.13 960.31,-855.47 988.67,-823.59 958.35,-790.13 950.28,-781.24 939.73,-774.12 928.99,-768.53"/>
+<polygon fill="#e200ff" stroke="#e200ff" points="930.6,-765.43 920.07,-764.29 927.6,-771.75 930.6,-765.43"/>
+</g>
+<!-- module~nafpack_meshgrid_real_2d -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node49" class="node">
+<title>module~nafpack_meshgrid_real_2d</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node49"><a xlink:href="../module/nafpack_meshgrid_real_2d.html" xlink:title="NAFPack_meshgrid_real_2D">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="1166.37,-708.27 1007.85,-708.27 1007.85,-684 1166.37,-684 1166.37,-708.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1087.11" y="-692.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_real_2D</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_meshgrid_real_2d&#45;&gt;module~nafpack_meshgrid -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge96" class="edge">
+<title>module~nafpack_meshgrid_real_2d&#45;&gt;module~nafpack_meshgrid</title>
+<path fill="none" stroke="#e200ff" d="M1028.7,-708.68C1017.29,-711.35 1005.41,-714.23 994.35,-717.13 973.44,-722.62 950.57,-729.27 930.8,-735.23"/>
+<polygon fill="#e200ff" stroke="#e200ff" points="929.86,-731.86 921.31,-738.11 931.89,-738.56 929.86,-731.86"/>
+</g>
+<!-- module~nafpack_meshgrid_real_3d -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node50" class="node">
+<title>module~nafpack_meshgrid_real_3d</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node50"><a xlink:href="../module/nafpack_meshgrid_real_3d.html" xlink:title="NAFPack_meshgrid_real_3D">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="1166.37,-876.27 1007.85,-876.27 1007.85,-852 1166.37,-852 1166.37,-876.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1087.11" y="-860.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_real_3D</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_meshgrid_real_3d&#45;&gt;module~nafpack_meshgrid -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge97" class="edge">
+<title>module~nafpack_meshgrid_real_3d&#45;&gt;module~nafpack_meshgrid</title>
+<path fill="none" stroke="#e200ff" d="M1010.04,-851.62C1004.51,-849.26 999.21,-846.45 994.35,-843.13 970.84,-827.07 979.81,-808.85 958.35,-790.13 948.4,-781.46 936.18,-774.19 924.37,-768.37"/>
+<polygon fill="#e200ff" stroke="#e200ff" points="926.07,-765.3 915.53,-764.26 923.13,-771.65 926.07,-765.3"/>
+</g>
+<!-- module~nafpack_plan_create -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node51" class="node">
+<title>module~nafpack_plan_create</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node51"><a xlink:href="../module/nafpack_plan_create.html" xlink:title="NAFPack_plan_create">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="1149.5,-162.27 1024.73,-162.27 1024.73,-138 1149.5,-138 1149.5,-162.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1087.11" y="-146.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_plan_create</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_plan_create&#45;&gt;module~nafpack_fourier_transform -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge56" class="edge">
+<title>module~nafpack_plan_create&#45;&gt;module~nafpack_fourier_transform</title>
+<path fill="none" stroke="#aaff00" d="M1024.25,-160.65C1014.03,-163.41 1003.71,-166.86 994.35,-171.13 958.81,-187.38 923.37,-215.67 901.51,-234.89"/>
+<polygon fill="#aaff00" stroke="#aaff00" points="899.25,-232.22 894.14,-241.5 903.92,-237.43 899.25,-232.22"/>
+</g>
+<!-- module~nafpack_plan_create&#45;&gt;module~nafpack_math_utils -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge73" class="edge">
+<title>module~nafpack_plan_create&#45;&gt;module~nafpack_math_utils</title>
+<path fill="none" stroke="#00a9ff" stroke-dasharray="5,2" d="M1024.43,-162.54C983.51,-169.48 928.55,-176.33 879.72,-174.13"/>
+<path fill="none" stroke="#00a9ff" stroke-dasharray="5,2" d="M877.72,-174.13C821.83,-171.63 814.88,-143.26 763.08,-122.13 755.17,-118.91 746.69,-115.65 738.44,-112.59"/>
+<polygon fill="#00a9ff" stroke="#00a9ff" points="739.8,-109.36 729.21,-109.21 737.4,-115.93 739.8,-109.36"/>
+</g>
+<!-- module~nafpack_plan_create&#45;&gt;module~nafpack_utils -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge106" class="edge">
+<title>module~nafpack_plan_create&#45;&gt;module~nafpack_utils</title>
+<path fill="none" stroke="#ff0038" stroke-dasharray="5,2" d="M877.72,-174.13C762.12,-168.95 727.22,-154.77 618.06,-193.13 565.52,-211.6 514.24,-253.16 486.58,-278.1"/>
+<polygon fill="#ff0038" stroke="#ff0038" points="484.57,-275.2 479.58,-284.54 489.31,-280.35 484.57,-275.2"/>
+</g>
+<!-- module~nafpack_plan_destroy -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node52" class="node">
+<title>module~nafpack_plan_destroy</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node52"><a xlink:href="../module/nafpack_plan_destroy.html" xlink:title="NAFPack_plan_destroy">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="1152.12,-330.27 1022.1,-330.27 1022.1,-306 1152.12,-306 1152.12,-330.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1087.11" y="-314.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_plan_destroy</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_plan_destroy&#45;&gt;module~nafpack_fourier_transform -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge57" class="edge">
+<title>module~nafpack_plan_destroy&#45;&gt;module~nafpack_fourier_transform</title>
+<path fill="none" stroke="#aaff00" d="M1026.1,-305.55C1015.46,-302.99 1004.53,-300.15 994.35,-297.13 969.66,-289.82 942.59,-279.99 920.96,-271.68"/>
+<polygon fill="#aaff00" stroke="#aaff00" points="922.5,-268.52 911.91,-268.16 919.96,-275.05 922.5,-268.52"/>
+</g>
+<!-- module~nafpack_plan_execute -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node53" class="node">
+<title>module~nafpack_plan_execute</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node53"><a xlink:href="../module/nafpack_plan_execute.html" xlink:title="NAFPack_plan_execute">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="1153.62,-372.27 1020.6,-372.27 1020.6,-348 1153.62,-348 1153.62,-372.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1087.11" y="-356.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_plan_execute</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_plan_execute&#45;&gt;module~nafpack_butterfly -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge32" class="edge">
+<title>module~nafpack_plan_execute&#45;&gt;module~nafpack_butterfly</title>
+<path fill="none" stroke="#ff3800" stroke-dasharray="5,2" d="M1020.48,-368.92C1011.24,-371.89 1002.22,-375.86 994.35,-381.13 971.3,-396.58 977.29,-411.86 958.35,-432.13 942.68,-448.91 922.57,-465.2 906.61,-477.15"/>
+<polygon fill="#ff3800" stroke="#ff3800" points="904.97,-474.02 898.98,-482.76 909.11,-479.66 904.97,-474.02"/>
+</g>
+<!-- module~nafpack_plan_execute&#45;&gt;module~nafpack_fourier_transform -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge58" class="edge">
+<title>module~nafpack_plan_execute&#45;&gt;module~nafpack_fourier_transform</title>
+<path fill="none" stroke="#aaff00" d="M1020.36,-348.54C1011.42,-345.97 1002.53,-342.87 994.35,-339.13 958.81,-322.89 923.37,-294.6 901.51,-275.38"/>
+<polygon fill="#aaff00" stroke="#aaff00" points="903.92,-272.84 894.14,-268.77 899.25,-278.05 903.92,-272.84"/>
+</g>
+<!-- module~nafpack_plan_execute&#45;&gt;module~nafpack_utils -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge107" class="edge">
+<title>module~nafpack_plan_execute&#45;&gt;module~nafpack_utils</title>
+<path fill="none" stroke="#ff0038" stroke-dasharray="5,2" d="M1020.36,-371.25C909.55,-388.92 690.6,-419.02 618.06,-394.13 598.89,-387.56 598.85,-377.49 582.06,-366.13 554.85,-347.73 522.49,-329.09 498.78,-315.98"/>
+<polygon fill="#ff0038" stroke="#ff0038" points="500.65,-313.02 490.2,-311.28 497.29,-319.15 500.65,-313.02"/>
+</g>
+<!-- module~nafpack_utils_complex -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node54" class="node">
+<title>module~nafpack_utils_complex</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node54"><a xlink:href="../module/nafpack_utils_complex.html" xlink:title="NAFPack_utils_complex">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="757.83,-268.27 623.31,-268.27 623.31,-244 757.83,-244 757.83,-268.27"/>
+<text xml:space="preserve" text-anchor="middle" x="690.57" y="-252.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_utils_complex</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_utils_complex&#45;&gt;module~nafpack_utils -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge108" class="edge">
+<title>module~nafpack_utils_complex&#45;&gt;module~nafpack_utils</title>
+<path fill="none" stroke="#ff0038" d="M622.96,-268.62C589.42,-274.91 549.34,-282.43 518.02,-288.3"/>
+<polygon fill="#ff0038" stroke="#ff0038" points="517.58,-284.82 508.39,-290.1 518.87,-291.7 517.58,-284.82"/>
+</g>
+<!-- module~nafpack_utils_integer -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node55" class="node">
+<title>module~nafpack_utils_integer</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node55"><a xlink:href="../module/nafpack_utils_integer.html" xlink:title="NAFPack_utils_integer">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="754.46,-226.27 626.69,-226.27 626.69,-202 754.46,-202 754.46,-226.27"/>
+<text xml:space="preserve" text-anchor="middle" x="690.57" y="-210.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_utils_integer</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_utils_integer&#45;&gt;module~nafpack_utils -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge109" class="edge">
+<title>module~nafpack_utils_integer&#45;&gt;module~nafpack_utils</title>
+<path fill="none" stroke="#ff0038" d="M643.94,-226.75C635.29,-229.36 626.36,-232.21 618.06,-235.13 578.42,-249.1 534.13,-267.75 503.53,-281.13"/>
+<polygon fill="#ff0038" stroke="#ff0038" points="502.44,-277.78 494.7,-285.01 505.26,-284.19 502.44,-277.78"/>
+</g>
+<!-- module~nafpack_utils_real -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node56" class="node">
+<title>module~nafpack_utils_real</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node56"><a xlink:href="../module/nafpack_utils_real.html" xlink:title="NAFPack_utils_real">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="745.46,-352.27 635.69,-352.27 635.69,-328 745.46,-328 745.46,-352.27"/>
+<text xml:space="preserve" text-anchor="middle" x="690.57" y="-336.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_utils_real</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_utils_real&#45;&gt;module~nafpack_utils -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge110" class="edge">
+<title>module~nafpack_utils_real&#45;&gt;module~nafpack_utils</title>
+<path fill="none" stroke="#ff0038" d="M635.34,-329.97C599.7,-323.29 553.32,-314.59 518.04,-307.98"/>
+<polygon fill="#ff0038" stroke="#ff0038" points="518.96,-304.59 508.49,-306.19 517.67,-311.47 518.96,-304.59"/>
+</g>
+<!-- module~nafpack_utils_type -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node57" class="node">
+<title>module~nafpack_utils_type</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node57"><a xlink:href="../module/nafpack_utils_type.html" xlink:title="NAFPack_utils_type">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="746.96,-310.27 634.19,-310.27 634.19,-286 746.96,-286 746.96,-310.27"/>
+<text xml:space="preserve" text-anchor="middle" x="690.57" y="-294.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_utils_type</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_utils_type&#45;&gt;module~nafpack_utils -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge111" class="edge">
+<title>module~nafpack_utils_type&#45;&gt;module~nafpack_utils</title>
+<path fill="none" stroke="#ff0038" d="M633.91,-298.13C598.63,-298.13 553.27,-298.13 518.53,-298.13"/>
+<polygon fill="#ff0038" stroke="#ff0038" points="518.69,-294.64 508.69,-298.14 518.69,-301.64 518.69,-294.64"/>
+</g>
+<!-- module~nafpack_fourier_transform_dft_compute -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node58" class="node">
+<title>module~nafpack_fourier_transform_dft_compute</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node58"><a xlink:href="../module/nafpack_fourier_transform_dft_compute.html" xlink:title="NAFPack_Fourier_Transform_dft_compute">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="1449.39,-288.27 1218.12,-288.27 1218.12,-264 1449.39,-264 1449.39,-288.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1333.76" y="-272.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Fourier_Transform_dft_compute</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_fourier_transform_dft_compute&#45;&gt;module~nafpack_fourier_transform_dft -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge112" class="edge">
+<title>module~nafpack_fourier_transform_dft_compute&#45;&gt;module~nafpack_fourier_transform_dft</title>
+<path fill="none" stroke="#23ff00" d="M1217.95,-276.13C1208.05,-276.13 1198.08,-276.13 1188.3,-276.13"/>
+<polygon fill="#23ff00" stroke="#23ff00" points="1188.45,-272.64 1178.45,-276.14 1188.45,-279.64 1188.45,-272.64"/>
+</g>
+<!-- module~nafpack_meshgrid_complex_2d_compute -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node59" class="node">
+<title>module~nafpack_meshgrid_complex_2d_compute</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node59"><a xlink:href="../module/nafpack_meshgrid_complex_2d_compute.html" xlink:title="NAFPack_meshgrid_complex_2D_compute">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="1451.64,-834.27 1215.87,-834.27 1215.87,-810 1451.64,-810 1451.64,-834.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1333.76" y="-818.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_complex_2D_compute</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_meshgrid_complex_2d_compute&#45;&gt;module~nafpack_meshgrid_complex_2d -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge113" class="edge">
+<title>module~nafpack_meshgrid_complex_2d_compute&#45;&gt;module~nafpack_meshgrid_complex_2d</title>
+<path fill="none" stroke="#00afff" d="M1215.45,-822.13C1207.02,-822.13 1198.55,-822.13 1190.22,-822.13"/>
+<polygon fill="#00afff" stroke="#00afff" points="1190.47,-818.64 1180.46,-822.14 1190.46,-825.64 1190.47,-818.64"/>
+</g>
+<!-- module~nafpack_meshgrid_complex_3d_compute -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node60" class="node">
+<title>module~nafpack_meshgrid_complex_3d_compute</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node60"><a xlink:href="../module/nafpack_meshgrid_complex_3d_compute.html" xlink:title="NAFPack_meshgrid_complex_3D_compute">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="1451.64,-750.27 1215.87,-750.27 1215.87,-726 1451.64,-726 1451.64,-750.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1333.76" y="-734.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_complex_3D_compute</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_meshgrid_complex_3d_compute&#45;&gt;module~nafpack_meshgrid_complex_3d -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge114" class="edge">
+<title>module~nafpack_meshgrid_complex_3d_compute&#45;&gt;module~nafpack_meshgrid_complex_3d</title>
+<path fill="none" stroke="#007bff" d="M1215.45,-738.13C1207.02,-738.13 1198.55,-738.13 1190.22,-738.13"/>
+<polygon fill="#007bff" stroke="#007bff" points="1190.47,-734.64 1180.46,-738.14 1190.46,-741.64 1190.47,-734.64"/>
+</g>
+<!-- module~nafpack_meshgrid_integer_2d_compute -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node61" class="node">
+<title>module~nafpack_meshgrid_integer_2d_compute</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node61"><a xlink:href="../module/nafpack_meshgrid_integer_2d_compute.html" xlink:title="NAFPack_meshgrid_integer_2D_compute">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="1448.27,-792.27 1219.25,-792.27 1219.25,-768 1448.27,-768 1448.27,-792.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1333.76" y="-776.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_integer_2D_compute</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_meshgrid_integer_2d_compute&#45;&gt;module~nafpack_meshgrid_integer_2d -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge115" class="edge">
+<title>module~nafpack_meshgrid_integer_2d_compute&#45;&gt;module~nafpack_meshgrid_integer_2d</title>
+<path fill="none" stroke="#0046ff" d="M1219.03,-780.13C1208.31,-780.13 1197.5,-780.13 1186.93,-780.13"/>
+<polygon fill="#0046ff" stroke="#0046ff" points="1187.09,-776.64 1177.09,-780.14 1187.09,-783.64 1187.09,-776.64"/>
+</g>
+<!-- module~nafpack_meshgrid_integer_3d_compute -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node62" class="node">
+<title>module~nafpack_meshgrid_integer_3d_compute</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node62"><a xlink:href="../module/nafpack_meshgrid_integer_3d_compute.html" xlink:title="NAFPack_meshgrid_integer_3D_compute">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="1448.27,-918.27 1219.25,-918.27 1219.25,-894 1448.27,-894 1448.27,-918.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1333.76" y="-902.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_integer_3D_compute</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_meshgrid_integer_3d_compute&#45;&gt;module~nafpack_meshgrid_integer_3d -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge116" class="edge">
+<title>module~nafpack_meshgrid_integer_3d_compute&#45;&gt;module~nafpack_meshgrid_integer_3d</title>
+<path fill="none" stroke="#0011ff" d="M1219.03,-906.13C1208.31,-906.13 1197.5,-906.13 1186.93,-906.13"/>
+<polygon fill="#0011ff" stroke="#0011ff" points="1187.09,-902.64 1177.09,-906.14 1187.09,-909.64 1187.09,-902.64"/>
+</g>
+<!-- module~nafpack_meshgrid_real_2d_compute -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node63" class="node">
+<title>module~nafpack_meshgrid_real_2d_compute</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node63"><a xlink:href="../module/nafpack_meshgrid_real_2d_compute.html" xlink:title="NAFPack_meshgrid_real_2D_compute">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="1439.27,-708.27 1228.25,-708.27 1228.25,-684 1439.27,-684 1439.27,-708.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1333.76" y="-692.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_real_2D_compute</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_meshgrid_real_2d_compute&#45;&gt;module~nafpack_meshgrid_real_2d -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge117" class="edge">
+<title>module~nafpack_meshgrid_real_2d_compute&#45;&gt;module~nafpack_meshgrid_real_2d</title>
+<path fill="none" stroke="#2300ff" d="M1227.94,-696.13C1211.29,-696.13 1194.2,-696.13 1177.94,-696.13"/>
+<polygon fill="#2300ff" stroke="#2300ff" points="1178.34,-692.64 1168.34,-696.14 1178.34,-699.64 1178.34,-692.64"/>
+</g>
+<!-- module~nafpack_meshgrid_real_3d_compute -->
+<g id="module~~nafpack_kinds~~UsedByGraph_node64" class="node">
+<title>module~nafpack_meshgrid_real_3d_compute</title>
+<g id="a_module~~nafpack_kinds~~UsedByGraph_node64"><a xlink:href="../module/nafpack_meshgrid_real_3d_compute.html" xlink:title="NAFPack_meshgrid_real_3D_compute">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="1439.27,-876.27 1228.25,-876.27 1228.25,-852 1439.27,-852 1439.27,-876.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1333.76" y="-860.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_real_3D_compute</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_meshgrid_real_3d_compute&#45;&gt;module~nafpack_meshgrid_real_3d -->
+<g id="module~~nafpack_kinds~~UsedByGraph_edge118" class="edge">
+<title>module~nafpack_meshgrid_real_3d_compute&#45;&gt;module~nafpack_meshgrid_real_3d</title>
+<path fill="none" stroke="#5700ff" d="M1227.94,-864.13C1211.29,-864.13 1194.2,-864.13 1177.94,-864.13"/>
+<polygon fill="#5700ff" stroke="#5700ff" points="1178.34,-860.64 1168.34,-864.14 1178.34,-867.64 1178.34,-860.64"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var panmodulenafpack_kindsUsedByGraph = svgPanZoom('#modulenafpack_kindsUsedByGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsedByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsedByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.2 (20260126.1125)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="511pt" height="32pt"
+ viewBox="0.00 0.00 511.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28.27)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-28.27 506.88,-28.27 506.88,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24.27 0,-24.27 0,0 54,0 54,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="144.13,-24.27 71.87,-24.27 71.87,0 144.13,0 144.13,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="108" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="231.63,-24.27 162.37,-24.27 162.37,0 231.63,0 231.63,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="197" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="306.26,-24.27 249.74,-24.27 249.74,0 306.26,0 306.26,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="278" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="381.26,-24.27 324.74,-24.27 324.74,0 381.26,0 381.26,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="353" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="502.88,-24.27 399.12,-24.27 399.12,0 502.88,0 502.88,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="451" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+      <br>
+
+
+        <section>
+          <h2>Variables</h2>
+            <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Visibility</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ascii"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>ascii</strong></td>
+<td> =</td>
+                <td>selected_char_kind(&#39;ascii&#39;)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ucs4"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>ucs4</strong></td>
+<td> =</td>
+                <td>selected_char_kind(&#39;ISO_10646&#39;)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-sp"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>sp</strong></td>
+<td> =</td>
+                <td>real32</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-dp~2"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>dp</strong></td>
+<td> =</td>
+                <td>real64</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-qp"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>qp</strong></td>
+<td> =</td>
+                <td>real128</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-i8"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>i8</strong></td>
+<td> =</td>
+                <td>int8</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-i16"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>i16</strong></td>
+<td> =</td>
+                <td>int16</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-isp"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>isp</strong></td>
+<td> =</td>
+                <td>int32</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-idp"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>idp</strong></td>
+<td> =</td>
+                <td>int64</td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+        </section>
+        <br>
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              NAFPack
+ was developed by Minard Jules<br>              &copy; 2026 
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+            </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>

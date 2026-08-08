@@ -1,0 +1,1000 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+    <meta name="author" content="Minard Jules" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>NAFPack_plan_type.f90 &ndash; NAFPack</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="../css/local.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">NAFPack </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>NAFPack_plan_type.f90
+      <small>Source File</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 0.5% of total for source files.">49 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/NAFPack_plan_type.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+            <li class="breadcrumb-item active" aria-current="page">NAFPack_plan_type.f90</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
+  </script>
+
+  </div>
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+        <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#mods-0"
+         aria-expanded="false" aria-controls="mods-0">
+         <h4 class="card-header bg-primary text-white">Modules</h4>
+      </a>
+      <div id="mods-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/nafpack_plan_type.html">NAFPack_plan_type</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    <div class="card card-primary">
+      <div class="card-header text-left"><h3 class="card-title">Source Code</h3></div>
+      <div class="list-group">
+        <a class="list-group-item" href="../sourcefile/nafpack_plan_type.f90.html#src">NAFPack_plan_type.f90</a>
+      </div>
+    </div>
+
+
+  </div>
+
+    </div>
+    <div class="col-md-9" id='text'>
+      
+      <br>
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">This file depends on</h3>
+          </div>
+          <div class="card-body">
+            <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.2 (20260126.1125)
+ -->
+<!-- Title: sourcefile~~nafpack_plan_type.f90~~EfferentGraph Pages: 1 -->
+<svg id="sourcefilenafpack_plan_typef90EfferentGraph" width="289pt" height="32pt"
+ viewBox="0.00 0.00 289.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="sourcefile~~nafpack_plan_type.f90~~EfferentGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28.27)">
+<title>sourcefile~~nafpack_plan_type.f90~~EfferentGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-28.27 285.04,-28.27 285.04,4 -4,4"/>
+<!-- sourcefile~nafpack_plan_type.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~EfferentGraph_node1" class="node">
+<title>sourcefile~nafpack_plan_type.f90</title>
+<polygon fill="none" stroke="black" points="281.04,-24.27 146.52,-24.27 146.52,0 281.04,0 281.04,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="213.78" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50">NAFPack_plan_type.f90</text>
+</g>
+<!-- sourcefile~nafpack_kinds.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~EfferentGraph_node2" class="node">
+<title>sourcefile~nafpack_kinds.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~EfferentGraph_node2"><a xlink:href="../sourcefile/nafpack_kinds.f90.html" xlink:title="NAFPack_kinds.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="110.52,-24.27 0,-24.27 0,0 110.52,0 110.52,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="55.26" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_kinds.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_plan_type.f90&#45;&gt;sourcefile~nafpack_kinds.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~EfferentGraph_edge1" class="edge">
+<title>sourcefile~nafpack_plan_type.f90&#45;&gt;sourcefile~nafpack_kinds.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M146.4,-12.13C138.45,-12.13 130.34,-12.13 122.39,-12.13"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="122.42,-8.64 112.42,-12.14 122.42,-15.64 122.42,-8.64"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#EfferentGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="EfferentGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.2 (20260126.1125)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="200pt" height="32pt"
+ viewBox="0.00 0.00 200.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28.27)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-28.27 195.52,-28.27 195.52,4 -4,4"/>
+<!-- Source File -->
+<g id="node1" class="node">
+<title>Source File</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="69.27,-24.27 0,-24.27 0,0 69.27,0 69.27,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="34.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Source File</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node2" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="191.52,-24.27 87.75,-24.27 87.75,0 191.52,0 191.52,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="139.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a file to a file which it depends on. A file
+is dependent upon another if the latter must be compiled before the former
+can be.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Files dependent on this one</h3>
+          </div>
+          <div class="card-body">
+            <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.2 (20260126.1125)
+ -->
+<!-- Title: sourcefile~~nafpack_plan_type.f90~~AfferentGraph Pages: 1 -->
+<svg id="sourcefilenafpack_plan_typef90AfferentGraph" width="641pt" height="413pt"
+ viewBox="0.00 0.00 641.00 413.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph" class="graph" transform="scale(0.52407 0.52407) rotate(0) translate(4 784.27)">
+<title>sourcefile~~nafpack_plan_type.f90~~AfferentGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-784.27 1219.12,-784.27 1219.12,4 -4,4"/>
+<!-- sourcefile~nafpack_plan_type.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node1" class="node">
+<title>sourcefile~nafpack_plan_type.f90</title>
+<polygon fill="none" stroke="black" points="134.52,-486.27 0,-486.27 0,-462 134.52,-462 134.52,-486.27"/>
+<text xml:space="preserve" text-anchor="middle" x="67.26" y="-470.53" font-family="Helvetica,sans-Serif" font-size="10.50">NAFPack_plan_type.f90</text>
+</g>
+<!-- sourcefile~nafpack_butterfly.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node2" class="node">
+<title>sourcefile~nafpack_butterfly.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node2"><a xlink:href="../sourcefile/nafpack_butterfly.f90.html" xlink:title="NAFPack_butterfly.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="654.71,-570.27 528.44,-570.27 528.44,-546 654.71,-546 654.71,-570.27"/>
+<text xml:space="preserve" text-anchor="middle" x="591.57" y="-554.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_butterfly.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_butterfly.f90&#45;&gt;sourcefile~nafpack_plan_type.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge1" class="edge">
+<title>sourcefile~nafpack_butterfly.f90&#45;&gt;sourcefile~nafpack_plan_type.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M528.19,-551.25C488.08,-548.5 435.11,-548.03 389.43,-558.13"/>
+</g>
+<!-- sourcefile~nafpack_loop_method.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node15" class="node">
+<title>sourcefile~nafpack_loop_method.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node15"><a xlink:href="../sourcefile/nafpack_loop_method.f90.html" xlink:title="NAFPack_loop_method.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="464.69,-319.27 312.17,-319.27 312.17,-295 464.69,-295 464.69,-319.27"/>
+<text xml:space="preserve" text-anchor="middle" x="388.43" y="-303.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_loop_method.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_butterfly.f90&#45;&gt;sourcefile~nafpack_loop_method.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge26" class="edge">
+<title>sourcefile~nafpack_butterfly.f90&#45;&gt;sourcefile~nafpack_loop_method.f90</title>
+<path fill="none" stroke="#00a9ff" stroke-dasharray="5,2" d="M583.98,-545.68C558.92,-498.33 470.69,-332.01 465.81,-328.13 464.5,-327.09 463.14,-326.1 461.73,-325.16"/>
+<polygon fill="#00a9ff" stroke="#00a9ff" points="463.72,-322.26 453.29,-320.38 460.27,-328.35 463.72,-322.26"/>
+</g>
+<!-- sourcefile~nafpack_fourier_transform.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node3" class="node">
+<title>sourcefile~nafpack_fourier_transform.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node3"><a xlink:href="../sourcefile/nafpack_fourier_transform.f90.html" xlink:title="NAFPack_Fourier_Transform.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="681.33,-381.27 501.81,-381.27 501.81,-357 681.33,-357 681.33,-381.27"/>
+<text xml:space="preserve" text-anchor="middle" x="591.57" y="-365.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Fourier_Transform.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_fourier_transform.f90&#45;&gt;sourcefile~nafpack_plan_type.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge2" class="edge">
+<title>sourcefile~nafpack_fourier_transform.f90&#45;&gt;sourcefile~nafpack_plan_type.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M583.73,-381.75C561.81,-420.43 488.85,-536.14 389.43,-558.13"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M387.43,-558.13C280.51,-581.79 155.36,-523.31 98.78,-492.15"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="100.78,-489.26 90.35,-487.42 97.36,-495.37 100.78,-489.26"/>
+</g>
+<!-- sourcefile~nafpack_fourier_transform.f90&#45;&gt;sourcefile~nafpack_loop_method.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge27" class="edge">
+<title>sourcefile~nafpack_fourier_transform.f90&#45;&gt;sourcefile~nafpack_loop_method.f90</title>
+<path fill="none" stroke="#00a9ff" stroke-dasharray="5,2" d="M553.87,-356.55C529.1,-348.18 495.61,-337.12 465.81,-328.13 459.97,-326.37 453.85,-324.59 447.74,-322.85"/>
+<polygon fill="#00a9ff" stroke="#00a9ff" points="448.83,-319.52 438.25,-320.18 446.93,-326.26 448.83,-319.52"/>
+</g>
+<!-- sourcefile~nafpack_utils.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node4" class="node">
+<title>sourcefile~nafpack_utils.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node4"><a xlink:href="../sourcefile/nafpack_utils.f90.html" xlink:title="NAFPack_utils.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="275.04,-424.27 170.52,-424.27 170.52,-400 275.04,-400 275.04,-424.27"/>
+<text xml:space="preserve" text-anchor="middle" x="222.78" y="-408.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_utils.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_utils.f90&#45;&gt;sourcefile~nafpack_plan_type.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge3" class="edge">
+<title>sourcefile~nafpack_utils.f90&#45;&gt;sourcefile~nafpack_plan_type.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M190.71,-424.68C167.48,-434.06 135.48,-446.99 110.01,-457.27"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="108.91,-453.94 100.95,-460.93 111.53,-460.43 108.91,-453.94"/>
+</g>
+<!-- sourcefile~nafpack_butterfly_dft.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node5" class="node">
+<title>sourcefile~nafpack_butterfly_dft.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node5"><a xlink:href="../sourcefile/nafpack_butterfly_dft.f90.html" xlink:title="NAFPack_butterfly_dft.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="893.85,-780.27 746.58,-780.27 746.58,-756 893.85,-756 893.85,-780.27"/>
+<text xml:space="preserve" text-anchor="middle" x="820.22" y="-764.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_butterfly_dft.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_butterfly_dft.f90&#45;&gt;sourcefile~nafpack_butterfly.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge4" class="edge">
+<title>sourcefile~nafpack_butterfly_dft.f90&#45;&gt;sourcefile~nafpack_butterfly.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M746.21,-760.42C735.98,-757.3 726,-753.01 717.33,-747.13 655.7,-705.4 617,-622.03 601.01,-581.43"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="604.31,-580.26 597.48,-572.15 597.77,-582.75 604.31,-580.26"/>
+</g>
+<!-- sourcefile~nafpack_butterfly_mixed_radix.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node6" class="node">
+<title>sourcefile~nafpack_butterfly_mixed_radix.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node6"><a xlink:href="../sourcefile/nafpack_butterfly_mixed_radix.f90.html" xlink:title="NAFPack_butterfly_mixed_radix.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="919.35,-738.27 721.08,-738.27 721.08,-714 919.35,-714 919.35,-738.27"/>
+<text xml:space="preserve" text-anchor="middle" x="820.22" y="-722.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_butterfly_mixed_radix.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_butterfly_mixed_radix.f90&#45;&gt;sourcefile~nafpack_butterfly.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge5" class="edge">
+<title>sourcefile~nafpack_butterfly_mixed_radix.f90&#45;&gt;sourcefile~nafpack_butterfly.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M734.94,-713.51C728.79,-711.17 722.84,-708.4 717.33,-705.13 665.07,-674.15 624.21,-613.22 604.85,-580.37"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="607.88,-578.64 599.87,-571.71 601.81,-582.12 607.88,-578.64"/>
+</g>
+<!-- sourcefile~nafpack_butterfly_radix2.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node7" class="node">
+<title>sourcefile~nafpack_butterfly_radix2.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node7"><a xlink:href="../sourcefile/nafpack_butterfly_radix2.f90.html" xlink:title="NAFPack_butterfly_radix2.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="903.6,-696.27 736.83,-696.27 736.83,-672 903.6,-672 903.6,-696.27"/>
+<text xml:space="preserve" text-anchor="middle" x="820.22" y="-680.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_butterfly_radix2.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_butterfly_radix2.f90&#45;&gt;sourcefile~nafpack_butterfly.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge6" class="edge">
+<title>sourcefile~nafpack_butterfly_radix2.f90&#45;&gt;sourcefile~nafpack_butterfly.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M738.97,-671.58C731.48,-669.23 724.16,-666.44 717.33,-663.13 674.19,-642.22 633.52,-603.02 610.94,-578.89"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="613.56,-576.57 604.23,-571.56 608.4,-581.3 613.56,-576.57"/>
+</g>
+<!-- sourcefile~nafpack_butterfly_radix3.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node8" class="node">
+<title>sourcefile~nafpack_butterfly_radix3.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node8"><a xlink:href="../sourcefile/nafpack_butterfly_radix3.f90.html" xlink:title="NAFPack_butterfly_radix3.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="903.6,-654.27 736.83,-654.27 736.83,-630 903.6,-630 903.6,-654.27"/>
+<text xml:space="preserve" text-anchor="middle" x="820.22" y="-638.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_butterfly_radix3.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_butterfly_radix3.f90&#45;&gt;sourcefile~nafpack_butterfly.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge7" class="edge">
+<title>sourcefile~nafpack_butterfly_radix3.f90&#45;&gt;sourcefile~nafpack_butterfly.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M746.22,-629.54C736.4,-627.14 726.54,-624.35 717.33,-621.13 683.65,-609.39 647.51,-590.36 622.84,-576.29"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="624.73,-573.34 614.33,-571.35 621.22,-579.39 624.73,-573.34"/>
+</g>
+<!-- sourcefile~nafpack_butterfly_radix4.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node9" class="node">
+<title>sourcefile~nafpack_butterfly_radix4.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node9"><a xlink:href="../sourcefile/nafpack_butterfly_radix4.f90.html" xlink:title="NAFPack_butterfly_radix4.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="903.6,-612.27 736.83,-612.27 736.83,-588 903.6,-588 903.6,-612.27"/>
+<text xml:space="preserve" text-anchor="middle" x="820.22" y="-596.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_butterfly_radix4.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_butterfly_radix4.f90&#45;&gt;sourcefile~nafpack_butterfly.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge8" class="edge">
+<title>sourcefile~nafpack_butterfly_radix4.f90&#45;&gt;sourcefile~nafpack_butterfly.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M751.21,-587.53C724.4,-582.56 693.53,-576.84 666.19,-571.78"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="667.06,-568.38 656.59,-570 665.79,-575.26 667.06,-568.38"/>
+</g>
+<!-- sourcefile~nafpack_butterfly_radix5.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node10" class="node">
+<title>sourcefile~nafpack_butterfly_radix5.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node10"><a xlink:href="../sourcefile/nafpack_butterfly_radix5.f90.html" xlink:title="NAFPack_butterfly_radix5.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="903.6,-570.27 736.83,-570.27 736.83,-546 903.6,-546 903.6,-570.27"/>
+<text xml:space="preserve" text-anchor="middle" x="820.22" y="-554.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_butterfly_radix5.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_butterfly_radix5.f90&#45;&gt;sourcefile~nafpack_butterfly.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge9" class="edge">
+<title>sourcefile~nafpack_butterfly_radix5.f90&#45;&gt;sourcefile~nafpack_butterfly.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M736.43,-558.13C713.49,-558.13 688.75,-558.13 666.37,-558.13"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="666.41,-554.64 656.41,-558.14 666.41,-561.64 666.41,-554.64"/>
+</g>
+<!-- sourcefile~nafpack_butterfly_split_radix.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node11" class="node">
+<title>sourcefile~nafpack_butterfly_split_radix.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node11"><a xlink:href="../sourcefile/nafpack_butterfly_split_radix.f90.html" xlink:title="NAFPack_butterfly_split_radix.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="913.73,-528.27 726.71,-528.27 726.71,-504 913.73,-504 913.73,-528.27"/>
+<text xml:space="preserve" text-anchor="middle" x="820.22" y="-512.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_butterfly_split_radix.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_butterfly_split_radix.f90&#45;&gt;sourcefile~nafpack_butterfly.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge10" class="edge">
+<title>sourcefile~nafpack_butterfly_split_radix.f90&#45;&gt;sourcefile~nafpack_butterfly.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M751.21,-528.74C724.4,-533.71 693.53,-539.43 666.19,-544.49"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="665.79,-541.01 656.59,-546.27 667.06,-547.89 665.79,-541.01"/>
+</g>
+<!-- sourcefile~nafpack_fourier_transform_dft.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node12" class="node">
+<title>sourcefile~nafpack_fourier_transform_dft.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node12"><a xlink:href="../sourcefile/nafpack_fourier_transform_dft.f90.html" xlink:title="NAFPack_Fourier_Transform_dft.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="919.73,-318.27 720.71,-318.27 720.71,-294 919.73,-294 919.73,-318.27"/>
+<text xml:space="preserve" text-anchor="middle" x="820.22" y="-302.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Fourier_Transform_dft.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_fourier_transform_dft.f90&#45;&gt;sourcefile~nafpack_fourier_transform.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge12" class="edge">
+<title>sourcefile~nafpack_fourier_transform_dft.f90&#45;&gt;sourcefile~nafpack_fourier_transform.f90</title>
+<path fill="none" stroke="#00ff00" stroke-dasharray="5,2" d="M752.08,-318.76C740.43,-321.3 728.49,-324.12 717.33,-327.13 690.38,-334.42 660.74,-344.32 637.12,-352.67"/>
+<polygon fill="#00ff00" stroke="#00ff00" points="636.05,-349.34 627.81,-356 638.4,-355.93 636.05,-349.34"/>
+</g>
+<!-- sourcefile~nafpack_fourier_transform_dft2.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node13" class="node">
+<title>sourcefile~nafpack_fourier_transform_dft2.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node13"><a xlink:href="../sourcefile/nafpack_fourier_transform_dft2.f90.html" xlink:title="NAFPack_Fourier_Transform_dft2.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="923.1,-444.27 717.33,-444.27 717.33,-420 923.1,-420 923.1,-444.27"/>
+<text xml:space="preserve" text-anchor="middle" x="820.22" y="-428.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Fourier_Transform_dft2.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_fourier_transform_dft2.f90&#45;&gt;sourcefile~nafpack_fourier_transform.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge13" class="edge">
+<title>sourcefile~nafpack_fourier_transform_dft2.f90&#45;&gt;sourcefile~nafpack_fourier_transform.f90</title>
+<path fill="none" stroke="#00ff00" stroke-dasharray="5,2" d="M752.08,-419.51C740.43,-416.97 728.49,-414.15 717.33,-411.13 690.38,-403.85 660.74,-393.95 637.12,-385.6"/>
+<polygon fill="#00ff00" stroke="#00ff00" points="638.4,-382.34 627.81,-382.27 636.05,-388.93 638.4,-382.34"/>
+</g>
+<!-- sourcefile~nafpack_fourier_transform_dft3.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node14" class="node">
+<title>sourcefile~nafpack_fourier_transform_dft3.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node14"><a xlink:href="../sourcefile/nafpack_fourier_transform_dft3.f90.html" xlink:title="NAFPack_Fourier_Transform_dft3.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="923.1,-402.27 717.33,-402.27 717.33,-378 923.1,-378 923.1,-402.27"/>
+<text xml:space="preserve" text-anchor="middle" x="820.22" y="-386.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Fourier_Transform_dft3.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_fourier_transform_dft3.f90&#45;&gt;sourcefile~nafpack_fourier_transform.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge14" class="edge">
+<title>sourcefile~nafpack_fourier_transform_dft3.f90&#45;&gt;sourcefile~nafpack_fourier_transform.f90</title>
+<path fill="none" stroke="#00ff00" stroke-dasharray="5,2" d="M716.83,-380.65C708.95,-379.92 701,-379.18 693.13,-378.45"/>
+<polygon fill="#00ff00" stroke="#00ff00" points="693.46,-374.97 683.18,-377.53 692.82,-381.94 693.46,-374.97"/>
+</g>
+<!-- sourcefile~nafpack_loop_method.f90&#45;&gt;sourcefile~nafpack_utils.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge18" class="edge">
+<title>sourcefile~nafpack_loop_method.f90&#45;&gt;sourcefile~nafpack_utils.f90</title>
+<path fill="none" stroke="#0000ff" stroke-dasharray="5,2" d="M329.45,-319.73C323.05,-322.09 316.78,-324.87 311.04,-328.13 282.74,-344.24 256.75,-371.59 240.63,-390.69"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="237.94,-388.46 234.3,-398.41 243.35,-392.9 237.94,-388.46"/>
+</g>
+<!-- sourcefile~nafpack_plan_create.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node16" class="node">
+<title>sourcefile~nafpack_plan_create.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node16"><a xlink:href="../sourcefile/nafpack_plan_create.f90.html" xlink:title="NAFPack_plan_create.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="892.73,-276.27 747.71,-276.27 747.71,-252 892.73,-252 892.73,-276.27"/>
+<text xml:space="preserve" text-anchor="middle" x="820.22" y="-260.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_plan_create.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_plan_create.f90&#45;&gt;sourcefile~nafpack_fourier_transform.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge15" class="edge">
+<title>sourcefile~nafpack_plan_create.f90&#45;&gt;sourcefile~nafpack_fourier_transform.f90</title>
+<path fill="none" stroke="#00ff00" stroke-dasharray="5,2" d="M747.44,-275.24C737.14,-277.89 726.82,-281.15 717.33,-285.13 678.65,-301.39 639.38,-330.33 615.5,-349.63"/>
+<polygon fill="#00ff00" stroke="#00ff00" points="613.5,-346.74 608,-355.79 617.95,-352.14 613.5,-346.74"/>
+</g>
+<!-- sourcefile~nafpack_plan_create.f90&#45;&gt;sourcefile~nafpack_utils.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge19" class="edge">
+<title>sourcefile~nafpack_plan_create.f90&#45;&gt;sourcefile~nafpack_utils.f90</title>
+<path fill="none" stroke="#0000ff" stroke-dasharray="5,2" d="M764.21,-251.53C666.16,-232.15 457.75,-205.19 311.04,-286.13 270.32,-308.6 244.52,-359.13 232.26,-388.93"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="229.02,-387.58 228.64,-398.17 235.54,-390.14 229.02,-387.58"/>
+</g>
+<!-- sourcefile~nafpack_plan_destroy.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node17" class="node">
+<title>sourcefile~nafpack_plan_destroy.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node17"><a xlink:href="../sourcefile/nafpack_plan_destroy.f90.html" xlink:title="NAFPack_plan_destroy.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="894.6,-360.27 745.83,-360.27 745.83,-336 894.6,-336 894.6,-360.27"/>
+<text xml:space="preserve" text-anchor="middle" x="820.22" y="-344.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_plan_destroy.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_plan_destroy.f90&#45;&gt;sourcefile~nafpack_fourier_transform.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge16" class="edge">
+<title>sourcefile~nafpack_plan_destroy.f90&#45;&gt;sourcefile~nafpack_fourier_transform.f90</title>
+<path fill="none" stroke="#00ff00" stroke-dasharray="5,2" d="M745.63,-354.95C728.8,-356.51 710.63,-358.2 692.88,-359.84"/>
+<polygon fill="#00ff00" stroke="#00ff00" points="692.75,-356.34 683.12,-360.75 693.4,-363.31 692.75,-356.34"/>
+</g>
+<!-- sourcefile~nafpack_plan_execute.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node18" class="node">
+<title>sourcefile~nafpack_plan_execute.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node18"><a xlink:href="../sourcefile/nafpack_plan_execute.f90.html" xlink:title="NAFPack_plan_execute.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="896.85,-486.27 743.58,-486.27 743.58,-462 896.85,-462 896.85,-486.27"/>
+<text xml:space="preserve" text-anchor="middle" x="820.22" y="-470.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_plan_execute.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_plan_execute.f90&#45;&gt;sourcefile~nafpack_butterfly.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge11" class="edge">
+<title>sourcefile~nafpack_plan_execute.f90&#45;&gt;sourcefile~nafpack_butterfly.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M743.3,-484.86C734.28,-487.56 725.42,-490.92 717.33,-495.13 697.81,-505.3 700.25,-517.89 681.33,-529.13 673.12,-534.02 663.98,-538.19 654.78,-541.72"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="653.67,-538.4 645.43,-545.06 656.03,-544.99 653.67,-538.4"/>
+</g>
+<!-- sourcefile~nafpack_plan_execute.f90&#45;&gt;sourcefile~nafpack_fourier_transform.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge17" class="edge">
+<title>sourcefile~nafpack_plan_execute.f90&#45;&gt;sourcefile~nafpack_fourier_transform.f90</title>
+<path fill="none" stroke="#00ff00" stroke-dasharray="5,2" d="M743.1,-461.87C734.26,-459.45 725.49,-456.56 717.33,-453.13 678.65,-436.88 639.38,-407.94 615.5,-388.64"/>
+<polygon fill="#00ff00" stroke="#00ff00" points="617.95,-386.13 608,-382.48 613.5,-391.53 617.95,-386.13"/>
+</g>
+<!-- sourcefile~nafpack_plan_execute.f90&#45;&gt;sourcefile~nafpack_utils.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge20" class="edge">
+<title>sourcefile~nafpack_plan_execute.f90&#45;&gt;sourcefile~nafpack_utils.f90</title>
+<path fill="none" stroke="#0000ff" stroke-dasharray="5,2" d="M743.09,-485.06C620.96,-501.31 387.21,-526.84 311.04,-496.13 280.03,-483.64 253.88,-454.26 238.52,-433.8"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="241.44,-431.87 232.75,-425.81 235.77,-435.96 241.44,-431.87"/>
+</g>
+<!-- sourcefile~nafpack_utils_complex.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node19" class="node">
+<title>sourcefile~nafpack_utils_complex.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node19"><a xlink:href="../sourcefile/nafpack_utils_complex.f90.html" xlink:title="NAFPack_utils_complex.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="465.81,-487.27 311.04,-487.27 311.04,-463 465.81,-463 465.81,-487.27"/>
+<text xml:space="preserve" text-anchor="middle" x="388.43" y="-471.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_utils_complex.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_utils_complex.f90&#45;&gt;sourcefile~nafpack_utils.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge21" class="edge">
+<title>sourcefile~nafpack_utils_complex.f90&#45;&gt;sourcefile~nafpack_utils.f90</title>
+<path fill="none" stroke="#0000ff" stroke-dasharray="5,2" d="M336.48,-462.51C327.9,-459.99 319.15,-457.17 311.04,-454.13 292.7,-447.26 272.98,-437.95 256.94,-429.84"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="258.82,-426.87 248.33,-425.41 255.62,-433.1 258.82,-426.87"/>
+</g>
+<!-- sourcefile~nafpack_utils_integer.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node20" class="node">
+<title>sourcefile~nafpack_utils_integer.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node20"><a xlink:href="../sourcefile/nafpack_utils_integer.f90.html" xlink:title="NAFPack_utils_integer.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="461.69,-445.27 315.17,-445.27 315.17,-421 461.69,-421 461.69,-445.27"/>
+<text xml:space="preserve" text-anchor="middle" x="388.43" y="-429.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_utils_integer.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_utils_integer.f90&#45;&gt;sourcefile~nafpack_utils.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge22" class="edge">
+<title>sourcefile~nafpack_utils_integer.f90&#45;&gt;sourcefile~nafpack_utils.f90</title>
+<path fill="none" stroke="#0000ff" stroke-dasharray="5,2" d="M314.69,-423.8C305.33,-422.6 295.81,-421.38 286.62,-420.2"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="287.07,-416.73 276.71,-418.93 286.18,-423.67 287.07,-416.73"/>
+</g>
+<!-- sourcefile~nafpack_utils_real.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node21" class="node">
+<title>sourcefile~nafpack_utils_real.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node21"><a xlink:href="../sourcefile/nafpack_utils_real.f90.html" xlink:title="NAFPack_utils_real.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="453.44,-403.27 323.42,-403.27 323.42,-379 453.44,-379 453.44,-403.27"/>
+<text xml:space="preserve" text-anchor="middle" x="388.43" y="-387.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_utils_real.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_utils_real.f90&#45;&gt;sourcefile~nafpack_utils.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge23" class="edge">
+<title>sourcefile~nafpack_utils_real.f90&#45;&gt;sourcefile~nafpack_utils.f90</title>
+<path fill="none" stroke="#0000ff" stroke-dasharray="5,2" d="M323.22,-399.37C311.21,-400.92 298.66,-402.53 286.69,-404.06"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="286.4,-400.57 276.93,-405.31 287.29,-407.51 286.4,-400.57"/>
+</g>
+<!-- sourcefile~nafpack_utils_type.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node22" class="node">
+<title>sourcefile~nafpack_utils_type.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node22"><a xlink:href="../sourcefile/nafpack_utils_type.f90.html" xlink:title="NAFPack_utils_type.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="454.94,-361.27 321.92,-361.27 321.92,-337 454.94,-337 454.94,-361.27"/>
+<text xml:space="preserve" text-anchor="middle" x="388.43" y="-345.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_utils_type.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_utils_type.f90&#45;&gt;sourcefile~nafpack_utils.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge24" class="edge">
+<title>sourcefile~nafpack_utils_type.f90&#45;&gt;sourcefile~nafpack_utils.f90</title>
+<path fill="none" stroke="#0000ff" stroke-dasharray="5,2" d="M336.48,-361.76C327.9,-364.28 319.15,-367.1 311.04,-370.13 292.7,-377.01 272.98,-386.32 256.94,-394.43"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="255.62,-391.17 248.33,-398.86 258.82,-397.4 255.62,-391.17"/>
+</g>
+<!-- sourcefile~nafpack_fourier_transform_dft_compute.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node23" class="node">
+<title>sourcefile~nafpack_fourier_transform_dft_compute.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node23"><a xlink:href="../sourcefile/nafpack_fourier_transform_dft_compute.f90.html" xlink:title="NAFPack_Fourier_Transform_dft_compute.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1212.87,-318.27 961.35,-318.27 961.35,-294 1212.87,-294 1212.87,-318.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1087.11" y="-302.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Fourier_Transform_dft_compute.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_fourier_transform_dft_compute.f90&#45;&gt;sourcefile~nafpack_fourier_transform_dft.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge25" class="edge">
+<title>sourcefile~nafpack_fourier_transform_dft_compute.f90&#45;&gt;sourcefile~nafpack_fourier_transform_dft.f90</title>
+<path fill="none" stroke="#00ff55" stroke-dasharray="5,2" d="M961.03,-306.13C951.11,-306.13 941.14,-306.13 931.34,-306.13"/>
+<polygon fill="#00ff55" stroke="#00ff55" points="931.43,-302.64 921.43,-306.14 931.43,-309.64 931.43,-302.64"/>
+</g>
+<!-- sourcefile~nafpack_meshgrid.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node24" class="node">
+<title>sourcefile~nafpack_meshgrid.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node24"><a xlink:href="../sourcefile/nafpack_meshgrid.f90.html" xlink:title="NAFPack_meshgrid.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="658.08,-150.27 525.06,-150.27 525.06,-126 658.08,-126 658.08,-150.27"/>
+<text xml:space="preserve" text-anchor="middle" x="591.57" y="-134.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_meshgrid.f90&#45;&gt;sourcefile~nafpack_loop_method.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge28" class="edge">
+<title>sourcefile~nafpack_meshgrid.f90&#45;&gt;sourcefile~nafpack_loop_method.f90</title>
+<path fill="none" stroke="#00a9ff" stroke-dasharray="5,2" d="M575.78,-150.56C541.2,-179.62 454.82,-252.19 412.94,-287.38"/>
+<polygon fill="#00a9ff" stroke="#00a9ff" points="410.8,-284.6 405.4,-293.72 415.3,-289.96 410.8,-284.6"/>
+</g>
+<!-- sourcefile~nafpack_meshgrid_complex_2d.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node25" class="node">
+<title>sourcefile~nafpack_meshgrid_complex_2d.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node25"><a xlink:href="../sourcefile/nafpack_meshgrid_complex_2d.f90.html" xlink:title="NAFPack_meshgrid_complex_2D.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="921.98,-234.27 718.46,-234.27 718.46,-210 921.98,-210 921.98,-234.27"/>
+<text xml:space="preserve" text-anchor="middle" x="820.22" y="-218.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_complex_2D.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_meshgrid_complex_2d.f90&#45;&gt;sourcefile~nafpack_meshgrid.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge29" class="edge">
+<title>sourcefile~nafpack_meshgrid_complex_2d.f90&#45;&gt;sourcefile~nafpack_meshgrid.f90</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M746.22,-209.54C736.4,-207.14 726.54,-204.35 717.33,-201.13 683.65,-189.39 647.51,-170.36 622.84,-156.29"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="624.73,-153.34 614.33,-151.35 621.22,-159.39 624.73,-153.34"/>
+</g>
+<!-- sourcefile~nafpack_meshgrid_complex_3d.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node26" class="node">
+<title>sourcefile~nafpack_meshgrid_complex_3d.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node26"><a xlink:href="../sourcefile/nafpack_meshgrid_complex_3d.f90.html" xlink:title="NAFPack_meshgrid_complex_3D.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="921.98,-192.27 718.46,-192.27 718.46,-168 921.98,-168 921.98,-192.27"/>
+<text xml:space="preserve" text-anchor="middle" x="820.22" y="-176.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_complex_3D.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_meshgrid_complex_3d.f90&#45;&gt;sourcefile~nafpack_meshgrid.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge30" class="edge">
+<title>sourcefile~nafpack_meshgrid_complex_3d.f90&#45;&gt;sourcefile~nafpack_meshgrid.f90</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M751.21,-167.53C725.54,-162.78 696.16,-157.33 669.71,-152.43"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="670.53,-149.02 660.06,-150.64 669.26,-155.91 670.53,-149.02"/>
+</g>
+<!-- sourcefile~nafpack_meshgrid_integer_2d.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node27" class="node">
+<title>sourcefile~nafpack_meshgrid_integer_2d.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node27"><a xlink:href="../sourcefile/nafpack_meshgrid_integer_2d.f90.html" xlink:title="NAFPack_meshgrid_integer_2D.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="918.6,-150.27 721.83,-150.27 721.83,-126 918.6,-126 918.6,-150.27"/>
+<text xml:space="preserve" text-anchor="middle" x="820.22" y="-134.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_integer_2D.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_meshgrid_integer_2d.f90&#45;&gt;sourcefile~nafpack_meshgrid.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge31" class="edge">
+<title>sourcefile~nafpack_meshgrid_integer_2d.f90&#45;&gt;sourcefile~nafpack_meshgrid.f90</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M721.45,-138.13C704.13,-138.13 686.3,-138.13 669.65,-138.13"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="669.84,-134.64 659.84,-138.14 669.84,-141.64 669.84,-134.64"/>
+</g>
+<!-- sourcefile~nafpack_meshgrid_integer_3d.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node28" class="node">
+<title>sourcefile~nafpack_meshgrid_integer_3d.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node28"><a xlink:href="../sourcefile/nafpack_meshgrid_integer_3d.f90.html" xlink:title="NAFPack_meshgrid_integer_3D.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="918.6,-108.27 721.83,-108.27 721.83,-84 918.6,-84 918.6,-108.27"/>
+<text xml:space="preserve" text-anchor="middle" x="820.22" y="-92.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_integer_3D.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_meshgrid_integer_3d.f90&#45;&gt;sourcefile~nafpack_meshgrid.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge32" class="edge">
+<title>sourcefile~nafpack_meshgrid_integer_3d.f90&#45;&gt;sourcefile~nafpack_meshgrid.f90</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M751.21,-108.74C725.54,-113.49 696.16,-118.94 669.71,-123.84"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="669.26,-120.36 660.06,-125.63 670.53,-127.25 669.26,-120.36"/>
+</g>
+<!-- sourcefile~nafpack_meshgrid_real_2d.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node29" class="node">
+<title>sourcefile~nafpack_meshgrid_real_2d.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node29"><a xlink:href="../sourcefile/nafpack_meshgrid_real_2d.f90.html" xlink:title="NAFPack_meshgrid_real_2D.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="909.6,-66.27 730.83,-66.27 730.83,-42 909.6,-42 909.6,-66.27"/>
+<text xml:space="preserve" text-anchor="middle" x="820.22" y="-50.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_real_2D.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_meshgrid_real_2d.f90&#45;&gt;sourcefile~nafpack_meshgrid.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge33" class="edge">
+<title>sourcefile~nafpack_meshgrid_real_2d.f90&#45;&gt;sourcefile~nafpack_meshgrid.f90</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M746.22,-66.73C736.4,-69.13 726.54,-71.92 717.33,-75.13 683.65,-86.88 647.51,-105.91 622.84,-119.98"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="621.22,-116.88 614.33,-124.92 624.73,-122.93 621.22,-116.88"/>
+</g>
+<!-- sourcefile~nafpack_meshgrid_real_3d.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node30" class="node">
+<title>sourcefile~nafpack_meshgrid_real_3d.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node30"><a xlink:href="../sourcefile/nafpack_meshgrid_real_3d.f90.html" xlink:title="NAFPack_meshgrid_real_3D.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="909.6,-24.27 730.83,-24.27 730.83,0 909.6,0 909.6,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="820.22" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_real_3D.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_meshgrid_real_3d.f90&#45;&gt;sourcefile~nafpack_meshgrid.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge34" class="edge">
+<title>sourcefile~nafpack_meshgrid_real_3d.f90&#45;&gt;sourcefile~nafpack_meshgrid.f90</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M738.97,-24.69C731.48,-27.04 724.16,-29.83 717.33,-33.13 674.19,-54.05 633.52,-93.25 610.94,-117.38"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="608.4,-114.97 604.23,-124.71 613.56,-119.7 608.4,-114.97"/>
+</g>
+<!-- sourcefile~nafpack_meshgrid_complex_2d_compute.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node31" class="node">
+<title>sourcefile~nafpack_meshgrid_complex_2d_compute.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node31"><a xlink:href="../sourcefile/nafpack_meshgrid_complex_2d_compute.f90.html" xlink:title="NAFPack_meshgrid_complex_2D_compute.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1215.12,-234.27 959.1,-234.27 959.1,-210 1215.12,-210 1215.12,-234.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1087.11" y="-218.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_complex_2D_compute.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_meshgrid_complex_2d_compute.f90&#45;&gt;sourcefile~nafpack_meshgrid_complex_2d.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge35" class="edge">
+<title>sourcefile~nafpack_meshgrid_complex_2d_compute.f90&#45;&gt;sourcefile~nafpack_meshgrid_complex_2d.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M958.71,-222.13C950.32,-222.13 941.91,-222.13 933.61,-222.13"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="933.88,-218.64 923.88,-222.14 933.88,-225.64 933.88,-218.64"/>
+</g>
+<!-- sourcefile~nafpack_meshgrid_complex_3d_compute.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node32" class="node">
+<title>sourcefile~nafpack_meshgrid_complex_3d_compute.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node32"><a xlink:href="../sourcefile/nafpack_meshgrid_complex_3d_compute.f90.html" xlink:title="NAFPack_meshgrid_complex_3D_compute.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1215.12,-192.27 959.1,-192.27 959.1,-168 1215.12,-168 1215.12,-192.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1087.11" y="-176.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_complex_3D_compute.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_meshgrid_complex_3d_compute.f90&#45;&gt;sourcefile~nafpack_meshgrid_complex_3d.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge36" class="edge">
+<title>sourcefile~nafpack_meshgrid_complex_3d_compute.f90&#45;&gt;sourcefile~nafpack_meshgrid_complex_3d.f90</title>
+<path fill="none" stroke="#ffff00" stroke-dasharray="5,2" d="M958.71,-180.13C950.32,-180.13 941.91,-180.13 933.61,-180.13"/>
+<polygon fill="#ffff00" stroke="#ffff00" points="933.88,-176.64 923.88,-180.14 933.88,-183.64 933.88,-176.64"/>
+</g>
+<!-- sourcefile~nafpack_meshgrid_integer_2d_compute.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node33" class="node">
+<title>sourcefile~nafpack_meshgrid_integer_2d_compute.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node33"><a xlink:href="../sourcefile/nafpack_meshgrid_integer_2d_compute.f90.html" xlink:title="NAFPack_meshgrid_integer_2D_compute.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1211.75,-150.27 962.48,-150.27 962.48,-126 1211.75,-126 1211.75,-150.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1087.11" y="-134.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_integer_2D_compute.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_meshgrid_integer_2d_compute.f90&#45;&gt;sourcefile~nafpack_meshgrid_integer_2d.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge37" class="edge">
+<title>sourcefile~nafpack_meshgrid_integer_2d_compute.f90&#45;&gt;sourcefile~nafpack_meshgrid_integer_2d.f90</title>
+<path fill="none" stroke="#00ff00" stroke-dasharray="5,2" d="M962.19,-138.13C951.51,-138.13 940.76,-138.13 930.21,-138.13"/>
+<polygon fill="#00ff00" stroke="#00ff00" points="930.37,-134.64 920.37,-138.14 930.37,-141.64 930.37,-134.64"/>
+</g>
+<!-- sourcefile~nafpack_meshgrid_integer_3d_compute.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node34" class="node">
+<title>sourcefile~nafpack_meshgrid_integer_3d_compute.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node34"><a xlink:href="../sourcefile/nafpack_meshgrid_integer_3d_compute.f90.html" xlink:title="NAFPack_meshgrid_integer_3D_compute.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1211.75,-108.27 962.48,-108.27 962.48,-84 1211.75,-84 1211.75,-108.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1087.11" y="-92.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_integer_3D_compute.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_meshgrid_integer_3d_compute.f90&#45;&gt;sourcefile~nafpack_meshgrid_integer_3d.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge38" class="edge">
+<title>sourcefile~nafpack_meshgrid_integer_3d_compute.f90&#45;&gt;sourcefile~nafpack_meshgrid_integer_3d.f90</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M962.19,-96.13C951.51,-96.13 940.76,-96.13 930.21,-96.13"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="930.37,-92.64 920.37,-96.14 930.37,-99.64 930.37,-92.64"/>
+</g>
+<!-- sourcefile~nafpack_meshgrid_real_2d_compute.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node35" class="node">
+<title>sourcefile~nafpack_meshgrid_real_2d_compute.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node35"><a xlink:href="../sourcefile/nafpack_meshgrid_real_2d_compute.f90.html" xlink:title="NAFPack_meshgrid_real_2D_compute.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1202.75,-66.27 971.48,-66.27 971.48,-42 1202.75,-42 1202.75,-66.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1087.11" y="-50.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_real_2D_compute.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_meshgrid_real_2d_compute.f90&#45;&gt;sourcefile~nafpack_meshgrid_real_2d.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge39" class="edge">
+<title>sourcefile~nafpack_meshgrid_real_2d_compute.f90&#45;&gt;sourcefile~nafpack_meshgrid_real_2d.f90</title>
+<path fill="none" stroke="#0000ff" stroke-dasharray="5,2" d="M971.08,-54.13C954.4,-54.13 937.35,-54.13 921.01,-54.13"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="921.33,-50.64 911.33,-54.14 921.33,-57.64 921.33,-50.64"/>
+</g>
+<!-- sourcefile~nafpack_meshgrid_real_3d_compute.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node36" class="node">
+<title>sourcefile~nafpack_meshgrid_real_3d_compute.f90</title>
+<g id="a_sourcefile~~nafpack_plan_type.f90~~AfferentGraph_node36"><a xlink:href="../sourcefile/nafpack_meshgrid_real_3d_compute.f90.html" xlink:title="NAFPack_meshgrid_real_3D_compute.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1202.75,-24.27 971.48,-24.27 971.48,0 1202.75,0 1202.75,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1087.11" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_real_3D_compute.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_meshgrid_real_3d_compute.f90&#45;&gt;sourcefile~nafpack_meshgrid_real_3d.f90 -->
+<g id="sourcefile~~nafpack_plan_type.f90~~AfferentGraph_edge40" class="edge">
+<title>sourcefile~nafpack_meshgrid_real_3d_compute.f90&#45;&gt;sourcefile~nafpack_meshgrid_real_3d.f90</title>
+<path fill="none" stroke="#ff00ff" stroke-dasharray="5,2" d="M971.08,-12.13C954.4,-12.13 937.35,-12.13 921.01,-12.13"/>
+<polygon fill="#ff00ff" stroke="#ff00ff" points="921.33,-8.64 911.33,-12.14 921.33,-15.64 921.33,-8.64"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var pansourcefilenafpack_plan_typef90AfferentGraph = svgPanZoom('#sourcefilenafpack_plan_typef90AfferentGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#AfferentGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="AfferentGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.2 (20260126.1125)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="200pt" height="32pt"
+ viewBox="0.00 0.00 200.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28.27)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-28.27 195.52,-28.27 195.52,4 -4,4"/>
+<!-- Source File -->
+<g id="node1" class="node">
+<title>Source File</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="69.27,-24.27 0,-24.27 0,0 69.27,0 69.27,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="34.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Source File</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node2" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="191.52,-24.27 87.75,-24.27 87.75,0 191.52,0 191.52,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="139.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a file to a file which it depends on. A file
+is dependent upon another if the latter must be compiled before the former
+can be.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+          </div>
+        </div>
+<br>
+      <section>
+        <h2><span class="anchor" id="src"></span>Source Code</h2>
+        <div class="hl codehilite"><pre><span></span><a id="ln-1" name="ln-1" href="#ln-1"></a><span class="k">module </span><span class="n">NAFPack_plan_type</span><span class="w"></span>
+<a id="ln-2" name="ln-2" href="#ln-2"></a>
+<a id="ln-3" name="ln-3" href="#ln-3"></a><span class="w">    </span><span class="k">use </span><span class="n">NAFPack_kinds</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">isp</span><span class="p">,</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="n">qp</span><span class="w"></span>
+<a id="ln-4" name="ln-4" href="#ln-4"></a>
+<a id="ln-5" name="ln-5" href="#ln-5"></a><span class="w">    </span><span class="k">implicit none</span><span class="p">(</span><span class="k">type</span><span class="p">,</span><span class="w"> </span><span class="k">external</span><span class="p">)</span><span class="w"></span>
+<a id="ln-6" name="ln-6" href="#ln-6"></a>
+<a id="ln-7" name="ln-7" href="#ln-7"></a><span class="w">    </span><span class="k">public</span>
+<a id="ln-8" name="ln-8" href="#ln-8"></a>
+<a id="ln-9" name="ln-9" href="#ln-9"></a><span class="k">    type</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">DecimationMethod</span><span class="w"></span>
+<a id="ln-10" name="ln-10" href="#ln-10"></a><span class="w">        </span><span class="kt">integer</span><span class="p">(</span><span class="n">isp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">id</span><span class="w"></span>
+<a id="ln-11" name="ln-11" href="#ln-11"></a><span class="w">        </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">name</span><span class="w"></span>
+<a id="ln-12" name="ln-12" href="#ln-12"></a><span class="w">    </span><span class="k">end type </span><span class="n">DecimationMethod</span><span class="w"></span>
+<a id="ln-13" name="ln-13" href="#ln-13"></a>
+<a id="ln-14" name="ln-14" href="#ln-14"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">DecimationMethod</span><span class="p">),</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">DIT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DecimationMethod</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;DIT: Decimation In Time&quot;</span><span class="p">),</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<a id="ln-15" name="ln-15" href="#ln-15"></a><span class="w">                                         </span><span class="n">DIF</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DecimationMethod</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;DIF: Decimation In Frequency&quot;</span><span class="p">)</span><span class="w"></span>
+<a id="ln-16" name="ln-16" href="#ln-16"></a>
+<a id="ln-17" name="ln-17" href="#ln-17"></a><span class="w">    </span><span class="k">type</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">FFTAlgorithm</span><span class="w"></span>
+<a id="ln-18" name="ln-18" href="#ln-18"></a><span class="w">        </span><span class="kt">integer</span><span class="p">(</span><span class="n">isp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">id</span><span class="w"></span>
+<a id="ln-19" name="ln-19" href="#ln-19"></a><span class="w">        </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">name</span><span class="w"></span>
+<a id="ln-20" name="ln-20" href="#ln-20"></a><span class="w">        </span><span class="k">type</span><span class="p">(</span><span class="n">DecimationMethod</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">decimation_method</span><span class="w"></span>
+<a id="ln-21" name="ln-21" href="#ln-21"></a><span class="w">    </span><span class="k">end type </span><span class="n">FFTAlgorithm</span><span class="w"></span>
+<a id="ln-22" name="ln-22" href="#ln-22"></a>
+<a id="ln-23" name="ln-23" href="#ln-23"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">FFTAlgorithm</span><span class="p">),</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<a id="ln-24" name="ln-24" href="#ln-24"></a><span class="w">        </span><span class="n">ALG_NONE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FFTAlgorithm</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;None&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">DIT</span><span class="p">),</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<a id="ln-25" name="ln-25" href="#ln-25"></a><span class="w">        </span><span class="n">ALG_AUTO</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FFTAlgorithm</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Auto&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">DIT</span><span class="p">),</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<a id="ln-26" name="ln-26" href="#ln-26"></a><span class="w">        </span><span class="n">ALG_MIXED_DIT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FFTAlgorithm</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Mixed Radix DIT&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">DIT</span><span class="p">),</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<a id="ln-27" name="ln-27" href="#ln-27"></a><span class="w">        </span><span class="n">ALG_MIXED_DIF</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FFTAlgorithm</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Mixed Radix DIF&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">DIF</span><span class="p">),</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<a id="ln-28" name="ln-28" href="#ln-28"></a><span class="w">        </span><span class="n">ALG_SPLIT_DIT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FFTAlgorithm</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Split Radix DIT&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">DIT</span><span class="p">),</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<a id="ln-29" name="ln-29" href="#ln-29"></a><span class="w">        </span><span class="n">ALG_SPLIT_DIF</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FFTAlgorithm</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Split Radix DIF&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">DIF</span><span class="p">),</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<a id="ln-30" name="ln-30" href="#ln-30"></a><span class="w">        </span><span class="n">ALG_RADIX2_DIT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FFTAlgorithm</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Radix-2 DIT&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">DIT</span><span class="p">),</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<a id="ln-31" name="ln-31" href="#ln-31"></a><span class="w">        </span><span class="n">ALG_RADIX2_DIF</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FFTAlgorithm</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Radix-2 DIF&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">DIF</span><span class="p">),</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<a id="ln-32" name="ln-32" href="#ln-32"></a><span class="w">        </span><span class="n">ALG_RADIX3_DIT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FFTAlgorithm</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Radix-3 DIT&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">DIT</span><span class="p">),</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<a id="ln-33" name="ln-33" href="#ln-33"></a><span class="w">        </span><span class="n">ALG_RADIX3_DIF</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FFTAlgorithm</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Radix-3 DIF&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">DIF</span><span class="p">),</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<a id="ln-34" name="ln-34" href="#ln-34"></a><span class="w">        </span><span class="n">ALG_RADIX4_DIT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FFTAlgorithm</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Radix-4 DIT&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">DIT</span><span class="p">),</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<a id="ln-35" name="ln-35" href="#ln-35"></a><span class="w">        </span><span class="n">ALG_RADIX4_DIF</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FFTAlgorithm</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Radix-4 DIF&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">DIF</span><span class="p">),</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<a id="ln-36" name="ln-36" href="#ln-36"></a><span class="w">        </span><span class="n">ALG_RADIX5_DIT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FFTAlgorithm</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Radix-5 DIT&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">DIT</span><span class="p">),</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<a id="ln-37" name="ln-37" href="#ln-37"></a><span class="w">        </span><span class="n">ALG_RADIX5_DIF</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FFTAlgorithm</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Radix-5 DIF&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">DIF</span><span class="p">)</span><span class="w"></span>
+<a id="ln-38" name="ln-38" href="#ln-38"></a>
+<a id="ln-39" name="ln-39" href="#ln-39"></a><span class="w">    </span><span class="k">type</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">StorageTwiddles</span><span class="w"></span>
+<a id="ln-40" name="ln-40" href="#ln-40"></a><span class="w">        </span><span class="kt">real</span><span class="p">(</span><span class="n">sp</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(:),</span><span class="w"> </span><span class="k">contiguous</span><span class="p">,</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="kt">real</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nb">null</span><span class="p">()</span><span class="w"></span>
+<a id="ln-41" name="ln-41" href="#ln-41"></a><span class="w">        </span><span class="kt">real</span><span class="p">(</span><span class="n">sp</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(:),</span><span class="w"> </span><span class="k">contiguous</span><span class="p">,</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">imag</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nb">null</span><span class="p">()</span><span class="w"></span>
+<a id="ln-42" name="ln-42" href="#ln-42"></a><span class="w">    </span><span class="k">end type </span><span class="n">StorageTwiddles</span><span class="w"></span>
+<a id="ln-43" name="ln-43" href="#ln-43"></a>
+<a id="ln-44" name="ln-44" href="#ln-44"></a><span class="w">    </span><span class="k">type</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">SplitRadixGroup</span><span class="w"></span>
+<a id="ln-45" name="ln-45" href="#ln-45"></a><span class="w">        </span><span class="kt">integer</span><span class="p">(</span><span class="n">isp</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">start_index</span><span class="w"></span>
+<a id="ln-46" name="ln-46" href="#ln-46"></a><span class="w">        </span><span class="kt">integer</span><span class="p">(</span><span class="n">isp</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">group_stride</span><span class="w"></span>
+<a id="ln-47" name="ln-47" href="#ln-47"></a><span class="w">    </span><span class="k">end type </span><span class="n">SplitRadixGroup</span><span class="w"></span>
+<a id="ln-48" name="ln-48" href="#ln-48"></a>
+<a id="ln-49" name="ln-49" href="#ln-49"></a><span class="w">    </span><span class="k">type</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">StageView</span><span class="w"></span>
+<a id="ln-50" name="ln-50" href="#ln-50"></a><span class="w">        </span><span class="kt">integer</span><span class="p">(</span><span class="n">isp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">radix</span>
+<a id="ln-51" name="ln-51" href="#ln-51"></a><span class="nb">        </span><span class="kt">integer</span><span class="p">(</span><span class="n">isp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">offset</span><span class="w"></span>
+<a id="ln-52" name="ln-52" href="#ln-52"></a><span class="w">        </span><span class="kt">integer</span><span class="p">(</span><span class="n">isp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">stride</span><span class="w"></span>
+<a id="ln-53" name="ln-53" href="#ln-53"></a><span class="w">        </span><span class="kt">integer</span><span class="p">(</span><span class="n">isp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">butterfly_size</span><span class="w"></span>
+<a id="ln-54" name="ln-54" href="#ln-54"></a><span class="w">        </span><span class="kt">real</span><span class="p">(</span><span class="n">sp</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(:),</span><span class="w"> </span><span class="k">contiguous</span><span class="p">,</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">twiddles_real</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nb">null</span><span class="p">()</span><span class="w"></span>
+<a id="ln-55" name="ln-55" href="#ln-55"></a><span class="w">        </span><span class="kt">real</span><span class="p">(</span><span class="n">sp</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(:),</span><span class="w"> </span><span class="k">contiguous</span><span class="p">,</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">twiddles_imag</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nb">null</span><span class="p">()</span><span class="w"></span>
+<a id="ln-56" name="ln-56" href="#ln-56"></a><span class="w">        </span><span class="k">type</span><span class="p">(</span><span class="n">SplitRadixGroup</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">groups</span><span class="w"></span>
+<a id="ln-57" name="ln-57" href="#ln-57"></a><span class="w">    </span><span class="k">end type </span><span class="n">StageView</span><span class="w"></span>
+<a id="ln-58" name="ln-58" href="#ln-58"></a>
+<a id="ln-59" name="ln-59" href="#ln-59"></a><span class="w">    </span><span class="k">type</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">FFTPlan</span><span class="w"></span>
+<a id="ln-60" name="ln-60" href="#ln-60"></a><span class="w">        </span><span class="kt">integer</span><span class="p">(</span><span class="n">isp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<a id="ln-61" name="ln-61" href="#ln-61"></a><span class="w">        </span><span class="kt">integer</span><span class="p">(</span><span class="n">isp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">num_stages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<a id="ln-62" name="ln-62" href="#ln-62"></a>
+<a id="ln-63" name="ln-63" href="#ln-63"></a><span class="w">        </span><span class="kt">integer</span><span class="p">(</span><span class="n">isp</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">radix_plan</span><span class="w"></span>
+<a id="ln-64" name="ln-64" href="#ln-64"></a><span class="w">        </span><span class="k">type</span><span class="p">(</span><span class="n">StorageTwiddles</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">twiddles_factors</span><span class="w"></span>
+<a id="ln-65" name="ln-65" href="#ln-65"></a><span class="w">        </span><span class="k">type</span><span class="p">(</span><span class="n">StageView</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">stages</span><span class="w"></span>
+<a id="ln-66" name="ln-66" href="#ln-66"></a>
+<a id="ln-67" name="ln-67" href="#ln-67"></a><span class="w">        </span><span class="k">type</span><span class="p">(</span><span class="n">FFTAlgorithm</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">algorithm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ALG_NONE</span><span class="w"></span>
+<a id="ln-68" name="ln-68" href="#ln-68"></a>
+<a id="ln-69" name="ln-69" href="#ln-69"></a><span class="w">        </span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">is_initialized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
+<a id="ln-70" name="ln-70" href="#ln-70"></a><span class="w">        </span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">inverse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
+<a id="ln-71" name="ln-71" href="#ln-71"></a>
+<a id="ln-72" name="ln-72" href="#ln-72"></a><span class="w">        </span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">use_radix2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
+<a id="ln-73" name="ln-73" href="#ln-73"></a><span class="w">        </span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">use_radix3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
+<a id="ln-74" name="ln-74" href="#ln-74"></a><span class="w">        </span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">use_radix4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
+<a id="ln-75" name="ln-75" href="#ln-75"></a><span class="w">        </span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">use_radix5</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
+<a id="ln-76" name="ln-76" href="#ln-76"></a><span class="w">        </span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">use_split_radix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
+<a id="ln-77" name="ln-77" href="#ln-77"></a><span class="w">        </span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">use_mixed_radix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
+<a id="ln-78" name="ln-78" href="#ln-78"></a><span class="w">    </span><span class="k">end type </span><span class="n">FFTPlan</span><span class="w"></span>
+<a id="ln-79" name="ln-79" href="#ln-79"></a>
+<a id="ln-80" name="ln-80" href="#ln-80"></a><span class="k">end module </span><span class="n">NAFPack_plan_type</span><span class="w"></span>
+</pre></div>
+
+      </section>
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              NAFPack
+ was developed by Minard Jules<br>              &copy; 2026 
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+            </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>

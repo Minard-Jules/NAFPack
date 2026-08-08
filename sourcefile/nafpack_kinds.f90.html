@@ -1,0 +1,1572 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+    <meta name="author" content="Minard Jules" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>NAFPack_kinds.f90 &ndash; NAFPack</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="../css/local.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">NAFPack </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>NAFPack_kinds.f90
+      <small>Source File</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 0.1% of total for source files.">14 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/NAFPack_kinds.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+            <li class="breadcrumb-item active" aria-current="page">NAFPack_kinds.f90</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
+  </script>
+
+  </div>
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+        <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#mods-0"
+         aria-expanded="false" aria-controls="mods-0">
+         <h4 class="card-header bg-primary text-white">Modules</h4>
+      </a>
+      <div id="mods-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/nafpack_kinds.html">NAFPack_kinds</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    <div class="card card-primary">
+      <div class="card-header text-left"><h3 class="card-title">Source Code</h3></div>
+      <div class="list-group">
+        <a class="list-group-item" href="../sourcefile/nafpack_kinds.f90.html#src">NAFPack_kinds.f90</a>
+      </div>
+    </div>
+
+
+  </div>
+
+    </div>
+    <div class="col-md-9" id='text'>
+      
+      <br>
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Files dependent on this one</h3>
+          </div>
+          <div class="card-body">
+            <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.2 (20260126.1125)
+ -->
+<!-- Title: sourcefile~~nafpack_kinds.f90~~AfferentGraph Pages: 1 -->
+<svg id="sourcefilenafpack_kindsf90AfferentGraph" width="641pt" height="531pt"
+ viewBox="0.00 0.00 641.00 531.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph" class="graph" transform="scale(0.400277 0.400277) rotate(0) translate(4 1323.07)">
+<title>sourcefile~~nafpack_kinds.f90~~AfferentGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-1323.07 1597.39,-1323.07 1597.39,4 -4,4"/>
+<!-- sourcefile~nafpack_kinds.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node1" class="node">
+<title>sourcefile~nafpack_kinds.f90</title>
+<polygon fill="none" stroke="black" points="110.52,-644.27 0,-644.27 0,-620 110.52,-620 110.52,-644.27"/>
+<text xml:space="preserve" text-anchor="middle" x="55.26" y="-628.53" font-family="Helvetica,sans-Serif" font-size="10.50">NAFPack_kinds.f90</text>
+</g>
+<!-- sourcefile~nafpack_ansi.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node2" class="node">
+<title>sourcefile~nafpack_ansi.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node2"><a xlink:href="../sourcefile/nafpack_ansi.f90.html" xlink:title="NAFPack_ANSI.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="568.94,-1231.27 461.42,-1231.27 461.42,-1207 568.94,-1207 568.94,-1231.27"/>
+<text xml:space="preserve" text-anchor="middle" x="515.18" y="-1215.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_ANSI.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_ansi.f90&#45;&gt;sourcefile~nafpack_kinds.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge1" class="edge">
+<title>sourcefile~nafpack_ansi.f90&#45;&gt;sourcefile~nafpack_kinds.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M461.05,-1231.17C381.41,-1245.79 231.4,-1259.45 146.52,-1179.13 69.24,-1106.01 58.12,-751.25 56.53,-655.82"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="60.03,-656.04 56.39,-646.09 53.03,-656.14 60.03,-656.04"/>
+</g>
+<!-- sourcefile~nafpack_io_utils.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node10" class="node">
+<title>sourcefile~nafpack_io_utils.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node10"><a xlink:href="../sourcefile/nafpack_io_utils.f90.html" xlink:title="NAFPack_io_utils.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="308.79,-1170.27 189.27,-1170.27 189.27,-1146 308.79,-1146 308.79,-1170.27"/>
+<text xml:space="preserve" text-anchor="middle" x="249.03" y="-1154.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_io_utils.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_ansi.f90&#45;&gt;sourcefile~nafpack_io_utils.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge61" class="edge">
+<title>sourcefile~nafpack_ansi.f90&#45;&gt;sourcefile~nafpack_io_utils.f90</title>
+<path fill="none" stroke="#38ff00" stroke-dasharray="5,2" d="M461.04,-1206.86C419.1,-1197.18 360.38,-1183.62 315.53,-1173.26"/>
+<polygon fill="#38ff00" stroke="#38ff00" points="316.45,-1169.88 305.92,-1171.04 314.87,-1176.7 316.45,-1169.88"/>
+</g>
+<!-- sourcefile~nafpack_butterfly.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node3" class="node">
+<title>sourcefile~nafpack_butterfly.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node3"><a xlink:href="../sourcefile/nafpack_butterfly.f90.html" xlink:title="NAFPack_butterfly.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1032.98,-508.27 906.71,-508.27 906.71,-484 1032.98,-484 1032.98,-508.27"/>
+<text xml:space="preserve" text-anchor="middle" x="969.84" y="-492.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_butterfly.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_butterfly.f90&#45;&gt;sourcefile~nafpack_kinds.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge2" class="edge">
+<title>sourcefile~nafpack_butterfly.f90&#45;&gt;sourcefile~nafpack_kinds.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M906.52,-507.99C886.63,-511.41 864.49,-514.83 844.08,-517.13 699.02,-533.5 659.81,-510.06 516.18,-536.13"/>
+</g>
+<!-- sourcefile~nafpack_loop_method.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node16" class="node">
+<title>sourcefile~nafpack_loop_method.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node16"><a xlink:href="../sourcefile/nafpack_loop_method.f90.html" xlink:title="NAFPack_loop_method.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="837.71,-508.27 685.19,-508.27 685.19,-484 837.71,-484 837.71,-508.27"/>
+<text xml:space="preserve" text-anchor="middle" x="761.45" y="-492.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_loop_method.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_butterfly.f90&#45;&gt;sourcefile~nafpack_loop_method.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge69" class="edge">
+<title>sourcefile~nafpack_butterfly.f90&#45;&gt;sourcefile~nafpack_loop_method.f90</title>
+<path fill="none" stroke="#00e2ff" stroke-dasharray="5,2" d="M906.35,-496.13C888.49,-496.13 868.68,-496.13 849.62,-496.13"/>
+<polygon fill="#00e2ff" stroke="#00e2ff" points="849.7,-492.64 839.7,-496.14 849.7,-499.64 849.7,-492.64"/>
+</g>
+<!-- sourcefile~nafpack_plan_type.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node25" class="node">
+<title>sourcefile~nafpack_plan_type.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node25"><a xlink:href="../sourcefile/nafpack_plan_type.f90.html" xlink:title="NAFPack_plan_type.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="316.29,-392.27 181.77,-392.27 181.77,-368 316.29,-368 316.29,-392.27"/>
+<text xml:space="preserve" text-anchor="middle" x="249.03" y="-376.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_plan_type.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_butterfly.f90&#45;&gt;sourcefile~nafpack_plan_type.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge98" class="edge">
+<title>sourcefile~nafpack_butterfly.f90&#45;&gt;sourcefile~nafpack_plan_type.f90</title>
+<path fill="none" stroke="#ff00e2" stroke-dasharray="5,2" d="M906.35,-485.51C886.45,-482.16 864.35,-478.46 844.08,-475.13 658.99,-444.76 441.25,-410.25 327.75,-392.36"/>
+<polygon fill="#ff00e2" stroke="#ff00e2" points="328.35,-388.91 317.93,-390.81 327.26,-395.82 328.35,-388.91"/>
+</g>
+<!-- sourcefile~nafpack_constant.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node4" class="node">
+<title>sourcefile~nafpack_constant.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node4"><a xlink:href="../sourcefile/nafpack_constant.f90.html" xlink:title="NAFPack_constant.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="313.29,-664.27 184.77,-664.27 184.77,-640 313.29,-640 313.29,-664.27"/>
+<text xml:space="preserve" text-anchor="middle" x="249.03" y="-648.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_constant.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_constant.f90&#45;&gt;sourcefile~nafpack_kinds.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge3" class="edge">
+<title>sourcefile~nafpack_constant.f90&#45;&gt;sourcefile~nafpack_kinds.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M184.44,-645.5C164.48,-643.42 142.4,-641.12 122.28,-639.02"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="122.82,-635.56 112.51,-638 122.09,-642.52 122.82,-635.56"/>
+</g>
+<!-- sourcefile~nafpack_direct_methode.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node5" class="node">
+<title>sourcefile~nafpack_direct_methode.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node5"><a xlink:href="../sourcefile/nafpack_direct_methode.f90.html" xlink:title="NAFPack_Direct_methode.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1282.25,-966.27 1114.73,-966.27 1114.73,-942 1282.25,-942 1282.25,-966.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1198.49" y="-950.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Direct_methode.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_direct_methode.f90&#45;&gt;sourcefile~nafpack_kinds.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge4" class="edge">
+<title>sourcefile~nafpack_direct_methode.f90&#45;&gt;sourcefile~nafpack_kinds.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M760.45,-728.13C680.05,-707.49 468.22,-729.66 387.54,-749.13 322.55,-764.83 313.43,-831.37 250.03,-810.13"/>
+</g>
+<!-- sourcefile~nafpack_direct_methode.f90&#45;&gt;sourcefile~nafpack_constant.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge44" class="edge">
+<title>sourcefile~nafpack_direct_methode.f90&#45;&gt;sourcefile~nafpack_constant.f90</title>
+<path fill="none" stroke="#ff7100" stroke-dasharray="5,2" d="M1125.56,-941.51C1115.01,-937.87 1104.66,-933.18 1095.6,-927.13 1073.71,-912.54 1077.69,-899.24 1059.6,-880.13 1023.89,-842.43 1019.06,-823.42 970.84,-804.13"/>
+<path fill="none" stroke="#ff7100" stroke-dasharray="5,2" d="M968.84,-804.13C929.9,-788.56 916.46,-792.99 880.08,-772.13 862.01,-761.78 862.99,-750.86 844.08,-742.13 810.65,-726.71 798.1,-737.29 762.45,-728.13"/>
+<path fill="none" stroke="#ff7100" stroke-dasharray="5,2" d="M760.45,-728.13C703.79,-713.59 698.57,-686.81 642.81,-669.13 588.56,-651.94 571.4,-663.9 516.18,-650.13"/>
+</g>
+<!-- sourcefile~nafpack_matricielle.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node18" class="node">
+<title>sourcefile~nafpack_matricielle.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node18"><a xlink:href="../sourcefile/nafpack_matricielle.f90.html" xlink:title="NAFPack_matricielle.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="318.92,-898.27 179.14,-898.27 179.14,-874 318.92,-874 318.92,-898.27"/>
+<text xml:space="preserve" text-anchor="middle" x="249.03" y="-882.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_matricielle.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_direct_methode.f90&#45;&gt;sourcefile~nafpack_matricielle.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge74" class="edge">
+<title>sourcefile~nafpack_direct_methode.f90&#45;&gt;sourcefile~nafpack_matricielle.f90</title>
+<path fill="none" stroke="#0071ff" stroke-dasharray="5,2" d="M760.45,-804.13C595.08,-805.81 403.34,-847.56 308.86,-870.82"/>
+<polygon fill="#0071ff" stroke="#0071ff" points="308.15,-867.39 299.29,-873.2 309.84,-874.18 308.15,-867.39"/>
+</g>
+<!-- sourcefile~nafpack_matrix_decomposition.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node19" class="node">
+<title>sourcefile~nafpack_matrix_decomposition.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node19"><a xlink:href="../sourcefile/nafpack_matrix_decomposition.f90.html" xlink:title="NAFPack_matrix_decomposition.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="615.81,-976.27 414.54,-976.27 414.54,-952 615.81,-952 615.81,-976.27"/>
+<text xml:space="preserve" text-anchor="middle" x="515.18" y="-960.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_matrix_decomposition.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_direct_methode.f90&#45;&gt;sourcefile~nafpack_matrix_decomposition.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge81" class="edge">
+<title>sourcefile~nafpack_direct_methode.f90&#45;&gt;sourcefile~nafpack_matrix_decomposition.f90</title>
+<path fill="none" stroke="#0038ff" stroke-dasharray="5,2" d="M1114.28,-955.36C992.14,-957.15 764.05,-960.5 627.57,-962.5"/>
+<polygon fill="#0038ff" stroke="#0038ff" points="627.74,-959 617.79,-962.64 627.84,-966 627.74,-959"/>
+</g>
+<!-- sourcefile~nafpack_matrix_properties.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node21" class="node">
+<title>sourcefile~nafpack_matrix_properties.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node21"><a xlink:href="../sourcefile/nafpack_matrix_properties.f90.html" xlink:title="NAFPack_matrix_properties.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1058.1,-913.27 881.58,-913.27 881.58,-889 1058.1,-889 1058.1,-913.27"/>
+<text xml:space="preserve" text-anchor="middle" x="969.84" y="-897.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_matrix_properties.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_direct_methode.f90&#45;&gt;sourcefile~nafpack_matrix_properties.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge86" class="edge">
+<title>sourcefile~nafpack_direct_methode.f90&#45;&gt;sourcefile~nafpack_matrix_properties.f90</title>
+<path fill="none" stroke="#3800ff" stroke-dasharray="5,2" d="M1143.49,-941.51C1111.11,-933.94 1069.75,-924.26 1035.62,-916.28"/>
+<polygon fill="#3800ff" stroke="#3800ff" points="1036.83,-912.97 1026.29,-914.1 1035.23,-919.79 1036.83,-912.97"/>
+</g>
+<!-- sourcefile~nafpack_matrix_tools.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node22" class="node">
+<title>sourcefile~nafpack_matrix_tools.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node22"><a xlink:href="../sourcefile/nafpack_matrix_tools.f90.html" xlink:title="NAFPack_matrix_tools.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="589.19,-782.27 441.17,-782.27 441.17,-758 589.19,-758 589.19,-782.27"/>
+<text xml:space="preserve" text-anchor="middle" x="515.18" y="-766.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_matrix_tools.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_direct_methode.f90&#45;&gt;sourcefile~nafpack_matrix_tools.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge88" class="edge">
+<title>sourcefile~nafpack_direct_methode.f90&#45;&gt;sourcefile~nafpack_matrix_tools.f90</title>
+<path fill="none" stroke="#7100ff" stroke-dasharray="5,2" d="M968.84,-804.13C883.67,-770.07 854.17,-803.2 762.45,-804.13"/>
+<path fill="none" stroke="#7100ff" stroke-dasharray="5,2" d="M760.45,-804.13C700.07,-804.75 632.09,-794.37 583.2,-784.92"/>
+<polygon fill="#7100ff" stroke="#7100ff" points="584.11,-781.53 573.63,-783.03 582.76,-788.4 584.11,-781.53"/>
+</g>
+<!-- sourcefile~nafpack_eigen.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node6" class="node">
+<title>sourcefile~nafpack_eigen.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node6"><a xlink:href="../sourcefile/nafpack_eigen.f90.html" xlink:title="NAFPack_Eigen.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="817.83,-894.27 705.06,-894.27 705.06,-870 817.83,-870 817.83,-894.27"/>
+<text xml:space="preserve" text-anchor="middle" x="761.45" y="-878.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Eigen.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_eigen.f90&#45;&gt;sourcefile~nafpack_kinds.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge5" class="edge">
+<title>sourcefile~nafpack_eigen.f90&#45;&gt;sourcefile~nafpack_kinds.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M704.6,-885.56C655.05,-888 580.73,-890.19 516.18,-886.13"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M514.18,-886.13C392.26,-878.47 366.36,-847.42 250.03,-810.13"/>
+</g>
+<!-- sourcefile~nafpack_eigen.f90&#45;&gt;sourcefile~nafpack_constant.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge45" class="edge">
+<title>sourcefile~nafpack_eigen.f90&#45;&gt;sourcefile~nafpack_constant.f90</title>
+<path fill="none" stroke="#ff7100" stroke-dasharray="5,2" d="M736.81,-869.54C718.26,-858.44 693.23,-840.55 678.81,-818.13 641.96,-760.83 693.06,-715.14 642.81,-669.13 600.83,-630.7 571.48,-663.55 516.18,-650.13"/>
+</g>
+<!-- sourcefile~nafpack_eigen.f90&#45;&gt;sourcefile~nafpack_matricielle.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge75" class="edge">
+<title>sourcefile~nafpack_eigen.f90&#45;&gt;sourcefile~nafpack_matricielle.f90</title>
+<path fill="none" stroke="#0071ff" stroke-dasharray="5,2" d="M514.18,-886.13C452.67,-882.27 382.94,-882.46 330.58,-883.52"/>
+<polygon fill="#0071ff" stroke="#0071ff" points="330.78,-880.01 320.86,-883.73 330.93,-887.01 330.78,-880.01"/>
+</g>
+<!-- sourcefile~nafpack_eigen.f90&#45;&gt;sourcefile~nafpack_matrix_decomposition.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge82" class="edge">
+<title>sourcefile~nafpack_eigen.f90&#45;&gt;sourcefile~nafpack_matrix_decomposition.f90</title>
+<path fill="none" stroke="#0038ff" stroke-dasharray="5,2" d="M722.81,-894.77C680.19,-909.08 610.65,-932.42 564.16,-948.03"/>
+<polygon fill="#0038ff" stroke="#0038ff" points="563.25,-944.64 554.88,-951.14 565.48,-951.28 563.25,-944.64"/>
+</g>
+<!-- sourcefile~nafpack_fft.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node7" class="node">
+<title>sourcefile~nafpack_fft.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node7"><a xlink:href="../sourcefile/nafpack_fft.f90.html" xlink:title="NAFPack_fft.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="562.19,-702.27 468.17,-702.27 468.17,-678 562.19,-678 562.19,-702.27"/>
+<text xml:space="preserve" text-anchor="middle" x="515.18" y="-686.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_fft.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_fft.f90&#45;&gt;sourcefile~nafpack_kinds.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge6" class="edge">
+<title>sourcefile~nafpack_fft.f90&#45;&gt;sourcefile~nafpack_kinds.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M467.73,-695.17C443.18,-698.93 412.96,-705.36 387.54,-716.13 319.38,-745.04 320.53,-832.73 250.03,-810.13"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M248.03,-810.13C164.49,-783.36 97.85,-695.67 70.16,-654.22"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="73.2,-652.47 64.8,-646.01 67.34,-656.3 73.2,-652.47"/>
+</g>
+<!-- sourcefile~nafpack_fft.f90&#45;&gt;sourcefile~nafpack_constant.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge46" class="edge">
+<title>sourcefile~nafpack_fft.f90&#45;&gt;sourcefile~nafpack_constant.f90</title>
+<path fill="none" stroke="#ff7100" stroke-dasharray="5,2" d="M467.86,-683.47C428.36,-677.79 370.82,-669.51 324.8,-662.89"/>
+<polygon fill="#ff7100" stroke="#ff7100" points="325.56,-659.47 315.17,-661.51 324.57,-666.39 325.56,-659.47"/>
+</g>
+<!-- sourcefile~nafpack_fourier_transform.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node8" class="node">
+<title>sourcefile~nafpack_fourier_transform.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node8"><a xlink:href="../sourcefile/nafpack_fourier_transform.f90.html" xlink:title="NAFPack_Fourier_Transform.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1059.6,-267.27 880.08,-267.27 880.08,-243 1059.6,-243 1059.6,-267.27"/>
+<text xml:space="preserve" text-anchor="middle" x="969.84" y="-251.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Fourier_Transform.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_fourier_transform.f90&#45;&gt;sourcefile~nafpack_kinds.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge7" class="edge">
+<title>sourcefile~nafpack_fourier_transform.f90&#45;&gt;sourcefile~nafpack_kinds.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M947.87,-242.68C883.84,-206.18 685,-103.98 516.18,-136.13"/>
+</g>
+<!-- sourcefile~nafpack_fourier_transform.f90&#45;&gt;sourcefile~nafpack_constant.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge47" class="edge">
+<title>sourcefile~nafpack_fourier_transform.f90&#45;&gt;sourcefile~nafpack_constant.f90</title>
+<path fill="none" stroke="#ff7100" stroke-dasharray="5,2" d="M760.45,-380.13C710.51,-404.74 709.26,-428.53 678.81,-475.13 658.59,-506.09 672.13,-527.6 642.81,-550.13 597.39,-585.04 570.37,-555.56 516.18,-574.13"/>
+<path fill="none" stroke="#ff7100" stroke-dasharray="5,2" d="M514.18,-574.13C442.39,-598.74 424.47,-605.16 351.54,-626.13 339.03,-629.73 325.59,-633.35 312.71,-636.7"/>
+<polygon fill="#ff7100" stroke="#ff7100" points="311.85,-633.3 303.03,-639.18 313.59,-640.08 311.85,-633.3"/>
+</g>
+<!-- sourcefile~nafpack_implementation_type.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node9" class="node">
+<title>sourcefile~nafpack_implementation_type.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node9"><a xlink:href="../sourcefile/nafpack_implementation_type.f90.html" xlink:title="NAFPack_implementation_type.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="347.04,-350.27 151.02,-350.27 151.02,-326 347.04,-326 347.04,-350.27"/>
+<text xml:space="preserve" text-anchor="middle" x="249.03" y="-334.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_implementation_type.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_fourier_transform.f90&#45;&gt;sourcefile~nafpack_implementation_type.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge59" class="edge">
+<title>sourcefile~nafpack_fourier_transform.f90&#45;&gt;sourcefile~nafpack_implementation_type.f90</title>
+<path fill="none" stroke="#71ff00" stroke-dasharray="5,2" d="M958.17,-267.44C938.15,-289.73 892.57,-336.72 844.08,-361.13 810.81,-377.89 795.86,-363.67 762.45,-380.13"/>
+<path fill="none" stroke="#71ff00" stroke-dasharray="5,2" d="M760.45,-380.13C663.06,-428.11 624.66,-384.41 516.18,-380.13"/>
+<path fill="none" stroke="#71ff00" stroke-dasharray="5,2" d="M514.18,-380.13C479.03,-378.75 392.99,-364.3 328.59,-352.73"/>
+<polygon fill="#71ff00" stroke="#71ff00" points="329.59,-349.35 319.13,-351.02 328.35,-356.24 329.59,-349.35"/>
+</g>
+<!-- sourcefile~nafpack_fourier_transform.f90&#45;&gt;sourcefile~nafpack_loop_method.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge70" class="edge">
+<title>sourcefile~nafpack_fourier_transform.f90&#45;&gt;sourcefile~nafpack_loop_method.f90</title>
+<path fill="none" stroke="#00e2ff" stroke-dasharray="5,2" d="M958.03,-267.75C924.53,-306.88 822.14,-426.43 780.42,-475.15"/>
+<polygon fill="#00e2ff" stroke="#00e2ff" points="777.98,-472.62 774.13,-482.49 783.29,-477.17 777.98,-472.62"/>
+</g>
+<!-- sourcefile~nafpack_math_utils.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node17" class="node">
+<title>sourcefile~nafpack_math_utils.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node17"><a xlink:href="../sourcefile/nafpack_math_utils.f90.html" xlink:title="NAFPack_math_utils.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="830.21,-108.27 692.69,-108.27 692.69,-84 830.21,-84 830.21,-108.27"/>
+<text xml:space="preserve" text-anchor="middle" x="761.45" y="-92.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_math_utils.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_fourier_transform.f90&#45;&gt;sourcefile~nafpack_math_utils.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge72" class="edge">
+<title>sourcefile~nafpack_fourier_transform.f90&#45;&gt;sourcefile~nafpack_math_utils.f90</title>
+<path fill="none" stroke="#00a9ff" stroke-dasharray="5,2" d="M947.42,-242.66C928.04,-230.58 899.63,-210.8 880.08,-188.13 858.26,-162.83 869.85,-143.4 844.08,-122.13 840.17,-118.91 835.85,-116.08 831.3,-113.6"/>
+<polygon fill="#00a9ff" stroke="#00a9ff" points="832.94,-110.5 822.41,-109.36 829.93,-116.82 832.94,-110.5"/>
+</g>
+<!-- sourcefile~nafpack_fourier_transform.f90&#45;&gt;sourcefile~nafpack_plan_type.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge99" class="edge">
+<title>sourcefile~nafpack_fourier_transform.f90&#45;&gt;sourcefile~nafpack_plan_type.f90</title>
+<path fill="none" stroke="#ff00e2" stroke-dasharray="5,2" d="M514.18,-380.13C451.53,-377.67 380.46,-377.84 327.83,-378.53"/>
+<polygon fill="#ff00e2" stroke="#ff00e2" points="328.01,-375.02 318.06,-378.67 328.11,-382.02 328.01,-375.02"/>
+</g>
+<!-- sourcefile~nafpack_implementation_type.f90&#45;&gt;sourcefile~nafpack_kinds.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge8" class="edge">
+<title>sourcefile~nafpack_implementation_type.f90&#45;&gt;sourcefile~nafpack_kinds.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M158.38,-350.72C154.14,-353.12 150.15,-355.9 146.52,-359.13 71.81,-425.69 58.76,-555.37 56.61,-608.54"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="53.12,-608.16 56.32,-618.26 60.12,-608.37 53.12,-608.16"/>
+</g>
+<!-- sourcefile~nafpack_io_utils.f90&#45;&gt;sourcefile~nafpack_kinds.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge9" class="edge">
+<title>sourcefile~nafpack_io_utils.f90&#45;&gt;sourcefile~nafpack_kinds.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M188.88,-1154.51C173.18,-1150.74 157.55,-1143.99 146.52,-1132.13 80.74,-1061.43 61.45,-745.88 57.25,-656.06"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="60.75,-656.06 56.81,-646.23 53.76,-656.37 60.75,-656.06"/>
+</g>
+<!-- sourcefile~nafpack_iterative_methods.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node11" class="node">
+<title>sourcefile~nafpack_iterative_methods.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node11"><a xlink:href="../sourcefile/nafpack_iterative_methods.f90.html" xlink:title="NAFPack_Iterative_methods.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1287.87,-1052.27 1109.1,-1052.27 1109.1,-1028 1287.87,-1028 1287.87,-1052.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1198.49" y="-1036.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Iterative_methods.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_iterative_methods.f90&#45;&gt;sourcefile~nafpack_kinds.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge10" class="edge">
+<title>sourcefile~nafpack_iterative_methods.f90&#45;&gt;sourcefile~nafpack_kinds.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M968.84,-1080.13C908.17,-1089.12 902,-1118.96 844.08,-1139.13 808.9,-1151.39 799.69,-1157.69 762.45,-1158.13"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M760.45,-1158.13C650.44,-1159.45 626.17,-1116.47 516.18,-1118.13"/>
+</g>
+<!-- sourcefile~nafpack_iterative_params.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node12" class="node">
+<title>sourcefile~nafpack_iterative_params.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node12"><a xlink:href="../sourcefile/nafpack_iterative_params.f90.html" xlink:title="NAFPack_Iterative_Params.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1055.85,-1052.27 883.83,-1052.27 883.83,-1028 1055.85,-1028 1055.85,-1052.27"/>
+<text xml:space="preserve" text-anchor="middle" x="969.84" y="-1036.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Iterative_Params.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_iterative_methods.f90&#45;&gt;sourcefile~nafpack_iterative_params.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge63" class="edge">
+<title>sourcefile~nafpack_iterative_methods.f90&#45;&gt;sourcefile~nafpack_iterative_params.f90</title>
+<path fill="none" stroke="#00ff38" stroke-dasharray="5,2" d="M1108.88,-1040.13C1095.3,-1040.13 1081.23,-1040.13 1067.48,-1040.13"/>
+<polygon fill="#00ff38" stroke="#00ff38" points="1067.55,-1036.64 1057.55,-1040.14 1067.55,-1043.64 1067.55,-1036.64"/>
+</g>
+<!-- sourcefile~nafpack_iterative_types.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node13" class="node">
+<title>sourcefile~nafpack_iterative_types.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node13"><a xlink:href="../sourcefile/nafpack_iterative_types.f90.html" xlink:title="NAFPack_Iterative_types.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="841.83,-1130.27 681.06,-1130.27 681.06,-1106 841.83,-1106 841.83,-1130.27"/>
+<text xml:space="preserve" text-anchor="middle" x="761.45" y="-1114.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Iterative_types.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_iterative_methods.f90&#45;&gt;sourcefile~nafpack_iterative_types.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge65" class="edge">
+<title>sourcefile~nafpack_iterative_methods.f90&#45;&gt;sourcefile~nafpack_iterative_types.f90</title>
+<path fill="none" stroke="#00ff71" stroke-dasharray="5,2" d="M968.84,-1080.13C924.46,-1086.71 875.02,-1095.75 835.66,-1103.37"/>
+<polygon fill="#00ff71" stroke="#00ff71" points="835.21,-1099.89 826.06,-1105.23 836.55,-1106.76 835.21,-1099.89"/>
+</g>
+<!-- sourcefile~nafpack_logger_mod.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node15" class="node">
+<title>sourcefile~nafpack_logger_mod.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node15"><a xlink:href="../sourcefile/nafpack_logger_mod.f90.html" xlink:title="NAFPack_Logger_mod.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1044.6,-1170.27 895.08,-1170.27 895.08,-1146 1044.6,-1146 1044.6,-1170.27"/>
+<text xml:space="preserve" text-anchor="middle" x="969.84" y="-1154.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Logger_mod.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_iterative_methods.f90&#45;&gt;sourcefile~nafpack_logger_mod.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge68" class="edge">
+<title>sourcefile~nafpack_iterative_methods.f90&#45;&gt;sourcefile~nafpack_logger_mod.f90</title>
+<path fill="none" stroke="#00ffe2" stroke-dasharray="5,2" d="M1173.23,-1052.76C1132.76,-1073.83 1051.35,-1116.22 1005.06,-1140.32"/>
+<polygon fill="#00ffe2" stroke="#00ffe2" points="1003.52,-1137.18 996.26,-1144.9 1006.75,-1143.39 1003.52,-1137.18"/>
+</g>
+<!-- sourcefile~nafpack_iterative_methods.f90&#45;&gt;sourcefile~nafpack_matrix_decomposition.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge83" class="edge">
+<title>sourcefile~nafpack_iterative_methods.f90&#45;&gt;sourcefile~nafpack_matrix_decomposition.f90</title>
+<path fill="none" stroke="#0038ff" stroke-dasharray="5,2" d="M1131.69,-1052.74C1086.54,-1061.14 1025.19,-1072.08 970.84,-1080.13"/>
+<path fill="none" stroke="#0038ff" stroke-dasharray="5,2" d="M968.84,-1080.13C876.41,-1093.83 854.07,-1058.47 762.45,-1040.13"/>
+</g>
+<!-- sourcefile~nafpack_iterative_methods.f90&#45;&gt;sourcefile~nafpack_matrix_properties.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge87" class="edge">
+<title>sourcefile~nafpack_iterative_methods.f90&#45;&gt;sourcefile~nafpack_matrix_properties.f90</title>
+<path fill="none" stroke="#3800ff" stroke-dasharray="5,2" d="M1128.89,-1027.53C1117.41,-1024.05 1105.89,-1019.66 1095.6,-1014.13 1083.72,-1007.76 1024.16,-951.87 991.81,-921.16"/>
+<polygon fill="#3800ff" stroke="#3800ff" points="994.6,-918.98 984.95,-914.62 989.78,-924.05 994.6,-918.98"/>
+</g>
+<!-- sourcefile~nafpack_preconditioners.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node26" class="node">
+<title>sourcefile~nafpack_preconditioners.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node26"><a xlink:href="../sourcefile/nafpack_preconditioners.f90.html" xlink:title="NAFPack_Preconditioners.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="844.08,-1012.27 678.81,-1012.27 678.81,-988 844.08,-988 844.08,-1012.27"/>
+<text xml:space="preserve" text-anchor="middle" x="761.45" y="-996.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Preconditioners.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_iterative_methods.f90&#45;&gt;sourcefile~nafpack_preconditioners.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge101" class="edge">
+<title>sourcefile~nafpack_iterative_methods.f90&#45;&gt;sourcefile~nafpack_preconditioners.f90</title>
+<path fill="none" stroke="#ff00aa" stroke-dasharray="5,2" d="M1147.94,-1027.53C1102.3,-1016.84 1032.51,-1002.83 970.84,-1000.13"/>
+</g>
+<!-- sourcefile~nafpack_iterative_params.f90&#45;&gt;sourcefile~nafpack_kinds.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge11" class="edge">
+<title>sourcefile~nafpack_iterative_params.f90&#45;&gt;sourcefile~nafpack_kinds.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M902.56,-1052.73C786.27,-1074.64 554.15,-1117.55 516.18,-1118.13"/>
+</g>
+<!-- sourcefile~nafpack_iterative_params.f90&#45;&gt;sourcefile~nafpack_iterative_types.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge66" class="edge">
+<title>sourcefile~nafpack_iterative_params.f90&#45;&gt;sourcefile~nafpack_iterative_types.f90</title>
+<path fill="none" stroke="#00ff71" stroke-dasharray="5,2" d="M915.16,-1052.66C903.32,-1056.3 891.04,-1060.77 880.08,-1066.13 862.35,-1074.81 861.7,-1083.25 844.08,-1092.13 836.87,-1095.77 829.04,-1099.04 821.18,-1101.92"/>
+<polygon fill="#00ff71" stroke="#00ff71" points="820.24,-1098.54 811.94,-1105.12 822.53,-1105.16 820.24,-1098.54"/>
+</g>
+<!-- sourcefile~nafpack_iterative_params.f90&#45;&gt;sourcefile~nafpack_matrix_decomposition.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge84" class="edge">
+<title>sourcefile~nafpack_iterative_params.f90&#45;&gt;sourcefile~nafpack_matrix_decomposition.f90</title>
+<path fill="none" stroke="#0038ff" stroke-dasharray="5,2" d="M883.5,-1047.62C846.02,-1048.99 801.71,-1047.99 762.45,-1040.13"/>
+<path fill="none" stroke="#0038ff" stroke-dasharray="5,2" d="M760.45,-1040.13C723.92,-1032.83 714.58,-1031.53 678.81,-1021.13 637.77,-1009.21 591.89,-992.84 559.35,-980.71"/>
+<polygon fill="#0038ff" stroke="#0038ff" points="560.86,-977.53 550.27,-977.3 558.4,-984.09 560.86,-977.53"/>
+</g>
+<!-- sourcefile~nafpack_iterative_params.f90&#45;&gt;sourcefile~nafpack_preconditioners.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge102" class="edge">
+<title>sourcefile~nafpack_iterative_params.f90&#45;&gt;sourcefile~nafpack_preconditioners.f90</title>
+<path fill="none" stroke="#ff00aa" stroke-dasharray="5,2" d="M903.82,-1027.53C883.09,-1023.52 859.97,-1019.04 838.53,-1014.88"/>
+<polygon fill="#ff00aa" stroke="#ff00aa" points="839.46,-1011.5 828.98,-1013.03 838.13,-1018.37 839.46,-1011.5"/>
+</g>
+<!-- sourcefile~nafpack_iterative_types.f90&#45;&gt;sourcefile~nafpack_kinds.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge12" class="edge">
+<title>sourcefile~nafpack_iterative_types.f90&#45;&gt;sourcefile~nafpack_kinds.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M680.68,-1117.51C632.95,-1117.3 571.09,-1117.29 516.18,-1118.13"/>
+</g>
+<!-- sourcefile~nafpack_krylov_method.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node14" class="node">
+<title>sourcefile~nafpack_krylov_method.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node14"><a xlink:href="../sourcefile/nafpack_krylov_method.f90.html" xlink:title="NAFPack_Krylov_method.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="596.31,-1090.27 434.04,-1090.27 434.04,-1066 596.31,-1066 596.31,-1090.27"/>
+<text xml:space="preserve" text-anchor="middle" x="515.18" y="-1074.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Krylov_method.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_krylov_method.f90&#45;&gt;sourcefile~nafpack_kinds.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge13" class="edge">
+<title>sourcefile~nafpack_krylov_method.f90&#45;&gt;sourcefile~nafpack_kinds.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M455.44,-1090.73C383.21,-1105.65 267.93,-1127.38 250.03,-1118.13"/>
+</g>
+<!-- sourcefile~nafpack_krylov_method.f90&#45;&gt;sourcefile~nafpack_matricielle.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge76" class="edge">
+<title>sourcefile~nafpack_krylov_method.f90&#45;&gt;sourcefile~nafpack_matricielle.f90</title>
+<path fill="none" stroke="#0071ff" stroke-dasharray="5,2" d="M480.32,-1065.59C453.86,-1054.98 416.78,-1038.3 387.54,-1018.13 339.57,-985.05 292.53,-935.03 267.84,-907.02"/>
+<polygon fill="#0071ff" stroke="#0071ff" points="270.55,-904.81 261.34,-899.56 265.27,-909.4 270.55,-904.81"/>
+</g>
+<!-- sourcefile~nafpack_logger_mod.f90&#45;&gt;sourcefile~nafpack_kinds.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge14" class="edge">
+<title>sourcefile~nafpack_logger_mod.f90&#45;&gt;sourcefile~nafpack_kinds.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M894.8,-1157.71C855.48,-1157.59 806.34,-1157.61 762.45,-1158.13"/>
+</g>
+<!-- sourcefile~nafpack_logger_mod.f90&#45;&gt;sourcefile~nafpack_ansi.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge30" class="edge">
+<title>sourcefile~nafpack_logger_mod.f90&#45;&gt;sourcefile~nafpack_ansi.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M962.89,-1170.59C947.9,-1200.32 905.35,-1275.02 844.08,-1303.13 738.77,-1351.45 601.17,-1275.52 543.49,-1238.06"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="545.52,-1235.21 535.25,-1232.6 541.65,-1241.05 545.52,-1235.21"/>
+</g>
+<!-- sourcefile~nafpack_terminal.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node27" class="node">
+<title>sourcefile~nafpack_terminal.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node27"><a xlink:href="../sourcefile/nafpack_terminal.f90.html" xlink:title="NAFPack_terminal.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="825.33,-1210.27 697.56,-1210.27 697.56,-1186 825.33,-1186 825.33,-1210.27"/>
+<text xml:space="preserve" text-anchor="middle" x="761.45" y="-1194.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_terminal.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_logger_mod.f90&#45;&gt;sourcefile~nafpack_terminal.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge104" class="edge">
+<title>sourcefile~nafpack_logger_mod.f90&#45;&gt;sourcefile~nafpack_terminal.f90</title>
+<path fill="none" stroke="#ff0071" stroke-dasharray="5,2" d="M903.82,-1170.74C882.59,-1174.85 858.85,-1179.45 836.97,-1183.69"/>
+<polygon fill="#ff0071" stroke="#ff0071" points="836.36,-1180.24 827.21,-1185.58 837.7,-1187.12 836.36,-1180.24"/>
+</g>
+<!-- sourcefile~nafpack_loop_method.f90&#45;&gt;sourcefile~nafpack_kinds.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge15" class="edge">
+<title>sourcefile~nafpack_loop_method.f90&#45;&gt;sourcefile~nafpack_kinds.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M684.95,-507.81C636.62,-515.45 572.62,-525.89 516.18,-536.13"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M514.18,-536.13C457.81,-546.37 442.68,-544.61 387.54,-560.13 324.65,-577.84 314.88,-604.16 250.03,-612.13"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M248.03,-612.13C206.18,-617.28 159.08,-622.2 122.03,-625.88"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="121.99,-622.37 112.38,-626.83 122.68,-629.33 121.99,-622.37"/>
+</g>
+<!-- sourcefile~nafpack_utils.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node28" class="node">
+<title>sourcefile~nafpack_utils.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node28"><a xlink:href="../sourcefile/nafpack_utils.f90.html" xlink:title="NAFPack_utils.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="567.44,-310.27 462.92,-310.27 462.92,-286 567.44,-286 567.44,-310.27"/>
+<text xml:space="preserve" text-anchor="middle" x="515.18" y="-294.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_utils.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_loop_method.f90&#45;&gt;sourcefile~nafpack_utils.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge105" class="edge">
+<title>sourcefile~nafpack_loop_method.f90&#45;&gt;sourcefile~nafpack_utils.f90</title>
+<path fill="none" stroke="#ff0038" stroke-dasharray="5,2" d="M740.08,-483.6C722.3,-471.92 696.62,-453.16 678.81,-432.13 657.22,-406.64 666.51,-389.68 642.81,-366.13 620.02,-343.49 588.12,-326.42 562.04,-315.05"/>
+<polygon fill="#ff0038" stroke="#ff0038" points="563.6,-311.91 553.02,-311.26 560.88,-318.36 563.6,-311.91"/>
+</g>
+<!-- sourcefile~nafpack_math_utils.f90&#45;&gt;sourcefile~nafpack_kinds.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge16" class="edge">
+<title>sourcefile~nafpack_math_utils.f90&#45;&gt;sourcefile~nafpack_kinds.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M692.39,-108.62C676.16,-111.5 658.88,-114.5 642.81,-117.13 586.65,-126.36 572.08,-125.49 516.18,-136.13"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M514.18,-136.13C438.18,-150.61 426,-177.16 351.54,-198.13 307.36,-210.58 288.75,-192.48 250.03,-217.13"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M248.03,-217.13C194.61,-251.15 178.86,-262.69 146.52,-317.13 88.17,-415.37 65.82,-553.37 58.9,-608.26"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="55.44,-607.67 57.73,-618.01 62.39,-608.5 55.44,-607.67"/>
+</g>
+<!-- sourcefile~nafpack_matricielle.f90&#45;&gt;sourcefile~nafpack_kinds.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge17" class="edge">
+<title>sourcefile~nafpack_matricielle.f90&#45;&gt;sourcefile~nafpack_kinds.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M218.14,-873.63C196.01,-863.12 166.37,-846.27 146.52,-824.13 100.49,-772.8 73.52,-693.88 62.34,-655.17"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="65.78,-654.46 59.73,-645.76 59.03,-656.34 65.78,-654.46"/>
+</g>
+<!-- sourcefile~nafpack_matrix_decomposition.f90&#45;&gt;sourcefile~nafpack_kinds.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge18" class="edge">
+<title>sourcefile~nafpack_matrix_decomposition.f90&#45;&gt;sourcefile~nafpack_kinds.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M496.83,-976.53C442.11,-1015.34 275.21,-1131.13 250.03,-1118.13"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M248.03,-1118.13C72.85,-1027.71 56.9,-740.52 56.07,-655.85"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="59.57,-655.97 56.05,-645.98 52.57,-655.99 59.57,-655.97"/>
+</g>
+<!-- sourcefile~nafpack_matrix_decomposition.f90&#45;&gt;sourcefile~nafpack_constant.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge48" class="edge">
+<title>sourcefile~nafpack_matrix_decomposition.f90&#45;&gt;sourcefile~nafpack_constant.f90</title>
+<path fill="none" stroke="#ff7100" stroke-dasharray="5,2" d="M470.71,-951.54C443.44,-941.61 409.42,-925.18 387.54,-900.13 355.36,-863.3 373.85,-839.66 351.54,-796.13 327.45,-749.14 289.69,-700.04 267.65,-673.05"/>
+<polygon fill="#ff7100" stroke="#ff7100" points="270.59,-671.11 261.52,-665.63 265.19,-675.57 270.59,-671.11"/>
+</g>
+<!-- sourcefile~nafpack_matrix_decomposition.f90&#45;&gt;sourcefile~nafpack_matricielle.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge77" class="edge">
+<title>sourcefile~nafpack_matrix_decomposition.f90&#45;&gt;sourcefile~nafpack_matricielle.f90</title>
+<path fill="none" stroke="#0071ff" stroke-dasharray="5,2" d="M442.69,-951.53C424.56,-947.76 405.22,-943.26 387.54,-938.13 353.93,-928.4 316.88,-914.17 289.71,-903.06"/>
+<polygon fill="#0071ff" stroke="#0071ff" points="291.06,-899.83 280.48,-899.25 288.38,-906.3 291.06,-899.83"/>
+</g>
+<!-- sourcefile~nafpack_matrix_market.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node20" class="node">
+<title>sourcefile~nafpack_matrix_market.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node20"><a xlink:href="../sourcefile/nafpack_matrix_market.f90.html" xlink:title="NAFPack_matrix_market.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="329.42,-189.27 168.64,-189.27 168.64,-165 329.42,-165 329.42,-189.27"/>
+<text xml:space="preserve" text-anchor="middle" x="249.03" y="-173.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_matrix_market.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_matrix_market.f90&#45;&gt;sourcefile~nafpack_kinds.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge19" class="edge">
+<title>sourcefile~nafpack_matrix_market.f90&#45;&gt;sourcefile~nafpack_kinds.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M168.35,-188.01C160.21,-191.77 152.69,-196.7 146.52,-203.13 89.68,-262.49 64.51,-526.97 58.02,-608.28"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="54.54,-607.94 57.26,-618.18 61.52,-608.48 54.54,-607.94"/>
+</g>
+<!-- sourcefile~nafpack_matrix_properties.f90&#45;&gt;sourcefile~nafpack_kinds.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge20" class="edge">
+<title>sourcefile~nafpack_matrix_properties.f90&#45;&gt;sourcefile~nafpack_kinds.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M936.54,-888.56C911.65,-879.43 876.19,-867.58 844.08,-861.13 584.26,-809.02 502.38,-891.02 250.03,-810.13"/>
+</g>
+<!-- sourcefile~nafpack_matrix_properties.f90&#45;&gt;sourcefile~nafpack_constant.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge49" class="edge">
+<title>sourcefile~nafpack_matrix_properties.f90&#45;&gt;sourcefile~nafpack_constant.f90</title>
+<path fill="none" stroke="#ff7100" stroke-dasharray="5,2" d="M948.27,-888.68C923.68,-873.89 881.2,-848.64 844.08,-828.13 771.6,-788.1 736.72,-801.32 678.81,-742.13 653.51,-716.28 672.02,-690.47 642.81,-669.13 596.85,-635.57 571.48,-663.55 516.18,-650.13"/>
+</g>
+<!-- sourcefile~nafpack_matrix_properties.f90&#45;&gt;sourcefile~nafpack_eigen.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge52" class="edge">
+<title>sourcefile~nafpack_matrix_properties.f90&#45;&gt;sourcefile~nafpack_eigen.f90</title>
+<path fill="none" stroke="#ffe200" stroke-dasharray="5,2" d="M881.31,-893.08C863.9,-891.47 845.89,-889.82 829.3,-888.29"/>
+<polygon fill="#ffe200" stroke="#ffe200" points="829.87,-884.83 819.59,-887.4 829.22,-891.8 829.87,-884.83"/>
+</g>
+<!-- sourcefile~nafpack_matrix_properties.f90&#45;&gt;sourcefile~nafpack_matricielle.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge78" class="edge">
+<title>sourcefile~nafpack_matrix_properties.f90&#45;&gt;sourcefile~nafpack_matricielle.f90</title>
+<path fill="none" stroke="#0071ff" stroke-dasharray="5,2" d="M881.11,-903.94C767.22,-906.9 562.36,-909.91 387.54,-900.13 369.09,-899.1 349.29,-897.42 330.63,-895.58"/>
+<polygon fill="#0071ff" stroke="#0071ff" points="330.99,-892.1 320.69,-894.57 330.28,-899.07 330.99,-892.1"/>
+</g>
+<!-- sourcefile~nafpack_matrix_tools.f90&#45;&gt;sourcefile~nafpack_kinds.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge21" class="edge">
+<title>sourcefile~nafpack_matrix_tools.f90&#45;&gt;sourcefile~nafpack_kinds.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M450.81,-782.74C378.8,-796.6 268.77,-816.14 250.03,-810.13"/>
+</g>
+<!-- sourcefile~nafpack_matrix_tools.f90&#45;&gt;sourcefile~nafpack_matricielle.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge79" class="edge">
+<title>sourcefile~nafpack_matrix_tools.f90&#45;&gt;sourcefile~nafpack_matricielle.f90</title>
+<path fill="none" stroke="#0071ff" stroke-dasharray="5,2" d="M485.4,-782.77C437.87,-803.65 342.87,-845.37 289.23,-868.92"/>
+<polygon fill="#0071ff" stroke="#0071ff" points="287.9,-865.68 280.15,-872.91 290.71,-872.09 287.9,-865.68"/>
+</g>
+<!-- sourcefile~nafpack_memory_management.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node23" class="node">
+<title>sourcefile~nafpack_memory_management.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node23"><a xlink:href="../sourcefile/nafpack_memory_management.f90.html" xlink:title="NAFPack_memory_management.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="351.54,-87.27 146.52,-87.27 146.52,-63 351.54,-63 351.54,-87.27"/>
+<text xml:space="preserve" text-anchor="middle" x="249.03" y="-71.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_memory_management.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_memory_management.f90&#45;&gt;sourcefile~nafpack_kinds.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge22" class="edge">
+<title>sourcefile~nafpack_memory_management.f90&#45;&gt;sourcefile~nafpack_kinds.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M223.77,-87.73C200.14,-101.32 165.14,-125.24 146.52,-156.13 99.29,-234.5 67.15,-523.47 58.56,-608.47"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="55.1,-607.88 57.59,-618.18 62.07,-608.58 55.1,-607.88"/>
+</g>
+<!-- sourcefile~nafpack_meshgrid.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node24" class="node">
+<title>sourcefile~nafpack_meshgrid.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node24"><a xlink:href="../sourcefile/nafpack_meshgrid.f90.html" xlink:title="NAFPack_meshgrid.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1036.35,-763.27 903.33,-763.27 903.33,-739 1036.35,-739 1036.35,-763.27"/>
+<text xml:space="preserve" text-anchor="middle" x="969.84" y="-747.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_meshgrid.f90&#45;&gt;sourcefile~nafpack_kinds.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge23" class="edge">
+<title>sourcefile~nafpack_meshgrid.f90&#45;&gt;sourcefile~nafpack_kinds.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M941.67,-738.62C886.64,-713.94 757.52,-659.39 642.81,-636.13 471.4,-601.38 423.62,-590.79 250.03,-612.13"/>
+</g>
+<!-- sourcefile~nafpack_meshgrid.f90&#45;&gt;sourcefile~nafpack_loop_method.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge71" class="edge">
+<title>sourcefile~nafpack_meshgrid.f90&#45;&gt;sourcefile~nafpack_loop_method.f90</title>
+<path fill="none" stroke="#00e2ff" stroke-dasharray="5,2" d="M958.89,-738.84C926.13,-698.37 821.42,-569 779.77,-517.54"/>
+<polygon fill="#00e2ff" stroke="#00e2ff" points="782.51,-515.36 773.49,-509.79 777.06,-519.76 782.51,-515.36"/>
+</g>
+<!-- sourcefile~nafpack_plan_type.f90&#45;&gt;sourcefile~nafpack_kinds.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge24" class="edge">
+<title>sourcefile~nafpack_plan_type.f90&#45;&gt;sourcefile~nafpack_kinds.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M238.52,-392.63C207.85,-432.94 111.28,-559.83 72.56,-610.71"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="70.01,-608.28 66.74,-618.36 75.58,-612.52 70.01,-608.28"/>
+</g>
+<!-- sourcefile~nafpack_preconditioners.f90&#45;&gt;sourcefile~nafpack_kinds.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge25" class="edge">
+<title>sourcefile~nafpack_preconditioners.f90&#45;&gt;sourcefile~nafpack_kinds.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M743.45,-1012.62C726.64,-1025.17 700.37,-1045.29 678.81,-1064.13 662.01,-1078.82 662.8,-1089.23 642.81,-1099.13 591.82,-1124.41 573.08,-1117.26 516.18,-1118.13"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M514.18,-1118.13C455.48,-1119.04 302.19,-1145.06 250.03,-1118.13"/>
+</g>
+<!-- sourcefile~nafpack_preconditioners.f90&#45;&gt;sourcefile~nafpack_constant.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge50" class="edge">
+<title>sourcefile~nafpack_preconditioners.f90&#45;&gt;sourcefile~nafpack_constant.f90</title>
+<path fill="none" stroke="#ff7100" stroke-dasharray="5,2" d="M745.88,-987.68C727.03,-970.66 694.73,-938.21 678.81,-903.13 635.32,-807.32 717.35,-743.4 642.81,-669.13 602.49,-628.97 571.48,-663.55 516.18,-650.13"/>
+</g>
+<!-- sourcefile~nafpack_preconditioners.f90&#45;&gt;sourcefile~nafpack_matricielle.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge80" class="edge">
+<title>sourcefile~nafpack_preconditioners.f90&#45;&gt;sourcefile~nafpack_matricielle.f90</title>
+<path fill="none" stroke="#0071ff" stroke-dasharray="5,2" d="M678.68,-1010.08C601.42,-1016.44 483.4,-1018.19 387.54,-985.13 340.03,-968.75 294.68,-930.14 269.78,-906.27"/>
+<polygon fill="#0071ff" stroke="#0071ff" points="272.52,-904.06 262.93,-899.56 267.62,-909.06 272.52,-904.06"/>
+</g>
+<!-- sourcefile~nafpack_preconditioners.f90&#45;&gt;sourcefile~nafpack_matrix_decomposition.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge85" class="edge">
+<title>sourcefile~nafpack_preconditioners.f90&#45;&gt;sourcefile~nafpack_matrix_decomposition.f90</title>
+<path fill="none" stroke="#0038ff" stroke-dasharray="5,2" d="M678.43,-988.05C657.42,-984.95 634.63,-981.59 612.95,-978.4"/>
+<polygon fill="#0038ff" stroke="#0038ff" points="613.64,-974.96 603.23,-976.97 612.61,-981.89 613.64,-974.96"/>
+</g>
+<!-- sourcefile~nafpack_terminal.f90&#45;&gt;sourcefile~nafpack_kinds.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge26" class="edge">
+<title>sourcefile~nafpack_terminal.f90&#45;&gt;sourcefile~nafpack_kinds.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M720.55,-1185.54C707.26,-1181.31 692.39,-1176.55 678.81,-1172.13 606.38,-1148.58 592.33,-1116.96 516.18,-1118.13"/>
+</g>
+<!-- sourcefile~nafpack_terminal.f90&#45;&gt;sourcefile~nafpack_ansi.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge31" class="edge">
+<title>sourcefile~nafpack_terminal.f90&#45;&gt;sourcefile~nafpack_ansi.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M697.22,-1203.57C661.38,-1206.65 616.63,-1210.5 580.6,-1213.6"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="580.39,-1210.1 570.73,-1214.44 580.99,-1217.08 580.39,-1210.1"/>
+</g>
+<!-- sourcefile~nafpack_utils.f90&#45;&gt;sourcefile~nafpack_kinds.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge27" class="edge">
+<title>sourcefile~nafpack_utils.f90&#45;&gt;sourcefile~nafpack_kinds.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M499.28,-285.5C457.14,-251.35 334.59,-163.29 250.03,-217.13"/>
+</g>
+<!-- sourcefile~nafpack_utils.f90&#45;&gt;sourcefile~nafpack_implementation_type.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge60" class="edge">
+<title>sourcefile~nafpack_utils.f90&#45;&gt;sourcefile~nafpack_implementation_type.f90</title>
+<path fill="none" stroke="#71ff00" stroke-dasharray="5,2" d="M462.62,-305.94C429.14,-311.01 384.49,-317.77 344.76,-323.79"/>
+<polygon fill="#71ff00" stroke="#71ff00" points="344.28,-320.32 334.92,-325.28 345.33,-327.24 344.28,-320.32"/>
+</g>
+<!-- sourcefile~nafpack_utils.f90&#45;&gt;sourcefile~nafpack_plan_type.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge100" class="edge">
+<title>sourcefile~nafpack_utils.f90&#45;&gt;sourcefile~nafpack_plan_type.f90</title>
+<path fill="none" stroke="#ff00e2" stroke-dasharray="5,2" d="M484.96,-310.66C452.76,-324.1 399.2,-345.36 351.54,-359.13 343.87,-361.35 335.82,-363.43 327.74,-365.35"/>
+<polygon fill="#ff00e2" stroke="#ff00e2" points="327.18,-361.89 318.21,-367.54 328.74,-368.71 327.18,-361.89"/>
+</g>
+<!-- sourcefile~nafpack_ansi_ascii.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node29" class="node">
+<title>sourcefile~nafpack_ansi_ascii.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node29"><a xlink:href="../sourcefile/nafpack_ansi_ascii.f90.html" xlink:title="NAFPack_ANSI_ASCII.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="831.71,-1252.27 691.19,-1252.27 691.19,-1228 831.71,-1228 831.71,-1252.27"/>
+<text xml:space="preserve" text-anchor="middle" x="761.45" y="-1236.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_ANSI_ASCII.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_ansi_ascii.f90&#45;&gt;sourcefile~nafpack_ansi.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge28" class="edge">
+<title>sourcefile~nafpack_ansi_ascii.f90&#45;&gt;sourcefile~nafpack_ansi.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M690.77,-1234.15C656.06,-1231.16 614.36,-1227.58 580.43,-1224.66"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="581.01,-1221.2 570.74,-1223.83 580.41,-1228.17 581.01,-1221.2"/>
+</g>
+<!-- sourcefile~nafpack_ansi_ucs4.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node30" class="node">
+<title>sourcefile~nafpack_ansi_ucs4.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node30"><a xlink:href="../sourcefile/nafpack_ansi_ucs4.f90.html" xlink:title="NAFPack_ANSI_ucs4.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="830.21,-1294.27 692.69,-1294.27 692.69,-1270 830.21,-1270 830.21,-1294.27"/>
+<text xml:space="preserve" text-anchor="middle" x="761.45" y="-1278.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_ANSI_ucs4.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_ansi_ucs4.f90&#45;&gt;sourcefile~nafpack_ansi.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge29" class="edge">
+<title>sourcefile~nafpack_ansi_ucs4.f90&#45;&gt;sourcefile~nafpack_ansi.f90</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M711.66,-1269.59C700.85,-1266.81 689.44,-1263.87 678.81,-1261.13 644.73,-1252.35 606.64,-1242.52 575.89,-1234.57"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="576.94,-1231.23 566.39,-1232.11 575.19,-1238.01 576.94,-1231.23"/>
+</g>
+<!-- sourcefile~nafpack_butterfly_dft.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node31" class="node">
+<title>sourcefile~nafpack_butterfly_dft.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node31"><a xlink:href="../sourcefile/nafpack_butterfly_dft.f90.html" xlink:title="NAFPack_butterfly_dft.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1272.12,-582.27 1124.85,-582.27 1124.85,-558 1272.12,-558 1272.12,-582.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1198.49" y="-566.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_butterfly_dft.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_butterfly_dft.f90&#45;&gt;sourcefile~nafpack_butterfly.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge32" class="edge">
+<title>sourcefile~nafpack_butterfly_dft.f90&#45;&gt;sourcefile~nafpack_butterfly.f90</title>
+<path fill="none" stroke="#ff3800" stroke-dasharray="5,2" d="M1127.14,-557.54C1116.48,-555.09 1105.69,-552.28 1095.6,-549.13 1064.68,-539.49 1030.95,-524.89 1006.36,-513.46"/>
+<polygon fill="#ff3800" stroke="#ff3800" points="1007.99,-510.36 997.46,-509.26 1005.01,-516.69 1007.99,-510.36"/>
+</g>
+<!-- sourcefile~nafpack_butterfly_dft.f90&#45;&gt;sourcefile~nafpack_constant.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge40" class="edge">
+<title>sourcefile~nafpack_butterfly_dft.f90&#45;&gt;sourcefile~nafpack_constant.f90</title>
+<path fill="none" stroke="#ff7100" stroke-dasharray="5,2" d="M1134.52,-582.72C1073.22,-594.82 987.01,-611.39 970.84,-612.13"/>
+<path fill="none" stroke="#ff7100" stroke-dasharray="5,2" d="M968.84,-612.13C868,-616.76 614.29,-673.88 516.18,-650.13"/>
+<path fill="none" stroke="#ff7100" stroke-dasharray="5,2" d="M514.18,-650.13C451.89,-634.61 378.74,-636.66 325.24,-641.71"/>
+<polygon fill="#ff7100" stroke="#ff7100" points="324.89,-638.22 315.29,-642.71 325.59,-645.19 324.89,-638.22"/>
+</g>
+<!-- sourcefile~nafpack_butterfly_mixed_radix.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node32" class="node">
+<title>sourcefile~nafpack_butterfly_mixed_radix.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node32"><a xlink:href="../sourcefile/nafpack_butterfly_mixed_radix.f90.html" xlink:title="NAFPack_butterfly_mixed_radix.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1297.62,-540.27 1099.35,-540.27 1099.35,-516 1297.62,-516 1297.62,-540.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1198.49" y="-524.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_butterfly_mixed_radix.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_butterfly_mixed_radix.f90&#45;&gt;sourcefile~nafpack_butterfly.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge33" class="edge">
+<title>sourcefile~nafpack_butterfly_mixed_radix.f90&#45;&gt;sourcefile~nafpack_butterfly.f90</title>
+<path fill="none" stroke="#ff3800" stroke-dasharray="5,2" d="M1108.23,-515.53C1087.22,-512.57 1065.05,-509.44 1044.79,-506.58"/>
+<polygon fill="#ff3800" stroke="#ff3800" points="1045.32,-503.12 1034.93,-505.18 1044.34,-510.05 1045.32,-503.12"/>
+</g>
+<!-- sourcefile~nafpack_butterfly_mixed_radix.f90&#45;&gt;sourcefile~nafpack_constant.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge41" class="edge">
+<title>sourcefile~nafpack_butterfly_mixed_radix.f90&#45;&gt;sourcefile~nafpack_constant.f90</title>
+<path fill="none" stroke="#ff7100" stroke-dasharray="5,2" d="M1098.88,-534.47C911.73,-546.52 522.98,-571.8 516.18,-574.13"/>
+</g>
+<!-- sourcefile~nafpack_butterfly_radix2.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node33" class="node">
+<title>sourcefile~nafpack_butterfly_radix2.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node33"><a xlink:href="../sourcefile/nafpack_butterfly_radix2.f90.html" xlink:title="NAFPack_butterfly_radix2.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1281.87,-498.27 1115.1,-498.27 1115.1,-474 1281.87,-474 1281.87,-498.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1198.49" y="-482.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_butterfly_radix2.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_butterfly_radix2.f90&#45;&gt;sourcefile~nafpack_butterfly.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge34" class="edge">
+<title>sourcefile~nafpack_butterfly_radix2.f90&#45;&gt;sourcefile~nafpack_butterfly.f90</title>
+<path fill="none" stroke="#ff3800" stroke-dasharray="5,2" d="M1114.7,-489.79C1091.76,-490.8 1067.02,-491.89 1044.64,-492.88"/>
+<polygon fill="#ff3800" stroke="#ff3800" points="1044.51,-489.38 1034.68,-493.32 1044.82,-496.37 1044.51,-489.38"/>
+</g>
+<!-- sourcefile~nafpack_butterfly_radix3.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node34" class="node">
+<title>sourcefile~nafpack_butterfly_radix3.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node34"><a xlink:href="../sourcefile/nafpack_butterfly_radix3.f90.html" xlink:title="NAFPack_butterfly_radix3.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1281.87,-666.27 1115.1,-666.27 1115.1,-642 1281.87,-642 1281.87,-666.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1198.49" y="-650.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_butterfly_radix3.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_butterfly_radix3.f90&#45;&gt;sourcefile~nafpack_butterfly.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge35" class="edge">
+<title>sourcefile~nafpack_butterfly_radix3.f90&#45;&gt;sourcefile~nafpack_butterfly.f90</title>
+<path fill="none" stroke="#ff3800" stroke-dasharray="5,2" d="M1114.64,-641.77C1108,-639.38 1101.56,-636.53 1095.6,-633.13 1082.26,-625.54 1019.49,-553.14 988.39,-516.77"/>
+<polygon fill="#ff3800" stroke="#ff3800" points="991.35,-514.85 982.19,-509.52 986.02,-519.4 991.35,-514.85"/>
+</g>
+<!-- sourcefile~nafpack_butterfly_radix3.f90&#45;&gt;sourcefile~nafpack_constant.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge42" class="edge">
+<title>sourcefile~nafpack_butterfly_radix3.f90&#45;&gt;sourcefile~nafpack_constant.f90</title>
+<path fill="none" stroke="#ff7100" stroke-dasharray="5,2" d="M1114.74,-658.49C958.8,-665.9 627.11,-677.64 516.18,-650.13"/>
+</g>
+<!-- sourcefile~nafpack_butterfly_radix4.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node35" class="node">
+<title>sourcefile~nafpack_butterfly_radix4.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node35"><a xlink:href="../sourcefile/nafpack_butterfly_radix4.f90.html" xlink:title="NAFPack_butterfly_radix4.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1281.87,-456.27 1115.1,-456.27 1115.1,-432 1281.87,-432 1281.87,-456.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1198.49" y="-440.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_butterfly_radix4.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_butterfly_radix4.f90&#45;&gt;sourcefile~nafpack_butterfly.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge36" class="edge">
+<title>sourcefile~nafpack_butterfly_radix4.f90&#45;&gt;sourcefile~nafpack_butterfly.f90</title>
+<path fill="none" stroke="#ff3800" stroke-dasharray="5,2" d="M1134.35,-456.73C1121.51,-459.41 1108.1,-462.29 1095.6,-465.13 1074.39,-469.95 1051.25,-475.6 1030.72,-480.74"/>
+<polygon fill="#ff3800" stroke="#ff3800" points="1029.92,-477.33 1021.08,-483.16 1031.63,-484.12 1029.92,-477.33"/>
+</g>
+<!-- sourcefile~nafpack_butterfly_radix5.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node36" class="node">
+<title>sourcefile~nafpack_butterfly_radix5.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node36"><a xlink:href="../sourcefile/nafpack_butterfly_radix5.f90.html" xlink:title="NAFPack_butterfly_radix5.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1281.87,-414.27 1115.1,-414.27 1115.1,-390 1281.87,-390 1281.87,-414.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1198.49" y="-398.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_butterfly_radix5.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_butterfly_radix5.f90&#45;&gt;sourcefile~nafpack_butterfly.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge37" class="edge">
+<title>sourcefile~nafpack_butterfly_radix5.f90&#45;&gt;sourcefile~nafpack_butterfly.f90</title>
+<path fill="none" stroke="#ff3800" stroke-dasharray="5,2" d="M1122.12,-414.76C1113.06,-417.13 1104.03,-419.9 1095.6,-423.13 1059.56,-436.96 1021.79,-460.52 997.38,-477.13"/>
+<polygon fill="#ff3800" stroke="#ff3800" points="995.57,-474.13 989.34,-482.7 999.55,-479.89 995.57,-474.13"/>
+</g>
+<!-- sourcefile~nafpack_butterfly_split_radix.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node37" class="node">
+<title>sourcefile~nafpack_butterfly_split_radix.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node37"><a xlink:href="../sourcefile/nafpack_butterfly_split_radix.f90.html" xlink:title="NAFPack_butterfly_split_radix.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1292,-624.27 1104.98,-624.27 1104.98,-600 1292,-600 1292,-624.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1198.49" y="-608.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_butterfly_split_radix.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_butterfly_split_radix.f90&#45;&gt;sourcefile~nafpack_butterfly.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge38" class="edge">
+<title>sourcefile~nafpack_butterfly_split_radix.f90&#45;&gt;sourcefile~nafpack_butterfly.f90</title>
+<path fill="none" stroke="#ff3800" stroke-dasharray="5,2" d="M1118.48,-599.55C1110.59,-597.21 1102.83,-594.43 1095.6,-591.13 1054.51,-572.44 1014.31,-538.11 991.08,-516.24"/>
+<polygon fill="#ff3800" stroke="#ff3800" points="993.78,-513.97 984.14,-509.57 988.93,-519.02 993.78,-513.97"/>
+</g>
+<!-- sourcefile~nafpack_butterfly_split_radix.f90&#45;&gt;sourcefile~nafpack_constant.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge43" class="edge">
+<title>sourcefile~nafpack_butterfly_split_radix.f90&#45;&gt;sourcefile~nafpack_constant.f90</title>
+<path fill="none" stroke="#ff7100" stroke-dasharray="5,2" d="M1104.54,-610.22C1063.53,-609.87 1014.77,-610.12 970.84,-612.13"/>
+</g>
+<!-- sourcefile~nafpack_fourier_transform_dft.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node38" class="node">
+<title>sourcefile~nafpack_fourier_transform_dft.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node38"><a xlink:href="../sourcefile/nafpack_fourier_transform_dft.f90.html" xlink:title="NAFPack_Fourier_Transform_dft.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1298,-288.27 1098.98,-288.27 1098.98,-264 1298,-264 1298,-288.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1198.49" y="-272.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Fourier_Transform_dft.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_fourier_transform_dft.f90&#45;&gt;sourcefile~nafpack_fourier_transform.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge53" class="edge">
+<title>sourcefile~nafpack_fourier_transform_dft.f90&#45;&gt;sourcefile~nafpack_fourier_transform.f90</title>
+<path fill="none" stroke="#aaff00" stroke-dasharray="5,2" d="M1098.73,-266.99C1089.68,-266.15 1080.49,-265.29 1071.42,-264.45"/>
+<polygon fill="#aaff00" stroke="#aaff00" points="1071.79,-260.97 1061.51,-263.54 1071.14,-267.94 1071.79,-260.97"/>
+</g>
+<!-- sourcefile~nafpack_fourier_transform_dft2.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node39" class="node">
+<title>sourcefile~nafpack_fourier_transform_dft2.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node39"><a xlink:href="../sourcefile/nafpack_fourier_transform_dft2.f90.html" xlink:title="NAFPack_Fourier_Transform_dft2.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1301.37,-246.27 1095.6,-246.27 1095.6,-222 1301.37,-222 1301.37,-246.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1198.49" y="-230.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Fourier_Transform_dft2.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_fourier_transform_dft2.f90&#45;&gt;sourcefile~nafpack_fourier_transform.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge54" class="edge">
+<title>sourcefile~nafpack_fourier_transform_dft2.f90&#45;&gt;sourcefile~nafpack_fourier_transform.f90</title>
+<path fill="none" stroke="#aaff00" stroke-dasharray="5,2" d="M1095.1,-243.62C1087.22,-244.35 1079.27,-245.09 1071.4,-245.82"/>
+<polygon fill="#aaff00" stroke="#aaff00" points="1071.09,-242.33 1061.45,-246.74 1071.73,-249.3 1071.09,-242.33"/>
+</g>
+<!-- sourcefile~nafpack_fourier_transform_dft3.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node40" class="node">
+<title>sourcefile~nafpack_fourier_transform_dft3.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node40"><a xlink:href="../sourcefile/nafpack_fourier_transform_dft3.f90.html" xlink:title="NAFPack_Fourier_Transform_dft3.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1301.37,-204.27 1095.6,-204.27 1095.6,-180 1301.37,-180 1301.37,-204.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1198.49" y="-188.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Fourier_Transform_dft3.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_fourier_transform_dft3.f90&#45;&gt;sourcefile~nafpack_fourier_transform.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge55" class="edge">
+<title>sourcefile~nafpack_fourier_transform_dft3.f90&#45;&gt;sourcefile~nafpack_fourier_transform.f90</title>
+<path fill="none" stroke="#aaff00" stroke-dasharray="5,2" d="M1130.35,-204.76C1118.7,-207.3 1106.76,-210.12 1095.6,-213.13 1068.65,-220.42 1039.01,-230.32 1015.39,-238.67"/>
+<polygon fill="#aaff00" stroke="#aaff00" points="1014.32,-235.34 1006.08,-242 1016.67,-241.93 1014.32,-235.34"/>
+</g>
+<!-- sourcefile~nafpack_linalg.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node41" class="node">
+<title>sourcefile~nafpack_linalg.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node41"><a xlink:href="../sourcefile/nafpack_linalg.f90.html" xlink:title="NAFPack_linalg.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1521.39,-1032.27 1409.37,-1032.27 1409.37,-1008 1521.39,-1008 1521.39,-1032.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1465.38" y="-1016.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_linalg.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_linalg.f90&#45;&gt;sourcefile~nafpack_direct_methode.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge51" class="edge">
+<title>sourcefile~nafpack_linalg.f90&#45;&gt;sourcefile~nafpack_direct_methode.f90</title>
+<path fill="none" stroke="#ffaa00" stroke-dasharray="5,2" d="M1413.93,-1007.57C1370.53,-996.75 1307.75,-981.11 1261.33,-969.54"/>
+<polygon fill="#ffaa00" stroke="#ffaa00" points="1262.21,-966.16 1251.66,-967.14 1260.52,-972.95 1262.21,-966.16"/>
+</g>
+<!-- sourcefile~nafpack_linalg.f90&#45;&gt;sourcefile~nafpack_iterative_methods.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge62" class="edge">
+<title>sourcefile~nafpack_linalg.f90&#45;&gt;sourcefile~nafpack_iterative_methods.f90</title>
+<path fill="none" stroke="#00ff00" stroke-dasharray="5,2" d="M1409.17,-1024.3C1377.5,-1026.69 1336.77,-1029.77 1299.64,-1032.57"/>
+<polygon fill="#00ff00" stroke="#00ff00" points="1299.46,-1029.08 1289.76,-1033.32 1299.99,-1036.06 1299.46,-1029.08"/>
+</g>
+<!-- sourcefile~nafpack_linalg.f90&#45;&gt;sourcefile~nafpack_iterative_params.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge64" class="edge">
+<title>sourcefile~nafpack_linalg.f90&#45;&gt;sourcefile~nafpack_iterative_params.f90</title>
+<path fill="none" stroke="#00ff38" stroke-dasharray="5,2" d="M1197.49,-1000.13C1138.73,-1000.5 1072.7,-1013.64 1027.14,-1024.76"/>
+<polygon fill="#00ff38" stroke="#00ff38" points="1026.33,-1021.36 1017.48,-1027.17 1028.03,-1028.15 1026.33,-1021.36"/>
+</g>
+<!-- sourcefile~nafpack_linalg.f90&#45;&gt;sourcefile~nafpack_iterative_types.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge67" class="edge">
+<title>sourcefile~nafpack_linalg.f90&#45;&gt;sourcefile~nafpack_iterative_types.f90</title>
+<path fill="none" stroke="#00ff71" stroke-dasharray="5,2" d="M1420.05,-1032.7C1387.44,-1041.6 1341.91,-1053.29 1301.37,-1061.13 1145.62,-1091.26 961.26,-1106.43 853.53,-1113.27"/>
+<polygon fill="#00ff71" stroke="#00ff71" points="853.34,-1109.78 843.58,-1113.89 853.77,-1116.76 853.34,-1109.78"/>
+</g>
+<!-- sourcefile~nafpack_linalg.f90&#45;&gt;sourcefile~nafpack_preconditioners.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge103" class="edge">
+<title>sourcefile~nafpack_linalg.f90&#45;&gt;sourcefile~nafpack_preconditioners.f90</title>
+<path fill="none" stroke="#ff00aa" stroke-dasharray="5,2" d="M1408.91,-1013.3C1355.38,-1007.33 1272.01,-999.68 1199.49,-1000.13"/>
+<path fill="none" stroke="#ff00aa" stroke-dasharray="5,2" d="M1197.49,-1000.13C1096.76,-1000.76 1071.48,-1004.53 970.84,-1000.13"/>
+<path fill="none" stroke="#ff00aa" stroke-dasharray="5,2" d="M968.84,-1000.13C931.85,-998.52 891.1,-998.21 855.65,-998.41"/>
+<polygon fill="#ff00aa" stroke="#ff00aa" points="855.83,-994.91 845.85,-998.48 855.88,-1001.91 855.83,-994.91"/>
+</g>
+<!-- sourcefile~nafpack_memory_management_complex.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node42" class="node">
+<title>sourcefile~nafpack_memory_management_complex.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node42"><a xlink:href="../sourcefile/nafpack_memory_management_complex.f90.html" xlink:title="NAFPack_memory_management_complex.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="642.81,-108.27 387.54,-108.27 387.54,-84 642.81,-84 642.81,-108.27"/>
+<text xml:space="preserve" text-anchor="middle" x="515.18" y="-92.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_memory_management_complex.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_memory_management_complex.f90&#45;&gt;sourcefile~nafpack_memory_management.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge89" class="edge">
+<title>sourcefile~nafpack_memory_management_complex.f90&#45;&gt;sourcefile~nafpack_memory_management.f90</title>
+<path fill="none" stroke="#aa00ff" stroke-dasharray="5,2" d="M387.13,-86.03C379.05,-85.39 370.94,-84.75 362.92,-84.11"/>
+<polygon fill="#aa00ff" stroke="#aa00ff" points="363.42,-80.64 353.18,-83.34 362.87,-87.62 363.42,-80.64"/>
+</g>
+<!-- sourcefile~nafpack_memory_management_integer.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node43" class="node">
+<title>sourcefile~nafpack_memory_management_integer.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node43"><a xlink:href="../sourcefile/nafpack_memory_management_integer.f90.html" xlink:title="NAFPack_memory_management_integer.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="638.69,-66.27 391.67,-66.27 391.67,-42 638.69,-42 638.69,-66.27"/>
+<text xml:space="preserve" text-anchor="middle" x="515.18" y="-50.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_memory_management_integer.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_memory_management_integer.f90&#45;&gt;sourcefile~nafpack_memory_management.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge90" class="edge">
+<title>sourcefile~nafpack_memory_management_integer.f90&#45;&gt;sourcefile~nafpack_memory_management.f90</title>
+<path fill="none" stroke="#aa00ff" stroke-dasharray="5,2" d="M391.38,-63.9C382,-64.64 372.55,-65.39 363.22,-66.14"/>
+<polygon fill="#aa00ff" stroke="#aa00ff" points="363.13,-62.63 353.44,-66.91 363.69,-69.61 363.13,-62.63"/>
+</g>
+<!-- sourcefile~nafpack_memory_management_real.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node44" class="node">
+<title>sourcefile~nafpack_memory_management_real.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node44"><a xlink:href="../sourcefile/nafpack_memory_management_real.f90.html" xlink:title="NAFPack_memory_management_real.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="630.44,-24.27 399.92,-24.27 399.92,0 630.44,0 630.44,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="515.18" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_memory_management_real.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_memory_management_real.f90&#45;&gt;sourcefile~nafpack_memory_management.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge91" class="edge">
+<title>sourcefile~nafpack_memory_management_real.f90&#45;&gt;sourcefile~nafpack_memory_management.f90</title>
+<path fill="none" stroke="#aa00ff" stroke-dasharray="5,2" d="M428.72,-24.72C414.89,-27.21 400.77,-30.03 387.54,-33.13 357.13,-40.27 323.6,-50.46 297.26,-59.02"/>
+<polygon fill="#aa00ff" stroke="#aa00ff" points="296.29,-55.65 287.88,-62.1 298.47,-62.31 296.29,-55.65"/>
+</g>
+<!-- sourcefile~nafpack_meshgrid_complex_2d.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node45" class="node">
+<title>sourcefile~nafpack_meshgrid_complex_2d.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node45"><a xlink:href="../sourcefile/nafpack_meshgrid_complex_2d.f90.html" xlink:title="NAFPack_meshgrid_complex_2D.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1300.25,-834.27 1096.73,-834.27 1096.73,-810 1300.25,-810 1300.25,-834.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1198.49" y="-818.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_complex_2D.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_meshgrid_complex_2d.f90&#45;&gt;sourcefile~nafpack_meshgrid.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge92" class="edge">
+<title>sourcefile~nafpack_meshgrid_complex_2d.f90&#45;&gt;sourcefile~nafpack_meshgrid.f90</title>
+<path fill="none" stroke="#e200ff" stroke-dasharray="5,2" d="M1128.01,-809.54C1117.09,-807.07 1105.98,-804.26 1095.6,-801.13 1065.62,-792.12 1032.81,-778.82 1008.35,-768.21"/>
+<polygon fill="#e200ff" stroke="#e200ff" points="1010.03,-765.12 999.47,-764.3 1007.22,-771.53 1010.03,-765.12"/>
+</g>
+<!-- sourcefile~nafpack_meshgrid_complex_3d.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node46" class="node">
+<title>sourcefile~nafpack_meshgrid_complex_3d.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node46"><a xlink:href="../sourcefile/nafpack_meshgrid_complex_3d.f90.html" xlink:title="NAFPack_meshgrid_complex_3D.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1300.25,-750.27 1096.73,-750.27 1096.73,-726 1300.25,-726 1300.25,-750.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1198.49" y="-734.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_complex_3D.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_meshgrid_complex_3d.f90&#45;&gt;sourcefile~nafpack_meshgrid.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge93" class="edge">
+<title>sourcefile~nafpack_meshgrid_complex_3d.f90&#45;&gt;sourcefile~nafpack_meshgrid.f90</title>
+<path fill="none" stroke="#e200ff" stroke-dasharray="5,2" d="M1096.43,-743.93C1080.09,-744.87 1063.4,-745.83 1047.76,-746.72"/>
+<polygon fill="#e200ff" stroke="#e200ff" points="1047.86,-743.21 1038.08,-747.28 1048.26,-750.2 1047.86,-743.21"/>
+</g>
+<!-- sourcefile~nafpack_meshgrid_integer_2d.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node47" class="node">
+<title>sourcefile~nafpack_meshgrid_integer_2d.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node47"><a xlink:href="../sourcefile/nafpack_meshgrid_integer_2d.f90.html" xlink:title="NAFPack_meshgrid_integer_2D.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1296.87,-792.27 1100.1,-792.27 1100.1,-768 1296.87,-768 1296.87,-792.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1198.49" y="-776.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_integer_2D.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_meshgrid_integer_2d.f90&#45;&gt;sourcefile~nafpack_meshgrid.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge94" class="edge">
+<title>sourcefile~nafpack_meshgrid_integer_2d.f90&#45;&gt;sourcefile~nafpack_meshgrid.f90</title>
+<path fill="none" stroke="#e200ff" stroke-dasharray="5,2" d="M1099.72,-767.63C1082.4,-765.41 1064.57,-763.13 1047.92,-761"/>
+<polygon fill="#e200ff" stroke="#e200ff" points="1048.46,-757.54 1038.1,-759.74 1047.57,-764.48 1048.46,-757.54"/>
+</g>
+<!-- sourcefile~nafpack_meshgrid_integer_3d.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node48" class="node">
+<title>sourcefile~nafpack_meshgrid_integer_3d.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node48"><a xlink:href="../sourcefile/nafpack_meshgrid_integer_3d.f90.html" xlink:title="NAFPack_meshgrid_integer_3D.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1296.87,-918.27 1100.1,-918.27 1100.1,-894 1296.87,-894 1296.87,-918.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1198.49" y="-902.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_integer_3D.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_meshgrid_integer_3d.f90&#45;&gt;sourcefile~nafpack_meshgrid.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge95" class="edge">
+<title>sourcefile~nafpack_meshgrid_integer_3d.f90&#45;&gt;sourcefile~nafpack_meshgrid.f90</title>
+<path fill="none" stroke="#e200ff" stroke-dasharray="5,2" d="M1108.15,-893.64C1103.67,-891.23 1099.45,-888.42 1095.6,-885.13 1061.24,-855.84 1090.69,-822.88 1059.6,-790.13 1050.82,-780.88 1039.45,-773.69 1027.81,-768.15"/>
+<polygon fill="#e200ff" stroke="#e200ff" points="1029.51,-765.08 1018.95,-764.3 1026.72,-771.5 1029.51,-765.08"/>
+</g>
+<!-- sourcefile~nafpack_meshgrid_real_2d.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node49" class="node">
+<title>sourcefile~nafpack_meshgrid_real_2d.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node49"><a xlink:href="../sourcefile/nafpack_meshgrid_real_2d.f90.html" xlink:title="NAFPack_meshgrid_real_2D.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1287.87,-708.27 1109.1,-708.27 1109.1,-684 1287.87,-684 1287.87,-708.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1198.49" y="-692.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_real_2D.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_meshgrid_real_2d.f90&#45;&gt;sourcefile~nafpack_meshgrid.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge96" class="edge">
+<title>sourcefile~nafpack_meshgrid_real_2d.f90&#45;&gt;sourcefile~nafpack_meshgrid.f90</title>
+<path fill="none" stroke="#e200ff" stroke-dasharray="5,2" d="M1133.22,-708.74C1120.71,-711.38 1107.72,-714.24 1095.6,-717.13 1072.54,-722.65 1047.28,-729.4 1025.56,-735.42"/>
+<polygon fill="#e200ff" stroke="#e200ff" points="1024.69,-732.03 1016.01,-738.09 1026.58,-738.77 1024.69,-732.03"/>
+</g>
+<!-- sourcefile~nafpack_meshgrid_real_3d.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node50" class="node">
+<title>sourcefile~nafpack_meshgrid_real_3d.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node50"><a xlink:href="../sourcefile/nafpack_meshgrid_real_3d.f90.html" xlink:title="NAFPack_meshgrid_real_3D.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1287.87,-876.27 1109.1,-876.27 1109.1,-852 1287.87,-852 1287.87,-876.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1198.49" y="-860.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_real_3D.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_meshgrid_real_3d.f90&#45;&gt;sourcefile~nafpack_meshgrid.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge97" class="edge">
+<title>sourcefile~nafpack_meshgrid_real_3d.f90&#45;&gt;sourcefile~nafpack_meshgrid.f90</title>
+<path fill="none" stroke="#e200ff" stroke-dasharray="5,2" d="M1111.27,-851.52C1105.77,-849.16 1100.48,-846.39 1095.6,-843.13 1071.92,-827.32 1081.49,-808.35 1059.6,-790.13 1048.68,-781.04 1035.3,-773.71 1022.29,-767.96"/>
+<polygon fill="#e200ff" stroke="#e200ff" points="1023.95,-764.86 1013.37,-764.26 1021.27,-771.33 1023.95,-764.86"/>
+</g>
+<!-- sourcefile~nafpack_plan_create.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node51" class="node">
+<title>sourcefile~nafpack_plan_create.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node51"><a xlink:href="../sourcefile/nafpack_plan_create.f90.html" xlink:title="NAFPack_plan_create.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1271,-162.27 1125.98,-162.27 1125.98,-138 1271,-138 1271,-162.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1198.49" y="-146.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_plan_create.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_plan_create.f90&#45;&gt;sourcefile~nafpack_fourier_transform.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge56" class="edge">
+<title>sourcefile~nafpack_plan_create.f90&#45;&gt;sourcefile~nafpack_fourier_transform.f90</title>
+<path fill="none" stroke="#aaff00" stroke-dasharray="5,2" d="M1125.71,-161.24C1115.41,-163.89 1105.09,-167.15 1095.6,-171.13 1056.92,-187.39 1017.65,-216.33 993.77,-235.63"/>
+<polygon fill="#aaff00" stroke="#aaff00" points="991.77,-232.74 986.27,-241.79 996.22,-238.14 991.77,-232.74"/>
+</g>
+<!-- sourcefile~nafpack_plan_create.f90&#45;&gt;sourcefile~nafpack_math_utils.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge73" class="edge">
+<title>sourcefile~nafpack_plan_create.f90&#45;&gt;sourcefile~nafpack_math_utils.f90</title>
+<path fill="none" stroke="#00a9ff" stroke-dasharray="5,2" d="M1128.22,-162.74C1083.43,-169.59 1023.82,-176.27 970.84,-174.13"/>
+<path fill="none" stroke="#00a9ff" stroke-dasharray="5,2" d="M968.84,-174.13C908.82,-171.72 900.48,-142.83 844.08,-122.13 834.75,-118.71 824.72,-115.3 815,-112.13"/>
+<polygon fill="#00a9ff" stroke="#00a9ff" points="816.24,-108.86 805.65,-109.13 814.1,-115.52 816.24,-108.86"/>
+</g>
+<!-- sourcefile~nafpack_plan_create.f90&#45;&gt;sourcefile~nafpack_utils.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge106" class="edge">
+<title>sourcefile~nafpack_plan_create.f90&#45;&gt;sourcefile~nafpack_utils.f90</title>
+<path fill="none" stroke="#ff0038" stroke-dasharray="5,2" d="M968.84,-174.13C839.77,-168.94 801.46,-152.58 678.81,-193.13 623.53,-211.42 568.58,-253.04 538.84,-278.04"/>
+<polygon fill="#ff0038" stroke="#ff0038" points="536.57,-275.38 531.25,-284.54 541.12,-280.7 536.57,-275.38"/>
+</g>
+<!-- sourcefile~nafpack_plan_destroy.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node52" class="node">
+<title>sourcefile~nafpack_plan_destroy.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node52"><a xlink:href="../sourcefile/nafpack_plan_destroy.f90.html" xlink:title="NAFPack_plan_destroy.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1272.87,-330.27 1124.1,-330.27 1124.1,-306 1272.87,-306 1272.87,-330.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1198.49" y="-314.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_plan_destroy.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_plan_destroy.f90&#45;&gt;sourcefile~nafpack_fourier_transform.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge57" class="edge">
+<title>sourcefile~nafpack_plan_destroy.f90&#45;&gt;sourcefile~nafpack_fourier_transform.f90</title>
+<path fill="none" stroke="#aaff00" stroke-dasharray="5,2" d="M1130.35,-305.51C1118.7,-302.97 1106.76,-300.15 1095.6,-297.13 1068.65,-289.85 1039.01,-279.95 1015.39,-271.6"/>
+<polygon fill="#aaff00" stroke="#aaff00" points="1016.67,-268.34 1006.08,-268.27 1014.32,-274.93 1016.67,-268.34"/>
+</g>
+<!-- sourcefile~nafpack_plan_execute.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node53" class="node">
+<title>sourcefile~nafpack_plan_execute.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node53"><a xlink:href="../sourcefile/nafpack_plan_execute.f90.html" xlink:title="NAFPack_plan_execute.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1275.12,-372.27 1121.85,-372.27 1121.85,-348 1275.12,-348 1275.12,-372.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1198.49" y="-356.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_plan_execute.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_plan_execute.f90&#45;&gt;sourcefile~nafpack_butterfly.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge39" class="edge">
+<title>sourcefile~nafpack_plan_execute.f90&#45;&gt;sourcefile~nafpack_butterfly.f90</title>
+<path fill="none" stroke="#ff3800" stroke-dasharray="5,2" d="M1121.47,-369.09C1112.33,-372.07 1103.46,-375.99 1095.6,-381.13 1072.39,-396.33 1079.12,-412.42 1059.6,-432.13 1042.23,-449.68 1019.63,-465.9 1001.58,-477.62"/>
+<polygon fill="#ff3800" stroke="#ff3800" points="999.93,-474.53 993.36,-482.84 1003.68,-480.44 999.93,-474.53"/>
+</g>
+<!-- sourcefile~nafpack_plan_execute.f90&#45;&gt;sourcefile~nafpack_fourier_transform.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge58" class="edge">
+<title>sourcefile~nafpack_plan_execute.f90&#45;&gt;sourcefile~nafpack_fourier_transform.f90</title>
+<path fill="none" stroke="#aaff00" stroke-dasharray="5,2" d="M1121.37,-347.87C1112.53,-345.45 1103.76,-342.56 1095.6,-339.13 1056.92,-322.88 1017.65,-293.94 993.77,-274.64"/>
+<polygon fill="#aaff00" stroke="#aaff00" points="996.22,-272.13 986.27,-268.48 991.77,-277.53 996.22,-272.13"/>
+</g>
+<!-- sourcefile~nafpack_plan_execute.f90&#45;&gt;sourcefile~nafpack_utils.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge107" class="edge">
+<title>sourcefile~nafpack_plan_execute.f90&#45;&gt;sourcefile~nafpack_utils.f90</title>
+<path fill="none" stroke="#ff0038" stroke-dasharray="5,2" d="M1121.65,-372.26C997.95,-390.84 758.51,-421.48 678.81,-394.13 659.64,-387.56 659.8,-377.19 642.81,-366.13 613.58,-347.11 578.53,-328.6 552.72,-315.7"/>
+<polygon fill="#ff0038" stroke="#ff0038" points="554.49,-312.67 543.97,-311.37 551.38,-318.95 554.49,-312.67"/>
+</g>
+<!-- sourcefile~nafpack_utils_complex.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node54" class="node">
+<title>sourcefile~nafpack_utils_complex.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node54"><a xlink:href="../sourcefile/nafpack_utils_complex.f90.html" xlink:title="NAFPack_utils_complex.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="838.83,-268.27 684.06,-268.27 684.06,-244 838.83,-244 838.83,-268.27"/>
+<text xml:space="preserve" text-anchor="middle" x="761.45" y="-252.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_utils_complex.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_utils_complex.f90&#45;&gt;sourcefile~nafpack_utils.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge108" class="edge">
+<title>sourcefile~nafpack_utils_complex.f90&#45;&gt;sourcefile~nafpack_utils.f90</title>
+<path fill="none" stroke="#ff0038" stroke-dasharray="5,2" d="M687.16,-268.74C652.71,-274.66 612.06,-281.65 579.04,-287.33"/>
+<polygon fill="#ff0038" stroke="#ff0038" points="578.46,-283.87 569.19,-289.02 579.64,-290.77 578.46,-283.87"/>
+</g>
+<!-- sourcefile~nafpack_utils_integer.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node55" class="node">
+<title>sourcefile~nafpack_utils_integer.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node55"><a xlink:href="../sourcefile/nafpack_utils_integer.f90.html" xlink:title="NAFPack_utils_integer.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="834.71,-226.27 688.19,-226.27 688.19,-202 834.71,-202 834.71,-226.27"/>
+<text xml:space="preserve" text-anchor="middle" x="761.45" y="-210.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_utils_integer.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_utils_integer.f90&#45;&gt;sourcefile~nafpack_utils.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge109" class="edge">
+<title>sourcefile~nafpack_utils_integer.f90&#45;&gt;sourcefile~nafpack_utils.f90</title>
+<path fill="none" stroke="#ff0038" stroke-dasharray="5,2" d="M707.92,-226.67C698.19,-229.27 688.15,-232.14 678.81,-235.13 636.2,-248.82 588.58,-267.7 555.94,-281.22"/>
+<polygon fill="#ff0038" stroke="#ff0038" points="554.76,-277.92 546.87,-285 557.45,-284.38 554.76,-277.92"/>
+</g>
+<!-- sourcefile~nafpack_utils_real.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node56" class="node">
+<title>sourcefile~nafpack_utils_real.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node56"><a xlink:href="../sourcefile/nafpack_utils_real.f90.html" xlink:title="NAFPack_utils_real.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="826.46,-352.27 696.44,-352.27 696.44,-328 826.46,-328 826.46,-352.27"/>
+<text xml:space="preserve" text-anchor="middle" x="761.45" y="-336.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_utils_real.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_utils_real.f90&#45;&gt;sourcefile~nafpack_utils.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge110" class="edge">
+<title>sourcefile~nafpack_utils_real.f90&#45;&gt;sourcefile~nafpack_utils.f90</title>
+<path fill="none" stroke="#ff0038" stroke-dasharray="5,2" d="M695.95,-329.05C659.85,-322.84 615.04,-315.13 579.19,-308.97"/>
+<polygon fill="#ff0038" stroke="#ff0038" points="579.83,-305.53 569.38,-307.28 578.64,-312.43 579.83,-305.53"/>
+</g>
+<!-- sourcefile~nafpack_utils_type.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node57" class="node">
+<title>sourcefile~nafpack_utils_type.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node57"><a xlink:href="../sourcefile/nafpack_utils_type.f90.html" xlink:title="NAFPack_utils_type.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="827.96,-310.27 694.94,-310.27 694.94,-286 827.96,-286 827.96,-310.27"/>
+<text xml:space="preserve" text-anchor="middle" x="761.45" y="-294.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_utils_type.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_utils_type.f90&#45;&gt;sourcefile~nafpack_utils.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge111" class="edge">
+<title>sourcefile~nafpack_utils_type.f90&#45;&gt;sourcefile~nafpack_utils.f90</title>
+<path fill="none" stroke="#ff0038" stroke-dasharray="5,2" d="M694.66,-298.13C658.71,-298.13 614.4,-298.13 578.93,-298.13"/>
+<polygon fill="#ff0038" stroke="#ff0038" points="579.26,-294.64 569.26,-298.14 579.26,-301.64 579.26,-294.64"/>
+</g>
+<!-- sourcefile~nafpack_fourier_transform_dft_compute.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node58" class="node">
+<title>sourcefile~nafpack_fourier_transform_dft_compute.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node58"><a xlink:href="../sourcefile/nafpack_fourier_transform_dft_compute.f90.html" xlink:title="NAFPack_Fourier_Transform_dft_compute.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1591.14,-288.27 1339.62,-288.27 1339.62,-264 1591.14,-264 1591.14,-288.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1465.38" y="-272.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Fourier_Transform_dft_compute.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_fourier_transform_dft_compute.f90&#45;&gt;sourcefile~nafpack_fourier_transform_dft.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge112" class="edge">
+<title>sourcefile~nafpack_fourier_transform_dft_compute.f90&#45;&gt;sourcefile~nafpack_fourier_transform_dft.f90</title>
+<path fill="none" stroke="#23ff00" stroke-dasharray="5,2" d="M1339.3,-276.13C1329.38,-276.13 1319.41,-276.13 1309.61,-276.13"/>
+<polygon fill="#23ff00" stroke="#23ff00" points="1309.7,-272.64 1299.7,-276.14 1309.7,-279.64 1309.7,-272.64"/>
+</g>
+<!-- sourcefile~nafpack_meshgrid_complex_2d_compute.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node59" class="node">
+<title>sourcefile~nafpack_meshgrid_complex_2d_compute.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node59"><a xlink:href="../sourcefile/nafpack_meshgrid_complex_2d_compute.f90.html" xlink:title="NAFPack_meshgrid_complex_2D_compute.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1593.39,-834.27 1337.37,-834.27 1337.37,-810 1593.39,-810 1593.39,-834.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1465.38" y="-818.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_complex_2D_compute.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_meshgrid_complex_2d_compute.f90&#45;&gt;sourcefile~nafpack_meshgrid_complex_2d.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge113" class="edge">
+<title>sourcefile~nafpack_meshgrid_complex_2d_compute.f90&#45;&gt;sourcefile~nafpack_meshgrid_complex_2d.f90</title>
+<path fill="none" stroke="#00afff" stroke-dasharray="5,2" d="M1336.98,-822.13C1328.59,-822.13 1320.18,-822.13 1311.88,-822.13"/>
+<polygon fill="#00afff" stroke="#00afff" points="1312.15,-818.64 1302.15,-822.14 1312.15,-825.64 1312.15,-818.64"/>
+</g>
+<!-- sourcefile~nafpack_meshgrid_complex_3d_compute.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node60" class="node">
+<title>sourcefile~nafpack_meshgrid_complex_3d_compute.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node60"><a xlink:href="../sourcefile/nafpack_meshgrid_complex_3d_compute.f90.html" xlink:title="NAFPack_meshgrid_complex_3D_compute.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1593.39,-750.27 1337.37,-750.27 1337.37,-726 1593.39,-726 1593.39,-750.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1465.38" y="-734.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_complex_3D_compute.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_meshgrid_complex_3d_compute.f90&#45;&gt;sourcefile~nafpack_meshgrid_complex_3d.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge114" class="edge">
+<title>sourcefile~nafpack_meshgrid_complex_3d_compute.f90&#45;&gt;sourcefile~nafpack_meshgrid_complex_3d.f90</title>
+<path fill="none" stroke="#007bff" stroke-dasharray="5,2" d="M1336.98,-738.13C1328.59,-738.13 1320.18,-738.13 1311.88,-738.13"/>
+<polygon fill="#007bff" stroke="#007bff" points="1312.15,-734.64 1302.15,-738.14 1312.15,-741.64 1312.15,-734.64"/>
+</g>
+<!-- sourcefile~nafpack_meshgrid_integer_2d_compute.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node61" class="node">
+<title>sourcefile~nafpack_meshgrid_integer_2d_compute.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node61"><a xlink:href="../sourcefile/nafpack_meshgrid_integer_2d_compute.f90.html" xlink:title="NAFPack_meshgrid_integer_2D_compute.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1590.02,-792.27 1340.75,-792.27 1340.75,-768 1590.02,-768 1590.02,-792.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1465.38" y="-776.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_integer_2D_compute.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_meshgrid_integer_2d_compute.f90&#45;&gt;sourcefile~nafpack_meshgrid_integer_2d.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge115" class="edge">
+<title>sourcefile~nafpack_meshgrid_integer_2d_compute.f90&#45;&gt;sourcefile~nafpack_meshgrid_integer_2d.f90</title>
+<path fill="none" stroke="#0046ff" stroke-dasharray="5,2" d="M1340.46,-780.13C1329.78,-780.13 1319.03,-780.13 1308.48,-780.13"/>
+<polygon fill="#0046ff" stroke="#0046ff" points="1308.64,-776.64 1298.64,-780.14 1308.64,-783.64 1308.64,-776.64"/>
+</g>
+<!-- sourcefile~nafpack_meshgrid_integer_3d_compute.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node62" class="node">
+<title>sourcefile~nafpack_meshgrid_integer_3d_compute.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node62"><a xlink:href="../sourcefile/nafpack_meshgrid_integer_3d_compute.f90.html" xlink:title="NAFPack_meshgrid_integer_3D_compute.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1590.02,-918.27 1340.75,-918.27 1340.75,-894 1590.02,-894 1590.02,-918.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1465.38" y="-902.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_integer_3D_compute.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_meshgrid_integer_3d_compute.f90&#45;&gt;sourcefile~nafpack_meshgrid_integer_3d.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge116" class="edge">
+<title>sourcefile~nafpack_meshgrid_integer_3d_compute.f90&#45;&gt;sourcefile~nafpack_meshgrid_integer_3d.f90</title>
+<path fill="none" stroke="#0011ff" stroke-dasharray="5,2" d="M1340.46,-906.13C1329.78,-906.13 1319.03,-906.13 1308.48,-906.13"/>
+<polygon fill="#0011ff" stroke="#0011ff" points="1308.64,-902.64 1298.64,-906.14 1308.64,-909.64 1308.64,-902.64"/>
+</g>
+<!-- sourcefile~nafpack_meshgrid_real_2d_compute.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node63" class="node">
+<title>sourcefile~nafpack_meshgrid_real_2d_compute.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node63"><a xlink:href="../sourcefile/nafpack_meshgrid_real_2d_compute.f90.html" xlink:title="NAFPack_meshgrid_real_2D_compute.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1581.02,-708.27 1349.75,-708.27 1349.75,-684 1581.02,-684 1581.02,-708.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1465.38" y="-692.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_real_2D_compute.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_meshgrid_real_2d_compute.f90&#45;&gt;sourcefile~nafpack_meshgrid_real_2d.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge117" class="edge">
+<title>sourcefile~nafpack_meshgrid_real_2d_compute.f90&#45;&gt;sourcefile~nafpack_meshgrid_real_2d.f90</title>
+<path fill="none" stroke="#2300ff" stroke-dasharray="5,2" d="M1349.35,-696.13C1332.67,-696.13 1315.62,-696.13 1299.28,-696.13"/>
+<polygon fill="#2300ff" stroke="#2300ff" points="1299.6,-692.64 1289.6,-696.14 1299.6,-699.64 1299.6,-692.64"/>
+</g>
+<!-- sourcefile~nafpack_meshgrid_real_3d_compute.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_node64" class="node">
+<title>sourcefile~nafpack_meshgrid_real_3d_compute.f90</title>
+<g id="a_sourcefile~~nafpack_kinds.f90~~AfferentGraph_node64"><a xlink:href="../sourcefile/nafpack_meshgrid_real_3d_compute.f90.html" xlink:title="NAFPack_meshgrid_real_3D_compute.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1581.02,-876.27 1349.75,-876.27 1349.75,-852 1581.02,-852 1581.02,-876.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1465.38" y="-860.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_meshgrid_real_3D_compute.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~nafpack_meshgrid_real_3d_compute.f90&#45;&gt;sourcefile~nafpack_meshgrid_real_3d.f90 -->
+<g id="sourcefile~~nafpack_kinds.f90~~AfferentGraph_edge118" class="edge">
+<title>sourcefile~nafpack_meshgrid_real_3d_compute.f90&#45;&gt;sourcefile~nafpack_meshgrid_real_3d.f90</title>
+<path fill="none" stroke="#5700ff" stroke-dasharray="5,2" d="M1349.35,-864.13C1332.67,-864.13 1315.62,-864.13 1299.28,-864.13"/>
+<polygon fill="#5700ff" stroke="#5700ff" points="1299.6,-860.64 1289.6,-864.14 1299.6,-867.64 1299.6,-860.64"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var pansourcefilenafpack_kindsf90AfferentGraph = svgPanZoom('#sourcefilenafpack_kindsf90AfferentGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#AfferentGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="AfferentGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.2 (20260126.1125)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="200pt" height="32pt"
+ viewBox="0.00 0.00 200.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28.27)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-28.27 195.52,-28.27 195.52,4 -4,4"/>
+<!-- Source File -->
+<g id="node1" class="node">
+<title>Source File</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="69.27,-24.27 0,-24.27 0,0 69.27,0 69.27,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="34.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Source File</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node2" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="191.52,-24.27 87.75,-24.27 87.75,0 191.52,0 191.52,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="139.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a file to a file which it depends on. A file
+is dependent upon another if the latter must be compiled before the former
+can be.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+          </div>
+        </div>
+<br>
+      <section>
+        <h2><span class="anchor" id="src"></span>Source Code</h2>
+        <div class="hl codehilite"><pre><span></span><a id="ln-1" name="ln-1" href="#ln-1"></a><span class="k">module </span><span class="n">NAFPack_kinds</span><span class="w"></span>
+<a id="ln-2" name="ln-2" href="#ln-2"></a>
+<a id="ln-3" name="ln-3" href="#ln-3"></a><span class="w">    </span><span class="k">use</span><span class="p">,</span><span class="w"> </span><span class="k">intrinsic</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iso_fortran_env</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<a id="ln-4" name="ln-4" href="#ln-4"></a><span class="w">        </span><span class="n">int8</span><span class="p">,</span><span class="w"> </span><span class="n">int16</span><span class="p">,</span><span class="w"> </span><span class="n">int32</span><span class="p">,</span><span class="w"> </span><span class="n">int64</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<a id="ln-5" name="ln-5" href="#ln-5"></a><span class="w">        </span><span class="n">real32</span><span class="p">,</span><span class="w"> </span><span class="n">real64</span><span class="p">,</span><span class="w"> </span><span class="n">real128</span><span class="w"></span>
+<a id="ln-6" name="ln-6" href="#ln-6"></a>
+<a id="ln-7" name="ln-7" href="#ln-7"></a><span class="w">    </span><span class="k">implicit none</span><span class="p">(</span><span class="k">type</span><span class="p">,</span><span class="w"> </span><span class="k">external</span><span class="p">)</span><span class="w"></span>
+<a id="ln-8" name="ln-8" href="#ln-8"></a>
+<a id="ln-9" name="ln-9" href="#ln-9"></a><span class="w">    </span><span class="k">public</span>
+<a id="ln-10" name="ln-10" href="#ln-10"></a>
+<a id="ln-11" name="ln-11" href="#ln-11"></a><span class="k">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ascii</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">selected_char_kind</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span><span class="w"></span>
+<a id="ln-12" name="ln-12" href="#ln-12"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ucs4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">selected_char_kind</span><span class="p">(</span><span class="s1">&#39;ISO_10646&#39;</span><span class="p">)</span><span class="w"></span>
+<a id="ln-13" name="ln-13" href="#ln-13"></a>
+<a id="ln-14" name="ln-14" href="#ln-14"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">sp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">real32</span><span class="w"></span>
+<a id="ln-15" name="ln-15" href="#ln-15"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">real64</span><span class="w"></span>
+<a id="ln-16" name="ln-16" href="#ln-16"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">qp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">real128</span><span class="w"></span>
+<a id="ln-17" name="ln-17" href="#ln-17"></a>
+<a id="ln-18" name="ln-18" href="#ln-18"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">int8</span><span class="w"></span>
+<a id="ln-19" name="ln-19" href="#ln-19"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i16</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">int16</span><span class="w"></span>
+<a id="ln-20" name="ln-20" href="#ln-20"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">isp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">int32</span><span class="w"></span>
+<a id="ln-21" name="ln-21" href="#ln-21"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">idp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">int64</span><span class="w"></span>
+<a id="ln-22" name="ln-22" href="#ln-22"></a>
+<a id="ln-23" name="ln-23" href="#ln-23"></a><span class="k">end module </span><span class="n">NAFPack_kinds</span><span class="w"></span>
+</pre></div>
+
+      </section>
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              NAFPack
+ was developed by Minard Jules<br>              &copy; 2026 
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+            </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>

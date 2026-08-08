@@ -1,0 +1,742 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+    <meta name="author" content="Minard Jules" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>Eigen &ndash; NAFPack</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="../css/local.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">NAFPack </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>Eigen
+      <small>Subroutine</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 2.3% of total for procedures.">41 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/NAFPack_Eigen.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/nafpack_eigen.f90.html'>NAFPack_Eigen.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/nafpack_eigen.html'>NAFPack_Eigen</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Eigen</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
+  </script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+      <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    <div class="card card-primary">
+      <div class="card-header text-left"><h3 class="card-title">Source Code</h3></div>
+      <div class="list-group">
+        <a class="list-group-item" href="../proc/eigen.html#src">Eigen</a>
+      </div>
+    </div>
+
+
+  </div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    <h2>public  subroutine Eigen(A, lambda, vp, method, k)  
+</h2>
+    
+
+    <p>Computes the eigenvalues and eigenvectors of a matrix A
+<script type="math/tex; mode=display"> A * \vec{v} = \lambda * \vec{v} </script>
+with <strong>A</strong> a square matrix, <strong>λ</strong> the eigenvalue, and <strong>v</strong> the eigenvector.
+This subroutine allows you to choose the method for computing eigenvalues and eigenvectors:</p>
+<ul>
+<li>Power iteration</li>
+<li>QR algorithm (with or without shift)
+The default method is Power iteration.</li>
+</ul>
+
+
+    <h3>Arguments</h3>
+        <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-a~68"></span>
+              real(kind=dp),
+            </td>
+<td>intent(in),</td>
+              <td></td>            <td>
+              dimension(:, :)
+            </td>
+            <td>::</td>
+            <td><strong>A</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-lambda~2"></span>
+              real(kind=dp),
+            </td>
+<td>intent(out),</td>
+              <td></td>            <td>
+              dimension(:)
+            </td>
+            <td>::</td>
+            <td><strong>lambda</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-vp"></span>
+              real(kind=dp),
+            </td>
+<td>intent(out),</td>
+              <td>optional,</td>            <td>
+              dimension(:, :)
+            </td>
+            <td>::</td>
+            <td><strong>vp</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-method~11"></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>method</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-k~44"></span>
+              integer,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>k</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <br>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Calls</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.2 (20260126.1125)
+ -->
+<!-- Title: proc~~eigen~~CallsGraph Pages: 1 -->
+<svg id="proceigenCallsGraph" width="641pt" height="171pt"
+ viewBox="0.00 0.00 641.00 171.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~eigen~~CallsGraph" class="graph" transform="scale(0.789088 0.789088) rotate(0) translate(4 212.15)">
+<title>proc~~eigen~~CallsGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-212.15 808.33,-212.15 808.33,4 -4,4"/>
+<!-- proc~eigen -->
+<g id="proc~~eigen~~CallsGraph_node1" class="node">
+<title>proc~eigen</title>
+<polygon fill="none" stroke="black" points="54,-180.97 0,-180.97 0,-156.7 54,-156.7 54,-180.97"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-165.23" font-family="Helvetica,sans-Serif" font-size="10.50">Eigen</text>
+</g>
+<!-- proc~identity_n -->
+<g id="proc~~eigen~~CallsGraph_node2" class="node">
+<title>proc~identity_n</title>
+<g id="a_proc~~eigen~~CallsGraph_node2"><a xlink:href="../proc/identity_n.html" xlink:title="Identity_n">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="804.33,-138.97 741.06,-138.97 741.06,-114.7 804.33,-114.7 804.33,-138.97"/>
+<text xml:space="preserve" text-anchor="middle" x="772.7" y="-123.23" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Identity_n</text>
+</a>
+</g>
+</g>
+<!-- proc~eigen&#45;&gt;proc~identity_n -->
+<g id="proc~~eigen~~CallsGraph_edge1" class="edge">
+<title>proc~eigen&#45;&gt;proc~identity_n</title>
+<path fill="none" stroke="#ff0000" d="M54.37,-179.89C65.2,-183.86 78,-187.86 90,-189.83 262.91,-218.32 310.05,-208.56 484.29,-189.83 572.91,-180.31 674.23,-154.5 729.78,-139.03"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="730.46,-142.48 739.14,-136.4 728.56,-135.74 730.46,-142.48"/>
+</g>
+<!-- proc~normalise -->
+<g id="proc~~eigen~~CallsGraph_node3" class="node">
+<title>proc~normalise</title>
+<g id="a_proc~~eigen~~CallsGraph_node3"><a xlink:href="../proc/normalise.html" xlink:title="normalise">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="178.02,-180.97 113.25,-180.97 113.25,-156.7 178.02,-156.7 178.02,-180.97"/>
+<text xml:space="preserve" text-anchor="middle" x="145.63" y="-165.23" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">normalise</text>
+</a>
+</g>
+</g>
+<!-- proc~eigen&#45;&gt;proc~normalise -->
+<g id="proc~~eigen~~CallsGraph_edge2" class="edge">
+<title>proc~eigen&#45;&gt;proc~normalise</title>
+<path fill="none" stroke="#ff0000" d="M54.47,-168.83C68.42,-168.83 85.88,-168.83 101.72,-168.83"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="101.37,-172.33 111.37,-168.83 101.37,-165.33 101.37,-172.33"/>
+</g>
+<!-- proc~qr_decomposition -->
+<g id="proc~~eigen~~CallsGraph_node4" class="node">
+<title>proc~qr_decomposition</title>
+<g id="a_proc~~eigen~~CallsGraph_node4"><a xlink:href="../proc/qr_decomposition.html" xlink:title="QR_decomposition">
+<polygon fill="#d9534f" stroke="#d9534f" points="201.27,-96.97 90,-96.97 90,-72.7 201.27,-72.7 201.27,-96.97"/>
+<text xml:space="preserve" text-anchor="middle" x="145.63" y="-81.23" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">QR_decomposition</text>
+</a>
+</g>
+</g>
+<!-- proc~eigen&#45;&gt;proc~qr_decomposition -->
+<g id="proc~~eigen~~CallsGraph_edge3" class="edge">
+<title>proc~eigen&#45;&gt;proc~qr_decomposition</title>
+<path fill="none" stroke="#ff0000" d="M45.46,-156.26C64.73,-142.38 95.94,-119.9 118.21,-103.87"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="120.14,-106.79 126.21,-98.11 116.05,-101.11 120.14,-106.79"/>
+</g>
+<!-- proc~norm_2_real -->
+<g id="proc~~eigen~~CallsGraph_node5" class="node">
+<title>proc~norm_2_real</title>
+<g id="a_proc~~eigen~~CallsGraph_node5"><a xlink:href="../proc/norm_2_real.html" xlink:title="norm_2_real">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="399.54,-180.97 322.02,-180.97 322.02,-156.7 399.54,-156.7 399.54,-180.97"/>
+<text xml:space="preserve" text-anchor="middle" x="360.78" y="-165.23" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">norm_2_real</text>
+</a>
+</g>
+</g>
+<!-- proc~normalise&#45;&gt;proc~norm_2_real -->
+<g id="proc~~eigen~~CallsGraph_edge4" class="edge">
+<title>proc~normalise&#45;&gt;proc~norm_2_real</title>
+<path fill="none" stroke="#00ff00" d="M178.09,-168.83C212.94,-168.83 269.61,-168.83 310.4,-168.83"/>
+<polygon fill="#00ff00" stroke="#00ff00" points="310.2,-172.33 320.2,-168.83 310.2,-165.33 310.2,-172.33"/>
+</g>
+<!-- proc~qr_givens_decomposition -->
+<g id="proc~~eigen~~CallsGraph_node6" class="node">
+<title>proc~qr_givens_decomposition</title>
+<g id="a_proc~~eigen~~CallsGraph_node6"><a xlink:href="../proc/qr_givens_decomposition.html" xlink:title="QR_Givens_decomposition">
+<polygon fill="#d9534f" stroke="#d9534f" points="437.04,-138.97 284.52,-138.97 284.52,-114.7 437.04,-114.7 437.04,-138.97"/>
+<text xml:space="preserve" text-anchor="middle" x="360.78" y="-123.23" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">QR_Givens_decomposition</text>
+</a>
+</g>
+</g>
+<!-- proc~qr_decomposition&#45;&gt;proc~qr_givens_decomposition -->
+<g id="proc~~eigen~~CallsGraph_edge5" class="edge">
+<title>proc~qr_decomposition&#45;&gt;proc~qr_givens_decomposition</title>
+<path fill="none" stroke="#0000ff" d="M198.76,-97.46C211.34,-100.35 224.76,-103.31 237.27,-105.83 248.85,-108.17 261.08,-110.46 273.15,-112.63"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="272.22,-116.02 282.68,-114.32 273.44,-109.12 272.22,-116.02"/>
+</g>
+<!-- proc~qr_gram_schmidt_classical_decomposition -->
+<g id="proc~~eigen~~CallsGraph_node7" class="node">
+<title>proc~qr_gram_schmidt_classical_decomposition</title>
+<g id="a_proc~~eigen~~CallsGraph_node7"><a xlink:href="../proc/qr_gram_schmidt_classical_decomposition.html" xlink:title="QR_Gram_Schmidt_Classical_decomposition">
+<polygon fill="#d9534f" stroke="#d9534f" points="484.29,-96.97 237.27,-96.97 237.27,-72.7 484.29,-72.7 484.29,-96.97"/>
+<text xml:space="preserve" text-anchor="middle" x="360.78" y="-81.23" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">QR_Gram_Schmidt_Classical_decomposition</text>
+</a>
+</g>
+</g>
+<!-- proc~qr_decomposition&#45;&gt;proc~qr_gram_schmidt_classical_decomposition -->
+<g id="proc~~eigen~~CallsGraph_edge6" class="edge">
+<title>proc~qr_decomposition&#45;&gt;proc~qr_gram_schmidt_classical_decomposition</title>
+<path fill="none" stroke="#0000ff" d="M201.53,-84.83C209.16,-84.83 217.26,-84.83 225.6,-84.83"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="225.59,-88.33 235.59,-84.83 225.59,-81.33 225.59,-88.33"/>
+</g>
+<!-- proc~qr_gram_schmidt_modified_decomposition -->
+<g id="proc~~eigen~~CallsGraph_node8" class="node">
+<title>proc~qr_gram_schmidt_modified_decomposition</title>
+<g id="a_proc~~eigen~~CallsGraph_node8"><a xlink:href="../proc/qr_gram_schmidt_modified_decomposition.html" xlink:title="QR_Gram_Schmidt_Modified_decomposition">
+<polygon fill="#d9534f" stroke="#d9534f" points="483.92,-54.97 237.65,-54.97 237.65,-30.7 483.92,-30.7 483.92,-54.97"/>
+<text xml:space="preserve" text-anchor="middle" x="360.78" y="-39.23" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">QR_Gram_Schmidt_Modified_decomposition</text>
+</a>
+</g>
+</g>
+<!-- proc~qr_decomposition&#45;&gt;proc~qr_gram_schmidt_modified_decomposition -->
+<g id="proc~~eigen~~CallsGraph_edge7" class="edge">
+<title>proc~qr_decomposition&#45;&gt;proc~qr_gram_schmidt_modified_decomposition</title>
+<path fill="none" stroke="#0000ff" d="M198.76,-72.21C211.34,-69.32 224.76,-66.35 237.27,-63.83 248.14,-61.64 259.58,-59.49 270.92,-57.44"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="271.49,-60.89 280.72,-55.7 270.26,-54 271.49,-60.89"/>
+</g>
+<!-- proc~qr_householder_decomposition -->
+<g id="proc~~eigen~~CallsGraph_node9" class="node">
+<title>proc~qr_householder_decomposition</title>
+<g id="a_proc~~eigen~~CallsGraph_node9"><a xlink:href="../proc/qr_householder_decomposition.html" xlink:title="QR_Householder_decomposition">
+<polygon fill="#d9534f" stroke="#d9534f" points="705.06,-35.97 520.29,-35.97 520.29,-11.7 705.06,-11.7 705.06,-35.97"/>
+<text xml:space="preserve" text-anchor="middle" x="612.68" y="-20.23" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">QR_Householder_decomposition</text>
+</a>
+</g>
+</g>
+<!-- proc~qr_decomposition&#45;&gt;proc~qr_householder_decomposition -->
+<g id="proc~~eigen~~CallsGraph_edge8" class="edge">
+<title>proc~qr_decomposition&#45;&gt;proc~qr_householder_decomposition</title>
+<path fill="none" stroke="#0000ff" d="M159.06,-72.39C175.37,-57.03 205.64,-31.75 237.27,-21.83 335.26,8.88 454.89,0.92 532.14,-9.67"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="531.33,-13.09 541.72,-11.04 532.31,-6.16 531.33,-13.09"/>
+</g>
+<!-- proc~qr_givens_decomposition&#45;&gt;proc~identity_n -->
+<g id="proc~~eigen~~CallsGraph_edge9" class="edge">
+<title>proc~qr_givens_decomposition&#45;&gt;proc~identity_n</title>
+<path fill="none" stroke="#cbff00" d="M437.46,-127.51C507.01,-128.02 612.98,-128.52 705.06,-127.83 712.91,-127.77 721.28,-127.68 729.35,-127.56"/>
+<polygon fill="#cbff00" stroke="#cbff00" points="729.38,-131.06 739.33,-127.42 729.28,-124.07 729.38,-131.06"/>
+</g>
+<!-- proc~rotation_matrix -->
+<g id="proc~~eigen~~CallsGraph_node10" class="node">
+<title>proc~rotation_matrix</title>
+<g id="a_proc~~eigen~~CallsGraph_node10"><a xlink:href="../proc/rotation_matrix.html" xlink:title="rotation_matrix">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="658.94,-118.97 566.42,-118.97 566.42,-94.7 658.94,-94.7 658.94,-118.97"/>
+<text xml:space="preserve" text-anchor="middle" x="612.68" y="-103.23" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">rotation_matrix</text>
+</a>
+</g>
+</g>
+<!-- proc~qr_givens_decomposition&#45;&gt;proc~rotation_matrix -->
+<g id="proc~~eigen~~CallsGraph_edge10" class="edge">
+<title>proc~qr_givens_decomposition&#45;&gt;proc~rotation_matrix</title>
+<path fill="none" stroke="#cbff00" d="M437.43,-120.78C475.12,-117.76 519.93,-114.18 554.67,-111.4"/>
+<polygon fill="#cbff00" stroke="#cbff00" points="554.85,-114.89 564.54,-110.61 554.29,-107.92 554.85,-114.89"/>
+</g>
+<!-- proc~qr_householder_decomposition&#45;&gt;proc~identity_n -->
+<g id="proc~~eigen~~CallsGraph_edge11" class="edge">
+<title>proc~qr_householder_decomposition&#45;&gt;proc~identity_n</title>
+<path fill="none" stroke="#cc00ff" d="M633.05,-36.46C660.57,-54.4 711.15,-87.37 743.02,-108.14"/>
+<polygon fill="#cc00ff" stroke="#cc00ff" points="741.1,-111.07 751.39,-113.6 744.92,-105.2 741.1,-111.07"/>
+</g>
+<!-- proc~rotation_matrix&#45;&gt;proc~identity_n -->
+<g id="proc~~eigen~~CallsGraph_edge12" class="edge">
+<title>proc~rotation_matrix&#45;&gt;proc~identity_n</title>
+<path fill="none" stroke="#ff0000" d="M659.38,-112.62C681.48,-115.42 707.83,-118.75 729.45,-121.49"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="728.74,-124.92 739.1,-122.71 729.62,-117.98 728.74,-124.92"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var panproceigenCallsGraph = svgPanZoom('#proceigenCallsGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CallsGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CallsGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.2 (20260126.1125)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 28.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.873868 0.873868) rotate(0) translate(4 28.27)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-28.27 729.52,-28.27 729.52,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="69.27,-24.27 0,-24.27 0,0 69.27,0 69.27,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="34.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="143.89,-24.27 87.38,-24.27 87.38,0 143.89,0 143.89,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="115.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="221.39,-24.27 161.88,-24.27 161.88,0 221.39,0 221.39,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="191.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="368.27,-24.27 239,-24.27 239,0 368.27,0 368.27,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="303.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="529.39,-24.27 385.88,-24.27 385.88,0 529.39,0 529.39,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="457.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="603.89,-24.27 547.38,-24.27 547.38,0 603.89,0 603.89,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="575.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="725.52,-24.27 621.75,-24.27 621.75,0 725.52,0 725.52,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="673.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Called by</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.2 (20260126.1125)
+ -->
+<!-- Title: proc~~eigen~~CalledByGraph Pages: 1 -->
+<svg id="proceigenCalledByGraph" width="152pt" height="32pt"
+ viewBox="0.00 0.00 152.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~eigen~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28.27)">
+<title>proc~~eigen~~CalledByGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-28.27 148,-28.27 148,4 -4,4"/>
+<!-- proc~eigen -->
+<g id="proc~~eigen~~CalledByGraph_node1" class="node">
+<title>proc~eigen</title>
+<polygon fill="none" stroke="black" points="144,-24.27 90,-24.27 90,0 144,0 144,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="117" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50">Eigen</text>
+</g>
+<!-- proc~is_spd -->
+<g id="proc~~eigen~~CalledByGraph_node2" class="node">
+<title>proc~is_spd</title>
+<g id="a_proc~~eigen~~CalledByGraph_node2"><a xlink:href="../proc/is_spd.html" xlink:title="is_SPD">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="54,-24.27 0,-24.27 0,0 54,0 54,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">is_SPD</text>
+</a>
+</g>
+</g>
+<!-- proc~is_spd&#45;&gt;proc~eigen -->
+<g id="proc~~eigen~~CalledByGraph_edge1" class="edge">
+<title>proc~is_spd&#45;&gt;proc~eigen</title>
+<path fill="none" stroke="#ff0000" d="M54.4,-12.13C61.89,-12.13 70.18,-12.13 78.2,-12.13"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="78.1,-15.64 88.1,-12.14 78.1,-8.64 78.1,-15.64"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CalledByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CalledByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.2 (20260126.1125)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 28.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.873868 0.873868) rotate(0) translate(4 28.27)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-28.27 729.52,-28.27 729.52,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="69.27,-24.27 0,-24.27 0,0 69.27,0 69.27,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="34.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="143.89,-24.27 87.38,-24.27 87.38,0 143.89,0 143.89,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="115.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="221.39,-24.27 161.88,-24.27 161.88,0 221.39,0 221.39,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="191.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="368.27,-24.27 239,-24.27 239,0 368.27,0 368.27,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="303.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="529.39,-24.27 385.88,-24.27 385.88,0 529.39,0 529.39,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="457.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="603.89,-24.27 547.38,-24.27 547.38,0 603.89,0 603.89,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="575.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="725.52,-24.27 621.75,-24.27 621.75,0 725.52,0 725.52,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="673.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+
+    
+    
+
+    
+    
+
+
+
+    
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="hl codehilite"><pre><span></span><span class="w">    </span><span class="k">subroutine </span><span class="n">Eigen</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">lambda</span><span class="p">,</span><span class="w"> </span><span class="n">vp</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(:,</span><span class="w"> </span><span class="p">:),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">A</span><span class="w"></span>
+<span class="w">        </span><span class="kt">character</span><span class="p">(</span><span class="nb">LEN</span><span class="o">=*</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">method</span><span class="w"></span>
+<span class="w">        </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">optional</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">k</span><span class="w"></span>
+<span class="w">        </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(:,</span><span class="w"> </span><span class="p">:),</span><span class="w"> </span><span class="k">optional</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">vp</span><span class="w"></span>
+<span class="w">        </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(:),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">lambda</span><span class="w"></span>
+<span class="w">        </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">A_tmp</span><span class="w"></span>
+<span class="w">        </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">vp_tmp</span><span class="w"></span>
+<span class="w">        </span><span class="kt">character</span><span class="p">(</span><span class="nb">LEN</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">base_method</span><span class="w"></span>
+<span class="w">        </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">k_max</span><span class="p">,</span><span class="w"> </span><span class="n">pos</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">k</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
+<span class="k">            if</span><span class="w"> </span><span class="p">(</span><span class="n">k</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">stop</span><span class="w"> </span><span class="s2">&quot;ERROR :: k must be a positive integer&quot;</span><span class="w"></span>
+<span class="w">            </span><span class="n">k_max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">k</span><span class="w"></span>
+<span class="w">        </span><span class="k">else</span>
+<span class="k">            </span><span class="n">k_max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MAX_ITERATION</span><span class="w"></span>
+<span class="w">        </span><span class="k">end if</span>
+
+<span class="k">        </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="k">stop</span><span class="w"> </span><span class="s2">&quot;ERROR :: Matrix A not square&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">lambda</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="k">stop</span><span class="w"> </span><span class="s2">&quot;ERROR :: dimension lambda&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">vp</span><span class="p">)</span><span class="w"> </span><span class="p">.</span><span class="nb">and</span><span class="p">.</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">vp</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="p">.</span><span class="nb">or</span><span class="p">.</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">vp</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="n">N</span><span class="p">))</span><span class="w"> </span><span class="k">stop</span><span class="w"> </span><span class="s2">&quot;ERROR :: dimension vp&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;Power_iteration&quot;</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+
+<span class="k">            </span><span class="n">A_tmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="w"></span>
+<span class="w">            </span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="w"></span>
+<span class="w">                </span><span class="k">call </span><span class="n">Power_iteration</span><span class="p">(</span><span class="n">A_tmp</span><span class="p">,</span><span class="w"> </span><span class="n">lambda</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="w"> </span><span class="n">vp_tmp</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="p">:),</span><span class="w"> </span><span class="n">k_max</span><span class="p">)</span><span class="w"></span>
+<span class="w">                </span><span class="n">A_tmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">deflation</span><span class="p">(</span><span class="n">A_tmp</span><span class="p">,</span><span class="w"> </span><span class="n">lambda</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="w"> </span><span class="n">vp_tmp</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="p">:),</span><span class="w"> </span><span class="n">k_max</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="k">end do</span>
+
+<span class="k">            if</span><span class="w"> </span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">vp</span><span class="p">))</span><span class="w"> </span><span class="n">vp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vp_tmp</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">else if</span><span class="w"> </span><span class="p">(</span><span class="nb">index</span><span class="p">(</span><span class="n">method</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;QR&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+
+<span class="k">            if</span><span class="w"> </span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">vp</span><span class="p">))</span><span class="w"> </span><span class="n">vp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">vp</span><span class="p">))</span><span class="w"> </span><span class="k">print</span><span class="o">*</span><span class="p">,</span><span class="s2">&quot;WARNING :: No solution for eigenvectors with the QR method&quot;</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">index</span><span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="n">method</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;_Shifted&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pos</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">.</span><span class="nb">and</span><span class="p">.</span><span class="w"> </span><span class="n">pos</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">len_trim</span><span class="p">(</span><span class="n">method</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
+<span class="k">                </span><span class="n">base_method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">method</span><span class="p">(:</span><span class="n">pos</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">                </span><span class="k">call </span><span class="n">Eigen_QR_Shifted</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">lambda</span><span class="p">,</span><span class="w"> </span><span class="n">base_method</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">k_max</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="k">else</span>
+<span class="k">                call </span><span class="n">Eigen_QR</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">lambda</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">k_max</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="k">end if</span>
+
+<span class="k">        else</span>
+<span class="k">            stop</span><span class="w"> </span><span class="s2">&quot;ERROR :: Wrong method for Eigen&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="k">end if</span>
+
+<span class="k">    end subroutine </span><span class="n">Eigen</span><span class="w"></span>
+</pre></div>
+
+    </section>
+    <br>
+    
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              NAFPack
+ was developed by Minard Jules<br>              &copy; 2026 
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+            </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>

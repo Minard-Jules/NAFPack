@@ -1,0 +1,743 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+    <meta name="author" content="Minard Jules" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>FFTPlan &ndash; NAFPack </title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="../css/local.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">NAFPack </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>FFTPlan
+      <small>Derived Type</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title="<p> 7.0% of total for derived types.</p>Including implementation: 16 statements,  1.8% of total for derived types.">16 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/NAFPack_plan_type.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/nafpack_plan_type.f90.html'>NAFPack_plan_type.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/nafpack_plan_type.html'>NAFPack_plan_type</a></li>
+            <li class="breadcrumb-item active" aria-current="page">FFTPlan</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
+  </script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+      <div id="sidebar">
+      <h3>Contents</h3>
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#vars-0"
+         aria-expanded="false" aria-controls="vars-0">
+         <h4 class="card-header bg-primary text-white">Variables</h4>
+      </a>
+      <div id="vars-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../type/fftplan.html#variable-n~66">N</a>
+            <a class="list-group-item" href="../type/fftplan.html#variable-num_stages~2">num_stages</a>
+            <a class="list-group-item" href="../type/fftplan.html#variable-radix_plan">radix_plan</a>
+            <a class="list-group-item" href="../type/fftplan.html#variable-twiddles_factors">twiddles_factors</a>
+            <a class="list-group-item" href="../type/fftplan.html#variable-stages~16">stages</a>
+            <a class="list-group-item" href="../type/fftplan.html#variable-algorithm">algorithm</a>
+            <a class="list-group-item" href="../type/fftplan.html#variable-is_initialized">is_initialized</a>
+            <a class="list-group-item" href="../type/fftplan.html#variable-inverse">inverse</a>
+            <a class="list-group-item" href="../type/fftplan.html#variable-use_radix2">use_radix2</a>
+            <a class="list-group-item" href="../type/fftplan.html#variable-use_radix3">use_radix3</a>
+            <a class="list-group-item" href="../type/fftplan.html#variable-use_radix4">use_radix4</a>
+            <a class="list-group-item" href="../type/fftplan.html#variable-use_radix5">use_radix5</a>
+            <a class="list-group-item" href="../type/fftplan.html#variable-use_split_radix">use_split_radix</a>
+            <a class="list-group-item" href="../type/fftplan.html#variable-use_mixed_radix">use_mixed_radix</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    <div class="card card-primary">
+      <div class="card-header text-left"><h3 class="card-title">Source Code</h3></div>
+      <div class="list-group">
+        <a class="list-group-item" href="../type/fftplan.html#src">FFTPlan</a>
+      </div>
+    </div>
+
+
+  </div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+      <h2 id="type-def-statement">
+        type, public :: FFTPlan</h2>
+    
+<br>      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Inherits</h3>
+        </div>
+        <div class="card-body">
+          <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.2 (20260126.1125)
+ -->
+<!-- Title: type~~fftplan~~InheritsGraph Pages: 1 -->
+<svg id="typefftplanInheritsGraph" width="518pt" height="116pt"
+ viewBox="0.00 0.00 518.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="type~~fftplan~~InheritsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 112.27)">
+<title>type~~fftplan~~InheritsGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-112.27 513.79,-112.27 513.79,4 -4,4"/>
+<!-- type~fftplan -->
+<g id="type~~fftplan~~InheritsGraph_node1" class="node">
+<title>type~fftplan</title>
+<polygon fill="none" stroke="black" points="509.79,-66.27 455.79,-66.27 455.79,-42 509.79,-42 509.79,-66.27"/>
+<text xml:space="preserve" text-anchor="middle" x="482.79" y="-50.53" font-family="Helvetica,sans-Serif" font-size="10.50">FFTPlan</text>
+</g>
+<!-- type~fftalgorithm -->
+<g id="type~~fftplan~~InheritsGraph_node2" class="node">
+<title>type~fftalgorithm</title>
+<g id="a_type~~fftplan~~InheritsGraph_node2"><a xlink:href="../type/fftalgorithm.html" xlink:title="FFTAlgorithm">
+<polygon fill="#5cb85c" stroke="#5cb85c" points="333.54,-108.27 252.27,-108.27 252.27,-84 333.54,-84 333.54,-108.27"/>
+<text xml:space="preserve" text-anchor="middle" x="292.9" y="-92.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">FFTAlgorithm</text>
+</a>
+</g>
+</g>
+<!-- type~fftplan&#45;&gt;type~fftalgorithm -->
+<g id="type~~fftplan~~InheritsGraph_edge3" class="edge">
+<title>type~fftplan&#45;&gt;type~fftalgorithm</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M455.45,-63.8C449.68,-65.72 443.57,-67.62 437.79,-69.14 407.33,-77.14 372.64,-83.72 344.96,-88.38"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="344.73,-84.87 335.44,-89.95 345.87,-91.78 344.73,-84.87"/>
+<text xml:space="preserve" text-anchor="middle" x="398.79" y="-88.01" font-family="Helvetica,sans-Serif" font-size="9.50">algorithm</text>
+</g>
+<!-- type~stageview -->
+<g id="type~~fftplan~~InheritsGraph_node3" class="node">
+<title>type~stageview</title>
+<g id="a_type~~fftplan~~InheritsGraph_node3"><a xlink:href="../type/stageview.html" xlink:title="StageView">
+<polygon fill="#5cb85c" stroke="#5cb85c" points="326.41,-66.27 259.39,-66.27 259.39,-42 326.41,-42 326.41,-66.27"/>
+<text xml:space="preserve" text-anchor="middle" x="292.9" y="-50.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">StageView</text>
+</a>
+</g>
+</g>
+<!-- type~fftplan&#45;&gt;type~stageview -->
+<g id="type~~fftplan~~InheritsGraph_edge2" class="edge">
+<title>type~fftplan&#45;&gt;type~stageview</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M455.67,-54.13C425.28,-54.13 374.61,-54.13 338.08,-54.13"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="338.27,-50.64 328.27,-54.14 338.27,-57.64 338.27,-50.64"/>
+<text xml:space="preserve" text-anchor="middle" x="398.79" y="-56.36" font-family="Helvetica,sans-Serif" font-size="9.50">stages</text>
+</g>
+<!-- type~storagetwiddles -->
+<g id="type~~fftplan~~InheritsGraph_node4" class="node">
+<title>type~storagetwiddles</title>
+<g id="a_type~~fftplan~~InheritsGraph_node4"><a xlink:href="../type/storagetwiddles.html" xlink:title="StorageTwiddles">
+<polygon fill="#5cb85c" stroke="#5cb85c" points="341.79,-24.27 244.02,-24.27 244.02,0 341.79,0 341.79,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="292.9" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">StorageTwiddles</text>
+</a>
+</g>
+</g>
+<!-- type~fftplan&#45;&gt;type~storagetwiddles -->
+<g id="type~~fftplan~~InheritsGraph_edge1" class="edge">
+<title>type~fftplan&#45;&gt;type~storagetwiddles</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M455.46,-44.29C449.69,-42.34 443.57,-40.42 437.79,-38.88 410.4,-31.64 379.58,-25.63 353.5,-21.15"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="354.2,-17.72 343.76,-19.52 353.04,-24.63 354.2,-17.72"/>
+<text xml:space="preserve" text-anchor="middle" x="398.79" y="-41.11" font-family="Helvetica,sans-Serif" font-size="9.50">twiddles_factors</text>
+</g>
+<!-- type~decimationmethod -->
+<g id="type~~fftplan~~InheritsGraph_node5" class="node">
+<title>type~decimationmethod</title>
+<g id="a_type~~fftplan~~InheritsGraph_node5"><a xlink:href="../type/decimationmethod.html" xlink:title="DecimationMethod">
+<polygon fill="#5cb85c" stroke="#5cb85c" points="112.77,-108.27 0,-108.27 0,-84 112.77,-84 112.77,-108.27"/>
+<text xml:space="preserve" text-anchor="middle" x="56.38" y="-92.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DecimationMethod</text>
+</a>
+</g>
+</g>
+<!-- type~fftalgorithm&#45;&gt;type~decimationmethod -->
+<g id="type~~fftplan~~InheritsGraph_edge4" class="edge">
+<title>type~fftalgorithm&#45;&gt;type~decimationmethod</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M251.86,-96.14C216.94,-96.14 165.58,-96.14 124.41,-96.14"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="124.6,-92.64 114.6,-96.14 124.6,-99.64 124.6,-92.64"/>
+<text xml:space="preserve" text-anchor="middle" x="178.39" y="-98.36" font-family="Helvetica,sans-Serif" font-size="9.50">decimation_method</text>
+</g>
+<!-- type~splitradixgroup -->
+<g id="type~~fftplan~~InheritsGraph_node6" class="node">
+<title>type~splitradixgroup</title>
+<g id="a_type~~fftplan~~InheritsGraph_node6"><a xlink:href="../type/splitradixgroup.html" xlink:title="SplitRadixGroup">
+<polygon fill="#5cb85c" stroke="#5cb85c" points="104.52,-66.27 8.25,-66.27 8.25,-42 104.52,-42 104.52,-66.27"/>
+<text xml:space="preserve" text-anchor="middle" x="56.38" y="-50.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">SplitRadixGroup</text>
+</a>
+</g>
+</g>
+<!-- type~stageview&#45;&gt;type~splitradixgroup -->
+<g id="type~~fftplan~~InheritsGraph_edge5" class="edge">
+<title>type~stageview&#45;&gt;type~splitradixgroup</title>
+<path fill="none" stroke="#00ff00" stroke-dasharray="5,2" d="M259.3,-54.13C222.36,-54.13 161.44,-54.13 116.15,-54.13"/>
+<polygon fill="#00ff00" stroke="#00ff00" points="116.22,-50.64 106.22,-54.14 116.22,-57.64 116.22,-50.64"/>
+<text xml:space="preserve" text-anchor="middle" x="178.39" y="-56.36" font-family="Helvetica,sans-Serif" font-size="9.50">groups</text>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#InheritsGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="InheritsGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.2 (20260126.1125)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="184pt" height="32pt"
+ viewBox="0.00 0.00 184.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28.27)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-28.27 179.88,-28.27 179.88,4 -4,4"/>
+<!-- Type -->
+<g id="node1" class="node">
+<title>Type</title>
+<polygon fill="#5cb85c" stroke="#5cb85c" points="54,-24.27 0,-24.27 0,0 54,0 54,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node2" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="175.88,-24.27 72.12,-24.27 72.12,0 175.88,0 175.88,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="124" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a derived type to the parent type which it
+extends. Dashed arrows point from a derived type to the other
+types it contains as a components, with a label listing the name(s) of
+said component(s).
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Inherited by</h3>
+        </div>
+        <div class="card-body">
+          <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.2 (20260126.1125)
+ -->
+<!-- Title: type~~fftplan~~InheritedByGraph Pages: 1 -->
+<svg id="typefftplanInheritedByGraph" width="227pt" height="32pt"
+ viewBox="0.00 0.00 227.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="type~~fftplan~~InheritedByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28.27)">
+<title>type~~fftplan~~InheritedByGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-28.27 223.27,-28.27 223.27,4 -4,4"/>
+<!-- type~fftplan -->
+<g id="type~~fftplan~~InheritedByGraph_node1" class="node">
+<title>type~fftplan</title>
+<polygon fill="none" stroke="black" points="54,-24.27 0,-24.27 0,0 54,0 54,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50">FFTPlan</text>
+</g>
+<!-- type~fourier_transform -->
+<g id="type~~fftplan~~InheritedByGraph_node2" class="node">
+<title>type~fourier_transform</title>
+<g id="a_type~~fftplan~~InheritedByGraph_node2"><a xlink:href="../type/fourier_transform.html" xlink:title="Fourier_Transform">
+<polygon fill="#5cb85c" stroke="#5cb85c" points="219.27,-24.27 111,-24.27 111,0 219.27,0 219.27,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="165.13" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Fourier_Transform</text>
+</a>
+</g>
+</g>
+<!-- type~fourier_transform&#45;&gt;type~fftplan -->
+<g id="type~~fftplan~~InheritedByGraph_edge1" class="edge">
+<title>type~fourier_transform&#45;&gt;type~fftplan</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M110.72,-12.13C95.59,-12.13 79.45,-12.13 65.47,-12.13"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="65.83,-8.64 55.83,-12.14 65.83,-15.64 65.83,-8.64"/>
+<text xml:space="preserve" text-anchor="middle" x="82.5" y="-14.36" font-family="Helvetica,sans-Serif" font-size="9.50">plan</text>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#InheritedByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="InheritedByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.2 (20260126.1125)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="184pt" height="32pt"
+ viewBox="0.00 0.00 184.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28.27)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-28.27 179.88,-28.27 179.88,4 -4,4"/>
+<!-- Type -->
+<g id="node1" class="node">
+<title>Type</title>
+<polygon fill="#5cb85c" stroke="#5cb85c" points="54,-24.27 0,-24.27 0,0 54,0 54,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node2" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="175.88,-24.27 72.12,-24.27 72.12,0 175.88,0 175.88,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="124" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a derived type to the parent type which it
+extends. Dashed arrows point from a derived type to the other
+types it contains as a components, with a label listing the name(s) of
+said component(s).
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    <br>
+
+    <section>
+    <h2>Components</h2>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Visibility</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-n~66"></span>
+              integer(kind=isp),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>N</strong></td>
+<td> =</td>
+                <td>0</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-num_stages~2"></span>
+              integer(kind=isp),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>num_stages</strong></td>
+<td> =</td>
+                <td>0</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-radix_plan"></span>
+              integer(kind=isp),
+            </td>
+              <td>public,</td>
+            <td>
+              dimension(:), allocatable
+            </td>
+            <td>::</td>
+            <td><strong>radix_plan</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-twiddles_factors"></span>
+              type(<a href='storagetwiddles.html'>StorageTwiddles</a>),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>twiddles_factors</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-stages~16"></span>
+              type(<a href='stageview.html'>StageView</a>),
+            </td>
+              <td>public,</td>
+            <td>
+              dimension(:), allocatable
+            </td>
+            <td>::</td>
+            <td><strong>stages</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-algorithm"></span>
+              type(<a href='fftalgorithm.html'>FFTAlgorithm</a>),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>algorithm</strong></td>
+<td> =</td>
+                <td>ALG_NONE</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-is_initialized"></span>
+              logical,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>is_initialized</strong></td>
+<td> =</td>
+                <td>.false.</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-inverse"></span>
+              logical,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>inverse</strong></td>
+<td> =</td>
+                <td>.false.</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-use_radix2"></span>
+              logical,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>use_radix2</strong></td>
+<td> =</td>
+                <td>.false.</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-use_radix3"></span>
+              logical,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>use_radix3</strong></td>
+<td> =</td>
+                <td>.false.</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-use_radix4"></span>
+              logical,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>use_radix4</strong></td>
+<td> =</td>
+                <td>.false.</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-use_radix5"></span>
+              logical,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>use_radix5</strong></td>
+<td> =</td>
+                <td>.false.</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-use_split_radix"></span>
+              logical,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>use_split_radix</strong></td>
+<td> =</td>
+                <td>.false.</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-use_mixed_radix"></span>
+              logical,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>use_mixed_radix</strong></td>
+<td> =</td>
+                <td>.false.</td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    </section>
+    <br>
+    
+
+
+
+    <section>
+    <h3><span class="anchor" id="src"></span>Source Code</h3>
+    <div class="hl codehilite"><pre><span></span><span class="w">    </span><span class="k">type</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">FFTPlan</span><span class="w"></span>
+<span class="w">        </span><span class="kt">integer</span><span class="p">(</span><span class="n">isp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">        </span><span class="kt">integer</span><span class="p">(</span><span class="n">isp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">num_stages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+
+<span class="w">        </span><span class="kt">integer</span><span class="p">(</span><span class="n">isp</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">radix_plan</span><span class="w"></span>
+<span class="w">        </span><span class="k">type</span><span class="p">(</span><span class="n">StorageTwiddles</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">twiddles_factors</span><span class="w"></span>
+<span class="w">        </span><span class="k">type</span><span class="p">(</span><span class="n">StageView</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">stages</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">type</span><span class="p">(</span><span class="n">FFTAlgorithm</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">algorithm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ALG_NONE</span><span class="w"></span>
+
+<span class="w">        </span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">is_initialized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">inverse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">        </span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">use_radix2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">use_radix3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">use_radix4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">use_radix5</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">use_split_radix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">use_mixed_radix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">end type </span><span class="n">FFTPlan</span><span class="w"></span>
+</pre></div>
+
+    </section>
+    
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              NAFPack
+ was developed by Minard Jules<br>              &copy; 2026 
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+            </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>

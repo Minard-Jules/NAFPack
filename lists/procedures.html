@@ -1,0 +1,2421 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+    <meta name="author" content="Minard Jules" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>All Procedures &ndash; NAFPack
+</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="../css/local.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">NAFPack </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12" id='text'>
+			 <h1>Procedures</h1>
+			 <table class="table table-striped">
+			 <thead><tr><th>Procedure</th><th>Location</th><th>Procedure Type</th><th>Description</th></tr></thead>
+			 <tbody>
+			   <tr>
+                 <td><a href='../interface/apply_style_ascii.html'>apply_style_ascii</a></td>
+                 <td><a href='../module/nafpack_ansi.html'>NAFPack_ANSI</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/apply_style_ucs4.html'>apply_style_ucs4</a></td>
+                 <td><a href='../module/nafpack_ansi.html'>NAFPack_ANSI</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/applypreconditioner.html'>ApplyPreconditioner</a></td>
+                 <td><a href='../module/nafpack_iterative_params.html'>NAFPack_Iterative_Params</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/backward.html'>backward</a></td>
+                 <td><a href='../module/nafpack_matrix_decomposition.html'>NAFPack_matrix_decomposition</a></td>
+                 <td>Function</td>
+                 <td><p>backward algorithm,
+solves the system
+<script type="math/tex; mode=display"> U * x = y </script>
+where <strong>U</strong> is an upper triangular matrix and <strong>y</strong> is a vector</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/calculate_gauss_seidel_preconditioner.html'>Calculate_Gauss_Seidel_preconditioner</a></td>
+                 <td><a href='../module/nafpack_preconditioners.html'>NAFPack_Preconditioners</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/calculate_icf_preconditioner.html'>Calculate_ICF_preconditioner</a></td>
+                 <td><a href='../module/nafpack_preconditioners.html'>NAFPack_Preconditioners</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/calculate_ilu_preconditioner.html'>Calculate_ILU_preconditioner</a></td>
+                 <td><a href='../module/nafpack_preconditioners.html'>NAFPack_Preconditioners</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/calculate_jacobi_preconditioner.html'>Calculate_Jacobi_preconditioner</a></td>
+                 <td><a href='../module/nafpack_preconditioners.html'>NAFPack_Preconditioners</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/calculate_jor_preconditioner.html'>Calculate_JOR_preconditioner</a></td>
+                 <td><a href='../module/nafpack_preconditioners.html'>NAFPack_Preconditioners</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/calculate_sor_preconditioner.html'>Calculate_SOR_preconditioner</a></td>
+                 <td><a href='../module/nafpack_preconditioners.html'>NAFPack_Preconditioners</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/calculate_ssor_preconditioner.html'>Calculate_SSOR_preconditioner</a></td>
+                 <td><a href='../module/nafpack_preconditioners.html'>NAFPack_Preconditioners</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/center_with_fill.html'>center_with_fill</a></td>
+                 <td><a href='../module/nafpack_logger_mod.html'>NAFPack_Logger_mod</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/check_indexing.html'>check_indexing</a></td>
+                 <td><a href='../module/nafpack_meshgrid.html'>NAFPack_meshgrid</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/check_loop_method.html'>check_loop_method</a></td>
+                 <td><a href='../module/nafpack_loop_method.html'>NAFPack_loop_method</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/cholesky_decomposition.html'>Cholesky_decomposition</a></td>
+                 <td><a href='../module/nafpack_matrix_decomposition.html'>NAFPack_matrix_decomposition</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Cholesky decomposition of a matrix A
+<script type="math/tex; mode=display"> A = LL^T </script>
+This subroutine performs Cholesky decomposition of a given symmetric positive definite matrix <strong>A</strong>, where <strong>L</strong> is a lower triangular matrix.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/clear_line_ascii.html'>clear_line_ascii</a></td>
+                 <td><a href='../module/nafpack_ansi.html'>NAFPack_ANSI</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/clear_line_ucs4.html'>clear_line_ucs4</a></td>
+                 <td><a href='../module/nafpack_ansi.html'>NAFPack_ANSI</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/clear_screen_ascii.html'>clear_screen_ascii</a></td>
+                 <td><a href='../module/nafpack_ansi.html'>NAFPack_ANSI</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/clear_screen_ucs4.html'>clear_screen_ucs4</a></td>
+                 <td><a href='../module/nafpack_ansi.html'>NAFPack_ANSI</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/colorize_text_ascii.html'>colorize_text_ascii</a></td>
+                 <td><a href='../module/nafpack_ansi.html'>NAFPack_ANSI</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/colorize_text_ucs4.html'>colorize_text_ucs4</a></td>
+                 <td><a href='../module/nafpack_ansi.html'>NAFPack_ANSI</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/count_true_methods.html'>count_true_methods</a></td>
+                 <td><a href='../module/nafpack_loop_method.html'>NAFPack_loop_method</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/create_ansi_ascii.html'>create_ansi_ascii</a></td>
+                 <td><a href='../module/nafpack_ansi.html'>NAFPack_ANSI</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/create_ansi_ucs4.html'>create_ansi_ucs4</a></td>
+                 <td><a href='../module/nafpack_ansi.html'>NAFPack_ANSI</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/cross.html'>cross</a></td>
+                 <td><a href='../module/nafpack_matricielle.html'>NAFPack_matricielle</a></td>
+                 <td>Function</td>
+                 <td><p>function that calculates the cross product between two real 3-dimensional vectors <script type="math/tex"> \vec{a} </script> and <script type="math/tex"> \vec{b} </script>
+<script type="math/tex; mode=display"> \vec{a} \times \vec{b} </script>
+<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p><a href="../proc/cross.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/cursor_position_ascii.html'>cursor_position_ascii</a></td>
+                 <td><a href='../module/nafpack_ansi.html'>NAFPack_ANSI</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/cursor_position_ucs4.html'>cursor_position_ucs4</a></td>
+                 <td><a href='../module/nafpack_ansi.html'>NAFPack_ANSI</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/dft.html'>dft</a></td>
+                 <td><a href='../module/nafpack_fourier_transform.html'>NAFPack_Fourier_Transform</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/dft2.html'>dft2</a></td>
+                 <td><a href='../module/nafpack_fourier_transform.html'>NAFPack_Fourier_Transform</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/dft3.html'>dft3</a></td>
+                 <td><a href='../module/nafpack_fourier_transform.html'>NAFPack_Fourier_Transform</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/diag.html'>Diag</a></td>
+                 <td><a href='../module/nafpack_matricielle.html'>NAFPack_matricielle</a></td>
+                 <td>Function</td>
+                 <td><p>function that extracts the diagonal of a matrix
+<script type="math/tex; mode=display"> D = \begin{pmatrix} A(1,1) & 0 & \cdots & 0 \\ 0 & A(2,2) & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & A(n,n) \end{pmatrix} </script>
+where <script type="math/tex"> D </script> is a vector containing the diagonal elements of the matrix <script type="math/tex"> A </script>.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/diagonally_dominant_matrix.html'>Diagonally_Dominant_Matrix</a></td>
+                 <td><a href='../module/nafpack_matricielle.html'>NAFPack_matricielle</a></td>
+                 <td>Function</td>
+                 <td><p>function which checks if <strong>A</strong> is diagonally dominant
+<script type="math/tex; mode=display"> \forall i, |A(i,i)| \geq \sum_{j \neq i} |A(i,j)| </script>
+</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/dot.html'>dot</a></td>
+                 <td><a href='../module/nafpack_matricielle.html'>NAFPack_matricielle</a></td>
+                 <td>Function</td>
+                 <td><p>function that calculates the dot product of two real 3-dimensional vectors <script type="math/tex"> \vec{a} </script> and <script type="math/tex"> \vec{b} </script>
+<script type="math/tex; mode=display"> \vec{a} \cdot \vec{b} </script>
+</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/eigen.html'>Eigen</a></td>
+                 <td><a href='../module/nafpack_eigen.html'>NAFPack_Eigen</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Computes the eigenvalues and eigenvectors of a matrix A
+<script type="math/tex; mode=display"> A * \vec{v} = \lambda * \vec{v} </script>
+with <strong>A</strong> a square matrix, <strong>λ</strong> the eigenvalue, and <strong>v</strong> the eigenvector.
+This subroutine allows you to choose the method for computing eigenvalues and eigenvectors:</p><a href="../proc/eigen.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/execute_butterfly_dft.html'>execute_butterfly_dft</a></td>
+                 <td><a href='../module/nafpack_butterfly.html'>NAFPack_butterfly</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/execute_butterfly_mixed_radix_recursive.html'>execute_butterfly_mixed_radix_recursive</a></td>
+                 <td><a href='../module/nafpack_butterfly.html'>NAFPack_butterfly</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/execute_butterfly_radix2.html'>execute_butterfly_radix2</a></td>
+                 <td><a href='../module/nafpack_butterfly.html'>NAFPack_butterfly</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/execute_butterfly_radix2_recursive.html'>execute_butterfly_radix2_recursive</a></td>
+                 <td><a href='../module/nafpack_butterfly.html'>NAFPack_butterfly</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/execute_butterfly_radix3.html'>execute_butterfly_radix3</a></td>
+                 <td><a href='../module/nafpack_butterfly.html'>NAFPack_butterfly</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/execute_butterfly_radix3_recursive.html'>execute_butterfly_radix3_recursive</a></td>
+                 <td><a href='../module/nafpack_butterfly.html'>NAFPack_butterfly</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/execute_butterfly_radix4.html'>execute_butterfly_radix4</a></td>
+                 <td><a href='../module/nafpack_butterfly.html'>NAFPack_butterfly</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/execute_butterfly_radix4_recursive.html'>execute_butterfly_radix4_recursive</a></td>
+                 <td><a href='../module/nafpack_butterfly.html'>NAFPack_butterfly</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/execute_butterfly_radix5.html'>execute_butterfly_radix5</a></td>
+                 <td><a href='../module/nafpack_butterfly.html'>NAFPack_butterfly</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/execute_butterfly_radix5_recursive.html'>execute_butterfly_radix5_recursive</a></td>
+                 <td><a href='../module/nafpack_butterfly.html'>NAFPack_butterfly</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/execute_butterfly_split_radix.html'>execute_butterfly_split_radix</a></td>
+                 <td><a href='../module/nafpack_butterfly.html'>NAFPack_butterfly</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/execute_butterfly_split_radix_recursive.html'>execute_butterfly_split_radix_recursive</a></td>
+                 <td><a href='../module/nafpack_butterfly.html'>NAFPack_butterfly</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/faddeev_leverrier.html'>Faddeev_Leverrier</a></td>
+                 <td><a href='../module/nafpack_matrix_tools.html'>NAFPack_matrix_tools</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/fft_1d.html'>FFT_1D</a></td>
+                 <td><a href='../module/nafpack_fft.html'>NAFPack_fft</a></td>
+                 <td>Function</td>
+                 <td><p>Perform a 1D Fourier Transform on a signal</p><a href="../proc/fft_1d.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/fft_2d.html'>FFT_2D</a></td>
+                 <td><a href='../module/nafpack_fft.html'>NAFPack_fft</a></td>
+                 <td>Function</td>
+                 <td><p>Perform a 2D Fast Fourier Transform on a signal</p><a href="../proc/fft_2d.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/fft_3d.html'>FFT_3D</a></td>
+                 <td><a href='../module/nafpack_fft.html'>NAFPack_fft</a></td>
+                 <td>Function</td>
+                 <td><p>Perform a 3D Fast Fourier Transform on a signal</p><a href="../proc/fft_3d.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/forward.html'>forward</a></td>
+                 <td><a href='../module/nafpack_matrix_decomposition.html'>NAFPack_matrix_decomposition</a></td>
+                 <td>Function</td>
+                 <td><p>forward algorithm,
+solves the system
+<script type="math/tex; mode=display"> L * y = b </script>
+where <strong>L</strong> is a lower triangular matrix and <strong>b</strong> is a vector</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/get_memory_kb.html'>get_memory_kb</a></td>
+                 <td><a href='../module/nafpack_memory_monitor.html'>NAFPack_memory_monitor</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/identity_n.html'>Identity_n</a></td>
+                 <td><a href='../module/nafpack_matricielle.html'>NAFPack_matricielle</a></td>
+                 <td>Function</td>
+                 <td><p>function that returns the identity matrix for a given size N
+<script type="math/tex; mode=display"> I_N = \begin{pmatrix} 1 & 0 & \cdots & 0 \\ 0 & 1 & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & 1 \end{pmatrix} </script>
+</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/idft.html'>idft</a></td>
+                 <td><a href='../module/nafpack_fourier_transform.html'>NAFPack_Fourier_Transform</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/idft2.html'>idft2</a></td>
+                 <td><a href='../module/nafpack_fourier_transform.html'>NAFPack_Fourier_Transform</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/idft3.html'>idft3</a></td>
+                 <td><a href='../module/nafpack_fourier_transform.html'>NAFPack_Fourier_Transform</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/ifft_1d.html'>IFFT_1D</a></td>
+                 <td><a href='../module/nafpack_fft.html'>NAFPack_fft</a></td>
+                 <td>Function</td>
+                 <td><p>Perform a 1D inverse Fast Fourier Transform on a signal</p><a href="../proc/ifft_1d.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/ifft_2d.html'>IFFT_2D</a></td>
+                 <td><a href='../module/nafpack_fft.html'>NAFPack_fft</a></td>
+                 <td>Function</td>
+                 <td><p>Perform a 2D inverse Fast Fourier Transform on a signal</p><a href="../proc/ifft_2d.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/ifft_3d.html'>IFFT_3D</a></td>
+                 <td><a href='../module/nafpack_fft.html'>NAFPack_fft</a></td>
+                 <td>Function</td>
+                 <td><p>Perform a 3D inverse Fast Fourier Transform on a signal</p><a href="../proc/ifft_3d.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/ilu_decomposition.html'>ILU_decomposition</a></td>
+                 <td><a href='../module/nafpack_matrix_decomposition.html'>NAFPack_matrix_decomposition</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Incomplete LU decomposition of a matrix A
+<script type="math/tex; mode=display"> A \approx LU </script>
+This subroutine performs incomplete LU decomposition of a given matrix <strong>A</strong>, where <strong>L</strong> is a lower triangular matrix and <strong>U</strong> is an upper triangular matrix.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/incomplete_cholesky_decomposition.html'>Incomplete_Cholesky_decomposition</a></td>
+                 <td><a href='../module/nafpack_matrix_decomposition.html'>NAFPack_matrix_decomposition</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Incomplete Cholesky decomposition of a matrix A
+<script type="math/tex; mode=display"> A \approx LL^T </script>
+This subroutine performs incomplete Cholesky decomposition of a given matrix <strong>A</strong>, where <strong>L</strong> is a lower triangular matrix and <strong>U</strong> is an upper triangular matrix.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/init_loop_method.html'>init_loop_method</a></td>
+                 <td><a href='../module/nafpack_loop_method.html'>NAFPack_loop_method</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/is_diagonally_dominant.html'>is_diagonally_dominant</a></td>
+                 <td><a href='../module/nafpack_matrix_properties.html'>NAFPack_matrix_properties</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/is_non_zero_diagonal.html'>is_non_zero_diagonal</a></td>
+                 <td><a href='../module/nafpack_matrix_properties.html'>NAFPack_matrix_properties</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/is_orthogonal.html'>is_orthogonal</a></td>
+                 <td><a href='../module/nafpack_matrix_properties.html'>NAFPack_matrix_properties</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/is_power_of_p.html'>is_power_of_p</a></td>
+                 <td><a href='../module/nafpack_math_utils.html'>NAFPack_math_utils</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/is_power_of_two.html'>is_power_of_two</a></td>
+                 <td><a href='../module/nafpack_math_utils.html'>NAFPack_math_utils</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/is_spd.html'>is_SPD</a></td>
+                 <td><a href='../module/nafpack_matrix_properties.html'>NAFPack_matrix_properties</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/is_square_matrix.html'>is_square_matrix</a></td>
+                 <td><a href='../module/nafpack_matrix_properties.html'>NAFPack_matrix_properties</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/is_symmetric.html'>is_symmetric</a></td>
+                 <td><a href='../module/nafpack_matrix_properties.html'>NAFPack_matrix_properties</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/is_tridiagonal.html'>is_tridiagonal</a></td>
+                 <td><a href='../module/nafpack_matrix_properties.html'>NAFPack_matrix_properties</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/ldl_cholesky_decomposition.html'>LDL_Cholesky_decomposition</a></td>
+                 <td><a href='../module/nafpack_matrix_decomposition.html'>NAFPack_matrix_decomposition</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Alternative Cholesky decomposition of a matrix A
+<script type="math/tex; mode=display"> A = LDL^T </script>
+This subroutine performs alternative Cholesky decomposition of a given symmetric positive definite matrix <strong>A</strong>, where <strong>L</strong> is a lower triangular matrix and <strong>D</strong> is a diagonal matrix.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/ldu_decomposition.html'>LDU_decomposition</a></td>
+                 <td><a href='../module/nafpack_matrix_decomposition.html'>NAFPack_matrix_decomposition</a></td>
+                 <td>Subroutine</td>
+                 <td><p>LDU decomposition of a matrix A
+<script type="math/tex; mode=display"> A = LDU </script>
+This subroutine performs LDU decomposition of a given matrix <strong>A</strong>, where <strong>L</strong> is a lower triangular matrix, <strong>D</strong> is a diagonal matrix, and <strong>U</strong> is an upper triangular matrix.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/log_field.html'>log_field</a></td>
+                 <td><a href='../module/nafpack_logger_mod.html'>NAFPack_Logger_mod</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/lu_decomposition.html'>LU_decomposition</a></td>
+                 <td><a href='../module/nafpack_matrix_decomposition.html'>NAFPack_matrix_decomposition</a></td>
+                 <td>Subroutine</td>
+                 <td><p>LU decomposition of a matrix A
+<script type="math/tex; mode=display"> A = LU </script>
+This subroutine performs LU decomposition of a given matrix <strong>A</strong>, where <strong>L</strong> is a lower triangular matrix and <strong>U</strong> is an upper triangular matrix.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/make_tridiagonal.html'>Make_Tridiagonal</a></td>
+                 <td><a href='../module/nafpack_matricielle.html'>NAFPack_matricielle</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/meshgrid.html'>meshgrid</a></td>
+                 <td><a href='../module/nafpack_meshgrid.html'>NAFPack_meshgrid</a></td>
+                 <td>Interface</td>
+                 <td><p>Make N-dimensional meshgrid from two vectors <strong>x_vector</strong> and <strong>y_vector</strong></p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/norm_2_complex.html'>norm_2_complex</a></td>
+                 <td><a href='../module/nafpack_matricielle.html'>NAFPack_matricielle</a></td>
+                 <td>Function</td>
+                 <td><p>function that calculates the Euclidean norm (L2 norm or modulus) of a vector <script type="math/tex"> \vec{a} </script>,
+where <script type="math/tex"> \vec{a} \in \mathbb{C}^n </script>
+<script type="math/tex; mode=display"> ||\vec{a}||_2 = \sqrt{\sum_{i=1}^{n} |a_i|^2} \quad \text{ with } \quad \sum_{i=1}^{n} |a_i|^2 = \vec{a} \cdot \overline{\vec{a}} </script>
+where <script type="math/tex"> n </script> is the dimension of the complex vector <script type="math/tex"> \vec{a} </script>.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/norm_2_real.html'>norm_2_real</a></td>
+                 <td><a href='../module/nafpack_matricielle.html'>NAFPack_matricielle</a></td>
+                 <td>Function</td>
+                 <td><p>function that calculates the Euclidean norm (L2 norm) of a vector <script type="math/tex"> \vec{a} </script>,
+where <script type="math/tex"> \vec{a} \in \mathbb{R}^n </script>
+<script type="math/tex; mode=display"> ||\vec{a}||_2 = \sqrt{\sum_{i=1}^{n} a_i^2} \quad \text{ with } \quad \sum_{i=1}^{n} a_i^2 = \vec{a} \cdot \vec{a} </script>
+where <script type="math/tex"> n </script> is the dimension of the real vector <script type="math/tex"> \vec{a} </script>.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/normalise.html'>normalise</a></td>
+                 <td><a href='../module/nafpack_matricielle.html'>NAFPack_matricielle</a></td>
+                 <td>Function</td>
+                 <td><p>function that normalises a real vector a to make it a unit vector,
+where <script type="math/tex"> \vec{a} \in \mathbb{R}^n </script>
+<script type="math/tex; mode=display"> \hat{a} = \frac{\vec{a}}{||\vec{a}||_2} </script>
+</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/normalise_complexe.html'>normalise_complexe</a></td>
+                 <td><a href='../module/nafpack_matricielle.html'>NAFPack_matricielle</a></td>
+                 <td>Function</td>
+                 <td><p>function that normalises a complex vector a to make it a unit vector,
+where <script type="math/tex"> \vec{a} \in \mathbb{C}^n </script>
+<script type="math/tex; mode=display"> \hat{a} = \frac{\vec{a}}{||\vec{a}||_2} </script>
+</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/pivot_partial.html'>pivot_partial</a></td>
+                 <td><a href='../module/nafpack_matrix_decomposition.html'>NAFPack_matrix_decomposition</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/pivot_total.html'>pivot_total</a></td>
+                 <td><a href='../module/nafpack_matrix_decomposition.html'>NAFPack_matrix_decomposition</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/power_of_p_exponent.html'>power_of_p_exponent</a></td>
+                 <td><a href='../module/nafpack_math_utils.html'>NAFPack_math_utils</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/present_arg.html'>present_arg</a></td>
+                 <td><a href='../module/nafpack_utils.html'>NAFPack_utils</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/print_colored_message.html'>print_colored_message</a></td>
+                 <td><a href='../module/nafpack_terminal.html'>NAFPack_terminal</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/qr_decomposition.html'>QR_decomposition</a></td>
+                 <td><a href='../module/nafpack_matrix_decomposition.html'>NAFPack_matrix_decomposition</a></td>
+                 <td>Subroutine</td>
+                 <td><p>QR decomposition of a matrix <strong>A</strong> using various methods
+<script type="math/tex; mode=display"> A = QR </script>
+This subroutine performs QR decomposition of a given matrix <strong>A</strong> using the specified method (Householder, Givens, Classical Gram-Schmidt, or Modified Gram-Schmidt).
+The output matrices <strong>Q</strong> is an orthogonal matrix and <strong>R</strong> is an upper triangular matrix.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/qr_givens_decomposition.html'>QR_Givens_decomposition</a></td>
+                 <td><a href='../module/nafpack_matrix_decomposition.html'>NAFPack_matrix_decomposition</a></td>
+                 <td>Subroutine</td>
+                 <td><p>QR decomposition using Givens rotations</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/qr_gram_schmidt_classical_decomposition.html'>QR_Gram_Schmidt_Classical_decomposition</a></td>
+                 <td><a href='../module/nafpack_matrix_decomposition.html'>NAFPack_matrix_decomposition</a></td>
+                 <td>Subroutine</td>
+                 <td><p>QR decomposition using Classical Gram-Schmidt method</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/qr_gram_schmidt_modified_decomposition.html'>QR_Gram_Schmidt_Modified_decomposition</a></td>
+                 <td><a href='../module/nafpack_matrix_decomposition.html'>NAFPack_matrix_decomposition</a></td>
+                 <td>Subroutine</td>
+                 <td><p>QR decomposition using Modified Gram-Schmidt method</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/qr_householder_decomposition.html'>QR_Householder_decomposition</a></td>
+                 <td><a href='../module/nafpack_matrix_decomposition.html'>NAFPack_matrix_decomposition</a></td>
+                 <td>Subroutine</td>
+                 <td><p>QR decomposition using Householder method</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/readmatrixmarket.html'>readMatrixMarket</a></td>
+                 <td><a href='../module/nafpack_matrix_market.html'>NAFPack_matrix_market</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/realloc.html'>realloc</a></td>
+                 <td><a href='../module/nafpack_memory_management.html'>NAFPack_memory_management</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/reset_ansi_code.html'>reset_ansi_code</a></td>
+                 <td><a href='../module/nafpack_ansi.html'>NAFPack_ANSI</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/restore_cursor_ascii.html'>restore_cursor_ascii</a></td>
+                 <td><a href='../module/nafpack_ansi.html'>NAFPack_ANSI</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/restore_cursor_ucs4.html'>restore_cursor_ucs4</a></td>
+                 <td><a href='../module/nafpack_ansi.html'>NAFPack_ANSI</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/rotation_matrix.html'>rotation_matrix</a></td>
+                 <td><a href='../module/nafpack_matricielle.html'>NAFPack_matricielle</a></td>
+                 <td>Function</td>
+                 <td><p>Function to create a rotation matrix</p><a href="../proc/rotation_matrix.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/save_cursor_ascii.html'>save_cursor_ascii</a></td>
+                 <td><a href='../module/nafpack_ansi.html'>NAFPack_ANSI</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/save_cursor_ucs4.html'>save_cursor_ucs4</a></td>
+                 <td><a href='../module/nafpack_ansi.html'>NAFPack_ANSI</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/set_ansi_code.html'>set_ansi_code</a></td>
+                 <td><a href='../module/nafpack_ansi.html'>NAFPack_ANSI</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/sieve_of_eratosthenes.html'>sieve_of_eratosthenes</a></td>
+                 <td><a href='../module/nafpack_math_utils.html'>NAFPack_math_utils</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/to_str_ascii.html'>to_str_ascii</a></td>
+                 <td><a href='../module/nafpack_io_utils.html'>NAFPack_io_utils</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/to_str_ucs4.html'>to_str_ucs4</a></td>
+                 <td><a href='../module/nafpack_io_utils.html'>NAFPack_io_utils</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/trace.html'>Trace</a></td>
+                 <td><a href='../module/nafpack_matricielle.html'>NAFPack_matricielle</a></td>
+                 <td>Function</td>
+                 <td><p>function that calculates the trace of a square matrix <script type="math/tex"> A </script>
+<script type="math/tex; mode=display"> \text{Tr}(A) = \sum_{i=1}^{n} A(i,i) </script>
+</p></td>
+               </tr>
+			 </tbody></table>
+             <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.2 (20260126.1125)
+ -->
+<!-- Title: call~~graph~~CallGraph Pages: 1 -->
+<svg id="callgraphCallGraph" width="855pt" height="2740pt"
+ viewBox="0.00 0.00 855.00 2740.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="call~~graph~~CallGraph" class="graph" transform="scale(0.703345 0.703345) rotate(0) translate(4 3892.27)">
+<title>call~~graph~~CallGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-3892.27 1211.62,-3892.27 1211.62,4 -4,4"/>
+<!-- interface~apply_style_ascii -->
+<g id="call~~graph~~CallGraph_node1" class="node">
+<title>interface~apply_style_ascii</title>
+<g id="a_call~~graph~~CallGraph_node1"><a xlink:href="../interface/apply_style_ascii.html" xlink:title="apply_style_ascii">
+<polygon fill="#a7506f" stroke="#a7506f" points="164.14,-24.27 64.12,-24.27 64.12,0 164.14,0 164.14,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-8.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">apply_style_ascii</text>
+</a>
+</g>
+</g>
+<!-- interface~apply_style_ucs4 -->
+<g id="call~~graph~~CallGraph_node2" class="node">
+<title>interface~apply_style_ucs4</title>
+<g id="a_call~~graph~~CallGraph_node2"><a xlink:href="../interface/apply_style_ucs4.html" xlink:title="apply_style_ucs4">
+<polygon fill="#a7506f" stroke="#a7506f" points="164.52,-66.27 63.75,-66.27 63.75,-42 164.52,-42 164.52,-66.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-50.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">apply_style_ucs4</text>
+</a>
+</g>
+</g>
+<!-- interface~clear_line_ascii -->
+<g id="call~~graph~~CallGraph_node3" class="node">
+<title>interface~clear_line_ascii</title>
+<g id="a_call~~graph~~CallGraph_node3"><a xlink:href="../interface/clear_line_ascii.html" xlink:title="clear_line_ascii">
+<polygon fill="#a7506f" stroke="#a7506f" points="160.39,-108.27 67.88,-108.27 67.88,-84 160.39,-84 160.39,-108.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-92.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">clear_line_ascii</text>
+</a>
+</g>
+</g>
+<!-- interface~clear_line_ucs4 -->
+<g id="call~~graph~~CallGraph_node4" class="node">
+<title>interface~clear_line_ucs4</title>
+<g id="a_call~~graph~~CallGraph_node4"><a xlink:href="../interface/clear_line_ucs4.html" xlink:title="clear_line_ucs4">
+<polygon fill="#a7506f" stroke="#a7506f" points="160.77,-150.27 67.5,-150.27 67.5,-126 160.77,-126 160.77,-150.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-134.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">clear_line_ucs4</text>
+</a>
+</g>
+</g>
+<!-- interface~clear_screen_ascii -->
+<g id="call~~graph~~CallGraph_node5" class="node">
+<title>interface~clear_screen_ascii</title>
+<g id="a_call~~graph~~CallGraph_node5"><a xlink:href="../interface/clear_screen_ascii.html" xlink:title="clear_screen_ascii">
+<polygon fill="#a7506f" stroke="#a7506f" points="168.27,-192.27 60,-192.27 60,-168 168.27,-168 168.27,-192.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-176.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">clear_screen_ascii</text>
+</a>
+</g>
+</g>
+<!-- interface~clear_screen_ucs4 -->
+<g id="call~~graph~~CallGraph_node6" class="node">
+<title>interface~clear_screen_ucs4</title>
+<g id="a_call~~graph~~CallGraph_node6"><a xlink:href="../interface/clear_screen_ucs4.html" xlink:title="clear_screen_ucs4">
+<polygon fill="#a7506f" stroke="#a7506f" points="168.64,-234.27 59.62,-234.27 59.62,-210 168.64,-210 168.64,-234.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-218.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">clear_screen_ucs4</text>
+</a>
+</g>
+</g>
+<!-- interface~colorize_text_ascii -->
+<g id="call~~graph~~CallGraph_node7" class="node">
+<title>interface~colorize_text_ascii</title>
+<g id="a_call~~graph~~CallGraph_node7"><a xlink:href="../interface/colorize_text_ascii.html" xlink:title="colorize_text_ascii">
+<polygon fill="#a7506f" stroke="#a7506f" points="167.89,-276.27 60.37,-276.27 60.37,-252 167.89,-252 167.89,-276.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-260.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">colorize_text_ascii</text>
+</a>
+</g>
+</g>
+<!-- interface~colorize_text_ucs4 -->
+<g id="call~~graph~~CallGraph_node8" class="node">
+<title>interface~colorize_text_ucs4</title>
+<g id="a_call~~graph~~CallGraph_node8"><a xlink:href="../interface/colorize_text_ucs4.html" xlink:title="colorize_text_ucs4">
+<polygon fill="#a7506f" stroke="#a7506f" points="168.27,-318.27 60,-318.27 60,-294 168.27,-294 168.27,-318.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-302.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">colorize_text_ucs4</text>
+</a>
+</g>
+</g>
+<!-- interface~create_ansi_ascii -->
+<g id="call~~graph~~CallGraph_node9" class="node">
+<title>interface~create_ansi_ascii</title>
+<g id="a_call~~graph~~CallGraph_node9"><a xlink:href="../interface/create_ansi_ascii.html" xlink:title="create_ansi_ascii">
+<polygon fill="#a7506f" stroke="#a7506f" points="164.89,-360.27 63.37,-360.27 63.37,-336 164.89,-336 164.89,-360.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-344.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">create_ansi_ascii</text>
+</a>
+</g>
+</g>
+<!-- interface~create_ansi_ucs4 -->
+<g id="call~~graph~~CallGraph_node10" class="node">
+<title>interface~create_ansi_ucs4</title>
+<g id="a_call~~graph~~CallGraph_node10"><a xlink:href="../interface/create_ansi_ucs4.html" xlink:title="create_ansi_ucs4">
+<polygon fill="#a7506f" stroke="#a7506f" points="165.27,-402.27 63,-402.27 63,-378 165.27,-378 165.27,-402.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-386.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">create_ansi_ucs4</text>
+</a>
+</g>
+</g>
+<!-- interface~cursor_position_ascii -->
+<g id="call~~graph~~CallGraph_node11" class="node">
+<title>interface~cursor_position_ascii</title>
+<g id="a_call~~graph~~CallGraph_node11"><a xlink:href="../interface/cursor_position_ascii.html" xlink:title="cursor_position_ascii">
+<polygon fill="#a7506f" stroke="#a7506f" points="175.02,-444.27 53.25,-444.27 53.25,-420 175.02,-420 175.02,-444.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-428.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">cursor_position_ascii</text>
+</a>
+</g>
+</g>
+<!-- interface~cursor_position_ucs4 -->
+<g id="call~~graph~~CallGraph_node12" class="node">
+<title>interface~cursor_position_ucs4</title>
+<g id="a_call~~graph~~CallGraph_node12"><a xlink:href="../interface/cursor_position_ucs4.html" xlink:title="cursor_position_ucs4">
+<polygon fill="#a7506f" stroke="#a7506f" points="175.39,-486.27 52.87,-486.27 52.87,-462 175.39,-462 175.39,-486.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-470.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">cursor_position_ucs4</text>
+</a>
+</g>
+</g>
+<!-- interface~dft -->
+<g id="call~~graph~~CallGraph_node13" class="node">
+<title>interface~dft</title>
+<g id="a_call~~graph~~CallGraph_node13"><a xlink:href="../interface/dft.html" xlink:title="dft">
+<polygon fill="#a7506f" stroke="#a7506f" points="141.13,-528.27 87.13,-528.27 87.13,-504 141.13,-504 141.13,-528.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-512.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dft</text>
+</a>
+</g>
+</g>
+<!-- interface~dft2 -->
+<g id="call~~graph~~CallGraph_node14" class="node">
+<title>interface~dft2</title>
+<g id="a_call~~graph~~CallGraph_node14"><a xlink:href="../interface/dft2.html" xlink:title="dft2">
+<polygon fill="#a7506f" stroke="#a7506f" points="141.13,-570.27 87.13,-570.27 87.13,-546 141.13,-546 141.13,-570.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-554.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dft2</text>
+</a>
+</g>
+</g>
+<!-- interface~dft3 -->
+<g id="call~~graph~~CallGraph_node15" class="node">
+<title>interface~dft3</title>
+<g id="a_call~~graph~~CallGraph_node15"><a xlink:href="../interface/dft3.html" xlink:title="dft3">
+<polygon fill="#a7506f" stroke="#a7506f" points="141.13,-612.27 87.13,-612.27 87.13,-588 141.13,-588 141.13,-612.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-596.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dft3</text>
+</a>
+</g>
+</g>
+<!-- interface~execute_butterfly_dft -->
+<g id="call~~graph~~CallGraph_node16" class="node">
+<title>interface~execute_butterfly_dft</title>
+<g id="a_call~~graph~~CallGraph_node16"><a xlink:href="../interface/execute_butterfly_dft.html" xlink:title="execute_butterfly_dft">
+<polygon fill="#a7506f" stroke="#a7506f" points="175.77,-654.27 52.5,-654.27 52.5,-630 175.77,-630 175.77,-654.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-638.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">execute_butterfly_dft</text>
+</a>
+</g>
+</g>
+<!-- interface~execute_butterfly_mixed_radix_recursive -->
+<g id="call~~graph~~CallGraph_node17" class="node">
+<title>interface~execute_butterfly_mixed_radix_recursive</title>
+<g id="a_call~~graph~~CallGraph_node17"><a xlink:href="../interface/execute_butterfly_mixed_radix_recursive.html" xlink:title="execute_butterfly_mixed_radix_recursive">
+<polygon fill="#a7506f" stroke="#a7506f" points="228.27,-696.27 0,-696.27 0,-672 228.27,-672 228.27,-696.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-680.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">execute_butterfly_mixed_radix_recursive</text>
+</a>
+</g>
+</g>
+<!-- interface~execute_butterfly_radix2 -->
+<g id="call~~graph~~CallGraph_node18" class="node">
+<title>interface~execute_butterfly_radix2</title>
+<g id="a_call~~graph~~CallGraph_node18"><a xlink:href="../interface/execute_butterfly_radix2.html" xlink:title="execute_butterfly_radix2">
+<polygon fill="#a7506f" stroke="#a7506f" points="185.52,-738.27 42.75,-738.27 42.75,-714 185.52,-714 185.52,-738.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-722.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">execute_butterfly_radix2</text>
+</a>
+</g>
+</g>
+<!-- interface~execute_butterfly_radix2_recursive -->
+<g id="call~~graph~~CallGraph_node19" class="node">
+<title>interface~execute_butterfly_radix2_recursive</title>
+<g id="a_call~~graph~~CallGraph_node19"><a xlink:href="../interface/execute_butterfly_radix2_recursive.html" xlink:title="execute_butterfly_radix2_recursive">
+<polygon fill="#a7506f" stroke="#a7506f" points="212.52,-780.27 15.75,-780.27 15.75,-756 212.52,-756 212.52,-780.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-764.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">execute_butterfly_radix2_recursive</text>
+</a>
+</g>
+</g>
+<!-- interface~execute_butterfly_radix3 -->
+<g id="call~~graph~~CallGraph_node20" class="node">
+<title>interface~execute_butterfly_radix3</title>
+<g id="a_call~~graph~~CallGraph_node20"><a xlink:href="../interface/execute_butterfly_radix3.html" xlink:title="execute_butterfly_radix3">
+<polygon fill="#a7506f" stroke="#a7506f" points="185.52,-822.27 42.75,-822.27 42.75,-798 185.52,-798 185.52,-822.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-806.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">execute_butterfly_radix3</text>
+</a>
+</g>
+</g>
+<!-- interface~execute_butterfly_radix3_recursive -->
+<g id="call~~graph~~CallGraph_node21" class="node">
+<title>interface~execute_butterfly_radix3_recursive</title>
+<g id="a_call~~graph~~CallGraph_node21"><a xlink:href="../interface/execute_butterfly_radix3_recursive.html" xlink:title="execute_butterfly_radix3_recursive">
+<polygon fill="#a7506f" stroke="#a7506f" points="212.52,-864.27 15.75,-864.27 15.75,-840 212.52,-840 212.52,-864.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-848.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">execute_butterfly_radix3_recursive</text>
+</a>
+</g>
+</g>
+<!-- interface~execute_butterfly_radix4 -->
+<g id="call~~graph~~CallGraph_node22" class="node">
+<title>interface~execute_butterfly_radix4</title>
+<g id="a_call~~graph~~CallGraph_node22"><a xlink:href="../interface/execute_butterfly_radix4.html" xlink:title="execute_butterfly_radix4">
+<polygon fill="#a7506f" stroke="#a7506f" points="185.52,-906.27 42.75,-906.27 42.75,-882 185.52,-882 185.52,-906.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-890.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">execute_butterfly_radix4</text>
+</a>
+</g>
+</g>
+<!-- interface~execute_butterfly_radix4_recursive -->
+<g id="call~~graph~~CallGraph_node23" class="node">
+<title>interface~execute_butterfly_radix4_recursive</title>
+<g id="a_call~~graph~~CallGraph_node23"><a xlink:href="../interface/execute_butterfly_radix4_recursive.html" xlink:title="execute_butterfly_radix4_recursive">
+<polygon fill="#a7506f" stroke="#a7506f" points="212.52,-948.27 15.75,-948.27 15.75,-924 212.52,-924 212.52,-948.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-932.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">execute_butterfly_radix4_recursive</text>
+</a>
+</g>
+</g>
+<!-- interface~execute_butterfly_radix5 -->
+<g id="call~~graph~~CallGraph_node24" class="node">
+<title>interface~execute_butterfly_radix5</title>
+<g id="a_call~~graph~~CallGraph_node24"><a xlink:href="../interface/execute_butterfly_radix5.html" xlink:title="execute_butterfly_radix5">
+<polygon fill="#a7506f" stroke="#a7506f" points="185.52,-990.27 42.75,-990.27 42.75,-966 185.52,-966 185.52,-990.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-974.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">execute_butterfly_radix5</text>
+</a>
+</g>
+</g>
+<!-- interface~execute_butterfly_radix5_recursive -->
+<g id="call~~graph~~CallGraph_node25" class="node">
+<title>interface~execute_butterfly_radix5_recursive</title>
+<g id="a_call~~graph~~CallGraph_node25"><a xlink:href="../interface/execute_butterfly_radix5_recursive.html" xlink:title="execute_butterfly_radix5_recursive">
+<polygon fill="#a7506f" stroke="#a7506f" points="212.52,-1032.27 15.75,-1032.27 15.75,-1008 212.52,-1008 212.52,-1032.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-1016.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">execute_butterfly_radix5_recursive</text>
+</a>
+</g>
+</g>
+<!-- interface~execute_butterfly_split_radix -->
+<g id="call~~graph~~CallGraph_node26" class="node">
+<title>interface~execute_butterfly_split_radix</title>
+<g id="a_call~~graph~~CallGraph_node26"><a xlink:href="../interface/execute_butterfly_split_radix.html" xlink:title="execute_butterfly_split_radix">
+<polygon fill="#a7506f" stroke="#a7506f" points="195.64,-1074.27 32.62,-1074.27 32.62,-1050 195.64,-1050 195.64,-1074.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-1058.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">execute_butterfly_split_radix</text>
+</a>
+</g>
+</g>
+<!-- interface~execute_butterfly_split_radix_recursive -->
+<g id="call~~graph~~CallGraph_node27" class="node">
+<title>interface~execute_butterfly_split_radix_recursive</title>
+<g id="a_call~~graph~~CallGraph_node27"><a xlink:href="../interface/execute_butterfly_split_radix_recursive.html" xlink:title="execute_butterfly_split_radix_recursive">
+<polygon fill="#a7506f" stroke="#a7506f" points="222.64,-1116.27 5.62,-1116.27 5.62,-1092 222.64,-1092 222.64,-1116.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-1100.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">execute_butterfly_split_radix_recursive</text>
+</a>
+</g>
+</g>
+<!-- interface~idft -->
+<g id="call~~graph~~CallGraph_node28" class="node">
+<title>interface~idft</title>
+<g id="a_call~~graph~~CallGraph_node28"><a xlink:href="../interface/idft.html" xlink:title="idft">
+<polygon fill="#a7506f" stroke="#a7506f" points="141.13,-1158.27 87.13,-1158.27 87.13,-1134 141.13,-1134 141.13,-1158.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-1142.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">idft</text>
+</a>
+</g>
+</g>
+<!-- interface~idft2 -->
+<g id="call~~graph~~CallGraph_node29" class="node">
+<title>interface~idft2</title>
+<g id="a_call~~graph~~CallGraph_node29"><a xlink:href="../interface/idft2.html" xlink:title="idft2">
+<polygon fill="#a7506f" stroke="#a7506f" points="141.13,-1200.27 87.13,-1200.27 87.13,-1176 141.13,-1176 141.13,-1200.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-1184.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">idft2</text>
+</a>
+</g>
+</g>
+<!-- interface~idft3 -->
+<g id="call~~graph~~CallGraph_node30" class="node">
+<title>interface~idft3</title>
+<g id="a_call~~graph~~CallGraph_node30"><a xlink:href="../interface/idft3.html" xlink:title="idft3">
+<polygon fill="#a7506f" stroke="#a7506f" points="141.13,-1242.27 87.13,-1242.27 87.13,-1218 141.13,-1218 141.13,-1242.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-1226.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">idft3</text>
+</a>
+</g>
+</g>
+<!-- interface~log_field -->
+<g id="call~~graph~~CallGraph_node31" class="node">
+<title>interface~log_field</title>
+<g id="a_call~~graph~~CallGraph_node31"><a xlink:href="../interface/log_field.html" xlink:title="log_field">
+<polygon fill="#a7506f" stroke="#a7506f" points="142.39,-1284.27 85.88,-1284.27 85.88,-1260 142.39,-1260 142.39,-1284.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-1268.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">log_field</text>
+</a>
+</g>
+</g>
+<!-- interface~meshgrid -->
+<g id="call~~graph~~CallGraph_node32" class="node">
+<title>interface~meshgrid</title>
+<g id="a_call~~graph~~CallGraph_node32"><a xlink:href="../interface/meshgrid.html" xlink:title="meshgrid">
+<polygon fill="#a7506f" stroke="#a7506f" points="145.02,-1326.27 83.25,-1326.27 83.25,-1302 145.02,-1302 145.02,-1326.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-1310.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">meshgrid</text>
+</a>
+</g>
+</g>
+<!-- interface~present_arg -->
+<g id="call~~graph~~CallGraph_node33" class="node">
+<title>interface~present_arg</title>
+<g id="a_call~~graph~~CallGraph_node33"><a xlink:href="../interface/present_arg.html" xlink:title="present_arg">
+<polygon fill="#a7506f" stroke="#a7506f" points="405.92,-1368.27 331.4,-1368.27 331.4,-1344 405.92,-1344 405.92,-1368.27"/>
+<text xml:space="preserve" text-anchor="middle" x="368.66" y="-1352.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">present_arg</text>
+</a>
+</g>
+</g>
+<!-- interface~print_colored_message -->
+<g id="call~~graph~~CallGraph_node34" class="node">
+<title>interface~print_colored_message</title>
+<g id="a_call~~graph~~CallGraph_node34"><a xlink:href="../interface/print_colored_message.html" xlink:title="print_colored_message">
+<polygon fill="#a7506f" stroke="#a7506f" points="181.39,-1410.27 46.87,-1410.27 46.87,-1386 181.39,-1386 181.39,-1410.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-1394.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">print_colored_message</text>
+</a>
+</g>
+</g>
+<!-- interface~realloc -->
+<g id="call~~graph~~CallGraph_node35" class="node">
+<title>interface~realloc</title>
+<g id="a_call~~graph~~CallGraph_node35"><a xlink:href="../interface/realloc.html" xlink:title="realloc">
+<polygon fill="#a7506f" stroke="#a7506f" points="141.13,-1452.27 87.13,-1452.27 87.13,-1428 141.13,-1428 141.13,-1452.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-1436.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">realloc</text>
+</a>
+</g>
+</g>
+<!-- interface~restore_cursor_ascii -->
+<g id="call~~graph~~CallGraph_node36" class="node">
+<title>interface~restore_cursor_ascii</title>
+<g id="a_call~~graph~~CallGraph_node36"><a xlink:href="../interface/restore_cursor_ascii.html" xlink:title="restore_cursor_ascii">
+<polygon fill="#a7506f" stroke="#a7506f" points="172.39,-1494.27 55.87,-1494.27 55.87,-1470 172.39,-1470 172.39,-1494.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-1478.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">restore_cursor_ascii</text>
+</a>
+</g>
+</g>
+<!-- interface~restore_cursor_ucs4 -->
+<g id="call~~graph~~CallGraph_node37" class="node">
+<title>interface~restore_cursor_ucs4</title>
+<g id="a_call~~graph~~CallGraph_node37"><a xlink:href="../interface/restore_cursor_ucs4.html" xlink:title="restore_cursor_ucs4">
+<polygon fill="#a7506f" stroke="#a7506f" points="172.77,-1536.27 55.5,-1536.27 55.5,-1512 172.77,-1512 172.77,-1536.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-1520.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">restore_cursor_ucs4</text>
+</a>
+</g>
+</g>
+<!-- interface~save_cursor_ascii -->
+<g id="call~~graph~~CallGraph_node38" class="node">
+<title>interface~save_cursor_ascii</title>
+<g id="a_call~~graph~~CallGraph_node38"><a xlink:href="../interface/save_cursor_ascii.html" xlink:title="save_cursor_ascii">
+<polygon fill="#a7506f" stroke="#a7506f" points="166.39,-1578.27 61.87,-1578.27 61.87,-1554 166.39,-1554 166.39,-1578.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-1562.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">save_cursor_ascii</text>
+</a>
+</g>
+</g>
+<!-- interface~save_cursor_ucs4 -->
+<g id="call~~graph~~CallGraph_node39" class="node">
+<title>interface~save_cursor_ucs4</title>
+<g id="a_call~~graph~~CallGraph_node39"><a xlink:href="../interface/save_cursor_ucs4.html" xlink:title="save_cursor_ucs4">
+<polygon fill="#a7506f" stroke="#a7506f" points="166.77,-1620.27 61.5,-1620.27 61.5,-1596 166.77,-1596 166.77,-1620.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-1604.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">save_cursor_ucs4</text>
+</a>
+</g>
+</g>
+<!-- interface~to_str_ascii -->
+<g id="call~~graph~~CallGraph_node40" class="node">
+<title>interface~to_str_ascii</title>
+<g id="a_call~~graph~~CallGraph_node40"><a xlink:href="../interface/to_str_ascii.html" xlink:title="to_str_ascii">
+<polygon fill="#a7506f" stroke="#a7506f" points="149.14,-1662.27 79.12,-1662.27 79.12,-1638 149.14,-1638 149.14,-1662.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-1646.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">to_str_ascii</text>
+</a>
+</g>
+</g>
+<!-- interface~to_str_ucs4 -->
+<g id="call~~graph~~CallGraph_node41" class="node">
+<title>interface~to_str_ucs4</title>
+<g id="a_call~~graph~~CallGraph_node41"><a xlink:href="../interface/to_str_ucs4.html" xlink:title="to_str_ucs4">
+<polygon fill="#a7506f" stroke="#a7506f" points="149.52,-1704.27 78.75,-1704.27 78.75,-1680 149.52,-1680 149.52,-1704.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-1688.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">to_str_ucs4</text>
+</a>
+</g>
+</g>
+<!-- none~dft -->
+<g id="call~~graph~~CallGraph_node42" class="node">
+<title>none~dft</title>
+<g id="a_call~~graph~~CallGraph_node42"><a xlink:href="../type/fourier_transform.html#boundprocedure-dft" xlink:title="Fourier_Transform%dft">
+<polygon fill="#a7506f" stroke="#a7506f" points="180.27,-1746.27 48,-1746.27 48,-1722 180.27,-1722 180.27,-1746.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-1730.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Fourier_Transform%dft</text>
+</a>
+</g>
+</g>
+<!-- none~dft~2 -->
+<g id="call~~graph~~CallGraph_node43" class="node">
+<title>none~dft~2</title>
+<g id="a_call~~graph~~CallGraph_node43"><a xlink:href="../type/fourier_transform.html#boundprocedure-dft~2" xlink:title="Fourier_Transform%dft">
+<polygon fill="#a7506f" stroke="#a7506f" points="180.27,-1788.27 48,-1788.27 48,-1764 180.27,-1764 180.27,-1788.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-1772.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Fourier_Transform%dft</text>
+</a>
+</g>
+</g>
+<!-- none~dft~3 -->
+<g id="call~~graph~~CallGraph_node44" class="node">
+<title>none~dft~3</title>
+<g id="a_call~~graph~~CallGraph_node44"><a xlink:href="../type/fourier_transform.html#boundprocedure-dft~3" xlink:title="Fourier_Transform%dft">
+<polygon fill="#a7506f" stroke="#a7506f" points="180.27,-1830.27 48,-1830.27 48,-1806 180.27,-1806 180.27,-1830.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-1814.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Fourier_Transform%dft</text>
+</a>
+</g>
+</g>
+<!-- none~dft~4 -->
+<g id="call~~graph~~CallGraph_node45" class="node">
+<title>none~dft~4</title>
+<g id="a_call~~graph~~CallGraph_node45"><a xlink:href="../type/fourier_transform.html#boundprocedure-dft~4" xlink:title="Fourier_Transform%dft">
+<polygon fill="#a7506f" stroke="#a7506f" points="180.27,-1872.27 48,-1872.27 48,-1848 180.27,-1848 180.27,-1872.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-1856.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Fourier_Transform%dft</text>
+</a>
+</g>
+</g>
+<!-- none~dft~5 -->
+<g id="call~~graph~~CallGraph_node46" class="node">
+<title>none~dft~5</title>
+<g id="a_call~~graph~~CallGraph_node46"><a xlink:href="../type/fourier_transform.html#boundprocedure-dft~5" xlink:title="Fourier_Transform%dft">
+<polygon fill="#a7506f" stroke="#a7506f" points="180.27,-1914.27 48,-1914.27 48,-1890 180.27,-1890 180.27,-1914.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-1898.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Fourier_Transform%dft</text>
+</a>
+</g>
+</g>
+<!-- none~dft~6 -->
+<g id="call~~graph~~CallGraph_node47" class="node">
+<title>none~dft~6</title>
+<g id="a_call~~graph~~CallGraph_node47"><a xlink:href="../type/fourier_transform.html#boundprocedure-dft~6" xlink:title="Fourier_Transform%dft">
+<polygon fill="#a7506f" stroke="#a7506f" points="180.27,-1956.27 48,-1956.27 48,-1932 180.27,-1932 180.27,-1956.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-1940.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Fourier_Transform%dft</text>
+</a>
+</g>
+</g>
+<!-- none~idft -->
+<g id="call~~graph~~CallGraph_node48" class="node">
+<title>none~idft</title>
+<g id="a_call~~graph~~CallGraph_node48"><a xlink:href="../type/fourier_transform.html#boundprocedure-idft" xlink:title="Fourier_Transform%idft">
+<polygon fill="#a7506f" stroke="#a7506f" points="181.77,-1998.27 46.5,-1998.27 46.5,-1974 181.77,-1974 181.77,-1998.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-1982.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Fourier_Transform%idft</text>
+</a>
+</g>
+</g>
+<!-- none~idft~2 -->
+<g id="call~~graph~~CallGraph_node49" class="node">
+<title>none~idft~2</title>
+<g id="a_call~~graph~~CallGraph_node49"><a xlink:href="../type/fourier_transform.html#boundprocedure-idft~2" xlink:title="Fourier_Transform%idft">
+<polygon fill="#a7506f" stroke="#a7506f" points="181.77,-2040.27 46.5,-2040.27 46.5,-2016 181.77,-2016 181.77,-2040.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-2024.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Fourier_Transform%idft</text>
+</a>
+</g>
+</g>
+<!-- none~idft~3 -->
+<g id="call~~graph~~CallGraph_node50" class="node">
+<title>none~idft~3</title>
+<g id="a_call~~graph~~CallGraph_node50"><a xlink:href="../type/fourier_transform.html#boundprocedure-idft~3" xlink:title="Fourier_Transform%idft">
+<polygon fill="#a7506f" stroke="#a7506f" points="181.77,-2082.27 46.5,-2082.27 46.5,-2058 181.77,-2058 181.77,-2082.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-2066.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Fourier_Transform%idft</text>
+</a>
+</g>
+</g>
+<!-- none~idft~4 -->
+<g id="call~~graph~~CallGraph_node51" class="node">
+<title>none~idft~4</title>
+<g id="a_call~~graph~~CallGraph_node51"><a xlink:href="../type/fourier_transform.html#boundprocedure-idft~4" xlink:title="Fourier_Transform%idft">
+<polygon fill="#a7506f" stroke="#a7506f" points="181.77,-2124.27 46.5,-2124.27 46.5,-2100 181.77,-2100 181.77,-2124.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-2108.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Fourier_Transform%idft</text>
+</a>
+</g>
+</g>
+<!-- none~idft~5 -->
+<g id="call~~graph~~CallGraph_node52" class="node">
+<title>none~idft~5</title>
+<g id="a_call~~graph~~CallGraph_node52"><a xlink:href="../type/fourier_transform.html#boundprocedure-idft~5" xlink:title="Fourier_Transform%idft">
+<polygon fill="#a7506f" stroke="#a7506f" points="181.77,-2166.27 46.5,-2166.27 46.5,-2142 181.77,-2142 181.77,-2166.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-2150.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Fourier_Transform%idft</text>
+</a>
+</g>
+</g>
+<!-- none~idft~6 -->
+<g id="call~~graph~~CallGraph_node53" class="node">
+<title>none~idft~6</title>
+<g id="a_call~~graph~~CallGraph_node53"><a xlink:href="../type/fourier_transform.html#boundprocedure-idft~6" xlink:title="Fourier_Transform%idft">
+<polygon fill="#a7506f" stroke="#a7506f" points="181.77,-2208.27 46.5,-2208.27 46.5,-2184 181.77,-2184 181.77,-2208.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-2192.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Fourier_Transform%idft</text>
+</a>
+</g>
+</g>
+<!-- proc~applypreconditioner -->
+<g id="call~~graph~~CallGraph_node54" class="node">
+<title>proc~applypreconditioner</title>
+<g id="a_call~~graph~~CallGraph_node54"><a xlink:href="../proc/applypreconditioner.html" xlink:title="ApplyPreconditioner">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="173.52,-2250.27 54.75,-2250.27 54.75,-2226 173.52,-2226 173.52,-2250.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-2234.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">ApplyPreconditioner</text>
+</a>
+</g>
+</g>
+<!-- proc~backward -->
+<g id="call~~graph~~CallGraph_node55" class="node">
+<title>proc~backward</title>
+<g id="a_call~~graph~~CallGraph_node55"><a xlink:href="../proc/backward.html" xlink:title="backward">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="400.29,-2271.27 337.02,-2271.27 337.02,-2247 400.29,-2247 400.29,-2271.27"/>
+<text xml:space="preserve" text-anchor="middle" x="368.66" y="-2255.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">backward</text>
+</a>
+</g>
+</g>
+<!-- proc~applypreconditioner&#45;&gt;proc~backward -->
+<g id="call~~graph~~CallGraph_edge1" class="edge">
+<title>proc~applypreconditioner&#45;&gt;proc~backward</title>
+<path fill="none" stroke="#00ffbd" d="M173.7,-2243.01C220.08,-2246.86 283.76,-2252.16 325.3,-2255.61"/>
+<polygon fill="#00ffbd" stroke="#00ffbd" points="324.9,-2259.09 335.15,-2256.43 325.48,-2252.12 324.9,-2259.09"/>
+</g>
+<!-- proc~forward -->
+<g id="call~~graph~~CallGraph_node77" class="node">
+<title>proc~forward</title>
+<g id="a_call~~graph~~CallGraph_node77"><a xlink:href="../proc/forward.html" xlink:title="forward">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="395.66,-2229.27 341.66,-2229.27 341.66,-2205 395.66,-2205 395.66,-2229.27"/>
+<text xml:space="preserve" text-anchor="middle" x="368.66" y="-2213.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">forward</text>
+</a>
+</g>
+</g>
+<!-- proc~applypreconditioner&#45;&gt;proc~forward -->
+<g id="call~~graph~~CallGraph_edge2" class="edge">
+<title>proc~applypreconditioner&#45;&gt;proc~forward</title>
+<path fill="none" stroke="#00ffbd" d="M173.7,-2233.26C221.84,-2229.26 288.61,-2223.71 329.93,-2220.27"/>
+<polygon fill="#00ffbd" stroke="#00ffbd" points="330.19,-2223.76 339.87,-2219.45 329.61,-2216.79 330.19,-2223.76"/>
+</g>
+<!-- proc~calculate_gauss_seidel_preconditioner -->
+<g id="call~~graph~~CallGraph_node56" class="node">
+<title>proc~calculate_gauss_seidel_preconditioner</title>
+<g id="a_call~~graph~~CallGraph_node56"><a xlink:href="../proc/calculate_gauss_seidel_preconditioner.html" xlink:title="Calculate_Gauss_Seidel_preconditioner">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="224.52,-2460.27 3.75,-2460.27 3.75,-2436 224.52,-2436 224.52,-2460.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-2444.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Calculate_Gauss_Seidel_preconditioner</text>
+</a>
+</g>
+</g>
+<!-- proc~diag -->
+<g id="call~~graph~~CallGraph_node69" class="node">
+<title>proc~diag</title>
+<g id="a_call~~graph~~CallGraph_node69"><a xlink:href="../proc/diag.html" xlink:title="Diag">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="395.66,-2376.27 341.66,-2376.27 341.66,-2352 395.66,-2352 395.66,-2376.27"/>
+<text xml:space="preserve" text-anchor="middle" x="368.66" y="-2360.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Diag</text>
+</a>
+</g>
+</g>
+<!-- proc~calculate_gauss_seidel_preconditioner&#45;&gt;proc~diag -->
+<g id="call~~graph~~CallGraph_edge3" class="edge">
+<title>proc~calculate_gauss_seidel_preconditioner&#45;&gt;proc~diag</title>
+<path fill="none" stroke="#00ffd7" d="M196.37,-2435.51C207.2,-2433.11 218.07,-2430.33 228.27,-2427.14 266.02,-2415.29 307.03,-2395.9 334.73,-2381.75"/>
+<polygon fill="#00ffd7" stroke="#00ffd7" points="336.04,-2385.02 343.31,-2377.31 332.82,-2378.8 336.04,-2385.02"/>
+</g>
+<!-- proc~calculate_icf_preconditioner -->
+<g id="call~~graph~~CallGraph_node57" class="node">
+<title>proc~calculate_icf_preconditioner</title>
+<g id="a_call~~graph~~CallGraph_node57"><a xlink:href="../proc/calculate_icf_preconditioner.html" xlink:title="Calculate_ICF_preconditioner">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="197.52,-2502.27 30.75,-2502.27 30.75,-2478 197.52,-2478 197.52,-2502.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-2486.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Calculate_ICF_preconditioner</text>
+</a>
+</g>
+</g>
+<!-- proc~incomplete_cholesky_decomposition -->
+<g id="call~~graph~~CallGraph_node84" class="node">
+<title>proc~incomplete_cholesky_decomposition</title>
+<g id="a_call~~graph~~CallGraph_node84"><a xlink:href="../proc/incomplete_cholesky_decomposition.html" xlink:title="Incomplete_Cholesky_decomposition">
+<polygon fill="#d9534f" stroke="#d9534f" points="473.04,-2502.27 264.27,-2502.27 264.27,-2478 473.04,-2478 473.04,-2502.27"/>
+<text xml:space="preserve" text-anchor="middle" x="368.66" y="-2486.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Incomplete_Cholesky_decomposition</text>
+</a>
+</g>
+</g>
+<!-- proc~calculate_icf_preconditioner&#45;&gt;proc~incomplete_cholesky_decomposition -->
+<g id="call~~graph~~CallGraph_edge4" class="edge">
+<title>proc~calculate_icf_preconditioner&#45;&gt;proc~incomplete_cholesky_decomposition</title>
+<path fill="none" stroke="#00ffe4" d="M197.82,-2490.14C215.33,-2490.14 234.11,-2490.14 252.58,-2490.14"/>
+<polygon fill="#00ffe4" stroke="#00ffe4" points="252.5,-2493.64 262.5,-2490.14 252.5,-2486.64 252.5,-2493.64"/>
+</g>
+<!-- proc~calculate_ilu_preconditioner -->
+<g id="call~~graph~~CallGraph_node58" class="node">
+<title>proc~calculate_ilu_preconditioner</title>
+<g id="a_call~~graph~~CallGraph_node58"><a xlink:href="../proc/calculate_ilu_preconditioner.html" xlink:title="Calculate_ILU_preconditioner">
+<polygon fill="#d9534f" stroke="#d9534f" points="197.14,-2544.27 31.12,-2544.27 31.12,-2520 197.14,-2520 197.14,-2544.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-2528.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Calculate_ILU_preconditioner</text>
+</a>
+</g>
+</g>
+<!-- proc~ilu_decomposition -->
+<g id="call~~graph~~CallGraph_node83" class="node">
+<title>proc~ilu_decomposition</title>
+<g id="a_call~~graph~~CallGraph_node83"><a xlink:href="../proc/ilu_decomposition.html" xlink:title="ILU_decomposition">
+<polygon fill="#d9534f" stroke="#d9534f" points="424.29,-2544.27 313.02,-2544.27 313.02,-2520 424.29,-2520 424.29,-2544.27"/>
+<text xml:space="preserve" text-anchor="middle" x="368.66" y="-2528.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">ILU_decomposition</text>
+</a>
+</g>
+</g>
+<!-- proc~calculate_ilu_preconditioner&#45;&gt;proc~ilu_decomposition -->
+<g id="call~~graph~~CallGraph_edge5" class="edge">
+<title>proc~calculate_ilu_preconditioner&#45;&gt;proc~ilu_decomposition</title>
+<path fill="none" stroke="#00fff1" d="M197.47,-2532.14C231.05,-2532.14 269.38,-2532.14 301.14,-2532.14"/>
+<polygon fill="#00fff1" stroke="#00fff1" points="301.01,-2535.64 311.01,-2532.14 301.01,-2528.64 301.01,-2535.64"/>
+</g>
+<!-- proc~calculate_jacobi_preconditioner -->
+<g id="call~~graph~~CallGraph_node59" class="node">
+<title>proc~calculate_jacobi_preconditioner</title>
+<g id="a_call~~graph~~CallGraph_node59"><a xlink:href="../proc/calculate_jacobi_preconditioner.html" xlink:title="Calculate_Jacobi_preconditioner">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="205.39,-2418.27 22.87,-2418.27 22.87,-2394 205.39,-2394 205.39,-2418.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-2402.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Calculate_Jacobi_preconditioner</text>
+</a>
+</g>
+</g>
+<!-- proc~calculate_jacobi_preconditioner&#45;&gt;proc~diag -->
+<g id="call~~graph~~CallGraph_edge6" class="edge">
+<title>proc~calculate_jacobi_preconditioner&#45;&gt;proc~diag</title>
+<path fill="none" stroke="#00ffff" d="M190.9,-2393.53C236.91,-2385.88 293.64,-2376.45 330.21,-2370.36"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="330.56,-2373.85 339.85,-2368.76 329.41,-2366.95 330.56,-2373.85"/>
+</g>
+<!-- proc~calculate_jor_preconditioner -->
+<g id="call~~graph~~CallGraph_node60" class="node">
+<title>proc~calculate_jor_preconditioner</title>
+<g id="a_call~~graph~~CallGraph_node60"><a xlink:href="../proc/calculate_jor_preconditioner.html" xlink:title="Calculate_JOR_preconditioner">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="198.64,-2376.27 29.62,-2376.27 29.62,-2352 198.64,-2352 198.64,-2376.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-2360.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Calculate_JOR_preconditioner</text>
+</a>
+</g>
+</g>
+<!-- proc~calculate_jor_preconditioner&#45;&gt;proc~diag -->
+<g id="call~~graph~~CallGraph_edge7" class="edge">
+<title>proc~calculate_jor_preconditioner&#45;&gt;proc~diag</title>
+<path fill="none" stroke="#00f1ff" d="M198.87,-2364.14C243.18,-2364.14 295.39,-2364.14 329.89,-2364.14"/>
+<polygon fill="#00f1ff" stroke="#00f1ff" points="329.79,-2367.64 339.79,-2364.14 329.79,-2360.64 329.79,-2367.64"/>
+</g>
+<!-- proc~calculate_sor_preconditioner -->
+<g id="call~~graph~~CallGraph_node61" class="node">
+<title>proc~calculate_sor_preconditioner</title>
+<g id="a_call~~graph~~CallGraph_node61"><a xlink:href="../proc/calculate_sor_preconditioner.html" xlink:title="Calculate_SOR_preconditioner">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="200.52,-2334.27 27.75,-2334.27 27.75,-2310 200.52,-2310 200.52,-2334.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-2318.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Calculate_SOR_preconditioner</text>
+</a>
+</g>
+</g>
+<!-- proc~calculate_sor_preconditioner&#45;&gt;proc~diag -->
+<g id="call~~graph~~CallGraph_edge8" class="edge">
+<title>proc~calculate_sor_preconditioner&#45;&gt;proc~diag</title>
+<path fill="none" stroke="#00e4ff" d="M190.9,-2334.74C236.91,-2342.39 293.64,-2351.82 330.21,-2357.91"/>
+<polygon fill="#00e4ff" stroke="#00e4ff" points="329.41,-2361.32 339.85,-2359.51 330.56,-2354.42 329.41,-2361.32"/>
+</g>
+<!-- proc~calculate_ssor_preconditioner -->
+<g id="call~~graph~~CallGraph_node62" class="node">
+<title>proc~calculate_ssor_preconditioner</title>
+<g id="a_call~~graph~~CallGraph_node62"><a xlink:href="../proc/calculate_ssor_preconditioner.html" xlink:title="Calculate_SSOR_preconditioner">
+<polygon fill="#d9534f" stroke="#d9534f" points="203.89,-2586.27 24.37,-2586.27 24.37,-2562 203.89,-2562 203.89,-2586.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-2570.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Calculate_SSOR_preconditioner</text>
+</a>
+</g>
+</g>
+<!-- proc~center_with_fill -->
+<g id="call~~graph~~CallGraph_node63" class="node">
+<title>proc~center_with_fill</title>
+<g id="a_call~~graph~~CallGraph_node63"><a xlink:href="../proc/center_with_fill.html" xlink:title="center_with_fill">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="159.64,-2628.27 68.62,-2628.27 68.62,-2604 159.64,-2604 159.64,-2628.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-2612.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">center_with_fill</text>
+</a>
+</g>
+</g>
+<!-- proc~check_indexing -->
+<g id="call~~graph~~CallGraph_node64" class="node">
+<title>proc~check_indexing</title>
+<g id="a_call~~graph~~CallGraph_node64"><a xlink:href="../proc/check_indexing.html" xlink:title="check_indexing">
+<polygon fill="#d9534f" stroke="#d9534f" points="160.77,-2670.27 67.5,-2670.27 67.5,-2646 160.77,-2646 160.77,-2670.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-2654.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">check_indexing</text>
+</a>
+</g>
+</g>
+<!-- proc~check_loop_method -->
+<g id="call~~graph~~CallGraph_node65" class="node">
+<title>proc~check_loop_method</title>
+<g id="a_call~~graph~~CallGraph_node65"><a xlink:href="../proc/check_loop_method.html" xlink:title="check_loop_method">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="173.14,-2712.27 55.12,-2712.27 55.12,-2688 173.14,-2688 173.14,-2712.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-2696.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">check_loop_method</text>
+</a>
+</g>
+</g>
+<!-- proc~count_true_methods -->
+<g id="call~~graph~~CallGraph_node67" class="node">
+<title>proc~count_true_methods</title>
+<g id="a_call~~graph~~CallGraph_node67"><a xlink:href="../proc/count_true_methods.html" xlink:title="count_true_methods">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="428.79,-2712.27 308.52,-2712.27 308.52,-2688 428.79,-2688 428.79,-2712.27"/>
+<text xml:space="preserve" text-anchor="middle" x="368.66" y="-2696.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">count_true_methods</text>
+</a>
+</g>
+</g>
+<!-- proc~check_loop_method&#45;&gt;proc~count_true_methods -->
+<g id="call~~graph~~CallGraph_edge9" class="edge">
+<title>proc~check_loop_method&#45;&gt;proc~count_true_methods</title>
+<path fill="none" stroke="#00afff" d="M173.39,-2700.14C210.24,-2700.14 258.11,-2700.14 297.11,-2700.14"/>
+<polygon fill="#00afff" stroke="#00afff" points="296.87,-2703.64 306.87,-2700.14 296.87,-2696.64 296.87,-2703.64"/>
+</g>
+<!-- proc~cholesky_decomposition -->
+<g id="call~~graph~~CallGraph_node66" class="node">
+<title>proc~cholesky_decomposition</title>
+<g id="a_call~~graph~~CallGraph_node66"><a xlink:href="../proc/cholesky_decomposition.html" xlink:title="Cholesky_decomposition">
+<polygon fill="#d9534f" stroke="#d9534f" points="185.89,-2754.27 42.37,-2754.27 42.37,-2730 185.89,-2730 185.89,-2754.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-2738.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Cholesky_decomposition</text>
+</a>
+</g>
+</g>
+<!-- proc~cross -->
+<g id="call~~graph~~CallGraph_node68" class="node">
+<title>proc~cross</title>
+<g id="a_call~~graph~~CallGraph_node68"><a xlink:href="../proc/cross.html" xlink:title="cross">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="141.13,-2796.27 87.13,-2796.27 87.13,-2772 141.13,-2772 141.13,-2796.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-2780.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">cross</text>
+</a>
+</g>
+</g>
+<!-- proc~diagonally_dominant_matrix -->
+<g id="call~~graph~~CallGraph_node70" class="node">
+<title>proc~diagonally_dominant_matrix</title>
+<g id="a_call~~graph~~CallGraph_node70"><a xlink:href="../proc/diagonally_dominant_matrix.html" xlink:title="Diagonally_Dominant_Matrix">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="196.39,-2838.27 31.87,-2838.27 31.87,-2814 196.39,-2814 196.39,-2838.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-2822.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Diagonally_Dominant_Matrix</text>
+</a>
+</g>
+</g>
+<!-- proc~dot -->
+<g id="call~~graph~~CallGraph_node71" class="node">
+<title>proc~dot</title>
+<g id="a_call~~graph~~CallGraph_node71"><a xlink:href="../proc/dot.html" xlink:title="dot">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="141.13,-2880.27 87.13,-2880.27 87.13,-2856 141.13,-2856 141.13,-2880.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-2864.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dot</text>
+</a>
+</g>
+</g>
+<!-- proc~eigen -->
+<g id="call~~graph~~CallGraph_node72" class="node">
+<title>proc~eigen</title>
+<g id="a_call~~graph~~CallGraph_node72"><a xlink:href="../proc/eigen.html" xlink:title="Eigen">
+<polygon fill="#d9534f" stroke="#d9534f" points="395.66,-2943.27 341.66,-2943.27 341.66,-2919 395.66,-2919 395.66,-2943.27"/>
+<text xml:space="preserve" text-anchor="middle" x="368.66" y="-2927.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Eigen</text>
+</a>
+</g>
+</g>
+<!-- proc~identity_n -->
+<g id="call~~graph~~CallGraph_node79" class="node">
+<title>proc~identity_n</title>
+<g id="a_call~~graph~~CallGraph_node79"><a xlink:href="../proc/identity_n.html" xlink:title="Identity_n">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="1207.62,-3023.27 1144.35,-3023.27 1144.35,-2999 1207.62,-2999 1207.62,-3023.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1175.99" y="-3007.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Identity_n</text>
+</a>
+</g>
+</g>
+<!-- proc~eigen&#45;&gt;proc~identity_n -->
+<g id="call~~graph~~CallGraph_edge10" class="edge">
+<title>proc~eigen&#45;&gt;proc~identity_n</title>
+<path fill="none" stroke="#0053ff" d="M396.03,-2935.8C423.99,-2940.59 469.5,-2947.91 509.04,-2952.14 774.42,-2980.49 845.98,-2941.22 1108.35,-2990.14 1116.47,-2991.65 1124.98,-2993.84 1133.1,-2996.25"/>
+<polygon fill="#0053ff" stroke="#0053ff" points="1131.82,-2999.51 1142.41,-2999.16 1133.91,-2992.83 1131.82,-2999.51"/>
+</g>
+<!-- proc~normalise -->
+<g id="call~~graph~~CallGraph_node101" class="node">
+<title>proc~normalise</title>
+<g id="a_call~~graph~~CallGraph_node101"><a xlink:href="../proc/normalise.html" xlink:title="normalise">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="597.06,-2943.27 532.29,-2943.27 532.29,-2919 597.06,-2919 597.06,-2943.27"/>
+<text xml:space="preserve" text-anchor="middle" x="564.68" y="-2927.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">normalise</text>
+</a>
+</g>
+</g>
+<!-- proc~eigen&#45;&gt;proc~normalise -->
+<g id="call~~graph~~CallGraph_edge11" class="edge">
+<title>proc~eigen&#45;&gt;proc~normalise</title>
+<path fill="none" stroke="#0053ff" d="M395.82,-2931.14C427.79,-2931.14 482.31,-2931.14 520.52,-2931.14"/>
+<polygon fill="#0053ff" stroke="#0053ff" points="520.3,-2934.64 530.3,-2931.14 520.3,-2927.64 520.3,-2934.64"/>
+</g>
+<!-- proc~qr_decomposition -->
+<g id="call~~graph~~CallGraph_node106" class="node">
+<title>proc~qr_decomposition</title>
+<g id="a_call~~graph~~CallGraph_node106"><a xlink:href="../proc/qr_decomposition.html" xlink:title="QR_decomposition">
+<polygon fill="#d9534f" stroke="#d9534f" points="620.31,-2859.27 509.04,-2859.27 509.04,-2835 620.31,-2835 620.31,-2859.27"/>
+<text xml:space="preserve" text-anchor="middle" x="564.68" y="-2843.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">QR_decomposition</text>
+</a>
+</g>
+</g>
+<!-- proc~eigen&#45;&gt;proc~qr_decomposition -->
+<g id="call~~graph~~CallGraph_edge12" class="edge">
+<title>proc~eigen&#45;&gt;proc~qr_decomposition</title>
+<path fill="none" stroke="#0053ff" d="M396.02,-2928.76C417.45,-2926.14 448.11,-2920.79 473.04,-2910.14 498.17,-2899.4 523.42,-2881.07 540.87,-2866.95"/>
+<polygon fill="#0053ff" stroke="#0053ff" points="543.08,-2869.66 548.54,-2860.57 538.61,-2864.27 543.08,-2869.66"/>
+</g>
+<!-- proc~faddeev_leverrier -->
+<g id="call~~graph~~CallGraph_node73" class="node">
+<title>proc~faddeev_leverrier</title>
+<g id="a_call~~graph~~CallGraph_node73"><a xlink:href="../proc/faddeev_leverrier.html" xlink:title="Faddeev_Leverrier">
+<polygon fill="#d9534f" stroke="#d9534f" points="1079.1,-3191.27 968.58,-3191.27 968.58,-3167 1079.1,-3167 1079.1,-3191.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1023.84" y="-3175.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Faddeev_Leverrier</text>
+</a>
+</g>
+</g>
+<!-- proc~faddeev_leverrier&#45;&gt;proc~identity_n -->
+<g id="call~~graph~~CallGraph_edge13" class="edge">
+<title>proc~faddeev_leverrier&#45;&gt;proc~identity_n</title>
+<path fill="none" stroke="#0046ff" d="M1079.44,-3172.88C1089.87,-3169.71 1100.09,-3165.03 1108.35,-3158.14 1146.68,-3126.12 1163.94,-3067.43 1170.89,-3034.73"/>
+<polygon fill="#0046ff" stroke="#0046ff" points="1174.29,-3035.55 1172.78,-3025.06 1167.42,-3034.2 1174.29,-3035.55"/>
+</g>
+<!-- proc~trace -->
+<g id="call~~graph~~CallGraph_node116" class="node">
+<title>proc~trace</title>
+<g id="a_call~~graph~~CallGraph_node116"><a xlink:href="../proc/trace.html" xlink:title="Trace">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="1202.99,-3191.27 1148.99,-3191.27 1148.99,-3167 1202.99,-3167 1202.99,-3191.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1175.99" y="-3175.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Trace</text>
+</a>
+</g>
+</g>
+<!-- proc~faddeev_leverrier&#45;&gt;proc~trace -->
+<g id="call~~graph~~CallGraph_edge14" class="edge">
+<title>proc~faddeev_leverrier&#45;&gt;proc~trace</title>
+<path fill="none" stroke="#0046ff" d="M1079.47,-3179.14C1098.68,-3179.14 1119.83,-3179.14 1137.33,-3179.14"/>
+<polygon fill="#0046ff" stroke="#0046ff" points="1137.28,-3182.64 1147.28,-3179.14 1137.28,-3175.64 1137.28,-3182.64"/>
+</g>
+<!-- proc~fft_1d -->
+<g id="call~~graph~~CallGraph_node74" class="node">
+<title>proc~fft_1d</title>
+<g id="a_call~~graph~~CallGraph_node74"><a xlink:href="../proc/fft_1d.html" xlink:title="FFT_1D">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="141.13,-3174.27 87.13,-3174.27 87.13,-3150 141.13,-3150 141.13,-3174.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-3158.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">FFT_1D</text>
+</a>
+</g>
+</g>
+<!-- fftw_cleanup -->
+<g id="call~~graph~~CallGraph_node117" class="node">
+<title>fftw_cleanup</title>
+<polygon fill="#777777" stroke="#777777" points="408.17,-3069.27 329.15,-3069.27 329.15,-3045 408.17,-3045 408.17,-3069.27"/>
+<text xml:space="preserve" text-anchor="middle" x="368.66" y="-3053.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fftw_cleanup</text>
+</g>
+<!-- proc~fft_1d&#45;&gt;fftw_cleanup -->
+<g id="call~~graph~~CallGraph_edge15" class="edge">
+<title>proc~fft_1d&#45;&gt;fftw_cleanup</title>
+<path fill="none" stroke="#0039ff" d="M141.34,-3163.29C165.94,-3163.08 202.7,-3159.3 228.27,-3141.14 254.56,-3122.46 238.14,-3097.03 264.27,-3078.14 279.56,-3067.08 299.29,-3061.52 317.41,-3058.83"/>
+<polygon fill="#0039ff" stroke="#0039ff" points="317.71,-3062.31 327.22,-3057.65 316.87,-3055.36 317.71,-3062.31"/>
+</g>
+<!-- fftw_cleanup_threads -->
+<g id="call~~graph~~CallGraph_node118" class="node">
+<title>fftw_cleanup_threads</title>
+<polygon fill="#777777" stroke="#777777" points="430.67,-3027.27 306.65,-3027.27 306.65,-3003 430.67,-3003 430.67,-3027.27"/>
+<text xml:space="preserve" text-anchor="middle" x="368.66" y="-3011.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fftw_cleanup_threads</text>
+</g>
+<!-- proc~fft_1d&#45;&gt;fftw_cleanup_threads -->
+<g id="call~~graph~~CallGraph_edge16" class="edge">
+<title>proc~fft_1d&#45;&gt;fftw_cleanup_threads</title>
+<path fill="none" stroke="#0039ff" d="M141.2,-3164.31C166.4,-3164.96 204.22,-3161.89 228.27,-3141.14 265.62,-3108.9 227.2,-3068.68 264.27,-3036.14 273.08,-3028.4 283.96,-3023.22 295.31,-3019.8"/>
+<polygon fill="#0039ff" stroke="#0039ff" points="295.97,-3023.24 304.82,-3017.4 294.27,-3016.45 295.97,-3023.24"/>
+</g>
+<!-- fftw_destroy_plan -->
+<g id="call~~graph~~CallGraph_node119" class="node">
+<title>fftw_destroy_plan</title>
+<polygon fill="#777777" stroke="#777777" points="420.54,-3279.27 316.77,-3279.27 316.77,-3255 420.54,-3255 420.54,-3279.27"/>
+<text xml:space="preserve" text-anchor="middle" x="368.66" y="-3263.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fftw_destroy_plan</text>
+</g>
+<!-- proc~fft_1d&#45;&gt;fftw_destroy_plan -->
+<g id="call~~graph~~CallGraph_edge17" class="edge">
+<title>proc~fft_1d&#45;&gt;fftw_destroy_plan</title>
+<path fill="none" stroke="#0039ff" d="M141.34,-3160.98C165.94,-3161.19 202.7,-3164.97 228.27,-3183.14 254.56,-3201.81 238.14,-3227.24 264.27,-3246.14 276.22,-3254.77 290.87,-3260.05 305.35,-3263.24"/>
+<polygon fill="#0039ff" stroke="#0039ff" points="304.38,-3266.62 314.85,-3265.01 305.66,-3259.73 304.38,-3266.62"/>
+</g>
+<!-- fftw_execute_dft -->
+<g id="call~~graph~~CallGraph_node120" class="node">
+<title>fftw_execute_dft</title>
+<polygon fill="#777777" stroke="#777777" points="417.54,-3237.27 319.77,-3237.27 319.77,-3213 417.54,-3213 417.54,-3237.27"/>
+<text xml:space="preserve" text-anchor="middle" x="368.66" y="-3221.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fftw_execute_dft</text>
+</g>
+<!-- proc~fft_1d&#45;&gt;fftw_execute_dft -->
+<g id="call~~graph~~CallGraph_edge18" class="edge">
+<title>proc~fft_1d&#45;&gt;fftw_execute_dft</title>
+<path fill="none" stroke="#0039ff" d="M141.43,-3164.43C164.8,-3167.07 199.62,-3172.49 228.27,-3183.14 245.63,-3189.59 246.96,-3197.54 264.27,-3204.14 278.18,-3209.44 293.68,-3213.49 308.36,-3216.55"/>
+<polygon fill="#0039ff" stroke="#0039ff" points="307.41,-3219.93 317.89,-3218.41 308.75,-3213.06 307.41,-3219.93"/>
+</g>
+<!-- fftw_init_threads -->
+<g id="call~~graph~~CallGraph_node121" class="node">
+<title>fftw_init_threads</title>
+<polygon fill="#777777" stroke="#777777" points="417.54,-3153.27 319.77,-3153.27 319.77,-3129 417.54,-3129 417.54,-3153.27"/>
+<text xml:space="preserve" text-anchor="middle" x="368.66" y="-3137.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fftw_init_threads</text>
+</g>
+<!-- proc~fft_1d&#45;&gt;fftw_init_threads -->
+<g id="call~~graph~~CallGraph_edge19" class="edge">
+<title>proc~fft_1d&#45;&gt;fftw_init_threads</title>
+<path fill="none" stroke="#0039ff" d="M141.21,-3159.97C180.3,-3156.72 255.16,-3150.49 308.09,-3146.09"/>
+<polygon fill="#0039ff" stroke="#0039ff" points="308.18,-3149.59 317.85,-3145.28 307.6,-3142.62 308.18,-3149.59"/>
+</g>
+<!-- fftw_plan_dft_1d -->
+<g id="call~~graph~~CallGraph_node122" class="node">
+<title>fftw_plan_dft_1d</title>
+<polygon fill="#777777" stroke="#777777" points="417.54,-3195.27 319.77,-3195.27 319.77,-3171 417.54,-3171 417.54,-3195.27"/>
+<text xml:space="preserve" text-anchor="middle" x="368.66" y="-3179.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fftw_plan_dft_1d</text>
+</g>
+<!-- proc~fft_1d&#45;&gt;fftw_plan_dft_1d -->
+<g id="call~~graph~~CallGraph_edge20" class="edge">
+<title>proc~fft_1d&#45;&gt;fftw_plan_dft_1d</title>
+<path fill="none" stroke="#0039ff" d="M141.21,-3164.3C180.3,-3167.55 255.16,-3173.78 308.09,-3178.18"/>
+<polygon fill="#0039ff" stroke="#0039ff" points="307.6,-3181.65 317.85,-3178.99 308.18,-3174.68 307.6,-3181.65"/>
+</g>
+<!-- fftw_plan_with_nthreads -->
+<g id="call~~graph~~CallGraph_node125" class="node">
+<title>fftw_plan_with_nthreads</title>
+<polygon fill="#777777" stroke="#777777" points="437.79,-3111.27 299.52,-3111.27 299.52,-3087 437.79,-3087 437.79,-3111.27"/>
+<text xml:space="preserve" text-anchor="middle" x="368.66" y="-3095.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fftw_plan_with_nthreads</text>
+</g>
+<!-- proc~fft_1d&#45;&gt;fftw_plan_with_nthreads -->
+<g id="call~~graph~~CallGraph_edge21" class="edge">
+<title>proc~fft_1d&#45;&gt;fftw_plan_with_nthreads</title>
+<path fill="none" stroke="#0039ff" d="M141.43,-3159.84C164.8,-3157.2 199.62,-3151.78 228.27,-3141.14 245.63,-3134.68 246.96,-3126.73 264.27,-3120.14 271.86,-3117.24 279.92,-3114.72 288.06,-3112.53"/>
+<polygon fill="#0039ff" stroke="#0039ff" points="288.87,-3115.94 297.71,-3110.11 287.16,-3109.15 288.87,-3115.94"/>
+</g>
+<!-- proc~fft_2d -->
+<g id="call~~graph~~CallGraph_node75" class="node">
+<title>proc~fft_2d</title>
+<g id="a_call~~graph~~CallGraph_node75"><a xlink:href="../proc/fft_2d.html" xlink:title="FFT_2D">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="141.13,-3090.27 87.13,-3090.27 87.13,-3066 141.13,-3066 141.13,-3090.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-3074.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">FFT_2D</text>
+</a>
+</g>
+</g>
+<!-- proc~fft_2d&#45;&gt;fftw_cleanup -->
+<g id="call~~graph~~CallGraph_edge22" class="edge">
+<title>proc~fft_2d&#45;&gt;fftw_cleanup</title>
+<path fill="none" stroke="#002bff" d="M141.21,-3075.97C182.77,-3072.51 264.74,-3065.69 317.82,-3061.28"/>
+<polygon fill="#002bff" stroke="#002bff" points="317.83,-3064.79 327.51,-3060.47 317.25,-3057.81 317.83,-3064.79"/>
+</g>
+<!-- proc~fft_2d&#45;&gt;fftw_cleanup_threads -->
+<g id="call~~graph~~CallGraph_edge23" class="edge">
+<title>proc~fft_2d&#45;&gt;fftw_cleanup_threads</title>
+<path fill="none" stroke="#002bff" d="M141.43,-3075.84C164.8,-3073.2 199.62,-3067.78 228.27,-3057.14 245.63,-3050.68 246.96,-3042.73 264.27,-3036.14 274.11,-3032.38 284.75,-3029.26 295.33,-3026.66"/>
+<polygon fill="#002bff" stroke="#002bff" points="295.86,-3030.13 304.83,-3024.49 294.3,-3023.31 295.86,-3030.13"/>
+</g>
+<!-- proc~fft_2d&#45;&gt;fftw_destroy_plan -->
+<g id="call~~graph~~CallGraph_edge24" class="edge">
+<title>proc~fft_2d&#45;&gt;fftw_destroy_plan</title>
+<path fill="none" stroke="#002bff" d="M141.61,-3075.5C167.13,-3074.5 205.18,-3077.32 228.27,-3099.14 277.16,-3145.33 215.77,-3199.53 264.27,-3246.14 275.37,-3256.81 290.34,-3262.73 305.43,-3265.88"/>
+<polygon fill="#002bff" stroke="#002bff" points="304.45,-3269.27 314.89,-3267.46 305.61,-3262.36 304.45,-3269.27"/>
+</g>
+<!-- proc~fft_2d&#45;&gt;fftw_execute_dft -->
+<g id="call~~graph~~CallGraph_edge25" class="edge">
+<title>proc~fft_2d&#45;&gt;fftw_execute_dft</title>
+<path fill="none" stroke="#002bff" d="M141.2,-3075.96C166.4,-3075.31 204.22,-3078.38 228.27,-3099.14 265.62,-3131.37 227.2,-3171.59 264.27,-3204.14 276.34,-3214.73 292.28,-3220.53 308.01,-3223.58"/>
+<polygon fill="#002bff" stroke="#002bff" points="307.46,-3227.04 317.88,-3225.11 308.54,-3220.12 307.46,-3227.04"/>
+</g>
+<!-- proc~fft_2d&#45;&gt;fftw_init_threads -->
+<g id="call~~graph~~CallGraph_edge26" class="edge">
+<title>proc~fft_2d&#45;&gt;fftw_init_threads</title>
+<path fill="none" stroke="#002bff" d="M141.43,-3080.43C164.8,-3083.07 199.62,-3088.49 228.27,-3099.14 245.63,-3105.59 246.96,-3113.54 264.27,-3120.14 278.18,-3125.44 293.68,-3129.49 308.36,-3132.55"/>
+<polygon fill="#002bff" stroke="#002bff" points="307.41,-3135.93 317.89,-3134.41 308.75,-3129.06 307.41,-3135.93"/>
+</g>
+<!-- fftw_plan_dft_2d -->
+<g id="call~~graph~~CallGraph_node123" class="node">
+<title>fftw_plan_dft_2d</title>
+<polygon fill="#777777" stroke="#777777" points="417.54,-2985.27 319.77,-2985.27 319.77,-2961 417.54,-2961 417.54,-2985.27"/>
+<text xml:space="preserve" text-anchor="middle" x="368.66" y="-2969.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fftw_plan_dft_2d</text>
+</g>
+<!-- proc~fft_2d&#45;&gt;fftw_plan_dft_2d -->
+<g id="call~~graph~~CallGraph_edge27" class="edge">
+<title>proc~fft_2d&#45;&gt;fftw_plan_dft_2d</title>
+<path fill="none" stroke="#002bff" d="M141.34,-3079.29C165.94,-3079.08 202.7,-3075.3 228.27,-3057.14 254.56,-3038.46 238.14,-3013.03 264.27,-2994.14 277.05,-2984.9 292.93,-2979.49 308.37,-2976.4"/>
+<polygon fill="#002bff" stroke="#002bff" points="308.72,-2979.89 318,-2974.78 307.56,-2972.98 308.72,-2979.89"/>
+</g>
+<!-- proc~fft_2d&#45;&gt;fftw_plan_with_nthreads -->
+<g id="call~~graph~~CallGraph_edge28" class="edge">
+<title>proc~fft_2d&#45;&gt;fftw_plan_with_nthreads</title>
+<path fill="none" stroke="#002bff" d="M141.21,-3080.3C175.53,-3083.16 237.43,-3088.31 287.85,-3092.5"/>
+<polygon fill="#002bff" stroke="#002bff" points="287.31,-3095.97 297.56,-3093.31 287.89,-3088.99 287.31,-3095.97"/>
+</g>
+<!-- proc~fft_3d -->
+<g id="call~~graph~~CallGraph_node76" class="node">
+<title>proc~fft_3d</title>
+<g id="a_call~~graph~~CallGraph_node76"><a xlink:href="../proc/fft_3d.html" xlink:title="FFT_3D">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="141.13,-3258.27 87.13,-3258.27 87.13,-3234 141.13,-3234 141.13,-3258.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-3242.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">FFT_3D</text>
+</a>
+</g>
+</g>
+<!-- proc~fft_3d&#45;&gt;fftw_cleanup -->
+<g id="call~~graph~~CallGraph_edge29" class="edge">
+<title>proc~fft_3d&#45;&gt;fftw_cleanup</title>
+<path fill="none" stroke="#001eff" d="M141.61,-3248.77C167.13,-3249.77 205.18,-3246.95 228.27,-3225.14 277.16,-3178.94 215.77,-3124.74 264.27,-3078.14 278.39,-3064.57 298.75,-3058.67 317.67,-3056.4"/>
+<polygon fill="#001eff" stroke="#001eff" points="317.72,-3059.91 327.39,-3055.57 317.12,-3052.94 317.72,-3059.91"/>
+</g>
+<!-- proc~fft_3d&#45;&gt;fftw_cleanup_threads -->
+<g id="call~~graph~~CallGraph_edge30" class="edge">
+<title>proc~fft_3d&#45;&gt;fftw_cleanup_threads</title>
+<path fill="none" stroke="#001eff" d="M141.37,-3249C167.09,-3250.25 205.62,-3247.68 228.27,-3225.14 288.88,-3164.81 204.17,-3096.97 264.27,-3036.14 272.79,-3027.51 283.83,-3021.94 295.5,-3018.42"/>
+<polygon fill="#001eff" stroke="#001eff" points="296.01,-3021.9 304.88,-3016.1 294.33,-3015.1 296.01,-3021.9"/>
+</g>
+<!-- proc~fft_3d&#45;&gt;fftw_destroy_plan -->
+<g id="call~~graph~~CallGraph_edge31" class="edge">
+<title>proc~fft_3d&#45;&gt;fftw_destroy_plan</title>
+<path fill="none" stroke="#001eff" d="M141.21,-3248.3C179.6,-3251.5 252.47,-3257.56 305.21,-3261.94"/>
+<polygon fill="#001eff" stroke="#001eff" points="304.7,-3265.41 314.96,-3262.75 305.28,-3258.44 304.7,-3265.41"/>
+</g>
+<!-- proc~fft_3d&#45;&gt;fftw_execute_dft -->
+<g id="call~~graph~~CallGraph_edge32" class="edge">
+<title>proc~fft_3d&#45;&gt;fftw_execute_dft</title>
+<path fill="none" stroke="#001eff" d="M141.21,-3243.97C180.3,-3240.72 255.16,-3234.49 308.09,-3230.09"/>
+<polygon fill="#001eff" stroke="#001eff" points="308.18,-3233.59 317.85,-3229.28 307.6,-3226.62 308.18,-3233.59"/>
+</g>
+<!-- proc~fft_3d&#45;&gt;fftw_init_threads -->
+<g id="call~~graph~~CallGraph_edge33" class="edge">
+<title>proc~fft_3d&#45;&gt;fftw_init_threads</title>
+<path fill="none" stroke="#001eff" d="M141.34,-3247.29C165.94,-3247.08 202.7,-3243.3 228.27,-3225.14 254.56,-3206.46 238.14,-3181.03 264.27,-3162.14 277.05,-3152.9 292.93,-3147.49 308.37,-3144.4"/>
+<polygon fill="#001eff" stroke="#001eff" points="308.72,-3147.89 318,-3142.78 307.56,-3140.98 308.72,-3147.89"/>
+</g>
+<!-- fftw_plan_dft_3d -->
+<g id="call~~graph~~CallGraph_node124" class="node">
+<title>fftw_plan_dft_3d</title>
+<polygon fill="#777777" stroke="#777777" points="417.54,-3321.27 319.77,-3321.27 319.77,-3297 417.54,-3297 417.54,-3321.27"/>
+<text xml:space="preserve" text-anchor="middle" x="368.66" y="-3305.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fftw_plan_dft_3d</text>
+</g>
+<!-- proc~fft_3d&#45;&gt;fftw_plan_dft_3d -->
+<g id="call~~graph~~CallGraph_edge34" class="edge">
+<title>proc~fft_3d&#45;&gt;fftw_plan_dft_3d</title>
+<path fill="none" stroke="#001eff" d="M141.43,-3248.43C164.8,-3251.07 199.62,-3256.49 228.27,-3267.14 245.63,-3273.59 246.96,-3281.54 264.27,-3288.14 278.18,-3293.44 293.68,-3297.49 308.36,-3300.55"/>
+<polygon fill="#001eff" stroke="#001eff" points="307.41,-3303.93 317.89,-3302.41 308.75,-3297.06 307.41,-3303.93"/>
+</g>
+<!-- proc~fft_3d&#45;&gt;fftw_plan_with_nthreads -->
+<g id="call~~graph~~CallGraph_edge35" class="edge">
+<title>proc~fft_3d&#45;&gt;fftw_plan_with_nthreads</title>
+<path fill="none" stroke="#001eff" d="M141.2,-3248.31C166.4,-3248.96 204.22,-3245.89 228.27,-3225.14 265.62,-3192.9 227.2,-3152.68 264.27,-3120.14 271.22,-3114.04 279.44,-3109.53 288.18,-3106.21"/>
+<polygon fill="#001eff" stroke="#001eff" points="289.13,-3109.59 297.58,-3103.21 286.99,-3102.92 289.13,-3109.59"/>
+</g>
+<!-- proc~get_memory_kb -->
+<g id="call~~graph~~CallGraph_node78" class="node">
+<title>proc~get_memory_kb</title>
+<g id="a_call~~graph~~CallGraph_node78"><a xlink:href="../proc/get_memory_kb.html" xlink:title="get_memory_kb">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="162.64,-3300.27 65.62,-3300.27 65.62,-3276 162.64,-3276 162.64,-3300.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-3284.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">get_memory_kb</text>
+</a>
+</g>
+</g>
+<!-- proc~ifft_1d -->
+<g id="call~~graph~~CallGraph_node80" class="node">
+<title>proc~ifft_1d</title>
+<g id="a_call~~graph~~CallGraph_node80"><a xlink:href="../proc/ifft_1d.html" xlink:title="IFFT_1D">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="141.13,-3132.27 87.13,-3132.27 87.13,-3108 141.13,-3108 141.13,-3132.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-3116.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">IFFT_1D</text>
+</a>
+</g>
+</g>
+<!-- proc~ifft_1d&#45;&gt;fftw_cleanup -->
+<g id="call~~graph~~CallGraph_edge36" class="edge">
+<title>proc~ifft_1d&#45;&gt;fftw_cleanup</title>
+<path fill="none" stroke="#1500ff" d="M141.43,-3117.84C164.8,-3115.2 199.62,-3109.78 228.27,-3099.14 245.63,-3092.68 246.96,-3084.73 264.27,-3078.14 281.26,-3071.66 300.61,-3067.05 317.95,-3063.83"/>
+<polygon fill="#1500ff" stroke="#1500ff" points="318.26,-3067.33 327.51,-3062.17 317.06,-3060.43 318.26,-3067.33"/>
+</g>
+<!-- proc~ifft_1d&#45;&gt;fftw_cleanup_threads -->
+<g id="call~~graph~~CallGraph_edge37" class="edge">
+<title>proc~ifft_1d&#45;&gt;fftw_cleanup_threads</title>
+<path fill="none" stroke="#1500ff" d="M141.34,-3121.29C165.94,-3121.08 202.7,-3117.3 228.27,-3099.14 254.56,-3080.46 238.14,-3055.03 264.27,-3036.14 273.4,-3029.54 284.11,-3024.89 295.11,-3021.65"/>
+<polygon fill="#1500ff" stroke="#1500ff" points="295.86,-3025.07 304.7,-3019.23 294.14,-3018.29 295.86,-3025.07"/>
+</g>
+<!-- proc~ifft_1d&#45;&gt;fftw_destroy_plan -->
+<g id="call~~graph~~CallGraph_edge38" class="edge">
+<title>proc~ifft_1d&#45;&gt;fftw_destroy_plan</title>
+<path fill="none" stroke="#1500ff" d="M141.2,-3117.96C166.4,-3117.31 204.22,-3120.38 228.27,-3141.14 265.62,-3173.37 227.2,-3213.59 264.27,-3246.14 275.62,-3256.1 290.39,-3261.82 305.2,-3265.01"/>
+<polygon fill="#1500ff" stroke="#1500ff" points="304.52,-3268.44 314.98,-3266.71 305.73,-3261.55 304.52,-3268.44"/>
+</g>
+<!-- proc~ifft_1d&#45;&gt;fftw_execute_dft -->
+<g id="call~~graph~~CallGraph_edge39" class="edge">
+<title>proc~ifft_1d&#45;&gt;fftw_execute_dft</title>
+<path fill="none" stroke="#1500ff" d="M141.34,-3118.98C165.94,-3119.19 202.7,-3122.97 228.27,-3141.14 254.56,-3159.81 238.14,-3185.24 264.27,-3204.14 277.05,-3213.37 292.93,-3218.78 308.37,-3221.87"/>
+<polygon fill="#1500ff" stroke="#1500ff" points="307.56,-3225.29 318,-3223.49 308.72,-3218.38 307.56,-3225.29"/>
+</g>
+<!-- proc~ifft_1d&#45;&gt;fftw_init_threads -->
+<g id="call~~graph~~CallGraph_edge40" class="edge">
+<title>proc~ifft_1d&#45;&gt;fftw_init_threads</title>
+<path fill="none" stroke="#1500ff" d="M141.21,-3122.3C180.3,-3125.55 255.16,-3131.78 308.09,-3136.18"/>
+<polygon fill="#1500ff" stroke="#1500ff" points="307.6,-3139.65 317.85,-3136.99 308.18,-3132.68 307.6,-3139.65"/>
+</g>
+<!-- proc~ifft_1d&#45;&gt;fftw_plan_dft_1d -->
+<g id="call~~graph~~CallGraph_edge41" class="edge">
+<title>proc~ifft_1d&#45;&gt;fftw_plan_dft_1d</title>
+<path fill="none" stroke="#1500ff" d="M141.43,-3122.43C164.8,-3125.07 199.62,-3130.49 228.27,-3141.14 245.63,-3147.59 246.96,-3155.54 264.27,-3162.14 278.18,-3167.44 293.68,-3171.49 308.36,-3174.55"/>
+<polygon fill="#1500ff" stroke="#1500ff" points="307.41,-3177.93 317.89,-3176.41 308.75,-3171.06 307.41,-3177.93"/>
+</g>
+<!-- proc~ifft_1d&#45;&gt;fftw_plan_with_nthreads -->
+<g id="call~~graph~~CallGraph_edge42" class="edge">
+<title>proc~ifft_1d&#45;&gt;fftw_plan_with_nthreads</title>
+<path fill="none" stroke="#1500ff" d="M141.21,-3117.97C175.53,-3115.11 237.43,-3109.96 287.85,-3105.77"/>
+<polygon fill="#1500ff" stroke="#1500ff" points="287.89,-3109.28 297.56,-3104.96 287.31,-3102.3 287.89,-3109.28"/>
+</g>
+<!-- proc~ifft_2d -->
+<g id="call~~graph~~CallGraph_node81" class="node">
+<title>proc~ifft_2d</title>
+<g id="a_call~~graph~~CallGraph_node81"><a xlink:href="../proc/ifft_2d.html" xlink:title="IFFT_2D">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="141.13,-3048.27 87.13,-3048.27 87.13,-3024 141.13,-3024 141.13,-3048.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-3032.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">IFFT_2D</text>
+</a>
+</g>
+</g>
+<!-- proc~ifft_2d&#45;&gt;fftw_cleanup -->
+<g id="call~~graph~~CallGraph_edge43" class="edge">
+<title>proc~ifft_2d&#45;&gt;fftw_cleanup</title>
+<path fill="none" stroke="#2300ff" d="M141.21,-3038.3C182.77,-3041.76 264.74,-3048.58 317.82,-3052.99"/>
+<polygon fill="#2300ff" stroke="#2300ff" points="317.25,-3056.46 327.51,-3053.8 317.83,-3049.48 317.25,-3056.46"/>
+</g>
+<!-- proc~ifft_2d&#45;&gt;fftw_cleanup_threads -->
+<g id="call~~graph~~CallGraph_edge44" class="edge">
+<title>proc~ifft_2d&#45;&gt;fftw_cleanup_threads</title>
+<path fill="none" stroke="#2300ff" d="M141.21,-3033.97C177.12,-3030.98 243.19,-3025.49 294.74,-3021.2"/>
+<polygon fill="#2300ff" stroke="#2300ff" points="294.98,-3024.69 304.66,-3020.37 294.4,-3017.71 294.98,-3024.69"/>
+</g>
+<!-- proc~ifft_2d&#45;&gt;fftw_destroy_plan -->
+<g id="call~~graph~~CallGraph_edge45" class="edge">
+<title>proc~ifft_2d&#45;&gt;fftw_destroy_plan</title>
+<path fill="none" stroke="#2300ff" d="M141.37,-3033.27C167.09,-3032.02 205.62,-3034.59 228.27,-3057.14 288.88,-3117.46 204.17,-3185.3 264.27,-3246.14 275.15,-3257.14 290.1,-3263.17 305.27,-3266.31"/>
+<polygon fill="#2300ff" stroke="#2300ff" points="304.36,-3269.71 314.79,-3267.87 305.49,-3262.8 304.36,-3269.71"/>
+</g>
+<!-- proc~ifft_2d&#45;&gt;fftw_execute_dft -->
+<g id="call~~graph~~CallGraph_edge46" class="edge">
+<title>proc~ifft_2d&#45;&gt;fftw_execute_dft</title>
+<path fill="none" stroke="#2300ff" d="M141.61,-3033.5C167.13,-3032.5 205.18,-3035.32 228.27,-3057.14 277.16,-3103.33 215.77,-3157.53 264.27,-3204.14 276.07,-3215.48 292.24,-3221.46 308.28,-3224.44"/>
+<polygon fill="#2300ff" stroke="#2300ff" points="307.41,-3227.85 317.81,-3225.84 308.42,-3220.93 307.41,-3227.85"/>
+</g>
+<!-- proc~ifft_2d&#45;&gt;fftw_init_threads -->
+<g id="call~~graph~~CallGraph_edge47" class="edge">
+<title>proc~ifft_2d&#45;&gt;fftw_init_threads</title>
+<path fill="none" stroke="#2300ff" d="M141.34,-3034.98C165.94,-3035.19 202.7,-3038.97 228.27,-3057.14 254.56,-3075.81 238.14,-3101.24 264.27,-3120.14 277.05,-3129.37 292.93,-3134.78 308.37,-3137.87"/>
+<polygon fill="#2300ff" stroke="#2300ff" points="307.56,-3141.29 318,-3139.49 308.72,-3134.38 307.56,-3141.29"/>
+</g>
+<!-- proc~ifft_2d&#45;&gt;fftw_plan_dft_2d -->
+<g id="call~~graph~~CallGraph_edge48" class="edge">
+<title>proc~ifft_2d&#45;&gt;fftw_plan_dft_2d</title>
+<path fill="none" stroke="#2300ff" d="M141.38,-3028.11C171.05,-3019.18 220.87,-3004.64 264.27,-2994.14 278.53,-2990.68 293.98,-2987.34 308.49,-2984.37"/>
+<polygon fill="#2300ff" stroke="#2300ff" points="308.77,-2987.88 317.88,-2982.47 307.38,-2981.02 308.77,-2987.88"/>
+</g>
+<!-- proc~ifft_2d&#45;&gt;fftw_plan_with_nthreads -->
+<g id="call~~graph~~CallGraph_edge49" class="edge">
+<title>proc~ifft_2d&#45;&gt;fftw_plan_with_nthreads</title>
+<path fill="none" stroke="#2300ff" d="M141.43,-3038.43C164.8,-3041.07 199.62,-3046.49 228.27,-3057.14 245.63,-3063.59 246.96,-3071.54 264.27,-3078.14 271.86,-3081.03 279.92,-3083.55 288.06,-3085.74"/>
+<polygon fill="#2300ff" stroke="#2300ff" points="287.16,-3089.12 297.71,-3088.16 288.87,-3082.33 287.16,-3089.12"/>
+</g>
+<!-- proc~ifft_3d -->
+<g id="call~~graph~~CallGraph_node82" class="node">
+<title>proc~ifft_3d</title>
+<g id="a_call~~graph~~CallGraph_node82"><a xlink:href="../proc/ifft_3d.html" xlink:title="IFFT_3D">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="141.13,-3216.27 87.13,-3216.27 87.13,-3192 141.13,-3192 141.13,-3216.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-3200.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">IFFT_3D</text>
+</a>
+</g>
+</g>
+<!-- proc~ifft_3d&#45;&gt;fftw_cleanup -->
+<g id="call~~graph~~CallGraph_edge50" class="edge">
+<title>proc~ifft_3d&#45;&gt;fftw_cleanup</title>
+<path fill="none" stroke="#3000ff" d="M141.2,-3206.31C166.4,-3206.96 204.22,-3203.89 228.27,-3183.14 265.62,-3150.9 227.2,-3110.68 264.27,-3078.14 278.75,-3065.43 298.78,-3059.62 317.36,-3057.18"/>
+<polygon fill="#3000ff" stroke="#3000ff" points="317.56,-3060.68 327.17,-3056.22 316.87,-3053.71 317.56,-3060.68"/>
+</g>
+<!-- proc~ifft_3d&#45;&gt;fftw_cleanup_threads -->
+<g id="call~~graph~~CallGraph_edge51" class="edge">
+<title>proc~ifft_3d&#45;&gt;fftw_cleanup_threads</title>
+<path fill="none" stroke="#3000ff" d="M141.61,-3206.77C167.13,-3207.77 205.18,-3204.95 228.27,-3183.14 277.16,-3136.94 215.77,-3082.74 264.27,-3036.14 272.83,-3027.91 283.67,-3022.51 295.11,-3019.02"/>
+<polygon fill="#3000ff" stroke="#3000ff" points="295.88,-3022.43 304.72,-3016.6 294.17,-3015.65 295.88,-3022.43"/>
+</g>
+<!-- proc~ifft_3d&#45;&gt;fftw_destroy_plan -->
+<g id="call~~graph~~CallGraph_edge52" class="edge">
+<title>proc~ifft_3d&#45;&gt;fftw_destroy_plan</title>
+<path fill="none" stroke="#3000ff" d="M141.43,-3206.43C164.8,-3209.07 199.62,-3214.49 228.27,-3225.14 245.63,-3231.59 246.96,-3239.54 264.27,-3246.14 277.3,-3251.1 291.73,-3254.97 305.56,-3257.96"/>
+<polygon fill="#3000ff" stroke="#3000ff" points="304.52,-3261.32 315.01,-3259.87 305.91,-3254.46 304.52,-3261.32"/>
+</g>
+<!-- proc~ifft_3d&#45;&gt;fftw_execute_dft -->
+<g id="call~~graph~~CallGraph_edge53" class="edge">
+<title>proc~ifft_3d&#45;&gt;fftw_execute_dft</title>
+<path fill="none" stroke="#3000ff" d="M141.21,-3206.3C180.3,-3209.55 255.16,-3215.78 308.09,-3220.18"/>
+<polygon fill="#3000ff" stroke="#3000ff" points="307.6,-3223.65 317.85,-3220.99 308.18,-3216.68 307.6,-3223.65"/>
+</g>
+<!-- proc~ifft_3d&#45;&gt;fftw_init_threads -->
+<g id="call~~graph~~CallGraph_edge54" class="edge">
+<title>proc~ifft_3d&#45;&gt;fftw_init_threads</title>
+<path fill="none" stroke="#3000ff" d="M141.43,-3201.84C164.8,-3199.2 199.62,-3193.78 228.27,-3183.14 245.63,-3176.68 246.96,-3168.73 264.27,-3162.14 278.18,-3156.83 293.68,-3152.78 308.36,-3149.72"/>
+<polygon fill="#3000ff" stroke="#3000ff" points="308.75,-3153.21 317.89,-3147.86 307.41,-3146.34 308.75,-3153.21"/>
+</g>
+<!-- proc~ifft_3d&#45;&gt;fftw_plan_dft_3d -->
+<g id="call~~graph~~CallGraph_edge55" class="edge">
+<title>proc~ifft_3d&#45;&gt;fftw_plan_dft_3d</title>
+<path fill="none" stroke="#3000ff" d="M141.34,-3202.98C165.94,-3203.19 202.7,-3206.97 228.27,-3225.14 254.56,-3243.81 238.14,-3269.24 264.27,-3288.14 277.05,-3297.37 292.93,-3302.78 308.37,-3305.87"/>
+<polygon fill="#3000ff" stroke="#3000ff" points="307.56,-3309.29 318,-3307.49 308.72,-3302.38 307.56,-3309.29"/>
+</g>
+<!-- proc~ifft_3d&#45;&gt;fftw_plan_with_nthreads -->
+<g id="call~~graph~~CallGraph_edge56" class="edge">
+<title>proc~ifft_3d&#45;&gt;fftw_plan_with_nthreads</title>
+<path fill="none" stroke="#3000ff" d="M141.34,-3205.29C165.94,-3205.08 202.7,-3201.3 228.27,-3183.14 254.56,-3164.46 238.14,-3139.03 264.27,-3120.14 271.47,-3114.93 279.66,-3110.94 288.19,-3107.9"/>
+<polygon fill="#3000ff" stroke="#3000ff" points="289.17,-3111.26 297.7,-3104.97 287.11,-3104.57 289.17,-3111.26"/>
+</g>
+<!-- proc~init_loop_method -->
+<g id="call~~graph~~CallGraph_node85" class="node">
+<title>proc~init_loop_method</title>
+<g id="a_call~~graph~~CallGraph_node85"><a xlink:href="../proc/init_loop_method.html" xlink:title="init_loop_method">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="165.64,-1368.27 62.62,-1368.27 62.62,-1344 165.64,-1344 165.64,-1368.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-1352.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">init_loop_method</text>
+</a>
+</g>
+</g>
+<!-- proc~init_loop_method&#45;&gt;interface~present_arg -->
+<g id="call~~graph~~CallGraph_edge57" class="edge">
+<title>proc~init_loop_method&#45;&gt;interface~present_arg</title>
+<path fill="none" stroke="#5700ff" d="M165.93,-1356.14C210.88,-1356.14 275.99,-1356.14 319.98,-1356.14"/>
+<polygon fill="#5700ff" stroke="#5700ff" points="319.72,-1359.64 329.72,-1356.14 319.72,-1352.64 319.72,-1359.64"/>
+</g>
+<!-- proc~is_diagonally_dominant -->
+<g id="call~~graph~~CallGraph_node86" class="node">
+<title>proc~is_diagonally_dominant</title>
+<g id="a_call~~graph~~CallGraph_node86"><a xlink:href="../proc/is_diagonally_dominant.html" xlink:title="is_diagonally_dominant">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="182.52,-3342.27 45.75,-3342.27 45.75,-3318 182.52,-3318 182.52,-3342.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-3326.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">is_diagonally_dominant</text>
+</a>
+</g>
+</g>
+<!-- proc~is_non_zero_diagonal -->
+<g id="call~~graph~~CallGraph_node87" class="node">
+<title>proc~is_non_zero_diagonal</title>
+<g id="a_call~~graph~~CallGraph_node87"><a xlink:href="../proc/is_non_zero_diagonal.html" xlink:title="is_non_zero_diagonal">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="176.52,-2292.27 51.75,-2292.27 51.75,-2268 176.52,-2268 176.52,-2292.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-2276.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">is_non_zero_diagonal</text>
+</a>
+</g>
+</g>
+<!-- proc~is_non_zero_diagonal&#45;&gt;proc~diag -->
+<g id="call~~graph~~CallGraph_edge58" class="edge">
+<title>proc~is_non_zero_diagonal&#45;&gt;proc~diag</title>
+<path fill="none" stroke="#7200ff" d="M176.86,-2288.81C193.73,-2291.93 211.88,-2295.99 228.27,-2301.14 266.02,-2312.98 307.03,-2332.37 334.73,-2346.52"/>
+<polygon fill="#7200ff" stroke="#7200ff" points="332.82,-2349.47 343.31,-2350.96 336.04,-2343.25 332.82,-2349.47"/>
+</g>
+<!-- proc~is_orthogonal -->
+<g id="call~~graph~~CallGraph_node88" class="node">
+<title>proc~is_orthogonal</title>
+<g id="a_call~~graph~~CallGraph_node88"><a xlink:href="../proc/is_orthogonal.html" xlink:title="is_orthogonal">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="1065.6,-3149.27 982.08,-3149.27 982.08,-3125 1065.6,-3125 1065.6,-3149.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1023.84" y="-3133.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">is_orthogonal</text>
+</a>
+</g>
+</g>
+<!-- proc~is_orthogonal&#45;&gt;proc~identity_n -->
+<g id="call~~graph~~CallGraph_edge59" class="edge">
+<title>proc~is_orthogonal&#45;&gt;proc~identity_n</title>
+<path fill="none" stroke="#7f00ff" d="M1065.73,-3133.18C1080.22,-3130.22 1095.99,-3125.07 1108.35,-3116.14 1136.92,-3095.48 1156.15,-3058.46 1166.34,-3034.35"/>
+<polygon fill="#7f00ff" stroke="#7f00ff" points="1169.58,-3035.67 1170.05,-3025.09 1163.08,-3033.07 1169.58,-3035.67"/>
+</g>
+<!-- proc~is_power_of_p -->
+<g id="call~~graph~~CallGraph_node89" class="node">
+<title>proc~is_power_of_p</title>
+<g id="a_call~~graph~~CallGraph_node89"><a xlink:href="../proc/is_power_of_p.html" xlink:title="is_power_of_p">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="157.02,-3384.27 71.25,-3384.27 71.25,-3360 157.02,-3360 157.02,-3384.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-3368.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">is_power_of_p</text>
+</a>
+</g>
+</g>
+<!-- proc~is_power_of_two -->
+<g id="call~~graph~~CallGraph_node90" class="node">
+<title>proc~is_power_of_two</title>
+<g id="a_call~~graph~~CallGraph_node90"><a xlink:href="../proc/is_power_of_two.html" xlink:title="is_power_of_two">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="163.02,-3426.27 65.25,-3426.27 65.25,-3402 163.02,-3402 163.02,-3426.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-3410.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">is_power_of_two</text>
+</a>
+</g>
+</g>
+<!-- proc~is_spd -->
+<g id="call~~graph~~CallGraph_node91" class="node">
+<title>proc~is_spd</title>
+<g id="a_call~~graph~~CallGraph_node91"><a xlink:href="../proc/is_spd.html" xlink:title="is_SPD">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="141.13,-2922.27 87.13,-2922.27 87.13,-2898 141.13,-2898 141.13,-2922.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-2906.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">is_SPD</text>
+</a>
+</g>
+</g>
+<!-- proc~is_spd&#45;&gt;proc~eigen -->
+<g id="call~~graph~~CallGraph_edge60" class="edge">
+<title>proc~is_spd&#45;&gt;proc~eigen</title>
+<path fill="none" stroke="#a700ff" d="M141.21,-2912.3C186.1,-2916.04 278.15,-2923.69 330,-2928"/>
+<polygon fill="#a700ff" stroke="#a700ff" points="329.58,-2931.48 339.84,-2928.82 330.16,-2924.5 329.58,-2931.48"/>
+</g>
+<!-- proc~is_symmetric -->
+<g id="call~~graph~~CallGraph_node93" class="node">
+<title>proc~is_symmetric</title>
+<g id="a_call~~graph~~CallGraph_node93"><a xlink:href="../proc/is_symmetric.html" xlink:title="is_symmetric">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="409.29,-2901.27 328.02,-2901.27 328.02,-2877 409.29,-2877 409.29,-2901.27"/>
+<text xml:space="preserve" text-anchor="middle" x="368.66" y="-2885.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">is_symmetric</text>
+</a>
+</g>
+</g>
+<!-- proc~is_spd&#45;&gt;proc~is_symmetric -->
+<g id="call~~graph~~CallGraph_edge61" class="edge">
+<title>proc~is_spd&#45;&gt;proc~is_symmetric</title>
+<path fill="none" stroke="#a700ff" d="M141.21,-2907.97C182.41,-2904.54 263.36,-2897.81 316.47,-2893.39"/>
+<polygon fill="#a700ff" stroke="#a700ff" points="316.5,-2896.9 326.18,-2892.58 315.92,-2889.93 316.5,-2896.9"/>
+</g>
+<!-- proc~is_square_matrix -->
+<g id="call~~graph~~CallGraph_node92" class="node">
+<title>proc~is_square_matrix</title>
+<g id="a_call~~graph~~CallGraph_node92"><a xlink:href="../proc/is_square_matrix.html" xlink:title="is_square_matrix">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="164.52,-3468.27 63.75,-3468.27 63.75,-3444 164.52,-3444 164.52,-3468.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-3452.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">is_square_matrix</text>
+</a>
+</g>
+</g>
+<!-- proc~is_tridiagonal -->
+<g id="call~~graph~~CallGraph_node94" class="node">
+<title>proc~is_tridiagonal</title>
+<g id="a_call~~graph~~CallGraph_node94"><a xlink:href="../proc/is_tridiagonal.html" xlink:title="is_tridiagonal">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="155.52,-3510.27 72.75,-3510.27 72.75,-3486 155.52,-3486 155.52,-3510.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-3494.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">is_tridiagonal</text>
+</a>
+</g>
+</g>
+<!-- proc~ldl_cholesky_decomposition -->
+<g id="call~~graph~~CallGraph_node95" class="node">
+<title>proc~ldl_cholesky_decomposition</title>
+<g id="a_call~~graph~~CallGraph_node95"><a xlink:href="../proc/ldl_cholesky_decomposition.html" xlink:title="LDL_Cholesky_decomposition">
+<polygon fill="#d9534f" stroke="#d9534f" points="1108.35,-3107.27 939.33,-3107.27 939.33,-3083 1108.35,-3083 1108.35,-3107.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1023.84" y="-3091.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">LDL_Cholesky_decomposition</text>
+</a>
+</g>
+</g>
+<!-- proc~ldl_cholesky_decomposition&#45;&gt;proc~identity_n -->
+<g id="call~~graph~~CallGraph_edge62" class="edge">
+<title>proc~ldl_cholesky_decomposition&#45;&gt;proc~identity_n</title>
+<path fill="none" stroke="#db00ff" d="M1089.06,-3082.6C1095.76,-3080.24 1102.32,-3077.44 1108.35,-3074.14 1127.7,-3063.52 1145.63,-3045.92 1158.01,-3032.02"/>
+<polygon fill="#db00ff" stroke="#db00ff" points="1160.46,-3034.55 1164.31,-3024.68 1155.14,-3029.99 1160.46,-3034.55"/>
+</g>
+<!-- proc~ldu_decomposition -->
+<g id="call~~graph~~CallGraph_node96" class="node">
+<title>proc~ldu_decomposition</title>
+<g id="a_call~~graph~~CallGraph_node96"><a xlink:href="../proc/ldu_decomposition.html" xlink:title="LDU_decomposition">
+<polygon fill="#d9534f" stroke="#d9534f" points="172.77,-3552.27 55.5,-3552.27 55.5,-3528 172.77,-3528 172.77,-3552.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-3536.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">LDU_decomposition</text>
+</a>
+</g>
+</g>
+<!-- proc~lu_decomposition -->
+<g id="call~~graph~~CallGraph_node97" class="node">
+<title>proc~lu_decomposition</title>
+<g id="a_call~~graph~~CallGraph_node97"><a xlink:href="../proc/lu_decomposition.html" xlink:title="LU_decomposition">
+<polygon fill="#d9534f" stroke="#d9534f" points="168.27,-3594.27 60,-3594.27 60,-3570 168.27,-3570 168.27,-3594.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-3578.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">LU_decomposition</text>
+</a>
+</g>
+</g>
+<!-- proc~make_tridiagonal -->
+<g id="call~~graph~~CallGraph_node98" class="node">
+<title>proc~make_tridiagonal</title>
+<g id="a_call~~graph~~CallGraph_node98"><a xlink:href="../proc/make_tridiagonal.html" xlink:title="Make_Tridiagonal">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="166.02,-3636.27 62.25,-3636.27 62.25,-3612 166.02,-3612 166.02,-3636.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-3620.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Make_Tridiagonal</text>
+</a>
+</g>
+</g>
+<!-- proc~norm_2_complex -->
+<g id="call~~graph~~CallGraph_node99" class="node">
+<title>proc~norm_2_complex</title>
+<g id="a_call~~graph~~CallGraph_node99"><a xlink:href="../proc/norm_2_complex.html" xlink:title="norm_2_complex">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="419.79,-3678.27 317.52,-3678.27 317.52,-3654 419.79,-3654 419.79,-3678.27"/>
+<text xml:space="preserve" text-anchor="middle" x="368.66" y="-3662.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">norm_2_complex</text>
+</a>
+</g>
+</g>
+<!-- proc~norm_2_real -->
+<g id="call~~graph~~CallGraph_node100" class="node">
+<title>proc~norm_2_real</title>
+<g id="a_call~~graph~~CallGraph_node100"><a xlink:href="../proc/norm_2_real.html" xlink:title="norm_2_real">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="818.58,-2943.27 741.06,-2943.27 741.06,-2919 818.58,-2919 818.58,-2943.27"/>
+<text xml:space="preserve" text-anchor="middle" x="779.82" y="-2927.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">norm_2_real</text>
+</a>
+</g>
+</g>
+<!-- proc~normalise&#45;&gt;proc~norm_2_real -->
+<g id="call~~graph~~CallGraph_edge63" class="edge">
+<title>proc~normalise&#45;&gt;proc~norm_2_real</title>
+<path fill="none" stroke="#ff00d3" d="M597.13,-2931.14C631.98,-2931.14 688.65,-2931.14 729.44,-2931.14"/>
+<polygon fill="#ff00d3" stroke="#ff00d3" points="729.24,-2934.64 739.24,-2931.14 729.24,-2927.64 729.24,-2934.64"/>
+</g>
+<!-- proc~normalise_complexe -->
+<g id="call~~graph~~CallGraph_node102" class="node">
+<title>proc~normalise_complexe</title>
+<g id="a_call~~graph~~CallGraph_node102"><a xlink:href="../proc/normalise_complexe.html" xlink:title="normalise_complexe">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="175.02,-3678.27 53.25,-3678.27 53.25,-3654 175.02,-3654 175.02,-3678.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-3662.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">normalise_complexe</text>
+</a>
+</g>
+</g>
+<!-- proc~normalise_complexe&#45;&gt;proc~norm_2_complex -->
+<g id="call~~graph~~CallGraph_edge64" class="edge">
+<title>proc~normalise_complexe&#45;&gt;proc~norm_2_complex</title>
+<path fill="none" stroke="#ff00c5" d="M175.3,-3666.14C214.73,-3666.14 266.15,-3666.14 305.9,-3666.14"/>
+<polygon fill="#ff00c5" stroke="#ff00c5" points="305.79,-3669.64 315.79,-3666.14 305.79,-3662.64 305.79,-3669.64"/>
+</g>
+<!-- proc~pivot_partial -->
+<g id="call~~graph~~CallGraph_node103" class="node">
+<title>proc~pivot_partial</title>
+<g id="a_call~~graph~~CallGraph_node103"><a xlink:href="../proc/pivot_partial.html" xlink:title="pivot_partial">
+<polygon fill="#d9534f" stroke="#d9534f" points="1062.6,-3065.27 985.08,-3065.27 985.08,-3041 1062.6,-3041 1062.6,-3065.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1023.84" y="-3049.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">pivot_partial</text>
+</a>
+</g>
+</g>
+<!-- proc~pivot_partial&#45;&gt;proc~identity_n -->
+<g id="call~~graph~~CallGraph_edge65" class="edge">
+<title>proc~pivot_partial&#45;&gt;proc~identity_n</title>
+<path fill="none" stroke="#ff00b8" d="M1062.8,-3044.09C1077.12,-3040.55 1093.53,-3036.33 1108.35,-3032.14 1116.37,-3029.86 1124.89,-3027.3 1133.06,-3024.76"/>
+<polygon fill="#ff00b8" stroke="#ff00b8" points="1133.98,-3028.14 1142.47,-3021.8 1131.88,-3021.46 1133.98,-3028.14"/>
+</g>
+<!-- proc~pivot_total -->
+<g id="call~~graph~~CallGraph_node104" class="node">
+<title>proc~pivot_total</title>
+<g id="a_call~~graph~~CallGraph_node104"><a xlink:href="../proc/pivot_total.html" xlink:title="pivot_total">
+<polygon fill="#d9534f" stroke="#d9534f" points="1057.35,-3023.27 990.33,-3023.27 990.33,-2999 1057.35,-2999 1057.35,-3023.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1023.84" y="-3007.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">pivot_total</text>
+</a>
+</g>
+</g>
+<!-- proc~pivot_total&#45;&gt;proc~identity_n -->
+<g id="call~~graph~~CallGraph_edge66" class="edge">
+<title>proc~pivot_total&#45;&gt;proc~identity_n</title>
+<path fill="none" stroke="#ff00ab" d="M1057.79,-3011.14C1079.72,-3011.14 1108.75,-3011.14 1132.42,-3011.14"/>
+<polygon fill="#ff00ab" stroke="#ff00ab" points="1132.39,-3014.64 1142.39,-3011.14 1132.39,-3007.64 1132.39,-3014.64"/>
+</g>
+<!-- proc~power_of_p_exponent -->
+<g id="call~~graph~~CallGraph_node105" class="node">
+<title>proc~power_of_p_exponent</title>
+<g id="a_call~~graph~~CallGraph_node105"><a xlink:href="../proc/power_of_p_exponent.html" xlink:title="power_of_p_exponent">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="177.64,-3720.27 50.62,-3720.27 50.62,-3696 177.64,-3696 177.64,-3720.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-3704.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">power_of_p_exponent</text>
+</a>
+</g>
+</g>
+<!-- proc~qr_givens_decomposition -->
+<g id="call~~graph~~CallGraph_node107" class="node">
+<title>proc~qr_givens_decomposition</title>
+<g id="a_call~~graph~~CallGraph_node107"><a xlink:href="../proc/qr_givens_decomposition.html" xlink:title="QR_Givens_decomposition">
+<polygon fill="#d9534f" stroke="#d9534f" points="856.08,-2901.27 703.56,-2901.27 703.56,-2877 856.08,-2877 856.08,-2901.27"/>
+<text xml:space="preserve" text-anchor="middle" x="779.82" y="-2885.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">QR_Givens_decomposition</text>
+</a>
+</g>
+</g>
+<!-- proc~qr_decomposition&#45;&gt;proc~qr_givens_decomposition -->
+<g id="call~~graph~~CallGraph_edge67" class="edge">
+<title>proc~qr_decomposition&#45;&gt;proc~qr_givens_decomposition</title>
+<path fill="none" stroke="#ff0091" d="M617.8,-2859.76C630.38,-2862.65 643.8,-2865.62 656.31,-2868.14 667.89,-2870.47 680.12,-2872.76 692.19,-2874.93"/>
+<polygon fill="#ff0091" stroke="#ff0091" points="691.26,-2878.32 701.72,-2876.62 692.48,-2871.43 691.26,-2878.32"/>
+</g>
+<!-- proc~qr_gram_schmidt_classical_decomposition -->
+<g id="call~~graph~~CallGraph_node108" class="node">
+<title>proc~qr_gram_schmidt_classical_decomposition</title>
+<g id="a_call~~graph~~CallGraph_node108"><a xlink:href="../proc/qr_gram_schmidt_classical_decomposition.html" xlink:title="QR_Gram_Schmidt_Classical_decomposition">
+<polygon fill="#d9534f" stroke="#d9534f" points="903.33,-2859.27 656.31,-2859.27 656.31,-2835 903.33,-2835 903.33,-2859.27"/>
+<text xml:space="preserve" text-anchor="middle" x="779.82" y="-2843.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">QR_Gram_Schmidt_Classical_decomposition</text>
+</a>
+</g>
+</g>
+<!-- proc~qr_decomposition&#45;&gt;proc~qr_gram_schmidt_classical_decomposition -->
+<g id="call~~graph~~CallGraph_edge68" class="edge">
+<title>proc~qr_decomposition&#45;&gt;proc~qr_gram_schmidt_classical_decomposition</title>
+<path fill="none" stroke="#ff0091" d="M620.57,-2847.14C628.2,-2847.14 636.3,-2847.14 644.64,-2847.14"/>
+<polygon fill="#ff0091" stroke="#ff0091" points="644.63,-2850.64 654.63,-2847.14 644.63,-2843.64 644.63,-2850.64"/>
+</g>
+<!-- proc~qr_gram_schmidt_modified_decomposition -->
+<g id="call~~graph~~CallGraph_node109" class="node">
+<title>proc~qr_gram_schmidt_modified_decomposition</title>
+<g id="a_call~~graph~~CallGraph_node109"><a xlink:href="../proc/qr_gram_schmidt_modified_decomposition.html" xlink:title="QR_Gram_Schmidt_Modified_decomposition">
+<polygon fill="#d9534f" stroke="#d9534f" points="902.96,-2817.27 656.69,-2817.27 656.69,-2793 902.96,-2793 902.96,-2817.27"/>
+<text xml:space="preserve" text-anchor="middle" x="779.82" y="-2801.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">QR_Gram_Schmidt_Modified_decomposition</text>
+</a>
+</g>
+</g>
+<!-- proc~qr_decomposition&#45;&gt;proc~qr_gram_schmidt_modified_decomposition -->
+<g id="call~~graph~~CallGraph_edge69" class="edge">
+<title>proc~qr_decomposition&#45;&gt;proc~qr_gram_schmidt_modified_decomposition</title>
+<path fill="none" stroke="#ff0091" d="M617.8,-2834.51C630.38,-2831.62 643.8,-2828.65 656.31,-2826.14 667.18,-2823.95 678.62,-2821.79 689.96,-2819.74"/>
+<polygon fill="#ff0091" stroke="#ff0091" points="690.53,-2823.2 699.76,-2818 689.3,-2816.3 690.53,-2823.2"/>
+</g>
+<!-- proc~qr_householder_decomposition -->
+<g id="call~~graph~~CallGraph_node110" class="node">
+<title>proc~qr_householder_decomposition</title>
+<g id="a_call~~graph~~CallGraph_node110"><a xlink:href="../proc/qr_householder_decomposition.html" xlink:title="QR_Householder_decomposition">
+<polygon fill="#d9534f" stroke="#d9534f" points="872.21,-2775.27 687.44,-2775.27 687.44,-2751 872.21,-2751 872.21,-2775.27"/>
+<text xml:space="preserve" text-anchor="middle" x="779.82" y="-2759.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">QR_Householder_decomposition</text>
+</a>
+</g>
+</g>
+<!-- proc~qr_decomposition&#45;&gt;proc~qr_householder_decomposition -->
+<g id="call~~graph~~CallGraph_edge70" class="edge">
+<title>proc~qr_decomposition&#45;&gt;proc~qr_householder_decomposition</title>
+<path fill="none" stroke="#ff0091" d="M579.58,-2834.5C596.44,-2819.93 626.34,-2796.41 656.31,-2784.14 662.73,-2781.51 669.47,-2779.21 676.35,-2777.19"/>
+<polygon fill="#ff0091" stroke="#ff0091" points="677.04,-2780.63 685.79,-2774.66 675.22,-2773.87 677.04,-2780.63"/>
+</g>
+<!-- proc~qr_givens_decomposition&#45;&gt;proc~identity_n -->
+<g id="call~~graph~~CallGraph_edge71" class="edge">
+<title>proc~qr_givens_decomposition&#45;&gt;proc~identity_n</title>
+<path fill="none" stroke="#ff0083" d="M856.25,-2900.38C938.65,-2913.43 1064.75,-2935.9 1108.35,-2957.14 1125.8,-2965.63 1142.76,-2979.48 1155.2,-2991.02"/>
+<polygon fill="#ff0083" stroke="#ff0083" points="1152.68,-2993.45 1162.31,-2997.86 1157.53,-2988.41 1152.68,-2993.45"/>
+</g>
+<!-- proc~rotation_matrix -->
+<g id="call~~graph~~CallGraph_node113" class="node">
+<title>proc~rotation_matrix</title>
+<g id="a_call~~graph~~CallGraph_node113"><a xlink:href="../proc/rotation_matrix.html" xlink:title="rotation_matrix">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="1070.1,-2902.27 977.58,-2902.27 977.58,-2878 1070.1,-2878 1070.1,-2902.27"/>
+<text xml:space="preserve" text-anchor="middle" x="1023.84" y="-2886.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">rotation_matrix</text>
+</a>
+</g>
+</g>
+<!-- proc~qr_givens_decomposition&#45;&gt;proc~rotation_matrix -->
+<g id="call~~graph~~CallGraph_edge72" class="edge">
+<title>proc~qr_givens_decomposition&#45;&gt;proc~rotation_matrix</title>
+<path fill="none" stroke="#ff0083" d="M856.4,-2889.45C891.88,-2889.59 933.46,-2889.77 966.19,-2889.9"/>
+<polygon fill="#ff0083" stroke="#ff0083" points="965.84,-2893.4 975.85,-2889.94 965.87,-2886.4 965.84,-2893.4"/>
+</g>
+<!-- proc~qr_householder_decomposition&#45;&gt;proc~identity_n -->
+<g id="call~~graph~~CallGraph_edge73" class="edge">
+<title>proc~qr_householder_decomposition&#45;&gt;proc~identity_n</title>
+<path fill="none" stroke="#ff005c" d="M872.36,-2771.19C944.91,-2782.15 1044.39,-2808.03 1108.35,-2869.14 1142.94,-2902.18 1161.44,-2956.74 1169.64,-2987.73"/>
+<polygon fill="#ff005c" stroke="#ff005c" points="1166.2,-2988.39 1172.01,-2997.25 1172.99,-2986.7 1166.2,-2988.39"/>
+</g>
+<!-- proc~readmatrixmarket -->
+<g id="call~~graph~~CallGraph_node111" class="node">
+<title>proc~readmatrixmarket</title>
+<g id="a_call~~graph~~CallGraph_node111"><a xlink:href="../proc/readmatrixmarket.html" xlink:title="readMatrixMarket">
+<polygon fill="#d9534f" stroke="#d9534f" points="166.77,-3762.27 61.5,-3762.27 61.5,-3738 166.77,-3738 166.77,-3762.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-3746.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">readMatrixMarket</text>
+</a>
+</g>
+</g>
+<!-- proc~reset_ansi_code -->
+<g id="call~~graph~~CallGraph_node112" class="node">
+<title>proc~reset_ansi_code</title>
+<g id="a_call~~graph~~CallGraph_node112"><a xlink:href="../proc/reset_ansi_code.html" xlink:title="reset_ansi_code">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="162.27,-3804.27 66,-3804.27 66,-3780 162.27,-3780 162.27,-3804.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-3788.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">reset_ansi_code</text>
+</a>
+</g>
+</g>
+<!-- proc~rotation_matrix&#45;&gt;proc~identity_n -->
+<g id="call~~graph~~CallGraph_edge74" class="edge">
+<title>proc~rotation_matrix&#45;&gt;proc~identity_n</title>
+<path fill="none" stroke="#ff0034" d="M1070.25,-2899.73C1083.37,-2903.94 1097.16,-2909.87 1108.35,-2918.14 1133.52,-2936.73 1152.94,-2967.66 1164.16,-2988.7"/>
+<polygon fill="#ff0034" stroke="#ff0034" points="1160.91,-2990.02 1168.58,-2997.33 1167.14,-2986.84 1160.91,-2990.02"/>
+</g>
+<!-- proc~set_ansi_code -->
+<g id="call~~graph~~CallGraph_node114" class="node">
+<title>proc~set_ansi_code</title>
+<g id="a_call~~graph~~CallGraph_node114"><a xlink:href="../proc/set_ansi_code.html" xlink:title="set_ansi_code">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="157.02,-3846.27 71.25,-3846.27 71.25,-3822 157.02,-3822 157.02,-3846.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-3830.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">set_ansi_code</text>
+</a>
+</g>
+</g>
+<!-- proc~sieve_of_eratosthenes -->
+<g id="call~~graph~~CallGraph_node115" class="node">
+<title>proc~sieve_of_eratosthenes</title>
+<g id="a_call~~graph~~CallGraph_node115"><a xlink:href="../proc/sieve_of_eratosthenes.html" xlink:title="sieve_of_eratosthenes">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="179.14,-3888.27 49.12,-3888.27 49.12,-3864 179.14,-3864 179.14,-3888.27"/>
+<text xml:space="preserve" text-anchor="middle" x="114.13" y="-3872.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">sieve_of_eratosthenes</text>
+</a>
+</g>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var pancallgraphCallGraph = svgPanZoom('#callgraphCallGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CallGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CallGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.2 (20260126.1125)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 28.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.873868 0.873868) rotate(0) translate(4 28.27)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-28.27 729.52,-28.27 729.52,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="69.27,-24.27 0,-24.27 0,0 69.27,0 69.27,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="34.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="143.89,-24.27 87.38,-24.27 87.38,0 143.89,0 143.89,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="115.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="221.39,-24.27 161.88,-24.27 161.88,0 221.39,0 221.39,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="191.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="368.27,-24.27 239,-24.27 239,0 368.27,0 368.27,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="303.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="529.39,-24.27 385.88,-24.27 385.88,0 529.39,0 529.39,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="457.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="603.89,-24.27 547.38,-24.27 547.38,0 603.89,0 603.89,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="575.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="725.52,-24.27 621.75,-24.27 621.75,0 725.52,0 725.52,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="673.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              NAFPack
+ was developed by Minard Jules<br>              &copy; 2026 
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+            </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>

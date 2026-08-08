@@ -1,0 +1,2110 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+    <meta name="author" content="Minard Jules" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>NAFPack_butterfly &ndash; NAFPack</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="../css/local.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">NAFPack </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>NAFPack_butterfly
+      <small>Module</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 1.0% of total for modules and submodules.">102 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/NAFPack_butterfly.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/nafpack_butterfly.f90.html'>NAFPack_butterfly.f90</a></li>
+            <li class="breadcrumb-item active" aria-current="page">NAFPack_butterfly</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
+  </script>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+        <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#inters-0"
+         aria-expanded="false" aria-controls="inters-0">
+         <h4 class="card-header bg-primary text-white">Interfaces</h4>
+      </a>
+      <div id="inters-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/nafpack_butterfly.html#interface-execute_butterfly_dft">execute_butterfly_dft</a>
+            <a class="list-group-item" href="../module/nafpack_butterfly.html#interface-execute_butterfly_mixed_radix_recursive">execute_butterfly_mixed_radix_recursive</a>
+            <a class="list-group-item" href="../module/nafpack_butterfly.html#interface-execute_butterfly_radix2_recursive">execute_butterfly_radix2_recursive</a>
+            <a class="list-group-item" href="../module/nafpack_butterfly.html#interface-execute_butterfly_radix2">execute_butterfly_radix2</a>
+            <a class="list-group-item" href="../module/nafpack_butterfly.html#interface-execute_butterfly_radix3_recursive">execute_butterfly_radix3_recursive</a>
+            <a class="list-group-item" href="../module/nafpack_butterfly.html#interface-execute_butterfly_radix3">execute_butterfly_radix3</a>
+            <a class="list-group-item" href="../module/nafpack_butterfly.html#interface-execute_butterfly_radix4_recursive">execute_butterfly_radix4_recursive</a>
+            <a class="list-group-item" href="../module/nafpack_butterfly.html#interface-execute_butterfly_radix4">execute_butterfly_radix4</a>
+            <a class="list-group-item" href="../module/nafpack_butterfly.html#interface-execute_butterfly_radix5_recursive">execute_butterfly_radix5_recursive</a>
+            <a class="list-group-item" href="../module/nafpack_butterfly.html#interface-execute_butterfly_radix5">execute_butterfly_radix5</a>
+            <a class="list-group-item" href="../module/nafpack_butterfly.html#interface-execute_butterfly_split_radix_recursive">execute_butterfly_split_radix_recursive</a>
+            <a class="list-group-item" href="../module/nafpack_butterfly.html#interface-execute_butterfly_split_radix">execute_butterfly_split_radix</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+
+    <div class="col-md-9" id='text'>
+      
+<br>          <div class="card mb-4">
+      <h3 class="card-header card-title bg-light">Uses</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <ul class="list-inline">
+                  <li class="list-inline-item"><a href='nafpack_kinds.html'>NAFPack_kinds</a></li>
+                  <li class="list-inline-item"><a href='nafpack_loop_method_type.html'>NAFPack_loop_method_type</a></li>
+                  <li class="list-inline-item"><a href='nafpack_plan_type.html'>NAFPack_plan_type</a></li>
+                  <li class="list-inline-item"><a href='nafpack_loop_method.html'>NAFPack_loop_method</a></li>
+              </ul>
+            </li>
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.2 (20260126.1125)
+ -->
+<!-- Title: module~~nafpack_butterfly~~UsesGraph Pages: 1 -->
+<svg id="modulenafpack_butterflyUsesGraph" width="641pt" height="138pt"
+ viewBox="0.00 0.00 641.00 138.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~nafpack_butterfly~~UsesGraph" class="graph" transform="scale(0.735623 0.735623) rotate(0) translate(4 183.26)">
+<title>module~~nafpack_butterfly~~UsesGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-183.26 867.37,-183.26 867.37,4 -4,4"/>
+<!-- module~nafpack_butterfly -->
+<g id="module~~nafpack_butterfly~~UsesGraph_node1" class="node">
+<title>module~nafpack_butterfly</title>
+<polygon fill="none" stroke="black" points="863.37,-66.27 755.85,-66.27 755.85,-42 863.37,-42 863.37,-66.27"/>
+<text xml:space="preserve" text-anchor="middle" x="809.61" y="-50.53" font-family="Helvetica,sans-Serif" font-size="10.50">NAFPack_butterfly</text>
+</g>
+<!-- module~nafpack_kinds -->
+<g id="module~~nafpack_butterfly~~UsesGraph_node2" class="node">
+<title>module~nafpack_kinds</title>
+<g id="a_module~~nafpack_butterfly~~UsesGraph_node2"><a xlink:href="../module/nafpack_kinds.html" xlink:title="NAFPack_kinds">
+<polygon fill="#337ab7" stroke="#337ab7" points="219.54,-126.27 129.27,-126.27 129.27,-102 219.54,-102 219.54,-126.27"/>
+<text xml:space="preserve" text-anchor="middle" x="174.41" y="-110.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_kinds</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_butterfly&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_butterfly~~UsesGraph_edge1" class="edge">
+<title>module~nafpack_butterfly&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M508.45,-174.13C395.9,-180.36 364.06,-185.63 255.54,-155.13 237.57,-150.09 218.93,-140.82 204.15,-132.38"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="206.28,-129.57 195.89,-127.49 202.72,-135.6 206.28,-129.57"/>
+</g>
+<!-- module~nafpack_loop_method -->
+<g id="module~~nafpack_butterfly~~UsesGraph_node3" class="node">
+<title>module~nafpack_loop_method</title>
+<g id="a_module~~nafpack_butterfly~~UsesGraph_node3"><a xlink:href="../module/nafpack_loop_method.html" xlink:title="NAFPack_loop_method">
+<polygon fill="#337ab7" stroke="#337ab7" points="719.85,-66.27 587.58,-66.27 587.58,-42 719.85,-42 719.85,-66.27"/>
+<text xml:space="preserve" text-anchor="middle" x="653.72" y="-50.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_loop_method</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_butterfly&#45;&gt;module~nafpack_loop_method -->
+<g id="module~~nafpack_butterfly~~UsesGraph_edge2" class="edge">
+<title>module~nafpack_butterfly&#45;&gt;module~nafpack_loop_method</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M755.65,-54.13C747.91,-54.13 739.8,-54.13 731.7,-54.13"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="731.8,-50.64 721.8,-54.14 731.8,-57.64 731.8,-50.64"/>
+</g>
+<!-- module~nafpack_loop_method_type -->
+<g id="module~~nafpack_butterfly~~UsesGraph_node4" class="node">
+<title>module~nafpack_loop_method_type</title>
+<g id="a_module~~nafpack_butterfly~~UsesGraph_node4"><a xlink:href="../module/nafpack_loop_method_type.html" xlink:title="NAFPack_loop_method_type">
+<polygon fill="#337ab7" stroke="#337ab7" points="423.81,-24.27 263.04,-24.27 263.04,0 423.81,0 423.81,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="343.43" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_loop_method_type</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_butterfly&#45;&gt;module~nafpack_loop_method_type -->
+<g id="module~~nafpack_butterfly~~UsesGraph_edge3" class="edge">
+<title>module~nafpack_butterfly&#45;&gt;module~nafpack_loop_method_type</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M760.95,-41.55C747.72,-38.41 733.29,-35.32 719.85,-33.13 627.61,-18.12 603.63,-21.13 510.45,-14.13"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M508.45,-14.13C484.94,-11.89 459.44,-10.89 435.72,-10.56"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="435.78,-7.07 425.75,-10.47 435.72,-14.07 435.78,-7.07"/>
+</g>
+<!-- module~nafpack_plan_type -->
+<g id="module~~nafpack_butterfly~~UsesGraph_node5" class="node">
+<title>module~nafpack_plan_type</title>
+<g id="a_module~~nafpack_butterfly~~UsesGraph_node5"><a xlink:href="../module/nafpack_plan_type.html" xlink:title="NAFPack_plan_type">
+<polygon fill="#337ab7" stroke="#337ab7" points="400.56,-146.27 286.29,-146.27 286.29,-122 400.56,-122 400.56,-146.27"/>
+<text xml:space="preserve" text-anchor="middle" x="343.43" y="-130.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_plan_type</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_butterfly&#45;&gt;module~nafpack_plan_type -->
+<g id="module~~nafpack_butterfly~~UsesGraph_edge4" class="edge">
+<title>module~nafpack_butterfly&#45;&gt;module~nafpack_plan_type</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M792.38,-66.63C748.93,-98.72 625.46,-181.04 510.45,-174.13"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M508.45,-174.13C486.64,-175.34 434.66,-161.59 395.01,-149.89"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="396.23,-146.6 385.64,-147.09 394.22,-153.31 396.23,-146.6"/>
+</g>
+<!-- iso_fortran_env -->
+<g id="module~~nafpack_butterfly~~UsesGraph_node6" class="node">
+<title>iso_fortran_env</title>
+<g id="a_module~~nafpack_butterfly~~UsesGraph_node6"><a xlink:href="http://fortranwiki.org/fortran/show/iso_fortran_env" xlink:title="iso_fortran_env">
+<polygon fill="#337ab7" stroke="#337ab7" points="93.27,-126.27 0,-126.27 0,-102 93.27,-102 93.27,-126.27"/>
+<text xml:space="preserve" text-anchor="middle" x="46.63" y="-110.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_kinds&#45;&gt;iso_fortran_env -->
+<g id="module~~nafpack_butterfly~~UsesGraph_edge5" class="edge">
+<title>module~nafpack_kinds&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M129.06,-114.14C121.28,-114.14 113.07,-114.14 104.99,-114.14"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="105.22,-110.64 95.22,-114.14 105.22,-117.64 105.22,-110.64"/>
+</g>
+<!-- module~nafpack_loop_method&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_butterfly~~UsesGraph_edge6" class="edge">
+<title>module~nafpack_loop_method&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#7fff00" stroke-dasharray="5,2" d="M597.8,-66.72C582.87,-69.82 566.66,-72.89 551.58,-75.14 460.14,-88.78 436.23,-83.17 344.43,-94.14"/>
+</g>
+<!-- module~nafpack_loop_method&#45;&gt;module~nafpack_loop_method_type -->
+<g id="module~~nafpack_butterfly~~UsesGraph_edge7" class="edge">
+<title>module~nafpack_loop_method&#45;&gt;module~nafpack_loop_method_type</title>
+<path fill="none" stroke="#7fff00" stroke-dasharray="5,2" d="M621.72,-41.55C593.33,-30.97 549.85,-17.09 510.45,-14.13"/>
+</g>
+<!-- module~nafpack_utils -->
+<g id="module~~nafpack_butterfly~~UsesGraph_node7" class="node">
+<title>module~nafpack_utils</title>
+<g id="a_module~~nafpack_butterfly~~UsesGraph_node7"><a xlink:href="../module/nafpack_utils.html" xlink:title="NAFPack_utils">
+<polygon fill="#337ab7" stroke="#337ab7" points="551.58,-66.27 467.31,-66.27 467.31,-42 551.58,-42 551.58,-66.27"/>
+<text xml:space="preserve" text-anchor="middle" x="509.45" y="-50.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_utils</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_loop_method&#45;&gt;module~nafpack_utils -->
+<g id="module~~nafpack_butterfly~~UsesGraph_edge8" class="edge">
+<title>module~nafpack_loop_method&#45;&gt;module~nafpack_utils</title>
+<path fill="none" stroke="#7fff00" stroke-dasharray="5,2" d="M587.41,-54.13C579.26,-54.13 571.01,-54.13 563.09,-54.13"/>
+<polygon fill="#7fff00" stroke="#7fff00" points="563.29,-50.64 553.29,-54.14 563.29,-57.64 563.29,-50.64"/>
+</g>
+<!-- module~nafpack_plan_type&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_butterfly~~UsesGraph_edge9" class="edge">
+<title>module~nafpack_plan_type&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M285.88,-127.36C268.26,-125.25 248.84,-122.93 231.27,-120.82"/>
+<polygon fill="#7f00ff" stroke="#7f00ff" points="231.87,-117.37 221.52,-119.66 231.03,-124.32 231.87,-117.37"/>
+</g>
+<!-- module~nafpack_utils&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_butterfly~~UsesGraph_edge11" class="edge">
+<title>module~nafpack_utils&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M468.5,-66.74C435.59,-76.43 387.5,-88.99 344.43,-94.14"/>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M342.43,-94.14C305.2,-98.58 263.31,-103.6 230.8,-107.49"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="230.73,-103.98 221.22,-108.64 231.56,-110.93 230.73,-103.98"/>
+</g>
+<!-- module~nafpack_utils&#45;&gt;module~nafpack_loop_method_type -->
+<g id="module~~nafpack_butterfly~~UsesGraph_edge12" class="edge">
+<title>module~nafpack_utils&#45;&gt;module~nafpack_loop_method_type</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M466.87,-42.58C455.37,-39.45 442.87,-36.11 431.31,-33.13 423.85,-31.22 416.02,-29.26 408.24,-27.34"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="409.34,-24 398.79,-25.02 407.67,-30.8 409.34,-24"/>
+</g>
+<!-- module~nafpack_utils&#45;&gt;module~nafpack_plan_type -->
+<g id="module~~nafpack_butterfly~~UsesGraph_edge13" class="edge">
+<title>module~nafpack_utils&#45;&gt;module~nafpack_plan_type</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M493.69,-66.64C478.79,-78.72 454.71,-96.81 431.31,-108.14 423.72,-111.81 415.51,-115.08 407.26,-117.96"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="406.29,-114.6 397.89,-121.05 408.48,-121.24 406.29,-114.6"/>
+</g>
+<!-- module~nafpack_implementation_type -->
+<g id="module~~nafpack_butterfly~~UsesGraph_node8" class="node">
+<title>module~nafpack_implementation_type</title>
+<g id="a_module~~nafpack_butterfly~~UsesGraph_node8"><a xlink:href="../module/nafpack_implementation_type.html" xlink:title="NAFPack_implementation_type">
+<polygon fill="#337ab7" stroke="#337ab7" points="431.31,-66.27 255.54,-66.27 255.54,-42 431.31,-42 431.31,-66.27"/>
+<text xml:space="preserve" text-anchor="middle" x="343.43" y="-50.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_implementation_type</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_utils&#45;&gt;module~nafpack_implementation_type -->
+<g id="module~~nafpack_butterfly~~UsesGraph_edge10" class="edge">
+<title>module~nafpack_utils&#45;&gt;module~nafpack_implementation_type</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M467.06,-54.13C459.55,-54.13 451.44,-54.13 443.09,-54.13"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="443.1,-50.64 433.1,-54.14 443.1,-57.64 443.1,-50.64"/>
+</g>
+<!-- module~nafpack_implementation_type&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_butterfly~~UsesGraph_edge14" class="edge">
+<title>module~nafpack_implementation_type&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M297.02,-66.69C283.57,-70.69 268.87,-75.33 255.54,-80.14 241.52,-85.19 226.4,-91.4 213.12,-97.12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="212.07,-93.76 204.31,-100.97 214.87,-100.17 212.07,-93.76"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var panmodulenafpack_butterflyUsesGraph = svgPanZoom('#modulenafpack_butterflyUsesGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsesGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsesGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.2 (20260126.1125)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="511pt" height="32pt"
+ viewBox="0.00 0.00 511.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28.27)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-28.27 506.88,-28.27 506.88,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24.27 0,-24.27 0,0 54,0 54,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="144.13,-24.27 71.87,-24.27 71.87,0 144.13,0 144.13,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="108" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="231.63,-24.27 162.37,-24.27 162.37,0 231.63,0 231.63,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="197" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="306.26,-24.27 249.74,-24.27 249.74,0 306.26,0 306.26,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="278" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="381.26,-24.27 324.74,-24.27 324.74,0 381.26,0 381.26,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="353" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="502.88,-24.27 399.12,-24.27 399.12,0 502.88,0 502.88,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="451" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+          <div class="card">
+      <h3 class="card-header card-title bg-light">Used by</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <ul class="list-inline">
+                <li class="list-inline-item"><h5>Descendants:</h5></li>
+                  <li class="list-inline-item"><a href='nafpack_butterfly_dft.html'>NAFPack_butterfly_dft</a></li>
+                  <li class="list-inline-item"><a href='nafpack_butterfly_mixed_radix.html'>NAFPack_butterfly_mixed_radix</a></li>
+                  <li class="list-inline-item"><a href='nafpack_butterfly_radix2.html'>NAFPack_butterfly_radix2</a></li>
+                  <li class="list-inline-item"><a href='nafpack_butterfly_radix3.html'>NAFPack_butterfly_radix3</a></li>
+                  <li class="list-inline-item"><a href='nafpack_butterfly_radix4.html'>NAFPack_butterfly_radix4</a></li>
+                  <li class="list-inline-item"><a href='nafpack_butterfly_radix5.html'>NAFPack_butterfly_radix5</a></li>
+                  <li class="list-inline-item"><a href='nafpack_butterfly_split_radix.html'>NAFPack_butterfly_split_radix</a></li>
+              </ul>
+            </li>
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.2 (20260126.1125)
+ -->
+<!-- Title: module~~nafpack_butterfly~~UsedByGraph Pages: 1 -->
+<svg id="modulenafpack_butterflyUsedByGraph" width="330pt" height="326pt"
+ viewBox="0.00 0.00 330.00 326.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~nafpack_butterfly~~UsedByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 322.27)">
+<title>module~~nafpack_butterfly~~UsedByGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-322.27 325.54,-322.27 325.54,4 -4,4"/>
+<!-- module~nafpack_butterfly -->
+<g id="module~~nafpack_butterfly~~UsedByGraph_node1" class="node">
+<title>module~nafpack_butterfly</title>
+<polygon fill="none" stroke="black" points="107.52,-171.27 0,-171.27 0,-147 107.52,-147 107.52,-171.27"/>
+<text xml:space="preserve" text-anchor="middle" x="53.76" y="-155.53" font-family="Helvetica,sans-Serif" font-size="10.50">NAFPack_butterfly</text>
+</g>
+<!-- module~nafpack_butterfly_dft -->
+<g id="module~~nafpack_butterfly~~UsedByGraph_node2" class="node">
+<title>module~nafpack_butterfly_dft</title>
+<g id="a_module~~nafpack_butterfly~~UsedByGraph_node2"><a xlink:href="../module/nafpack_butterfly_dft.html" xlink:title="NAFPack_butterfly_dft">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="296.04,-318.27 169.02,-318.27 169.02,-294 296.04,-294 296.04,-318.27"/>
+<text xml:space="preserve" text-anchor="middle" x="232.53" y="-302.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_butterfly_dft</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_butterfly_dft&#45;&gt;module~nafpack_butterfly -->
+<g id="module~~nafpack_butterfly~~UsedByGraph_edge2" class="edge">
+<title>module~nafpack_butterfly_dft&#45;&gt;module~nafpack_butterfly</title>
+<path fill="none" stroke="#ff0000" d="M168.56,-297.05C159.7,-294.12 151.06,-290.25 143.52,-285.13 105,-259.03 77.85,-210.24 64.4,-181.64"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="67.71,-180.46 60.4,-172.79 61.34,-183.35 67.71,-180.46"/>
+</g>
+<!-- module~nafpack_butterfly_mixed_radix -->
+<g id="module~~nafpack_butterfly~~UsedByGraph_node3" class="node">
+<title>module~nafpack_butterfly_mixed_radix</title>
+<g id="a_module~~nafpack_butterfly~~UsedByGraph_node3"><a xlink:href="../module/nafpack_butterfly_mixed_radix.html" xlink:title="NAFPack_butterfly_mixed_radix">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="321.54,-276.27 143.52,-276.27 143.52,-252 321.54,-252 321.54,-276.27"/>
+<text xml:space="preserve" text-anchor="middle" x="232.53" y="-260.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_butterfly_mixed_radix</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_butterfly_mixed_radix&#45;&gt;module~nafpack_butterfly -->
+<g id="module~~nafpack_butterfly~~UsedByGraph_edge3" class="edge">
+<title>module~nafpack_butterfly_mixed_radix&#45;&gt;module~nafpack_butterfly</title>
+<path fill="none" stroke="#ff0000" d="M162.93,-251.55C156.19,-249.2 149.6,-246.42 143.52,-243.13 114.34,-227.34 87.68,-199.49 71.36,-180.21"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="74.23,-178.19 65.17,-172.7 68.82,-182.64 74.23,-178.19"/>
+</g>
+<!-- module~nafpack_butterfly_radix2 -->
+<g id="module~~nafpack_butterfly~~UsedByGraph_node4" class="node">
+<title>module~nafpack_butterfly_radix2</title>
+<g id="a_module~~nafpack_butterfly~~UsedByGraph_node4"><a xlink:href="../module/nafpack_butterfly_radix2.html" xlink:title="NAFPack_butterfly_radix2">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="305.79,-234.27 159.27,-234.27 159.27,-210 305.79,-210 305.79,-234.27"/>
+<text xml:space="preserve" text-anchor="middle" x="232.53" y="-218.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_butterfly_radix2</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_butterfly_radix2&#45;&gt;module~nafpack_butterfly -->
+<g id="module~~nafpack_butterfly~~UsedByGraph_edge4" class="edge">
+<title>module~nafpack_butterfly_radix2&#45;&gt;module~nafpack_butterfly</title>
+<path fill="none" stroke="#ff0000" d="M171.39,-209.55C161.97,-207.08 152.41,-204.26 143.52,-201.13 124.65,-194.5 104.44,-185.13 88.08,-176.92"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="89.78,-173.86 79.28,-172.42 86.59,-180.09 89.78,-173.86"/>
+</g>
+<!-- module~nafpack_butterfly_radix3 -->
+<g id="module~~nafpack_butterfly~~UsedByGraph_node5" class="node">
+<title>module~nafpack_butterfly_radix3</title>
+<g id="a_module~~nafpack_butterfly~~UsedByGraph_node5"><a xlink:href="../module/nafpack_butterfly_radix3.html" xlink:title="NAFPack_butterfly_radix3">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="305.79,-192.27 159.27,-192.27 159.27,-168 305.79,-168 305.79,-192.27"/>
+<text xml:space="preserve" text-anchor="middle" x="232.53" y="-176.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_butterfly_radix3</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_butterfly_radix3&#45;&gt;module~nafpack_butterfly -->
+<g id="module~~nafpack_butterfly~~UsedByGraph_edge5" class="edge">
+<title>module~nafpack_butterfly_radix3&#45;&gt;module~nafpack_butterfly</title>
+<path fill="none" stroke="#ff0000" d="M158.87,-171.5C145.68,-169.94 132.02,-168.31 119.09,-166.78"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="119.8,-163.34 109.46,-165.63 118.98,-170.29 119.8,-163.34"/>
+</g>
+<!-- module~nafpack_butterfly_radix4 -->
+<g id="module~~nafpack_butterfly~~UsedByGraph_node6" class="node">
+<title>module~nafpack_butterfly_radix4</title>
+<g id="a_module~~nafpack_butterfly~~UsedByGraph_node6"><a xlink:href="../module/nafpack_butterfly_radix4.html" xlink:title="NAFPack_butterfly_radix4">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="305.79,-150.27 159.27,-150.27 159.27,-126 305.79,-126 305.79,-150.27"/>
+<text xml:space="preserve" text-anchor="middle" x="232.53" y="-134.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_butterfly_radix4</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_butterfly_radix4&#45;&gt;module~nafpack_butterfly -->
+<g id="module~~nafpack_butterfly~~UsedByGraph_edge6" class="edge">
+<title>module~nafpack_butterfly_radix4&#45;&gt;module~nafpack_butterfly</title>
+<path fill="none" stroke="#ff0000" d="M158.87,-146.77C145.68,-148.33 132.02,-149.96 119.09,-151.49"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="118.98,-147.98 109.46,-152.64 119.8,-154.93 118.98,-147.98"/>
+</g>
+<!-- module~nafpack_butterfly_radix5 -->
+<g id="module~~nafpack_butterfly~~UsedByGraph_node7" class="node">
+<title>module~nafpack_butterfly_radix5</title>
+<g id="a_module~~nafpack_butterfly~~UsedByGraph_node7"><a xlink:href="../module/nafpack_butterfly_radix5.html" xlink:title="NAFPack_butterfly_radix5">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="305.79,-108.27 159.27,-108.27 159.27,-84 305.79,-84 305.79,-108.27"/>
+<text xml:space="preserve" text-anchor="middle" x="232.53" y="-92.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_butterfly_radix5</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_butterfly_radix5&#45;&gt;module~nafpack_butterfly -->
+<g id="module~~nafpack_butterfly~~UsedByGraph_edge7" class="edge">
+<title>module~nafpack_butterfly_radix5&#45;&gt;module~nafpack_butterfly</title>
+<path fill="none" stroke="#ff0000" d="M171.39,-108.72C161.97,-111.19 152.41,-114.01 143.52,-117.14 124.65,-123.77 104.44,-133.14 88.08,-141.35"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="86.59,-138.18 79.28,-145.85 89.78,-144.41 86.59,-138.18"/>
+</g>
+<!-- module~nafpack_butterfly_split_radix -->
+<g id="module~~nafpack_butterfly~~UsedByGraph_node8" class="node">
+<title>module~nafpack_butterfly_split_radix</title>
+<g id="a_module~~nafpack_butterfly~~UsedByGraph_node8"><a xlink:href="../module/nafpack_butterfly_split_radix.html" xlink:title="NAFPack_butterfly_split_radix">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="315.91,-66.27 149.14,-66.27 149.14,-42 315.91,-42 315.91,-66.27"/>
+<text xml:space="preserve" text-anchor="middle" x="232.53" y="-50.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_butterfly_split_radix</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_butterfly_split_radix&#45;&gt;module~nafpack_butterfly -->
+<g id="module~~nafpack_butterfly~~UsedByGraph_edge8" class="edge">
+<title>module~nafpack_butterfly_split_radix&#45;&gt;module~nafpack_butterfly</title>
+<path fill="none" stroke="#ff0000" d="M162.93,-66.72C156.19,-69.07 149.6,-71.85 143.52,-75.14 114.34,-90.93 87.68,-118.78 71.36,-138.06"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="68.82,-135.63 65.17,-145.57 74.23,-140.08 68.82,-135.63"/>
+</g>
+<!-- module~nafpack_plan_execute -->
+<g id="module~~nafpack_butterfly~~UsedByGraph_node9" class="node">
+<title>module~nafpack_plan_execute</title>
+<g id="a_module~~nafpack_butterfly~~UsedByGraph_node9"><a xlink:href="../module/nafpack_plan_execute.html" xlink:title="NAFPack_plan_execute">
+<polygon fill="#5bc0de" stroke="#5bc0de" points="299.04,-24.27 166.02,-24.27 166.02,0 299.04,0 299.04,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="232.53" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_plan_execute</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_plan_execute&#45;&gt;module~nafpack_butterfly -->
+<g id="module~~nafpack_butterfly~~UsedByGraph_edge1" class="edge">
+<title>module~nafpack_plan_execute&#45;&gt;module~nafpack_butterfly</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M165.82,-22.16C157.93,-24.96 150.28,-28.55 143.52,-33.13 105,-59.24 77.85,-108.03 64.4,-136.63"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="61.34,-134.92 60.4,-145.48 67.71,-137.81 61.34,-134.92"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsedByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsedByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.2 (20260126.1125)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="511pt" height="32pt"
+ viewBox="0.00 0.00 511.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28.27)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-28.27 506.88,-28.27 506.88,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24.27 0,-24.27 0,0 54,0 54,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="144.13,-24.27 71.87,-24.27 71.87,0 144.13,0 144.13,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="108" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="231.63,-24.27 162.37,-24.27 162.37,0 231.63,0 231.63,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="197" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="306.26,-24.27 249.74,-24.27 249.74,0 306.26,0 306.26,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="278" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="381.26,-24.27 324.74,-24.27 324.74,0 381.26,0 381.26,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="353" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="502.88,-24.27 399.12,-24.27 399.12,0 502.88,0 502.88,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="451" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+      <br>
+
+
+
+
+        <section>
+          <h2>Interfaces</h2>
+              <div class="card">
+    <div class="card-header bg-light codesum">
+      <span class="anchor" id="interface-execute_butterfly_dft"></span>
+      <h3>        interface
+      </h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+              <h3>
+    public pure module subroutine execute_butterfly_dft(stage, N, re, im, decimation_method)  
+
+    </h3>
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-stage~24"></span>
+              type(<a href='../type/stageview.html'>StageView</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>stage</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-n~123"></span>
+              integer(kind=isp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>N</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-re~42"></span>
+              real(kind=sp),
+            </td>
+<td>intent(inout),</td>
+              <td></td>            <td>
+              dimension(N)
+            </td>
+            <td>::</td>
+            <td><strong>re</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-im~42"></span>
+              real(kind=sp),
+            </td>
+<td>intent(inout),</td>
+              <td></td>            <td>
+              dimension(N)
+            </td>
+            <td>::</td>
+            <td><strong>im</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-decimation_method~16"></span>
+              type(<a href='../type/decimationmethod.html'>DecimationMethod</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>decimation_method</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+        </li>
+    </ul>
+  </div>
+
+              <div class="card">
+    <div class="card-header bg-light codesum">
+      <span class="anchor" id="interface-execute_butterfly_mixed_radix_recursive"></span>
+      <h3>        interface
+      </h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+              <h3>
+    public pure module subroutine execute_butterfly_mixed_radix_recursive(stages, N, re, im, stage_idx, decimation_method)  
+
+    </h3>
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-stages~20"></span>
+              type(<a href='../type/stageview.html'>StageView</a>),
+            </td>
+<td>intent(in),</td>
+              <td></td>            <td>
+              dimension(:)
+            </td>
+            <td>::</td>
+            <td><strong>stages</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-n~124"></span>
+              integer(kind=isp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>N</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-re~43"></span>
+              real(kind=sp),
+            </td>
+<td>intent(inout),</td>
+              <td></td>            <td>
+              dimension(N)
+            </td>
+            <td>::</td>
+            <td><strong>re</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-im~43"></span>
+              real(kind=sp),
+            </td>
+<td>intent(inout),</td>
+              <td></td>            <td>
+              dimension(N)
+            </td>
+            <td>::</td>
+            <td><strong>im</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-stage_idx~19"></span>
+              integer(kind=isp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>stage_idx</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-decimation_method~17"></span>
+              type(<a href='../type/decimationmethod.html'>DecimationMethod</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>decimation_method</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+        </li>
+    </ul>
+  </div>
+
+              <div class="card">
+    <div class="card-header bg-light codesum">
+      <span class="anchor" id="interface-execute_butterfly_radix2_recursive"></span>
+      <h3>        interface
+      </h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+              <h3>
+    public pure module subroutine execute_butterfly_radix2_recursive(stages, N, re, im, stage_idx, decimation_method)  
+
+    </h3>
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-stages~21"></span>
+              type(<a href='../type/stageview.html'>StageView</a>),
+            </td>
+<td>intent(in),</td>
+              <td></td>            <td>
+              dimension(:)
+            </td>
+            <td>::</td>
+            <td><strong>stages</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-n~125"></span>
+              integer(kind=isp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>N</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-re~44"></span>
+              real(kind=sp),
+            </td>
+<td>intent(inout),</td>
+              <td></td>            <td>
+              dimension(N)
+            </td>
+            <td>::</td>
+            <td><strong>re</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-im~44"></span>
+              real(kind=sp),
+            </td>
+<td>intent(inout),</td>
+              <td></td>            <td>
+              dimension(N)
+            </td>
+            <td>::</td>
+            <td><strong>im</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-stage_idx~20"></span>
+              integer(kind=isp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>stage_idx</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-decimation_method~18"></span>
+              type(<a href='../type/decimationmethod.html'>DecimationMethod</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>decimation_method</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+        </li>
+    </ul>
+  </div>
+
+              <div class="card">
+    <div class="card-header bg-light codesum">
+      <span class="anchor" id="interface-execute_butterfly_radix2"></span>
+      <h3>        interface
+      </h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+              <h3>
+    public module subroutine execute_butterfly_radix2(stage, N, re, im, loop_method, decimation_method)  
+
+    </h3>
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-stage~25"></span>
+              type(<a href='../type/stageview.html'>StageView</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>stage</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-n~126"></span>
+              integer(kind=isp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>N</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-re~45"></span>
+              real(kind=sp),
+            </td>
+<td>intent(inout),</td>
+              <td></td>            <td>
+              dimension(N)
+            </td>
+            <td>::</td>
+            <td><strong>re</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-im~45"></span>
+              real(kind=sp),
+            </td>
+<td>intent(inout),</td>
+              <td></td>            <td>
+              dimension(N)
+            </td>
+            <td>::</td>
+            <td><strong>im</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-loop_method~127"></span>
+              type(<a href='../type/loopmethod.html'>LoopMethod</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>loop_method</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-decimation_method~19"></span>
+              type(<a href='../type/decimationmethod.html'>DecimationMethod</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>decimation_method</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+        </li>
+    </ul>
+  </div>
+
+              <div class="card">
+    <div class="card-header bg-light codesum">
+      <span class="anchor" id="interface-execute_butterfly_radix3_recursive"></span>
+      <h3>        interface
+      </h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+              <h3>
+    public pure module subroutine execute_butterfly_radix3_recursive(stages, N, re, im, stage_idx, decimation_method)  
+
+    </h3>
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-stages~22"></span>
+              type(<a href='../type/stageview.html'>StageView</a>),
+            </td>
+<td>intent(in),</td>
+              <td></td>            <td>
+              dimension(:)
+            </td>
+            <td>::</td>
+            <td><strong>stages</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-n~127"></span>
+              integer(kind=isp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>N</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-re~46"></span>
+              real(kind=sp),
+            </td>
+<td>intent(inout),</td>
+              <td></td>            <td>
+              dimension(N)
+            </td>
+            <td>::</td>
+            <td><strong>re</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-im~46"></span>
+              real(kind=sp),
+            </td>
+<td>intent(inout),</td>
+              <td></td>            <td>
+              dimension(N)
+            </td>
+            <td>::</td>
+            <td><strong>im</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-stage_idx~21"></span>
+              integer(kind=isp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>stage_idx</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-decimation_method~20"></span>
+              type(<a href='../type/decimationmethod.html'>DecimationMethod</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>decimation_method</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+        </li>
+    </ul>
+  </div>
+
+              <div class="card">
+    <div class="card-header bg-light codesum">
+      <span class="anchor" id="interface-execute_butterfly_radix3"></span>
+      <h3>        interface
+      </h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+              <h3>
+    public pure module subroutine execute_butterfly_radix3(stage, N, re, im, decimation_method)  
+
+    </h3>
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-stage~26"></span>
+              type(<a href='../type/stageview.html'>StageView</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>stage</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-n~128"></span>
+              integer(kind=isp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>N</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-re~47"></span>
+              real(kind=sp),
+            </td>
+<td>intent(inout),</td>
+              <td></td>            <td>
+              dimension(N)
+            </td>
+            <td>::</td>
+            <td><strong>re</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-im~47"></span>
+              real(kind=sp),
+            </td>
+<td>intent(inout),</td>
+              <td></td>            <td>
+              dimension(N)
+            </td>
+            <td>::</td>
+            <td><strong>im</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-decimation_method~21"></span>
+              type(<a href='../type/decimationmethod.html'>DecimationMethod</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>decimation_method</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+        </li>
+    </ul>
+  </div>
+
+              <div class="card">
+    <div class="card-header bg-light codesum">
+      <span class="anchor" id="interface-execute_butterfly_radix4_recursive"></span>
+      <h3>        interface
+      </h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+              <h3>
+    public pure module subroutine execute_butterfly_radix4_recursive(stages, N, re, im, stage_idx, decimation_method)  
+
+    </h3>
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-stages~23"></span>
+              type(<a href='../type/stageview.html'>StageView</a>),
+            </td>
+<td>intent(in),</td>
+              <td></td>            <td>
+              dimension(:)
+            </td>
+            <td>::</td>
+            <td><strong>stages</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-n~129"></span>
+              integer(kind=isp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>N</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-re~48"></span>
+              real(kind=sp),
+            </td>
+<td>intent(inout),</td>
+              <td></td>            <td>
+              dimension(N)
+            </td>
+            <td>::</td>
+            <td><strong>re</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-im~48"></span>
+              real(kind=sp),
+            </td>
+<td>intent(inout),</td>
+              <td></td>            <td>
+              dimension(N)
+            </td>
+            <td>::</td>
+            <td><strong>im</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-stage_idx~22"></span>
+              integer(kind=isp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>stage_idx</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-decimation_method~22"></span>
+              type(<a href='../type/decimationmethod.html'>DecimationMethod</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>decimation_method</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+        </li>
+    </ul>
+  </div>
+
+              <div class="card">
+    <div class="card-header bg-light codesum">
+      <span class="anchor" id="interface-execute_butterfly_radix4"></span>
+      <h3>        interface
+      </h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+              <h3>
+    public pure module subroutine execute_butterfly_radix4(stage, N, re, im, decimation_method)  
+
+    </h3>
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-stage~27"></span>
+              type(<a href='../type/stageview.html'>StageView</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>stage</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-n~130"></span>
+              integer(kind=isp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>N</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-re~49"></span>
+              real(kind=sp),
+            </td>
+<td>intent(inout),</td>
+              <td></td>            <td>
+              dimension(N)
+            </td>
+            <td>::</td>
+            <td><strong>re</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-im~49"></span>
+              real(kind=sp),
+            </td>
+<td>intent(inout),</td>
+              <td></td>            <td>
+              dimension(N)
+            </td>
+            <td>::</td>
+            <td><strong>im</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-decimation_method~23"></span>
+              type(<a href='../type/decimationmethod.html'>DecimationMethod</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>decimation_method</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+        </li>
+    </ul>
+  </div>
+
+              <div class="card">
+    <div class="card-header bg-light codesum">
+      <span class="anchor" id="interface-execute_butterfly_radix5_recursive"></span>
+      <h3>        interface
+      </h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+              <h3>
+    public pure module subroutine execute_butterfly_radix5_recursive(stages, N, re, im, stage_idx, decimation_method)  
+
+    </h3>
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-stages~24"></span>
+              type(<a href='../type/stageview.html'>StageView</a>),
+            </td>
+<td>intent(in),</td>
+              <td></td>            <td>
+              dimension(:)
+            </td>
+            <td>::</td>
+            <td><strong>stages</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-n~131"></span>
+              integer(kind=isp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>N</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-re~50"></span>
+              real(kind=sp),
+            </td>
+<td>intent(inout),</td>
+              <td></td>            <td>
+              dimension(N)
+            </td>
+            <td>::</td>
+            <td><strong>re</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-im~50"></span>
+              real(kind=sp),
+            </td>
+<td>intent(inout),</td>
+              <td></td>            <td>
+              dimension(N)
+            </td>
+            <td>::</td>
+            <td><strong>im</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-stage_idx~23"></span>
+              integer(kind=isp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>stage_idx</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-decimation_method~24"></span>
+              type(<a href='../type/decimationmethod.html'>DecimationMethod</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>decimation_method</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+        </li>
+    </ul>
+  </div>
+
+              <div class="card">
+    <div class="card-header bg-light codesum">
+      <span class="anchor" id="interface-execute_butterfly_radix5"></span>
+      <h3>        interface
+      </h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+              <h3>
+    public pure module subroutine execute_butterfly_radix5(stage, N, re, im, decimation_method)  
+
+    </h3>
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-stage~28"></span>
+              type(<a href='../type/stageview.html'>StageView</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>stage</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-n~132"></span>
+              integer(kind=isp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>N</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-re~51"></span>
+              real(kind=sp),
+            </td>
+<td>intent(inout),</td>
+              <td></td>            <td>
+              dimension(N)
+            </td>
+            <td>::</td>
+            <td><strong>re</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-im~51"></span>
+              real(kind=sp),
+            </td>
+<td>intent(inout),</td>
+              <td></td>            <td>
+              dimension(N)
+            </td>
+            <td>::</td>
+            <td><strong>im</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-decimation_method~25"></span>
+              type(<a href='../type/decimationmethod.html'>DecimationMethod</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>decimation_method</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+        </li>
+    </ul>
+  </div>
+
+              <div class="card">
+    <div class="card-header bg-light codesum">
+      <span class="anchor" id="interface-execute_butterfly_split_radix_recursive"></span>
+      <h3>        interface
+      </h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+              <h3>
+    public pure recursive module subroutine execute_butterfly_split_radix_recursive(stages, N, re, im, stage_idx, decimation_method)  
+
+    </h3>
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-stages~25"></span>
+              type(<a href='../type/stageview.html'>StageView</a>),
+            </td>
+<td>intent(in),</td>
+              <td></td>            <td>
+              dimension(:)
+            </td>
+            <td>::</td>
+            <td><strong>stages</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-n~133"></span>
+              integer(kind=isp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>N</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-re~52"></span>
+              real(kind=sp),
+            </td>
+<td>intent(inout),</td>
+              <td></td>            <td>
+              dimension(N)
+            </td>
+            <td>::</td>
+            <td><strong>re</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-im~52"></span>
+              real(kind=sp),
+            </td>
+<td>intent(inout),</td>
+              <td></td>            <td>
+              dimension(N)
+            </td>
+            <td>::</td>
+            <td><strong>im</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-stage_idx~24"></span>
+              integer(kind=isp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>stage_idx</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-decimation_method~26"></span>
+              type(<a href='../type/decimationmethod.html'>DecimationMethod</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>decimation_method</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+        </li>
+    </ul>
+  </div>
+
+              <div class="card">
+    <div class="card-header bg-light codesum">
+      <span class="anchor" id="interface-execute_butterfly_split_radix"></span>
+      <h3>        interface
+      </h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+              <h3>
+    public module subroutine execute_butterfly_split_radix(stage, N, re, im, decimation_method)  
+
+    </h3>
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-stage~29"></span>
+              type(<a href='../type/stageview.html'>StageView</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>stage</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-n~134"></span>
+              integer(kind=isp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>N</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-re~53"></span>
+              real(kind=sp),
+            </td>
+<td>intent(inout),</td>
+              <td></td>            <td>
+              dimension(N)
+            </td>
+            <td>::</td>
+            <td><strong>re</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-im~53"></span>
+              real(kind=sp),
+            </td>
+<td>intent(inout),</td>
+              <td></td>            <td>
+              dimension(N)
+            </td>
+            <td>::</td>
+            <td><strong>im</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-decimation_method~27"></span>
+              type(<a href='../type/decimationmethod.html'>DecimationMethod</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>decimation_method</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+        </li>
+    </ul>
+  </div>
+
+        </section>
+        <br>
+
+
+
+
+
+
+
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              NAFPack
+ was developed by Minard Jules<br>              &copy; 2026 
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+            </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>

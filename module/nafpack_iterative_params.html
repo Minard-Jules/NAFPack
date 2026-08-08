@@ -1,0 +1,1080 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+    <meta name="author" content="Minard Jules" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>NAFPack_Iterative_Params &ndash; NAFPack</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="../css/local.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">NAFPack </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>NAFPack_Iterative_Params
+      <small>Module</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 0.8% of total for modules and submodules.">83 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/NAFPack_Iterative_Params.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/nafpack_iterative_params.f90.html'>NAFPack_Iterative_Params.f90</a></li>
+            <li class="breadcrumb-item active" aria-current="page">NAFPack_Iterative_Params</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
+  </script>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+        <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#types-0"
+         aria-expanded="false" aria-controls="types-0">
+         <h4 class="card-header bg-primary text-white">Derived Types</h4>
+      </a>
+      <div id="types-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/nafpack_iterative_params.html#type-iterativeparams">IterativeParams</a>
+        </div>
+      </div>
+    </div>
+
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#funcs-0"
+         aria-expanded="false" aria-controls="funcs-0">
+         <h4 class="card-header bg-primary text-white">Functions</h4>
+      </a>
+      <div id="funcs-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/nafpack_iterative_params.html#proc-applypreconditioner">ApplyPreconditioner</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+
+    <div class="col-md-9" id='text'>
+      
+<br>          <div class="card mb-4">
+      <h3 class="card-header card-title bg-light">Uses</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <ul class="list-inline">
+                  <li class="list-inline-item"><a href='nafpack_kinds.html'>NAFPack_kinds</a></li>
+                  <li class="list-inline-item"><a href='nafpack_iterative_types.html'>NAFPack_Iterative_types</a></li>
+                  <li class="list-inline-item"><a href='nafpack_matrix_decomposition.html'>NAFPack_matrix_decomposition</a></li>
+                  <li class="list-inline-item"><a href='nafpack_preconditioners.html'>NAFPack_Preconditioners</a></li>
+              </ul>
+            </li>
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.2 (20260126.1125)
+ -->
+<!-- Title: module~~nafpack_iterative_params~~UsesGraph Pages: 1 -->
+<svg id="modulenafpack_iterative_paramsUsesGraph" width="641pt" height="112pt"
+ viewBox="0.00 0.00 641.00 112.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~nafpack_iterative_params~~UsesGraph" class="graph" transform="scale(0.661595 0.661595) rotate(0) translate(4 164.99)">
+<title>module~~nafpack_iterative_params~~UsesGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-164.99 964.87,-164.99 964.87,4 -4,4"/>
+<!-- module~nafpack_iterative_params -->
+<g id="module~~nafpack_iterative_params~~UsesGraph_node1" class="node">
+<title>module~nafpack_iterative_params</title>
+<polygon fill="none" stroke="black" points="960.87,-83.26 809.1,-83.26 809.1,-58.99 960.87,-58.99 960.87,-83.26"/>
+<text xml:space="preserve" text-anchor="middle" x="884.98" y="-67.52" font-family="Helvetica,sans-Serif" font-size="10.50">NAFPack_Iterative_Params</text>
+</g>
+<!-- module~nafpack_iterative_types -->
+<g id="module~~nafpack_iterative_params~~UsesGraph_node2" class="node">
+<title>module~nafpack_iterative_types</title>
+<g id="a_module~~nafpack_iterative_params~~UsesGraph_node2"><a xlink:href="../module/nafpack_iterative_types.html" xlink:title="NAFPack_Iterative_types">
+<polygon fill="#337ab7" stroke="#337ab7" points="571.83,-123.26 431.31,-123.26 431.31,-98.99 571.83,-98.99 571.83,-123.26"/>
+<text xml:space="preserve" text-anchor="middle" x="501.57" y="-107.52" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Iterative_types</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_iterative_params&#45;&gt;module~nafpack_iterative_types -->
+<g id="module~~nafpack_iterative_params~~UsesGraph_edge1" class="edge">
+<title>module~nafpack_iterative_params&#45;&gt;module~nafpack_iterative_types</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M864.52,-83.74C832.26,-103.68 764.97,-141.25 701.59,-151.12"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M699.59,-151.12C672.71,-155.31 605.54,-139.57 557.09,-126.62"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="558.17,-123.28 547.6,-124.05 556.34,-130.04 558.17,-123.28"/>
+</g>
+<!-- module~nafpack_kinds -->
+<g id="module~~nafpack_iterative_params~~UsesGraph_node3" class="node">
+<title>module~nafpack_kinds</title>
+<g id="a_module~~nafpack_iterative_params~~UsesGraph_node3"><a xlink:href="../module/nafpack_kinds.html" xlink:title="NAFPack_kinds">
+<polygon fill="#337ab7" stroke="#337ab7" points="219.54,-62.26 129.27,-62.26 129.27,-37.99 219.54,-37.99 219.54,-62.26"/>
+<text xml:space="preserve" text-anchor="middle" x="174.41" y="-46.52" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_kinds</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_iterative_params&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_iterative_params~~UsesGraph_edge2" class="edge">
+<title>module~nafpack_iterative_params&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M699.59,-151.12C530.36,-177.5 484.01,-145.87 316.3,-111.12"/>
+</g>
+<!-- module~nafpack_matrix_decomposition -->
+<g id="module~~nafpack_iterative_params~~UsesGraph_node4" class="node">
+<title>module~nafpack_matrix_decomposition</title>
+<g id="a_module~~nafpack_iterative_params~~UsesGraph_node4"><a xlink:href="../module/nafpack_matrix_decomposition.html" xlink:title="NAFPack_matrix_decomposition">
+<polygon fill="#337ab7" stroke="#337ab7" points="592.08,-43.26 411.06,-43.26 411.06,-18.99 592.08,-18.99 592.08,-43.26"/>
+<text xml:space="preserve" text-anchor="middle" x="501.57" y="-27.52" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_matrix_decomposition</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_iterative_params&#45;&gt;module~nafpack_matrix_decomposition -->
+<g id="module~~nafpack_iterative_params~~UsesGraph_edge3" class="edge">
+<title>module~nafpack_iterative_params&#45;&gt;module~nafpack_matrix_decomposition</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M824.34,-58.5C807.81,-55.36 789.81,-52.28 773.1,-50.12 717.32,-42.91 654.68,-38.29 603.74,-35.41"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="604.08,-31.93 593.9,-34.87 603.7,-38.92 604.08,-31.93"/>
+</g>
+<!-- module~nafpack_preconditioners -->
+<g id="module~~nafpack_iterative_params~~UsesGraph_node5" class="node">
+<title>module~nafpack_preconditioners</title>
+<g id="a_module~~nafpack_iterative_params~~UsesGraph_node5"><a xlink:href="../module/nafpack_preconditioners.html" xlink:title="NAFPack_Preconditioners">
+<polygon fill="#337ab7" stroke="#337ab7" points="773.1,-83.26 628.08,-83.26 628.08,-58.99 773.1,-58.99 773.1,-83.26"/>
+<text xml:space="preserve" text-anchor="middle" x="700.59" y="-67.52" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Preconditioners</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_iterative_params&#45;&gt;module~nafpack_preconditioners -->
+<g id="module~~nafpack_iterative_params~~UsesGraph_edge4" class="edge">
+<title>module~nafpack_iterative_params&#45;&gt;module~nafpack_preconditioners</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M808.74,-71.12C800.81,-71.12 792.7,-71.12 784.69,-71.12"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="784.94,-67.62 774.94,-71.12 784.94,-74.62 784.94,-67.62"/>
+</g>
+<!-- module~nafpack_iterative_types&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_iterative_params~~UsesGraph_edge5" class="edge">
+<title>module~nafpack_iterative_types&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M431.2,-117.74C396.37,-119.39 353.73,-118.88 316.3,-111.12"/>
+</g>
+<!-- iso_fortran_env -->
+<g id="module~~nafpack_iterative_params~~UsesGraph_node6" class="node">
+<title>iso_fortran_env</title>
+<g id="a_module~~nafpack_iterative_params~~UsesGraph_node6"><a xlink:href="http://fortranwiki.org/fortran/show/iso_fortran_env" xlink:title="iso_fortran_env">
+<polygon fill="#337ab7" stroke="#337ab7" points="93.27,-62.26 0,-62.26 0,-37.99 93.27,-37.99 93.27,-62.26"/>
+<text xml:space="preserve" text-anchor="middle" x="46.63" y="-46.52" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_kinds&#45;&gt;iso_fortran_env -->
+<g id="module~~nafpack_iterative_params~~UsesGraph_edge6" class="edge">
+<title>module~nafpack_kinds&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#7fff00" stroke-dasharray="5,2" d="M129.06,-50.12C121.28,-50.12 113.07,-50.12 104.99,-50.12"/>
+<polygon fill="#7fff00" stroke="#7fff00" points="105.22,-46.62 95.22,-50.12 105.22,-53.62 105.22,-46.62"/>
+</g>
+<!-- module~nafpack_matrix_decomposition&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_iterative_params~~UsesGraph_edge8" class="edge">
+<title>module~nafpack_matrix_decomposition&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M457.44,-18.53C407.99,-6.05 324.83,8.93 255.54,-8.12 236.83,-12.73 217.65,-22.57 202.74,-31.56"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="201.05,-28.49 194.45,-36.78 204.78,-34.42 201.05,-28.49"/>
+</g>
+<!-- module~nafpack_constant -->
+<g id="module~~nafpack_iterative_params~~UsesGraph_node7" class="node">
+<title>module~nafpack_constant</title>
+<g id="a_module~~nafpack_iterative_params~~UsesGraph_node7"><a xlink:href="../module/nafpack_constant.html" xlink:title="NAFPack_constant">
+<polygon fill="#337ab7" stroke="#337ab7" points="369.43,-83.26 261.16,-83.26 261.16,-58.99 369.43,-58.99 369.43,-83.26"/>
+<text xml:space="preserve" text-anchor="middle" x="315.3" y="-67.52" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_constant</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_matrix_decomposition&#45;&gt;module~nafpack_constant -->
+<g id="module~~nafpack_iterative_params~~UsesGraph_edge7" class="edge">
+<title>module~nafpack_matrix_decomposition&#45;&gt;module~nafpack_constant</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M442.52,-43.72C422.94,-47.97 400.97,-52.74 380.91,-57.1"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="380.19,-53.67 371.16,-59.22 381.67,-60.51 380.19,-53.67"/>
+</g>
+<!-- module~nafpack_matricielle -->
+<g id="module~~nafpack_iterative_params~~UsesGraph_node8" class="node">
+<title>module~nafpack_matricielle</title>
+<g id="a_module~~nafpack_iterative_params~~UsesGraph_node8"><a xlink:href="../module/nafpack_matricielle.html" xlink:title="NAFPack_matricielle">
+<polygon fill="#337ab7" stroke="#337ab7" points="375.06,-41.26 255.54,-41.26 255.54,-16.99 375.06,-16.99 375.06,-41.26"/>
+<text xml:space="preserve" text-anchor="middle" x="315.3" y="-25.52" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_matricielle</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_matrix_decomposition&#45;&gt;module~nafpack_matricielle -->
+<g id="module~~nafpack_iterative_params~~UsesGraph_edge9" class="edge">
+<title>module~nafpack_matrix_decomposition&#45;&gt;module~nafpack_matricielle</title>
+<path fill="none" stroke="#00ffff" stroke-dasharray="5,2" d="M410.59,-30.15C402.55,-30.06 394.49,-29.97 386.65,-29.89"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="386.9,-26.39 376.87,-29.78 386.83,-33.39 386.9,-26.39"/>
+</g>
+<!-- module~nafpack_preconditioners&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_iterative_params~~UsesGraph_edge11" class="edge">
+<title>module~nafpack_preconditioners&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M500.57,-71.12C459.9,-71.05 450.8,-81.5 411.06,-90.12 368.9,-99.27 358.54,-119.87 316.3,-111.12"/>
+<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M314.3,-111.12C287.42,-105.55 280.84,-102.75 255.54,-92.12 239.11,-85.22 221.5,-76.19 206.99,-68.27"/>
+<polygon fill="#7f00ff" stroke="#7f00ff" points="208.79,-65.26 198.35,-63.48 205.4,-71.39 208.79,-65.26"/>
+</g>
+<!-- module~nafpack_preconditioners&#45;&gt;module~nafpack_matrix_decomposition -->
+<g id="module~~nafpack_iterative_params~~UsesGraph_edge13" class="edge">
+<title>module~nafpack_preconditioners&#45;&gt;module~nafpack_matrix_decomposition</title>
+<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M637.52,-58.52C617.92,-54.54 596.07,-50.11 575.76,-45.98"/>
+<polygon fill="#7f00ff" stroke="#7f00ff" points="576.64,-42.59 566.15,-44.03 575.25,-49.45 576.64,-42.59"/>
+</g>
+<!-- module~nafpack_preconditioners&#45;&gt;module~nafpack_constant -->
+<g id="module~~nafpack_iterative_params~~UsesGraph_edge10" class="edge">
+<title>module~nafpack_preconditioners&#45;&gt;module~nafpack_constant</title>
+<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M500.57,-71.12C460.88,-71.05 416.38,-71.05 381.05,-71.07"/>
+<polygon fill="#7f00ff" stroke="#7f00ff" points="381.43,-67.57 371.43,-71.07 381.44,-74.57 381.43,-67.57"/>
+</g>
+<!-- module~nafpack_preconditioners&#45;&gt;module~nafpack_matricielle -->
+<g id="module~~nafpack_iterative_params~~UsesGraph_edge12" class="edge">
+<title>module~nafpack_preconditioners&#45;&gt;module~nafpack_matricielle</title>
+<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M628,-71.18C590.62,-71.2 544.13,-71.2 502.57,-71.12"/>
+<path fill="none" stroke="#7f00ff" stroke-dasharray="5,2" d="M500.57,-71.12C452.1,-71.04 398.21,-57.07 361.3,-45.26"/>
+<polygon fill="#7f00ff" stroke="#7f00ff" points="362.44,-41.95 351.85,-42.16 360.26,-48.6 362.44,-41.95"/>
+</g>
+<!-- module~nafpack_constant&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_iterative_params~~UsesGraph_edge14" class="edge">
+<title>module~nafpack_constant&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#00ff00" stroke-dasharray="5,2" d="M261,-63.06C251.21,-61.58 240.97,-60.04 231.11,-58.55"/>
+<polygon fill="#00ff00" stroke="#00ff00" points="231.68,-55.09 221.27,-57.06 230.63,-62.01 231.68,-55.09"/>
+</g>
+<!-- module~nafpack_matricielle&#45;&gt;module~nafpack_kinds -->
+<g id="module~~nafpack_iterative_params~~UsesGraph_edge15" class="edge">
+<title>module~nafpack_matricielle&#45;&gt;module~nafpack_kinds</title>
+<path fill="none" stroke="#0000ff" stroke-dasharray="5,2" d="M255.4,-38.03C247.25,-39.26 238.92,-40.52 230.84,-41.74"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="230.51,-38.25 221.14,-43.21 231.55,-45.17 230.51,-38.25"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var panmodulenafpack_iterative_paramsUsesGraph = svgPanZoom('#modulenafpack_iterative_paramsUsesGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsesGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsesGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.2 (20260126.1125)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="511pt" height="32pt"
+ viewBox="0.00 0.00 511.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28.27)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-28.27 506.88,-28.27 506.88,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24.27 0,-24.27 0,0 54,0 54,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="144.13,-24.27 71.87,-24.27 71.87,0 144.13,0 144.13,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="108" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="231.63,-24.27 162.37,-24.27 162.37,0 231.63,0 231.63,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="197" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="306.26,-24.27 249.74,-24.27 249.74,0 306.26,0 306.26,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="278" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="381.26,-24.27 324.74,-24.27 324.74,0 381.26,0 381.26,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="353" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="502.88,-24.27 399.12,-24.27 399.12,0 502.88,0 502.88,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="451" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+          <div class="card">
+      <h3 class="card-header card-title bg-light">Used by</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.2 (20260126.1125)
+ -->
+<!-- Title: module~~nafpack_iterative_params~~UsedByGraph Pages: 1 -->
+<svg id="modulenafpack_iterative_paramsUsedByGraph" width="482pt" height="52pt"
+ viewBox="0.00 0.00 482.00 52.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~nafpack_iterative_params~~UsedByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 48.27)">
+<title>module~~nafpack_iterative_params~~UsedByGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-48.27 478.06,-48.27 478.06,4 -4,4"/>
+<!-- module~nafpack_iterative_params -->
+<g id="module~~nafpack_iterative_params~~UsedByGraph_node1" class="node">
+<title>module~nafpack_iterative_params</title>
+<polygon fill="none" stroke="black" points="151.77,-44.27 0,-44.27 0,-20 151.77,-20 151.77,-44.27"/>
+<text xml:space="preserve" text-anchor="middle" x="75.89" y="-28.53" font-family="Helvetica,sans-Serif" font-size="10.50">NAFPack_Iterative_Params</text>
+</g>
+<!-- module~nafpack_iterative_methods -->
+<g id="module~~nafpack_iterative_params~~UsedByGraph_node2" class="node">
+<title>module~nafpack_iterative_methods</title>
+<g id="a_module~~nafpack_iterative_params~~UsedByGraph_node2"><a xlink:href="../module/nafpack_iterative_methods.html" xlink:title="NAFPack_Iterative_methods">
+<polygon fill="#337ab7" stroke="#337ab7" points="346.29,-24.27 187.77,-24.27 187.77,0 346.29,0 346.29,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="267.03" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_Iterative_methods</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_iterative_methods&#45;&gt;module~nafpack_iterative_params -->
+<g id="module~~nafpack_iterative_params~~UsedByGraph_edge1" class="edge">
+<title>module~nafpack_iterative_methods&#45;&gt;module~nafpack_iterative_params</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M187.46,-20.44C179.53,-21.28 171.44,-22.14 163.43,-22.98"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="163.26,-19.48 153.68,-24.01 163.99,-26.44 163.26,-19.48"/>
+</g>
+<!-- module~nafpack_linalg -->
+<g id="module~~nafpack_iterative_params~~UsedByGraph_node3" class="node">
+<title>module~nafpack_linalg</title>
+<g id="a_module~~nafpack_iterative_params~~UsedByGraph_node3"><a xlink:href="../module/nafpack_linalg.html" xlink:title="NAFPack_linalg">
+<polygon fill="#337ab7" stroke="#337ab7" points="474.06,-44.27 382.29,-44.27 382.29,-20 474.06,-20 474.06,-44.27"/>
+<text xml:space="preserve" text-anchor="middle" x="428.18" y="-28.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">NAFPack_linalg</text>
+</a>
+</g>
+</g>
+<!-- module~nafpack_linalg&#45;&gt;module~nafpack_iterative_params -->
+<g id="module~~nafpack_iterative_params~~UsedByGraph_edge2" class="edge">
+<title>module~nafpack_linalg&#45;&gt;module~nafpack_iterative_params</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M381.83,-32.79C370.24,-32.94 357.81,-33.06 346.29,-33.13 275.84,-33.57 258.22,-33.45 187.77,-33.13 179.83,-33.1 171.57,-33.05 163.3,-32.99"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="163.58,-29.49 153.55,-32.92 163.53,-36.49 163.58,-29.49"/>
+</g>
+<!-- module~nafpack_linalg&#45;&gt;module~nafpack_iterative_methods -->
+<g id="module~~nafpack_iterative_params~~UsedByGraph_edge3" class="edge">
+<title>module~nafpack_linalg&#45;&gt;module~nafpack_iterative_methods</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M382,-26.46C374.41,-25.5 366.32,-24.49 358.07,-23.45"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="358.62,-19.99 348.26,-22.22 357.74,-26.94 358.62,-19.99"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsedByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsedByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.2 (20260126.1125)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="511pt" height="32pt"
+ viewBox="0.00 0.00 511.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28.27)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-28.27 506.88,-28.27 506.88,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24.27 0,-24.27 0,0 54,0 54,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="144.13,-24.27 71.87,-24.27 71.87,0 144.13,0 144.13,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="108" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="231.63,-24.27 162.37,-24.27 162.37,0 231.63,0 231.63,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="197" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="306.26,-24.27 249.74,-24.27 249.74,0 306.26,0 306.26,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="278" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="381.26,-24.27 324.74,-24.27 324.74,0 381.26,0 381.26,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="353" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="502.88,-24.27 399.12,-24.27 399.12,0 502.88,0 502.88,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="451" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+      <br>
+
+
+
+
+
+
+        <section>
+          <h2>Derived Types</h2>
+              <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="type-iterativeparams"></span>
+      <h3>
+        type, public&nbsp;::&nbsp;
+        <a href='../type/iterativeparams.html'>IterativeParams</a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      
+
+        <h4>Components</h4>
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Visibility</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-x_init"></span>
+              real(kind=dp),
+            </td>
+              <td>public,</td>
+            <td>
+              dimension(:), allocatable
+            </td>
+            <td>::</td>
+            <td><strong>x_init</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-l~12"></span>
+              real(kind=dp),
+            </td>
+              <td>public,</td>
+            <td>
+              dimension(:, :), allocatable
+            </td>
+            <td>::</td>
+            <td><strong>L</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-u~7"></span>
+              real(kind=dp),
+            </td>
+              <td>public,</td>
+            <td>
+              dimension(:, :), allocatable
+            </td>
+            <td>::</td>
+            <td><strong>U</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-d~6"></span>
+              real(kind=dp),
+            </td>
+              <td>public,</td>
+            <td>
+              dimension(:, :), allocatable
+            </td>
+            <td>::</td>
+            <td><strong>D</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-p"></span>
+              real(kind=dp),
+            </td>
+              <td>public,</td>
+            <td>
+              dimension(:), allocatable
+            </td>
+            <td>::</td>
+            <td><strong>p</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-residual"></span>
+              real(kind=dp),
+            </td>
+              <td>public,</td>
+            <td>
+              dimension(:), allocatable
+            </td>
+            <td>::</td>
+            <td><strong>residual</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-norm_residual"></span>
+              real(kind=dp),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>norm_residual</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-norm_initial_residual"></span>
+              real(kind=dp),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>norm_initial_residual</strong></td>
+<td> =</td>
+                <td>1.d0</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-tol"></span>
+              real(kind=dp),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>tol</strong></td>
+<td> =</td>
+                <td>1.0d-12</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-k~28"></span>
+              integer,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>k</strong></td>
+<td> =</td>
+                <td>0</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-max_iter"></span>
+              integer,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>max_iter</strong></td>
+<td> =</td>
+                <td>1000</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-omega~4"></span>
+              real(kind=dp),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>omega</strong></td>
+<td> =</td>
+                <td>1.d0</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-alpha~6"></span>
+              real(kind=dp),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>alpha</strong></td>
+<td> =</td>
+                <td>1.d0</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-beta~3"></span>
+              real(kind=dp),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>beta</strong></td>
+<td> =</td>
+                <td>1.d0</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-fill_level~6"></span>
+              type(<a href='../type/fill_level_used.html'>Fill_level_used</a>),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>fill_level</strong></td>
+<td> =</td>
+                <td>FILL_LEVEL_NONE</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-is_stationary~2"></span>
+              logical,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>is_stationary</strong></td>
+<td> =</td>
+                <td>.true.</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-strict_mode~19"></span>
+              logical,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>strict_mode</strong></td>
+<td> =</td>
+                <td>.false.</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-old_dot_product"></span>
+              real(kind=dp),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>old_dot_product</strong></td>
+<td> =</td>
+                <td>0.d0</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-norm"></span>
+              type(<a href='../type/norm_used.html'>Norm_used</a>),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>norm</strong></td>
+<td> =</td>
+                <td>NORM_2</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-precond"></span>
+              procedure(<a href='../proc/applypreconditioner.html'>ApplyPreconditioner</a>),
+            </td>
+              <td>public,</td>
+            <td>
+              pass(params), pointer
+            </td>
+            <td>::</td>
+            <td><strong>precond</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+
+        <h4>Type-Bound Procedures</h4>
+        <table class="table table-striped varlist">
+          <tbody>
+              <tr>
+                <td>  procedure, public ::
+  <strong><a href='../type/iterativeparams.html#boundprocedure-norm_function'>norm_function</a></strong></td>
+                  <td></td>
+              </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+
+        </section>
+        <br>
+
+        <section>
+          <h2>Functions</h2>
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-applypreconditioner"></span> <h3>public  function <a href='../proc/applypreconditioner.html'>ApplyPreconditioner</a>(params, method, x) result(y)  
+</h3></div>
+    <div class="card-body">
+          
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-params~22"></span>
+              class(<a href='../type/iterativeparams.html'>IterativeParams</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>params</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-method~10"></span>
+              class(<a href='../type/methodpreconditioner.html'>MethodPreconditioner</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>method</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-x~29"></span>
+              real(kind=dp),
+            </td>
+<td>intent(in),</td>
+              <td></td>            <td>
+              dimension(:)
+            </td>
+            <td>::</td>
+            <td><strong>x</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>real(kind=dp), dimension(size(params%x_init))</small>
+    </h4>
+    
+
+    </div>
+  </div>
+
+        </section>
+        <br>
+
+
+
+
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              NAFPack
+ was developed by Minard Jules<br>              &copy; 2026 
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+            </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>
