@@ -10,6 +10,11 @@ project(NAFPack
         HOMEPAGE_URL "https://github.com/Minard-Jules/NAFPack"
 )
 
+if(NOT CMAKE_AR)
+        message(STATUS "CMAKE_AR not found, trying to find it...")
+        find_program(CMAKE_AR NAMES llvm-ar ar)
+endif()
+
 message(STATUS "Fortran Compiler: ${CMAKE_Fortran_COMPILER_ID} ${CMAKE_Fortran_COMPILER_VERSION} ${CMAKE_Fortran_COMPILER}")
 message(STATUS "C Compiler: ${CMAKE_C_COMPILER_ID} ${CMAKE_C_COMPILER_VERSION} ${CMAKE_C_COMPILER}")
 message(STATUS "System: ${CMAKE_SYSTEM_NAME} ${CMAKE_SYSTEM_VERSION} ${CMAKE_SYSTEM_PROCESSOR}")
@@ -35,10 +40,12 @@ set(TEST_DIR ${CMAKE_CURRENT_SOURCE_DIR}/test)
 add_subdirectory(src)
 
 include(CTest)
+
 if(BUILD_TESTING)
-  enable_testing()
-  add_subdirectory(test)
-  # add_subdirectory(example)
+        enable_testing()
+        add_subdirectory(test)
+
+        # add_subdirectory(example)
 endif()
 
 install(EXPORT ${PROJECT_NAME}-targets
