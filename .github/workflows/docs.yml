@@ -1,0 +1,39 @@
+name: docs
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ master, develop ]
+  pull_request:
+    branches: [ master, develop ]
+
+permissions:
+  contents: write
+
+jobs: 
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Conda environment
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          auto-update-conda: true
+          miniconda-version: latest
+          channels: conda-forge
+          channel-priority: true
+          environment-file: environment.yml
+          activate-environment: nafpack-dev
+      
+      - name: Build Documentation
+        run: ford docs.md
+
+      - uses: JamesIves/github-pages-deploy-action@v4.7.6
+        if: github.event_name == 'push' && github.repository == 'Minard-Jules/NAFPack'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          folder: NAFPack-docs
+          clean: true

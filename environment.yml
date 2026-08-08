@@ -11,3 +11,5 @@ dependencies:
   - fpm
   - compilers
   - ninja
+  - ford
+  - forls

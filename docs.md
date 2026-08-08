@@ -4,7 +4,7 @@ project_github: https://github.com/Minard-Jules/NAFPack
 author: Minard Jules
 github: https://github.com/Minard-Jules
 email: minard.jules@yahoo.com
-output_dir: docs
+output_dir: NAFPack-docs
 src_dir: ./src
 media_dir: ./doc/media
 exclude_dir: test
